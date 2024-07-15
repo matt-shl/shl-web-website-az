@@ -73,11 +73,35 @@
         },
         {
           "url": "/",
-          "title": "Innovations"
+          "title": "Innovations",
+          "subitems": [
+            {
+              "url": "/",
+              "title": "Molly®"
+            },
+            {
+              "url": "/",
+              "title": "Innovations 2"
+            },
+            {
+              "url": "/",
+              "title": "Innovations 3"
+            }
+          ]
         },
         {
           "url": "/",
-          "title": "Services"
+          "title": "Services",
+          "subitems": [
+            {
+              "url": "/",
+              "title": "Molly®"
+            },
+            {
+              "url": "/",
+              "title": "Services 2"
+            }
+          ]
         }
       ]
     },
@@ -85,58 +109,104 @@
       "url": "/",
       "title": "Knowledge & insights",
       "content": "SHL Medical helps pharma & biotech companies through the process of getting medical devices to the market.",
+      "feature": {
+        "title": "Discover Maggie®",
+        "content": "Maggie is a cartridge-based solution that accommodates fill volumes up to 3.0 ml",
+        "url": "/",
+        "image": true
+      },
       "subitems": [
         {
           "url": "/",
           "title": "Injectors",
+          "all": {
+            "url": "/",
+            "title": "All injectors"
+          },
           "subitems": [
             {
               "url": "/",
-              "title": "Sub item 1"
+              "title": "Injector 1"
             },
             {
               "url": "/",
-              "title": "Sub item 2"
+              "title": "Injector 2"
             },
             {
               "url": "/",
-              "title": "Sub item 3"
+              "title": "Injector 3"
             },
             {
               "url": "/",
-              "title": "Sub item 4"
+              "title": "Injector 4"
             },
             {
               "url": "/",
-              "title": "Sub item 5"
+              "title": "Injector 5"
             }
           ]
         },
         {
           "url": "/",
           "title": "Device platforms",
+          "all": {
+            "url": "/",
+            "title": "All device platforms"
+          },
           "subitems": [
             {
               "url": "/",
-              "title": "Sub item 1"
+              "title": "Molly®"
             },
             {
               "url": "/",
-              "title": "Sub item 2"
+              "title": "Platform 2"
             },
             {
               "url": "/",
-              "title": "Sub item 3"
+              "title": "Platform 3"
+            },
+            {
+              "url": "/",
+              "title": "Platform 4"
+            },
+            {
+              "url": "/",
+              "title": "Platform 5"
             }
           ]
         },
         {
           "url": "/",
-          "title": "Innovations"
+          "title": "Innovations",
+          "subitems": [
+            {
+              "url": "/",
+              "title": "Molly®"
+            },
+            {
+              "url": "/",
+              "title": "Innovations 2"
+            },
+            {
+              "url": "/",
+              "title": "Innovations 3"
+            }
+          ]
         },
         {
           "url": "/",
-          "title": "Services"
+          "title": "Services",
+          "subitems": [
+            {
+              "url": "/",
+              "title": "Molly®"
+            },
+            {
+              "url": "/",
+              "title": "Services 2"
+            }
+          ]
         }
       ]
     },
@@ -148,54 +218,94 @@
         {
           "url": "/",
           "title": "Injectors",
+          "all": {
+            "url": "/",
+            "title": "All injectors"
+          },
           "subitems": [
             {
               "url": "/",
-              "title": "Sub item 1"
+              "title": "Injector 1"
             },
             {
               "url": "/",
-              "title": "Sub item 2"
+              "title": "Injector 2"
             },
             {
               "url": "/",
-              "title": "Sub item 3"
+              "title": "Injector 3"
             },
             {
               "url": "/",
-              "title": "Sub item 4"
+              "title": "Injector 4"
             },
             {
               "url": "/",
-              "title": "Sub item 5"
+              "title": "Injector 5"
             }
           ]
         },
         {
           "url": "/",
           "title": "Device platforms",
+          "all": {
+            "url": "/",
+            "title": "All device platforms"
+          },
           "subitems": [
             {
               "url": "/",
-              "title": "Sub item 1"
+              "title": "Molly®"
             },
             {
               "url": "/",
-              "title": "Sub item 2"
+              "title": "Platform 2"
             },
             {
               "url": "/",
-              "title": "Sub item 3"
+              "title": "Platform 3"
+            },
+            {
+              "url": "/",
+              "title": "Platform 4"
+            },
+            {
+              "url": "/",
+              "title": "Platform 5"
             }
           ]
         },
         {
           "url": "/",
-          "title": "Innovations"
+          "title": "Innovations",
+          "subitems": [
+            {
+              "url": "/",
+              "title": "Molly®"
+            },
+            {
+              "url": "/",
+              "title": "Innovations 2"
+            },
+            {
+              "url": "/",
+              "title": "Innovations 3"
+            }
+          ]
         },
         {
           "url": "/",
-          "title": "Services"
+          "title": "Services",
+          "subitems": [
+            {
+              "url": "/",
+              "title": "Molly®"
+            },
+            {
+              "url": "/",
+              "title": "Services 2"
+            }
+          ]
         }
       ]
     },

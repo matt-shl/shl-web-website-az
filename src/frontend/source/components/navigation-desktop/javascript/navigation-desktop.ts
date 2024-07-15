@@ -33,8 +33,15 @@ class NavigationDesktop {
     })
 
     this.anchors.forEach(anchor => {
+      anchor.addEventListener('click', event => this.handleAnchorClick(event, anchor))
       anchor.addEventListener('focus', () => this.closeAllItems())
     })
+  }
+
+  handleAnchorClick(event: MouseEvent, anchor: HTMLAnchorElement) {
+    event.preventDefault();
+    const item = anchor.closest(JS_HOOK_ITEM) as HTMLUListElement;
+    this.toggleItem(item)
   }
 
   handleItemKeydown(event: KeyboardEvent, item: HTMLUListElement) {
@@ -50,7 +57,8 @@ class NavigationDesktop {
 
   toggleItem = (item: HTMLUListElement, shouldOpen = true) => {
     const itemHasFlyout = item.querySelector(JS_HOOK_FLOUT)
-    if (!itemHasFlyout) return
+    const itemIsOpen = item.classList.contains(CLASS_IS_OPEN)
+    if (!itemHasFlyout || shouldOpen && itemIsOpen || !shouldOpen && !itemIsOpen) return
 
     item.classList[shouldOpen ? 'add' : 'remove'](CLASS_IS_OPEN)
     html.classList[shouldOpen ? 'add' : 'remove'](CLASS_HAS_OPEN_FLYOUT)
