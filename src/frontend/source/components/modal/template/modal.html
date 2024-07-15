@@ -1,0 +1,64 @@
+{#
+Modal macro
+Usage as a call, inject the modal content there.
+
+Options:
+    Required
+    id {string|int}          - Adds an id to the modal
+    title {string}           - Adds a title to the modal
+
+    Optional
+    subtitle {string}        - Adds a subtitle to the modal
+    size {string}            - Adds a modifier to the component
+    mobileOnly {boolean}     - Will only set tabindex initially on tablet portrait and smaller.
+    autoFocus {boolean}      - Enable or disable auto focus when opening the modal
+    noBodyClass {boolean}    - Prevents setting the body class when modal is open
+    closeAllOthers {boolean} - Forces all other modalboxes to close when this one opens
+    noClose {boolean}        - Hides the close button (esc. key is still bound)
+    autoClose {integer}      - Amount of seconds after which the modal will close
+#}
+
+{% macro modal(data) %}
+
+  <div class="c-modal{% if data.size %} c-modal--size-{{ data.size }}{% endif %}"
+    {%- if data.id %} id="{{ data.id }}"{% endif -%}
+    {%- if data.mobileOnly %} data-modal-mobile-only="{{ data.mobileOnly }}"{% endif -%}
+    {%- if data.autoFocus %} data-modal-auto-focus="{{ data.autoFocus }}"{% endif -%}
+    {%- if data.noBodyClass %} data-modal-no-body-class="{{ data.noBodyClass }}"{% endif -%}
+    {%- if data.closeAllOthers %} data-modal-close-all-others="{{ data.closeAllOthers }}"{% endif -%}
+    {%- if data.keepScrollPosition %} data-modal-keep-scroll-position="{{ data.keepScrollPosition }}"{% endif -%}
+    {%- if data.autoClose %} data-modal-auto-close="{{ data.autoClose }}"{% endif -%}
+       js-hook-modal>
+
+    <div class="modal__container">
+
+      <div class="modal__content" role="dialog">
+
+        <div class="modal__header">
+          <div>
+            <h2 class="modal__title">{{ data.title }}</h2>
+
+            {% if data.subtitle %}
+              <h3  class="modal__subtitle">{{ data.subtitle }}</h3>
+            {% endif %}
+          </div>
+
+          {% if not data.noClose %}
+            <button type="button" class="modal__button-close" js-hook-button-modal-close aria-label="Close modalbox">
+              {% svg 'icons/cross' %}
+            </button>
+          {% endif %}
+        </div>
+
+        <div class="modal__body" js-hook-modal-body>
+          {{ caller() }}
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="modal__background" js-hook-button-modal-close></div>
+  </div>
+
+{% endmacro %}

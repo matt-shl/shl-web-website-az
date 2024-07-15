@@ -1,0 +1,59 @@
+@mixin d1 {
+  @include fluid-type($font-size-d1, $font-size-d1-mobile);
+  @include fluid-type($font-letter-spacing-d1, $font-letter-spacing-d1-mobile, letter-spacing);
+  line-height: $font-line-height-d1;
+  font-weight: $font-weight-extrabold;
+  text-wrap: balance;
+}
+
+@mixin h1 {
+  @include fluid-type($font-size-h1, $font-size-h1-mobile);
+  @include fluid-type($font-letter-spacing-h1, $font-letter-spacing-h1-mobile, letter-spacing);
+  line-height: $font-line-height-h1;
+  font-weight: $font-weight-extrabold;
+  text-wrap: balance;
+}
+
+@mixin h2 {
+  @include fluid-type($font-size-h2, $font-size-h2-mobile);
+  @include fluid-type($font-letter-spacing-h2, $font-letter-spacing-h2-mobile, letter-spacing);
+  line-height: $font-line-height-h2;
+  font-weight: $font-weight-extrabold;
+  text-wrap: balance;
+}
+
+@mixin h3 {
+  @include fluid-type($font-size-h3, $font-size-h3-mobile);
+  @include fluid-type($font-letter-spacing-h3, $font-letter-spacing-h3-mobile, letter-spacing);
+  line-height: $font-line-height-h3;
+  font-weight: $font-weight-extrabold;
+  text-wrap: balance;
+
+  @include screen-md-and-smaller {
+    line-height: $font-line-height-h3-mobile;
+  }
+}
+
+@mixin h4 {
+  @include fluid-type($font-size-h4, $font-size-h4-mobile);
+  @include fluid-type($font-letter-spacing-h4, $font-letter-spacing-h4-mobile, letter-spacing);
+  line-height: $font-line-height-h4;
+  font-weight: $font-weight-extrabold;
+  text-wrap: balance;
+}
+
+@mixin h5 {
+  @include fluid-type($font-size-h5, $font-size-h5-mobile);
+  @include fluid-type($font-letter-spacing-h5, $font-letter-spacing-h5-mobile, letter-spacing);
+  line-height: $font-line-height-h5;
+  font-weight: $font-weight-extrabold;
+  text-wrap: balance;
+}
+
+@mixin h6 {
+  @include fluid-type($font-size-h6, $font-size-h6-mobile);
+  @include fluid-type($font-letter-spacing-h6, $font-letter-spacing-h6-mobile, letter-spacing);
+  line-height: $font-line-height-h6;
+  font-weight: $font-weight-extrabold;
+  text-wrap: balance;
+}

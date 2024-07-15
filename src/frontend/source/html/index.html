@@ -1,0 +1,31 @@
+{% extends '_dev/layout.html' %}
+
+{% block hero %}
+
+  <div class="o-container">
+    <br/>
+    <h1>Styleguide</h1>
+    <br/>
+    <br/>
+  </div>
+
+
+{% endblock %}
+
+{% block content %}
+
+  {% include '_dev/project/pages-list.html' %}
+
+  <div class="o-container _styleguide">
+    {% include '_dev/styleguide/block-themes.html' %}
+    {% include '_dev/styleguide/block-grid.html' %}
+
+    {% include '_dev/styleguide/block-fonts.html' %}
+    {% include '_dev/styleguide/block-headers.html' %}
+    {% include '_dev/styleguide/block-paragraphs.html' %}
+    {% include '_dev/styleguide/block-links.html' %}
+    {% include '_dev/styleguide/block-buttons.html' %}
+    {% include '_dev/styleguide/block-svg.html' %}
+    {% include '_dev/styleguide/block-components.html' %}
+  </div>
+{% endblock %}

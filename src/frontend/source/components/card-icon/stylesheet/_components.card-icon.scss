@@ -1,0 +1,40 @@
+.c-card-icon {
+  @include card-base;
+}
+
+.card-icon__container {
+  @include card-container-base;
+  @include theme;
+}
+
+.card-icon__icon {
+  height: 40px;
+  width: 40px;
+
+  @include screen-md-and-bigger {
+    height: 60px;
+    width: 60px;
+  }
+}
+
+.card-icon__title {
+  @include h4;
+  margin-top: auto;
+  transition: color var(--card-animation-duration) var(--card-animation-ease);
+}
+
+.card-icon__content {
+  @include body-m;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: var(--card-animation-duration) var(--card-animation-ease);
+  transition-property: opacity, max-height;
+
+  .c-card-icon--has-url:hover & {
+    // Shows max 4 lines
+    max-height: calc(1em * #{$font-line-height-body} * 4);
+    opacity: 1;
+  }
+}

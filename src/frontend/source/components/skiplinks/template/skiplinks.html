@@ -1,0 +1,7 @@
+{% if global.site.skiplinks %}
+<nav class="c-skiplinks">
+  {% for link in global.site.skiplinks %}
+    <a href="{{ link.url }}" class="skiplinks__link">{{ link.label }}</a>
+  {% endfor %}
+</nav>
+{% endif %}

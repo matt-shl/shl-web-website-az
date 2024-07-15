@@ -1,0 +1,74 @@
+{
+  "name": "frontend-setup",
+  "version": "3.5.0",
+  "license": "MIT",
+  "description": "A basic project setup for creating (static) html templates. Filled with automated tasks and configuration options.",
+  "author": "Dept",
+  "contributors": [
+    {
+      "name": "Adrian Klingen",
+      "email": "adrian.klingen@deptagency.com"
+    },
+    {
+      "name": "Frank van der Hammen",
+      "email": "frank.vanderhammen@deptagency.com"
+    },
+    {
+      "name": "Mark Smits",
+      "email": "mark.smits@deptagency.com"
+    }
+  ],
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://bitbucket.org/tamtam-nl/tamtam-frontend-setup"
+  },
+  "engines": {
+    "node": ">=20",
+    "npm": "Please use Yarn"
+  },
+  "browserslist": [
+    "defaults",
+    "> 1%",
+    "not IE 11"
+  ],
+  "jira-prepare-commit-msg": {
+    "messagePattern": "$J: $M",
+    "allowEmptyCommitMessage": true
+  },
+  "lint-staged": {
+    "**/*.(js|ts|tsx)": [
+      "eslint --fix"
+    ],
+    "**/*.(js|json|ts|tsx)": [
+      "prettier --write"
+    ],
+    "**/*.scss": [
+      "stylelint --customSyntax postcss-scss"
+    ]
+  },
+  "scripts": {
+    "postinstall": "husky || (cd ../.. && husky src/frontend/.husky)",
+    "deploy": "dept-builder deploy",
+    "start": "dept-builder start",
+    "dev": "yarn run start",
+    "favicons": "dept-builder favicons",
+    "generate": "dept-builder generate",
+    "a11y": "dept-builder a11y",
+    "prettier": "prettier --write \"**/*.(js|json|ts|tsx)\"",
+    "lint": "yarn lint:js && yarn lint:css",
+    "lint:js": "eslint \"./source/**/*.{js,jsx,ts,tsx}\"",
+    "lint:css": "stylelint **/*.scss",
+    "lint-fix": "yarn lint:js --fix && yarn lint:css --fix",
+    "type-check": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "dept-builder": "git+https://bitbucket.org/tamtam-nl/tamtam-frontend-builder.git#3.5.0",
+    "husky": "^9.0.11",
+    "infinite-marquee": "^1.0.7"
+  },
+  "workspaces": [
+    "source/components/*",
+    "source/utilities/*"
+  ]
+}

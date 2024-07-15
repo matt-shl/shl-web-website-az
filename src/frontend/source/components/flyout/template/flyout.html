@@ -1,0 +1,51 @@
+{% from 'card-image.html' import cardImage %}
+
+{% macro flyout(data) %}
+
+  <div class="c-flyout" js-hook-flyout>
+    <div class="flyout__container">
+      <div class="flyout__content">
+        <div class="flyout__title-column">
+          <h2 class="flyout__title">{{ data.title }}</h2>
+          <p class="flyout__description">{{ data.content }}</p>
+          <p><a href="{{ data.url }}" tabindex="-1">{{ data.title }}</a></p>
+        </div>
+
+        <ul class="flyout__main-item-list">
+          {% for item in data.subitems %}
+            <li class="flyout__main-item{% if loop.index0 === 0 %} is--open{% endif %}">
+              <a title="{{ item.title }}" href="{{ item.url }}" tabindex="-1">
+                {{ item.title }}
+              </a>
+
+              <ul class="flyout__subitem-list">
+                {% for subitem in data.subitems %}
+                  <li class="flyout__subitem">
+                    <a title="{{ subitem.title }}" href="{{ subitem.url }}" tabindex="-1">
+                      {{ subitem.title }}
+                    </a>
+                  </li>
+                {% endfor %}
+                {% if item.all %}
+                  <li><p><a href="{{ item.all.url }}">{{ item.all.title }}</a></p></li>
+                {% endif %}
+              </ul>
+            </li>
+          {% endfor %}
+        </ul>
+
+        {% if data.feature %}
+          <div class="flyout__feature-column">
+            {{ cardImage({
+              url: data.feature.url,
+              image: data.feature.image,
+              title: data.feature.title,
+              content: data.feature.content
+            }) }}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+{% endmacro %}

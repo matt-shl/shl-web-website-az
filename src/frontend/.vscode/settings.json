@@ -1,0 +1,42 @@
+{
+  "eslint.validate": ["javascript", "vue", "typescript"],
+  "css.validate": false,
+  "less.validate": false,
+  "scss.validate": false,
+  "stylelint.enable": true,
+  "stylelint.validate": ["css", "scss"],
+  "eslint.nodePath": "./node_modules",
+  "eslint.workingDirectories": ["./"],
+  "editor.formatOnSave": false,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "typescript.tsdk": "./node_modules/typescript/lib",
+  "files.associations": {
+    "*.js": "javascript",
+    "*.ts": "typescript"
+  },
+  "[typescript]": {
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit"
+    }
+  },
+  "[javascript]": {
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit"
+    }
+  },
+  "[scss]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "never",
+      "source.fixAll.stylelint": "explicit"
+    }
+  },
+  "[html]": {
+    "editor.defaultFormatter": null,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "never"
+    }
+  },
+  "json.format.enable": true
+}

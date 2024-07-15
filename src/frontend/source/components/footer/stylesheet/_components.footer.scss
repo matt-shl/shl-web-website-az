@@ -1,0 +1,6 @@
+.c-footer {
+  @include theme;
+
+  padding-top: $spacing-64; // To overlap with the rounded corners of the main content
+  margin-top: -64px; // To overlap with the rounded corners of the main content
+}

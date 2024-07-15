@@ -1,0 +1,16 @@
+@mixin body-l {
+  font-size: $font-size-body-l;
+}
+
+@mixin body-m {
+  font-size: $font-size-body-m;
+  line-height: $font-line-height-body-m;
+}
+
+@mixin body-s {
+  font-size: $font-size-body-s;
+}
+
+@mixin body-xs {
+  font-size: $font-size-body-xs;
+}

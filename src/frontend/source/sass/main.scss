@@ -1,0 +1,48 @@
+$assets-path: '../' !default;
+
+/*------------------------------------*\
+  #MAIN
+\*------------------------------------*/
+
+@import '01_tools/tools.conversion';
+@import '00_settings/all';
+@import '01_tools/all';
+
+//  Vendor libs
+//      - styles from other sources (npm)
+//[INSERT VENDOR LIBS]
+
+@import '10_generic/generic.page';
+@import '10_generic/generic.font-face';
+@import '10_generic/generic.normalize';
+@import '10_generic/generic.html';
+@import '10_generic/generic.focus';
+@import '20_elements/all';
+@import '30_objects/all';
+
+/* components:scss */
+@import '@/components/button/stylesheet/_components.button';
+@import '@/components/footer/stylesheet/_components.footer';
+@import '@/components/header/stylesheet/_components.header';
+@import '@/components/image/stylesheet/_components.image';
+@import '@/components/skiplinks/stylesheet/_components.skiplinks';
+@import '@/components/grid-overlay/stylesheet/_components.grid-overlay';
+@import '@/components/tag/stylesheet/_components.tag';
+@import '@/components/shape/stylesheet/_components.shape';
+@import '@/components/article/stylesheet/_components.article';
+@import '@/components/hover/stylesheet/_components.hover';
+@import '@/components/modal/stylesheet/_components.modal';
+@import '@/components/accordion/stylesheet/_components.accordion';
+@import '@/components/toast/stylesheet/_components.toast';
+@import '@/components/slogan/stylesheet/_components.slogan';
+@import '@/components/navigation-desktop/stylesheet/_components.navigation-desktop';
+@import '@/components/flyout/stylesheet/_components.flyout';
+@import '@/components/hero-home/stylesheet/_components.hero-home';
+@import '@/components/card-icon/stylesheet/_components.card-icon';
+@import '@/components/card-number/stylesheet/_components.card-number';
+@import '@/components/card-image/stylesheet/_components.card-image';
+/* endinject */
+
+@import '50_scopes/scopes.rich-text';
+@import '60_themes/all';
+@import '70_utilities/all';

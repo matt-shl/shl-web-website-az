@@ -1,0 +1,11 @@
+.c-skiplinks {
+  &:not(:focus-within) {
+    @include sr-only;
+  }
+
+  &:focus-within {
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+  }
+}

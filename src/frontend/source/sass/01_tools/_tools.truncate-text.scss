@@ -1,0 +1,19 @@
+// stylelint-disable property-no-vendor-prefix
+@mixin truncate-text($max-lines: 2, $line-height: $font-line-height-body) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  @supports (display: -webkit-box) {
+    display: -webkit-box;
+    -webkit-line-clamp: $max-lines;
+    -webkit-box-orient: vertical;
+  }
+
+  @supports not (display: -webkit-box) {
+    max-height: calc(1em * #{$line-height} * #{$max-lines});
+  }
+
+  @include ie-only {
+    max-height: calc(1em * #{$line-height} * #{$max-lines});
+  }
+}

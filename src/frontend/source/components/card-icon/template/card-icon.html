@@ -1,0 +1,33 @@
+{#
+Options:
+  title: string
+  url: string
+  icon: string
+  content: string (optional)
+#}
+
+{% from 'hover.html' import hover %}
+
+{% macro cardIcon(data) %}
+  <{{ data.url and 'a' or 'article' }} class="c-card-icon
+  {%- if data.url %} c-card-icon--has-url c-hover-parent{% endif -%}
+  {%- if data.theme %} {{ data.theme }}{% endif -%}"
+  {%- if data.url %} href="{{ data.url }}"{% endif -%}>
+
+  <div class="card-icon__container">
+    {% if data.icon %}
+      <div class="card-icon__icon">{% svg 'icons/' + data.icon %}</div>
+    {% endif %}
+
+    <h3 class="card-icon__title">{{ data.title }}</h3>
+    <p class="card-icon__content">{{ data.content }}</p>
+
+    {% if data.url %}
+      {{ hover({
+        title: data.title
+      }) }}
+    {% endif %}
+  </div>
+
+  </{{ data.url and 'a' or 'article' }}>
+{% endmacro %}

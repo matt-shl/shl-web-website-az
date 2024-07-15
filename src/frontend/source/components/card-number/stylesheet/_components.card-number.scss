@@ -1,0 +1,23 @@
+.c-card-number {
+  @include card-base;
+}
+
+.card-number__container {
+  @include card-container-base;
+  @include theme;
+}
+
+.card-number__title {
+  @include h1;
+  transition: color var(--card-animation-duration) var(--card-animation-ease);
+}
+
+.card-number__subtitle {
+  @include h6;
+}
+
+.card-number__content {
+  @include truncate-text(4);
+  @include body-m;
+  margin-top: auto;
+}

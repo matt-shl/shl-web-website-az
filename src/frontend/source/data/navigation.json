@@ -1,0 +1,211 @@
+{
+  "items": [
+    {
+      "url": "/",
+      "title": "What we offer",
+      "content": "SHL Medical helps pharma & biotech companies through the process of getting medical devices to the market.",
+      "feature": {
+        "title": "Discover Maggie®",
+        "content": "Maggie is a cartridge-based solution that accommodates fill volumes up to 3.0 ml",
+        "url": "/",
+        "image": true
+      },
+      "subitems": [
+        {
+          "url": "/",
+          "title": "Injectors",
+          "all": {
+            "url": "/",
+            "title": "All injectors"
+          },
+          "subitems": [
+            {
+              "url": "/",
+              "title": "Injector 1"
+            },
+            {
+              "url": "/",
+              "title": "Injector 2"
+            },
+            {
+              "url": "/",
+              "title": "Injector 3"
+            },
+            {
+              "url": "/",
+              "title": "Injector 4"
+            },
+            {
+              "url": "/",
+              "title": "Injector 5"
+            }
+          ]
+        },
+        {
+          "url": "/",
+          "title": "Device platforms",
+          "all": {
+            "url": "/",
+            "title": "All device platforms"
+          },
+          "subitems": [
+            {
+              "url": "/",
+              "title": "Molly®"
+            },
+            {
+              "url": "/",
+              "title": "Platform 2"
+            },
+            {
+              "url": "/",
+              "title": "Platform 3"
+            },
+            {
+              "url": "/",
+              "title": "Platform 4"
+            },
+            {
+              "url": "/",
+              "title": "Platform 5"
+            }
+          ]
+        },
+        {
+          "url": "/",
+          "title": "Innovations"
+        },
+        {
+          "url": "/",
+          "title": "Services"
+        }
+      ]
+    },
+    {
+      "url": "/",
+      "title": "Knowledge & insights",
+      "content": "SHL Medical helps pharma & biotech companies through the process of getting medical devices to the market.",
+      "subitems": [
+        {
+          "url": "/",
+          "title": "Injectors",
+          "subitems": [
+            {
+              "url": "/",
+              "title": "Sub item 1"
+            },
+            {
+              "url": "/",
+              "title": "Sub item 2"
+            },
+            {
+              "url": "/",
+              "title": "Sub item 3"
+            },
+            {
+              "url": "/",
+              "title": "Sub item 4"
+            },
+            {
+              "url": "/",
+              "title": "Sub item 5"
+            }
+          ]
+        },
+        {
+          "url": "/",
+          "title": "Device platforms",
+          "subitems": [
+            {
+              "url": "/",
+              "title": "Sub item 1"
+            },
+            {
+              "url": "/",
+              "title": "Sub item 2"
+            },
+            {
+              "url": "/",
+              "title": "Sub item 3"
+            }
+          ]
+        },
+        {
+          "url": "/",
+          "title": "Innovations"
+        },
+        {
+          "url": "/",
+          "title": "Services"
+        }
+      ]
+    },
+    {
+      "url": "/",
+      "title": "About us",
+      "content": "SHL Medical helps pharma & biotech companies through the process of getting medical devices to the market.",
+      "subitems": [
+        {
+          "url": "/",
+          "title": "Injectors",
+          "subitems": [
+            {
+              "url": "/",
+              "title": "Sub item 1"
+            },
+            {
+              "url": "/",
+              "title": "Sub item 2"
+            },
+            {
+              "url": "/",
+              "title": "Sub item 3"
+            },
+            {
+              "url": "/",
+              "title": "Sub item 4"
+            },
+            {
+              "url": "/",
+              "title": "Sub item 5"
+            }
+          ]
+        },
+        {
+          "url": "/",
+          "title": "Device platforms",
+          "subitems": [
+            {
+              "url": "/",
+              "title": "Sub item 1"
+            },
+            {
+              "url": "/",
+              "title": "Sub item 2"
+            },
+            {
+              "url": "/",
+              "title": "Sub item 3"
+            }
+          ]
+        },
+        {
+          "url": "/",
+          "title": "Innovations"
+        },
+        {
+          "url": "/",
+          "title": "Services"
+        }
+      ]
+    },
+    {
+      "url": "/",
+      "title": "Careers"
+    },
+    {
+      "url": "/",
+      "title": "Get in touch"
+    }
+  ]
+}

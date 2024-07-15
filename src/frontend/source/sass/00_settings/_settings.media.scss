@@ -1,0 +1,62 @@
+/*----------------------------------*\
+  #MEDIA
+\*----------------------------------*/
+
+//    Place your media queries here.
+//
+//    example usage:
+//    -------------
+//
+//    @media #{ $screen-sm-and-down } {
+//
+//        .some-class {
+//
+//            font-size: 1.4rem;
+//
+//        }
+//
+//    }
+
+$breakpoint-base: 320px; // Mobile;
+$breakpoint-sm: 480px; // Mobile plus
+$breakpoint-md: 744px; // Tablet
+$breakpoint-lg: 1280px; // Laptop
+$breakpoint-xl: 1920px; // Desktop
+
+// Device named breakpoints, used for the mixins.
+
+$base-start: $breakpoint-base;
+$base-end: $breakpoint-sm - 0.5;
+
+$sm-start: $breakpoint-sm;
+$sm-end: $breakpoint-md - 0.5;
+
+$md-start: $breakpoint-md;
+$md-end: $breakpoint-lg - 0.5;
+
+$lg-start: $breakpoint-lg;
+$lg-end: $breakpoint-xl - 0.5;
+
+$xl-start: $breakpoint-xl;
+
+// Media queries
+
+$screen-base-only: 'only screen and ( min-width : #{em($base-start)} ) and ( max-width : #{em($base-end)} )';
+$screen-base-and-smaller: 'only screen and ( max-width : #{em($base-end)} )';
+$screen-base-and-bigger: 'only screen and ( min-width : #{em($base-start)} )';
+
+$screen-sm-only: 'only screen and ( min-width : #{em($sm-start)} ) and ( max-width : #{em($sm-end)} )';
+$screen-sm-and-smaller: 'only screen and ( max-width : #{em($sm-end)} )';
+$screen-sm-and-bigger: 'only screen and ( min-width : #{em($sm-start)} )';
+
+$screen-md-only: 'only screen and ( min-width : #{em($md-start)} ) and ( max-width : #{em($md-end)} )';
+$screen-md-and-smaller: 'only screen and ( max-width : #{em($md-end)} )';
+$screen-md-and-bigger: 'only screen and ( min-width : #{em($md-start)} )';
+
+$screen-lg-only: 'only screen and ( min-width : #{em($lg-start)} ) and ( max-width : #{em($lg-end)} )';
+$screen-lg-and-bigger: 'only screen and ( min-width : #{em($lg-start)} )';
+
+$screen-xl-and-bigger: 'only screen and ( min-width : #{em($xl-start)} )';
+
+$screen-portrait: 'screen and (orientation: portrait)';
+$screen-landscape: 'screen and (orientation: landscape)';

@@ -1,0 +1,15 @@
+.t-light-blue {
+  --color-background: #{$color-light-blue};
+  --color-content: #{$color-white};
+  --focus-theme-color: #{$color-dark-blue};
+
+  // Buttons
+  --button-primary-font-color: #{$color-dark-blue};
+  --button-primary-background-color: var(--color-content);
+  --button-primary-border-color: var(--color-content);
+  --button-secondary-font-color: var(--color-content);
+  --button-secondary-border-color: var(--color-content);
+
+  // Links
+  --link-theme-underline-color: #{rgba($color-white-rgb, 0.2)};
+}

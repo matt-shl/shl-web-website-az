@@ -1,0 +1,54 @@
+:root {
+  // Style
+  --button-spacing-x: #{$spacing-24};
+  --button-spacing-y: #{$spacing-20};
+  --button-border-radius: #{$radii-4};
+
+  // Colors
+  --button-icon-color: var(--button-font-color);
+
+  --button-border-radius-hover: #{$radii-16};
+  --button-border-radius-focus: var(--button-border-radius);
+
+  --button-opacity-disabled: 0.5;
+
+  // Transitions
+  --button-transition-time: 300ms;
+  --button-transition-ease: #{$ease-in-out-quad};
+}
+
+@mixin button {
+  @include button--base;
+  padding-block: var(--button-spacing-y);
+  padding-inline: var(--button-spacing-x);
+  border-radius: var(--button-border-radius);
+  border: 1px solid var(--button-border-color);
+  background-color: var(--button-background-color);
+  color: var(--button-font-color);
+  transition: var(--button-transition-time) var(--button-transition-ease);
+  transition-property: color, background-color, border-radius, opacity, border;
+  font-weight: $font-weight-regular;
+
+  .button__label {
+    display: block;
+  }
+
+  svg {
+    fill: var(--button-font-color);
+    transition: var(--button-transition-time) var(--button-transition-ease);
+    transition-property: fill;
+  }
+
+  @include hover-focus {
+    border-radius: var(--button-border-radius-hover);
+  }
+
+  @include keyboard-focus {
+    border-radius: var(--button-border-radius-focus);
+  }
+
+  &[disabled] {
+    opacity: var(--button-opacity-disabled);
+    pointer-events: none;
+  }
+}

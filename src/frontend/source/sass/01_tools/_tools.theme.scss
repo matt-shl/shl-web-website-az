@@ -1,0 +1,22 @@
+@mixin theme {
+  transition: 300ms ease-in-out;
+  transition-property: background-color, color;
+
+  background-color: var(--color-background);
+  color: var(--color-content);
+
+  // Component overrides
+  --focus-color: var(--focus-theme-color);
+  --link-underline-color: var(--link-theme-underline-color);
+
+  .c-button {
+    --button-font-color: var(--button-primary-font-color);
+    --button-background-color: var(--button-primary-background-color);
+    --button-border-color: var(--button-primary-border-color);
+  }
+
+  .c-button--secondary {
+    --button-font-color: var(--button-secondary-font-color);
+    --button-border-color: var(--button-secondary-border-color);
+  }
+}

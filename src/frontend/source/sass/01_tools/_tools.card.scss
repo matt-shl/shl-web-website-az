@@ -1,0 +1,26 @@
+:root {
+  --card-animation-delay: 50ms;
+  --card-animation-duration: 300ms;
+  --card-animation-ease: ease-in-out;
+}
+
+@mixin card-base {
+  color: inherit;
+  display: block;
+}
+
+@mixin card-container-base {
+  aspect-ratio: 1;
+  border-radius: $radii-12;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  padding-block: $spacing-24;
+  padding-inline: $spacing-24 $spacing-64;
+
+  @include screen-md-and-bigger {
+    padding-block: $spacing-48;
+    padding-inline: $spacing-48 $spacing-80;
+  }
+}

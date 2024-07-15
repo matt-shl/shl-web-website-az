@@ -1,0 +1,31 @@
+// stylelint-disable property-no-vendor-prefix, declaration-no-important
+
+html,
+body {
+  -webkit-font-smoothing: antialiased;
+  min-height: 100%;
+  min-width: 320px;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  background-color: $color-white;
+  color: $color-dark-blue;
+  font-family: $font-stack-primary;
+  font-size: $font-size-root;
+  min-height: 100%;
+
+  &.no--scroll {
+    overflow-y: hidden !important;
+  }
+}
+
+body {
+  @include fluid-type($font-size-body, $font-size-body * 0.875);
+  display: flex;
+  flex-direction: column;
+  hyphens: auto;
+  line-height: $font-line-height-body;
+  min-height: 100vh;
+  word-break: normal;
+}

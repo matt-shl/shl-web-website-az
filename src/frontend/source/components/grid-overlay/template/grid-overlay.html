@@ -1,0 +1,9 @@
+{% macro gridOverlay(data) %}
+  {% set columns = data.columns or 12 %}
+
+  <div class="o-container c-grid-overlay" js-hook-grid-overlay>
+    {% for i in range(columns) %}
+      <div class="grid-overlay__column"></div>
+    {% endfor %}
+  </div>
+{% endmacro %}

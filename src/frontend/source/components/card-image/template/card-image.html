@@ -1,0 +1,42 @@
+{#
+Options:
+  title: string
+  subtitle: string
+  description: string
+  image: object
+  url: string (optional)
+#}
+
+{% from 'hover.html' import hover %}
+{% from 'image.html' import image %}
+
+{% macro cardImage(data) %}
+  <{{ data.url and 'a' or 'article' }} class="c-card-image c-card-image--has-image
+  {%- if data.url %} c-card-image--has-url c-hover-parent{% endif -%}
+  {%- if data.theme %} {{ data.theme }}{% endif -%}"
+  {%- if data.url %} href="{{ data.url }}"{% endif -%}>
+
+  <div class="card-image__image-container">
+    {{ image({
+      objectFit: true,
+      classes: 'card-image__image',
+      imageStyle: 'card'
+    }) }}
+
+    {% if data.url %}
+      {{ hover({
+        title: data.title
+      }) }}
+    {% endif %}
+  </div>
+
+  <div class="card-image__content-container">
+
+    <h3 class="card-image__title">{{ data.title }}</h3>
+    <h4 class="card-image__subtitle">{{ data.subtitle }}</h4>
+    <p class="card-image__content">{{ data.content }}</p>
+
+  </div>
+
+  </{{ data.url and 'a' or 'article' }}>
+{% endmacro %}

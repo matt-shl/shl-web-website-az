@@ -1,0 +1,87 @@
+.c-flyout {
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  top: 100%;
+  transform: translate3d(0, 20%, 0);
+  width: 100%;
+  pointer-events: none;
+  transition: var(--header-transition-time) var(--header-transition-ease);
+  transition-property: transform, opacity;
+
+  .is--open & {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    pointer-events: auto;
+  }
+}
+
+.flyout__container {
+  @include container;
+  margin-top: $spacing-16;
+}
+
+.flyout__content {
+  @include header-background-offset;
+  @include grid;
+  background-color: $color-white;
+  border-radius: $radii-12;
+  color: $color-dark-blue;
+  padding-block: $spacing-40;
+}
+
+.flyout__title-column {
+  @include col-span(3);
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-16;
+}
+
+.flyout__title {
+  @include h5;
+}
+
+.flyout__description {
+  @include body-m;
+}
+
+.flyout__main-item-list {
+  @include list--reset;
+  @include col-span(6);
+  position: relative;
+}
+
+.flyout__main-item {
+  //
+
+  > a {
+    display: block;
+    width: 50%;
+    border: 1px solid;
+  }
+}
+
+.flyout__subitem-list {
+  position: absolute;
+  inset-inline-end: 0;
+  top: 0;
+  width: 50%;
+  border: 1px solid;
+  display: none;
+
+  .flyout__main-item.is--open & {
+    display: block;
+  }
+}
+
+.flyout__subitem {
+  //
+
+  > a {
+    //
+  }
+}
+
+.flyout__feature-column {
+  @include col-span(3);
+}

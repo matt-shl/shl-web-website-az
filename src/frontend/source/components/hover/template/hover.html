@@ -1,0 +1,46 @@
+{#
+Card Hover Component
+A component that displays a hover effect on a card
+
+Note: When using this component on hover, the parent component that shows it on hover should have class "c-hover-parent"
+
+Options:
+  title: string (required)
+  tag: string
+  position: "start"
+  visible: true
+#}
+
+{% from 'button.html' import button %}
+{% from 'shape.html' import shape %}
+{% from 'tag.html' import tag %}
+
+{% macro hover(data) %}
+
+  <div class="c-hover
+    {%- if data.position %} c-hover--position-{{ data.position }}{% endif -%}
+    {%- if data.visible %} c-hover--is-visible{% endif -%}">
+
+    <div class="hover__content">
+      {% if data.tag %}
+        {{ tag({
+          classes: '',
+          label: data.tag
+        }) }}
+      {% else %}
+        {{ button({
+          label: data.title,
+          srOnly: true,
+          element: 'span',
+          icon: 'arrow-top-right'
+        }) }}
+      {% endif %}
+    </div>
+
+    {{ shape({
+      class: 'hover__shape'
+    }) }}
+
+  </div>
+
+{% endmacro %}

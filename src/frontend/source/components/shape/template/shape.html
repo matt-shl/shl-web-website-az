@@ -1,0 +1,12 @@
+{% macro shape(data) %}
+  <div class="c-shape
+    {%- if data.class %} {{ data.class }}{% endif -%}">
+      <span class="shape__begin">
+        {% svg 'shape/begin' %}
+      </span>
+    <span class="shape__scale"></span>
+    <span class="shape__end">
+        {% svg 'shape/end' %}
+      </span>
+  </div>
+{% endmacro %}

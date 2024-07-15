@@ -1,0 +1,110 @@
+{% set title='Components' %}
+
+{% extends './block.html' %}
+
+{% block content %}
+
+  <div class="styleguide__components">
+
+    <div class="styleguide__component-col styleguide__component-col--theme styleguide__component-col--12">
+      {% from 'slogan.html' import slogan %}
+      {{ slogan({ text: "Caring. Inclusive. Driven." }) }}
+    </div>
+
+    <div class="styleguide__component-col styleguide__component-col--3">
+      {% from 'tag.html' import tag %}
+      {{ tag({ label: "Event" }) }}
+      {{ tag({ label: "News" }) }}
+      {{ tag({ label: "Press release" }) }}
+    </div>
+
+    <div class="styleguide__component-col styleguide__component-col--3">
+      {% from 'button.html' import button %}
+
+      {{ button({
+        label: "Open Modal (aside)",
+        controls: "aside-modal-example",
+        ariaLabel: "Open modalbox"
+      }) }}
+
+      {% from 'modal.html' import modal %}
+      {% call modal({
+        size: 'aside',
+        title: 'Aside modal',
+        subtitle: 'Subtitle',
+        id : 'aside-modal-example'
+      }) %}
+        Modal content here.
+      {% endcall %}
+    </div>
+    <div class="styleguide__component-col styleguide__component-col--theme styleguide__component-col--3">
+      {% import 'accordion.html' as accordion %}
+      {% call accordion.default() %}
+        {% call accordion.item({
+          id : "acc1",
+          title : "Accordion item 1",
+          open: true
+        }) %}
+          Content for accordion item 1
+        {% endcall %}
+
+        {% call accordion.item({
+          id : "acc2",
+          title : "Accordion item 2"
+        }) %}
+          Content for accordion item 2
+        {% endcall %}
+
+      {% endcall %}
+    </div>
+
+    <div class="styleguide__component-col styleguide__component-col--3">
+      {% from 'card-number.html' import cardNumber %}
+      {{ cardNumber({
+        title: "420.000",
+        subtitle: "Card",
+        content: "Tons of plastic saved by moving to a new manufacturing machine. That’s the weight of 24 elephants."
+      }) }}
+    </div>
+    <div class="styleguide__component-col styleguide__component-col--3">
+      {% from 'card-icon.html' import cardIcon %}
+      {{ cardIcon({
+        url: '#',
+        theme: 't-pale-pink',
+        icon: 'rocket',
+        title: "Card",
+        content: "Hardcoded pale pink theme."
+      }) }}
+    </div>
+    <div class="styleguide__component-col styleguide__component-col--3">
+      {% from 'card-image.html' import cardImage %}
+      {{ cardImage({
+        url: '#',
+        image: {},
+        title: "Card",
+        content: "The Swedish government has announced a new initiative to reduce plastic waste."
+      }) }}
+    </div>
+    <div class="styleguide__component-col styleguide__component-col--3">
+      {% from 'article.html' import article %}
+      {{ article({
+        title: "Article",
+        image: {},
+        date: "May 2024",
+        tag: "Press Release",
+        description: "SHL Medical donates US$200,000 to support victims of the recent earthquake in Taiwan.",
+        cta: "Read more"
+      }) }}
+    </div>
+    <div class="styleguide__component-col styleguide__component-col--3">
+      {{ article({
+        title: "Article",
+        image: {},
+        tag: "Whitepaper",
+        cta: "Open modal",
+        modalId: "aside-modal-example"
+      }) }}
+    </div>
+  </div>
+
+{% endblock %}

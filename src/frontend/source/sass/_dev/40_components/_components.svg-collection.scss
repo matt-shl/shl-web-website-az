@@ -1,0 +1,50 @@
+.c-styleguide__svg-collection {
+  @include grid;
+}
+
+.c-svg-collection__tile {
+  grid-column: span 4;
+  position: relative;
+  vertical-align: top;
+  border: 1px solid $dev-color-grey;
+  text-align: center;
+  cursor: default;
+
+  @include screen-md-and-bigger {
+    grid-column: span 2;
+  }
+
+  @include screen-lg-and-bigger {
+    grid-column: span 1;
+  }
+
+  h4 {
+    color: $dev-color-grey-dark;
+    width: 100%;
+    line-height: 1em;
+    font-size: 0.8em;
+    font-weight: normal;
+    position: absolute;
+    text-align: center;
+    bottom: 5px;
+  }
+}
+
+
+.c-svg-collection__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1 / 1;
+
+  i {
+    display: inline-block;
+    text-indent: 200%;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  svg {
+    color: $color-dark-blue;
+  }
+}

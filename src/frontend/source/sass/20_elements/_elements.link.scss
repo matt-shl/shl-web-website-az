@@ -1,0 +1,31 @@
+$link-transition-time: 200ms;
+$link-transition-ease: $ease-in-out-quad;
+
+:root {
+  --link-underline-color: #{rgba($color-dark-blue-rgb, 0.2)};
+}
+
+// most basic link style
+@mixin link--base {
+  color: currentcolor;
+  cursor: pointer;
+  font-weight: $font-weight-extrabold;
+  text-overflow: ellipsis;
+  transition: $link-transition-time $link-transition-ease;
+  transition-property: text-decoration-color;
+  text-decoration: underline;
+  text-underline-offset: $spacing-12;
+  text-decoration-color: var(--link-underline-color);
+
+  @include hover-focus {
+    text-decoration-color: currentcolor;
+  }
+}
+
+a {
+  text-decoration: none;
+}
+
+p a {
+  @include link--base;
+}

@@ -1,0 +1,16 @@
+// Mixin to create a grid layout
+@mixin grid($columns: $grid-columns) {
+  display: grid;
+  grid-template-columns: repeat($columns, minmax(0, 1fr));
+  grid-column-gap: $grid-gutter;
+  grid-row-gap: $grid-gutter;
+}
+
+// Mixin for grid span
+@mixin col-span($span) {
+  grid-column: span $span;
+}
+
+.o-grid {
+  @include grid;
+}

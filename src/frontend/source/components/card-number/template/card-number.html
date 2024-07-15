@@ -1,0 +1,21 @@
+{#
+Options:
+  title: string
+  subtitle: string
+  description: string
+#}
+
+{% from 'hover.html' import hover %}
+
+{% macro cardNumber(data) %}
+  <article class="c-card-number
+  {%- if data.theme %} {{ data.theme }}{% endif -%}">
+
+  <div class="card-number__container">
+    <h3 class="card-number__title">{{ data.title }}</h3>
+    <h4 class="card-number__subtitle">{{ data.subtitle }}</h4>
+    <p class="card-number__content">{{ data.content }}</p>
+  </div>
+
+  </article>
+{% endmacro %}

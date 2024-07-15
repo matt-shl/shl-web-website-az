@@ -1,0 +1,19 @@
+@mixin sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+@mixin hero-overlap {
+  @include theme;
+
+  padding-bottom: $spacing-64; // To overlap with the rounded corners of the main content
+  margin-bottom: -64px; // To overlap with the rounded corners of the main content
+
+  padding-top: var(--header-height); // To let the fixed header overlap the hero
+}

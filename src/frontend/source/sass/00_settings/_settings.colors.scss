@@ -1,0 +1,53 @@
+/*----------------------------------------------------*\
+  #COLORS, use the scss variables in your stylesheets
+\*----------------------------------------------------*/
+
+$color-black: var(--color-black);
+$color-black-rgb: var(--color-black-rgb);
+$color-light-grey: var(--color-light-grey);
+$color-white: var(--color-white);
+$color-white-rgb: var(--color-white-rgb);
+$color-dark-blue: var(--color-dark-blue);
+$color-dark-blue-rgb: var(--color-dark-blue-rgb);
+$color-pale-blue: var(--color-pale-blue);
+$color-light-blue: var(--color-light-blue);
+$color-lightest-blue: var(--color-lightest-blue);
+$color-pastel-blue: var(--color-pastel-blue);
+$color-dark-pink: var(--color-dark-pink);
+$color-dark-pink-rgb: var(--color-dark-pink-rgb);
+$color-pale-pink: var(--color-pale-pink);
+$color-pale-pink-rgb: var(--color-pale-pink-rgb);
+$color-dark-green: var(--color-dark-green);
+$color-dark-green-rgb: var(--color-dark-green-rgb);
+$color-pale-green: var(--color-pale-green);
+$color-pastel-green: var(--color-pastel-green);
+$color-dark-yellow: var(--color-dark-yellow);
+$color-dark-yellow-rgb: var(--color-dark-yellow-rgb);
+$color-pale-yellow: var(--color-pale-yellow);
+
+:root {
+  --color-black-rgb: 0, 0, 0;
+  --color-black: rgb(var(--color-black-rgb));
+  --color-dark-grey: #6d6d6d;
+  --color-grey: #bbbdbf;
+  --color-light-grey: #e6e7e8;
+  --color-white-rgb: 255, 255, 255;
+  --color-white: rgb(var(--color-white-rgb));
+  --color-dark-blue-rgb: 6, 47, 84;
+  --color-dark-blue: rgb(var(--color-dark-blue-rgb));
+  --color-pale-blue: #baedf3;
+  --color-light-blue: #007cbe;
+  --color-lightest-blue: #e3f8fa;
+  --color-pastel-blue: #f3f9f8;
+  --color-dark-pink-rgb: 102, 41, 73;
+  --color-dark-pink: rgb(var(--color-dark-pink-rgb));
+  --color-pale-pink-rgb: 252, 197, 240;
+  --color-pale-pink: rgb(var(--color-pale-pink-rgb));
+  --color-dark-green-rgb: 10, 95, 90;
+  --color-dark-green: rgb(var(--color-dark-green-rgb));
+  --color-pale-green: #a4ead4;
+  --color-pastel-green: #e5f9f7;
+  --color-dark-yellow-rgb: 129, 84, 26;
+  --color-dark-yellow: rgb(var(--color-dark-yellow-rgb));
+  --color-pale-yellow: #fef1d1;
+}

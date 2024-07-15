@@ -1,0 +1,15 @@
+.t-dark-pink {
+  --color-background: #{$color-dark-pink};
+  --color-content: #{$color-pale-pink};
+  --focus-theme-color: #{$color-light-blue};
+
+  // Buttons
+  --button-primary-font-color: #{$color-dark-pink};
+  --button-primary-background-color: var(--color-content);
+  --button-primary-border-color: var(--color-content);
+  --button-secondary-font-color: var(--color-content);
+  --button-secondary-border-color: var(--color-content);
+
+  // Links
+  --link-theme-underline-color: #{rgba($color-pale-pink-rgb, 0.2)};
+}
