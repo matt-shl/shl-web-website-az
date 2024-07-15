@@ -16,6 +16,10 @@ $lg-start: $breakpoint-lg;
 $lg-end: $breakpoint-xl - 0.5;
 
 $xl-start: $breakpoint-xl;
+$xl-end: $breakpoint-xxl - 0.5;
+
+$xxl-start: $breakpoint-xxl;
+$xxl-end: $breakpoint-xxl - 0.5;
 
 /**
  * Media queries targeting a device and smaller
@@ -48,6 +52,18 @@ $xl-start: $breakpoint-xl;
   }
 }
 
+@mixin screen-xl-and-smaller {
+  @media only screen and (max-width: em($xl-end)) {
+    @content;
+  }
+}
+
+@mixin screen-xxl-and-smaller {
+  @media only screen and (max-width: em($xxl-end)) {
+    @content;
+  }
+}
+
 /**
  * Media queries targeting a device and bigger
  **/
@@ -76,6 +92,12 @@ $xl-start: $breakpoint-xl;
   }
 }
 
+@mixin screen-xxl-and-bigger {
+  @media only screen and (min-width: em($xxl-start)) {
+    @content;
+  }
+}
+
 /**
  * Media queries targeting a device and bigger
  * - - screen-mobile-only? > use screen-base-and-smaller
@@ -96,6 +118,18 @@ $xl-start: $breakpoint-xl;
 
 @mixin screen-lg-only {
   @media only screen and (min-width: em($lg-start)) and (max-width: em($lg-end)) {
+    @content;
+  }
+}
+
+@mixin screen-xl-only {
+  @media only screen and (min-width: em($xl-start)) and (max-width: em($xl-end)) {
+    @content;
+  }
+}
+
+@mixin screen-xxl-only {
+  @media only screen and (min-width: em($xxl-start)) and (max-width: em($xxl-end)) {
     @content;
   }
 }

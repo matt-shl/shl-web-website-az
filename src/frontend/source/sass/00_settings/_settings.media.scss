@@ -20,9 +20,9 @@
 $breakpoint-base: 320px; // Mobile;
 $breakpoint-sm: 480px; // Mobile plus
 $breakpoint-md: 744px; // Tablet
-$breakpoint-lg: 1280px; // Laptop
-$breakpoint-xl: 1920px; // Desktop
-
+$breakpoint-lg: 1024px; // Tablet plus
+$breakpoint-xl: 1440px; // Laptop
+$breakpoint-xxl: 1920px; // Desktop
 // Device named breakpoints, used for the mixins.
 
 $base-start: $breakpoint-base;
@@ -38,6 +38,10 @@ $lg-start: $breakpoint-lg;
 $lg-end: $breakpoint-xl - 0.5;
 
 $xl-start: $breakpoint-xl;
+$xl-end: $breakpoint-xxl - 0.5;
+
+$xxl-start: $breakpoint-xxl;
+$xxl-end: $breakpoint-xxl - 0.5;
 
 // Media queries
 
@@ -54,9 +58,13 @@ $screen-md-and-smaller: 'only screen and ( max-width : #{em($md-end)} )';
 $screen-md-and-bigger: 'only screen and ( min-width : #{em($md-start)} )';
 
 $screen-lg-only: 'only screen and ( min-width : #{em($lg-start)} ) and ( max-width : #{em($lg-end)} )';
+$screen-lg-and-smaller: 'only screen and ( max-width : #{em($lg-end)} )';
 $screen-lg-and-bigger: 'only screen and ( min-width : #{em($lg-start)} )';
 
+$screen-xl-only: 'only screen and ( min-width : #{em($xl-start)} ) and ( max-width : #{em($xl-end)} )';
+$screen-xl-and-smaller: 'only screen and ( max-width : #{em($xl-end)} )';
 $screen-xl-and-bigger: 'only screen and ( min-width : #{em($xl-start)} )';
 
-$screen-portrait: 'screen and (orientation: portrait)';
-$screen-landscape: 'screen and (orientation: landscape)';
+$screen-xxl-only: 'only screen and ( min-width : #{em($xxl-start)} )';
+$screen-xxl-and-smaller: 'only screen and ( max-width : #{em($xxl-end)} )';
+$screen-xxl-and-bigger: 'only screen and ( min-width : #{em($xxl-start)} )';
