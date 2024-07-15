@@ -7,6 +7,7 @@ $link-transition-ease: $ease-in-out-quad;
 
 // most basic link style
 @mixin link--base {
+  display: inline-block;
   color: currentcolor;
   cursor: pointer;
   font-weight: $font-weight-extrabold;
@@ -14,7 +15,7 @@ $link-transition-ease: $ease-in-out-quad;
   transition: $link-transition-time $link-transition-ease;
   transition-property: text-decoration-color;
   text-decoration: underline;
-  text-underline-offset: $spacing-12;
+  text-underline-offset: $spacing-6;
   text-decoration-color: var(--link-underline-color);
 
   @include hover-focus {

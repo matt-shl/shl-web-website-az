@@ -30,6 +30,25 @@
   width: 100%;
   z-index: 9;
 
+  &::before {
+    background: rgba($color-black-rgb, 0.6);
+    content: '';
+    height: 100vh;
+    left: 0;
+    opacity: 0;
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    transition: var(--header-transition-time) var(--header-transition-ease);
+    transition-property: opacity;
+    width: 100%;
+    z-index: -1;
+  }
+
+  .has--open-flyout &::before {
+    opacity: 1;
+  }
+
   .is--header-white & {
     --header-background-color: #{$color-white};
     --header-font-color: #{$color-dark-blue};
@@ -49,11 +68,10 @@
     background-color: $color-white;
     border-color: $color-light-grey;
     color: $color-dark-blue;
-    margin-top: -16px;
-
     --header-font-color: #{$color-dark-blue};
     --hamburger-hover-background-color: #{$color-dark-blue};
     --hamburger-hover-font-color: #{$color-white};
+    margin-top: -16px;
   }
 
   @include screen-lg-and-bigger {
@@ -70,7 +88,7 @@
 }
 
 .header__logo {
-  html:not(.is--page-home) & {
+  html:not(.is--header-white) & {
     path {
       fill: var(--header-font-color);
     }

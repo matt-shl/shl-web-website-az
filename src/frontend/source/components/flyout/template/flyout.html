@@ -13,21 +13,25 @@
 
         <ul class="flyout__main-item-list">
           {% for item in data.subitems %}
-            <li class="flyout__main-item{% if loop.index0 === 0 %} is--open{% endif %}">
-              <a title="{{ item.title }}" href="{{ item.url }}" tabindex="-1">
+            <li class="flyout__main-item{% if loop.index0 === 0 %} is--open{% endif %}" js-hook-flyout-main-item>
+              <button class="flyout__main-item-button" title="{{ item.title }}" tabindex="-1" js-hook-flyout-main-item-anchor>
                 {{ item.title }}
-              </a>
+
+                {% svg 'icons/chevron-right' %}
+              </button>
 
               <ul class="flyout__subitem-list">
-                {% for subitem in data.subitems %}
+                {% for subitem in item.subitems %}
                   <li class="flyout__subitem">
-                    <a title="{{ subitem.title }}" href="{{ subitem.url }}" tabindex="-1">
+                    <a class="flyout__subitem-anchor" title="{{ subitem.title }}" href="{{ subitem.url }}" tabindex="-1">
                       {{ subitem.title }}
                     </a>
                   </li>
                 {% endfor %}
                 {% if item.all %}
-                  <li><p><a href="{{ item.all.url }}">{{ item.all.title }}</a></p></li>
+                  <li>
+                    <p><a class="flyout__subitem-all" href="{{ item.all.url }}">{{ item.all.title }}</a></p>
+                  </li>
                 {% endif %}
               </ul>
             </li>

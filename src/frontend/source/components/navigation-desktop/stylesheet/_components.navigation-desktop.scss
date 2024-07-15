@@ -1,5 +1,3 @@
-//.c-navigation-desktop
-
 .navigation-desktop__list {
   @include list--reset;
   display: flex;
@@ -42,8 +40,12 @@
     visibility: hidden;
   }
 
-  .is--open &::after {
-    display: block;
+  .is--open & {
+    font-weight: $font-weight-extrabold;
+
+    &::after {
+      display: block;
+    }
   }
 
   @include hover-focus {
