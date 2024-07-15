@@ -1,0 +1,11 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+      <Nullable>enable</Nullable>
+      <WarningsAsErrors>Nullable</WarningsAsErrors>
+      <ImplicitUsings>enable</ImplicitUsings>
+      <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+      <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+      <GenerateDocumentationFile>True</GenerateDocumentationFile>
+      <NoWarn>$(NoWarn),1573,1591,1712</NoWarn>
+    </PropertyGroup>
+</Project>

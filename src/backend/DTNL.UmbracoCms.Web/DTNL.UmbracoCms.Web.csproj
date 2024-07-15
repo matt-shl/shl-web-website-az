@@ -1,0 +1,100 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <AssemblyMetadata Include="SolutionName" Value="$(SolutionName)" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="Asp.Versioning.Mvc" />
+    <PackageReference Include="DEPT.Umbraco.SourceGenerators" />
+    <PackageReference Include="Flurl.Http" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" />
+    <PackageReference Include="Microsoft.ApplicationInsights.SnapshotCollector" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" />
+    <PackageReference Include="Microsoft.Extensions.Caching.SqlServer" />
+    <PackageReference Include="NetEscapades.AspNetCore.SecurityHeaders" />
+    <PackageReference Include="Scrutor" />
+    <PackageReference Include="Serilog.Exceptions" />
+    <PackageReference Include="Serilog.Exceptions.EntityFrameworkCore" />
+    <PackageReference Include="Serilog.Exceptions.SqlServer" />
+    <PackageReference Include="Serilog.Sinks.ApplicationInsights" />
+    <PackageReference Include="SimpleMvcSitemap.Core" />
+    <PackageReference Include="Umbraco.Cms" />
+    <PackageReference Include="Umbraco.Community.MediaColourFinder" />
+    <PackageReference Include="Umbraco.StorageProviders.AzureBlob" />
+    <PackageReference Include="Umbraco.StorageProviders.AzureBlob.ImageSharp" />
+    <PackageReference Include="uSync" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Opt-in to app-local ICU to ensure consistent globalization APIs across different platforms -->
+    <PackageReference Include="Microsoft.ICU.ICU4C.Runtime" />
+    <RuntimeHostConfigurationOption Include="System.Globalization.AppLocalIcu" Value="72.1" Condition="$(RuntimeIdentifier.StartsWith('linux')) or $(RuntimeIdentifier.StartsWith('win')) or ('$(RuntimeIdentifier)' == '' and !$([MSBuild]::IsOSPlatform('osx')))" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Components\_ViewImports.cshtml" Visible="false" />
+    <Folder Include="Api/Models/" />
+    <Folder Include="umbraco/Data/" />
+
+    <None Include="umbraco/Data/*.mdf" />
+    <None Include="umbraco/Data/*.ldf" />
+    <None Include="umbraco/Data/*.sdf" />
+
+    <None Include="Modules/**/App_Plugins/**" />
+  </ItemGroup>
+
+  <!-- Source generator files -->
+  <ItemGroup>
+    <AdditionalFiles Include="..\..\..\frontend\source\assets\favicons\**">
+      <Generator>FileAliases</Generator>
+      <Namespace>DTNL.UmbracoCms.Web.Helpers.Aliases</Namespace>
+      <ClassName>FaviconAliases</ClassName>
+      <StartPath>..\..\..\frontend\source\assets\favicons</StartPath>
+      <PathPrefix>/assets/favicons</PathPrefix>
+      <Separator>/</Separator>
+      <IncludeFileExtension>True</IncludeFileExtension>
+      <Visible>False</Visible>
+    </AdditionalFiles>
+    <AdditionalFiles Include="..\..\..\frontend\source\assets\svg\**">
+      <Generator>FileAliases</Generator>
+      <Namespace>DTNL.UmbracoCms.Web.Helpers.Aliases</Namespace>
+      <ClassName>SvgAliases</ClassName>
+      <StartPath>..\..\..\frontend\source\assets\svg</StartPath>
+      <PathPrefix>/assets/svg</PathPrefix>
+      <Separator>/</Separator>
+      <Visible>False</Visible>
+    </AdditionalFiles>
+    <AdditionalFiles Include="umbraco\uSync\Dictionary\**">
+      <Generator>TranslationAliases</Generator>
+      <Namespace>DTNL.UmbracoCms.Web.Helpers.Aliases</Namespace>
+      <ClassName>TranslationAliases</ClassName>
+    </AdditionalFiles>
+    <AdditionalFiles Include="..\..\..\frontend\source\data\images\styles\**">
+      <Generator>ImageStyles</Generator>
+      <OutputDirectoryPath>umbraco\uSync\DataTypes</OutputDirectoryPath>
+      <Visible>False</Visible>
+    </AdditionalFiles>
+    <AdditionalFiles Include="..\..\..\frontend\source\data\images\breakpoints.json">
+      <Generator>CssBreakpoints</Generator>
+      <Namespace>DTNL.UmbracoCms.Web.Helpers</Namespace>
+      <ClassName>CssBreakpoints</ClassName>
+      <Visible>False</Visible>
+    </AdditionalFiles>
+  </ItemGroup>
+
+  <!-- Set this to false if ModelsBuilder mode is not SourceCodeAuto or SourceCodeManual -->
+  <PropertyGroup>
+    <RazorCompileOnBuild>true</RazorCompileOnBuild>
+    <RazorCompileOnPublish>true</RazorCompileOnPublish>
+    <CopyRazorGenerateFilesToPublishDirectory>true</CopyRazorGenerateFilesToPublishDirectory>
+  </PropertyGroup>
+
+  <!-- Run custom build targets and checks -->
+  <Import Project="Build.CustomTargets.targets" />
+  <Import Project="Modules/**/Directory.Packages.props" />
+</Project>

@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DB2C85DA-71AE-4B85-AE0B-742B26A4C602}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitignore = .gitignore
+		CSharpExtensions.json = CSharpExtensions.json
+		Directory.Build.props = Directory.Build.props
+		Directory.Packages.props = Directory.Packages.props
+		nuget.config = nuget.config
+		pipeline-template.yml = pipeline-template.yml
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DTNL.UmbracoCms.Web", "DTNL.UmbracoCms.Web\DTNL.UmbracoCms.Web.csproj", "{95273DF8-5398-4E79-A711-85E11FA34D06}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{95273DF8-5398-4E79-A711-85E11FA34D06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95273DF8-5398-4E79-A711-85E11FA34D06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95273DF8-5398-4E79-A711-85E11FA34D06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95273DF8-5398-4E79-A711-85E11FA34D06}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{95273DF8-5398-4E79-A711-85E11FA34D06} = {FB63D4F0-2585-4C7A-A264-A5E76D3456A1}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {55822F11-1EA6-4327-A845-4B0B914C8010}
+	EndGlobalSection
+EndGlobal

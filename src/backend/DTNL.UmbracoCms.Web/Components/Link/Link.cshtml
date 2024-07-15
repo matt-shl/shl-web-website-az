@@ -1,0 +1,6 @@
+@model DTNL.UmbracoCms.Web.Components.Link
+
+<a href="@Model.Url" target="@Model.Target" class="@Model.CssClasses" title="@Model.Label" asp-extra-attribs="@Model.Attributes">
+	@Model.Label
+	<svg src="@Model.IconPath" />
+</a>

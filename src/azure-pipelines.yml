@@ -1,0 +1,45 @@
+trigger:
+  batch: true
+  branches:
+    include:
+    - main
+    - master
+    - acceptance
+    - develop
+    - support
+    - release/*
+
+parameters:
+- name: buildConfiguration
+  displayName: Build Configuration
+  default: Release
+  values:
+  - Debug
+  - Release
+- name: bypassCache
+  displayName: Bypass package Cache
+  type: boolean
+  default: false
+
+variables: 
+  backendWorkingDirectory: $[coalesce(variables.backendWorkingDirectoryOverride, 'backend')]
+  frontendWorkingDirectory: $[coalesce(variables.frontendWorkingDirectoryOverride, 'frontend')]
+
+name: $(Build.DefinitionName)-$(SourceBranchName)-$(Date:yyyyMMdd)$(Rev:.r)
+stages:
+- stage: Build
+  jobs:
+    - template: 'backend/pipeline-template.yml'
+      parameters:
+        workingDirectory: $(backendWorkingDirectory)
+        sonarCloud:
+            enabled: true
+            serviceConnection: $(sonarCloudServiceConnection)
+            projectKey: $(sonarCloudProjectKey)
+            projectName: $(sonarCloudProjectName)
+        buildConfiguration: ${{ parameters.buildConfiguration }}
+        
+    - template: 'frontend/pipeline-template.yml'
+      parameters:
+        workingDirectory: $(frontendWorkingDirectory)
+        bypassCache: ${{ parameters.bypassCache }}
