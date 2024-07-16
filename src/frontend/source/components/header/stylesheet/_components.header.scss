@@ -16,8 +16,12 @@
 }
 
 @mixin header-background-offset {
-  margin-inline: $global-spacing * -3.5;
-  padding-inline: $spacing-40;
+  padding-inline: $spacing-20;
+
+  @include screen-lg-and-bigger {
+    margin-inline: $global-spacing * -3.5;
+    padding-inline: $spacing-40;
+  }
 }
 
 .c-header {
@@ -82,14 +86,25 @@
 }
 
 .header__logo {
+  svg {
+    width: 140px;
+  }
+
   html:not(.is--header-white) & {
     path {
       fill: var(--header-font-color);
     }
   }
+
+  @include screen-lg-and-bigger {
+    svg {
+      width: 170px;
+    }
+  }
 }
 
 .header__content {
+  @include header-background-offset;
   align-items: center;
   background-color: var(--header-background-color);
   border: 1px solid var(--header-border-color);
@@ -97,13 +112,13 @@
   color: var(--header-font-color);
   display: flex;
   gap: $spacing-16;
-  min-height: 82px;
-  padding: $spacing-20 $spacing-24;
+  height: 64px;
+  padding-block: $spacing-20;
   transition: var(--header-transition-time) var(--header-transition-ease);
   transition-property: background-color, color, border-color;
 
   @include screen-lg-and-bigger {
-    @include header-background-offset;
+    height: 82px;
   }
 }
 
