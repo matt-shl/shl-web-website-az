@@ -14,13 +14,13 @@
         <ul class="flyout__main-item-list">
           {% for item in data.subitems %}
             <li class="flyout__main-item{% if loop.index0 === 0 %} is--open{% endif %}" js-hook-flyout-main-item>
-              <button class="flyout__main-item-button" title="{{ item.title }}" js-hook-flyout-main-item-anchor>
+              <button class="flyout__main-item-button" title="{{ item.title }}" js-hook-flyout-main-item-anchor aria-expanded="false" aria-controls="flyout-list-{{ data.id }}-{{ loop.index0 }}">
                 {{ item.title }}
 
                 {% svg 'icons/chevron-right' %}
               </button>
 
-              <ul class="flyout__subitem-list">
+              <ul class="flyout__subitem-list" id="flyout-list-{{ data.id }}-{{ loop.index0 }}">
                 {% for subitem in item.subitems %}
                   <li class="flyout__subitem">
                     <a class="flyout__subitem-anchor" title="{{ subitem.title }}" href="{{ subitem.url }}">

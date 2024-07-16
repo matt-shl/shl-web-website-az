@@ -1,4 +1,5 @@
 const JS_HOOK_FLYOUT_MAIN_ITEM = '[js-hook-flyout-main-item]'
+const JS_HOOK_FLYOUT_MAIN_ITEM_ANCHOR = '[js-hook-flyout-main-item-anchor]'
 const CLASS_IS_OPEN = 'is--open'
 
 class Flyout {
@@ -28,12 +29,14 @@ class Flyout {
 
   openItem = (item: HTMLUListElement) => {
     this.closeAllItems();
-
+    
     item.classList.add(CLASS_IS_OPEN)
+    item.querySelector(JS_HOOK_FLYOUT_MAIN_ITEM_ANCHOR)?.setAttribute("aria-expanded", "true")
   }
 
   closeItem = (item: HTMLUListElement) => {
     item.classList.remove(CLASS_IS_OPEN)
+    item.querySelector(JS_HOOK_FLYOUT_MAIN_ITEM_ANCHOR)?.setAttribute("aria-expanded", "false")
   }
 
   closeAllItems = () => {
