@@ -1,11 +1,5 @@
 <Project>
   <ItemGroup>
-    <PackageReference Include="Roslynator.Analyzers" PrivateAssets="all" IncludeAssets="analyzers" />
-    <PackageReference Include="StyleCop.Analyzers.Unstable" PrivateAssets="all" IncludeAssets="analyzers" />
-    <PackageReference Include="SmartAnalyzers.CSharpExtensions.Annotations" PrivateAssets="all" IncludeAssets="analyzers" />
-    <AdditionalFiles Include="$(MSBuildThisFileDirectory)/CSharpExtensions.json" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageVersion Include="Asp.Versioning.Mvc" Version="8.0.0" />
     <PackageVersion Include="Asp.Versioning.WebApi" Version="6.2.1" />
     <PackageVersion Include="DEPT.Umbraco.SourceGenerators" Version="1.0.2" />
