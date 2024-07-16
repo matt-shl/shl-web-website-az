@@ -1,5 +1,6 @@
 :root {
   --header-background-color: transparent;
+  --header-border-color: transparent;
   --header-font-color: var(--color-content);
   --header-height: 99px;
   --hamburger-hover-background-color: #{$color-white};
@@ -20,13 +21,12 @@
 }
 
 .c-header {
-  border-bottom: 1px solid transparent;
   height: var(--header-height);
   padding-top: $spacing-16;
   position: fixed;
   top: 0;
   transition: var(--header-transition-time) var(--header-transition-ease);
-  transition-property: transform, background-color, color, border-color, margin-top;
+  transition-property: transform, color;
   width: 100%;
   z-index: 9;
 
@@ -65,21 +65,15 @@
   }
 
   .header--is-sticky & {
-    background-color: $color-white;
-    border-color: $color-light-grey;
-    color: $color-dark-blue;
+    --header-background-color: #{$color-white};
+    --header-border-color: #{$color-light-grey};
     --header-font-color: #{$color-dark-blue};
     --hamburger-hover-background-color: #{$color-dark-blue};
     --hamburger-hover-font-color: #{$color-white};
-    margin-top: -16px;
   }
 
   @include screen-lg-and-bigger {
     padding-top: $spacing-32;
-
-    .header--is-sticky & {
-      margin-top: -32px;
-    }
   }
 }
 
@@ -98,6 +92,7 @@
 .header__content {
   align-items: center;
   background-color: var(--header-background-color);
+  border: 1px solid var(--header-border-color);
   border-radius: $radii-12;
   color: var(--header-font-color);
   display: flex;
@@ -105,7 +100,7 @@
   min-height: 82px;
   padding: $spacing-20 $spacing-24;
   transition: var(--header-transition-time) var(--header-transition-ease);
-  transition-property: background-color, color;
+  transition-property: background-color, color, border-color;
 
   @include screen-lg-and-bigger {
     @include header-background-offset;

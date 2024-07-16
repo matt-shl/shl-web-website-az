@@ -1,10 +1,11 @@
-import { html } from '@utilities/dom-elements'
+import {html} from '@utilities/dom-elements'
 import RafThrottle from '@utilities/raf-throttle'
 import ScreenDimensions from '@utilities/screen-dimensions'
 
 const CLASS_HEADER_IS_STICKY = 'header--is-sticky'
 const CLASS_HEADER_IS_GOING_UP = 'header--is-going-up'
 const CLASS_HEADER_IS_HIDDEN = 'header--is-hidden'
+const CLASS_HAS_OPEN_FLYOUT = 'has--open-flyout'
 const HIDE_THRESHOLD = 200
 
 class Header {
@@ -30,6 +31,8 @@ class Header {
   }
 
   private handlePageScroll() {
+    if(html.classList.contains(CLASS_HAS_OPEN_FLYOUT)) return
+
     const scrollValue = window.pageYOffset
     const isSticky = scrollValue > this.threshold
     const isGoingUp = scrollValue < this.prevScrollValue
