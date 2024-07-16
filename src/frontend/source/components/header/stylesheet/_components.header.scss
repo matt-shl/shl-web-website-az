@@ -127,6 +127,7 @@
   display: flex;
   gap: $spacing-8;
   margin-inline-start: auto;
+  margin-inline-end: -16px;
   padding: $spacing-8 $spacing-16;
   transition: var(--header-transition-time) var(--header-transition-ease);
   transition-property: background-color, color;
