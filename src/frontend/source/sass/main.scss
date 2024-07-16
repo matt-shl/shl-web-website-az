@@ -41,6 +41,8 @@ $assets-path: '../' !default;
 @import '@/components/card-icon/stylesheet/_components.card-icon';
 @import '@/components/card-number/stylesheet/_components.card-number';
 @import '@/components/card-image/stylesheet/_components.card-image';
+@import '@/components/navigation-mobile/stylesheet/_components.navigation-mobile';
+@import '@/components/navigation-mobile-list/stylesheet/_components.navigation-mobile-list';
 /* endinject */
 
 @import '50_scopes/scopes.rich-text';

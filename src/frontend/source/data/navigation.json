@@ -15,6 +15,7 @@
         {
           "url": "/",
           "title": "Injectors",
+          "id": "injectors",
           "all": {
             "url": "/",
             "title": "All injectors"
@@ -45,6 +46,7 @@
         {
           "url": "/",
           "title": "Device platforms",
+          "id": "device-platforms",
           "all": {
             "url": "/",
             "title": "All device platforms"
@@ -75,6 +77,7 @@
         {
           "url": "/",
           "title": "Innovations",
+          "id": "innovations",
           "subitems": [
             {
               "url": "/",
@@ -93,6 +96,7 @@
         {
           "url": "/",
           "title": "Services",
+          "id": "services",
           "subitems": [
             {
               "url": "/",
@@ -121,6 +125,7 @@
         {
           "url": "/",
           "title": "Injectors",
+          "id": "injectors",
           "all": {
             "url": "/",
             "title": "All injectors"
@@ -151,6 +156,7 @@
         {
           "url": "/",
           "title": "Device platforms",
+          "id": "device-platforms",
           "all": {
             "url": "/",
             "title": "All device platforms"
@@ -181,6 +187,7 @@
         {
           "url": "/",
           "title": "Innovations",
+          "id": "innovations",
           "subitems": [
             {
               "url": "/",
@@ -199,6 +206,7 @@
         {
           "url": "/",
           "title": "Services",
+          "id": "services",
           "subitems": [
             {
               "url": "/",
@@ -221,6 +229,7 @@
         {
           "url": "/",
           "title": "Injectors",
+          "id": "injectors",
           "all": {
             "url": "/",
             "title": "All injectors"
@@ -251,6 +260,7 @@
         {
           "url": "/",
           "title": "Device platforms",
+          "id": "device-platforms",
           "all": {
             "url": "/",
             "title": "All device platforms"
@@ -281,6 +291,7 @@
         {
           "url": "/",
           "title": "Innovations",
+          "id": "innovations",
           "subitems": [
             {
               "url": "/",
@@ -299,6 +310,7 @@
         {
           "url": "/",
           "title": "Services",
+          "id": "services",
           "subitems": [
             {
               "url": "/",
@@ -314,11 +326,13 @@
     },
     {
       "url": "/",
-      "title": "Careers"
+      "title": "Careers",
+      "id": "careers"
     },
     {
       "url": "/",
-      "title": "Get in touch"
+      "title": "Get in touch",
+      "id": "get-in-touch"
     }
   ]
 }

@@ -1,5 +1,7 @@
 {
+  "close": "Close",
+  "home": "Home",
   "mainNavigation": "Main navigation",
   "menu": "Menu",
-  "home": "Home"
+  "openMenu": "Open menu"
 }

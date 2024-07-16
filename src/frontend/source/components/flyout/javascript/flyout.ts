@@ -29,7 +29,7 @@ class Flyout {
 
   openItem = (item: HTMLUListElement) => {
     this.closeAllItems();
-    
+
     item.classList.add(CLASS_IS_OPEN)
     item.querySelector(JS_HOOK_FLYOUT_MAIN_ITEM_ANCHOR)?.setAttribute("aria-expanded", "true")
   }
