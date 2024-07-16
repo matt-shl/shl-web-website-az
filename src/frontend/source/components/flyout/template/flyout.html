@@ -2,19 +2,19 @@
 
 {% macro flyout(data) %}
 
-  <div class="c-flyout" js-hook-flyout>
+  <div class="c-flyout" js-hook-flyout aria-hidden="true" id="flyout-{{ data.id }}">
     <div class="flyout__container">
       <div class="flyout__content">
         <div class="flyout__title-column">
           <h2 class="flyout__title">{{ data.title }}</h2>
           <p class="flyout__description">{{ data.content }}</p>
-          <p><a href="{{ data.url }}" tabindex="-1">{{ data.title }}</a></p>
+          <a class="flyout__cta" href="{{ data.url }}">{{ data.title }}</a>
         </div>
 
         <ul class="flyout__main-item-list">
           {% for item in data.subitems %}
             <li class="flyout__main-item{% if loop.index0 === 0 %} is--open{% endif %}" js-hook-flyout-main-item>
-              <button class="flyout__main-item-button" title="{{ item.title }}" tabindex="-1" js-hook-flyout-main-item-anchor>
+              <button class="flyout__main-item-button" title="{{ item.title }}" js-hook-flyout-main-item-anchor>
                 {{ item.title }}
 
                 {% svg 'icons/chevron-right' %}
@@ -23,14 +23,14 @@
               <ul class="flyout__subitem-list">
                 {% for subitem in item.subitems %}
                   <li class="flyout__subitem">
-                    <a class="flyout__subitem-anchor" title="{{ subitem.title }}" href="{{ subitem.url }}" tabindex="-1">
+                    <a class="flyout__subitem-anchor" title="{{ subitem.title }}" href="{{ subitem.url }}">
                       {{ subitem.title }}
                     </a>
                   </li>
                 {% endfor %}
                 {% if item.all %}
                   <li>
-                    <p><a class="flyout__subitem-all" href="{{ item.all.url }}">{{ item.all.title }}</a></p>
+                    <a class="flyout__subitem-all" href="{{ item.all.url }}">{{ item.all.title }}</a>
                   </li>
                 {% endif %}
               </ul>

@@ -52,6 +52,10 @@
   @include body-m;
 }
 
+.flyout__cta {
+  @include link--base;
+}
+
 .flyout__main-item-list {
   @include list--reset;
   @include col-span(8);
@@ -109,6 +113,7 @@
 }
 
 .flyout__subitem-all {
+  @include link--base;
   padding: $spacing-8 $spacing-16;
 }
 

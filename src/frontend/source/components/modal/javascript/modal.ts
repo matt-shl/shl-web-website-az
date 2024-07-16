@@ -1,4 +1,4 @@
-import { body, html } from '@/utilities/dom-elements'
+import {body, html} from '@/utilities/dom-elements'
 import Events from '@/utilities/events'
 import RafThrottle from '@/utilities/raf-throttle'
 import ScreenDimensions from '@/utilities/screen-dimensions'

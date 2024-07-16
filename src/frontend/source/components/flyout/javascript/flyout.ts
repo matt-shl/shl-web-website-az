@@ -20,7 +20,7 @@ class Flyout {
   }
 
   handleItemKeydown(event: KeyboardEvent, item: HTMLUListElement) {
-    if (event.key === 'Enter') {
+    if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault()
       this.openItem(item)
     }
