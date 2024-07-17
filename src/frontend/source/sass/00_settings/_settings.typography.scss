@@ -9,6 +9,7 @@ $font-stack-primary: 'tenorite', 'Open Sans', 'Helvetica Neue', Helvetica, Arial
 $font-size-root: 10px; // The font size set on the root html element.
 $font-size-body: 1.6rem; // Regular font size
 
+$font-size-body-xl: 2rem;
 $font-size-body-l: 2rem;
 $font-size-body-m: 1.6rem;
 $font-size-body-s: 1.4rem;
@@ -52,6 +53,8 @@ $font-letter-spacing-h6-mobile: -0.004rem;
 // NOTE: Never use px as line-height value!!!
 
 $font-line-height-body: 1.4;
+$font-line-height-body-xl: 1.6;
+$font-line-height-body-l: 1.6;
 $font-line-height-body-m: 1.6;
 
 $font-line-height-d1: 1;
