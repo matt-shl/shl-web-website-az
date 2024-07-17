@@ -93,6 +93,7 @@ class Modal {
    * Bind all general events
    */
   bindEvents() {
+    Events.$on('modal::removeScrollPosition', () => this.removeScrollPosition())
     Events.$on<ModalEventId>('modal::close', (_, data) => this.closeModal(data))
     Events.$on<ModalEventId>('modal::open', (_, data) => this.openModal(data))
 
@@ -148,6 +149,7 @@ class Modal {
 
     closeBtn.forEach(el =>
       el.addEventListener('click', () => {
+        Events.$trigger('modal::removeScrollPosition')
         Events.$trigger('modal::close', {data: {id}})
         Events.$trigger(`modal[${id}]::close`, {data: {id}})
       }),
@@ -238,7 +240,8 @@ class Modal {
 
     // Scroll to original position
     const keepScrollPosition = modal.el.dataset.modalKeepScrollPosition === 'true'
-    if (keepScrollPosition && !ScreenDimensions.isTabletPortraitAndBigger)
+
+    if (keepScrollPosition && !ScreenDimensions.isTabletPortraitAndBigger && data.id.indexOf(NAVIGATION_MOBILE_ID) === -1)
       this.removeScrollPosition()
 
     // Remove tabindex and remove visible class
@@ -259,15 +262,21 @@ class Modal {
    * Sets scrollposition to prevent body scrolling to top when position is fixed
    */
   setScrollPosition() {
+    if (body.style.top) return
+
     this.scrollTop = this.scrollElement.scrollTop
     body.style.top = `-${this.scrollTop}px`
+
   }
 
   /**
    * Removes scroll position from body and scrolls to original position
    */
   removeScrollPosition() {
-    this.scrollElement.scrollTop = this.scrollTop
+    const setToScrollTop = this.scrollTop || parseInt(body.style.top.replace('px', ''), 10) * -1;
+    setTimeout(() => {
+      this.scrollElement.scrollTop = setToScrollTop;
+    }, 10)
     body.style.removeProperty('top')
   }
 

@@ -5,6 +5,7 @@
 {% call modal({
   size: 'navigation-mobile',
   id : 'navigation-mobile',
+  keepScrollPosition: true,
   closeAllOthers: true
 }) %}
   <div class="c-navigation-mobile">
@@ -26,6 +27,7 @@
     {% call modal({
       size: 'navigation-mobile',
       id : 'navigation-mobile-' + item.id,
+      keepScrollPosition: true,
       closeAllOthers: true
     }) %}
       <div class="c-navigation-mobile">
@@ -53,6 +55,7 @@
       {% call modal({
         size: 'navigation-mobile',
         id : 'navigation-mobile-' + item.id + '-' + subitem.id,
+        keepScrollPosition: true,
         closeAllOthers: true
       }) %}
         <div class="c-navigation-mobile">

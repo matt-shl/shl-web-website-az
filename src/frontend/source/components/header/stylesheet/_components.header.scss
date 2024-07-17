@@ -61,7 +61,7 @@
   }
 
   .header--is-hidden & {
-    transform: translateY(-100%);
+    transform: translateY(calc(-100% - #{$spacing-16}));
   }
 
   .header--is-going-up & {
@@ -78,6 +78,10 @@
 
   @include screen-lg-and-bigger {
     padding-top: $spacing-32;
+
+    .header--is-hidden & {
+      transform: translateY(-100%);
+    }
   }
 }
 
