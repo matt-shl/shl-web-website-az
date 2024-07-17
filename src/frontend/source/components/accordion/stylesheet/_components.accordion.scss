@@ -3,6 +3,7 @@ $accordion-item-border-radius: 0;
 $accordion-item-header-color: transparent;
 $accordion-item-header-padding: $spacing-24 0;
 $accordion-item-content-padding: 0 0 $spacing-16 0;
+$accordion-item-content-negative-margin: calc(#{$spacing-24} * -1);
 $accordion-item-content-color: transparent;
 $accordion-item-spacing: 0;
 $accordion-icon-size: 16px;
@@ -44,6 +45,11 @@ $accordion-transition-ease: ease-out;
   transition: $accordion-transition-time $accordion-transition-ease $accordion-transition-time / 2;
   transition-property: border-radius;
 
+  //Create negative offset to still see the focus ring.
+  @include keyboard-focus {
+    outline-offset: -2px;
+  }
+
   .accordion__detail:first-child & {
     padding-top: 0;
   }
@@ -81,6 +87,12 @@ $accordion-transition-ease: ease-out;
   height: $accordion-icon-size;
   width: $accordion-icon-size;
 
+  .accordion__detail & {
+    @include hover-focus(false) {
+      outline: 1px solid var(--link-underline-color);
+    }
+  }
+
   &::after,
   &::before {
     content: '';
@@ -92,6 +104,10 @@ $accordion-transition-ease: ease-out;
     background: $accordion-icon-color;
     transition: $accordion-transition-time / 2 $accordion-transition-ease;
     transition-property: opacity, transform;
+
+    .accordion__detail:first-child & {
+      top: 25%;
+    }
 
     //IE only fallback
     @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {

@@ -24,6 +24,9 @@ $spacing-80: var(--spacing-80);
 $spacing-96: var(--spacing-96);
 $spacing-128: var(--spacing-128);
 $spacing-144: var(--spacing-144);
+$spacing-160: var(--spacing-160);
+$spacing-192: var(--spacing-192);
+$spacing-200: var(--spacing-200);
 
 /* CSS Variables */
 :root {
@@ -46,4 +49,7 @@ $spacing-144: var(--spacing-144);
   --spacing-96: #{$global-spacing * 12};
   --spacing-128: #{$global-spacing * 16};
   --spacing-144: #{$global-spacing * 18};
+  --spacing-160: #{$global-spacing * 20};
+  --spacing-192: #{$global-spacing * 24};
+  --spacing-200: #{$global-spacing * 25};
 }

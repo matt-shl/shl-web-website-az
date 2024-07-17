@@ -7,7 +7,7 @@
 }
 
 // Mixin for grid span
-@mixin col-span($span) {
+@mixin col-span($span, $end: null) {
   grid-column: span $span;
 }
 

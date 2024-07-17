@@ -1,0 +1,90 @@
+// Set overflow: hidden; on container if needed
+@mixin hover-link-animation-after($color, $inversed) {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 1px;
+  background-color: currentcolor;
+  transform-origin: left;
+  transition:
+    transform 0.25s,
+    opacity 0.5s;
+  width: 100%;
+
+  @if $inversed {
+    transform: scaleX(1);
+    opacity: 1;
+  } @else {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+}
+
+@mixin hover-link-animation-hover-focus-after($inversed) {
+  @if $inversed {
+    transform: scaleX(0);
+    opacity: 0;
+  } @else {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+@mixin hover-link-animation(
+  $color: currentcolor,
+  $underline-color: currentcolor,
+  $inversed: false,
+  $transparent: false
+) {
+  &:has(.button__label) {
+    .button__label {
+      position: relative;
+      overflow: hidden;
+
+      &::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        height: 1px;
+        background-color: currentcolor;
+        transition:
+          transform 0.25s,
+          opacity 0.5s;
+        width: 100%;
+        opacity: 0.2;
+
+        @if $transparent {
+          background-color: transparent;
+        } @else {
+          background-color: currentcolor;
+        }
+      }
+
+      &::after {
+        @include hover-link-animation-after($color, $inversed);
+      }
+    }
+
+    @include hover-focus {
+      color: var(--color-text-highlight);
+
+      .button__label::after {
+        @include hover-link-animation-hover-focus-after($inversed);
+      }
+    }
+  }
+
+  &:not(:has(.button__label)) {
+    @include hover-focus {
+      &::after {
+        @include hover-link-animation-hover-focus-after($inversed);
+      }
+    }
+
+    &::after {
+      @include hover-link-animation-after($color, $inversed);
+    }
+  }
+}

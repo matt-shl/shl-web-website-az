@@ -14,7 +14,8 @@
 {% macro default(data) %}
 
     <div class="c-accordion
-        {%- if data.tabsOnDesktop %} accordion--tabs-on-dekstop{% endif %}"
+        {%- if data.tabsOnDesktop %} accordion--tabs-on-dekstop{% endif %}
+        {%- if data.classes %} {{ data.classes }}{% endif %}"
         {%- if data.autoclose %} data-autoclose="true"{% endif %}
         {%- if data.tabsOnDesktop %} data-tabs-on-desktop="true"{% endif %}
         js-hook-accordion>

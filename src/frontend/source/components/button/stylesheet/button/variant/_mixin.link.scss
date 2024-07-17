@@ -1,0 +1,35 @@
+@mixin button--link {
+  --button-link-color: var(--color-text);
+  --button-link-underline-color: var(--color-text-10);
+  --button-link-hover-color: var(--color-primary);
+
+  color: var(--button-link-color);
+  display: flex;
+  align-items: center;
+  gap: $global-spacing;
+  transition: 300ms $ease-in-out-quad;
+  overflow-x: hidden;
+  text-decoration: none;
+  width: fit-content;
+  white-space: nowrap;
+  font-size: var(--font-size-link);
+  line-height: $font-line-height-body-m;
+
+  &:not([disabled]) {
+    @include hover-focus {
+      color: var(--button-link-hover-color);
+    }
+  }
+
+  @include hover-link-animation(
+    var(--button-link-color),
+    var(--button-link-underline-color),
+    false,
+    true
+  );
+
+  &[disabled] {
+    opacity: 0.4;
+    pointer-events: none;
+  }
+}

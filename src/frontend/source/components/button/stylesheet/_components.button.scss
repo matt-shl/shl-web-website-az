@@ -2,6 +2,7 @@
 @import 'button/mixin.icon';
 @import 'button/variant/mixin.primary';
 @import 'button/variant/mixin.secondary';
+@import 'button/variant/mixin.link';
 
 .c-button {
   @include button--primary;
@@ -12,6 +13,10 @@
 */
 .c-button--secondary {
   @include button--secondary;
+}
+
+.c-button--link {
+  @include button--link;
 }
 
 /**

@@ -1,7 +1,125 @@
 {% from 'slogan.html' import slogan %}
+{% from 'button.html' import button %}
+
+{% import 'accordion.html' as accordion %}
+
+{% set footerContent = global.content.footer %}
+{% set footerLabels = global.resource.footer %}
+{% set commonLabels = global.resource.common %}
 
 <footer class="c-footer" id="footer">
-  {{ slogan({ text: "Caring. Inclusive. Driven." }) }}
+  <div class="footer__main">
+    <p class="footer__description">
+      {{footerContent.description}}
+    </p>
 
-  <p>TODO: Footer</p>
+    {# Navigation Mobile #}
+    <nav class="footer__sitemap footer__sitemap--mobile" aria-label="{{ footerLabels.footerNavigation }}">
+      {% if footerContent.sitemap.length %}
+          {% call accordion.default({extendHook: 'footer', classes: 'footer__accordion', variant: 'specs', ariaLabel: footerLabels.footerSection}) %}
+
+            {% for item in footerContent.sitemap %}
+              {% call accordion.item({
+                id: item.id + loop.index,
+                title: item.title,
+                ariaLabel: footerLabels.footerSection ~ ' ' ~ item.title
+              }) %}
+
+              {% if item.links.length %}
+                <nav class="footer__navigation" aria-label="{{ commonLabels.navigationFor }} {{ item.title }}">
+                  {% for link in item.links %}
+                    {{ button({
+                      element: 'a',
+                      label: link.label,
+                      url: link.url,
+                      variant: 'link',
+                      class: 'footer__navigation-link'
+                    }) }}
+                  {% endfor %}
+                </nav>
+              {% endif %}
+              {% endcall %}
+            {% endfor %}
+          {% endcall %}
+      {% endif %}
+    </nav>
+
+    {# Navigation Desktop #}
+    <nav class="footer__sitemap footer__sitemap--desktop" aria-label="{{ footerLabels.footerNavigation }}">
+      {% if footerContent.sitemap.length %}
+        {% for item in footerContent.sitemap %}
+          {% if item.links.length %}
+          <div class="footer__navigation-container">
+            <span class="footer__navigation-title">{{ item.title }}</span>
+            <nav class="footer__navigation" aria-label="{{ commonLabels.navigationFor }} {{ item.title }}">
+              {% for link in item.links %}
+                {{ button({
+                  element: 'a',
+                  label: link.label,
+                  url: link.url,
+                  variant: 'link',
+                  class: 'footer__navigation-link'
+                }) }}
+              {% endfor %}
+            </nav>
+          </div>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    </nav>
+  </div>
+  <div class="footer__sub">
+    <div class="footer__sub-shape footer__sub-shape--mobile">
+      {% svg 'shape/footer-shape--mobile.svg' %}
+    </div>
+    <div class="footer__sub-shape footer__sub-shape--desktop">
+      {% svg 'shape/footer-shape--desktop.svg' %}
+    </div>
+    <div class="footer__sub-content">
+      <a class="footer__sub-logo" aria-label="{{ commonLabels.goToHomepage }}" href="/">
+        {% svg 'brand/logo-color' %}
+      </a>
+      <div class="footer__sub-bottom">
+        <nav class="footer__sub-socials" aria-label="{{ footerLabels.socialLinks }}">
+          <div class="footer__sub-social-icons">
+            {% for social in footerContent.socials %}
+              {{ button({
+                variant: 'icon',
+                label: social.label,
+                srOnly: true,
+                url: social.url,
+                icon: 'social-' + social.icon,
+                attr: 'target="_blank" aria-label="' + social.label + '"' ,
+                class: 'button--icon-clear footer__sub-social-link'
+              } ) }}
+            {% endfor %}
+          </div>
+        {{ button({
+          element: 'a',
+          label: footerContent.socialMediaPolicy.label,
+          ariaLabel: footerContent.socialMediaPolicy.label,
+          url: footerContent.socialMediaPolicy.url,
+          variant: 'link',
+          class: 'footer__sub-navigation-link'
+        }) }}
+      </nav>
+
+        <div class="footer__sub-bottom-wrapper">
+          <nav class="footer__sub-bottom-links" aria-label="{{ footerLabels.legalAgreementsLinks }}">
+            {% for link in footerContent.bottomLinks %}
+              {{ button({
+                element: 'a',
+                variant: 'link',
+                url: link.url,
+                ariaLabel: link.label,
+                label: link.label,
+                class: 'footer__sub-navigation-link'
+              })}}
+            {% endfor %}
+          </nav>
+          <span class="footer__sub-copyright-label">{{footerContent.copyrightLabel}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </footer>
