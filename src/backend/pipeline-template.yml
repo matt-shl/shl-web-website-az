@@ -25,7 +25,7 @@ jobs:
       - task: NuGetAuthenticate@1
         displayName: 'NuGet Authenticate'
         inputs:
-          nuGetServiceConnections: 'NuGet'
+          nuGetServiceConnections: 'DTNL-Dotnet-Feed'
 
       - ${{ if eq(parameters.sonarCloud.enabled, 'true') }}:
         - task: SonarCloudPrepare@2
