@@ -8,4 +8,11 @@
       <GenerateDocumentationFile>True</GenerateDocumentationFile>
       <NoWarn>$(NoWarn),1573,1591,1712</NoWarn>
     </PropertyGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="Roslynator.Analyzers" PrivateAssets="all" IncludeAssets="analyzers" />
+    <PackageReference Include="StyleCop.Analyzers.Unstable" PrivateAssets="all" IncludeAssets="analyzers" />
+    <PackageReference Include="SmartAnalyzers.CSharpExtensions.Annotations" PrivateAssets="all" IncludeAssets="analyzers" />
+    <AdditionalFiles Include="$(MSBuildThisFileDirectory)/CSharpExtensions.json" />
+  </ItemGroup>
 </Project>

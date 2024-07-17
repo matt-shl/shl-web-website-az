@@ -12,8 +12,10 @@ public class SocialSharing : ViewComponentExtended
         new() { Id = "facebook", Label = TranslationAliases.Common.SocialSharing.Facebook, Icon = SvgAliases.Social.Facebook },
         new() { Id = "twitter", Label = TranslationAliases.Common.SocialSharing.Twitter, Icon = SvgAliases.Social.Twitter },
         new() { Id = "linkedin", Label = TranslationAliases.Common.SocialSharing.Linkedin, Icon = SvgAliases.Social.Linkedin },
-        new() { Id = "whatsapp", Label = TranslationAliases.Common.SocialSharing.Whatsapp, Icon = SvgAliases.Social.Whatsapp, CssClasses = "social-share__list-item--whatsapp" },
-        new() { Id = "email", Label = TranslationAliases.Common.SocialSharing.Email, Icon = SvgAliases.Social.Email },
+
+        // I commented these 2 out as we don't have icons for them and I am not sure if they will be needed in the project
+        // new() { Id = "whatsapp", Label = TranslationAliases.Common.SocialSharing.Whatsapp, Icon = SvgAliases.Social.Whatsapp, CssClasses = "social-share__list-item--whatsapp" },
+        // new() { Id = "email", Label = TranslationAliases.Common.SocialSharing.Email, Icon = SvgAliases.Social.Email },
     ];
 
     public required List<SocialChannel> SocialChannels { get; set; }

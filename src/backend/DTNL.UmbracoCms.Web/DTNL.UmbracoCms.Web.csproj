@@ -50,36 +50,36 @@
 
   <!-- Source generator files -->
   <ItemGroup>
-    <AdditionalFiles Include="..\..\..\frontend\source\assets\favicons\**">
+    <AdditionalFiles Include='..\..\frontend\source\assets\favicons\**'>
       <Generator>FileAliases</Generator>
       <Namespace>DTNL.UmbracoCms.Web.Helpers.Aliases</Namespace>
       <ClassName>FaviconAliases</ClassName>
-      <StartPath>..\..\..\frontend\source\assets\favicons</StartPath>
+      <StartPath>..\..\frontend\source\assets\favicons</StartPath>
       <PathPrefix>/assets/favicons</PathPrefix>
       <Separator>/</Separator>
       <IncludeFileExtension>True</IncludeFileExtension>
       <Visible>False</Visible>
     </AdditionalFiles>
-    <AdditionalFiles Include="..\..\..\frontend\source\assets\svg\**">
+    <AdditionalFiles Include='..\..\frontend\source\assets\svg\**'>
       <Generator>FileAliases</Generator>
       <Namespace>DTNL.UmbracoCms.Web.Helpers.Aliases</Namespace>
       <ClassName>SvgAliases</ClassName>
-      <StartPath>..\..\..\frontend\source\assets\svg</StartPath>
+      <StartPath>..\..\frontend\source\assets\svg</StartPath>
       <PathPrefix>/assets/svg</PathPrefix>
       <Separator>/</Separator>
       <Visible>False</Visible>
     </AdditionalFiles>
-    <AdditionalFiles Include="umbraco\uSync\Dictionary\**">
+    <AdditionalFiles Include='umbraco\uSync\Dictionary\**'>
       <Generator>TranslationAliases</Generator>
       <Namespace>DTNL.UmbracoCms.Web.Helpers.Aliases</Namespace>
       <ClassName>TranslationAliases</ClassName>
     </AdditionalFiles>
-    <AdditionalFiles Include="..\..\..\frontend\source\data\images\styles\**">
+    <AdditionalFiles Include='..\..\frontend\source\data\images\styles\**'>
       <Generator>ImageStyles</Generator>
       <OutputDirectoryPath>umbraco\uSync\DataTypes</OutputDirectoryPath>
       <Visible>False</Visible>
     </AdditionalFiles>
-    <AdditionalFiles Include="..\..\..\frontend\source\data\images\breakpoints.json">
+    <AdditionalFiles Include='..\..\frontend\source\data\images\breakpoints.json'>
       <Generator>CssBreakpoints</Generator>
       <Namespace>DTNL.UmbracoCms.Web.Helpers</Namespace>
       <ClassName>CssBreakpoints</ClassName>
