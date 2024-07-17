@@ -5,6 +5,7 @@
 {% extends 'layouts/default.html' %}
 
 {% from 'hero-home.html' import heroHome %}
+{% from 'pagination.html' import pagination %}
 
 {% block hero %}
   {{ heroHome({
@@ -98,5 +99,7 @@
         Suspendisse consectetur purus justo, sed ornare dolor blandit id.</p>
     </div>
   </div>
+
+  {{ pagination (global.content.pagination) }}
 
 {% endblock %}

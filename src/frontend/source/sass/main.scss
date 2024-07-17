@@ -43,6 +43,7 @@ $assets-path: '../' !default;
 @import '@/components/card-image/stylesheet/_components.card-image';
 @import '@/components/navigation-mobile/stylesheet/_components.navigation-mobile';
 @import '@/components/navigation-mobile-list/stylesheet/_components.navigation-mobile-list';
+@import '@/components/pagination/stylesheet/_components.pagination';
 /* endinject */
 
 @import '50_scopes/scopes.rich-text';
