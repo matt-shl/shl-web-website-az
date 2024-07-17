@@ -1,24 +1,24 @@
 .c-flyout {
   left: 0;
   opacity: 0;
+  pointer-events: none;
   position: absolute;
   top: 100%;
   transform: translate3d(0, 20%, 0);
-  width: 100%;
-  pointer-events: none;
   transition: var(--header-transition-time) var(--header-transition-ease);
   transition-property: transform, opacity;
+  width: 100%;
 
   .is--open & {
     opacity: 1;
-    transform: translate3d(0, 0, 0);
     pointer-events: auto;
+    transform: translate3d(0, 0, 0);
   }
 }
 
 .flyout__container {
   @include container;
-  margin-top: $spacing-16;
+  margin-top: $spacing-8;
 }
 
 .flyout__content {
@@ -27,14 +27,21 @@
   background-color: $color-white;
   border-radius: $radii-12;
   color: $color-dark-blue;
+  max-height: 80vh;
+  min-height: 500px;
+  overflow: auto;
   padding-block: $spacing-40;
 }
 
 .flyout__title-column {
-  @include col-span(3);
+  @include col-span(4);
   display: flex;
   flex-direction: column;
   gap: $spacing-16;
+
+  @include screen-xl-and-bigger {
+    @include col-span(3);
+  }
 }
 
 .flyout__title {
@@ -45,43 +52,76 @@
   @include body-m;
 }
 
-.flyout__main-item-list {
-  @include list--reset;
-  @include col-span(6);
-  position: relative;
+.flyout__cta {
+  @include link--base;
 }
 
-.flyout__main-item {
-  //
+.flyout__main-item-list {
+  @include list--reset;
+  @include col-span(8);
+  position: relative;
 
-  > a {
-    display: block;
-    width: 50%;
-    border: 1px solid;
+  @include screen-xl-and-bigger {
+    @include col-span(6);
+  }
+}
+
+.flyout__main-item-button {
+  @include body-l;
+  align-items: center;
+  background-color: transparent;
+  border-radius: $radii-4;
+  color: $color-dark-blue;
+  display: flex;
+  font-weight: $font-weight-extrabold;
+  gap: $spacing-16;
+  justify-content: space-between;
+  padding: $spacing-16;
+  transition: var(--header-transition-time) var(--header-transition-ease);
+  transition-property: background-color;
+  width: calc(50% - #{$spacing-12});
+
+  .flyout__main-item.is--open & {
+    background-color: $color-lightest-blue;
   }
 }
 
 .flyout__subitem-list {
-  position: absolute;
-  inset-inline-end: 0;
-  top: 0;
-  width: 50%;
-  border: 1px solid;
+  @include list--reset;
   display: none;
+  flex-direction: column;
+  gap: $spacing-12;
+  inset-inline-end: 0;
+  max-height: 100%;
+  overflow: auto;
+  position: absolute;
+  top: 0;
+  width: calc(50% - #{$spacing-12});
 
   .flyout__main-item.is--open & {
-    display: block;
+    display: flex;
   }
 }
 
-.flyout__subitem {
-  //
+.flyout__subitem-anchor {
+  @include body-m;
+  color: $color-dark-blue;
+  display: inline-block;
+  padding: $spacing-8 $spacing-16;
 
-  > a {
-    //
-  }
+  // TODO: hover state (waiting on reusable hover from the footer)
+}
+
+.flyout__subitem-all {
+  @include link--base;
+  padding: $spacing-8 $spacing-16;
 }
 
 .flyout__feature-column {
-  @include col-span(3);
+  display: none;
+
+  @include screen-xl-and-bigger {
+    @include col-span(3);
+    display: block;
+  }
 }

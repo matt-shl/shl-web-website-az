@@ -1,9 +1,11 @@
-//.c-navigation-desktop
-
 .navigation-desktop__list {
   @include list--reset;
   display: flex;
-  gap: $spacing-16;
+  gap: $spacing-12;
+
+  @include screen-xl-and-bigger {
+    gap: $spacing-16;
+  }
 }
 
 .navigation-desktop__list-item {
@@ -42,8 +44,12 @@
     visibility: hidden;
   }
 
-  .is--open &::after {
-    display: block;
+  .is--open & {
+    font-weight: $font-weight-extrabold;
+
+    &::after {
+      display: block;
+    }
   }
 
   @include hover-focus {

@@ -1,13 +1,17 @@
 <header class="c-header" js-hook-header>
   <div class="header__container">
     <div class="header__content">
-      <a href="/" class="header__logo">
+      <a href="/" class="header__logo" title="{{ global.resource.navigation.home }}">
         {% svg 'brand/logo-color' %}
       </a>
 
-      <button class="header__hamburger">
+      <button
+        js-hook-header-hamburger
+        class="header__hamburger"
+        aria-controls="navigation-mobile"
+        aria-label="{{ global.resource.navigation.openMenu }}">
         {% svg 'icons/menu' %}
-        Menu
+        {{ global.resource.navigation.menu }}
       </button>
 
       <div class="header__navigation">
@@ -20,3 +24,5 @@
     </div>
   </div>
 </header>
+
+{% include 'navigation-mobile.html' %}

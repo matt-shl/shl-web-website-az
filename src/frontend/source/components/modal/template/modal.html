@@ -34,21 +34,36 @@ Options:
 
       <div class="modal__content" role="dialog">
 
-        <div class="modal__header">
-          <div>
-            <h2 class="modal__title">{{ data.title }}</h2>
+        {% if data.size !== "navigation-mobile" %}
+          <div class="modal__header">
+            <div>
+              <h2 class="modal__title">{{ data.title }}</h2>
 
-            {% if data.subtitle %}
-              <h3  class="modal__subtitle">{{ data.subtitle }}</h3>
+              {% if data.subtitle %}
+                <h3  class="modal__subtitle">{{ data.subtitle }}</h3>
+              {% endif %}
+            </div>
+
+            {% if not data.noClose %}
+              <button type="button" class="modal__button-close" js-hook-button-modal-close aria-label="{{ global.resource.navigation.close }}">
+                {% svg 'icons/cross' %}
+              </button>
             {% endif %}
           </div>
+        {% else %}
+          <div class="modal__header">
+            <a href="/" class="modal__header-logo" title="{{ global.resource.navigation.home }}">
+              {% svg 'brand/logo-color' %}
+            </a>
 
-          {% if not data.noClose %}
-            <button type="button" class="modal__button-close" js-hook-button-modal-close aria-label="Close modalbox">
+            <button
+              class="modal__header-hamburger"
+              js-hook-button-modal-close>
               {% svg 'icons/cross' %}
+              {{ global.resource.navigation.close }}
             </button>
-          {% endif %}
-        </div>
+          </div>
+        {% endif %}
 
         <div class="modal__body" js-hook-modal-body>
           {{ caller() }}
