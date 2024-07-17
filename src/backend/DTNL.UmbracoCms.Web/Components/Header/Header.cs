@@ -23,7 +23,8 @@ public class Header : ViewComponentExtended
                                .ToList()
                            ?? [];
 
-        LogoPath = SvgAliases.Logo;
+        // this is empty because the header will need to be created and this will be changed
+        LogoPath = "";
         Links = links;
         LogoUrl = homePage?.Url();
 
