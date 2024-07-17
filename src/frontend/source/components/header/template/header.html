@@ -5,7 +5,11 @@
         {% svg 'brand/logo-color' %}
       </a>
 
-      <button class="header__hamburger">
+      <button
+        js-hook-header-hamburger
+        class="header__hamburger"
+        aria-controls="navigation-mobile"
+        aria-label="{{ global.resource.navigation.openMenu }}">
         {% svg 'icons/menu' %}
         {{ global.resource.navigation.menu }}
       </button>
@@ -20,3 +24,5 @@
     </div>
   </div>
 </header>
+
+{% include 'navigation-mobile.html' %}

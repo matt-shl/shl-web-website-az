@@ -1,4 +1,4 @@
-import { body } from '@/utilities/dom-elements'
+import {body} from '@/utilities/dom-elements'
 import RafThrottle from '@/utilities/raf-throttle'
 
 type ScreenDimensionsQueries =
@@ -32,7 +32,7 @@ const MEDIA_QUERIES: MediaQueries = [
   },
   {
     reference: 'isTabletPortrait',
-    breakpoint: 768,
+    breakpoint: 744,
   },
   {
     reference: 'isTabletLandscape',
@@ -44,11 +44,11 @@ const MEDIA_QUERIES: MediaQueries = [
   },
   {
     reference: 'isDesktop',
-    breakpoint: 1600,
+    breakpoint: 1920,
   },
   {
     reference: 'isWidescreen',
-    breakpoint: 1920,
+    breakpoint: 2560,
   },
 ]
 

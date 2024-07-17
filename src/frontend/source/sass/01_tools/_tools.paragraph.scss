@@ -1,5 +1,11 @@
+@mixin body-xl {
+  font-size: $font-size-body-xl;
+  line-height: $font-line-height-body-xl;
+}
+
 @mixin body-l {
   font-size: $font-size-body-l;
+  line-height: $font-line-height-body-l;
 }
 
 @mixin body-m {

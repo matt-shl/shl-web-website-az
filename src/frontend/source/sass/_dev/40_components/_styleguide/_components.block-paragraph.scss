@@ -4,6 +4,10 @@
   row-gap: $spacing-16;
 }
 
+.styleguide__paragraph-body-xl {
+  @include body-xl;
+}
+
 .styleguide__paragraph-body-l {
   @include body-l;
 }

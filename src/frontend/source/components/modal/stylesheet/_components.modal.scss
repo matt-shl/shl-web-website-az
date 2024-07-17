@@ -1,4 +1,5 @@
 @import 'size/mixin.aside';
+@import 'size/mixin.navigation-mobile';
 
 $modal-max-width: 1600px !default;
 $modal-gutter: $global-spacing * 5 !default;
@@ -188,4 +189,8 @@ $modal-min-width-media-query: ($modal-max-width + $modal-gutter-small * 2) - 0.5
 // SIZES
 .c-modal--size-aside {
   @include modal--aside;
+}
+
+.c-modal--size-navigation-mobile {
+  @include modal--navigation-mobile;
 }
