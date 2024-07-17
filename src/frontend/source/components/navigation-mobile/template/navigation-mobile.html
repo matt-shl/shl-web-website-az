@@ -11,7 +11,7 @@
   <div class="c-navigation-mobile">
     <nav title="{{ global.resource.navigation.mainNavigation }}">
       {{ navigationMobileList({
-        items: global.navigation.items
+        items: global.content.navigation.items
       }) }}
       <div class="navigation-mobile__line"></div>
       <div class="navigation-mobile-selector">
@@ -22,7 +22,7 @@
 {% endcall %}
 
 {# Modals to show level 2 #}
-{% for item in global.navigation.items %}
+{% for item in global.content.navigation.items %}
   {% if item.subitems %}
     {% call modal({
       size: 'navigation-mobile',
@@ -49,7 +49,7 @@
 
 
 {# Modal to show level 3 items #}
-{% for item in global.navigation.items %}
+{% for item in global.content.navigation.items %}
   {% if item.subitems %}
     {% for subitem in item.subitems %}
       {% call modal({
