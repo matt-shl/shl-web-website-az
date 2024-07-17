@@ -13,3 +13,7 @@
   // Links
   --link-theme-underline-color: #{rgba($color-dark-yellow-rgb, 0.2)};
 }
+
+html.t-pale-yellow {
+  background-color: var(--color-background);
+}
