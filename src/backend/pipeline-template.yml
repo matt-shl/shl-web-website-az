@@ -24,9 +24,11 @@ jobs:
 
       - task: NuGetAuthenticate@1
         displayName: 'NuGet Authenticate'
+        inputs:
+          nuGetServiceConnections: 'DTNL-Dotnet-Feed'
 
       - ${{ if eq(parameters.sonarCloud.enabled, 'true') }}:
-        - task: SonarCloudPrepare@1
+        - task: SonarCloudPrepare@2
           displayName: 'SonarCloud Prepare'
           inputs:
             SonarCloud: '${{ parameters.sonarCloud.serviceConnection }}'
@@ -48,7 +50,7 @@ jobs:
           arguments: '--configuration ${{ parameters.buildConfiguration }} --output $(Build.ArtifactStagingDirectory)'
 
       - ${{ if eq(parameters.sonarCloud.enabled, 'true') }}:
-        - task: SonarCloudAnalyze@1
+        - task: SonarCloudAnalyze@2
 
       - task: PublishPipelineArtifact@1
         displayName: 'Publish Artifact: Backend'

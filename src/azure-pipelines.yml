@@ -22,8 +22,8 @@ parameters:
   default: false
 
 variables: 
-  backendWorkingDirectory: $[coalesce(variables.backendWorkingDirectoryOverride, 'backend')]
-  frontendWorkingDirectory: $[coalesce(variables.frontendWorkingDirectoryOverride, 'frontend')]
+  backendWorkingDirectory: $[coalesce(variables.backendWorkingDirectoryOverride, 'src/backend')]
+  frontendWorkingDirectory: $[coalesce(variables.frontendWorkingDirectoryOverride, 'src/frontend')]
 
 name: $(Build.DefinitionName)-$(SourceBranchName)-$(Date:yyyyMMdd)$(Rev:.r)
 stages:
