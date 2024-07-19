@@ -42,7 +42,7 @@
                     bool active = paginationItem.Page == Model.CurrentPage;
 
                     <a aria-current="@active"
-                       aria-label="@CultureDictionary.GetTranslation(TranslationAliases.Common.Pagination.PreviousPage, Model.CurrentPage)"
+                       aria-label="@CultureDictionary.GetTranslation(active ? TranslationAliases.Common.Pagination.CurrentPage : TranslationAliases.Common.Pagination.GoToPage, paginationItem.Page)"
                        href=" @Context.GetNewQueryUrl(pageQuery, $"{paginationItem.Page}")"
                        class="pagination__link pagination__page @(active? "pagination__page--active" : "") @(Model.HideInMobile ? "pagination__page--hide-mobile" : "")">
                         <span>@paginationItem.Page</span>
@@ -59,14 +59,14 @@
     {
         <span class="pagination__link pagination__action pagination__action--next pagination__action--disabled" aria-disabled rel="next">
             <svg src="@SvgAliases.Icons.ArrowRight" />
-            <span class="u-sr-only" asp-translation="@TranslationAliases.Common"></span>
+            <span class="u-sr-only" asp-translation="@TranslationAliases.Common.Pagination.NextPage"></span>
         </span>
     }
     else
     {
         <a class="pagination__link pagination__action pagination__action--next" rel="prev" href="@Context.GetNewQueryUrl(pageQuery, $"{Model.CurrentPage + 1}")">
             <svg src="@SvgAliases.Icons.ArrowRight" />
-            <span class="u-sr-only" asp-translation="@TranslationAliases.Common"></span>
+            <span class="u-sr-only" asp-translation="@TranslationAliases.Common.Pagination.NextPage"></span>
         </a>
     }
 </div>
