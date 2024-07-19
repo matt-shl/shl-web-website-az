@@ -1,33 +1,96 @@
 @using DTNL.UmbracoCms.Web.Components
+@using DTNL.UmbracoCms.Web.Helpers.Aliases
+@using DTNL.UmbracoCms.Web.Helpers.Extensions
 @model DTNL.UmbracoCms.Web.Components.Footer
 
 <footer class="c-footer" id="footer">
-	<div class="o-container">
-		<div class="o-grid">
-			<div class="o-col-12 o-col-8--md">
-				<div class="footer-links">
-					<ul class="footer-links__list">
-						@foreach (Link? link in Model.Links)
-						{
-							<li class="footer-links__list-item">
-								<partial name="Link" model="link" />
-							</li>
-						}
-					</ul>
-				</div>
-			</div>
-			<div class="o-col-12 o-col-4--md">
-				<div class="footer-social">
-					<ul class="footer-social__list">
-					@foreach (var link in Model.SocialLinks?.Links ?? Enumerable.Empty<Components.Link>())
-					{
-						<li class="footer-social__list-item">
-							<partial name="Link" model="link" />
-						</li>
-					}
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="footer__main">
+
+        <p class="footer__description" asp-if="@Model.Text">
+            @Model.Text
+        </p>
+
+        <nav class="footer__sitemap footer__sitemap--mobile" aria-label="@Model.LinkGroupsAriaLabel">
+            @if (Model.LinkGroups.Count > 0)
+            {
+                <partial name="Accordion"
+                         model="@(new Accordion { AutoClose = true, Classes = "footer__accordion", Items = Model.LinkGroups.Select(g => g.AccordionItem).ToList() })">
+
+                    @foreach ((Group<Button> linkGroup, Accordion.Item accordionItem) in Model.LinkGroups)
+                    {
+                        <partial name="Accordion/AccordionItem" model="@accordionItem">
+                            <nav class="footer__navigation" aria-label="@linkGroup.Title">
+                                @foreach (Button item in linkGroup.Items)
+                                {
+                                    <partial name="Button" model="@item" />
+                                }
+                            </nav>
+                        </partial>
+                    }
+                </partial>
+            }
+        </nav>
+
+        <nav class="footer__sitemap footer__sitemap--desktop" aria-label="@Model.LinkGroupsAriaLabel">
+            @foreach ((Group<Button> linkGroup, _) in Model.LinkGroups)
+            {
+                <div class="footer__navigation-container">
+                    <span class="footer__navigation-title">@linkGroup.Title</span>
+
+                    <nav class="footer__navigation" aria-label="@linkGroup.Title">
+                        @foreach (Button item in linkGroup.Items)
+                        {
+                            <partial name="Button" model="@item" />
+                        }
+                    </nav>
+                </div>
+            }
+        </nav>
+    </div>
+
+    <div class="footer__sub">
+
+        <div class="footer__sub-shape footer__sub-shape--mobile">
+            <svg src="@SvgAliases.Shape.FooterShapeMobile" />
+        </div>
+
+        <div class="footer__sub-shape footer__sub-shape--desktop">
+            <svg src="@SvgAliases.Shape.FooterShapeDesktop" />
+        </div>
+
+        <div class="footer__sub-content">
+            <a class="footer__sub-logo" aria-label="@Model.HomePageLinkAriaLabel" href="@Model.HomePageUrl">
+                <svg src="@SvgAliases.Brand.LogoColor" />
+            </a>
+
+            <div class="footer__sub-bottom">
+                @if (Model.SocialLinks?.Links.Count > 0)
+                {
+                    <nav class="footer__sub-socials" aria-label="@Model.SocialLinksAriaLabel">
+                        <div class="footer__sub-social-icons">
+                            @foreach (Link socialLink in Model.SocialLinks.Links)
+                            {
+                                <partial name="Button"
+                                         model="@Button.Create(socialLink).With(b => { b.LabelSrOnly = true; b.Class = "button--icon-clear footer__sub-social-link"; b.Variant = "icon"; })"/>
+                            }
+                        </div>
+
+                        <partial name="Button" model="@Model.SocialMediaPolicyLink"/>
+                    </nav>
+                }
+
+                <div class="footer__sub-bottom-wrapper">
+                    <nav class="footer__sub-bottom-links" aria-label="@Model.BottomLinksAriaLabel">
+                        @foreach (Button link in Model.BottomLinks)
+                        {
+                            <partial name="Button" model="@link"/>
+                        }
+                    </nav>
+
+                    <span class="footer__sub-copyright-label">@Model.CopyrightLabel</span>
+                </div>
+            </div>
+        </div>
+    </div>
 </footer>
+

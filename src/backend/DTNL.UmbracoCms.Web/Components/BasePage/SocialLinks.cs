@@ -8,10 +8,10 @@ public class SocialLinks
 {
     private static readonly IReadOnlyList<(string Domain, string Icon)> SocialLinkPlatforms =
         [
-            ("facebook.com", SvgAliases.Social.Facebook),
-            ("twitter.com", SvgAliases.Social.Twitter),
-            ("linkedin.com", SvgAliases.Social.Linkedin),
-            ("instagram.com", SvgAliases.Social.Instagram),
+            ("facebook.com", SvgAliases.Icons.SocialFacebook),
+            ("x.com", SvgAliases.Icons.SocialX),
+            ("linkedin.com", SvgAliases.Icons.SocialLinkedin),
+            ("instagram.com", SvgAliases.Icons.SocialInstagram),
             ("youtube.com", SvgAliases.Social.Youtube),
         ];
 
@@ -40,7 +40,7 @@ public class SocialLinks
             return null;
         }
 
-        Url? url = new(link.Url);
+        Url url = new(link.Url);
         if (url.IsRelative)
         {
             return null;
