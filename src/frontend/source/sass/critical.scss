@@ -43,6 +43,8 @@ $assets-path: '/assets/';
 @import '@/components/navigation-mobile/stylesheet/_components.navigation-mobile';
 @import '@/components/navigation-mobile-list/stylesheet/_components.navigation-mobile-list';
 @import '@/components/pagination/stylesheet/_components.pagination';
+@import '@/components/video/stylesheet/_components.video';
+@import '@/components/hero-content/stylesheet/_components.hero-content';
 /* endinject */
 
 @import '50_scopes/scopes.rich-text';

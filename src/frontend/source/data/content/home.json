@@ -1,0 +1,60 @@
+{
+  "hero": {
+    "title": "This is a large title for the hero section",
+    "description": "Here is some supporting text for the hero component, keep it short and sweet, but have a nice bite to it.",
+    "ctas": [
+      {
+        "label": "Primary button",
+        "url": "/"
+      },
+      {
+        "variant": "secondary",
+        "label": "Secondary button",
+        "url": "/"
+      }
+    ],
+    "video": {
+      "id": "hero-video",
+      "title": "Homepage video",
+      "description": "Homepage video description",
+      "sources": [
+        {
+          "size": 1920,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        },
+        {
+          "size": 1280,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        },
+        {
+          "size": 1024,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        },
+        {
+          "size": 320,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

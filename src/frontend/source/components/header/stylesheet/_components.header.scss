@@ -1,3 +1,5 @@
+// stylelint-disable declaration-no-important
+
 :root {
   --header-background-color: transparent;
   --header-border-color: transparent;
@@ -15,6 +17,16 @@
   }
 }
 
+@keyframes header-move-in-from-top {
+  0% {
+    transform: translateY(calc(-100% - #{$spacing-16}));
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
 @mixin header-background-offset {
   padding-inline: $spacing-20;
 
@@ -25,6 +37,7 @@
 }
 
 .c-header {
+  @include page-load-animation(header-move-in-from-top);
   height: var(--header-height);
   padding-top: $spacing-16;
   position: fixed;
@@ -65,7 +78,7 @@
   }
 
   .header--is-going-up & {
-    transform: translateY(0);
+    transform: translateY(0) !important;
   }
 
   .header--is-sticky & {
@@ -145,8 +158,8 @@
   border-radius: $radii-4;
   display: flex;
   gap: $spacing-8;
-  margin-inline-start: auto;
   margin-inline-end: -16px;
+  margin-inline-start: auto;
   padding: $spacing-8 $spacing-16;
   transition: var(--header-transition-time) var(--header-transition-ease);
   transition-property: background-color, color;

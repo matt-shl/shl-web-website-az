@@ -1,5 +1,5 @@
 {% set theme = "light-blue" %}
-{% set themeColor = "#007cbe"%}
+{% set themeColor = "#007cbe" %}
 {% set headerIsWhite = true %}
 
 {% extends 'layouts/default.html' %}
@@ -9,7 +9,10 @@
 
 {% block hero %}
   {{ heroHome({
-    title: "Home page"
+    title: global.content.home.hero.title,
+    description: global.content.home.hero.description,
+    ctas: global.content.home.hero.ctas,
+    video: global.content.home.hero.video
   }) }}
 {% endblock %}
 

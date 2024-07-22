@@ -1,0 +1,51 @@
+// Note: parent element needs position: relative;
+
+@mixin video--background {
+  --video-loader-size: 32px;
+  --video-button-size: 32px;
+  --video-button-color: rgba(#{$color-white-rgb}, 0.2);
+  --video-button-icon-color: #{$color-white};
+  --video-button-icon-color-hover: #{$color-light-blue};
+
+  aspect-ratio: unset;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+
+  video {
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .video__button {
+    left: auto;
+    top: auto;
+    inset-inline-end: $spacing-16;
+    bottom: $spacing-24;
+    transform: none;
+    box-shadow: none;
+    backdrop-filter: blur(10px);
+
+    @include screen-md-and-bigger {
+      inset-inline-end: $spacing-60;
+    }
+  }
+
+  .video__button-icon {
+    font-size: 1.8rem;
+  }
+
+  .video__button--play .video__button-icon {
+    border-bottom: 6px solid transparent;
+    border-left: 12px solid var(--video-button-icon-color);
+    border-top: 6px solid transparent;
+    height: 12px;
+    width: 12px;
+  }
+
+  &.video--is-playing .video__button--pause {
+    opacity: 1;
+  }
+}
