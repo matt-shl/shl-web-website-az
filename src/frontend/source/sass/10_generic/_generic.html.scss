@@ -29,3 +29,11 @@ body {
   min-height: 100vh;
   word-break: normal;
 }
+
+.has--page-load-animation {
+  overflow: hidden;
+
+  body {
+    overflow: hidden;
+  }
+}

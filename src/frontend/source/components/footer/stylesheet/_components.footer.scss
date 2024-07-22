@@ -160,7 +160,7 @@
 .footer__sub-social-link {
   width: 4rem;
   height: 4rem;
-  background-color: var(--link-theme-underline-color);
+  background-color: var(--theme-color-content-20);
 
   transition: 300ms ease-in-out;
   transition-property: border-radius, background-color;
@@ -170,7 +170,7 @@
   }
 
   @include hover-focus(false) {
-    background-color: var(--link-theme-underline-color);
+    background-color: var(--theme-color-content-20);
     border-radius: $radii-12;
   }
 
@@ -234,12 +234,12 @@
       padding-block: initial;
 
       &:not(:last-child) {
-        border-right: 1px solid var(--link-theme-underline-color);
+        border-right: 1px solid var(--theme-color-content-20);
       }
     }
 
     @include screen-xl-and-bigger {
-      border-right: 1px solid var(--link-theme-underline-color);
+      border-right: 1px solid var(--theme-color-content-20);
     }
   }
 }

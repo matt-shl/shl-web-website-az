@@ -25,7 +25,7 @@ $accordion-transition-ease: ease-out;
   margin-bottom: $accordion-item-spacing;
   overflow: hidden;
   transition: height $accordion-transition-time $accordion-transition-ease;
-  border-bottom: 1px solid var(--link-underline-color);
+  border-bottom: 1px solid var(--color-content-20);
 
   &:last-child {
     border-bottom: 0;
@@ -89,7 +89,7 @@ $accordion-transition-ease: ease-out;
 
   .accordion__detail & {
     @include hover-focus(false) {
-      outline: 1px solid var(--link-underline-color);
+      outline: 1px solid var(--color-content-20);
     }
   }
 

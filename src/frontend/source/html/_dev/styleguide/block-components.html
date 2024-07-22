@@ -107,6 +107,20 @@
         modalId: "aside-modal-example"
       }) }}
     </div>
+
+    <div class="styleguide__component-col styleguide__component-col--3">
+      {% from 'video.html' import video %}
+
+      {{ video({
+        instance_id: 'styleguide-video',
+        id: 'styleguide-video',
+        controls: true,
+        platform: 'native',
+        title: 'styleguide-video',
+        description: 'styleguide-video',
+        sources: global.content.home.hero.video.sources
+      }) }}
+    </div>
   </div>
 
 {% endblock %}
