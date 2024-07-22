@@ -23,4 +23,9 @@ public static class UmbracoTranslationsExtensions
         string? dictionaryValue = cultureDictionary[key];
         return !string.IsNullOrWhiteSpace(dictionaryValue) ? dictionaryValue : "{{" + key + "}}";
     }
+
+    public static string GetTranslation(this ICultureDictionary cultureDictionary, string key, params object[] parameters)
+    {
+        return string.Format(cultureDictionary.GetTranslation(key), parameters);
+    }
 }
