@@ -22,10 +22,10 @@
             @RenderBody()
         </div>
 
-        <vc:footer site-settings="@NodeProvider.SiteSettings" />
         <vc:cookie-bar site-settings="@NodeProvider.SiteSettings" />
     </main>
 
+    <vc:footer site-settings="@NodeProvider.SiteSettings" />
 
     <script async src="/assets/js/main.js" asp-append-version="true"></script>
     @Html.Raw(NodeProvider.SiteSettings?.BodyScripts)

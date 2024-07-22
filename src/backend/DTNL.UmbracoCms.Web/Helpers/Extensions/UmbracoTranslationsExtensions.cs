@@ -24,6 +24,10 @@ public static class UmbracoTranslationsExtensions
         return !string.IsNullOrWhiteSpace(dictionaryValue) ? dictionaryValue : "{{" + key + "}}";
     }
 
+    /// <summary>
+    /// Retrieves the translation corresponding to the given <paramref name="key"/> from Umbraco, and formats it using the specified <paramref name="parameters"/>
+    /// </summary>
+    /// <remarks>If not found, the given <paramref name="key"/> is returned instead.</remarks>
     public static string GetTranslation(this ICultureDictionary cultureDictionary, string key, params object[] parameters)
     {
         return string.Format(cultureDictionary.GetTranslation(key), parameters);
