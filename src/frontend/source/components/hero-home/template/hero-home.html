@@ -1,24 +1,32 @@
 {% from 'button.html' import button %}
 {% from 'video.html' import video %}
+{% from 'image.html' import image %}
 
 {% macro heroHome(data) %}
 
   <section class="c-hero-home" js-hook-page-load-animation-trigger>
     <div class="hero-home__video-container">
-      {{ video({
-        variant: 'background',
-        instance_id: data.video.id,
-        id: data.video.id,
-        platform: 'native',
-        title: data.video.title,
-        autoplay: true,
-        playsinline: true,
-        controls: false,
-        muted: true,
-        loop: true,
-        description: data.video.description,
-        sources: data.video.sources
-      }) }}
+      {% if data.video %}
+        {{ video({
+          variant: 'background',
+          instance_id: data.video.id,
+          id: data.video.id,
+          platform: 'native',
+          title: data.video.title,
+          autoplay: true,
+          playsinline: true,
+          controls: false,
+          muted: true,
+          loop: true,
+          description: data.video.description,
+          sources: data.video.sources
+        }) }}
+      {% else %}
+        {{ image({
+          classes: "hero-home__image",
+          objectFit: true
+        }) }}
+      {% endif %}
     </div>
 
     <div class="hero-home__shape-container">

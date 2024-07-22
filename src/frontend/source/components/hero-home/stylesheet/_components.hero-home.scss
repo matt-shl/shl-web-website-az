@@ -96,6 +96,11 @@
   z-index: -1;
 }
 
+.hero-home__image {
+  height: 100%;
+  width: 100%;
+}
+
 .hero-home__container {
   @include container-with-grid;
   padding-block: $spacing-40;
