@@ -10,7 +10,7 @@ cta: string
 modalId: string
 #}
 
-{% from 'hover.html' import hover %}
+{% from 'card-overlay.html' import cardOverlay %}
 {% from 'image.html' import image %}
 
 {% macro article(data) %}
@@ -24,8 +24,8 @@ modalId: string
       imageStyle: 'article'
     }) }}
 
-    {{ hover({
-      classes: 'article__hover',
+    {{ cardOverlay({
+      classes: 'article__card-overlay',
       tag: data.tag,
       position: 'start',
       visible: true

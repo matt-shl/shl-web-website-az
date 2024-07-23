@@ -8,6 +8,7 @@
   position: relative;
   margin-bottom: $spacing-16;
   border-radius: $radii-12;
+  border-end-start-radius: 0;
   overflow: hidden;
   aspect-ratio: 4 / 3;
 }

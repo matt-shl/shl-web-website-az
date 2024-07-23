@@ -1,6 +1,6 @@
 @mixin theme {
   transition: 300ms ease-in-out;
-  transition-property: background-color, color;
+  transition-property: background-color, color, border-radius;
 
   background-color: var(--color-background);
   color: var(--color-content);

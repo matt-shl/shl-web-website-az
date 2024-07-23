@@ -29,7 +29,6 @@ $assets-path: '/assets/';
 @import '@/components/tag/stylesheet/_components.tag';
 @import '@/components/shape/stylesheet/_components.shape';
 @import '@/components/article/stylesheet/_components.article';
-@import '@/components/hover/stylesheet/_components.hover';
 @import '@/components/modal/stylesheet/_components.modal';
 @import '@/components/accordion/stylesheet/_components.accordion';
 @import '@/components/toast/stylesheet/_components.toast';
@@ -45,6 +44,7 @@ $assets-path: '/assets/';
 @import '@/components/pagination/stylesheet/_components.pagination';
 @import '@/components/video/stylesheet/_components.video';
 @import '@/components/hero-content/stylesheet/_components.hero-content';
+@import '@/components/card-overlay/stylesheet/_components.card-overlay';
 /* endinject */
 
 @import '50_scopes/scopes.rich-text';

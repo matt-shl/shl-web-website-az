@@ -1,0 +1,106 @@
+@mixin cardOverlayVisible {
+  // @todo check if is-touch works as expected
+  html.is-touch &, // for touch devices
+  .c-card-overlay--is-visible &,
+  .c-card-overlay-parent:hover & {
+    @content;
+  }
+}
+
+.c-card-overlay {
+  bottom: 0;
+  inset-inline-end: 0;
+  pointer-events: none;
+  position: absolute;
+  z-index: 0;
+
+  &--position-start {
+    inset-inline-end: auto;
+    inset-inline-start: 0;
+    transform: scaleX(-1);
+
+    .c-tag {
+      transform: scaleX(-1);
+    }
+  }
+}
+
+.card-overlay__content {
+  --button-primary-background-color: var(--color-background);
+  --button-primary-font-color: var(--color-content);
+  --button-primary-border-color: transparent;
+
+  transform: translateY(100%);
+  transition: var(--card-animation-duration) var(--card-animation-ease);
+  transition-property: transform, opacity;
+  opacity: 0;
+  padding-inline-end: $spacing-8;
+
+  .c-card-overlay--position-start & {
+    padding-inline-end: 0;
+  }
+
+  @include cardOverlayVisible {
+    transform: translateY(0);
+    transition-delay: 50ms;
+    opacity: 1;
+  }
+}
+
+.card-overlay__shape {
+  bottom: 0;
+  inset-inline-end: 0;
+  position: absolute;
+  transform: scale(0) translateY(8px);
+  transform-origin: bottom right;
+  transition: transform var(--card-animation-duration) var(--card-animation-ease);
+  transition-delay: var(--card-animation-delay);
+  width: calc(100% + 105px);
+  z-index: -1;
+
+  @include cardOverlayVisible {
+    transform: scale(1) translateY(0);
+    transition-delay: 0ms;
+  }
+
+  @container card (width < #{$card-container-size-lg}) {
+    @include cardOverlayVisible {
+      transform: scale(0.8) translateX(-7px);
+    }
+  }
+
+  @container card (width < #{$card-container-size-sm}) {
+    @include cardOverlayVisible {
+      transform: scale(0.6) translateX(-15px);
+    }
+  }
+
+  @supports not (container-type: inline-size) {
+    @include screen-sm-and-smaller {
+      @include cardOverlayVisible {
+        transform: scale(0.8) translateX(-5px);
+      }
+    }
+  }
+}
+
+.card-overlay__button {
+  @container card (width < #{$card-container-size-lg}) {
+    height: 3.2rem;
+    width: 3.2rem;
+  }
+
+  @container card (width < #{$card-container-size-sm}) {
+    height: 2.4rem;
+    width: 2.4rem;
+  }
+
+  @supports not (container-type: inline-size) {
+    @include screen-sm-and-smaller {
+      .c-button {
+        height: 3.2rem;
+        width: 3.2rem;
+      }
+    }
+  }
+}
