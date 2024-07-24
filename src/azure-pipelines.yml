@@ -9,6 +9,11 @@ trigger:
     - support
     - release/*
 
+pr:
+  branches:
+    include:
+    - '*'
+
 parameters:
 - name: buildConfiguration
   displayName: Build Configuration
