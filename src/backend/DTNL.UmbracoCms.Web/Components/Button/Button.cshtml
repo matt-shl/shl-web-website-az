@@ -18,7 +18,7 @@
         @(!Model.Variant.IsNullOrEmpty() ? $"c-button--{Model.Variant}" : "c-button")
         @(!Model.Size.IsNullOrEmpty() ? $" button--{Model.Size}" : "")
         @(!Model.Icon.IsNullOrEmpty() ? " button--icon" : "")
-        @(!Model.LabelSrOnly ? " button--icon-only" : "")
+        @(Model.LabelSrOnly ? " button--icon-only" : "")
         @Model.Class"
     @Html.Attribute(Model.Hook?.EnsureStartsWith("js-hook-"))
     @Html.Attributes(Model.Attributes)
