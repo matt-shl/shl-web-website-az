@@ -7,7 +7,7 @@
     return;
 }
 
-<@(Model.Element) 
+<@(Model.Element)
     type="@(!Model.Type.IsNullOrEmpty() ? Model.Type : Model.Element == "button" ? "button" : null)"
     href="@Model.Url.NullOrEmptyAsNull()"
     target="@Model.Target.NullOrEmptyAsNull()"
@@ -18,6 +18,7 @@
         @(!Model.Variant.IsNullOrEmpty() ? $"c-button--{Model.Variant}" : "c-button")
         @(!Model.Size.IsNullOrEmpty() ? $" button--{Model.Size}" : "")
         @(!Model.Icon.IsNullOrEmpty() ? " button--icon" : "")
+        @(!Model.LabelSrOnly.IsNullOrEmpty() ? " button--icon-only" : "")
         @Model.Class"
     @Html.Attribute(Model.Hook?.EnsureStartsWith("js-hook-"))
     @Html.Attributes(Model.Attributes)

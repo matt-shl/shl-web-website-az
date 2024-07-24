@@ -91,6 +91,10 @@
     stroke: var(--color-content);
     opacity: 0.2;
   }
+
+  @include screen-md-only {
+    bottom: calc(100% + #{$spacing-24});
+  }
 }
 
 .footer__sub-shape--mobile {
@@ -107,13 +111,13 @@
 
 .footer__sub-content {
   @include container;
-  padding-block-start: $spacing-20;
+  padding-block-start: $spacing-16;
   position: relative;
 }
 
 .footer__sub-logo {
   position: absolute;
-  bottom: calc(100% - #{$spacing-16});
+  bottom: 100%;
 
   > svg {
     width: 200px;
@@ -122,6 +126,10 @@
     > path {
       fill: var(--color-content);
     }
+  }
+
+  @include screen-lg-only {
+    bottom: calc(100% - #{$spacing-16});
   }
 }
 
