@@ -1,4 +1,4 @@
-import {body, html} from '@/utilities/dom-elements'
+import { body, html } from '@/utilities/dom-elements'
 import Events from '@/utilities/events'
 import RafThrottle from '@/utilities/raf-throttle'
 import ScreenDimensions from '@/utilities/screen-dimensions'
@@ -37,10 +37,10 @@ class Modal {
   tabIndexExceptionIds = ['modal-mega-menu']
   scrollElement = document.scrollingElement || html
   scrollTop = 0
-  private navigationMobileIDs: string[];
+  private navigationMobileIDs: string[]
 
   constructor() {
-    this.register({hook: MODAL_HOOK})
+    this.register({ hook: MODAL_HOOK })
     this.bindEvents()
   }
 
@@ -50,9 +50,9 @@ class Modal {
     )
 
     // Select all modals that start with NAVIGATION_MOBILE_ID in their ID and store their ID's in an array
-    this.navigationMobileIDs = Array.from(document.querySelectorAll<ModalElement>(`[id^=${NAVIGATION_MOBILE_ID}]`)).map(
-      el => el.id,
-    )
+    this.navigationMobileIDs = Array.from(
+      document.querySelectorAll<ModalElement>(`[id^=${NAVIGATION_MOBILE_ID}]`),
+    ).map(el => el.id)
   }
 
   /**
@@ -105,7 +105,7 @@ class Modal {
         event: 'resize',
         namespace: 'ModalScreenResize',
         fn: () => this.closeAllMobileNavigationModals(),
-        delay: 200
+        delay: 200,
       },
     ])
   }
@@ -114,20 +114,20 @@ class Modal {
     if (!ScreenDimensions.isTabletLandscapeAndBigger) return
 
     this.navigationMobileIDs.forEach(id => {
-      Events.$trigger(`modal[${id}]::close`, {data: {id}})
+      Events.$trigger(`modal[${id}]::close`, { data: { id } })
     })
   }
 
-  bindModalEvents({el, id, body, triggerBtn, closeBtn}: ModalEntry) {
+  bindModalEvents({ el, id, body, triggerBtn, closeBtn }: ModalEntry) {
     triggerBtn.forEach(triggerEl =>
       triggerEl.addEventListener('click', () => {
-        const {isOpen} = this.getModal(id)
+        const { isOpen } = this.getModal(id)
         if (isOpen) {
-          Events.$trigger('modal::close', {data: {id}})
-          Events.$trigger(`modal[${id}]::close`, {data: {id}})
+          Events.$trigger('modal::close', { data: { id } })
+          Events.$trigger(`modal[${id}]::close`, { data: { id } })
         } else {
-          Events.$trigger('modal::open', {data: {id}})
-          Events.$trigger(`modal[${id}]::open`, {data: {id}})
+          Events.$trigger('modal::open', { data: { id } })
+          Events.$trigger(`modal[${id}]::open`, { data: { id } })
         }
       }),
     )
@@ -144,14 +144,14 @@ class Modal {
       },
     ])
 
-    Events.$on(`modal[${id}]::close`, () => this.closeModal({id}))
-    Events.$on(`modal[${id}]::open`, () => this.openModal({id}))
+    Events.$on(`modal[${id}]::close`, () => this.closeModal({ id }))
+    Events.$on(`modal[${id}]::open`, () => this.openModal({ id }))
 
     closeBtn.forEach(el =>
       el.addEventListener('click', () => {
         Events.$trigger('modal::removeScrollPosition')
-        Events.$trigger('modal::close', {data: {id}})
-        Events.$trigger(`modal[${id}]::close`, {data: {id}})
+        Events.$trigger('modal::close', { data: { id } })
+        Events.$trigger(`modal[${id}]::close`, { data: { id } })
       }),
     )
 
@@ -159,12 +159,13 @@ class Modal {
     document.addEventListener('keyup', event => {
       if (event.key === 'Escape') {
         Events.$trigger('modal::close')
-        Events.$trigger(`modal[${id}]::close`, {data: {id}})
+        Events.$trigger(`modal[${id}]::close`, { data: { id } })
       }
     })
   }
 
   openModal(data: Pick<ModalEntry, 'id'>) {
+    console.log('openModal', data)
     const modal = this.getModal(data.id)
 
     if (!modal || modal.isOpen) return
@@ -185,7 +186,7 @@ class Modal {
           const _modal = this.getModal(id)
           if (_modal.isOpen) {
             Events.$trigger(`modal[${_modal.id}]::close`, {
-              data: {id: _modal.id},
+              data: { id: _modal.id },
             })
           }
         })
@@ -213,7 +214,7 @@ class Modal {
     // If auto close is set use value as timeout in seconds to close modal
     if (autoClose) {
       setTimeout(() => {
-        Events.$trigger(`modal[${modal.id}]::close`, {data: {id: modal.id}})
+        Events.$trigger(`modal[${modal.id}]::close`, { data: { id: modal.id } })
       }, autoClose * 1000)
     }
   }
@@ -222,7 +223,7 @@ class Modal {
     // If no ID is given we will close all modals
     if (!data || !data.id) {
       for (const modalIndex of Object.keys(this.store)) {
-        this.closeModal({id: this.getModal(modalIndex).id})
+        this.closeModal({ id: this.getModal(modalIndex).id })
         Events.$trigger('focustrap::deactivate')
       }
       return
@@ -241,7 +242,11 @@ class Modal {
     // Scroll to original position
     const keepScrollPosition = modal.el.dataset.modalKeepScrollPosition === 'true'
 
-    if (keepScrollPosition && !ScreenDimensions.isTabletPortraitAndBigger && data.id.indexOf(NAVIGATION_MOBILE_ID) === -1)
+    if (
+      keepScrollPosition &&
+      !ScreenDimensions.isTabletPortraitAndBigger &&
+      data.id.indexOf(NAVIGATION_MOBILE_ID) === -1
+    )
       this.removeScrollPosition()
 
     // Remove tabindex and remove visible class
@@ -266,16 +271,15 @@ class Modal {
 
     this.scrollTop = this.scrollElement.scrollTop
     body.style.top = `-${this.scrollTop}px`
-
   }
 
   /**
    * Removes scroll position from body and scrolls to original position
    */
   removeScrollPosition() {
-    const setToScrollTop = this.scrollTop || parseInt(body.style.top.replace('px', ''), 10) * -1;
+    const setToScrollTop = this.scrollTop || parseInt(body.style.top.replace('px', ''), 10) * -1
     setTimeout(() => {
-      this.scrollElement.scrollTop = setToScrollTop;
+      this.scrollElement.scrollTop = setToScrollTop
     }, 10)
     body.style.removeProperty('top')
   }

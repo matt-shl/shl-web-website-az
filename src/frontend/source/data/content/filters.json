@@ -1,0 +1,485 @@
+{
+  "totalAmountLabel": "2544 Results",
+  "filters": [
+    {
+      "label": "Sorteren",
+      "inputType": "radio",
+      "checkedAmount": "4",
+      "options": [
+        {
+          "label": "Recommended",
+          "value": "sorting-recommended",
+          "id": "filter-sorting-recommended",
+          "checked": true,
+          "attr": "data-url='__api-response--filters.html'",
+          "url": "__api-response--filters.html",
+          "sortItem": true,
+          "hook": "filters-input"
+        },
+        {
+          "label": "Popular",
+          "value": "sorting-popular",
+          "id": "filter-sorting-popular",
+          "attr": "data-url='__api-response--filters.html'",
+          "url": "__api-response--filters.html",
+          "sortItem": true,
+          "hook": "filters-input"
+        },
+        {
+          "label": "New",
+          "value": "sorting-new",
+          "id": "filter-sorting-new",
+          "attr": "data-url='__api-response--filters.html'",
+          "url": "__api-response--filters.html",
+          "sortItem": true,
+          "hook": "filters-input"
+        },
+        {
+          "label": "Price low - high",
+          "value": "sorting-price-low-high",
+          "id": "filter-sorting-price-low-high",
+          "attr": "data-url='__api-response--filters.html'",
+          "url": "__api-response--filters.html",
+          "sortItem": true,
+          "hook": "filters-input"
+        },
+        {
+          "label": "Price high - low",
+          "value": "sorting-price-high-low",
+          "id": "filter-sorting-price-high-low",
+          "attr": "data-url='__api-response--filters.html'",
+          "url": "__api-response--filters.html",
+          "sortOption": true,
+          "hook": "filters-input"
+        }
+      ]
+    },
+    {
+      "label": "Producttype",
+      "inputType": "checkbox",
+      "checkedAmount": "2",
+      "options": [
+        {
+          "link": "__api-response--filters.html",
+          "label": "T-Shirts",
+          "value": "producttype-t-shirts",
+          "id": "filter-producttype-t-shirts",
+          "amount": "127",
+          "checked": true,
+          "attr": "data-url='__api-response--filters.html'",
+          "url": "__api-response--filters.html",
+          "hook": "filters-input"
+        },
+        {
+          "link": "__api-response--filters.html",
+          "label": "Tops",
+          "value": "producttype-tops",
+          "id": "filter-producttype-tops",
+          "amount": "93",
+          "checked": true,
+          "attr": "data-url='__api-response--filters.html'",
+          "url": "__api-response--filters.html",
+          "hook": "filters-input"
+        },
+        {
+          "link": "__api-response--filters.html",
+          "label": "Blouses",
+          "value": "producttype-blouses",
+          "id": "filter-producttype-blouses",
+          "amount": "56",
+          "attr": "data-url='__api-response--filters.html'",
+          "url": "__api-response--filters.html",
+          "hook": "filters-input"
+        },
+        {
+          "link": "__api-response--filters.html",
+          "label": "Sweaters",
+          "value": "producttype-sweaters",
+          "id": "filter-producttype-sweaters",
+          "amount": "208",
+          "attr": "data-url='__api-response--filters.html'",
+          "url": "__api-response--filters.html",
+          "hook": "filters-input"
+        },
+        {
+          "link": "__api-response--filters.html",
+          "label": "Bikinis",
+          "value": "producttype-bikinis",
+          "id": "filter-producttype-bikinis",
+          "amount": "38",
+          "attr": "data-url='__api-response--filters.html'",
+          "url": "__api-response--filters.html",
+          "hook": "filters-input"
+        },
+        {
+          "link": "__api-response--filters.html",
+          "label": "Blazers",
+          "value": "producttype-blazers",
+          "id": "filter-producttype-blazers",
+          "amount": "182",
+          "attr": "data-url='__api-response--filters.html'",
+          "url": "__api-response--filters.html",
+          "hook": "filters-input"
+        },
+        {
+          "link": "__api-response--filters.html",
+          "label": "Sunglasses",
+          "value": "producttype-sunglasses",
+          "id": "filter-producttype-sunglasses",
+          "amount": "79",
+          "attr": "data-url='__api-response--filters.html'",
+          "url": "__api-response--filters.html",
+          "hook": "filters-input"
+        },
+        {
+          "link": "__api-response--filters.html",
+          "label": "Beachwear",
+          "value": "producttype-beachwear",
+          "id": "filter-producttype-beachwear",
+          "amount": "223",
+          "attr": "data-url='__api-response--filters.html'",
+          "url": "__api-response--filters.html",
+          "hook": "filters-input"
+        },
+        {
+          "link": "__api-response--filters.html",
+          "label": "Boots",
+          "value": "producttype-boots",
+          "id": "filter-producttype-boots",
+          "amount": "14",
+          "attr": "data-url='__api-response--filters.html'",
+          "url": "__api-response--filters.html",
+          "hook": "filters-input"
+        },
+        {
+          "link": "__api-response--filters.html",
+          "label": "Jumpsuiters",
+          "value": "producttype-jumpsuiters",
+          "id": "filter-producttype-jumpsuiters",
+          "amount": "202",
+          "attr": "data-url='__api-response--filters.html'",
+          "url": "__api-response--filters.html",
+          "hook": "filters-input"
+        },
+        {
+          "link": "__api-response--filters.html",
+          "label": "Polo",
+          "value": "producttype-polo",
+          "id": "filter-producttype-polo",
+          "amount": "73",
+          "attr": "data-url='__api-response--filters.html'",
+          "url": "__api-response--filters.html",
+          "hook": "filters-input"
+        },
+        {
+          "link": "__api-response--filters.html",
+          "label": "Kimono",
+          "value": "producttype-kimono",
+          "id": "filter-producttype-kimono",
+          "amount": "124",
+          "attr": "data-url='__api-response--filters.html'",
+          "url": "__api-response--filters.html",
+          "hook": "filters-input"
+        }
+      ]
+    },
+    {
+      "label": "Kleur",
+      "inputType": "checkbox",
+      "options": [
+        {
+          "link": "__api-response--filters.html",
+          "label": "Blue",
+          "value": "color-blue",
+          "id": "filter-color-blue",
+          "amount": "153",
+          "color": "#0000FF",
+          "attr": "data-url='__api-response--filters.html'",
+          "url": "__api-response--filters.html",
+          "hook": "filters-input"
+        },
+        {
+          "link": "__api-response--filters.html",
+          "label": "Brown",
+          "value": "color-brown",
+          "id": "filter-color-brown",
+          "amount": "77",
+          "color": "#A52A2A",
+          "attr": "data-url='__api-response--filters.html'",
+          "url": "__api-response--filters.html",
+          "hook": "filters-input"
+        },
+        {
+          "link": "__api-response--filters.html",
+          "label": "Grey",
+          "value": "color-grey",
+          "id": "filter-color-grey",
+          "amount": "205",
+          "color": "#808080",
+          "attr": "data-url='__api-response--filters.html'",
+          "url": "__api-response--filters.html",
+          "hook": "filters-input"
+        },
+        {
+          "link": "__api-response--filters.html",
+          "label": "Yellow",
+          "value": "color-yellow",
+          "id": "filter-color-yellow",
+          "amount": "42",
+          "color": "#FFFF00",
+          "attr": "data-url='__api-response--filters.html'",
+          "url": "__api-response--filters.html",
+          "hook": "filters-input"
+        },
+        {
+          "link": "__api-response--filters.html",
+          "label": "Green",
+          "value": "color-green",
+          "id": "filter-color-green",
+          "amount": "99",
+          "color": "#008000",
+          "attr": "data-url='__api-response--filters.html'",
+          "url": "__api-response--filters.html",
+          "hook": "filters-input"
+        },
+        {
+          "link": "__api-response--filters.html",
+          "label": "Orange",
+          "value": "color-orange",
+          "id": "filter-color-orange",
+          "amount": "202",
+          "color": "#FFA500",
+          "attr": "data-url='__api-response--filters.html'",
+          "url": "__api-response--filters.html",
+          "hook": "filters-input"
+        },
+        {
+          "link": "__api-response--filters.html",
+          "label": "Purple",
+          "value": "color-purple",
+          "id": "filter-color-purple",
+          "amount": "124",
+          "color": "#800080",
+          "attr": "data-url='__api-response--filters.html'",
+          "url": "__api-response--filters.html",
+          "hook": "filters-input"
+        }
+      ]
+    },
+    {
+      "label": "Prijs",
+      "inputType": "radio",
+      "checkedAmount": "1",
+      "options": [
+        {
+          "link": "__api-response--filters.html",
+          "label": "€0 - €29",
+          "value": "price-0-29",
+          "id": "filter-price-0-29",
+          "attr": "data-url='__api-response--filters.html'",
+          "url": "__api-response--filters.html",
+          "hook": "filters-input"
+        },
+        {
+          "link": "__api-response--filters.html",
+          "label": "€30 - €59",
+          "value": "price-30-59",
+          "id": "filter-price-30-59",
+          "checked": true,
+          "attr": "data-url='__api-response--filters.html'",
+          "url": "__api-response--filters.html",
+          "hook": "filters-input"
+        },
+        {
+          "link": "__api-response--filters.html",
+          "label": "€60 - €99",
+          "value": "price-60-99",
+          "id": "filter-price-60-99",
+          "attr": "data-url='__api-response--filters.html'",
+          "url": "__api-response--filters.html",
+          "hook": "filters-input"
+        },
+        {
+          "link": "__api-response--filters.html",
+          "label": "€100 +",
+          "value": "price-100+",
+          "id": "filter-price-100+",
+          "attr": "data-url='__api-response--filters.html'",
+          "url": "__api-response--filters.html",
+          "hook": "filters-input"
+        }
+      ]
+    },
+    {
+      "label": "Maat",
+      "inputType": "checkbox",
+      "checkedAmount": "2",
+      "options": [
+        {
+          "link": "__api-response--filters.html",
+          "label": "XS",
+          "value": "size-xs",
+          "checked": true,
+          "id": "filter-size-xs",
+          "amount": "5",
+          "attr": "data-url='__api-response--filters.html'",
+          "url": "__api-response--filters.html",
+          "hook": "filters-input"
+        },
+        {
+          "link": "__api-response--filters.html",
+          "label": "S",
+          "value": "size-s",
+          "checked": true,
+          "id": "filter-size-s",
+          "amount": "10",
+          "attr": "data-url='__api-response--filters.html'",
+          "url": "__api-response--filters.html",
+          "hook": "filters-input"
+        },
+        {
+          "link": "__api-response--filters.html",
+          "label": "M",
+          "value": "size-m",
+          "id": "filter-size-m",
+          "amount": "12",
+          "attr": "data-url='__api-response--filters.html'",
+          "url": "__api-response--filters.html",
+          "hook": "filters-input"
+        },
+        {
+          "link": "__api-response--filters.html",
+          "label": "L",
+          "value": "size-l",
+          "id": "filter-size-l",
+          "amount": "8",
+          "attr": "data-url='__api-response--filters.html'",
+          "url": "__api-response--filters.html",
+          "hook": "filters-input"
+        },
+        {
+          "link": "__api-response--filters.html",
+          "label": "XL",
+          "value": "size-xl",
+          "id": "filter-size-xl",
+          "amount": "16",
+          "attr": "data-url='__api-response--filters.html'",
+          "url": "__api-response--filters.html",
+          "hook": "filters-input"
+        }
+      ]
+    },
+    {
+      "label": "Materiaal Kast",
+      "inputType": "checkbox",
+      "options": [
+        {
+          "link": "__api-response--filters.html",
+          "label": "Cotton",
+          "value": "material-cotton",
+          "id": "filter-material-cotton",
+          "amount": "127",
+          "attr": "data-url='__api-response--filters.html'",
+          "url": "__api-response--filters.html",
+          "hook": "filters-input"
+        },
+        {
+          "link": "__api-response--filters.html",
+          "label": "Polyester",
+          "value": "material-polyester",
+          "id": "filter-material-polyester",
+          "amount": "93",
+          "attr": "data-url='__api-response--filters.html'",
+          "url": "__api-response--filters.html",
+          "hook": "filters-input"
+        },
+        {
+          "link": "__api-response--filters.html",
+          "label": "Silk",
+          "value": "material-silk",
+          "id": "filter-material-silk",
+          "amount": "56",
+          "attr": "data-url='__api-response--filters.html'",
+          "url": "__api-response--filters.html",
+          "hook": "filters-input"
+        },
+        {
+          "link": "__api-response--filters.html",
+          "label": "Wool",
+          "value": "material-wool",
+          "id": "filter-material-wool",
+          "amount": "208",
+          "attr": "data-url='__api-response--filters.html'",
+          "url": "__api-response--filters.html",
+          "hook": "filters-input"
+        },
+        {
+          "link": "__api-response--filters.html",
+          "label": "Denim",
+          "value": "material-denim",
+          "id": "filter-material-denim",
+          "amount": "38",
+          "attr": "data-url='__api-response--filters.html'",
+          "url": "__api-response--filters.html",
+          "hook": "filters-input"
+        }
+      ]
+    },
+    {
+      "label": "Brand",
+      "inputType": "checkbox",
+      "options": [
+        {
+          "link": "__api-response--filters.html",
+          "label": "Nike",
+          "value": "brand-nike",
+          "id": "filter-brand-nike",
+          "amount": "127",
+          "attr": "data-url='__api-response--filters.html'",
+          "url": "__api-response--filters.html",
+          "hook": "filters-input"
+        },
+        {
+          "link": "__api-response--filters.html",
+          "label": "Adidas",
+          "value": "brand-adidas",
+          "id": "filter-brand-adidas",
+          "amount": "93",
+          "attr": "data-url='__api-response--filters.html'",
+          "url": "__api-response--filters.html",
+          "hook": "filters-input"
+        },
+        {
+          "link": "__api-response--filters.html",
+          "label": "Gucci",
+          "value": "brand-gucci",
+          "id": "filter-brand-gucci",
+          "amount": "56",
+          "attr": "data-url='__api-response--filters.html'",
+          "url": "__api-response--filters.html",
+          "hook": "filters-input"
+        },
+        {
+          "link": "__api-response--filters.html",
+          "label": "Supreme",
+          "value": "brand-supreme",
+          "id": "filter-brand-supreme",
+          "amount": "208",
+          "attr": "data-url='__api-response--filters.html'",
+          "url": "__api-response--filters.html",
+          "hook": "filters-input"
+        },
+        {
+          "link": "__api-response--filters.html",
+          "label": "Versace",
+          "value": "brand-versace",
+          "id": "filter-brand-versace",
+          "amount": "38",
+          "attr": "data-url='__api-response--filters.html'",
+          "url": "__api-response--filters.html",
+          "hook": "filters-input"
+        }
+      ]
+    }
+  ]
+}

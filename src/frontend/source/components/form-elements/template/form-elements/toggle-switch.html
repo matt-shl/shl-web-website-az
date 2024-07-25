@@ -1,0 +1,47 @@
+{#
+    Toggle switch
+
+    Properties:
+        id {string}                 - used for input Id and labelledBy property
+        name {string}                 - used for input Id and labelledBy property
+        class {string}              (optional) - Adds custom classes
+        disabled {boolean}          (optional) - Add disabled property to the checkbox element
+        required {boolean}          (optional) - Add required property to the checkbox element
+        checked {boolean}           (optional) - Add checked property to the checkbox element
+        hook {string}               (optional) - Adds a hook to the checkbox input
+        title {string}              (optional) - Label title
+        description {string}        (optional) - Label description
+#}
+
+{% macro toggleSwitch(data) %}
+
+    <div class="c-toggle-switch form__item
+        {%- if data.class %} {{ data.class }}{% endif -%}
+        {%- if data.disabled %} form__item--disabled{% endif -%}">
+
+        <label class="toggle-switch__label">
+          <input type="checkbox" id="{{data.id | lower}}" 
+            name="{{data.name}}"
+            aria-labelledby="{{data.id | lower}}_label" 
+            class="toggle-switch__input u-sr-only" 
+            {%- if data.disabled %} disabled{% endif -%}
+            {%- if data.required %} required{% endif -%}
+            {%- if data.checked %} checked{% endif -%}
+            {%- if data.hook %} js-hook-{{ data.hook }}{% endif -%}>
+          <span class="toggle-switch__toggle"></span>
+        </label>
+
+        <div class="toggle-switch__content" id="{{data.id | lower}}_label">
+          {% if data.title %}
+            <span class="toggle-switch__title">{{ data.title }}</span>
+          {% endif %}
+
+          {% if data.description %}
+            <span class="toggle-switch__description">{{ data.description }}</span>
+          {% endif %}
+        </div>
+
+        <div id="{{ data.id | lower }}_error" class="form__item-error{%- if not data.error %} u-hidden{% endif -%}">{{ data.error }}</div>
+    </div>
+
+{% endmacro %}

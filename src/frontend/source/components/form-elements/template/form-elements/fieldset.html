@@ -1,0 +1,32 @@
+{#
+    Fieldset
+
+    Options:
+        class {string}           (optional) - Adds custom classes
+        legend {string}                     - Adds a hook to the input
+        sronly {string}        (optional) - Hides legend
+
+#}
+{% macro fieldset(pdict) %}
+
+    <fieldset class="c-fieldset
+        {%- if pdict.class %} {{ pdict.class }}{% endif -%}"
+        {%- if pdict.hook %} js-hook-{{ pdict.hook }}{% endif %}
+        {%- if pdict.id %} id="{{ pdict.id | safe }}"{% endif %}
+        {%- if pdict.attr %} {{ pdict.attr }}{% endif %}>
+
+        <legend class="fieldset__legend
+            {%- if pdict.legendSize %} fieldset__legend--{{ pdict.legendSize }}{% endif -%}
+            {%- if pdict.sronly %} u-sr-only{% endif -%}">
+            {{ pdict.legend }}
+        </legend>
+
+        {% if caller() %}
+
+            {{ caller() }}
+
+        {% endif %}
+
+    </fieldset>
+
+{% endmacro %}

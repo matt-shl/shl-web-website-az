@@ -1,0 +1,104 @@
+:root {
+  --textarea-border-width: var(--input-border-width);
+  --textarea-border-radius: var(--input-border-radius);
+  --textarea-padding-top: var(--input-padding-top);
+  --textarea-padding-bottom: var(--input-padding-bottom);
+  --textarea-padding-left: var(--input-padding-left);
+  --textarea-padding-right: var(--input-padding-right);
+  --textarea-transition-time: var(--input-transition-time);
+  --textarea-transition-ease: var(--input-transition-ease);
+
+  /* typography */
+  --textarea-font-size: var(--input-font-size);
+  --textarea-font-weight: var(--input-font-weight);
+  --textarea-label-font-size: var(--input-label-font-size);
+  --textarea-label-font-weight: var(--input-label-font-weight);
+
+  /* colors */
+  --textarea-border-color-hover-focus: var(--input-border-color-hover-focus);
+  --textarea-background-color-disabled: var(--input-background-color-disabled);
+  --textarea-border-color: var(--input-border-color);
+  --textarea-error-color: var(--input-error-color);
+  --textarea-fill-color: var(--input-fill-color);
+}
+
+.c-textarea {
+  position: relative;
+}
+
+.textarea__label {
+  display: block;
+  font-weight: var(--textarea-label-font-weight);
+  font-size: var(--textarea-label-font-size);
+  margin-bottom: $global-spacing;
+}
+
+.textarea__input {
+  display: block;
+  appearance: none;
+  width: 100%;
+  padding-top: var(--textarea-padding-top);
+  padding-bottom: var(--textarea-padding-bottom);
+  padding-left: var(--textarea-padding-left);
+  padding-right: var(--textarea-padding-right);
+  border-radius: var(--textarea-border-radius);
+  border: 0;
+  box-shadow: 0 0 0 var(--textarea-border-width) var(--textarea-border-color) inset;
+  background-color: var(--textarea-fill-color);
+  line-height: var(--font-line-height-regular);
+  font-size: var(--textarea-font-size);
+  font-weight: var(--textarea-font-weight);
+
+  &[disabled] {
+    opacity: 0.5;
+    cursor: default;
+    background-color: var(--textarea-background-color-disabled);
+
+    @include hover-focus {
+      box-shadow: 0 0 0 var(--textarea-border-width) var(--textarea-border-color) inset;
+    }
+  }
+
+  &::-ms-expand {
+    display: none;
+  }
+
+  @include hover-focus(false) {
+    box-shadow: 0 0 0 var(--input-border-width) var(--input-border-color-hover-focus) inset;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 var(--input-border-width) var(--input-border-color-hover-focus) inset;
+  }
+
+  @include keyboard-focus {
+    @include focus-state-pulse(
+      var(--input-border-color-keyboard-focus),
+      var(--input-border-color-keyboard-focus-20)
+    );
+  }
+
+  .form__item--error & {
+    box-shadow: 0 0 0 var(--textarea-border-width) var(--textarea-error-color) inset;
+
+    @include hover-focus {
+      box-shadow: 0 0 0 var(--input-border-width) var(--input-error-color) inset;
+    }
+
+    @include keyboard-focus {
+      @include focus-state-pulse(var(--input-error-color), var(--input-error-color-20));
+    }
+  }
+
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus {
+    box-shadow:
+      0 0 0 var(--textarea-border-width) var(--textarea-border-color) inset,
+      0 0 0 1000px var(--color-white) inset !important; /* stylelint-disable-line declaration-no-important */
+  }
+}
+
+.textarea__wrapper {
+  position: relative;
+}
