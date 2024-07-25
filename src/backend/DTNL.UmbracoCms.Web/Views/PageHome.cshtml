@@ -1,11 +1,5 @@
-﻿@inherits UmbracoViewPage<PageHome>
+@inherits UmbracoViewPage<PageHome>
 
-<div class="o-container">
-	<div class="o-grid">
-		<div class="o-col-12 o-col-8--md u-push-2--md">
-			<vc:title base-page="@Model" />
+<vc:homepage-hero element = "@Model.Hero?.Content" />
 
-			<partial name="_BlockList" model="Model.ContentBlocks" />
-		</div>
-	</div>
-</div>
+<partial name="_BlockList" model="@Model.ContentBlocks" />

@@ -20,7 +20,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 {
 	/// <summary>Page Home</summary>
 	[PublishedModel("pageHome")]
-	public partial class PageHome : PublishedContentModel, ICompositionBasePage, ICompositionContentBlocks, ICompositionSeo, ICompositionSocialSharing
+	public partial class PageHome : PublishedContentModel, ICompositionBasePage, ICompositionContentBlocks, ICompositionSeo, ICompositionSocialSharing, INestedBlockHero
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
@@ -48,6 +48,14 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		}
 
 		// properties
+
+		///<summary>
+		/// Hero
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("hero")]
+		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListItem<global::Umbraco.Cms.Web.Common.PublishedModels.NestedBlockHero> Hero => this.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockListItem<global::Umbraco.Cms.Web.Common.PublishedModels.NestedBlockHero>>(_publishedValueFallback, "hero");
 
 		///<summary>
 		/// Intro
@@ -188,5 +196,53 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("twitterTitle")]
 		public virtual string TwitterTitle => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionSocialSharing.GetTwitterTitle(this, _publishedValueFallback);
+
+		///<summary>
+		/// Hero Image
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("heroImage")]
+		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops HeroImage => global::Umbraco.Cms.Web.Common.PublishedModels.NestedBlockHero.GetHeroImage(this, _publishedValueFallback);
+
+		///<summary>
+		/// Hero Title
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("heroTitle")]
+		public virtual string HeroTitle => global::Umbraco.Cms.Web.Common.PublishedModels.NestedBlockHero.GetHeroTitle(this, _publishedValueFallback);
+
+		///<summary>
+		/// Hero Video
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("heroVideo")]
+		public virtual string HeroVideo => global::Umbraco.Cms.Web.Common.PublishedModels.NestedBlockHero.GetHeroVideo(this, _publishedValueFallback);
+
+		///<summary>
+		/// Main Button link
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("mainButtonLink")]
+		public virtual global::Umbraco.Cms.Core.Models.Link MainButtonLink => global::Umbraco.Cms.Web.Common.PublishedModels.NestedBlockHero.GetMainButtonLink(this, _publishedValueFallback);
+
+		///<summary>
+		/// Secondary Button Link
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("secondaryButtonLink")]
+		public virtual global::Umbraco.Cms.Core.Models.Link SecondaryButtonLink => global::Umbraco.Cms.Web.Common.PublishedModels.NestedBlockHero.GetSecondaryButtonLink(this, _publishedValueFallback);
+
+		///<summary>
+		/// Short Description
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("shortDescription")]
+		public virtual string ShortDescription => global::Umbraco.Cms.Web.Common.PublishedModels.NestedBlockHero.GetShortDescription(this, _publishedValueFallback);
 	}
 }

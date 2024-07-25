@@ -15,8 +15,8 @@
     @Html.Raw(NodeProvider.SiteSettings?.HeaderScripts)
 </head>
 <body>
-    <main id="content" role="main">
         <vc:header home-page="@NodeProvider.HomePage" />
+    <main id="content" role="main">
 
         <div class="container">
             @RenderBody()

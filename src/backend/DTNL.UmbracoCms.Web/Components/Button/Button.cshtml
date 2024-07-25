@@ -7,6 +7,17 @@
     return;
 }
 
+@* this is the hero button, it will be addressed later *@
+<a class="@(!Model.Variant.IsNullOrEmpty() ? $"c-button--{Model.Variant}" : "c-button") @Model.Class" href="/">
+
+    <span class="button__label">@Model.Label</span>
+    <span class="button__icon">
+        <svg src="@SvgAliases.Icons.ArrowTopRight" />
+    </span>
+</a>
+
+@* this is the original codek *@
+@*
 <@(Model.Element)
     type="@(!Model.Type.IsNullOrEmpty() ? Model.Type : Model.Element == "button" ? "button" : null)"
     href="@Model.Url.NullOrEmptyAsNull()"
@@ -32,3 +43,4 @@
 	}
 
 </@(Model.Element)>
+ *@
