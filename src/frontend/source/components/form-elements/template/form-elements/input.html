@@ -31,12 +31,12 @@
         {% if data.type == 'password' %} js-hook-password-field{% endif %}>
 
         <div class="input__wrapper" title="{{ data.label }}">
-            <label class="input__label {%- if data.sronly %} u-sr-only{% endif -%}" for="{{ data.id | lower }}">
+            {# <label class="input__label {%- if data.sronly %} u-sr-only{% endif -%}" for="{{ data.id | lower }}">
                 {{ data.label | safe }}
 
                 {% set validate = data.validate | string if data.validate else '' %}
                 {% if 'required' in validate or data.required %}<sup>*</sup>{% endif %}
-            </label>
+            </label> #}
             <div class="input__field-wrapper">
                 <input class="input__input
                     {% if data.iconRight%} input__input--has-icon-right{% endif %}

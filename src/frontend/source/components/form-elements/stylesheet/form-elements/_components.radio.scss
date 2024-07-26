@@ -2,23 +2,28 @@
   --radio-size: 20px;
   --radio-border-width: var(--checkbox-border-width);
   --radio-border-radius: 50%;
-  --radio-unchecked-color: var(--color-grey);
-  --radio-checked-color: var(--color-plum);
-  --radio-hover-focus-color: var(--input-border-color-hover-focus);
+  --radio-unchecked-color: var(--color-dark-blue);
+  --radio-checked-color: var(--color-dark-blue);
+  --radio-hover-focus-color: rgba(var(--color-dark-blue-rgb), 0.4);
   --radio-error-color: var(--input-error-color);
   --radio-margin-right: var(--checkbox-margin-right);
   --radio-transition-time: var(--checkbox-transition-time);
   --radio-transition-ease: var(--checkbox-transition-ease);
-  --radio-font-size: var(--font-size-medium);
-  --radio-font-weight: var(--font-weight-regular);
-  --radio-label-color: var(--color-black);
+  --radio-font-size: $font-size-m;
+  --radio-font-weight: $font-weight-regular;
+  --radio-label-color: $color-dark-blue;
 
-  --radio-label-color-disabled: var(--color-black-30);
+  --radio-label-color-disabled: var(--color-dark-blue);
   --radio-color-disabled: var(--color-plum-20);
 }
 
+.c-radio {
+  // fixes a issue on filters flyout
+  position: relative;
+}
+
 .radio__title {
-  font-weight: var(--font-weight-medium);
+  font-weight: $font-weight-regular;
   display: block;
   margin-bottom: $global-spacing * 2;
 }
@@ -41,7 +46,7 @@
           0 0 0 calc(var(--radio-border-width) * 3) var(--color-white) inset;
       }
 
-      color: var(--color-primary);
+      color: var(--color-dark-blue);
     }
   }
 
@@ -56,11 +61,8 @@
   }
 
   @include keyboard-focus {
-    + label::after {
-      @include focus-state-pulse(
-        var(--input-border-color-keyboard-focus),
-        var(--input-border-color-keyboard-focus-20)
-      );
+    + label {
+      outline: 1px solid #{$color-light-blue};
     }
   }
 

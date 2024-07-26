@@ -16,6 +16,10 @@
   .is--filters-sticky & {
     box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.1);
   }
+
+  .modal__body {
+    margin-block-start: calc(#{$spacing-16} * -1);
+  }
 }
 
 .filters__inner {
@@ -29,4 +33,11 @@
 
 .filters__amount-label {
   @include h5;
+}
+
+.filters__form {
+  overflow-y: scroll;
+}
+
+.filters__filter-container {
 }

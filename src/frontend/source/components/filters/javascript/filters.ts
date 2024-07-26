@@ -1,5 +1,4 @@
 import { html } from '@utilities/dom-elements'
-import GTM from '@utilities/gtm'
 import RafThrottle from '@utilities/raf-throttle'
 import ScreenDimensions from '@utilities/screen-dimensions'
 import { AxiosResponse } from 'axios'
@@ -16,11 +15,11 @@ const JS_HOOK_FILTERS_RESET_BUTTON = '[js-hook-filters-reset-button]'
 const JS_HOOK_FILTERS_REFRESH_CONTAINER = '[js-hook-filters-refresh-container]'
 const JS_HOOK_ACCORDION_DETAIL = '[js-hook-accordion-detail]'
 const JS_HOOK_FILTER_TITLES = '[js-hook-accordion-item-title]'
-const JS_HOOK_PLP_TITLE = '[js-hook-plp-header-title]'
 const JS_HOOK_FILTERS_MODAL_CLOSE_BTN = '[js-hook-modal-close-btn]'
+const JS_HOOK_FORM = '[js-hook-form]'
+const MODAL_SCROLLING_CLASS = 'is--modal-scrolling'
 
 const DATA_ATTRIBUTE_PLP_TITLE = 'data-plp-filter-title'
-const DATA_ATTRIBUTE_SORT_ITEM = 'data-sort-item'
 
 const CLASS_IS_FILTERS_LIST_STICKY = 'is--filters-sticky'
 
@@ -32,10 +31,10 @@ class Filters {
   resetButton: HTMLButtonElement | null
   allFilterOptionNames: HTMLElement[] | null
   hasItemsSelected: boolean
-  plpTitleElement: HTMLElement | null
   ajaxEndpoint: any
   url: any
   category?: string
+  filterFormElement: HTMLFormElement | null
 
   constructor(element: HTMLElement) {
     this.element = element
@@ -44,36 +43,61 @@ class Filters {
     this.stickyButtons = element.querySelectorAll(JS_HOOK_FILTERS_STICKY_BUTTON)
     this.resetButton = element.querySelector(JS_HOOK_FILTERS_RESET_BUTTON)
     this.allFilterOptionNames = Array.from(element.querySelectorAll(JS_HOOK_FILTER_TITLES))
-    this.plpTitleElement = document.querySelector(JS_HOOK_PLP_TITLE)
     this.hasItemsSelected = this.#hasItemsSeleted()
     this.ajaxEndpoint = ''
     this.category = document.querySelector('.product-listing-header__title')?.textContent?.trim()
+    this.filterFormElement = element.querySelector(JS_HOOK_FORM)
     this.#bindEvents()
+
+    console.log(this.element)
   }
 
   #bindEvents() {
-    this.inputs?.forEach(element =>
-      element.addEventListener('click', () => {
-        this.#getNewResults(element)
-      }),
-    )
-    this.stickyButtons?.forEach(element =>
-      element.addEventListener('click', () => this.#showResults()),
-    )
-    this.resetButton?.addEventListener('click', () => {
-      if (this.resetButton) {
-        this.#getNewResults(this.resetButton)
-      }
-    })
-
-    RafThrottle.set([
-      {
-        element: window,
-        event: 'scroll',
-        namespace: 'filters-scroll',
-        fn: () => this.#toggleStickyClass(),
-      },
-    ])
+    // this.inputs?.forEach(element =>
+    //   element.addEventListener('click', () => {
+    //     this.#getNewResults(element)
+    //   }),
+    // )
+    // this.stickyButtons?.forEach(element =>
+    //   element.addEventListener('click', () => this.#showResults()),
+    // )
+    // this.resetButton?.addEventListener('click', () => {
+    //   if (this.resetButton) {
+    //     this.#getNewResults(this.resetButton)
+    //   }
+    // })
+    // RafThrottle.set([
+    //   {
+    //     element: window,
+    //     event: 'scroll',
+    //     namespace: 'filters-scroll',
+    //     fn: () => this.#toggleStickyClass(),
+    //   },
+    // ])
+    // // check the if the form is scolling. In modal.ts it checkes for the full body, but for the filters we only make the form scrollable
+    // if (this.filterFormElement) {
+    //   RafThrottle.set([
+    //     {
+    //       element: this.filterFormElement,
+    //       event: 'scroll',
+    //       namespace: `Modal[filters]FormIsScrolling`,
+    //       fn: () => {
+    //         const action = this.filterFormElement!.scrollTop > 0 ? 'add' : 'remove'
+    //         this.element.classList[action](MODAL_SCROLLING_CLASS)
+    //       },
+    //     },
+    //   ])
+    // }
+    // // scroll to the input when it is focused
+    // this.inputs?.forEach(input => {
+    //   input.addEventListener('focus', (e: FocusEvent) => {
+    //     e.preventDefault()
+    //     this.filterFormElement?.scrollTo({
+    //       top: input.offsetTop - 150,
+    //       behavior: 'smooth',
+    //     })
+    //   })
+    // })
   }
 
   #toggleStickyClass() {
@@ -175,10 +199,6 @@ class Filters {
 
     if (openParentElementId) {
       doc.getElementById(openParentElementId)?.setAttribute('open', '')
-    }
-
-    if (newTitle && this.plpTitleElement) {
-      this.plpTitleElement.textContent = newTitle
     }
 
     if (newHtml && this.refreshContainer) {

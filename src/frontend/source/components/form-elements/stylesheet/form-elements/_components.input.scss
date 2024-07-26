@@ -24,9 +24,9 @@
   --input-error-color: var(--form-item-error-border-color);
   --input-error-color-20: var(--form-item-error-border-color-20);
   --input-border-color-hover-focus: var(--color-primary);
-  --input-border-color-keyboard-focus: var(--color-plum);
-  --input-border-color-keyboard-focus-20: var(--color-plum-20);
-  --input-background-color-disabled: var(--color-plum-50);
+  --input-border-color-keyboard-focus: var(--color-dark-blue);
+  --input-border-color-keyboard-focus-20: rgba(var(--color-dark-blue-rgb), 0.2);
+  --input-background-color-disabled: rgba(var(--color-black-rgb), 0.5);
   --input-height: #{$global-spacing * 6};
 }
 

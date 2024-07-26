@@ -15,7 +15,7 @@
   hook: 'filters-modal'
 }) %}
 
-  {% if data.filters.length %}
+    {% if data.filters.length %}
     {% call form.form({
       class: 'filters__form',
       method: 'GET',
@@ -35,9 +35,7 @@
           {% if filter.options.length %}
             {% call accordion.item({
               id: 'filter' + filter.label,
-              title: filter.label,
-              checkedAmount: filter.checkedAmount if not loop.first,
-              subtitle: global.resource.filters.selected if filter.checkedAmount > 0 and loop.first === false
+              title: filter.label
             }) %}
 
               <fieldset class="filters__accordion-options">
@@ -48,6 +46,13 @@
                   inputHook: 'filter-checkbox'
                 }) }}
               </fieldset>
+
+              {{ button({
+                variant: 'link',
+                label: filtersLabels.showAll + ' ' + filter.label,
+                class: 'filters__options-link',
+                url: '#'
+              })}}
 
               <div class="filters__options-links u-hidden">
                 {% for linkItem in filter.options %}

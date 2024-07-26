@@ -1,22 +1,26 @@
 :root {
   --checkbox-size: 16px;
   --checkbox-border-width: 1px;
-  --checkbox-border-radius: 2px;
-  --checkbox-checked-color: var(--color-plum);
-  --checkbox-hover-focus-color: var(--input-border-color-hover-focus);
-  --checkbox-unchecked-color: var(--color-grey);
+  --checkbox-border-radius: #{$radii-4};
+  --checkbox-checked-color: var(--color-dark-blue);
+  --checkbox-hover-focus-color: rgba(var(--color-dark-blue-rgb), 0.8);
+  --checkbox-unchecked-color: var(--color-dark-blue);
   --checkbox-error-color: var(--input-error-color);
   --checkbox-margin-right: #{$global-spacing * 2};
   --checkbox-transition-time: 200ms;
   --checkbox-transition-ease: #{$ease-in-out-quad};
-  --checkbox-checkmark-svg: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjZmZmZmZmIiBkPSJNMTczLjg5OCA0MzkuNDA0bC0xNjYuNC0xNjYuNGMtOS45OTctOS45OTctOS45OTctMjYuMjA2IDAtMzYuMjA0bDM2LjIwMy0zNi4yMDRjOS45OTctOS45OTggMjYuMjA3LTkuOTk4IDM2LjIwNCAwTDE5MiAzMTIuNjkgNDMyLjA5NSA3Mi41OTZjOS45OTctOS45OTcgMjYuMjA3LTkuOTk3IDM2LjIwNCAwbDM2LjIwMyAzNi4yMDRjOS45OTcgOS45OTcgOS45OTcgMjYuMjA2IDAgMzYuMjA0bC0yOTQuNCAyOTQuNDAxYy05Ljk5OCA5Ljk5Ny0yNi4yMDcgOS45OTctMzYuMjA0LS4wMDF6Ii8+PC9zdmc+');
-  --checkbox-checkmark-svg-size: 10px;
+  --checkbox-checkmark-svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 14 14'%3E%3Cpath fill='%23fff' d='m12.56 3.664-7 7a.437.437 0 0 1-.62 0L1.879 7.6a.438.438 0 0 1 .62-.619L5.25 9.736l6.69-6.691a.438.438 0 1 1 .62.619Z'/%3E%3C/svg%3E");
+  --checkbox-checkmark-svg-size: 14px;
   --checkbox-font-size: var(--font-size-medium);
   --checkbox-font-weight: var(--font-weight-regular);
-  --checkbox-label-color: var(--color-black);
+  --checkbox-label-color: var(--color-dark-blue);
 
   --checkbox-label-color-disabled: var(--color-black-30);
   --checkbox-color-disabled: var(--color-plum-20);
+}
+
+.c-checkbox {
+  position: relative;
 }
 
 .checkbox__input {
@@ -26,8 +30,8 @@
     & + label {
       &::before {
         transform: scale(1);
-        background-color: var(--color-plum);
-        box-shadow: 0 0 0 var(--checkbox-border-width) var(--color-plum) inset;
+        background-color: var(--checkbox-checked-color);
+        box-shadow: 0 0 0 var(--checkbox-border-width) var(--checkbox-checked-color) inset;
       }
 
       &::after {
@@ -47,11 +51,8 @@
   }
 
   @include keyboard-focus {
-    + label::after {
-      @include focus-state-pulse(
-        var(--input-border-color-keyboard-focus),
-        var(--input-border-color-keyboard-focus-20)
-      );
+    + label {
+      outline: 1px solid #{$color-light-blue};
     }
   }
 
