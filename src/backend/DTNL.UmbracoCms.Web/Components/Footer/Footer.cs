@@ -57,7 +57,6 @@ public class Footer : ViewComponentExtended
             {
                 b.Variant = "link";
                 b.Class = "footer__sub-navigation-link";
-                b.LabelSrOnly = true;
             });
 
         HomePageLinkAriaLabel = CultureDictionary.GetTranslation(TranslationAliases.Common.Footer.HomePageLinkLabel);
