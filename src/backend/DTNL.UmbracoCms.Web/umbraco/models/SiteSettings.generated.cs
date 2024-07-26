@@ -20,7 +20,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 {
 	/// <summary>Site Settings</summary>
 	[PublishedModel("siteSettings")]
-	public partial class SiteSettings : PublishedContentModel, ICompositionAnalytics, ICompositionCookieBar, ICompositionErrorHandling, ICompositionFooter, ICompositionRedirects, ICompositionSeoSettings, ICompositionSocialLinks, ICompositionStructuredData
+	public partial class SiteSettings : PublishedContentModel, ICompositionAnalytics, ICompositionCookieBar, ICompositionErrorHandling, ICompositionFooter, ICompositionHeader, ICompositionRedirects, ICompositionSeoSettings, ICompositionSocialLinks, ICompositionStructuredData
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
@@ -128,6 +128,14 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("footerLinks")]
 		public virtual global::System.Collections.Generic.IEnumerable<global::Umbraco.Cms.Core.Models.Link> FooterLinks => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionFooter.GetFooterLinks(this, _publishedValueFallback);
+
+		///<summary>
+		/// Main
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("mainHeader")]
+		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListItem<global::Umbraco.Cms.Web.Common.PublishedModels.NestedBlockNavigation> MainHeader => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionHeader.GetMainHeader(this, _publishedValueFallback);
 
 		///<summary>
 		/// Redirects File: Upload an Excel file here with the first column with Old urls, and second column with the new urls to redirect to.

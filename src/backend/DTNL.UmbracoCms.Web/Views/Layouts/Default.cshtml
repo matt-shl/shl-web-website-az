@@ -15,16 +15,18 @@
     @Html.Raw(NodeProvider.SiteSettings?.HeaderScripts)
 </head>
 <body>
+    <vc:header current-page="@Model" />
     <main id="content" role="main">
-        <vc:header home-page="@NodeProvider.HomePage" />
+        
 
-        <div class="container">
+        <div class ="page__content">
             @RenderBody()
         </div>
 
-        <vc:footer site-settings="@NodeProvider.SiteSettings" />
-        <vc:cookie-bar site-settings="@NodeProvider.SiteSettings" />
+        
     </main>
+    <vc:footer site-settings="@NodeProvider.SiteSettings" />
+    <vc:cookie-bar site-settings="@NodeProvider.SiteSettings" />
 
 
     <script async src="/assets/js/main.js" asp-append-version="true"></script>

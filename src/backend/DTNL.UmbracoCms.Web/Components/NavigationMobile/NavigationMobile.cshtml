@@ -1,0 +1,148 @@
+@using DTNL.UmbracoCms.Web.Components;
+@using static DTNL.UmbracoCms.Web.Components.NavigationDesktop
+@model DTNL.UmbracoCms.Web.Components.NavigationMobile;
+
+@* {% from 'modal.html' import modal %}
+{% from 'navigation-mobile-list.html' import navigationMobileList %}
+
+{# Modal to show level 1 items #}
+{% call modal({
+  size: 'navigation-mobile',
+  id : 'navigation-mobile',
+  keepScrollPosition: true,
+  closeAllOthers: true
+}) %} *@
+
+<partial name="Modal" model="@(new Modal {Id = "navigation-mobile", Size = "navigation-mobile", KeepScrollPosition = true, CloseAllOthers = true })">
+        <div class="c-navigation-mobile">
+            <nav title="{{ global.resource.navigation.mainNavigation }}">
+                @* {{ navigationMobileList({
+                items: global.content.navigation.items
+                }) }} *@
+            <partial name="./NavigationMobileListItem.cshtml" model="@(new Components.NavigationMobile
+                                      {
+                                          Items = Model.Items
+                                      })" />
+                <div class="navigation-mobile__line"></div>
+                <div class="navigation-mobile-selector">
+                    <!-- Todo: language selector -->
+                </div>
+            </nav>
+        </div>
+</partial>
+
+
+@* {# Modals to show level 2 #}
+{% for item in global.content.navigation.items %}
+  {% if item.subitems %}
+    {% call modal({
+      size: 'navigation-mobile',
+      id : 'navigation-mobile-' + item.id,
+      keepScrollPosition: true,
+      closeAllOthers: true
+    }) %}
+<div class="c-navigation-mobile">
+    {{ navigationMobileList({
+    header: {
+    title: item.title,
+    id: 'navigation-mobile'
+    },
+    parent: {
+    title: item.title,
+    id : item.id
+    },
+    items: item.subitems
+    }) }}
+</div>
+    {% endcall %}
+  {% endif %}
+{% endfor %}
+
+*@
+
+
+@foreach(MenuItem item in Model.Items)
+{
+    @if (item?.Submenu?.Items != null)
+    {
+        <partial name="Modal" model="@(new Modal {Id = "navigation-mobile-@(Model.Id)", Size = "navigation-mobile", KeepScrollPosition = true, CloseAllOthers = true })">
+            <div class="c-navigation-mobile">
+
+                <partial name="./NavigationMobileListItem.cshtml" model="@(new Components.NavigationMobile
+                    {
+                        Items = item.Submenu.Items,
+                        Header = new NavigationMobile.NavigationListItem {
+                                Title = item.Submenu.Title,
+                                Id = item?.Id.ToString()
+                        },
+                        Parent = new NavigationMobile.NavigationListItem {
+                                Title = item?.Submenu.Title,
+                                Id = item?.Id.ToString()
+                        },
+
+                    })"
+                />               
+            </div>
+        </partial>
+        @if (item?.NestedSubmenu?.Links != null)
+            @foreach (MenuItem subitem in item.NestedSubmenu.Links)
+            {
+                @if(subitem?.NestedSubmenu?.Links != null)
+                {
+                    <partial name="Modal" model="@(new Modal {Id = "navigation-mobile-@(Model.Id)", Size = "navigation-mobile", KeepScrollPosition = true, CloseAllOthers = true })">
+                        <div class="c-navigation-mobile">
+
+                            <partial name="./NavigationMobileListItem.cshtml" model="@(new Components.NavigationMobile
+                    {
+                        Items = subitem.NestedSubmenu.Links,
+                        Header = new NavigationMobile.NavigationListItem {
+                                Title = subitem?.NestedSubmenu.Title,
+                                Id = item?.Id.ToString()
+                        },
+                        Parent = new NavigationMobile.NavigationListItem {
+                                Title = item?.Submenu.Title,
+                                Id = item?.Id.ToString()
+                        },
+
+                    })" />
+                        </div>
+                    </partial>
+                }                    
+            }
+        {
+            
+        }
+    }
+}
+@*
+{# Modal to show level 3 items #}
+{% for item in global.content.navigation.items %}
+  {% if item.subitems %}
+    {% for subitem in item.subitems %}
+      {% call modal({
+        size: 'navigation-mobile',
+        id : 'navigation-mobile-' + item.id + '-' + subitem.id,
+        keepScrollPosition: true,
+        closeAllOthers: true
+      }) %}
+<div class="c-navigation-mobile">
+    {{ navigationMobileList({
+    header: {
+    title: subitem.title,
+    id : 'navigation-mobile-' + item.id
+    },
+    parent: {
+    title: subitem.title,
+    id : item.id + '-' + subitem.id
+    },
+    all: {
+    title: subitem.all.title,
+    id : subitem.all.id
+    },
+    items: subitem.subitems
+    }) }}
+</div>
+      {% endcall %}
+    {% endfor %}
+  {% endif %}
+{% endfor %} *@

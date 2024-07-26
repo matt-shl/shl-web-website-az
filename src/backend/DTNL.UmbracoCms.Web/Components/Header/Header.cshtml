@@ -1,11 +1,15 @@
 @using DTNL.UmbracoCms.Web.Components
+@using DTNL.UmbracoCms.Web.Components.Navigation
+@using static DTNL.UmbracoCms.Web.Components.NavigationDesktop
+
 @model DTNL.UmbracoCms.Web.Components.Header
 
-<header class="c-header">
+@*  <header class="c-header">
 	<div class="o-container">
 		<div class="u-flex u-flex-middle header__container">
-			<a href="@Model.LogoUrl" class="header__logo">
+		@* 	<a href="@Model.LogoUrl" class="header__logo">
 				<svg src="@Model.LogoPath" />
+                Logo
 			</a>
             <div class="header-navigation">
                 <nav class="header-navigation__nav" aria-label="Main menu" role="navigation">
@@ -18,9 +22,41 @@
                         }
                     </ul>
                 </nav>
+                <p>Helloooo</p>
             </div>
 
             <vc:language-switch />
 		</div>
 	</div>
+</header> *@
+<header class="c-header" js-hook-header>
+    <div class="header__container">
+        <div class="header__content">
+            <a href="/" class="header__logo" title="Logo">
+                <svg src="@(SvgAliases.Brand.LogoColor)" />
+            </a>
+
+            <button js-hook-header-hamburger
+                    class="header__hamburger"
+                    aria-controls="navigation-mobile"
+                    aria-label="Menu">
+                <svg src="@(SvgAliases.Icons.Menu)" />
+                Menu
+            </button>
+
+            <div class="header__navigation">
+                @* <vc:navigation-menu name="NavigationDesktop" navigation="Model.Navigation" variant="Desktop"/> *@
+                <partial name="NavigationDesktop" model="@(NavigationDesktop.Create(Model.Navigation))" />
+            
+            </div>
+
+            <div class="header__language-selector">
+                <!-- Todo: language selector -->
+            </div>
+        </div>
+    </div>
 </header>
+
+@* <vc:navigation-menu name="NavigationMobile" navigation="Model.Navigation" variant="Mobile" /> *@
+<partial name="NavigationMobile" model="@(NavigationMobile.Create(Model.Navigation))" />
+

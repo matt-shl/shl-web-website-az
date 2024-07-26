@@ -1,0 +1,37 @@
+
+<div class="c-navigation-mobile-list">
+    @if (Model.Header != null) {
+        <button class="navigation-mobile-list__anchor navigation-mobile-list__anchor--parent" aria-controls="@Model.Header.Id">
+            <svg src="@(SvgAliases.Icons.ChevronLeft)" />
+            @Model.Header.Title
+        </button>
+    }
+  
+    <ul class="navigation-mobile-list__list">
+        @foreach (Components.NavigationDesktop.MenuItem item in Model.Items)
+        {
+            <li class="navigation-mobile-list__item">
+                @if(item?.Submenu?.Items != null)
+                {
+                    <button class="navigation-mobile-list__anchor @(item.Parent != null ? "navigation-mobile-list__anchor--main" : "navigation-mobile-list__anchor--small")"
+                            aria-controls="navigation-mobile-@(item.Parent != null ? item.Parent.Id : null)@(item.Parent != null ? '-' : null)@(item.Id)">
+                            @item.Title
+                        <svg src="@(SvgAliases.Icons.ChevronRight)" />
+                    </button>
+                } else
+                {
+                    <a title="item?.Link?.Label" href="item?.Link?.Url" class="navigation-mobile-list__anchor @(item?.Parent != null ? "navigation-mobile-list__anchor--main" : "navigation-mobile-list__anchor--small")">
+                        @item?.Link?.Label
+                    </a>
+                }
+
+            </li>
+        }
+
+        @if (Model.AllLink != null) {
+            <li>
+                <a class="navigation-mobile-list__anchor navigation-mobile-list__anchor--all" href="Model.All.Url">item.All.Label</a>
+            </li>
+        }
+    </ul>
+</div>

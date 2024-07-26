@@ -1,33 +1,72 @@
-using DTNL.UmbracoCms.Web.Helpers.Aliases;
-using DTNL.UmbracoCms.Web.Helpers.Extensions;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Web.Common.PublishedModels;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+using static Umbraco.Cms.Core.Constants.HttpContext;
 
 namespace DTNL.UmbracoCms.Web.Components;
 
 public class Header : ViewComponentExtended
 {
-    public required string LogoPath { get; set; }
+    //public Header()
+    //{
+    //}
 
-    public string? LogoUrl { get; set; }
+    public NestedBlockNavigation? Navigation { get; set; }
 
-    public required List<Link> Links { get; set; }
+    public Website? CurrentWebsite { get; set; }
 
-    public IViewComponentResult Invoke(PageHome? homePage)
+    //public List<Website> Websites { get; set; } = [];
+
+    public IViewComponentResult Invoke(IPublishedContent currentPage)
     {
-        List<Link> links = homePage
-                               ?.Children
-                               .Where(c => !c.IsFolder() && c.IsVisible())
-                               .Select(c => Link.Create(c, cssClasses: "mega-menu__link"))
-                               .WhereNotNull()
-                               .ToList()
-                           ?? [];
+        SiteSettings? siteSettings = NodeProvider.SiteSettings;
+        NestedBlockNavigation? navigation = GetNavigation(currentPage, siteSettings);
 
-        // this is empty because the header will need to be created and this will be changed
-        LogoPath = "";
-        Links = links;
-        LogoUrl = homePage?.Url();
+        if (navigation is not null)
+        {
+            Navigation = navigation;
+           
+
+           
+
+            //if (Navigation.MainPage is { } mainPage)
+            //{
+            //    Website website = new() { Link = Link.Create(mainPage, showTitle: false), Current = true };
+            //    CurrentWebsite = website;
+            //    Websites.Add(website);
+            //}
+
+            //NestedBlockNavigation? otherNavigation = navigations.Value.OtherNavigation;
+            //if (otherNavigation?.MainPage is { } otherMainPage)
+            //{
+            //    //Websites.Add(new Website { Link = Link.Create(otherMainPage, showTitle: false), Current = false });
+            //}
+        }
 
         return View("Header", this);
+    }
+
+    /// <summary>
+    /// Gets the main and other navigations based on the current node and its ancestors.
+    /// </summary>
+    private NestedBlockNavigation? GetNavigation(
+        IPublishedContent currentPage, SiteSettings? settings)
+    {
+       return settings!.MainHeader!.Content;
+
+        // return currentPage.Get(settings, Request.Path) switch
+        // {
+        //    WebsiteSection.Get => (settings!.MainHeader!.Content, settings.MainHeader.Content),
+        //    _ => null,
+        // };
+    }
+
+    public class Website
+    {
+        public required Link Link { get; set; }
+
+        public bool Current { get; set; }
     }
 }
