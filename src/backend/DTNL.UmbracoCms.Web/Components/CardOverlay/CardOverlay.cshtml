@@ -1,0 +1,21 @@
+@using DTNL.UmbracoCms.Web.Components
+@using DTNL.UmbracoCms.Web.Helpers.Aliases
+@model DTNL.UmbracoCms.Web.Components.CardOverlay
+
+<div class="c-card-overlay
+    c-card-overlay--position-@Model.Position
+    @(Model.Visible ? "c-card-overlay--is-visible" : null)">
+
+    <div class="card-overlay__content">
+        @if (!Model.Tag.IsNullOrWhiteSpace())
+        {
+            <partial name="Tag" model="@(new Tag { Label = Model.Tag })" />
+        }
+        else
+        {
+            <partial name="Button" model="@(new Button { Label = Model.Title, LabelSrOnly = true, Element = "span", Icon = SvgAliases.Icons.ArrowTopRight, Class = "card-overlay__button" })" />
+        }
+    </div>
+
+    <partial name="Shape" model="@(new Shape { CssClasses = "card-overlay__shape" })" />
+</div>
