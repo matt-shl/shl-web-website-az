@@ -7,14 +7,15 @@ Options:
   url: string (optional)
 #}
 
-{% from 'hover.html' import hover %}
+{% from 'card-overlay.html' import cardOverlay %}
 {% from 'image.html' import image %}
 
 {% macro cardImage(data) %}
   <{{ data.url and 'a' or 'article' }} class="c-card-image c-card-image--has-image
-  {%- if data.url %} c-card-image--has-url c-hover-parent{% endif -%}
+  {%- if data.url %} c-card-image--has-url c-card-overlay-parent{% endif -%}
   {%- if data.theme %} {{ data.theme }}{% endif -%}"
-  {%- if data.url %} href="{{ data.url }}"{% endif -%}>
+  {%- if data.url %} href="{{ data.url }}"{% endif -%}
+  aria-label="{{ data.title }}">
 
   <div class="card-image__image-container">
     {{ image({
@@ -24,7 +25,7 @@ Options:
     }) }}
 
     {% if data.url %}
-      {{ hover({
+      {{ cardOverlay({
         title: data.title
       }) }}
     {% endif %}

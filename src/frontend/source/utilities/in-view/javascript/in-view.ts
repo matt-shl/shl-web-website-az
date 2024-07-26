@@ -1,4 +1,8 @@
+import {html} from "@utilities/dom-elements";
+
 import Events from '@/utilities/events'
+
+const IS_REDUCED_MOTION_CLASS = 'is--reduced-motion'
 
 const SCROLL_ELEMENT: Window | HTMLElement = window
 
@@ -58,6 +62,8 @@ class InView {
   observer: IntersectionObserver | null = null
 
   constructor() {
+    if (html.classList.contains(IS_REDUCED_MOTION_CLASS)) return;
+
     this.setObserver()
     this.bindEvents()
   }
@@ -149,7 +155,7 @@ class InView {
 
 function triggerEvents(triggers: string[], data: InViewElement) {
   triggers.forEach(trigger => {
-    Events.$trigger(trigger, { data })
+    Events.$trigger(trigger, {data})
   })
 }
 
@@ -177,8 +183,8 @@ function calculateInviewProperties(entry: IntersectionObserverEntry): InViewProp
     scrollLeft = SCROLL_ELEMENT.scrollLeft || document.documentElement.scrollLeft
   }
 
-  const { top, bottom, left, right } = getElementOffset(entry)
-  const position = { top, bottom, left, right }
+  const {top, bottom, left, right} = getElementOffset(entry)
+  const position = {top, bottom, left, right}
 
   const rootHeight = entry.rootBounds ? entry.rootBounds.height : 0
   const rootWidth = entry.rootBounds ? entry.rootBounds.width : 0
@@ -235,7 +241,7 @@ function getInViewDirections(
     scrollLeft: number
   } & Pick<InViewProperties, 'position'>,
 ): InViewProperties {
-  const { width, height } = options.entry.boundingClientRect
+  const {width, height} = options.entry.boundingClientRect
 
   const topPosition = options.entry.boundingClientRect.top
   const bottomPosition = options.entry.boundingClientRect.bottom

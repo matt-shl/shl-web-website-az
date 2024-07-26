@@ -8,16 +8,27 @@
 }
 
 .card-number__title {
-  @include h1;
+  @include h1-containerised(card, $card-container-size-lg, $card-container-size-sm);
   transition: color var(--card-animation-duration) var(--card-animation-ease);
 }
 
 .card-number__subtitle {
-  @include h6;
+  @include h6-containerised(card, $card-container-size-lg, $card-container-size-sm);
+  line-height: 0.9;
+  margin-top: $spacing-16;
 }
 
 .card-number__content {
+  @include fluid-type-container(
+    card,
+    $font-size-body-xl,
+    $font-size-body-s,
+    $card-container-size-lg,
+    $card-container-size-sm,
+    font-size
+  );
+
   @include truncate-text(4);
-  @include body-m;
+  line-height: $font-line-height-body-m;
   margin-top: auto;
 }

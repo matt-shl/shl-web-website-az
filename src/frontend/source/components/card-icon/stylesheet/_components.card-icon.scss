@@ -1,40 +1,95 @@
 .c-card-icon {
   @include card-base;
+
+  //Remove annoying small colored corner on hover
+  @include hover-focus {
+    .card-icon__container {
+      border-end-end-radius: 0;
+    }
+  }
 }
 
 .card-icon__container {
   @include card-container-base;
   @include theme;
+
+  .c-card-icon & {
+  }
 }
 
 .card-icon__icon {
-  height: 40px;
-  width: 40px;
+  @include fluid-type-container(
+    card,
+    5.6rem,
+    2.4rem,
+    $card-container-size-lg,
+    $card-container-size-sm,
+    'height'
+  );
+  @include fluid-type-container(
+    card,
+    5.6rem,
+    2.4rem,
+    $card-container-size-lg,
+    $card-container-size-sm,
+    'width'
+  );
 
-  @include screen-md-and-bigger {
-    height: 60px;
-    width: 60px;
+  @supports not (container-type: inline-size) {
+    @include screen-md-and-bigger {
+      height: 5.6rem;
+      width: 5.6rem;
+    }
   }
 }
 
 .card-icon__title {
-  @include h4;
+  @include h4-containerised(card, $card-container-size-lg, $card-container-size-sm);
   margin-top: auto;
   transition: color var(--card-animation-duration) var(--card-animation-ease);
 }
 
 .card-icon__content {
-  @include body-m;
-  max-height: 0;
-  opacity: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  transition: var(--card-animation-duration) var(--card-animation-ease);
-  transition-property: opacity, max-height;
+  @include truncate-text(4);
+  padding-top: 16px;
+  // When the card has a URL, the font size is smaller; starts at 18px
+  .c-card-icon--has-url & {
+    max-height: 0;
+    opacity: 0;
+    transition: var(--card-animation-duration) var(--card-animation-ease);
+    transition-property: opacity, max-height, padding-top;
+    padding-top: 0;
+
+    @include fluid-type-container(
+      card,
+      $font-size-body-l,
+      $font-size-body-s,
+      $card-container-size-lg,
+      $card-container-size-sm,
+      font-size
+    );
+  }
+
+  // When the card does not have a URL, the font size is larger; starts at 20px
+  &:not(.c-card-icon--has-url &) {
+    @include fluid-type-container(
+      card,
+      $font-size-body-xl,
+      $font-size-body-s,
+      $card-container-size-lg,
+      $card-container-size-sm,
+      font-size
+    );
+  }
 
   .c-card-icon--has-url:hover & {
     // Shows max 4 lines
-    max-height: calc(1em * #{$font-line-height-body} * 4);
+    padding-top: 16px;
+    max-height: calc(1em * #{$font-line-height-body-m} * 4 + 16px);
     opacity: 1;
+  }
+
+  @supports not (container-type: inline-size) {
+    @include body-m;
   }
 }

@@ -1,0 +1,36 @@
+@using DTNL.UmbracoCms.Web.Components
+@using DTNL.UmbracoCms.Web.Helpers.Extensions
+@model DTNL.UmbracoCms.Web.Components.Accordion
+
+<div class="c-accordion @Model.Classes @(Model.TabsOnDesktop ? "accordion--tabs-on-dekstop" : null)"
+     data-autoclose="@(Model.AutoClose ? "true" : null)"
+     @(Model.DisableCloseDesktop ? "data-disable-close-desktop=true" : null)
+     @(Model.TabsOnDesktop ? "data-tabs-on-desktop=true" : null)
+     @(Model.CloseOnMobile ? "data-close-on-mobile=true" : null)
+     js-hook-accordion>
+
+    @if (Model is { TabsOnDesktop: true, Items: not null })
+    {
+        <ul class="accordion__tab-list">
+            @foreach (Accordion.Item item in Model.Items)
+            {
+                <li class="accordion__tab-item">
+                    <button class="accordion__tab-button @(item.Open ? "accordion__tab-button--is-active" : null)"
+                            on:click.prevent="accordion[@item.Id]::open"
+                            aria-controls="@item.Id"
+                            js-hook-accordion-tab>
+                        @item.Title
+                    </button>
+                </li>
+            }
+        </ul>
+
+        <div class="accordion__tab-contents">
+            @this.RenderPartialBody()
+        </div>
+    }
+    else
+    {
+        @this.RenderPartialBody()
+    }
+</div>

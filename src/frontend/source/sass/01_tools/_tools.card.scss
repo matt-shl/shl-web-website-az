@@ -1,3 +1,8 @@
+$card-container-size-lg: 420px;
+$card-container-size-md: 340px;
+$card-container-size-sm: 250px;
+$card-container-size-xs: 0px;
+
 :root {
   --card-animation-delay: 50ms;
   --card-animation-duration: 300ms;
@@ -7,6 +12,8 @@
 @mixin card-base {
   color: inherit;
   display: block;
+  container-name: card;
+  container-type: inline-size;
 }
 
 @mixin card-container-base {
@@ -19,8 +26,16 @@
   padding-block: $spacing-24;
   padding-inline: $spacing-24 $spacing-64;
 
-  @include screen-md-and-bigger {
-    padding-block: $spacing-48;
-    padding-inline: $spacing-48 $spacing-80;
+  @container card (width > #{$card-container-size-lg}) {
+    padding-block: $spacing-40;
+    padding-inline: $spacing-40 $spacing-80;
+  }
+
+  // for browsers that do not support container queries
+  @supports not (container-type: inline-size) {
+    @include screen-md-and-bigger {
+      padding-block: $spacing-40;
+      padding-inline: $spacing-40 $spacing-80;
+    }
   }
 }

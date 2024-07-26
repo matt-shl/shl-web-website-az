@@ -42,7 +42,7 @@ class Header {
   toggleMobileNavigationVisibility(isOpen: boolean) {
     setTimeout(() => {
       html.classList[isOpen ? 'add' : 'remove'](CLASS_MOBILE_NAVIGATION_IS_OPEN)
-    }, isOpen ? 400: 0)
+    }, isOpen ? 400 : 0)
   }
 
   private handlePageScroll() {

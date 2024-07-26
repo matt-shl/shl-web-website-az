@@ -1,0 +1,97 @@
+{#
+    Video macro
+
+    data {
+        instance_id: 'string',
+        id: 'string',
+        platform: 'string'
+        title: 'string',
+        description: 'string',
+        noschema: 'boolean', (optional, default true)
+        thumbnail: 'string', (optional)
+        total_time: 'string', (optional)
+        start_time: 'string', (optional)
+        classes: 'string', (optional)
+        muted: 'boolean', (optional, default true)
+        autoplay: 'boolean', (optional, default true)
+        playsinline: 'boolean', (optional, default true)
+        controls: 'boolean', (optional, default false)
+        sources: object (optional) for native video only
+        closedcaptions: object (optional) for native video only
+        inview: boolean (optional, default true)
+        image: object (optional)
+    }
+#}
+
+{% from 'image.html' import image %}
+{% from 'button.html' import button %}
+
+{% macro video(data) %}
+
+    <div class="c-video
+        {%- if data.variant %} c-video--{{ data.variant }}{% endif -%}
+        {%- if data.classes %} {{ data.classes }}{% endif -%}"
+        {% if data.noschema != false %}itemprop="video" itemscope itemtype="http://schema.org/VideoObject"{% endif %}
+        {% if data.instance_id %}id="video-{{ data.instance_id }}"{% endif %}
+        {% if data.platform %}data-video-platform="{{ data.platform }}"{% endif %}
+        {% if data.id %}data-video-id="{{ data.id }}"{% endif %}
+        {% if data.start_time %}data-video-time="{{ data.start_time }}"{% endif %}
+        {% if data.muted %}data-video-muted="{{ data.muted }}"{% endif %}
+        {% if data.autoplay %}data-video-autoplay="{{ data.autoplay }}"{% endif %}
+        {% if data.playsinline %}data-video-playsinline="{{ data.playsinline }}"{% endif %}
+        {% if data.controls %}data-video-controls="{{ data.controls }}"{% endif %}
+        {% if data.loop %}data-video-loop="{{ data.loop }}"{% endif %}
+        {% if data.sources %}data-video-sources="{{ data.sources|dump|escape }}"{% endif %}
+        {% if data.closedcaptions %}data-video-closedcaptions="{{ data.closedcaptions|dump|escape }}"{% endif %}
+        {% if data.title %}aria-label="{{ data.title }}"{% endif %}
+        {% if data.inview != false %}
+            js-hook-inview
+            data-inview-persistent="true"
+            data-inview-trigger="video[video-{{ data.instance_id }}]::inview"
+        {% endif %}
+        role="application"
+        js-hook-video>
+
+        {% if data.noschema != false %}
+            {% if data.title %}<meta itemprop="name" content="{{ data.title }}" />{% endif %}
+            {% if data.description %}<meta itemprop="description" content="{{ data.description }}" />{% endif %}
+            {% if data.totalTime %}<meta itemprop="duration" content="{{ data.totalTime }}" />{% endif %}
+            {% if data.thumbnail %}<meta itemprop="thumbnailUrl" content="{{ data.thumbnail }}" />{% endif %}
+            {% if data.embedUrl %}<meta itemprop="embedURL" content="{{ data.embed_url }}" />{% endif %}
+            {% if data.uploadDate %}<meta itemprop="uploadDate" content="{{ data.uploadDate }}" />{% endif %}
+        {% endif %}
+
+        <div class="video__player" js-hook-video-player></div>
+
+        <div class="video__loader"></div>
+
+        {% if data.buttons !== false %}
+            <div class="video__button-container">
+              <button class="video__button video__button--play" js-hook-video-play>
+                <span class="video__button-icon"></span>
+                <span class="u-sr-only">Play</span>
+              </button>
+
+              <button class="video__button video__button--pause" js-hook-video-pause>
+                <span class="video__button-icon">&#10073;&#10073;</span>
+                <span class="u-sr-only">Pause</span>
+              </button>
+
+              <button class="video__button video__button--replay" js-hook-video-replay>
+                <span class="video__button-icon">&#8635;</span>
+                <span class="u-sr-only">Replay</span>
+              </button>
+            </div>
+        {% endif %}
+
+        {% if data.image %}
+            {{ image(data.image | merge({
+                classes: 'video__image',
+                attr: 'aria-hidden="true"',
+                objectFit: true
+            })) }}
+        {% endif %}
+
+    </div>
+
+{% endmacro %}

@@ -1,7 +1,41 @@
 .page__content {
   color: $color-dark-blue;
-  background-color: $color-white;
-  border-radius: $radii-40;
   flex-grow: 1;
+  position: relative;
   z-index: 1;
+
+  &::before {
+    background-color: $color-white;
+    border-radius: $radii-40;
+    bottom: 0;
+    content: '';
+    display: block;
+    left: 0;
+    opacity: 1;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: scaleX(1);
+    transition: 500ms ease-in-out;
+    transition-property: transform, opacity;
+    z-index: -1;
+  }
+
+  &.is--out-view::before {
+    opacity: 0;
+    transform: scaleX(0.95);
+  }
+}
+
+.page__content-items {
+  opacity: 1;
+  transform: translateY(0);
+  transition: 800ms ease-in-out;
+  transition-delay: 200ms;
+  transition-property: transform, opacity;
+
+  .page__content.is--out-view & {
+    opacity: 0;
+    transform: translateY(40px);
+  }
 }

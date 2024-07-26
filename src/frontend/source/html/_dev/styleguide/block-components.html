@@ -64,7 +64,7 @@
       {% from 'card-number.html' import cardNumber %}
       {{ cardNumber({
         title: "420.000",
-        subtitle: "Card",
+        subtitle: "Title description",
         content: "Tons of plastic saved by moving to a new manufacturing machine. That’s the weight of 24 elephants."
       }) }}
     </div>
@@ -74,8 +74,11 @@
         url: '#',
         theme: 't-pale-pink',
         icon: 'rocket',
-        title: "Card",
-        content: "Hardcoded pale pink theme."
+        title: "For start-ups",
+        content: "Hardcoded pale pink theme. Hardcoded pale pink theme.
+        Hardcoded pale pink theme.Hardcoded pale pink theme. Hardcoded pale pink theme.
+        Hardcoded pale pink theme.Hardcoded pale pink theme.Hardcoded pale pink theme.
+        Hardcoded pale pink theme.Hardcoded pale pink theme."
       }) }}
     </div>
     <div class="styleguide__component-col styleguide__component-col--3">
@@ -105,6 +108,20 @@
         tag: "Whitepaper",
         cta: "Open modal",
         modalId: "aside-modal-example"
+      }) }}
+    </div>
+
+    <div class="styleguide__component-col styleguide__component-col--3">
+      {% from 'video.html' import video %}
+
+      {{ video({
+        instance_id: 'styleguide-video',
+        id: 'styleguide-video',
+        controls: true,
+        platform: 'native',
+        title: 'styleguide-video',
+        description: 'styleguide-video',
+        sources: global.content.home.hero.video.sources
       }) }}
     </div>
   </div>

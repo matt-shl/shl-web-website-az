@@ -108,10 +108,12 @@
     <!-- hero will be injected in this block -->
   {% endblock %}
 
-  <div class="page__content">
-    {% block content %}
-      <!-- content will be injected in this block -->
-    {% endblock %}
+  <div class="page__content" id="main-content" js-hook-inview>
+    <div class="page__content-items">
+      {% block content %}
+        <!-- content will be injected in this block -->
+      {% endblock %}
+    </div>
   </div>
 
 </main>

@@ -1,13 +1,13 @@
 @mixin theme {
   transition: 300ms ease-in-out;
-  transition-property: background-color, color;
+  transition-property: background-color, color, border-radius;
 
   background-color: var(--color-background);
   color: var(--color-content);
 
   // Component overrides
   --focus-color: var(--focus-theme-color);
-  --link-underline-color: var(--link-theme-underline-color);
+  --color-content-20: var(--theme-color-content-20);
 
   .c-button {
     --button-font-color: var(--button-primary-font-color);

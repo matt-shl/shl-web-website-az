@@ -1,0 +1,69 @@
+.c-hero-content {
+  @include theme;
+  @include hero-overlap;
+}
+
+.hero-content__container {
+  @include container-with-grid;
+  padding-block: $spacing-40;
+
+  @include screen-lg-and-bigger {
+    padding-block: $spacing-80;
+  }
+}
+
+.hero-content__col-left {
+  @include col-span(12);
+
+  @include screen-lg-and-bigger {
+    @include col-span(8);
+  }
+}
+
+.hero-content__subtitle {
+  @include h5;
+  margin-top: $spacing-24;
+}
+
+.hero-content__tags {
+  display: flex;
+  gap: $spacing-8;
+  margin-top: $spacing-24;
+}
+
+.hero-content__tag {
+  background-color: var(--color-content-20);
+  color: var(--color-content);
+}
+
+.hero-content__description {
+  @include body-l;
+  max-width: 500px;
+}
+
+.hero-content__col-right {
+  @include col-span(12);
+  align-items: flex-start;
+  margin-top: $spacing-32;
+
+  @include screen-lg-and-bigger {
+    grid-column: 7 / span 5;
+    margin-top: $spacing-24;
+  }
+
+  @include screen-xl-and-bigger {
+    grid-column: 8 / span 4;
+  }
+}
+
+.hero-content__ctas {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-16;
+  margin-top: $spacing-32;
+
+  @include screen-lg-and-bigger {
+    flex-direction: row;
+  }
+}
