@@ -246,8 +246,8 @@
 
   &:not([disabled]) {
     @include hover-focus {
-      color: var(--color-plum);
-      background-color: var(--color-plum-20);
+      color: $color-dark-blue;
+      background-color: rgba(var(--color-dark-blue), 0.2);
       transform: translate3d(0, -50%, 0) scale(1.05);
     }
   }

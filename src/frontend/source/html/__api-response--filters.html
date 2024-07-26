@@ -1,0 +1,14 @@
+{% from 'card-number.html' import cardNumber %}
+
+<menu>
+  <span class="filters__amount-label" js-hook-replace-content="filters-amount-label">3 Items</span>
+  <div class="o-container" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px " js-hook-replace-content="number-items">
+    {% for i in range(3) %}
+      {{ cardNumber({title: loop.index * 10, subtitle: "welkom", content: "Cool content"}) }}
+    {% endfor %}
+  </div>
+  <div class="modal__body" js-hook-modal-body js-hook-replace-content="modal-body-modal-filters">
+      <span></span>
+      <h3>Thanks for choising an option</h3>
+  </div>
+</menu>

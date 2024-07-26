@@ -9,8 +9,8 @@
           "label": "Newest first",
           "value": "sorting-newest",
           "id": "filter-sorting-newest",
-          "checked": false,
-          "attr": "data-url-replacement='replacement-url/?customExampleValue=wowowow' data-endpoint='__api-response--filters.html'",
+          "checked": true,
+          "attr": "data-url-replacement='__api-response--filters.html' data-endpoint='__api-response--filters.html'",
           "sortItem": true,
           "hook": "filters-input"
         },
@@ -18,8 +18,7 @@
           "label": "Oldest first",
           "value": "sorting-popular",
           "id": "filter-sorting-popular",
-          "checked": true,
-          "attr": "data-url-replacement='replacement-url/?customExampleValue=wowowow' data-endpoint='__api-response--filters.html'",
+          "attr": "data-url-replacement='__api-response--filters.html' data-endpoint='__api-response--filters.html'",
           "sortItem": true,
           "hook": "filters-input"
         }
@@ -33,56 +32,56 @@
           "label": "Sales",
           "value": "sales",
           "id": "filter-sales",
-          "checked": false,
-          "attr": "data-url-replacement='replacement-url/?customExampleValue=wowowow' data-endpoint='__api-response--filters.html'",
+          "checked": true,
+          "attr": "data-url-replacement='__api-response--filters.html' data-endpoint='__api-response--filters.html'",
           "hook": "filters-input"
         },
         {
           "label": "Engineering",
           "value": "engineering",
           "id": "filter-engineering",
-          "checked": false,
-          "attr": "data-url-replacement='replacement-url/?customExampleValue=wowowow' data-endpoint='__api-response--filters.html'",
+          "checked": true,
+          "attr": "data-url-replacement='__api-response--filters.html' data-endpoint='__api-response--filters.html'",
           "hook": "filters-input"
         },
         {
           "label": "Marketing",
           "value": "marketing",
           "id": "filter-marketing",
-          "checked": false,
-          "attr": "data-url-replacement='replacement-url/?customExampleValue=wowowow' data-endpoint='__api-response--filters.html'",
+          "checked": true,
+          "attr": "data-url-replacement='__api-response--filters.html' data-endpoint='__api-response--filters.html'",
           "hook": "filters-input"
         },
         {
           "label": "Support",
           "value": "support",
           "id": "filter-support",
-          "checked": false,
-          "attr": "data-url-replacement='replacement-url/?customExampleValue=wowowow' data-endpoint='__api-response--filters.html'",
+          "checked": true,
+          "attr": "data-url-replacement='__api-response--filters.html' data-endpoint='__api-response--filters.html'",
           "hook": "filters-input"
         },
         {
           "label": "Product",
           "value": "product",
           "id": "filter-product",
-          "checked": false,
-          "attr": "data-url-replacement='replacement-url/?customExampleValue=wowowow' data-endpoint='__api-response--filters.html'",
+          "checked": true,
+          "attr": "data-url-replacement='__api-response--filters.html' data-endpoint='__api-response--filters.html'",
           "hook": "filters-input"
         },
         {
           "label": "Human Resources",
           "value": "human-resources",
           "id": "filter-human-resources",
-          "checked": false,
-          "attr": "data-url-replacement='replacement-url/?customExampleValue=wowowow' data-endpoint='__api-response--filters.html'",
+          "checked": true,
+          "attr": "data-url-replacement='__api-response--filters.html' data-endpoint='__api-response--filters.html'",
           "hook": "filters-input"
         },
         {
           "label": "Finance",
           "value": "finance",
           "id": "filter-finance",
-          "checked": false,
-          "attr": "data-url-replacement='replacement-url/?customExampleValue=wowowow' data-endpoint='__api-response--filters.html'",
+          "checked": true,
+          "attr": "data-url-replacement='__api-response--filters.html' data-endpoint='__api-response--filters.html'",
           "hook": "filters-input"
         }
       ]
@@ -95,32 +94,32 @@
           "label": "Full-time",
           "value": "full-time",
           "id": "filter-full-time",
-          "checked": false,
-          "attr": "data-url-replacement='replacement-url/?customExampleValue=wowowow' data-endpoint='__api-response--filters.html'",
+          "checked": true,
+          "attr": "data-url-replacement='__api-response--filters.html' data-endpoint='__api-response--filters.html'",
           "hook": "filters-input"
         },
         {
           "label": "Part-time",
           "value": "part-time",
           "id": "filter-part-time",
-          "checked": false,
-          "attr": "data-url-replacement='replacement-url/?customExampleValue=wowowow' data-endpoint='__api-response--filters.html'",
+          "checked": true,
+          "attr": "data-url-replacement='__api-response--filters.html' data-endpoint='__api-response--filters.html'",
           "hook": "filters-input"
         },
         {
           "label": "Internship",
           "value": "internship",
           "id": "filter-internship",
-          "checked": false,
-          "attr": "data-url-replacement='replacement-url/?customExampleValue=wowowow' data-endpoint='__api-response--filters.html'",
+          "checked": true,
+          "attr": "data-url-replacement='__api-response--filters.html' data-endpoint='__api-response--filters.html'",
           "hook": "filters-input"
         },
         {
           "label": "Temporary",
           "value": "temporary",
           "id": "filter-temporary",
-          "checked": false,
-          "attr": "data-url-replacement='replacement-url/?customExampleValue=wowowow' data-endpoint='__api-response--filters.html'",
+          "checked": true,
+          "attr": "data-url-replacement='__api-response--filters.html' data-endpoint='__api-response--filters.html'",
           "hook": "filters-input"
         }
       ]
@@ -133,16 +132,16 @@
         "label": "Switzerland",
         "value": "switzerland",
         "id": "filter-switzerland",
-        "checked": false,
-        "attr": "data-url-replacement='replacement-url/?customExampleValue=wowowow' data-endpoint='__api-response--filters.html'",
+        "checked": true,
+        "attr": "data-url-replacement='__api-response--filters.html' data-endpoint='__api-response--filters.html'",
         "hook": "filters-input"
        },
        {
         "label": "Germany",
         "value": "germany",
         "id": "filter-germany",
-        "checked": false,
-        "attr": "data-url-replacement='replacement-url/?customExampleValue=wowowow' data-endpoint='__api-response--filters.html'",
+        "checked": true,
+        "attr": "data-url-replacement='__api-response--filters.html' data-endpoint='__api-response--filters.html'",
         "hook": "filters-input"
        },
        {
@@ -150,7 +149,7 @@
         "value": "taiwan",
         "id": "filter-taiwan",
         "checked": false,
-        "attr": "data-url-replacement='replacement-url/?customExampleValue=wowowow' data-endpoint='__api-response--filters.html'",
+        "attr": "data-url-replacement='__api-response--filters.html' data-endpoint='__api-response--filters.html'",
         "hook": "filters-input"
        },
        {
@@ -158,7 +157,7 @@
         "value": "sweden",
         "id": "filter-sweden",
         "checked": false,
-        "attr": "data-url-replacement='replacement-url/?customExampleValue=wowowow' data-endpoint='__api-response--filters.html'",
+        "attr": "data-url-replacement='__api-response--filters.html' data-endpoint='__api-response--filters.html'",
         "hook": "filters-input"
        }
       ]
@@ -171,16 +170,16 @@
           "label": "Yes",
           "value": "yes",
           "id": "filter-remote-yes",
-          "checked": false,
-          "attr": "data-url-replacement='replacement-url/?customExampleValue=wowowow' data-endpoint='__api-response--filters.html'",
+          "checked": true,
+          "attr": "data-url-replacement='__api-response--filters.html' data-endpoint='__api-response--filters.html'",
           "hook": "filters-input"
         },
         {
           "label": "No",
           "value": "no",
           "id": "filter-remote-no",
-          "checked": false,
-          "attr": "data-url-replacement='replacement-url/?customExampleValue=wowowow' data-endpoint='__api-response--filters.html'",
+          "checked": true,
+          "attr": "data-url-replacement='__api-response--filters.html' data-endpoint='__api-response--filters.html'",
           "hook": "filters-input"
         }
       ]
@@ -193,48 +192,48 @@
           "label": "0 - 1000",
           "value": "0-1000",
           "id": "filter-salary-0-1000",
-          "checked": false,
-          "attr": "data-url-replacement='replacement-url/?customExampleValue=wowowow' data-endpoint='__api-response--filters.html'",
+          "checked": true,
+          "attr": "data-url-replacement='__api-response--filters.html' data-endpoint='__api-response--filters.html'",
           "hook": "filters-input"
         },
         {
           "label": "1000 - 2000",
           "value": "1000-2000",
           "id": "filter-salary-1000-2000",
-          "checked": false,
-          "attr": "data-url-replacement='replacement-url/?customExampleValue=wowowow' data-endpoint='__api-response--filters.html'",
+          "checked": true,
+          "attr": "data-url-replacement='__api-response--filters.html' data-endpoint='__api-response--filters.html'",
           "hook": "filters-input"
         },
         {
           "label": "2000 - 3000",
           "value": "2000-3000",
           "id": "filter-salary-2000-3000",
-          "checked": false,
-          "attr": "data-url-replacement='replacement-url/?customExampleValue=wowowow' data-endpoint='__api-response--filters.html'",
+          "checked": true,
+          "attr": "data-url-replacement='__api-response--filters.html' data-endpoint='__api-response--filters.html'",
           "hook": "filters-input"
         },
         {
           "label": "3000 - 4000",
           "value": "3000-4000",
           "id": "filter-salary-3000-4000",
-          "checked": false,
-          "attr": "data-url-replacement='replacement-url/?customExampleValue=wowowow' data-endpoint='__api-response--filters.html'",
+          "checked": true,
+          "attr": "data-url-replacement='__api-response--filters.html' data-endpoint='__api-response--filters.html'",
           "hook": "filters-input"
         },
         {
           "label": "4000 - 5000",
           "value": "4000-5000",
           "id": "filter-salary-4000-5000",
-          "checked": false,
-          "attr": "data-url-replacement='replacement-url/?customExampleValue=wowowow' data-endpoint='__api-response--filters.html'",
+          "checked": true,
+          "attr": "data-url-replacement='__api-response--filters.html' data-endpoint='__api-response--filters.html'",
           "hook": "filters-input"
         },
         {
           "label": "5000 - 6000",
           "value": "5000-6000",
           "id": "filter-salary-5000-6000",
-          "checked": false,
-          "attr": "data-url-replacement='replacement-url/?customExampleValue=wowowow' data-endpoint='__api-response--filters.html'",
+          "checked": true,
+          "attr": "data-url-replacement='__api-response--filters.html' data-endpoint='__api-response--filters.html'",
          "hook": "filters-input"
         }]
     },
@@ -246,8 +245,8 @@
           "label": "Newest first",
           "value": "other-sorting-newest",
           "id": "filter-other-sorting-newest",
-          "checked": false,
-          "attr": "data-url-replacement='replacement-url/?customExampleValue=wowowow' data-endpoint='__api-response--filters.html'",
+          "checked": true,
+          "attr": "data-url-replacement='__api-response--filters.html' data-endpoint='__api-response--filters.html'",
           "sortItem": true,
           "hook": "filters-input"
         },
@@ -255,7 +254,7 @@
           "label": "Oldest first",
           "value": "other-sorting-popular",
           "id": "filter-other-sorting-popular",
-          "attr": "data-url-replacement='replacement-url/?customExampleValue=wowowow' data-endpoint='__api-response--filters.html'",
+          "attr": "data-url-replacement='__api-response--filters.html' data-endpoint='__api-response--filters.html'",
           "sortItem": true,
           "hook": "filters-input"
         }

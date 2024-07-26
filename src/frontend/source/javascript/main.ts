@@ -8,10 +8,12 @@ import '@/utilities/detect-touch'
 import '@/utilities/detect-reduced-motion'
 import '@/utilities/detect-keyboard-focus'
 import '@/utilities/set-theme'
+import '@/utilities/replace-content'
 import '@/utilities/in-view'
 import '@/components/image'
 import '@/utilities/focus-trap'
 import '@/utilities/scroll-to'
+import '@/components/loading-indicator'
 
 import Events from '@utilities/events'
 

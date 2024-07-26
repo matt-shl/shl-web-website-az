@@ -2,5 +2,7 @@
   "sortAndFilter": "Sort and Filter",
   "show": "Show",
   "results": "results",
-  "resetAll": "Reset filters"
+  "resetAll": "Reset filters",
+  "viewMoreOptions": "View more options",
+  "viewLessOptions": "View less options"
 }

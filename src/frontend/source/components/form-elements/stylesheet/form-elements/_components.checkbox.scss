@@ -16,7 +16,7 @@
   --checkbox-label-color: var(--color-dark-blue);
 
   --checkbox-label-color-disabled: var(--color-black-30);
-  --checkbox-color-disabled: var(--color-plum-20);
+  --checkbox-color-disabled: rgba(var(--color-dark-blue-rgb), 0, 2);
 }
 
 .c-checkbox {

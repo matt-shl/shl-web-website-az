@@ -14,7 +14,7 @@
   --radio-label-color: $color-dark-blue;
 
   --radio-label-color-disabled: var(--color-dark-blue);
-  --radio-color-disabled: var(--color-plum-20);
+  --radio-color-disabled: rgba(var(--color-dark-blue-rgb), 0, 2);
 }
 
 .c-radio {

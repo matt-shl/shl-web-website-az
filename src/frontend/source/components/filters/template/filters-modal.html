@@ -12,7 +12,7 @@
   title: filtersLabels.sortAndFilter,
   keepScrollPosition: true,
   classes: 'filters__modal modal--drawer-mobile-full-height',
-  hook: 'filters-modal'
+  hook: "filters-modal"
 }) %}
 
     {% if data.filters.length %}
@@ -38,6 +38,8 @@
               title: filter.label
             }) %}
 
+              {% set moreThanFourOptions = filter.options.length > 4 %}
+
               <fieldset class="filters__accordion-options">
                 {{ form[filter.inputType]({
                   name: filter.label,
@@ -47,18 +49,16 @@
                 }) }}
               </fieldset>
 
+
+              {# @todo check with anne the specs for this #}
+              {# {% if moreThanFourOptions %}
               {{ button({
                 variant: 'link',
-                label: filtersLabels.showAll + ' ' + filter.label,
+                label: filtersLabels.viewMoreOptions,
                 class: 'filters__options-link',
                 url: '#'
               })}}
-
-              <div class="filters__options-links u-hidden">
-                {% for linkItem in filter.options %}
-                  <a href="{{ linkItem.url }}" class="filters__options-link">{{ linkItem.label }}</a>
-                {% endfor %}
-              </div>
+              {% endif %} #}
 
             {% endcall %}
           {% endif %}
