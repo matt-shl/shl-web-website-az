@@ -101,15 +101,9 @@ class Filters {
     if (!this.element) return
     const { y, height } = this.element.getBoundingClientRect()
 
-    // @TODO check with anne how the navigation is going to work
-    if (
-      (y === 0 && ScreenDimensions.isTabletLandscapeAndBigger) ||
-      (y < height * 2 && html.classList.contains('header--is-going-up'))
-    ) {
-      html.classList.add(CLASS_IS_FILTERS_LIST_STICKY)
-    } else {
-      html.classList.remove(CLASS_IS_FILTERS_LIST_STICKY)
-    }
+    html.classList[y < height && ScreenDimensions.isTabletLandscapeAndBigger ? 'add' : 'remove'](
+      CLASS_IS_FILTERS_LIST_STICKY,
+    )
   }
 
   handleAnchorClick(e: MouseEvent, anchor: HTMLAnchorElement) {
@@ -133,7 +127,6 @@ class Filters {
   #getNewResults(element?: HTMLInputElement | HTMLButtonElement, shouldPushState?: boolean) {
     this.urlReplacement = element?.dataset.urlReplacement || ''
     this.endpoint = element?.dataset.endpoint || this.urlReplacement
-    console.log('this.endpoint', this.endpoint)
 
     if (this.endpoint) {
       Events.$trigger('loader::show')

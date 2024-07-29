@@ -1,20 +1,25 @@
 .c-filters {
-  position: sticky;
-  top: 0;
-  z-index: 5;
-  transition: 300ms;
-  transition-property: top, box-shadow;
+  transition: var(--header-transition-time) var(--header-transition-ease);
+  background-color: $color-white;
+  transition-property: transform, opacity, box-shadow;
+
+  @include screen-lg-and-bigger {
+    top: 0;
+    z-index: 15;
+    position: sticky;
+
+    .header--is-going-up.is--filters-sticky & {
+      transform: translateY(var(--header-height));
+    }
+
+    .is--filters-sticky & {
+      border-top: 1px solid rgba(var(--color-dark-blue-rgb), 0.1);
+      box-shadow: $box-shadow-sticky-under-header;
+    }
+  }
 
   &:first-child {
     margin-block-start: $spacing-80;
-  }
-
-  .header--is-sticky.header--is-going-up & {
-    top: 140px;
-  }
-
-  .is--filters-sticky & {
-    box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.1);
   }
 
   .modal__body {
