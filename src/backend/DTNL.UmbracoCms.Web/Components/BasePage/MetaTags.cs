@@ -103,7 +103,7 @@ public class MetaTags : ViewComponentExtended
         string ogTitle = socialSharing?.OgTitle.NullOrEmptyAsNull() ?? GetTitle(page);
         string ogDescription = socialSharing?.OgDescription.NullOrEmptyAsNull() ?? GetMetaDescription(page);
 
-        MediaWithCrops? ogImage = socialSharing?.OgImage ?? (page as ICompositionHero)?.HeroImage;
+        MediaWithCrops? ogImage = socialSharing?.OgImage ?? GetHeroImage(page);
         string? ogImageUrl = (ogImage?.Content as Umbraco.Cms.Web.Common.PublishedModels.Image)?.GetDefaultCropUrl(1200, 630, urlMode: UrlMode.Absolute);
 
         return new OpenGraphMetaTags
@@ -121,7 +121,7 @@ public class MetaTags : ViewComponentExtended
         string twitterTitle = socialSharing?.TwitterTitle.NullOrEmptyAsNull() ?? socialSharing?.OgTitle.NullOrEmptyAsNull() ?? GetTitle(page);
         string twitterDescription = socialSharing?.TwitterDescription.NullOrEmptyAsNull() ?? socialSharing?.OgDescription.NullOrEmptyAsNull() ?? GetMetaDescription(page);
 
-        MediaWithCrops? twitterImage = socialSharing?.TwitterImage ?? socialSharing?.OgImage ?? (page as ICompositionHero)?.HeroImage;
+        MediaWithCrops? twitterImage = socialSharing?.TwitterImage ?? socialSharing?.OgImage ?? GetHeroImage(page);
         string? twitterImageUrl = (twitterImage?.Content as Umbraco.Cms.Web.Common.PublishedModels.Image)?.GetDefaultCropUrl(1200, 630, urlMode: UrlMode.Absolute);
 
         return new TwitterMetaTags
@@ -129,6 +129,20 @@ public class MetaTags : ViewComponentExtended
             Title = twitterTitle,
             Description = twitterDescription,
             ImageUrl = twitterImageUrl,
+        };
+    }
+
+    private static MediaWithCrops? GetHeroImage(IPublishedContent page)
+    {
+        if (page is not ICompositionHero heroPage)
+        {
+            return null;
+        }
+
+        return heroPage.Hero?.FirstOrDefault()?.Content switch
+        {
+            NestedBlockProductHero productHero => productHero.Image,
+            _ => null,
         };
     }
 }
