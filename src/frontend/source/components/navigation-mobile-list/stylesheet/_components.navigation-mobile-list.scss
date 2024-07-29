@@ -19,6 +19,11 @@
   text-align: start;
   width: 100%;
 
+  > svg {
+    width: 24px;
+    height: 24px;
+  }
+
   &--parent {
     @include h5;
     display: flex;
