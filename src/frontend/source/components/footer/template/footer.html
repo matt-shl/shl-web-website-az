@@ -1,5 +1,6 @@
 {% from 'slogan.html' import slogan %}
 {% from 'button.html' import button %}
+{% from 'slogan.html' import slogan %}
 
 {% import 'accordion.html' as accordion %}
 
@@ -8,6 +9,14 @@
 {% set commonLabels = global.resource.common %}
 
 <footer class="c-footer" id="footer">
+
+  {% if footerScrollingText %}
+    {{ slogan({
+      classes: "footer__scrolling-text",
+      text: footerScrollingText
+    }) }}
+  {% endif %}
+
   <div class="footer__main">
     <p class="footer__description">
       {{footerContent.description}}

@@ -21,6 +21,7 @@ $assets-path: '/assets/';
 
 /* components:scss */
 @import '@/components/button/stylesheet/_components.button';
+@import '@/components/slogan/stylesheet/_components.slogan';
 @import '@/components/footer/stylesheet/_components.footer';
 @import '@/components/header/stylesheet/_components.header';
 @import '@/components/image/stylesheet/_components.image';
@@ -31,7 +32,6 @@ $assets-path: '/assets/';
 @import '@/components/modal/stylesheet/_components.modal';
 @import '@/components/accordion/stylesheet/_components.accordion';
 @import '@/components/toast/stylesheet/_components.toast';
-@import '@/components/slogan/stylesheet/_components.slogan';
 @import '@/components/navigation-desktop/stylesheet/_components.navigation-desktop';
 @import '@/components/flyout/stylesheet/_components.flyout';
 @import '@/components/hero-home/stylesheet/_components.hero-home';

@@ -1,6 +1,7 @@
 {% set theme = "light-blue" %}
 {% set themeColor = "#007cbe" %}
 {% set headerIsWhite = true %}
+{% set footerScrollingText = global.content.productDetail.footerScrollingText %}
 
 {% extends 'layouts/default.html' %}
 
@@ -65,6 +66,7 @@
         Suspendisse consectetur purus justo, sed ornare dolor blandit id.</p>
     </div>
   {% endcall %}
+
   {% call layoutSection({
     id: "test2",
     sectionTitle: "test2",
