@@ -37,16 +37,24 @@
 .section-card-carousel__card,
 .section-card-carousel__content-outer {
   @include col-span(12);
+}
 
-  :not(.c-section-card-carousel--show-carousel &) {
-    @include screen-lg-and-bigger {
-      @include col-span(4);
+.c-section-card-carousel {
+  &:not(.c-section-card-carousel--show-carousel):not(.c-section-card-carousel--no-carousel-three) {
+    .section-card-carousel__card,
+    .section-card-carousel__content-outer {
+      @include screen-lg-and-bigger {
+        @include col-span(4);
+      }
     }
   }
 
-  .c-section-card-carousel--no-carousel-three & {
-    @include screen-xl-and-bigger {
-      @include col-span(3);
+  &.c-section-card-carousel--no-carousel-three {
+    .section-card-carousel__card,
+    .section-card-carousel__content-outer {
+      @include screen-xl-and-bigger {
+        @include col-span(3);
+      }
     }
   }
 }
