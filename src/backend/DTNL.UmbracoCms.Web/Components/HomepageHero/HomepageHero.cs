@@ -10,7 +10,7 @@ public class HomepageHero : ViewComponentExtended
 
     public Image? Image { get; set; }
 
-    public string? VideoUrl { get; set; }
+    public Video? VideoUrl { get; set; }
 
     public Button? MainButton { get; set; }
 
@@ -18,32 +18,29 @@ public class HomepageHero : ViewComponentExtended
 
     public string? ShortDescription { get; set; }
 
-    public IViewComponentResult Invoke(NestedBlockHero? element)
+    public IViewComponentResult Invoke(PageHome? element)
     {
-        if (element == null)
-        {
-            return View("/Components/Hero/HomepageHero.cshtml", this);
-        }
+        Title = element?.HeroTitle;
 
-        Image? image = Image.Create(element.HeroImage);
+        Image? image = Image.Create(element?.HeroImage);
 
         if (image == null)
         {
-            return View("/Components/Hero/HomepageHero.cshtml", this);
+            return Content("");
         }
 
         image.Classes = "homepage-hero__image";
+        Image = image;
 
-        Title = element.HeroTitle;
 
-        MainButton = element.MainButtonLink is null ? null : Button.Create(element.MainButtonLink)
+        MainButton = element?.MainButtonLink is null ? null : Button.Create(element.MainButtonLink)
             .With(b =>
             {
                 b.Class = "button--icon hero-home__cta";
                 b.Hook = "homepage-hero-button";
             });
 
-        SecondaryButton = element.MainButtonLink is null ? null : Button.Create(element.SecondaryButtonLink)
+        SecondaryButton = element?.SecondaryButtonLink is null ? null : Button.Create(element.SecondaryButtonLink)
             .With(b =>
             {
                 b.Class = "button--icon hero-home__cta";
@@ -51,10 +48,13 @@ public class HomepageHero : ViewComponentExtended
                 b.Hook = "homepage-hero-button";
             });
 
-        Image = image;
-        ShortDescription = element.ShortDescription;
-        VideoUrl = element.HeroVideo;
+        ShortDescription = element?.ShortDescription;
 
-        return View("/Components/Hero/HomepageHero.cshtml", this);
+
+
+        VideoUrl = Video.Create((NestedBlockVideoNativeUrl?) element?.HeroVideo?.FirstOrDefault()?.Content);
+
+
+        return View("HomepageHero", this);
     }
 }

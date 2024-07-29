@@ -1,27 +1,74 @@
 @using DTNL.UmbracoCms.Web.Helpers.Extensions
-@model String
+@model DTNL.UmbracoCms.Web.Components.Video
+
+<div class="c-video @Model.Classes"
+     itemprop="video" itemscope itemtype="http://schema.org/VideoObject"
+     id="video-@Model.InstanceId"
+     data-video-platform="@Model.Platform"
+     data-video-id="@(Model.Id ?? Model.InstanceId)"
+     asp-data-video-time="@Model.StartTime"
+     asp-data-video-autopause="@(Model is { Platform: "vimeo", AutoPause: true } ? "true" : null)"
+     asp-data-video-muted="@(Model.Muted ? "true" : null)"
+     asp-data-video-autoplay="@(Model.Autoplay ? "true" : null)"
+     asp-data-video-playsinline="@(Model.PlaysInLine ? "true" : null)"
+     asp-data-video-controls="@(Model.Controls ? "true" : null)"
+     asp-data-video-loop="@(Model.Loop ? "true" : null)"
+     asp-data-video-sources="@Model.SourcesJson"
+     asp-data-video-closedcaptions="@Model.ClosedCaptions"
+     aria-label="@Model.Title.NullOrEmptyAsNull()"
+     js-hook-inview="@(Model.InView ? "" : null)"
+     asp-data-inview-persistent="@(Model.InView ? "true" : null)"
+     asp-data-inview-trigger="@(Model.InView ? $"video[video-{Model.InstanceId}]::inview" : null)"
+     role="application"
+     js-hook-video>
+
+    @if (!Model.Title.IsNullOrEmpty())
+    {
+        <meta itemprop="name" content="@Model.Title" />
+    }
+    @if (!Model.Description.IsNullOrEmpty())
+    {
+        <meta itemprop="description" content="@Model.Description" />
+    }
+    @if (!Model.TotalTime.IsNullOrEmpty())
+    {
+        <meta itemprop="duration" content="@Model.TotalTime" />
+    }
+    @if (!(Model.Thumbnail?.Url).IsNullOrEmpty())
+    {
+        <meta itemprop="thumbnailUrl" content="@Model.Thumbnail.Url" />
+    }
+    @if (!Model.EmbedUrl.IsNullOrEmpty())
+    {
+        <meta itemprop="embedURL" content="@Model.EmbedUrl" />
+    }
+    @if (!Model.UploadDate.IsNullOrEmpty())
+    {
+        <meta itemprop="uploadDate" content="@Model.UploadDate" />
+    }
 
 
-<div class="c-video c-video--background video--is-initialised video--is-playing" itemprop="video" itemscope="" itemtype="http://schema.org/VideoObject" id="video-hero-video" data-video-platform="native" data-video-id="hero-video" data-video-muted="true" data-video-autoplay="true" data-video-playsinline="true" data-video-loop="true" data-video-sources="[{&quot;size&quot;:1920,&quot;source&quot;:[{&quot;url&quot;:&quot;http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4&quot;,&quot;type&quot;:&quot;video/mp4&quot;}]},{&quot;size&quot;:1280,&quot;source&quot;:[{&quot;url&quot;:&quot;http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4&quot;,&quot;type&quot;:&quot;video/mp4&quot;}]},{&quot;size&quot;:1024,&quot;source&quot;:[{&quot;url&quot;:&quot;http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4&quot;,&quot;type&quot;:&quot;video/mp4&quot;}]},{&quot;size&quot;:320,&quot;source&quot;:[{&quot;url&quot;:&quot;http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4&quot;,&quot;type&quot;:&quot;video/mp4&quot;}]}]" aria-label="Homepage video" js-hook-inview="" data-inview-persistent="true" data-inview-trigger="video[video-hero-video]::inview" role="application" js-hook-video="">
-    <meta itemprop="name" content="Homepage video">
-    <meta itemprop="description" content="Homepage video description">
+    <div class="video__player" js-hook-video-player></div>
 
-    <div class="video__player" js-hook-video-player=""><video loop="loop" playsinline="playsinline" autoplay="autoplay" muted="muted"><source type="video/mp4" src="@Model"></video></div>
     <div class="video__loader"></div>
-    <div class="video__button-container">
-        <button class="video__button video__button--play" js-hook-video-play="">
+
+    @if (Model.Controls)
+    {
+        <button class="video__button video__button--play" js-hook-video-play>
             <span class="video__button-icon"></span>
             <span class="u-sr-only">Play</span>
         </button>
 
-        <button class="video__button video__button--pause" js-hook-video-pause="">
-            <span class="video__button-icon">❙❙</span>
+        <button class="video__button video__button--pause" js-hook-video-pause>
+            <span class="video__button-icon">&#10073;&#10073;</span>
             <span class="u-sr-only">Pause</span>
         </button>
 
-        <button class="video__button video__button--replay" js-hook-video-replay="">
-            <span class="video__button-icon">↻</span>
+        <button class="video__button video__button--replay" js-hook-video-replay>
+            <span class="video__button-icon">&#8635;</span>
             <span class="u-sr-only">Replay</span>
         </button>
-    </div>
+    }
+
+    <partial name="Image" model="Model.Thumbnail" />
 </div>

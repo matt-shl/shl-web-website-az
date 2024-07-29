@@ -52,10 +52,10 @@ public class Video
     public bool InView { get; set; } = true;
 
     public static Video? Create(
-        NestedBlockVideo block,
+        NestedBlockVideo? block,
         string? css = null)
     {
-        if (block.Video?.FirstOrDefault()?.Content is not { } videoElement)
+        if (block?.Video?.FirstOrDefault()?.Content is not { } videoElement)
         {
             return null;
         }
@@ -96,6 +96,30 @@ public class Video
             Classes = css,
             Sources = sources,
             Thumbnail = Image.Create(block.Preview, 720, 400, "video__image"),
+        };
+    }
+
+    public static Video? Create(
+        NestedBlockVideoNativeUrl? block,
+        string? css = null)
+    {
+        if (block is null)
+        {
+            return null;
+        }
+
+        string? id = null;
+        string platform;
+
+        platform = "native";
+
+        return new Video
+        {
+            Id = id,
+            InstanceId = $"{Random.Shared.Next()}",
+            Platform = platform,
+            Classes = css,
+            Sources = GetSources(block),
         };
     }
 
