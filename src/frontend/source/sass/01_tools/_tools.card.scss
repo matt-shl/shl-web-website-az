@@ -10,6 +10,7 @@ $card-container-size-xs: 0px;
 }
 
 @mixin card-base {
+  width: 100%;
   color: inherit;
   display: block;
   container-name: card;

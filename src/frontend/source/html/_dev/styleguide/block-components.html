@@ -91,8 +91,8 @@
       }) }}
     </div>
     <div class="styleguide__component-col styleguide__component-col--3">
-      {% from 'article.html' import article %}
-      {{ article({
+      {% from 'card-knowledge.html' import cardKnowledge %}
+      {{ cardKnowledge({
         title: "Article",
         image: {},
         date: "May 2024",
@@ -102,7 +102,7 @@
       }) }}
     </div>
     <div class="styleguide__component-col styleguide__component-col--3">
-      {{ article({
+      {{ cardKnowledge({
         title: "Article",
         image: {},
         tag: "Whitepaper",

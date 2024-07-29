@@ -1,0 +1,80 @@
+@import '../../../../node_modules/swiper/swiper.scss';
+
+.c-carousel {
+  position: relative;
+  height: fit-content;
+
+  .swiper-slide {
+    height: auto;
+  }
+}
+
+.carousel__footer {
+  @include screen-md-and-smaller {
+    display: none;
+  }
+}
+
+.carousel__pagination {
+  position: relative;
+  margin-top: $spacing-64;
+  height: 1px;
+  display: flex;
+
+  &::before {
+    content: '';
+    position: absolute;
+    height: 1px;
+    left: 0;
+    right: 0;
+    top: 1px;
+    bottom: 1px;
+    background-color: var(--color-content-20);
+  }
+
+  &.swiper-pagination-lock {
+    display: none;
+  }
+}
+
+.carousel__pagination-fill {
+  width: 100%;
+  height: 3px;
+  transform-origin: 0%;
+  background-color: var(--color-content);
+}
+
+.carousel__swipe-indicator {
+  border-radius: $radii-full;
+  background-color: $color-white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  opacity: 0;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: $spacing-16;
+  transition: 300ms opacity;
+  z-index: 5;
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  &.is-active {
+    opacity: 1;
+  }
+
+  html.is-touch & {
+    display: none;
+  }
+
+  @include screen-md-and-smaller {
+    display: none;
+  }
+}

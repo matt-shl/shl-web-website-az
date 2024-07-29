@@ -39,7 +39,7 @@ Options:
     </div>
 
     {{ shape({
-      class: 'card-overlay__shape'
+      class: 'card-overlay__shape' ~ (' card-overlay__shape--' + data.position if data.position else '')
     }) }}
 
   </div>

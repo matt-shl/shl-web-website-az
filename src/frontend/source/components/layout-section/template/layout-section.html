@@ -1,0 +1,25 @@
+{% macro layoutSection(data) %}
+{% set themeClass = data.theme if data.theme else 't-white' %}
+  <section class="c-layout-section
+    {%- if data.variant %} layout-section--variant-{{ data.variant }}{% endif %}
+    {%- if data.classes %} {{ data.classes }}{% endif %}
+    {{themeClass}}"
+    {%- if data.id %} id="{{data.id}}"{% endif %}
+    {%- if data.hook %} js-hook-{{ data.hook}} {% endif %}
+    js-hook-inview data-inview-threshold="0.5" data-inview-persistent="true">
+
+    <div class="layout-section__inner">
+    {% if not data.fullWidth %}
+    <div class="layout-section__container{% if data.containerClass %} {{ data.containerClass }}{% endif %}">
+    {% endif %}
+
+      <div class="layout-section__wrapper">
+        {{ caller() }}
+      </div>
+
+    {% if not data.fullWidth %}
+    </div>
+    {% endif %}
+    </div>
+  </section>
+{% endmacro %}

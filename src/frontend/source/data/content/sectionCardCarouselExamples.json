@@ -1,0 +1,212 @@
+{
+  "icon": {
+    "carouselcarouselCardType": "icon",
+    "title": "One focus, many uses",
+    "description": "A single-minded dedication can unlock a world of possibilities. By honing in on one core skill or idea, you create a foundation for diverse applications. This focused approach allows for deep expertise while simultaneously enabling adaptability across various domains.",
+    "ctaPrimary": {
+      "url": "#",
+      "label": "About SHL Medical"
+    },
+    "ctaSecondary": {
+      "url": "#",
+      "label": "Purpose & values"
+    },
+    "showThreeCardsSideBySide": false,
+    "cards": [
+      {
+        "url": "#",
+        "icon": "rocket",
+        "title": "For start-ups",
+        "content": "Hardcoded pale pink theme. Hardcoded pale pink theme."
+      },
+      {
+        "url": "#",
+        "icon": "rocket",
+        "title": "For start-ups",
+        "content": "Hardcoded pale pink theme. Hardcoded pale pink theme."
+      },
+      {
+        "url": "#",
+        "icon": "rocket",
+        "title": "For start-ups",
+        "content": "Hardcoded pale pink theme. Hardcoded pale pink theme."
+      },
+      {
+        "url": "#",
+        "icon": "rocket",
+        "title": "For start-ups",
+        "content": "Hardcoded pale pink theme. Hardcoded pale pink theme."
+      },
+      {
+        "url": "#",
+        "icon": "rocket",
+        "title": "For start-ups",
+        "content": "Hardcoded pale pink theme. Hardcoded pale pink theme."
+      },
+      {
+        "url": "#",
+        "icon": "rocket",
+        "title": "For start-ups",
+        "content": "Hardcoded pale pink theme. Hardcoded pale pink theme."
+      },
+      {
+        "url": "#",
+        "icon": "rocket",
+        "title": "For start-ups",
+        "content": "Hardcoded pale pink theme. Hardcoded pale pink theme."
+      },
+      {
+        "url": "#",
+        "icon": "rocket",
+        "title": "For start-ups",
+        "content": "Hardcoded pale pink theme. Hardcoded pale pink theme."
+      },
+      {
+        "url": "#",
+        "icon": "rocket",
+        "title": "For start-ups",
+        "content": "Hardcoded pale pink theme. Hardcoded pale pink theme."
+      },
+      {
+        "url": "#",
+        "icon": "rocket",
+        "title": "For start-ups",
+        "content": "Hardcoded pale pink theme. Hardcoded pale pink theme."
+      },
+      {
+        "url": "#",
+        "icon": "rocket",
+        "title": "For start-ups",
+        "content": "Hardcoded pale pink theme. Hardcoded pale pink theme."
+      },
+      {
+        "url": "#",
+        "icon": "rocket",
+        "title": "For start-ups",
+        "content": "Hardcoded pale pink theme. Hardcoded pale pink theme."
+      }
+    ]
+  },
+  "number": {
+    "carouselCardType": "number",
+    "title": "We take bold actions",
+    "cards": [
+      {
+        "title": "480,000",
+        "subtitle": "Tons of plastic saved",
+        "content": "We saved 480,000 tons of plastic by moving to a new manufacturing machine. That’s the weight of 24 elephants."
+      },
+      {
+        "title": "193,000",
+        "subtitle": "Liters of water saved",
+        "content": "193,000 liters of water saved by using a sustainable dye for our products."
+      },
+      {
+        "title": "80%",
+        "subtitle": "Manufacturing waste recycled",
+        "content": "80% of our manufacturing waste is recycled. "
+      },
+      {
+        "title": "10+ devs",
+        "subtitle": "Working on this project",
+        "content": "We have a team of 10+ developers working on this project. They are dedicated to making the world a better place."
+      },
+      {
+        "title": "100%",
+        "subtitle": "Renewable energy",
+        "content": "We use 100% renewable energy to power our factories. This helps reduce our carbon footprint."
+      },
+      {
+        "title": "1,000,000",
+        "subtitle": "Trees planted",
+        "content": "We have planted 1,000,000 trees to help offset our carbon emissions. This is part of our commitment to sustainability."
+      },
+      {
+        "title": "100%",
+        "subtitle": "Recyclable packaging",
+        "content": "All of our packaging is 100% recyclable. This helps reduce waste and protect the environment."
+      }
+    ]
+  },
+  "image": {
+    "carouselCardType": "image",
+    "title": "Where we are",
+    "ctaPrimary": {
+      "url": "#",
+      "label": "View all locations"
+    },
+    "cards": [
+      {
+        "title": "Switzerland",
+        "content": "Switzerland is known for its beautiful landscapes and high quality of life. It is also home to SHL Medical, where we design and manufacture our products.",
+        "url": "#"
+      },
+      {
+        "title": "Taiwan",
+        "content": "Taiwan is a hub for technology and innovation. It is also home to one of our manufacturing facilities, where we produce our products."
+      },
+      {
+        "title": "Sweden",
+        "content": "Sweden is known for its commitment to sustainability and environmental protection. It is also home to one of our research and development centers.",
+        "url": "#"
+      }
+    ]
+  },
+  "knowledge": {
+    "carouselCardType": "knowledge",
+    "title": "Discover the latest news, events and insights",
+    "ctaPrimary": {
+      "url": "#",
+      "label": "Discover all"
+    },
+    "cards": [
+      {
+        "tag": "News",
+        "title": "SHL Medical expert to speak at Novartis Campus in Basel",
+        "content": "SHL Medical will be in Basel for the Drug-Device Combination Products for Parenteral Use workshop.",
+        "url": "#",
+        "ctaLabel": "Register now"
+      },
+      {
+        "tag": "Insights",
+        "title": "Strengthening a global manufacturing network through advanced simulation technologies",
+        "content": "In the Pre-filled Syringes and Injection Devices Issue of ONdrug Delivery Magazine, published ahead of the 2023 PDA Universe.",
+        "ctaLabel": "Register now"
+      },
+      {
+        "tag": "Events",
+        "title": "SHL to attend 2022 NSTC Science Train Program",
+        "content": "SHL Medical is excited to announce our first-time participation in the NSTC Science Train Program, 2022.",
+        "url": "#",
+        "ctaLabel": "Register now"
+      }
+    ]
+  },
+  "contact": {
+    "carouselCardType": "contact",
+    "title": "We value diversity and strive for excellence",
+    "description": "At our workplace, we value our international environment. We're not deterred by setbacks, but instead, we carry on with determination. We diligently research because we believe in the power of knowledge. Above all, our priority is always people.",
+    "ctaPrimary": {
+      "url": "#",
+      "label": "Discover all"
+    },
+    "cards": [
+      {
+        "name": "Dr. John Doe",
+        "role": "CEO",
+        "email": "john.doe@shl-medical.com",
+        "phoneNumber": "+41 123 456 789"
+      },{
+        "name": "Dr. John Doe",
+        "role": "Senior Testing Engineer",
+        "tag": "Zurich",
+        "email": "john.doe@shl-medical.com",
+        "phoneNumber": "+41 123 456 789"
+      },{
+        "name": "Dr. John Doe",
+        "role": "CEO",
+        "description": "<h4>Topic</h4><p>Development of silicone-based test model for autoinjector functional performance analysis</p></br><h4>When</h4><p>June 25 2024</p><p>10:00 (CEST)</p>"
+      }
+    ]
+  }
+}

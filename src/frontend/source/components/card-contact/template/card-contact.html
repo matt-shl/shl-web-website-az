@@ -1,0 +1,60 @@
+{% from 'card-overlay.html' import cardOverlay %}
+{% from 'image.html' import image %}
+{% from 'button.html' import button %}
+
+
+{% set commonLabels = global.resource.common %}
+
+{% macro cardContact(data) %}
+  <div class="c-card-contact
+  {%- if data.classes %} {{ data.classes }}{% endif -%}">
+
+    <div class="card-contact__image-container">
+      {{ image({
+        objectFit: true,
+        classes: 'card-contact__image',
+        imageStyle: 'card-contact'
+      }) }}
+
+      {% if data.tag %}
+      {{ cardOverlay({
+        classes: 'card-contact__card-overlay',
+        tag: data.tag,
+        position: 'start',
+        visible: true
+      }) }}
+      {% endif %}
+    </div>
+
+    <h3 class="card-contact__name">{{ data.name }}</h3>
+
+    {% if data.role %}
+      <span class="card-contact__role card-contact__label">{{ data.role }}</span>
+    {% endif %}
+
+    {% if data.email %}
+      {{ button({
+        classes: 'card-contact__label',
+        label: data.email,
+        variant: 'link',
+        url: 'mailto:' ~ data.email,
+        ariaLabel: commonLabels.sendEmailTo + ' ' + data.email
+      }) }}
+    {% endif %}
+
+    {% if data.phoneNumber %}
+      {{ button({
+        classes: 'card-contact__label',
+        label: data.phoneNumber,
+        variant: 'link',
+        url: 'tel:' ~ data.phoneNumber,
+        ariaLabel: commonLabels.call + ' ' + data.name + ' '+  data.phoneNumber
+      }) }}
+    {% endif %}
+
+    {% if data.description %}
+      <div class="card-contact__description s-rich-text">{{ data.description | safe }}</div>
+    {% endif %}
+
+  </div>
+{% endmacro %}

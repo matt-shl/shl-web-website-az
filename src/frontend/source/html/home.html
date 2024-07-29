@@ -6,6 +6,10 @@
 
 {% from 'hero-home.html' import heroHome %}
 {% from 'pagination.html' import pagination %}
+{% from 'layout-section.html' import layoutSection %}
+{% from 'card-icon.html' import cardIcon %}
+{% from 'carousel.html' import carousel %}
+{% from 'section-card-carousel.html' import sectionCardCarousel %}
 
 {% block hero %}
   {{ heroHome({
@@ -105,4 +109,12 @@
 
   {{ pagination (global.content.pagination) }}
 
+  {{ sectionCardCarousel(global.content.sectionCardCarouselExamples.icon) }}
+  {{ sectionCardCarousel(global.content.sectionCardCarouselExamples.number) }}
+  {{ sectionCardCarousel(global.content.sectionCardCarouselExamples.image) }}
+  {{ sectionCardCarousel(global.content.sectionCardCarouselExamples.image | clone | merge({showThreeCardsSideBySide: true})) }}
+  {{ sectionCardCarousel(global.content.sectionCardCarouselExamples.knowledge | clone | merge({showThreeCardsSideBySide: true})) }}
+  {{ sectionCardCarousel(global.content.sectionCardCarouselExamples.contact) }}
+
 {% endblock %}
+

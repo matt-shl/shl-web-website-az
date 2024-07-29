@@ -29,13 +29,13 @@
 
 .page__content-items {
   opacity: 1;
-  transform: translateY(0);
-  transition: 800ms ease-in-out;
-  transition-delay: 200ms;
-  transition-property: transform, opacity;
+  // transform: translateY(0);
+  // transition: 800ms ease-in-out;
+  // transition-delay: 200ms;
+  // transition-property: transform, opacity;
 
   .page__content.is--out-view & {
-    opacity: 0;
-    transform: translateY(40px);
+    // opacity: 0;
+    // transform: translateY(40px);
   }
 }

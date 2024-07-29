@@ -1,0 +1,36 @@
+:root {
+  --layout-section-gap-min-value: 24; // mobile gap value
+  --layout-section-gap: 24; // fallback value
+}
+
+.c-layout-section {
+  @include theme;
+
+  &:not(.t-white) {
+    margin: $spacing-40 0;
+    border-radius: $radii-40 $radii-40;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.layout-section__inner {
+  padding-block: $spacing-40;
+
+  @include screen-md-and-bigger {
+    padding-block: $spacing-80;
+  }
+  overflow: hidden;
+}
+
+.layout-section__container {
+  @include container;
+  display: flex;
+  flex-direction: column;
+}
+
+.layout-section__wrapper {
+  width: 100%;
+}

@@ -1,0 +1,83 @@
+.section-card-carousel__container {
+  @include grid;
+  row-gap: $spacing-40;
+
+  @include screen-md-and-bigger {
+    row-gap: $spacing-64;
+  }
+}
+
+.section-card-carousel__content-inner {
+  max-width: 450px;
+  margin: 0 auto;
+
+  :not(.c-section-card-carousel--show-carousel &) {
+    @include screen-lg-and-bigger {
+      max-width: 350px;
+    }
+  }
+}
+
+.section-card-carousel__title {
+  @include h2;
+
+  margin-block-end: $spacing-40;
+
+  @include screen-md-and-bigger {
+    margin-block-end: $spacing-64;
+  }
+}
+
+.section-card-carousel__description {
+  @include body-l;
+
+  text-wrap: balance;
+}
+
+.section-card-carousel__card,
+.section-card-carousel__content-outer {
+  @include col-span(12);
+
+  :not(.c-section-card-carousel--show-carousel &) {
+    @include screen-lg-and-bigger {
+      @include col-span(4);
+    }
+  }
+
+  .c-section-card-carousel--no-carousel-three & {
+    @include screen-xl-and-bigger {
+      @include col-span(3);
+    }
+  }
+}
+
+.section-card-carousel__card {
+  @include screen-md-only {
+    @include col-span(6);
+  }
+
+  .c-section-card-carousel--no-carousel-three & {
+    @include screen-lg-only {
+      @include col-span(4);
+    }
+  }
+}
+
+.section-card-carousel__button-container {
+  margin-block-start: $spacing-24;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+
+  @include screen-md-and-bigger {
+    margin-block-start: $spacing-32;
+  }
+
+  &:first-child {
+    margin-block-start: 0;
+  }
+}
+
+.section-card-carousel__carousel {
+  @include col-span(12);
+}

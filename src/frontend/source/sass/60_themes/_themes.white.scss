@@ -11,7 +11,17 @@
   --button-secondary-border-color: var(--color-content);
 
   // Links
+  --theme-color-content-60: #{rgba($color-dark-blue-rgb, 0.6)};
   --theme-color-content-20: #{rgba($color-dark-blue-rgb, 0.2)};
+
+  // Cards
+  --color-card-background: #{$color-light-blue};
+  --color-card-content: #{$color-white};
+
+  --tag-color: #{$color-dark-blue};
+  --tag-bg-color: #{$color-pale-blue};
+
+  --contact-role-color: #{$color-light-blue};
 }
 
 html.t-white {
