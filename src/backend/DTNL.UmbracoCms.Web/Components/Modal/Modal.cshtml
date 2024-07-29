@@ -1,4 +1,3 @@
-@using DTNL.UmbracoCms.Web.Components;
 @model DTNL.UmbracoCms.Web.Components.Modal;
 
 <div class="c-modal @Model.Class @(Model.Size != null ? $"modal-size--{Model.Size}" : null)"
@@ -11,15 +10,12 @@
      data-modal-auto-close="@(Model.AutoClose)"
      js-hook-modal>
     <div class="modal__container">
-
         <div class="modal__content" role="dialog">
             @if (Model.Size != "navigation-mobile")
             {
                 <div class="modal__header">
                      <div>
                         <h2 class="modal__title">{{ Model.Title }}</h2>
-
-                        @this.RenderBody();
 
                         @if (Model.Subtitle != null)
                         {
@@ -37,7 +33,8 @@
             } else
             {
                 <div class="modal__header">
-                    <a href="/" class="modal__header-logo" title="{{ global.resource.navigation.home }}">
+                    @*  {{ global.resource.navigation.home }} *@
+                    <a href="/" class="modal__header-logo" title="Home">
                         <svg src="@(SvgAliases.Brand.LogoColor)" />
                     </a>
 
@@ -50,9 +47,9 @@
                 </div>
             }
 
-           
-          
-
+            <div class="modal__body" js-hook-modal-body>
+                @this.RenderPartialBody()
+            </div>
         </div>
 
     </div>

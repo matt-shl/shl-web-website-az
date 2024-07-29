@@ -126,7 +126,9 @@ public class NavigationDesktop
         {
             Id = index,
             Title = headerSubLink.MainLink?.Name,
-            Links = subMenu.Links.Select((m, i) => new MenuItem { Id = i, Title = m.Name, Link = Link.Create(m) }).ToList(),
+            Links = subMenu.Links != null
+            ? subMenu.Links.Select((m, i) => m != null ? new MenuItem { Id = i, Title = m.Name, Link = Link.Create(m) } : null).WhereNotNull().ToList()
+            : []
         };
     }
 

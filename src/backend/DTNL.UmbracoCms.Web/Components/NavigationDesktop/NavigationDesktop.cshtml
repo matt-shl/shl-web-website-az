@@ -6,7 +6,7 @@
         @foreach (Components.NavigationDesktop.MenuItem item in Model.Items)
         {
             <li class="navigation-desktop__list-item" js-hook-navigation-desktop-item>
-                @if (item?.Submenu != null)
+                @if (item?.Submenu?.Items.Count() > 0)
                 {
                     <button class="navigation-desktop__item" js-hook-navigation-desktop-anchor
                     @Html.Attribute("aria-expanded", "false")
