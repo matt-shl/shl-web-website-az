@@ -1,0 +1,45 @@
+{% from 'button.html' import button %}
+
+{# Anchor list
+- alignment: horizontal (default) or vertical
+- isComponent: false (default) or true (if the macro is used as a component on the page)
+- items: array of objects with id and title (optional)
+    if left empty the macro will look for all components in the page
+- cta: object with text and link (optional)
+#}
+
+{% macro anchorList(data) %}
+
+  <section class="c-anchor-list
+      {%- if data.alignment %} c-anchor-list--{{ data.alignment }}{% endif -%}
+      {%- if data.isComponent %} c-anchor-list--is-component{% endif -%}
+      {%- if data.classes %} {{ data.classes }}{% endif -%}"
+       js-hook-anchor-list>
+
+    <div class="anchor-list__container">
+      <ul class="anchor-list__list" js-hook-anchor-list-list>
+        {% if data.items %}
+          {% for item in data.items %}
+            <li class="anchor-list__item">
+              <a href="#{{ item.id }}" class="anchor-list__anchor" js-hook-anchor-list-anchor>
+                {% svg 'icons/arrow-right' %}
+                {{ item.title }}
+              </a>
+            </li>
+          {% endfor %}
+        {% endif %}
+      </ul>
+
+      {% if data.cta %}
+        {{ button({
+          class: 'anchor-list__cta',
+          label: data.cta.label,
+          url: data.cta.url,
+          variant: data.cta.variant,
+          icon: data.cta.icon or 'arrow-top-right'
+        }) }}
+      {% endif %}
+    </div>
+  </section>
+
+{% endmacro %}

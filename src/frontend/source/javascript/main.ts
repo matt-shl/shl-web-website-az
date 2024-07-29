@@ -30,6 +30,7 @@ moduleInit.async('[js-hook-slogan]', () => import('@components/slogan'))
 moduleInit.async('[js-hook-header]', () => import('@components/header'))
 moduleInit.async('[js-hook-navigation-desktop]', () => import('@components/navigation-desktop'))
 moduleInit.async('[js-hook-flyout]', () => import('@components/flyout'))
+moduleInit.async('[js-hook-anchor-list]', () => import('@components/anchor-list'))
 moduleInit.async('[js-hook-carousel]', () => import('@/components/carousel'))
 
 if (document.querySelector('[js-hook-video]')) {

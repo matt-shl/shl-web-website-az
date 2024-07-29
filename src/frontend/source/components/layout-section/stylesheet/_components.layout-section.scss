@@ -5,10 +5,10 @@
 
 .c-layout-section {
   @include theme;
+  border-radius: $radii-40 $radii-40;
 
   &:not(.t-white) {
     margin: $spacing-40 0;
-    border-radius: $radii-40 $radii-40;
 
     &:last-child {
       margin-bottom: 0;

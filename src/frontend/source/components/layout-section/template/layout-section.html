@@ -4,9 +4,14 @@
     {%- if data.variant %} layout-section--variant-{{ data.variant }}{% endif %}
     {%- if data.classes %} {{ data.classes }}{% endif %}
     {{themeClass}}"
+    {%- if data.sectionTitle %} data-title="{{data.sectionTitle}}"{% endif %}
     {%- if data.id %} id="{{data.id}}"{% endif %}
     {%- if data.hook %} js-hook-{{ data.hook}} {% endif %}
-    js-hook-inview data-inview-threshold="0.5" data-inview-persistent="true">
+    js-hook-section
+    js-hook-inview
+    data-inview-threshold="0.5"
+    data-inview-persistent="true"
+    data-inview-trigger="anchor-list::update">
 
     <div class="layout-section__inner">
     {% if not data.fullWidth %}

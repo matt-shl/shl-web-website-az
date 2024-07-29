@@ -124,6 +124,21 @@
         sources: global.content.home.hero.video.sources
       }) }}
     </div>
+
+    <div class="styleguide__component-col">
+      {% from 'pagination.html' import pagination %}
+      {{ pagination (global.content.pagination) }}
+    </div>
+
+    <div class="styleguide__component-col">
+      {% from 'section-card-carousel.html' import sectionCardCarousel %}
+      {{ sectionCardCarousel(global.content.sectionCardCarouselExamples.icon) }}
+      {{ sectionCardCarousel(global.content.sectionCardCarouselExamples.number) }}
+      {{ sectionCardCarousel(global.content.sectionCardCarouselExamples.image) }}
+      {{ sectionCardCarousel(global.content.sectionCardCarouselExamples.image | clone | merge({showThreeCardsSideBySide: true})) }}
+      {{ sectionCardCarousel(global.content.sectionCardCarouselExamples.knowledge | clone | merge({showThreeCardsSideBySide: true})) }}
+      {{ sectionCardCarousel(global.content.sectionCardCarouselExamples.contact) }}
+    </div>
   </div>
 
 {% endblock %}

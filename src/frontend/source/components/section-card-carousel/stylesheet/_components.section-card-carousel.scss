@@ -20,6 +20,7 @@
 
 .section-card-carousel__title {
   @include h2;
+  max-width: calc(66% + #{$spacing-8});
 
   margin-block-end: $spacing-40;
 
