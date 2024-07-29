@@ -19,6 +19,10 @@
   @include button--link;
 }
 
+.c-button--link-underlined {
+  @include button--link(false);
+}
+
 /**
 * Button icon modifier
 */

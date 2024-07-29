@@ -1,4 +1,5 @@
 {% from 'card-number.html' import cardNumber %}
+{% from 'button.html' import button %}
 
 <menu>
   <span class="filters__amount-label" js-hook-replace-content="filters-amount-label">3 Items</span>
@@ -8,7 +9,22 @@
     {% endfor %}
   </div>
   <div class="modal__body" js-hook-modal-body js-hook-replace-content="modal-body-modal-filters">
-      <span></span>
-      <h3>Thanks for choising an option</h3>
+     <div class="filters__sticky-buttons-wrapper">
+    {{ button({
+      label: global.resource.filters.show + ' ' + 3 + ' ' + global.resource.filters.results,
+      element: 'button',
+      class: 'filters__sticky-button',
+      hook: 'filters-sticky-button js-hook-modal-close-btn'
+    }) }}
+
+    {{ button({
+      label: global.resource.filters.resetAll,
+      element: 'button',
+      size: 'small',
+      variant: 'link',
+      hook: 'filters-sticky-button js-hook-filters-reset-button',
+      attr: 'data-url="__api-response--filters.html"'
+    }) }}
+  </div>
   </div>
 </menu>
