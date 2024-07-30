@@ -12,7 +12,7 @@
     "IIS Express - Development": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "/umbraco",
+      "launchUrl": "umbraco",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
