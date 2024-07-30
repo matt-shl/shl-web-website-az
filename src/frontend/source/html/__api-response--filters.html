@@ -17,13 +17,13 @@
       hook: 'filters-sticky-button js-hook-modal-close-btn'
     }) }}
 
-    {{ button({
+   {{ button({
       label: global.resource.filters.resetAll,
       element: 'button',
       size: 'small',
-      variant: 'link',
+      variant: 'link-underlined',
       hook: 'filters-sticky-button js-hook-filters-reset-button',
-      attr: 'data-url="__api-response--filters.html"'
+      attr: "data-url-replacement='old-url.html' data-endpoint='http://localhost:3000/__api-response--filters-reset.html'"
     }) }}
   </div>
   </div>

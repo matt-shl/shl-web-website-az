@@ -24,11 +24,14 @@ class ReplaceContent {
     )
 
     for (const element of replaceContentElements) {
+      const attributeId = element.getAttribute(JS_ATTRIBUTE_REPLACE_CONTENT)
       const replacementElement = newContent.querySelector(
-        `[${JS_ATTRIBUTE_REPLACE_CONTENT}="${element.getAttribute(JS_ATTRIBUTE_REPLACE_CONTENT)}"]`,
+        `[${JS_ATTRIBUTE_REPLACE_CONTENT}="${attributeId}"]`,
       )
       if (replacementElement) {
         element.replaceWith(replacementElement)
+
+        Events.$trigger(`replaceContent::${attributeId}`)
       }
     }
 

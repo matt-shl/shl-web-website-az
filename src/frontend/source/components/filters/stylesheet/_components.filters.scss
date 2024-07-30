@@ -46,3 +46,20 @@
 
 .filters__filter-container {
 }
+
+.filters__accordion-options:not(.filters__accordion-options--hidden) {
+  ~ .filters__options-link {
+    display: none;
+  }
+}
+
+.filters__accordion-options--hidden {
+  .checkbox__wrapper {
+    input,
+    label {
+      &:nth-of-type(n + 5) {
+        display: none;
+      }
+    }
+  }
+}

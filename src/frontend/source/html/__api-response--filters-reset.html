@@ -1,20 +1,19 @@
-{% from 'modal.html' import modal  %}
-{% import 'accordion.html' as accordion %}
-{% import 'form-elements.html' as form %}
+{% from 'card-number.html' import cardNumber %}
 {% from 'button.html' import button %}
+{% import 'form-elements.html' as form %}
+{% import 'accordion.html' as accordion %}
 
 {% set filtersLabels = global.resource.filters %}
+{% set data = global.content.filters %}
 
-{% call modal({
-  size: 'aside',
-  id: 'modal-filters',
-  variant: 'drawer-right',
-  title: filtersLabels.sortAndFilter,
-  keepScrollPosition: true,
-  classes: 'filters__modal modal--drawer-mobile-full-height',
-  hook: "filters-modal"
-}) %}
-
+<menu>
+  <span class="filters__amount-label" js-hook-replace-content="filters-amount-label">2544 Items</span>
+  <div class="o-container" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px " js-hook-replace-content="number-items">
+    {% for i in range(16) %}
+      {{ cardNumber({title: loop.index, subtitle: "welkom", content: "Cool content"}) }}
+    {% endfor %}
+  </div>
+  <div class="modal__body" js-hook-modal-body js-hook-replace-content="modal-body-modal-filters">
     {% if data.filters.length %}
     {% call form.form({
       class: 'filters__form',
@@ -73,7 +72,7 @@
       label: global.resource.filters.show + ' ' + data.totalAmount + ' ' + global.resource.filters.results,
       element: 'button',
       class: 'filters__sticky-button',
-      hook: 'filters-sticky-button js-hook-button-modal-close'
+      hook: 'filters-sticky-button js-hook-modal-close-btn'
     }) }}
 
     {{ button({
@@ -82,8 +81,9 @@
       size: 'small',
       variant: 'link-underlined',
       hook: 'filters-sticky-button js-hook-filters-reset-button',
-      attr: "data-url-replacement='old-url' data-endpoint='__api-response--filters-reset.html'"
+      attr: "data-url-replacement='old-url.html' data-endpoint='__api-response--filters.html'"
     }) }}
   </div>
-
-{% endcall %}
+  </div>
+  </div>
+</menu>

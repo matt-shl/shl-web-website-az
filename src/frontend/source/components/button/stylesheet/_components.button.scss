@@ -3,6 +3,7 @@
 @import 'button/variant/mixin.primary';
 @import 'button/variant/mixin.secondary';
 @import 'button/variant/mixin.link';
+@import 'button/variant/mixin.link-underlined';
 
 .c-button {
   @include button--primary;
@@ -20,7 +21,7 @@
 }
 
 .c-button--link-underlined {
-  @include button--link(false);
+  @include button--link-underlined;
 }
 
 /**
