@@ -1,0 +1,66 @@
+@mixin modal--navigation-mobile {
+  .is--mobile-navigation-open &.modal--is-showing {
+    &,
+    .modal__content {
+      transition: none;
+    }
+  }
+
+  .is--mobile-navigation-open & {
+    .modal__background {
+      transition: none;
+    }
+  }
+
+  .modal__container {
+    @include container;
+    display: flex;
+    height: 100%;
+    top: 0;
+    transform: translate3d(-50%, 0, 0);
+  }
+
+  .modal__content {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    width: 100%;
+    background: transparent;
+    gap: $spacing-16;
+    margin: $spacing-16 0;
+  }
+
+  .modal__header {
+    background-color: $color-white;
+    color: $color-dark-blue;
+    border-radius: $radii-12;
+    margin: 0;
+    padding: $spacing-20;
+  }
+
+  .modal__header-logo {
+    svg {
+      width: 140px;
+    }
+  }
+
+  .modal__body {
+    background-color: $color-white;
+    color: $color-dark-blue;
+    border-radius: $radii-12;
+    flex-grow: 1;
+    padding: 0;
+
+    > div {
+      opacity: 0;
+      transition: $modal-transition-time $modal-transition-ease;
+      transition-property: opacity;
+    }
+  }
+
+  &.modal--is-showing {
+    .modal__body > div {
+      opacity: 1;
+    }
+  }
+}

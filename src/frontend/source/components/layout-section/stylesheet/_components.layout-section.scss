@@ -1,0 +1,44 @@
+:root {
+  --layout-section-gap-min-value: 24; // mobile gap value
+  --layout-section-gap: 24; // fallback value
+}
+
+.c-layout-section {
+  @include theme;
+  border-radius: $radii-20 $radii-20;
+
+  @include screen-md-and-bigger {
+    border-radius: $radii-40 $radii-40;
+  }
+
+  &:not(.t-white) {
+    margin-block: $spacing-40;
+
+    &:first-child {
+      margin-block-start: 0;
+    }
+
+    &:last-child {
+      margin-block-end: 0;
+    }
+  }
+}
+
+.layout-section__inner {
+  padding-block: $spacing-40;
+
+  @include screen-md-and-bigger {
+    padding-block: $spacing-80;
+  }
+  overflow: hidden;
+}
+
+.layout-section__container {
+  @include container;
+  display: flex;
+  flex-direction: column;
+}
+
+.layout-section__wrapper {
+  width: 100%;
+}

@@ -1,0 +1,12 @@
+{#
+Options:
+  label: string (required)
+  classes: string
+#}
+
+{% macro tag(data) %}
+  <span class="c-tag
+    {%- if data.classes %} {{ data.classes }}{% endif -%}">
+    {{ data.label }}
+  </span>
+{% endmacro %}

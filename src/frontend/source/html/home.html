@@ -1,0 +1,37 @@
+{% set theme = "light-blue" %}
+{% set themeColor = "#007cbe" %}
+{% set headerIsWhite = true %}
+{% set footerScrollingText = global.content.home.footerScrollingText %}
+
+{% extends 'layouts/default.html' %}
+
+{% from 'hero-home.html' import heroHome %}
+{% from 'section-card-carousel.html' import sectionCardCarousel %}
+
+{% block hero %}
+  {{ heroHome({
+    title: global.content.home.hero.title,
+    description: global.content.home.hero.description,
+    ctas: global.content.home.hero.ctas,
+    video: global.content.home.hero.video
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  {{ sectionCardCarousel(global.content.home.cards1) }}
+
+  <!-- Todo "Banner" -->
+
+  {{ sectionCardCarousel(global.content.home.cards2) }}
+
+  <!-- Todo "Text, Image, Links or Accordions" -->
+
+  <!-- Todo "Text & Image" -->
+
+  <!-- Todo "Banner" -->
+
+  {{ sectionCardCarousel(global.content.home.cards3) }}
+
+{% endblock %}
+

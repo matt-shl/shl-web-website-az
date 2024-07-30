@@ -1,0 +1,35 @@
+{#
+Options:
+  title: string
+  url: string
+  icon: string
+  content: string (optional)
+#}
+
+{% from 'card-overlay.html' import cardOverlay %}
+
+{% macro cardIcon(data) %}
+  <{{ data.url and 'a' or 'article' }} class="c-card-icon
+  {%- if data.url %} c-card-icon--has-url c-card-overlay-parent{% endif -%}
+  {%- if data.classes %} {{ data.classes }}{% endif -%}"
+  {%- if data.url %} href="{{ data.url }}"{% endif -%}
+  aria-label="{{ data.title }}">
+
+  <div class="card-icon__container">
+    {% if data.icon %}
+      <div class="card-icon__icon">{% svg 'icons/' + data.icon %}</div>
+    {% endif %}
+
+    <h3 class="card-icon__title">{{ data.title }}</h3>
+    <p class="card-icon__content">{{ data.content }}</p>
+
+    {% if data.url %}
+      {{ cardOverlay({
+        title: data.title,
+        position: 'end'
+      }) }}
+    {% endif %}
+  </div>
+
+  </{{ data.url and 'a' or 'article' }}>
+{% endmacro %}

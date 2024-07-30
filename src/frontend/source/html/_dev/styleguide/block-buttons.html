@@ -1,0 +1,62 @@
+{% set title='Buttons' %}
+
+{% extends './block.html' %}
+
+
+{% block content %}
+
+  {% from 'button.html' import button %}
+
+  <div class="styleguide__buttons">
+    <div class="styleguide__button-col">
+      <h4>Primary</h4>
+      <br/><br/>
+      {{ button( { label: 'Primary button icon', url: '#', icon: 'arrow-top-right' } ) }}
+      <br/><br/>
+      {{ button( { label: 'Primary button icon start', url: '#', icon: 'arrow-top-right', iconposition: 'start' } ) }}
+      <br/><br/>
+      {{ button( { label: 'Primary button icon start disabled', url: '#', icon: 'arrow-top-right', attr: 'disabled' } ) }}
+      <br/><br/>
+      {{ button( { label: 'Primary button icon only', srOnly: true, element: 'span', icon: 'arrow-top-right' } ) }}
+      <br/><br/>
+    </div>
+
+    <div class="styleguide__button-col">
+      <h4>Secondary</h4>
+      <br/><br/>
+      {{ button( { label: 'Secondary button icon', url: '#', variant: 'secondary', icon: 'arrow-top-right' } ) }}
+      <br/><br/>
+      {{ button( { label: 'Secondary button icon start', url: '#', variant: 'secondary', icon: 'arrow-top-right', iconposition: 'start' } ) }}
+      <br/><br/>
+      {{ button( { label: 'Secondary button icon start disabled', url: '#', variant: 'secondary', icon: 'arrow-top-right', attr: 'disabled' } ) }}
+      <br/><br/>
+      {{ button( { label: 'Secondary button icon only', variant: 'secondary', srOnly: true, element: 'span', icon: 'arrow-top-right' } ) }}
+      <br/><br/>
+    </div>
+
+    <div class="styleguide__button-col styleguide__button-col--theme">
+      <h4>Primary</h4>
+      <br/><br/>
+      {{ button( { label: 'Primary button icon', url: '#', icon: 'arrow-top-right' } ) }}
+      <br/><br/>
+      {{ button( { label: 'Primary button icon start', url: '#', icon: 'arrow-top-right', iconposition: 'start' } ) }}
+      <br/><br/>
+      {{ button( { label: 'Primary button icon start disabled', url: '#', icon: 'arrow-top-right', attr: 'disabled' } ) }}
+      <br/><br/>
+      {{ button( { label: 'Primary button icon only', srOnly: true, element: 'span', icon: 'arrow-top-right' } ) }}
+    </div>
+
+    <div class="styleguide__button-col styleguide__button-col--theme">
+      <h4>Secondary</h4>
+      <br/><br/>
+      {{ button( { label: 'Secondary button icon', url: '#', variant: 'secondary', icon: 'arrow-top-right' } ) }}
+      <br/><br/>
+      {{ button( { label: 'Secondary button icon start', url: '#', variant: 'secondary', icon: 'arrow-top-right', iconposition: 'start' } ) }}
+      <br/><br/>
+      {{ button( { label: 'Secondary button icon start disabled', url: '#', variant: 'secondary', icon: 'arrow-top-right', attr: 'disabled' } ) }}
+      <br/><br/>
+      {{ button( { label: 'Secondary button icon only', variant: 'secondary', srOnly: true, element: 'span', icon: 'arrow-top-right' } ) }}
+    </div>
+  </div>
+
+{% endblock %}

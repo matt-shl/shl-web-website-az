@@ -1,0 +1,46 @@
+.c-navigation-mobile-list {
+  padding-block: $spacing-20;
+}
+
+.navigation-mobile-list__list {
+  @include list--reset;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-8;
+}
+
+.navigation-mobile-list__anchor {
+  align-items: center;
+  color: currentcolor;
+  display: flex;
+  gap: $spacing-16;
+  justify-content: space-between;
+  padding: $spacing-16 $spacing-24;
+  text-align: start;
+  width: 100%;
+
+  > svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  &--parent {
+    @include h5;
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 8px;
+  }
+
+  &--main {
+    @include h5;
+  }
+
+  &--small {
+    @include body-xl;
+  }
+
+  &--all {
+    @include body-l;
+    @include link--base;
+  }
+}

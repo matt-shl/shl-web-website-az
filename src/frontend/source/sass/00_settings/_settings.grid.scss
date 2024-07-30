@@ -1,0 +1,30 @@
+/*----------------------------------*\
+  #GRID
+\*----------------------------------*/
+
+$grid-breakpoints: (
+  'base': $breakpoint-base,
+  'sm': $breakpoint-sm,
+  'md': $breakpoint-md,
+  'lg': $breakpoint-lg,
+  'xl': $breakpoint-xl,
+  'xxl': $breakpoint-xxl,
+);
+
+/*----------------------------------*\
+  #GRID
+\*----------------------------------*/
+
+// Use these within the codebase to ensure consistency
+$container-max-width: var(--container-max-width);
+$container-padding: var(--container-padding);
+$grid-gutter: var(--grid-gutter);
+$grid-columns: var(--grid-columns);
+
+// Define names to attach to the css variables
+$grid-columns-css-var: 12;
+$container-max-width-css-var: 1440px;
+$grid-gutter-css-var: $spacing-16;
+
+$container-padding-base-css-var: $spacing-16;
+$container-padding-md-css-var: $spacing-60;

@@ -1,0 +1,29 @@
+.c-shape {
+  --bg-color: #{$color-white};
+  color: var(--bg-color);
+  display: flex;
+  align-items: end;
+
+  span {
+    display: block;
+  }
+}
+
+.shape__begin {
+  width: 139px;
+  height: 60px;
+  color: var(--bg-color);
+}
+
+.shape__end {
+  width: 16px;
+  height: 76px;
+  color: var(--bg-color);
+}
+
+.shape__scale {
+  flex-grow: 1;
+  height: 60px;
+  background: var(--bg-color);
+  margin-right: -3px; /* pixel perfect align with end */
+}

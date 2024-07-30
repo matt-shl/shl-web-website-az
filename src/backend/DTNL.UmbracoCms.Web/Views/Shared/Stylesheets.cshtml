@@ -1,0 +1,23 @@
+﻿@using DTNL.UmbracoCms.Web.Services.Assets
+@using Microsoft.Extensions.Options
+@using DTNL.UmbracoCms.Web.Infrastructure.Configuration.Options
+
+@inject IAssetsProvider _assetsProvider
+@inject IOptions<ApplicationOptions> _applicationOptions
+
+@{
+	const string criticalCssPath = "/assets/css/critical.css";
+}
+
+@if (_applicationOptions.Value.EnableCriticalCss
+     && await _assetsProvider.GetContent(criticalCssPath) is { } criticalCssContent and not "")
+{
+	<style>@Html.Raw(criticalCssContent)</style>
+	<link rel="stylesheet" href="/assets/css/main.css" media="print" onload="this.media='all'; this.onload=null;" asp-append-version="true" />
+	<noscript><link rel="stylesheet" href="/assets/css/main.css" asp-append-version="true" /></noscript>
+
+	@if (criticalCssContent.Length > 50000) { <script>console.warn('Critical CSS is too large.')</script> }
+	return;
+}
+
+<link rel="stylesheet" href="/assets/css/main.css" asp-append-version="true" />

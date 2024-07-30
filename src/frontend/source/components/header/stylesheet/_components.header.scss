@@ -1,0 +1,175 @@
+// stylelint-disable declaration-no-important
+
+:root {
+  --header-background-color: transparent;
+  --header-font-color: var(--color-content);
+  --header-height: 64px;
+  --hamburger-hover-background-color: #{$color-white};
+  --hamburger-hover-font-color: #{$color-dark-blue};
+  --header-transition-ease: #{$ease-in-out-quad};
+  --header-transition-time: 300ms;
+}
+
+@include screen-lg-and-bigger {
+  :root {
+    --header-height: 82px;
+  }
+}
+
+@keyframes header-move-in-from-top {
+  0% {
+    transform: translateY(calc(-100% - #{$spacing-32}));
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@mixin header-background-offset {
+  padding-inline: $spacing-20;
+
+  @include screen-lg-and-bigger {
+    margin-inline: $global-spacing * -3.5;
+    padding-inline: $spacing-40;
+  }
+}
+
+.c-header {
+  @include page-load-animation(header-move-in-from-top);
+  height: var(--header-height);
+  position: fixed;
+  top: $spacing-16;
+  transition: var(--header-transition-time) var(--header-transition-ease);
+  transition-property: transform, color, background-color, box-shadow, top;
+  width: 100%;
+  z-index: 9;
+
+  &::before {
+    background: rgba($color-black-rgb, 0.6);
+    content: '';
+    height: 100vh;
+    left: 0;
+    opacity: 0;
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    transition: var(--header-transition-time) var(--header-transition-ease);
+    transition-property: opacity;
+    width: 100%;
+    z-index: -1;
+  }
+
+  .has--open-flyout &::before {
+    opacity: 1;
+  }
+
+  .is--header-white & {
+    --header-background-color: #{$color-white};
+    --header-font-color: #{$color-dark-blue};
+    --hamburger-hover-background-color: #{$color-dark-blue};
+    --hamburger-hover-font-color: #{$color-white};
+  }
+
+  .header--is-hidden & {
+    transform: translateY(-100%);
+  }
+
+  .header--is-going-up & {
+    transform: translateY(0) !important;
+    background-color: $color-white;
+    box-shadow: $box-shadow;
+  }
+
+  .header--is-sticky & {
+    top: 0;
+    background-color: $color-white;
+    --header-background-color: #{$color-white};
+    --header-font-color: #{$color-dark-blue};
+    --hamburger-hover-background-color: #{$color-dark-blue};
+    --hamburger-hover-font-color: #{$color-white};
+  }
+
+  @include screen-lg-and-bigger {
+    top: $spacing-32;
+
+    .is--anchor-list-sticky.header--is-going-up & {
+      box-shadow: none;
+    }
+  }
+}
+
+.header__container {
+  @include container;
+}
+
+.header__logo {
+  svg {
+    width: 140px;
+  }
+
+  html:not(.is--header-white) & {
+    path {
+      fill: var(--header-font-color);
+    }
+  }
+
+  @include screen-lg-and-bigger {
+    svg {
+      width: 170px;
+    }
+  }
+}
+
+.header__content {
+  @include header-background-offset;
+  align-items: center;
+  background-color: var(--header-background-color);
+  border-radius: $radii-12;
+  color: var(--header-font-color);
+  display: flex;
+  gap: $spacing-16;
+  height: 64px;
+  padding-block: $spacing-20;
+  transition: var(--header-transition-time) var(--header-transition-ease);
+  transition-property: background-color, color;
+
+  @include screen-lg-and-bigger {
+    height: 82px;
+  }
+}
+
+.header__navigation {
+  margin-inline-start: auto;
+
+  @include screen-md-and-smaller {
+    display: none;
+  }
+}
+
+.header__language-selector {
+  @include screen-md-and-smaller {
+    display: none;
+  }
+}
+
+.header__hamburger {
+  align-items: center;
+  border-radius: $radii-4;
+  display: flex;
+  gap: $spacing-8;
+  margin-inline-end: -16px;
+  margin-inline-start: auto;
+  padding: $spacing-8 $spacing-16;
+  transition: var(--header-transition-time) var(--header-transition-ease);
+  transition-property: background-color, color;
+
+  @include hover-focus {
+    background-color: var(--hamburger-hover-background-color);
+    color: var(--hamburger-hover-font-color);
+  }
+
+  @include screen-lg-and-bigger {
+    display: none;
+  }
+}

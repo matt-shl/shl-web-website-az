@@ -1,0 +1,61 @@
+/*----------------------------------*\
+  #SPACING
+\*----------------------------------*/
+
+/* SCSS Variables */
+$global-spacing: 8px;
+
+$spacing-auto: var(--spacing-auto);
+$spacing-4: var(--spacing-4);
+$spacing-6: var(--spacing-6);
+$spacing-8: var(--spacing-8);
+$spacing-10: var(--spacing-10);
+$spacing-12: var(--spacing-12);
+$spacing-16: var(--spacing-16);
+$spacing-20: var(--spacing-20);
+$spacing-24: var(--spacing-24);
+$spacing-32: var(--spacing-32);
+$spacing-36: var(--spacing-36);
+$spacing-40: var(--spacing-40);
+$spacing-48: var(--spacing-48);
+$spacing-60: var(--spacing-60);
+$spacing-64: var(--spacing-64);
+$spacing-72: var(--spacing-72);
+$spacing-80: var(--spacing-80);
+$spacing-88: var(--spacing-88);
+$spacing-96: var(--spacing-96);
+$spacing-112: var(--spacing-112);
+$spacing-128: var(--spacing-128);
+$spacing-144: var(--spacing-144);
+$spacing-160: var(--spacing-160);
+$spacing-192: var(--spacing-192);
+$spacing-200: var(--spacing-200);
+
+/* CSS Variables */
+:root {
+  --global-spacing: #{$global-spacing};
+  --spacing-4: #{$global-spacing / 2};
+  --spacing-6: #{$global-spacing * 0.75};
+  --spacing-8: #{$global-spacing};
+  --spacing-10: #{$global-spacing * 1.25};
+  --spacing-12: #{$global-spacing * 1.5};
+  --spacing-16: #{$global-spacing * 2};
+  --spacing-20: #{$global-spacing * 2.5};
+  --spacing-24: #{$global-spacing * 3};
+  --spacing-32: #{$global-spacing * 4};
+  --spacing-36: #{$global-spacing * 4.5};
+  --spacing-40: #{$global-spacing * 5};
+  --spacing-48: #{$global-spacing * 6};
+  --spacing-60: #{$global-spacing * 7.5};
+  --spacing-64: #{$global-spacing * 8};
+  --spacing-72: #{$global-spacing * 9};
+  --spacing-80: #{$global-spacing * 10};
+  --spacing-88: #{$global-spacing * 11};
+  --spacing-96: #{$global-spacing * 12};
+  --spacing-112: #{$global-spacing * 14};
+  --spacing-128: #{$global-spacing * 16};
+  --spacing-144: #{$global-spacing * 18};
+  --spacing-160: #{$global-spacing * 20};
+  --spacing-192: #{$global-spacing * 24};
+  --spacing-200: #{$global-spacing * 25};
+}

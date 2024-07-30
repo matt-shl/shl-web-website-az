@@ -1,0 +1,12 @@
+{% from 'button.html' import button %}
+
+<div class="c-toast" aria-live="assertive" js-hook-toast>
+  {{ button({
+    element: 'button',
+    icon: 'cross',
+    label: 'Clear all',
+    variant: 'outlined',
+    hook: 'toast-clear-all',
+    class: 'toast__clear-all'
+  }) }}
+</div>

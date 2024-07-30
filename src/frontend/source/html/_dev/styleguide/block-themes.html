@@ -1,0 +1,41 @@
+{% set title='Themes' %}
+
+{% extends './block.html' %}
+
+
+{% block content %}
+  {% from 'button.html' import button %}
+
+  <div class="styleguide__themes">
+    <div class="styleguide__theme-col">
+      <p>Use <code>shift+T</code> to toggle the themes.</p>
+      <br/>
+      <p>Themes available:</p>
+      <ul>
+        <li>General</li>
+        <li>Pale pink</li>
+        <li>Pale green</li>
+        <li>Pale yellow</li>
+        <li>Pale blue</li>
+        <li>Pastel blue</li>
+        <li>Light blue</li>
+        <li>White</li>
+        <li>Dark pink</li>
+        <li>Light grey</li>
+      </ul>
+    </div>
+    <div class="styleguide__theme-col styleguide__theme-col--theme">
+      <h4>Page theme</h4>
+      <p>This block will show the default page theme colors</p>
+      <br/>
+      {{ button( { label: 'Primary button icon', url: '#', icon: 'arrow-top-right' } ) }}
+    </div>
+    <div class="styleguide__theme-col styleguide__theme-col--theme t-pale-pink">
+      <h4>Override theme</h4>
+      <p>This block will show a set theme by adding the theme class <code>t-pale-pink</code> to the component</p>
+      <br/>
+      {{ button( { label: 'Primary button icon', url: '#', icon: 'arrow-top-right' } ) }}
+    </div>
+  </div>
+{% endblock %}
+

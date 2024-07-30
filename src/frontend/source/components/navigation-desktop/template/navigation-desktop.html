@@ -1,0 +1,20 @@
+{% from 'flyout.html' import flyout %}
+
+<nav class="c-navigation-desktop" js-hook-navigation-desktop title="{{ global.resource.navigation.mainNavigation }}">
+  <ul class="navigation-desktop__list">
+    {% for item in global.content.navigation.items %}
+      <li class="navigation-desktop__list-item" js-hook-navigation-desktop-item>
+        {% if item.subitems %}
+          <button class="navigation-desktop__item" js-hook-navigation-desktop-anchor aria-expanded="false" aria-controls="flyout-{{ item.id }}">
+            {{ item.title }}
+          </button>
+          {{ flyout(item) }}
+        {% else %}
+          <a title="{{ item.title }}" href="{{ item.url }}" class="navigation-desktop__item" js-hook-navigation-desktop-anchor>
+            {{ item.title }}
+          </a>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+</nav>

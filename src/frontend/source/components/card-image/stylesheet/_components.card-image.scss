@@ -1,0 +1,57 @@
+.c-card-image {
+  @include card-base;
+}
+
+.c-card-image--has-url {
+  //Remove annoying small colored corner on hover
+  @include hover-focus {
+    .card-image__image-container {
+      border-end-end-radius: 0;
+    }
+  }
+}
+
+.card-image__image-container {
+  @include theme-card;
+  @include card-container-base;
+  padding: 0;
+
+  @include screen-md-and-bigger {
+    padding: 0;
+  }
+
+  @container card (width > #{$card-container-size-lg}) {
+    padding: 0;
+  }
+}
+
+.card-image__image {
+  width: 100%;
+  height: 100%;
+  transition: transform var(--card-animation-duration) var(--card-animation-ease);
+
+  .c-card-image:hover & {
+    transform: scale(1.1);
+  }
+}
+
+.card-image__title {
+  @include h5-containerised(card, $card-container-size-lg, $card-container-size-sm);
+  margin-block: $spacing-16 $spacing-8;
+  transition: color var(--card-animation-duration) var(--card-animation-ease);
+
+  .c-card-image--has-url:hover & {
+    color: var(--theme-color-content-60);
+  }
+}
+
+.card-image__subtitle {
+  @include h6-containerised(card, $card-container-size-lg, $card-container-size-sm);
+}
+
+.card-image__content {
+  @include body-m;
+
+  padding-right: $spacing-8;
+  text-wrap: balance;
+}

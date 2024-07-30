@@ -1,0 +1,17 @@
+.styleguide__themes {
+  @include grid;
+}
+
+.styleguide__theme-col {
+  @include col-span(12);
+
+  &--theme {
+    @include theme;
+    padding: $spacing-24;
+  }
+
+  @include screen-md-and-bigger {
+    @include col-span(4);
+  }
+}
+

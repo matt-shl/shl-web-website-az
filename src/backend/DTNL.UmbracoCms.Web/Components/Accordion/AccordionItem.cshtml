@@ -1,0 +1,16 @@
+@using DTNL.UmbracoCms.Web.Helpers.Extensions
+@model DTNL.UmbracoCms.Web.Components.Accordion.Item
+
+<details class="accordion__detail @Model.Classes" id="@Model.Id"
+         @(Model.Open ? "open" : null)
+         js-hook-accordion-detail>
+    <summary class="accordion__item-summary" js-hook-accordion-summary>
+        @Model.Title
+        
+        <span class="accordion__item-icon">
+        </span>
+    </summary>
+    <div class="accordion__item-content" js-hook-accordion-content>
+        @this.RenderPartialBody()
+    </div>
+</details>

@@ -1,0 +1,38 @@
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes move-in-from-top {
+  0% {
+    transform: translateY(-100%);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes appear-from-bottom {
+  0% {
+    opacity: 0;
+    transform: translateY(200px);
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@mixin page-load-animation($animation, $delay-addition: 200ms, $duration: 800ms) {
+  .has--page-load-animation & {
+    animation: $duration ease-in-out (2000ms + $delay-addition) 1 $animation;
+    animation-fill-mode: both;
+  }
+}

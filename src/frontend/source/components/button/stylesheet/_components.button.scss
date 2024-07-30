@@ -1,0 +1,35 @@
+@import 'button/mixin.button';
+@import 'button/mixin.icon';
+@import 'button/variant/mixin.primary';
+@import 'button/variant/mixin.secondary';
+@import 'button/variant/mixin.link';
+
+.c-button {
+  @include button--primary;
+}
+
+/**
+* Button variants
+*/
+.c-button--secondary {
+  @include button--secondary;
+}
+
+.c-button--link {
+  @include button--link;
+}
+
+/**
+* Button icon modifier
+*/
+.button--icon {
+  @include button--icon;
+}
+
+.button--icon-only {
+  @include button--icon-only;
+}
+
+.button--icon-position-start {
+  @include button--icon-position-start;
+}

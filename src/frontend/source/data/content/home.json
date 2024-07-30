@@ -1,0 +1,132 @@
+{
+  "footerScrollingText": "Caring. Inclusive. Driven.",
+  "hero": {
+    "title": "This is a large title for the hero section",
+    "description": "Here is some supporting text for the hero component, keep it short and sweet, but have a nice bite to it.",
+    "ctas": [
+      {
+        "label": "Primary button",
+        "url": "/"
+      },
+      {
+        "variant": "secondary",
+        "label": "Secondary button",
+        "url": "/"
+      }
+    ],
+    "video": {
+      "id": "hero-video",
+      "title": "Homepage video",
+      "description": "Homepage video description",
+      "sources": [
+        {
+          "size": 1920,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        },
+        {
+          "size": 1280,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        },
+        {
+          "size": 1024,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        },
+        {
+          "size": 320,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "cards1": {
+    "carouselCardType": "image",
+    "title": "We provide advanced drug delivery systems",
+    "cards": [
+      {
+        "title": "Our flagship: Molly®",
+        "content": "Our most-wanted two-step device platform is modular and available for all. Fully customizable. ",
+        "url": "#"
+      },
+      {
+        "title": "Our products",
+        "content": "We have 15 single-use injectors and multi-use pens to choose from. Which one fits your molecule?",
+        "url": "#"
+      },
+      {
+        "title": "Our services",
+        "content": "Need specific help? We can help you with any of the 10 different services we offer. Explore the possibilities.",
+        "url": "#"
+      }
+    ]
+  },
+  "cards2": {
+    "carouselCardType": "icon",
+    "title": "One focus, many uses",
+    "description": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore.",
+    "cards": [
+      {
+        "url": "#",
+        "icon": "rocket",
+        "title": "For pharma & biotech",
+        "content": "New to the market? We can lend you a helping hand. Let’s bring that molecule to the world, together."
+      },
+      {
+        "url": "#",
+        "icon": "rocket",
+        "title": "For start-ups",
+        "content": "New to the market? We can lend you a helping hand. Let’s bring that molecule to the world, together."
+      }
+    ]
+  },
+  "cards3": {
+    "carouselCardType": "knowledge",
+    "showThreeCardsSideBySide": true,
+    "title": "Discover the latest news, events and insights",
+    "ctaPrimary": {
+      "url": "#",
+      "label": "Discover all"
+    },
+    "cards": [
+      {
+        "tag": "News",
+        "title": "SHL Medical expert to speak at Novartis Campus in Basel",
+        "content": "SHL Medical will be in Basel for the Drug-Device Combination Products for Parenteral Use workshop.",
+        "url": "#",
+        "ctaLabel": "Register now"
+      },
+      {
+        "tag": "Insights",
+        "title": "Strengthening a global manufacturing network through advanced simulation technologies",
+        "content": "In the Pre-filled Syringes and Injection Devices Issue of ONdrug Delivery Magazine, published ahead of the 2023 PDA Universe.",
+        "ctaLabel": "Register now"
+      },
+      {
+        "tag": "Events",
+        "title": "SHL to attend 2022 NSTC Science Train Program",
+        "content": "SHL Medical is excited to announce our first-time participation in the NSTC Science Train Program, 2022.",
+        "url": "#",
+        "ctaLabel": "Register now"
+      }
+    ]
+  }
+}

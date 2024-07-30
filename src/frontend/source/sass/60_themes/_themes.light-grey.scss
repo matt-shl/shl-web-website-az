@@ -1,0 +1,24 @@
+.t-light-grey {
+  --color-background: #{$color-light-grey};
+  --color-content: #{$color-dark-blue};
+  --focus-theme-color: #{$color-light-blue};
+
+  // Buttons
+  --button-primary-font-color: #{$color-white};
+  --button-primary-background-color: var(--color-content);
+  --button-primary-border-color: var(--color-content);
+  --button-secondary-font-color: var(--color-content);
+  --button-secondary-border-color: var(--color-content);
+
+  // Links
+  --theme-color-content-60: #{rgba($color-dark-blue-rgb, 0.6)};
+  --theme-color-content-20: #{rgba($color-dark-blue-rgb, 0.2)};
+
+  // Cards
+  --color-card-background: #{$color-dark-blue};
+  --color-card-content: #{$color-white};
+}
+
+html.t-white {
+  background-color: var(--color-background);
+}

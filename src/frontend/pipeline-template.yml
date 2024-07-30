@@ -1,0 +1,49 @@
+parameters:
+- name: workingDirectory
+- name: bypassCache
+  type: boolean
+  default: false
+
+jobs:
+  - job: Frontend
+    variables:
+      YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+      - task: UseNode@1
+        displayName: 'Install Node 20.x'
+        inputs:
+          version: '20.x'
+
+      - task: Cache@2
+        displayName: Cache Yarn packages
+        condition: ne('${{ parameters.bypassCache }}', 'true')
+        inputs:
+          key: 'yarn | "$(Agent.OS)" | ${{ parameters.workingDirectory }}/yarn.lock | v1'
+          restoreKeys: |
+            yarn | "$(Agent.OS) | v1"
+          path: $(YARN_CACHE_FOLDER)
+          cacheHitVar: 'CACHE_RESTORED_YARN'
+
+      - script: yarn --frozen-lockfile --cache-folder $(YARN_CACHE_FOLDER)
+        displayName: Install dependencies
+        workingDirectory: ${{ parameters.workingDirectory }}
+
+      - script: yarn deploy
+        displayName: Build
+        workingDirectory: ${{ parameters.workingDirectory }}
+
+      - task: ArchiveFiles@2
+        displayName: 'Archive published files'
+        inputs:
+          rootFolderOrFile: '${{ parameters.workingDirectory }}/build'
+          includeRootFolder: false
+          archiveFile: '$(Build.ArtifactStagingDirectory)/frontend.zip'
+
+      - task: PublishPipelineArtifact@1
+        displayName: 'Publish Artifact: Frontend'
+        inputs:
+          targetPath: '$(Build.ArtifactStagingDirectory)'
+          artifact: 'frontend'
+          publishLocation: 'pipeline'

@@ -1,0 +1,28 @@
+.styleguide__components {
+  @include grid;
+  margin: $spacing-24 0;
+
+  &--theme {
+    @include theme;
+    padding: $spacing-24;
+  }
+}
+
+.styleguide__component-col {
+  @include col-span(12);
+
+  &--theme {
+    @include theme;
+    padding: $spacing-24;
+  }
+
+  @include screen-md-and-bigger {
+    &--2 {
+      @include col-span(6);
+    }
+
+    &--3 {
+      @include col-span(4);
+    }
+  }
+}

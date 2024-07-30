@@ -1,0 +1,61 @@
+{
+  "footerScrollingText": "Caring. Inclusive. Driven.",
+  "hero": {
+    "image": true,
+    "title": "Molly® autoinjectors",
+    "description": "Modular platform with Bluetooth-enabled add-on and large-volume option. Fully customizable.",
+    "cta1": {
+      "label": "Contact us",
+      "url": "/"
+    },
+    "cta2": {
+      "variant": "secondary",
+      "label": "Product specifictions",
+      "url": "/"
+    },
+    "showAnchorLinks": true
+  },
+  "numbers": {
+    "id": "numbers",
+    "carouselCardType": "number",
+    "title": "Something about the numbers",
+    "sectionTitle": "Numbers",
+    "cards": [
+      {
+        "title": "2010",
+        "subtitle": "entered the market as an approved product",
+        "content": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+      },
+      {
+        "title": "12",
+        "subtitle": "pharmaceutical companies are using Molly® for their products",
+        "content": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+      },
+      {
+        "title": "17",
+        "subtitle": "combination products are approved for the market",
+        "content": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+      },
+      {
+        "title": "10+ devs",
+        "subtitle": "Working on this project",
+        "content": "We have a team of 10+ developers working on this project. They are dedicated to making the world a better place."
+      },
+      {
+        "title": "100%",
+        "subtitle": "Renewable energy",
+        "content": "We use 100% renewable energy to power our factories. This helps reduce our carbon footprint."
+      },
+      {
+        "title": "1,000,000",
+        "subtitle": "Trees planted",
+        "content": "We have planted 1,000,000 trees to help offset our carbon emissions. This is part of our commitment to sustainability."
+      },
+      {
+        "title": "100%",
+        "subtitle": "Recyclable packaging",
+        "content": "All of our packaging is 100% recyclable. This helps reduce waste and protect the environment."
+      }
+    ]
+  }
+}

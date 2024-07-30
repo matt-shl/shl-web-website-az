@@ -1,0 +1,27 @@
+@mixin modal--aside {
+  &.modal--is-showing {
+    .modal__container {
+      transform: translate3d(-100%, 0, 0);
+      transition-delay: 200ms;
+    }
+  }
+
+  .modal__container {
+    height: 100%;
+    display: flex;
+    max-width: 468px;
+    transition: $modal-transition-time $modal-transition-ease;
+    transition-property: transform;
+    transition-delay: 0ms;
+    transform: translate3d(0, 0, 0);
+    top: 0;
+    inset-inline-start: 100%;
+  }
+
+  .modal__content {
+    flex-grow: 1;
+    margin: $spacing-16;
+    display: flex;
+    flex-direction: column;
+  }
+}

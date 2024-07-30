@@ -1,0 +1,40 @@
+.styleguide__grid {
+  @include grid;
+}
+
+@mixin styleguide-base-styles() {
+  width: 100%;
+  padding: $spacing-8;
+  text-align: center;
+  display: inline-block;
+}
+
+.styleguide__col {
+  @include theme;
+  @include styleguide-base-styles;
+
+  &--full {
+    grid-column: span $grid-columns;
+  }
+
+  &--half {
+    grid-column: span 6;
+  }
+
+  &--third {
+    grid-column: span 4;
+  }
+
+  &--half-end {
+    grid-column: span 6;
+    grid-column-end: -1;
+  }
+
+  &--half-start {
+    grid-column: span 6;
+  }
+
+  &--middle-half {
+    grid-column: 4 / 10;
+  }
+}

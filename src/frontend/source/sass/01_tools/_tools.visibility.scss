@@ -1,0 +1,28 @@
+:root {
+  --rounded-corner-main-content-overlap-size: #{$spacing-64};
+}
+
+@mixin sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+@mixin hero-overlap($theme: true, $paddingTop: true) {
+  // To overlap with the rounded corners of the main content
+  padding-bottom: var(--rounded-corner-main-content-overlap-size);
+  margin-bottom: calc(#{var(--rounded-corner-main-content-overlap-size)} * -1);
+
+  @if ($theme) {
+    @include theme;
+  }
+
+  @if ($paddingTop) {
+    padding-top: var(--header-height); // To let the fixed header overlap the hero
+  }
+}

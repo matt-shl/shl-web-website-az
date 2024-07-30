@@ -1,0 +1,11 @@
+//  Init Grid
+:root {
+  --grid-columns: #{$grid-columns-css-var};
+  --container-max-width: #{$container-max-width-css-var};
+  --grid-gutter: #{$grid-gutter-css-var};
+  --container-padding: #{$container-padding-base-css-var};
+
+  @media (min-width: #{$breakpoint-md}) {
+    --container-padding: #{$container-padding-md-css-var};
+  }
+}

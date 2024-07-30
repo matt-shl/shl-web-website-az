@@ -1,0 +1,36 @@
+{
+  "mobile": {
+    "end": 479,
+    "pixelDensity": [1, 2]
+  },
+  "mobilePlus": {
+    "start": 480,
+    "end": 767,
+    "pixelDensity": [1, 2]
+  },
+  "tabletPortrait": {
+    "start": 768,
+    "end": 1023,
+    "pixelDensity": [1, 2]
+  },
+  "tabletLandscape": {
+    "start": 1024,
+    "end": 1239,
+    "pixelDensity": [1, 2]
+  },
+  "laptop": {
+    "start": 1240,
+    "end": 1599
+  },
+  "desktop": {
+    "start": 1600,
+    "end": 1919
+  },
+  "widescreen": {
+    "start": 1920,
+    "end": 2559
+  },
+  "4k": {
+    "start": 2560
+  }
+}

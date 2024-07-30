@@ -1,0 +1,338 @@
+{
+  "items": [
+    {
+      "url": "/",
+      "title": "What we offer",
+      "id": "what-we-offer",
+      "content": "SHL Medical helps pharma & biotech companies through the process of getting medical devices to the market.",
+      "feature": {
+        "title": "Discover Maggie®",
+        "content": "Maggie is a cartridge-based solution that accommodates fill volumes up to 3.0 ml",
+        "url": "/",
+        "image": true
+      },
+      "subitems": [
+        {
+          "url": "/",
+          "title": "Injectors",
+          "id": "injectors",
+          "all": {
+            "url": "/",
+            "title": "All injectors"
+          },
+          "subitems": [
+            {
+              "url": "/",
+              "title": "Injector 1"
+            },
+            {
+              "url": "/",
+              "title": "Injector 2"
+            },
+            {
+              "url": "/",
+              "title": "Injector 3"
+            },
+            {
+              "url": "/",
+              "title": "Injector 4"
+            },
+            {
+              "url": "/",
+              "title": "Injector 5"
+            }
+          ]
+        },
+        {
+          "url": "/",
+          "title": "Device platforms",
+          "id": "device-platforms",
+          "all": {
+            "url": "/",
+            "title": "All device platforms"
+          },
+          "subitems": [
+            {
+              "url": "/",
+              "title": "Molly®"
+            },
+            {
+              "url": "/",
+              "title": "Platform 2"
+            },
+            {
+              "url": "/",
+              "title": "Platform 3"
+            },
+            {
+              "url": "/",
+              "title": "Platform 4"
+            },
+            {
+              "url": "/",
+              "title": "Platform 5"
+            }
+          ]
+        },
+        {
+          "url": "/",
+          "title": "Innovations",
+          "id": "innovations",
+          "subitems": [
+            {
+              "url": "/",
+              "title": "Molly®"
+            },
+            {
+              "url": "/",
+              "title": "Innovations 2"
+            },
+            {
+              "url": "/",
+              "title": "Innovations 3"
+            }
+          ]
+        },
+        {
+          "url": "/",
+          "title": "Services",
+          "id": "services",
+          "subitems": [
+            {
+              "url": "/",
+              "title": "Molly®"
+            },
+            {
+              "url": "/",
+              "title": "Services 2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "url": "/",
+      "title": "Knowledge & insights",
+      "id": "knowledge-insights",
+      "content": "SHL Medical helps pharma & biotech companies through the process of getting medical devices to the market.",
+      "feature": {
+        "title": "Discover Maggie®",
+        "content": "Maggie is a cartridge-based solution that accommodates fill volumes up to 3.0 ml",
+        "url": "/",
+        "image": true
+      },
+      "subitems": [
+        {
+          "url": "/",
+          "title": "Injectors",
+          "id": "injectors",
+          "all": {
+            "url": "/",
+            "title": "All injectors"
+          },
+          "subitems": [
+            {
+              "url": "/",
+              "title": "Injector 1"
+            },
+            {
+              "url": "/",
+              "title": "Injector 2"
+            },
+            {
+              "url": "/",
+              "title": "Injector 3"
+            },
+            {
+              "url": "/",
+              "title": "Injector 4"
+            },
+            {
+              "url": "/",
+              "title": "Injector 5"
+            }
+          ]
+        },
+        {
+          "url": "/",
+          "title": "Device platforms",
+          "id": "device-platforms",
+          "all": {
+            "url": "/",
+            "title": "All device platforms"
+          },
+          "subitems": [
+            {
+              "url": "/",
+              "title": "Molly®"
+            },
+            {
+              "url": "/",
+              "title": "Platform 2"
+            },
+            {
+              "url": "/",
+              "title": "Platform 3"
+            },
+            {
+              "url": "/",
+              "title": "Platform 4"
+            },
+            {
+              "url": "/",
+              "title": "Platform 5"
+            }
+          ]
+        },
+        {
+          "url": "/",
+          "title": "Innovations",
+          "id": "innovations",
+          "subitems": [
+            {
+              "url": "/",
+              "title": "Molly®"
+            },
+            {
+              "url": "/",
+              "title": "Innovations 2"
+            },
+            {
+              "url": "/",
+              "title": "Innovations 3"
+            }
+          ]
+        },
+        {
+          "url": "/",
+          "title": "Services",
+          "id": "services",
+          "subitems": [
+            {
+              "url": "/",
+              "title": "Molly®"
+            },
+            {
+              "url": "/",
+              "title": "Services 2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "url": "/",
+      "title": "About us",
+      "id": "about-us",
+      "content": "SHL Medical helps pharma & biotech companies through the process of getting medical devices to the market.",
+      "subitems": [
+        {
+          "url": "/",
+          "title": "Injectors",
+          "id": "injectors",
+          "all": {
+            "url": "/",
+            "title": "All injectors"
+          },
+          "subitems": [
+            {
+              "url": "/",
+              "title": "Injector 1"
+            },
+            {
+              "url": "/",
+              "title": "Injector 2"
+            },
+            {
+              "url": "/",
+              "title": "Injector 3"
+            },
+            {
+              "url": "/",
+              "title": "Injector 4"
+            },
+            {
+              "url": "/",
+              "title": "Injector 5"
+            }
+          ]
+        },
+        {
+          "url": "/",
+          "title": "Device platforms",
+          "id": "device-platforms",
+          "all": {
+            "url": "/",
+            "title": "All device platforms"
+          },
+          "subitems": [
+            {
+              "url": "/",
+              "title": "Molly®"
+            },
+            {
+              "url": "/",
+              "title": "Platform 2"
+            },
+            {
+              "url": "/",
+              "title": "Platform 3"
+            },
+            {
+              "url": "/",
+              "title": "Platform 4"
+            },
+            {
+              "url": "/",
+              "title": "Platform 5"
+            }
+          ]
+        },
+        {
+          "url": "/",
+          "title": "Innovations",
+          "id": "innovations",
+          "subitems": [
+            {
+              "url": "/",
+              "title": "Molly®"
+            },
+            {
+              "url": "/",
+              "title": "Innovations 2"
+            },
+            {
+              "url": "/",
+              "title": "Innovations 3"
+            }
+          ]
+        },
+        {
+          "url": "/",
+          "title": "Services",
+          "id": "services",
+          "subitems": [
+            {
+              "url": "/",
+              "title": "Molly®"
+            },
+            {
+              "url": "/",
+              "title": "Services 2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "url": "/",
+      "title": "Careers",
+      "id": "careers"
+    },
+    {
+      "url": "/",
+      "title": "Get in touch",
+      "id": "get-in-touch"
+    }
+  ]
+}

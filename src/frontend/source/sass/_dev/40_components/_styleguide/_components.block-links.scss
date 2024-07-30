@@ -1,0 +1,7 @@
+.styleguide__links {
+  &--theme {
+    @include theme;
+    padding: $spacing-24;
+    margin-top: $spacing-24;
+  }
+}
