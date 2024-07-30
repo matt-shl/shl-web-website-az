@@ -1,11 +1,11 @@
 @using DTNL.UmbracoCms.Web.Components;
-@using static DTNL.UmbracoCms.Web.Components.NavigationDesktop
-@model DTNL.UmbracoCms.Web.Components.NavigationMobile;
+@using static DTNL.UmbracoCms.Web.Components.Navigation;
+@model DTNL.UmbracoCms.Web.Components.Navigation;
 
 <partial name="Modal" model="@(new Modal {Id = "navigation-mobile", Title="navigation-mobile", Size = "navigation-mobile", KeepScrollPosition = true, CloseAllOthers = true })">
         <div class="c-navigation-mobile">
-            <nav title="{{ global.resource.navigation.mainNavigation }}">
-                <partial name="./NavigationMobileListItem.cshtml" model="@(new Components.NavigationMobile
+        <nav title=CultureDictionary.GetTranslation(TranslationAliases.Navigation.MainNavigation>
+                <partial name="./NavigationMobileListItem.cshtml" model="@(new Components.Navigation
                     {
                         Items = Model.Items
                     })" />
@@ -22,16 +22,16 @@
 {
     @if (item?.Submenu?.Items != null)
     {
-        <partial name="Modal" model="@(new Modal {Id = $"navigation-mobile-{item.Id}", Size = "navigation-mobile", KeepScrollPosition = true, CloseAllOthers = true })">
+        <partial name="Modal" model="@(new Modal {Id = $"navigation-mobile-{item?.Id}", Size = "navigation-mobile", KeepScrollPosition = true, CloseAllOthers = true })">
             <div class="c-navigation-mobile">
-                <partial name="./NavigationMobileListItem.cshtml" model="@(new Components.NavigationMobile
+                <partial name="./NavigationMobileListItem.cshtml" model="@(new Components.Navigation
                     {
                         Items = item.Submenu.Items,
-                        Header = new NavigationMobile.NavigationHeaderListItem {
+                        Header = new Navigation.NavigationHeaderListItem {
                                 Title = item.Submenu.Title,
                                 Id = "navigation-mobile",
                         },
-                        Parent = new NavigationMobile.NavigationListItem {
+                        Parent = new Navigation.NavigationListItem {
                                 Title = item?.Submenu.Title,
                                 Id = item?.Submenu.Id,
                         },
@@ -52,16 +52,16 @@
         {
             @if (subitem?.NestedSubmenu?.Links != null)
             {
-                    <partial name="Modal" model="@(new Modal {Id = $"navigation-mobile-{item.Id}-{subitem.Id}", Size = "navigation-mobile", KeepScrollPosition = true, CloseAllOthers = true })">
+                    <partial name="Modal" model="@(new Modal {Id = $"navigation-mobile-{item?.Id}-{subitem?.Id}", Size = "navigation-mobile", KeepScrollPosition = true, CloseAllOthers = true })">
                     <div class="c-navigation-mobile">
-                            <partial name="./NavigationMobileListItem.cshtml" model="@(new Components.NavigationMobile
+                            <partial name="./NavigationMobileListItem.cshtml" model="@(new Components.Navigation
                                 {
                                     Items = subitem?.NestedSubmenu?.Links ?? [],
-                                    Header = new NavigationMobile.NavigationHeaderListItem {
+                                    Header = new Navigation.NavigationHeaderListItem {
                                             Title = subitem?.NestedSubmenu.Title,
                                             Id = $"navigation-mobile-{item.Id}",
                                     },
-                                    Parent = new NavigationMobile.NavigationListItem {
+                                    Parent = new Navigation.NavigationListItem {
                                             Title = item?.Submenu.Title,
                                             Id = subitem?.NestedSubmenu.Id,
                                     },

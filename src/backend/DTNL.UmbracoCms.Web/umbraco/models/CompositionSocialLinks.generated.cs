@@ -22,15 +22,10 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 	/// <summary>Composition Social Links</summary>
 	public partial interface ICompositionSocialLinks : IPublishedContent
 	{
-		/// <summary>Social Links</summary>
+		/// <summary>Social links</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		global::System.Collections.Generic.IEnumerable<global::Umbraco.Cms.Core.Models.Link> SocialLinks { get; }
-
-		/// <summary>Social Media Policy Link</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		global::Umbraco.Cms.Core.Models.Link SocialMediaPolicyLink { get; }
 	}
 
 	/// <summary>Composition Social Links</summary>
@@ -65,29 +60,16 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		// properties
 
 		///<summary>
-		/// Social Links: Supported platforms: Facebook, Instagram, X, Youtube and LinkedIn
+		/// Social links: Supported platforms: Facebook, Instagram, Twitter, Youtube and LinkedIn
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("socialLinks")]
 		public virtual global::System.Collections.Generic.IEnumerable<global::Umbraco.Cms.Core.Models.Link> SocialLinks => GetSocialLinks(this, _publishedValueFallback);
 
-		/// <summary>Static getter for Social Links</summary>
+		/// <summary>Static getter for Social links</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		public static global::System.Collections.Generic.IEnumerable<global::Umbraco.Cms.Core.Models.Link> GetSocialLinks(ICompositionSocialLinks that, IPublishedValueFallback publishedValueFallback) => that.Value<global::System.Collections.Generic.IEnumerable<global::Umbraco.Cms.Core.Models.Link>>(publishedValueFallback, "socialLinks");
-
-		///<summary>
-		/// Social Media Policy Link
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("socialMediaPolicyLink")]
-		public virtual global::Umbraco.Cms.Core.Models.Link SocialMediaPolicyLink => GetSocialMediaPolicyLink(this, _publishedValueFallback);
-
-		/// <summary>Static getter for Social Media Policy Link</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		public static global::Umbraco.Cms.Core.Models.Link GetSocialMediaPolicyLink(ICompositionSocialLinks that, IPublishedValueFallback publishedValueFallback) => that.Value<global::Umbraco.Cms.Core.Models.Link>(publishedValueFallback, "socialMediaPolicyLink");
 	}
 }

@@ -1,9 +1,9 @@
-@model DTNL.UmbracoCms.Web.Components.NavigationDesktop
+@model DTNL.UmbracoCms.Web.Components.Navigation
 
 <nav class="c-navigation-desktop" js-hook-navigation-desktop title="mainNav">
 
     <ul class="navigation-desktop__list">
-        @foreach (Components.NavigationDesktop.MenuItem item in Model.Items)
+        @foreach (Components.Navigation.MenuItem item in Model.Items)
         {
             <li class="navigation-desktop__list-item" js-hook-navigation-desktop-item>
                 @if (item?.Submenu?.Items.Count() > 0)

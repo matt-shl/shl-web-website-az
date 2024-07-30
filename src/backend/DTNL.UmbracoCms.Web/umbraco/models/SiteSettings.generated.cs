@@ -122,28 +122,12 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual global::Umbraco.Cms.Core.Models.PublishedContent.IPublishedContent UmbracoError500 => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionErrorHandling.GetUmbracoError500(this, _publishedValueFallback);
 
 		///<summary>
-		/// Bottom Links
+		/// Links
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("footerBottomLinks")]
-		public virtual global::System.Collections.Generic.IEnumerable<global::Umbraco.Cms.Core.Models.Link> FooterBottomLinks => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionFooter.GetFooterBottomLinks(this, _publishedValueFallback);
-
-		///<summary>
-		/// Link Groups
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("footerLinkGroups")]
-		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel FooterLinkGroups => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionFooter.GetFooterLinkGroups(this, _publishedValueFallback);
-
-		///<summary>
-		/// Text
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("footerText")]
-		public virtual string FooterText => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionFooter.GetFooterText(this, _publishedValueFallback);
+		[ImplementPropertyType("footerLinks")]
+		public virtual global::System.Collections.Generic.IEnumerable<global::Umbraco.Cms.Core.Models.Link> FooterLinks => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionFooter.GetFooterLinks(this, _publishedValueFallback);
 
 		///<summary>
 		/// Main
@@ -170,20 +154,12 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual string WebsiteName => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionSeoSettings.GetWebsiteName(this, _publishedValueFallback);
 
 		///<summary>
-		/// Social Links: Supported platforms: Facebook, Instagram, X, Youtube and LinkedIn
+		/// Social links: Supported platforms: Facebook, Instagram, Twitter, Youtube and LinkedIn
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("socialLinks")]
 		public virtual global::System.Collections.Generic.IEnumerable<global::Umbraco.Cms.Core.Models.Link> SocialLinks => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionSocialLinks.GetSocialLinks(this, _publishedValueFallback);
-
-		///<summary>
-		/// Social Media Policy Link
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("socialMediaPolicyLink")]
-		public virtual global::Umbraco.Cms.Core.Models.Link SocialMediaPolicyLink => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionSocialLinks.GetSocialMediaPolicyLink(this, _publishedValueFallback);
 
 		///<summary>
 		/// Company Logo: For Google Structured Data tags

@@ -9,7 +9,7 @@
     }
   
     <ul class="navigation-mobile-list__list">
-        @foreach (Components.NavigationDesktop.MenuItem item in Model.Items)
+        @foreach (Components.Navigation.MenuItem item in Model.Items)
         {
             <li class="navigation-mobile-list__item">                
                 @if(item?.Submenu?.Items != null || item?.NestedSubmenu?.Links != null)

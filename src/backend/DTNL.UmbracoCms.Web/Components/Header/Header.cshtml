@@ -1,49 +1,35 @@
 @using DTNL.UmbracoCms.Web.Components
-@using DTNL.UmbracoCms.Web.Components.Navigation
-@using static DTNL.UmbracoCms.Web.Components.NavigationDesktop
+@using static DTNL.UmbracoCms.Web.Components.Navigation
 
 @model DTNL.UmbracoCms.Web.Components.Header
 
 <header class="c-header" js-hook-header>
     <div class="header__container">
         <div class="header__content">
-            @* <!-- Todo: add title from Dictionary - Localised --> *@
-            <a href="/" class="header__logo" title="Logo">
+            <a href="/" class="header__logo" title=CultureDictionary.GetTranslation(TranslationAliases.Navigation.Home>
                 <svg src="@(SvgAliases.Brand.LogoColor)" />
             </a>
-
-            @* <!-- Todo: add title from Dictionary - Localised --> *@
-            @* <partial name="Button" model="@(new Button {
-                Element = "button",
-                Label = "Menu",
-                Icon = SvgAliases.Icons.Menu,
-                Class = "header__hamburger",
-                Controls = "navigation-mobile",
-                Attributes =  { ["aria-label"] = "Open Menu" },
-                Hook = "js-hook-header-hamburger"
-                })" /> *@
 
             <button js-hook-header-hamburger
                     class="header__hamburger"
                     aria-controls="navigation-mobile"
-                    aria-label="Open Menu">
+                    aria-label=CultureDictionary.GetTranslation(TranslationAliases.Navigation.OpenMenu>
                 <svg src="@(SvgAliases.Icons.Menu)" />
                 Menu
             </button>
 
             <div class="header__navigation">
-                <partial name="NavigationDesktop" model="@(NavigationDesktop.Create(Model.Navigation))" />
+                <partial name="Navigation/NavigationDesktop" model="@(Navigation.Create(Model.Navigation))" />
             
             </div>
 
             <div class="header__language-selector">
-                @* <!-- Todo: language selector --> *@
             </div>
         </div>
     </div>
 </header>
 
 <div>
-    <partial name="NavigationMobile" model="@(NavigationMobile.Create(Model.Navigation))" />
+    <partial name="Navigation/NavigationMobile" model="@(Navigation.Create(Model.Navigation))" />
 </div>
 

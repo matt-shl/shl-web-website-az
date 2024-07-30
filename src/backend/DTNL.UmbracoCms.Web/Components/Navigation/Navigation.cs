@@ -1,13 +1,18 @@
-using MimeKit;
 using Umbraco.Cms.Core.Models;
 using Umbraco.Cms.Web.Common.PublishedModels;
-using static DTNL.UmbracoCms.Web.Components.NavigationMobile;
+using static DTNL.UmbracoCms.Web.Components.Navigation;
 
 namespace DTNL.UmbracoCms.Web.Components;
 
-public class NavigationDesktop
+public class Navigation
 {
     public IEnumerable<MenuItem> Items { get; set; } = new List<MenuItem>();
+
+    public NavigationHeaderListItem? Header { get; set; }
+
+    public NavigationListItem? Parent { get; set; }
+
+    public Link? AllLink { get; set; }
 
     public class MenuItem
     {
@@ -27,12 +32,19 @@ public class NavigationDesktop
 
         public HeaderFeature? PromoBlock { get; set; }
 
-        public NavigationListItem? Header { get; set; }
+        public NavigationHeaderListItem? Header { get; set; }
 
         public NavigationListItem? Parent { get; set; }
     }
 
     public class NavigationListItem
+    {
+        public required string? Title { get; set; }
+
+        public int? Id { get; set; }
+    }
+
+    public class NavigationHeaderListItem
     {
         public required string? Title { get; set; }
 
@@ -70,17 +82,17 @@ public class NavigationDesktop
 
     }
 
-    public static NavigationDesktop Create(NestedBlockNavigation? navigation)
+    public static Navigation Create(NestedBlockNavigation? navigation)
     {
         if (navigation == null || navigation.Items is not { } navigationItems)
         {
-            return new NavigationDesktop
+            return new Navigation
             {
                 Items = [],
             };
         }
 
-        return new NavigationDesktop
+        return new Navigation
         {
             Items = navigation.Items
                     .Select(i => i.Content)

@@ -35,7 +35,7 @@ public class Link
     /// </summary>
     public string? IconPath { get; set; }
 
-    public static Link? Create(IPublishedContent node, bool showTitle = true, string? cssClasses = null)
+    public static Link? Create(IPublishedContent? node, bool showTitle = true, string? cssClasses = null)
     {
         if (node == null)
         {

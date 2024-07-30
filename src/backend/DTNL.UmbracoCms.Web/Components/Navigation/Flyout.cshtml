@@ -1,5 +1,5 @@
 @using DTNL.UmbracoCms.Web.Components;
-@using static DTNL.UmbracoCms.Web.Components.NavigationDesktop
+@using static DTNL.UmbracoCms.Web.Components.Navigation
 
 <div class="c-flyout" js-hook-flyout aria-hidden="true" id="flyout-@Model?.Id">
     <div class="flyout__container">
@@ -17,7 +17,6 @@
                     <li class="flyout__main-item @(i == 0 ? "is--open" : "")" js-hook-flyout-main-item>
                         <button class="flyout__main-item-button" title="@item.Title" js-hook-flyout-main-item-anchor aria-expanded="false" aria-controls="flyout-list-(@item.Id)-(i)">
                             @item.Title
-
                             <svg src="@(SvgAliases.Icons.ChevronRight)" />
                         </button>
 
