@@ -25,14 +25,14 @@ public abstract class NestedBlock : ViewComponentExtended
         return RenderBlock(model, altView);
     }
 
-    protected virtual void ProcessSettings(IPublishedElement settings)
+    protected virtual void ProcessSettings(IPublishedElement? settings)
     {
         if (settings is DefaultComponentSettings defaultSettings)
         {
             Id = defaultSettings.Identifier;
         }
 
-        Id ??= settings.Key.ToString();
+        Id ??= settings?.Key.ToString();
     }
 
     protected virtual object? ProcessBlock(IPublishedElement block)

@@ -1,3 +1,5 @@
+using DTNL.UmbracoCms.Web.Helpers.Aliases;
+using DTNL.UmbracoCms.Web.Helpers.Extensions;
 using Umbraco.Cms.Web.Common.PublishedModels;
 
 namespace DTNL.UmbracoCms.Web.Components;
@@ -16,13 +18,33 @@ public class CardCarousel
 
     public bool ShowCarousel { get; set; }
 
-    // TODO
-    public static CardCarousel? Create(ICompositionBasePage basePage)
+    public static CardCarousel? Create(NestedBlockCards cardsBlock)
     {
+        List<ICard> cards = cardsBlock.Cards
+            .Using(cardBlock => ICard.Create(cardBlock.Content, cssClasses: "section-card-carousel__card"))
+            .ToList();
+
+        if (cards.Count == 0)
+        {
+            return null;
+        }
+
         return new CardCarousel
         {
-            Title = null,
-            Cards = [],
+            Title = cardsBlock.Title,
+            Text = cardsBlock.Text?.ToHtmlString(),
+            PrimaryLinkButton = Button
+                .Create(cardsBlock.PrimaryLink)
+                .With(b => b.Icon = SvgAliases.Icons.ArrowTopRight),
+            SecondaryLinkButton = Button
+                .Create(cardsBlock.SecondaryLink)
+                .With(b =>
+                {
+                    b.Icon = SvgAliases.Icons.ArrowTopRight;
+                    b.Variant = "secondary";
+                }),
+            Cards = cards,
+            ShowCarousel = cards.Count > 3 || (cardsBlock.ShowCarousel && cards.Count == 3),
         };
     }
 }
