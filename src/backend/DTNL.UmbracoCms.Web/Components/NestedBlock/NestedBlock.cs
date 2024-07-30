@@ -17,6 +17,8 @@ public abstract class NestedBlock : ViewComponentExtended
 
     protected virtual string ViewPath => $"~/Components/NestedBlock/{ViewName}/{ViewName}.cshtml";
 
+    protected string? Theme { get; set; }
+
     public async Task<IViewComponentResult> InvokeAsync(BlockListItem item, string? altView = null)
     {
         ProcessSettings(item.Settings);

@@ -1,0 +1,15 @@
+@using DTNL.UmbracoCms.Web.Helpers.Aliases
+@model DTNL.UmbracoCms.Web.Components.Shape
+
+<div class="c-shape @Model.CssClasses">
+
+    <span class="shape__begin">
+        <svg src="@SvgAliases.Shape.Begin" />
+    </span>
+
+    <span class="shape__scale"></span>
+
+    <span class="shape__end">
+        <svg src="@SvgAliases.Shape.End" />
+    </span>
+</div>
