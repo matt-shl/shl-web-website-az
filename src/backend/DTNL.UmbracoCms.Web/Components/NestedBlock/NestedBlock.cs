@@ -9,7 +9,13 @@ public abstract class NestedBlock : ViewComponentExtended
 {
     public string? Id { get; set; }
 
-    protected virtual string DefaultViewName => GetType().Name;
+    public string? Theme => NodeProvider.CurrentNode?.Name;
+
+    public string? NavigationTitle => NodeProvider.CurrentNode?.Name;
+
+    protected virtual string ViewName => GetType().Name;
+
+    protected virtual string ViewPath => $"~/Components/NestedBlock/{ViewName}/{ViewName}.cshtml";
 
     public async Task<IViewComponentResult> InvokeAsync(BlockListItem item, string? altView = null)
     {
@@ -24,6 +30,8 @@ public abstract class NestedBlock : ViewComponentExtended
         {
             Id = defaultSettings.Identifier;
         }
+
+        Id ??= settings.Key.ToString();
     }
 
     protected virtual object? ProcessBlock(IPublishedElement block)
@@ -45,8 +53,8 @@ public abstract class NestedBlock : ViewComponentExtended
             return Content("");
         }
 
-        string viewPath = EnsureAltViewExists(altView) ??
-                          $"~/Components/NestedBlock/{DefaultViewName}/{DefaultViewName}.cshtml";
+        string viewPath = EnsureAltViewExists(altView) ?? ViewPath;
+
         return View(viewPath, model);
     }
 
