@@ -39,7 +39,6 @@
   <ItemGroup>
     <Content Update="Components\_ViewImports.cshtml" Visible="false" />
     <Folder Include="Api/Models/" />
-    <Folder Include="Components\NestedBlock\NestedBlockHero\" />
     <Folder Include="umbraco/Data/" />
 
     <None Include="umbraco/Data/*.mdf" />
