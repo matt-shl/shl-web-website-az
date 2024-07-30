@@ -1,0 +1,34 @@
+{% macro breadcrumb(data) %}
+<div class="c-breadcrumb
+    {%- if data.small %} breadcrumb--small{% else %} breadcrumb--full{% endif %}
+    {%- if data.classes %} {{ data.classes }}{% endif %}">
+
+    <span id="breadcrumb-label" class="u-sr-only">You are here:</span>
+
+    <ol class="breadcrumb__list" id="breadcrumb" aria-labelledby="breadcrumb-label" itemscope itemtype="http://schema.org/BreadcrumbList">
+
+        {% for item in data.items %}
+        <li class="breadcrumb__list-item {%- if loop.last %} breadcrumb__list-item--current{% endif -%}" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+
+            <span class="breadcrumb__icon-back">
+                {% svg 'icons/arrow-left' %}
+            </span>
+
+            <a class="breadcrumb__item" itemprop="item" href="{{ item.url }}" title="{{ item.label }}">
+                <span itemprop="name">
+                    {{ item.label }}
+                </span>
+            </a>
+
+            <meta itemprop="position" content="{{ loop.index }}">
+
+            <span class="breadcrumb__icon-next">
+                {% svg 'icons/chevron-right' %}
+            </span>
+        </li>
+        {% endfor %}
+
+    </ol>
+
+</div>
+{% endmacro %}
