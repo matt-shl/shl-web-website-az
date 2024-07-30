@@ -1,5 +1,6 @@
 .c-breadcrumb {
   --breadcrumb-gap: #{$spacing-12};
+
   @include body-m;
   overflow: auto;
   padding-block: $spacing-8;
