@@ -3,22 +3,24 @@
 
 <@(Model.Element) class="c-card-icon @(Model.HasUrl ? "c-card-icon--has-url c-card-overlay-parent" : null) @Model.ThemeCssClass"
 @(Model.HasUrl ? $"href=\"{Model.Url}\"" : null)
-aria-label="@Model.Title">
+                  aria-label="@Model.Title">
 
-    <div class="card-icon__container">
-        @if (Model.IconAlias is not null)
-        {
-            <div class="card-icon__icon">{% svg 'icons/' + data.icon %}</div>
-        }
-
-        <h3 class="card-icon__title">@Model.Title</h3>
-
-        <div class="card-icon__content">@Html.Raw(Model.Text)</div>
+    <div class="card-image__image-container">
+       <partial name="Image" model="@Model.Image" />
 
         @if (Model.HasUrl)
         {
-            <partial name="CardOverlay" model="@(new CardOverlay{ Title = Model.Title})" />
+            <partial name="CardOverlay" model="@(new CardOverlay{ Title = Model.Title, Position = "end" })" />
         }
+    </div>
+
+    <div class="card-image__content-container">
+
+        <h3 class="card-image__title">@Model.Title</h3>
+
+        <h4 class="card-image__subtitle" asp-if="@Model.SubTitle">@Model.SubTitle</h4>
+
+        <div class="card-image__content">@Html.Raw(Model.Text)</div>
     </div>
 
 </@(Model.Element)>

@@ -6,6 +6,8 @@ public class CardImage
 {
     public required string Title { get; set; }
 
+    public string? SubTitle { get; set; }
+
     public string? Text { get; set; }
 
     public Image? Image { get; set; }
@@ -28,8 +30,9 @@ public class CardImage
         return new CardImage
         {
             Title = imageCard.Title,
+            SubTitle = imageCard.SubTitle,
             Text = imageCard.Text?.ToHtmlString(),
-            Image = Image.Create(imageCard.Image),
+            Image = Image.Create(imageCard.Image, cssClasses: "card-image__image"),
             Url = imageCard.Link?.Url,
             HasUrl = imageCard.Link is not null,
             ThemeCssClass = themeCssClass,
