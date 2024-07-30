@@ -22,6 +22,7 @@ $assets-path: '../' !default;
 
 /* components:scss */
 @import '@/components/button/stylesheet/_components.button';
+@import '@/components/slogan/stylesheet/_components.slogan';
 @import '@/components/footer/stylesheet/_components.footer';
 @import '@/components/header/stylesheet/_components.header';
 @import '@/components/image/stylesheet/_components.image';
@@ -32,7 +33,6 @@ $assets-path: '../' !default;
 @import '@/components/modal/stylesheet/_components.modal';
 @import '@/components/accordion/stylesheet/_components.accordion';
 @import '@/components/toast/stylesheet/_components.toast';
-@import '@/components/slogan/stylesheet/_components.slogan';
 @import '@/components/navigation-desktop/stylesheet/_components.navigation-desktop';
 @import '@/components/flyout/stylesheet/_components.flyout';
 @import '@/components/hero-home/stylesheet/_components.hero-home';
@@ -52,6 +52,9 @@ $assets-path: '../' !default;
 @import '@/components/section-card-carousel/stylesheet/_components.section-card-carousel';
 @import '@/components/card-knowledge/stylesheet/_components.card-knowledge';
 @import '@/components/card-contact/stylesheet/_components.card-contact';
+@import '@/components/breadcrumb/stylesheet/_components.breadcrumb';
+@import '@/components/product-description/stylesheet/_components.product-description';
+@import '@/components/description-list/stylesheet/_components.description-list';
 /* endinject */
 
 @import '50_scopes/scopes.rich-text';

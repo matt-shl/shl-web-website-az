@@ -1,0 +1,33 @@
+{% from 'layout-section.html' import layoutSection %}
+{% from 'button.html' import button %}
+
+{% macro descriptionList(data) %}
+  {% call layoutSection({
+    id: "product-description",
+    sectionTitle: data.sectionTitle
+  }) %}
+    <div class="c-description-list">
+      <div class="description-list__content">
+        <h2 class="description-list__title">{{ data.title }}</h2>
+        <dl class="description-list__list">
+          {% for item in data.items %}
+            <div class="description-list__item">
+              <dt class="description-list__term">{{ item.label }}</dt>
+              <dd class="description-list__details">{{ item.value }}</dd>
+            </div>
+          {% endfor %}
+        </dl>
+
+        {% if data.cta %}
+          {{ button({
+            class: 'description-list__cta',
+            label: data.cta.label,
+            url: data.cta.url,
+            variant: data.cta.variant,
+            icon: data.cta.icon or 'arrow-top-right'
+          }) }}
+        {% endif %}
+      </div>
+    </div>
+  {% endcall %}
+{% endmacro %}

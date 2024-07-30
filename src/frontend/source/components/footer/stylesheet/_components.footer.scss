@@ -4,6 +4,14 @@
   padding-block: $spacing-48 $spacing-24;
 }
 
+.footer__scrolling-text {
+  margin-block: 0 $spacing-88;
+
+  @include screen-lg-and-bigger {
+    margin-bottom: $spacing-112;
+  }
+}
+
 .footer__main {
   @include container;
   @include grid;

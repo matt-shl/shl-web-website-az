@@ -3,7 +3,7 @@
 
 <!DOCTYPE html>
 
-<html lang="@System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName" dir="ltr" class="o-html @ViewBag.HtmlClass">
+<html lang="@System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName" dir="ltr" class="o-html @ViewBag.HtmlClass @ThemeHelper.GetCssClasses(Model)">
 <head>
     <vc:meta-tags page="@Model" site-settings="@NodeProvider.SiteSettings" />
     <vc:structured-data home-page="@NodeProvider.HomePage" site-settings="@NodeProvider.SiteSettings" />

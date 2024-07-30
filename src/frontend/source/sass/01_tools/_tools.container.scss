@@ -8,12 +8,12 @@
 }
 
 @mixin container-with-grid() {
-  @include container();
-  @include grid();
+  @include container;
+  @include grid;
 }
 
 .o-container {
-  @include container();
+  @include container;
 }
 
 .o-container--with-grid {

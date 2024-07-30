@@ -5,13 +5,21 @@
 
 .c-layout-section {
   @include theme;
-  border-radius: $radii-40 $radii-40;
+  border-radius: $radii-20 $radii-20;
+
+  @include screen-md-and-bigger {
+    border-radius: $radii-40 $radii-40;
+  }
 
   &:not(.t-white) {
-    margin: $spacing-40 0;
+    margin-block: $spacing-40;
+
+    &:first-child {
+      margin-block-start: 0;
+    }
 
     &:last-child {
-      margin-bottom: 0;
+      margin-block-end: 0;
     }
   }
 }
