@@ -94,53 +94,11 @@ class Filters {
         },
       ])
     }
-
-    // scroll to the input when it is focused
-    this.inputs?.forEach(input => {
-      input.addEventListener('focus', () => {
-        this.filterFormElement?.scrollTo({
-          top: input.offsetTop - 150,
-          behavior: 'smooth',
-        })
-      })
-    })
-  }
-
-  #toggleStickyClass() {
-    if (!this.element) return
-    const { y, height } = this.element.getBoundingClientRect()
-
-    html.classList[y < height && ScreenDimensions.isTabletLandscapeAndBigger ? 'add' : 'remove'](
-      CLASS_IS_FILTERS_LIST_STICKY,
-    )
-  }
-
-  handleAnchorClick(e: MouseEvent, anchor: HTMLAnchorElement) {
-    e.preventDefault()
-    const id = anchor.getAttribute('href') || ''
-    const section = document.querySelector(id)
-    if (!section) return
-    Events.$trigger('scroll-to::scroll', {
-      data: {
-        target: section,
-        offset: 100,
-      },
-    })
   }
 
   #hasItemsSeleted(): boolean {
     const checkedOptions = this.element.querySelectorAll('input:checked')
     return !!checkedOptions.length
-  }
-
-  #showMoreOptions(element: HTMLButtonElement) {
-    const optionsEl = element.previousElementSibling
-    optionsEl?.classList.remove(CLASS_FILTERS_ACCORDION_OPTIONS_HIDDEN)
-    const options =
-      optionsEl && ([...optionsEl?.querySelectorAll(JS_HOOK_FILTERS_INPUT)] as HTMLInputElement[])
-    if (options && options[4]) {
-      options[4].focus()
-    }
   }
 
   #getNewResults(element?: HTMLInputElement | HTMLButtonElement, shouldPushState?: boolean) {
@@ -158,29 +116,6 @@ class Filters {
           this.#newResultsFail(error.response)
         })
     }
-  }
-
-  #disableFilters() {
-    // disable accordion items and fieldsets
-    const accordionItems = this.element.querySelectorAll(JS_HOOK_ACCORDION_DETAIL)
-
-    accordionItems.forEach(accordionItem => {
-      const fieldset = accordionItem.querySelector('fieldset')
-      accordionItem.setAttribute('disabled', '')
-      fieldset?.setAttribute('disabled', '')
-    })
-
-    // disable sticky buttons
-    this.stickyButtons?.forEach(button => button.setAttribute('disabled', ''))
-
-    // disable close modal btns
-    const filtersModalCloseBtns = this.element.querySelectorAll<HTMLButtonElement>(
-      `${JS_HOOK_FILTERS_MODAL} ${JS_HOOK_FILTERS_MODAL_CLOSE_BTN}`,
-    )
-
-    filtersModalCloseBtns.forEach(button => {
-      button.setAttribute('disabled', '')
-    })
   }
 
   #newResultsSuccess(
@@ -214,6 +149,48 @@ class Filters {
       url: this.urlReplacement,
     }
     window.history.pushState(pushOptions.state, '', pushOptions.url)
+  }
+
+  #disableFilters() {
+    // disable accordion items and fieldsets
+    const accordionItems = this.element.querySelectorAll(JS_HOOK_ACCORDION_DETAIL)
+
+    accordionItems.forEach(accordionItem => {
+      const fieldset = accordionItem.querySelector('fieldset')
+      accordionItem.setAttribute('disabled', '')
+      fieldset?.setAttribute('disabled', '')
+    })
+
+    // disable sticky buttons
+    this.stickyButtons?.forEach(button => button.setAttribute('disabled', ''))
+
+    // disable close modal btns
+    const filtersModalCloseBtns = this.element.querySelectorAll<HTMLButtonElement>(
+      `${JS_HOOK_FILTERS_MODAL} ${JS_HOOK_FILTERS_MODAL_CLOSE_BTN}`,
+    )
+
+    filtersModalCloseBtns.forEach(button => {
+      button.setAttribute('disabled', '')
+    })
+  }
+
+  #toggleStickyClass() {
+    if (!this.element) return
+    const { y, height } = this.element.getBoundingClientRect()
+
+    html.classList[y < height && ScreenDimensions.isTabletLandscapeAndBigger ? 'add' : 'remove'](
+      CLASS_IS_FILTERS_LIST_STICKY,
+    )
+  }
+
+  #showMoreOptions(element: HTMLButtonElement) {
+    const optionsEl = element.previousElementSibling
+    optionsEl?.classList.remove(CLASS_FILTERS_ACCORDION_OPTIONS_HIDDEN)
+    const options =
+      optionsEl && ([...optionsEl?.querySelectorAll(JS_HOOK_FILTERS_INPUT)] as HTMLInputElement[])
+    if (options && options[4]) {
+      options[4].focus()
+    }
   }
 }
 

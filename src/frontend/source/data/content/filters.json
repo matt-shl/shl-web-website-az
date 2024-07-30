@@ -42,7 +42,7 @@
           "label": "Engineering",
           "value": "engineering",
           "id": "filter-engineering",
-          "checked": false,
+          "checked": true,
           "attr": "data-url-replacement='replacement-url.html?customExampleValue=wowowow' data-endpoint='__api-response--filters.html'",
           "hook": "filters-input"
         },

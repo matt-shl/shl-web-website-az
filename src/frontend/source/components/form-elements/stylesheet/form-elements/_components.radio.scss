@@ -1,5 +1,5 @@
 :root {
-  --radio-size: 20px;
+  --radio-size: 16px;
   --radio-border-width: var(--checkbox-border-width);
   --radio-border-radius: 50%;
   --radio-unchecked-color: var(--color-dark-blue);
@@ -12,6 +12,7 @@
   --radio-font-size: $font-size-m;
   --radio-font-weight: $font-weight-regular;
   --radio-label-color: $color-dark-blue;
+  --radio-label-margin-bottom: #{$spacing-16};
 
   --radio-label-color-disabled: var(--color-dark-blue);
   --radio-color-disabled: rgba(var(--color-dark-blue-rgb), 0, 2);
@@ -35,15 +36,12 @@
     & + label {
       &::before {
         transform: translateY(-50%) scale(1);
-        box-shadow:
-          0 0 0 calc(var(--radio-border-width) * 4) var(--color-white) inset,
-          0 0 0 var(--radio-size) var(--radio-checked-color) inset;
       }
 
       &::after {
         box-shadow:
           0 0 0 var(--radio-border-width) var(--radio-checked-color) inset,
-          0 0 0 calc(var(--radio-border-width) * 3) var(--color-white) inset;
+          0 0 0 calc(var(--radio-border-width) * 2) var(--color-white) inset;
       }
 
       color: var(--color-dark-blue);
@@ -92,7 +90,7 @@
   display: block;
   position: relative;
   cursor: pointer;
-  margin-bottom: $global-spacing;
+  margin-bottom: var(--radio-label-margin-bottom);
   padding-left: calc(var(--radio-size) + 10px);
   font-size: var(--radio-font-size);
   font-weight: var(--radio-font-weight);
@@ -112,7 +110,7 @@
 
   &::before {
     box-shadow:
-      0 0 0 calc(var(--radio-border-width) * 3) var(--color-white) inset,
+      0 0 0 calc(var(--radio-border-width) * 2) var(--color-white) inset,
       0 0 0 var(--radio-size) var(--radio-unchecked-color) inset;
     transform: translateY(-50%) scale(0);
     transition: var(--radio-transition-time) var(--radio-transition-ease);
