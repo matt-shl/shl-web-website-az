@@ -8,7 +8,7 @@
     {
         <div class="section-card-carousel__content-outer">
             <div class="section-card-carousel__content-inner">
-                <div class="section-card-carousel__description" asp-if="@Model.Text">@Model.Text</div>
+                <div class="section-card-carousel__description" asp-if="@Model.Text">@Html.Raw(Model.Text)</div>
 
                 <div class="section-card-carousel__button-container">
                     <partial name="Button" model="@Model.PrimaryLinkButton" />
