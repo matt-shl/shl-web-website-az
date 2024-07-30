@@ -1,3 +1,4 @@
+using DTNL.UmbracoCms.Web.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using Umbraco.Cms.Core.Models.Blocks;
 using Umbraco.Cms.Core.Models.PublishedContent;
@@ -9,15 +10,13 @@ public abstract class NestedBlock : ViewComponentExtended
 {
     public string? Id { get; set; }
 
-    public string? Theme => NodeProvider.CurrentNode?.Name;
+    public string? ThemeCssClasses => ThemeHelper.GetCssClasses(NodeProvider.CurrentNode);
 
     public string? NavigationTitle => NodeProvider.CurrentNode?.Name;
 
     protected virtual string ViewName => GetType().Name;
 
     protected virtual string ViewPath => $"~/Components/NestedBlock/{ViewName}/{ViewName}.cshtml";
-
-    protected string? Theme { get; set; }
 
     public async Task<IViewComponentResult> InvokeAsync(BlockListItem item, string? altView = null)
     {

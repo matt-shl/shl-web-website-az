@@ -6,7 +6,7 @@ public abstract class NestedBlockWithInner : NestedBlock
 {
     protected override string ViewPath => "~/Components/NestedBlock/NestedBlockWithInner.cshtml";
 
-    public virtual LayoutSection LayoutSection => new();
+    public virtual LayoutSection LayoutSection { get; set; } = new();
 
     public object? InnerComponent { get; set; }
 

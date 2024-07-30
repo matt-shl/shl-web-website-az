@@ -1,45 +1,40 @@
+@using DTNL.UmbracoCms.Web.Components
 @model DTNL.UmbracoCms.Web.Components.CardCarousel
 
 <h2 class="section-card-carousel__title" asp-if="@Model.Title">@Model.Title</h2>
 
 <div class="section-card-carousel__container">
-    {% if data.description or data.ctaPrimary or data.ctaSecondary %}
-    <div class="section-card-carousel__content-outer">
-        <div class="section-card-carousel__content-inner">
-            {% if data.description %}
-            <p class="section-card-carousel__description">{{ data.description }}</p>
-            {% endif %}
-            <div class="section-card-carousel__button-container">
-                {% if data.ctaPrimary %}
-                {{ button(data.ctaPrimary | clone | merge({icon: 'arrow-top-right'})) }}
-                {% endif %}
-                {% if data.ctaSecondary %}
-                {{ button(data.ctaSecondary| clone | merge({variant: "secondary", icon: 'arrow-top-right'})) }}
-                {% endif %}
+    @if (!Model.Text.IsNullOrWhiteSpace() || Model.PrimaryLinkButton is not null || Model.SecondaryLinkButton is not null)
+    {
+        <div class="section-card-carousel__content-outer">
+            <div class="section-card-carousel__content-inner">
+                <div class="section-card-carousel__description" asp-if="@Model.Text">@Model.Text</div>
+
+                <div class="section-card-carousel__button-container">
+                    <partial name="Button" model="@Model.PrimaryLinkButton" />
+
+                    <partial name="Button" model="@Model.SecondaryLinkButton" />
+                </div>
             </div>
         </div>
-    </div>
-    {% endif %}
+    }
 
-    {# CASE: show no carousel | cards.length <= 2 or there are three card, with the option to not display them in a carousel  #}
-    {% if data.cards | length <= 2 or classShowThreeCardsSideBySide %}
-    {% for cardData in data.cards %}
-    {{ socialCarouselCard(cardData, data.carouselCardType) }}
-    {% endfor %}
-    {% else %}
-    {# CASE: show carousel | cards.length > 2  #}
-    {% call carousel({
-    classes: "section-card-carousel__carousel",
-    pagination: true,
-    slidesDesktop: 3,
-    slidesTablet: 2,
-    slidesMobile: 1.2
-    }) %}
-    {% for cardData in data.cards %}
-    <div class="swiper-slide">
-        {{ socialCarouselCard(cardData, data.carouselCardType) }}
-    </div>
-    {% endfor %}
-    {% endcall %}
-    {% endif %}
+    @if (!Model.ShowCarousel)
+    {
+        foreach (ICard card in Model.Cards)
+        {
+            <partial name="@card.ViewPath" model="@card" />
+        }
+    }
+    else
+    {
+        <partial name="Carousel" model="@(new Carousel { Classes = "section-card-carousel__carousel", Pagination = true, SlidesDesktop = 3, SlidesMobile = 1.2 })">
+            @foreach (ICard card in Model.Cards)
+            {
+                <div class="swiper-slide">
+                    <partial name="@card.ViewPath" model="@card" />
+                </div>
+            }
+        </partial>
+    }
 </div>
