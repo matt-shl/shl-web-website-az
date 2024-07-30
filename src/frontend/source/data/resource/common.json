@@ -1,5 +1,8 @@
 {
   "goToContent": "Go to content",
   "navigationFor": "Navigation for",
-  "goToHomepage": "Go to Homepage"
+  "goToHomepage": "Go to Homepage",
+  "readMoreAbout": "Read more about",
+  "sendEmailTo": "Send an email to",
+  "call": "Call"
 }

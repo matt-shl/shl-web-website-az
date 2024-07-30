@@ -9,7 +9,8 @@ Options:
 
 {% macro cardNumber(data) %}
   <article class="c-card-number
-  {%- if data.theme %} {{ data.theme }}{% endif -%}">
+  {%- if data.theme %} {{ data.theme }}{% endif -%}
+  {%- if data.classes %} {{ data.classes }}{% endif -%}">
 
   <div class="card-number__container">
     <h3 class="card-number__title">{{ data.title }}</h3>

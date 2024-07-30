@@ -86,6 +86,14 @@
   }
 }
 
+.flyout__main-item-button-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+
 .flyout__subitem-list {
   @include list--reset;
   display: none;

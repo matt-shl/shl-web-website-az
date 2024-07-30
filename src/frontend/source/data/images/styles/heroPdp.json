@@ -1,0 +1,12 @@
+{
+  "breakpoints": {
+    "mobile": [260, 350],
+    "mobilePlus": [260, 350],
+    "tabletPortrait": [260, 350],
+    "tabletLandscape": [440, 585],
+    "laptop": [440, 585],
+    "desktop": [440, 585],
+    "widescreen": [440, 585],
+    "4k": [440, 585]
+  }
+}

@@ -2,7 +2,6 @@
 
 :root {
   --header-background-color: transparent;
-  --header-border-color: transparent;
   --header-font-color: var(--color-content);
   --header-height: 64px;
   --hamburger-hover-background-color: #{$color-white};
@@ -13,13 +12,13 @@
 
 @include screen-lg-and-bigger {
   :root {
-    --header-height: 115px;
+    --header-height: 82px;
   }
 }
 
 @keyframes header-move-in-from-top {
   0% {
-    transform: translateY(calc(-100% - #{$spacing-16}));
+    transform: translateY(calc(-100% - #{$spacing-32}));
   }
 
   100% {
@@ -39,11 +38,10 @@
 .c-header {
   @include page-load-animation(header-move-in-from-top);
   height: var(--header-height);
-  padding-top: $spacing-16;
   position: fixed;
-  top: 0;
+  top: $spacing-16;
   transition: var(--header-transition-time) var(--header-transition-ease);
-  transition-property: transform, color;
+  transition-property: transform, color, background-color, box-shadow, top;
   width: 100%;
   z-index: 9;
 
@@ -74,26 +72,29 @@
   }
 
   .header--is-hidden & {
-    transform: translateY(calc(-100% - #{$spacing-16}));
+    transform: translateY(-100%);
   }
 
   .header--is-going-up & {
     transform: translateY(0) !important;
+    background-color: $color-white;
+    box-shadow: $box-shadow;
   }
 
   .header--is-sticky & {
+    top: 0;
+    background-color: $color-white;
     --header-background-color: #{$color-white};
-    --header-border-color: #{$color-light-grey};
     --header-font-color: #{$color-dark-blue};
     --hamburger-hover-background-color: #{$color-dark-blue};
     --hamburger-hover-font-color: #{$color-white};
   }
 
   @include screen-lg-and-bigger {
-    padding-top: $spacing-32;
+    top: $spacing-32;
 
-    .header--is-hidden & {
-      transform: translateY(-100%);
+    .is--anchor-list-sticky.header--is-going-up & {
+      box-shadow: none;
     }
   }
 }
@@ -124,7 +125,6 @@
   @include header-background-offset;
   align-items: center;
   background-color: var(--header-background-color);
-  border: 1px solid var(--header-border-color);
   border-radius: $radii-12;
   color: var(--header-font-color);
   display: flex;
@@ -132,7 +132,7 @@
   height: 64px;
   padding-block: $spacing-20;
   transition: var(--header-transition-time) var(--header-transition-ease);
-  transition-property: background-color, color, border-color;
+  transition-property: background-color, color;
 
   @include screen-lg-and-bigger {
     height: 82px;

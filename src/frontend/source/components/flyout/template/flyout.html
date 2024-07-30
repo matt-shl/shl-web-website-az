@@ -17,7 +17,9 @@
               <button class="flyout__main-item-button" title="{{ item.title }}" js-hook-flyout-main-item-anchor aria-expanded="false" aria-controls="flyout-list-{{ data.id }}-{{ loop.index0 }}">
                 {{ item.title }}
 
+                <div class="flyout__main-item-button-icon">
                 {% svg 'icons/chevron-right' %}
+                </div>
               </button>
 
               <ul class="flyout__subitem-list" id="flyout-list-{{ data.id }}-{{ loop.index0 }}">

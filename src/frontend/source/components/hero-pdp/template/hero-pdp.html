@@ -1,0 +1,84 @@
+{% from 'button.html' import button %}
+{% from 'image.html' import image %}
+{% from 'anchor-list.html' import anchorList %}
+
+{% macro heroPdp(data) %}
+
+  <section class="c-hero-pdp
+      {%- if data.theme %} {{ data.theme }}{% endif -%}"
+           js-hook-hero>
+    <div class="hero-pdp__container">
+      <div class="hero-pdp__breadcrumbs">
+        <!-- TODO: breadcrumb -->
+      </div>
+
+      <div class="hero-pdp__col-left">
+        <h1 class="hero-pdp__title">{{ data.title }}</h1>
+        {% if data.description %}
+          <p class="hero-pdp__description">{{ data.description }}</p>
+        {% endif %}
+        {% if data.cta1 or data.cta2 %}
+          <div class="hero-pdp__ctas">
+            {% if data.cta1 %}
+              {{ button({
+                class: 'hero-pdp__cta1',
+                label: data.cta1.label,
+                url: data.cta1.url,
+                variant: data.cta1.variant,
+                icon: data.cta1.icon or 'arrow-top-right'
+              }) }}
+            {% endif %}
+            {% if data.cta2 %}
+              {{ button({
+                class: 'hero-pdp__cta2',
+                label: data.cta2.label,
+                url: data.cta2.url,
+                variant: data.cta2.variant or 'secondary',
+                icon: data.cta2.icon or 'arrow-top-right'
+              }) }}
+            {% endif %}
+          </div>
+        {% endif %}
+      </div>
+      <div class="hero-pdp__col-right">
+        <div class="hero-pdp__image-container">
+          {% if data.image %}
+            {{ image({
+              objectFit: true,
+              classes: 'hero-pdp__image',
+              imageStyle: 'heroPdp'
+            }) }}
+          {% endif %}
+        </div>
+        {% if data.cta1 %}
+          {{ button({
+            class: 'hero-pdp__cta1',
+            label: data.cta1.label,
+            url: data.cta1.url,
+            variant: data.cta1.variant,
+            icon: data.cta1.icon or 'arrow-top-right'
+          }) }}
+        {% endif %}
+      </div>
+    </div>
+
+    {% if data.showAnchorLinks %}
+      <div class="hero-pdp__shape-container">
+        <div class="hero-pdp__shape">
+          <div class="hero-pdp__shape-left"></div>
+          <div class="hero-pdp__shape-scale">{% svg 'shape/pdp' %}</div>
+          <div class="hero-pdp__shape-right"></div>
+        </div>
+
+        <div class="hero-pdp__anchor-links-container">
+          {{ anchorList({
+            classes: "hero-pdp__anchor-links",
+            alignment: 'vertical'
+          }) }}
+        </div>
+      </div>
+    {% endif %}
+
+  </section>
+
+{% endmacro %}

@@ -4,9 +4,16 @@
   width: 100%;
   line-height: 1.1;
   display: flex;
+  margin-block: $spacing-48;
 
   .is--reduced-motion & {
     @include h1;
+    line-height: 1.1;
+    justify-content: center;
+  }
+
+  @include screen-lg-and-bigger {
+    margin-bottom: $spacing-80;
   }
 }
 
@@ -24,16 +31,29 @@
 
   .is--reduced-motion & {
     animation: none;
+
+    &:not(:first-child) {
+      display: none;
+    }
   }
 }
 
 .slogan__content {
   display: inline-block;
   white-space: nowrap;
-  padding-right: $global-spacing;
+  padding-inline-end: $spacing-24;
 
   .is--reduced-motion & {
     white-space: normal;
+    padding-inline-end: 0;
+
+    &:not(:first-child) {
+      display: none;
+    }
+  }
+
+  @include screen-lg-and-bigger {
+    padding-inline-end: $spacing-32;
   }
 }
 

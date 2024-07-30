@@ -11,9 +11,11 @@ Options:
 {% from 'image.html' import image %}
 
 {% macro cardImage(data) %}
-  <{{ data.url and 'a' or 'article' }} class="c-card-image c-card-image--has-image
+  <{{ data.url and 'a' or 'article' }}
+  class="c-card-image c-card-image--has-image
   {%- if data.url %} c-card-image--has-url c-card-overlay-parent{% endif -%}
-  {%- if data.theme %} {{ data.theme }}{% endif -%}"
+  {%- if data.theme %} {{ data.theme }}{% endif -%}
+  {%- if data.classes %} {{ data.classes }}{% endif -%}"
   {%- if data.url %} href="{{ data.url }}"{% endif -%}
   aria-label="{{ data.title }}">
 
@@ -26,7 +28,8 @@ Options:
 
     {% if data.url %}
       {{ cardOverlay({
-        title: data.title
+        title: data.title,
+        position: 'end'
       }) }}
     {% endif %}
   </div>

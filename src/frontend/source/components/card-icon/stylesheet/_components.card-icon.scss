@@ -11,7 +11,7 @@
 
 .card-icon__container {
   @include card-container-base;
-  @include theme;
+  @include theme-card;
 
   .c-card-icon & {
   }
@@ -54,11 +54,13 @@
   padding-top: 16px;
   // When the card has a URL, the font size is smaller; starts at 18px
   .c-card-icon--has-url & {
-    max-height: 0;
-    opacity: 0;
-    transition: var(--card-animation-duration) var(--card-animation-ease);
-    transition-property: opacity, max-height, padding-top;
-    padding-top: 0;
+    @include screen-md-and-bigger {
+      max-height: 0;
+      opacity: 0;
+      transition: var(--card-animation-duration) var(--card-animation-ease);
+      transition-property: opacity, max-height, padding-top;
+      padding-top: 0;
+    }
 
     @include fluid-type-container(
       card,
