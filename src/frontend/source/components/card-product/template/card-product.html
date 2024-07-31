@@ -1,0 +1,47 @@
+{% from 'card-overlay.html' import cardOverlay %}
+{% from 'image.html' import image %}
+{% from 'button.html' import button %}
+
+{% macro cardProduct(data) %}
+  <a class="c-card-product
+    c-card-overlay-parent
+    {%- if data.theme %} {{ data.theme }}{% endif -%}
+    {%- if data.classes %} {{ data.classes }}{% endif -%}"
+    href="{{ data.url or data.href }}"
+    aria-label="{{ data.title }}">
+
+     <div class="card-product__image-container">
+    {{ image({
+      objectFit: true,
+      classes: 'card-product__image',
+      imageStyle: 'card-contact'
+    }) }}
+
+    {{ cardOverlay({
+      title: data.title,
+      position: 'end'
+    }) }}
+
+  </div>
+
+  <div class="card-product__content-container">
+    <h3 class="card-product__title">{{ data.title }}</h3>
+    <div class="card-product__specifications">
+      {% for spec in data.specifications %}
+          <span class="card-product__specification-label">{{ spec.label }}</span>
+          <div class="card-product__specification-value">
+              {% if spec.value is number %}
+                  <span class="card-product__specification-value-level {{"card-product__specification-value-level--activated" if spec.value > 0 else ''}}"></span>
+                  <span class="card-product__specification-value-level {{"card-product__specification-value-level--activated" if spec.value > 1 else ''}}"></span>
+                  <span class="card-product__specification-value-level {{"card-product__specification-value-level--activated" if spec.value > 2 else ''}}"></span>
+              {% else %}
+                {{ spec.value }}
+              {% endif %}
+          </div>
+      {% endfor %}
+    </div>
+
+    <p class="card-product__content">{{ data.content }}</p>
+  </div>
+  </a>
+{% endmacro %}

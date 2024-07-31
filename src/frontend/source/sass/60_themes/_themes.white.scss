@@ -17,11 +17,13 @@
   // Cards
   --color-card-background: #{$color-light-blue};
   --color-card-content: #{$color-white};
+  --color-card-tertiary: #{$color-light-blue};
+
+  // Product card
+  --color-spec-value-level-default: initial;
 
   --tag-color: #{$color-dark-blue};
   --tag-bg-color: #{$color-pale-blue};
-
-  --contact-role-color: #{$color-light-blue};
 }
 
 html.t-white {

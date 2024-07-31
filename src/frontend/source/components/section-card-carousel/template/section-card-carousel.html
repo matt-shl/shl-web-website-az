@@ -8,6 +8,7 @@
 {% from 'card-number.html' import cardNumber %}
 {% from 'card-knowledge.html' import cardKnowledge %}
 {% from 'card-contact.html' import cardContact %}
+{% from 'card-product.html' import cardProduct %}
 
 
 {#
@@ -101,6 +102,10 @@
     })) }}
   {% elif carouselCardType == 'contact' %}
     {{ cardContact(cardData | clone | merge({
+      classes: socialCarouselCardClasses
+    })) }}
+  {% elif carouselCardType == 'product' %}
+    {{ cardProduct(cardData | clone | merge({
       classes: socialCarouselCardClasses
     })) }}
   {% else %}

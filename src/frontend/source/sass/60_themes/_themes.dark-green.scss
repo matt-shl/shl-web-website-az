@@ -15,8 +15,11 @@
   --theme-color-content-20: #{rgba($color-white-rgb, 0.2)};
 
   // Cards
-  --color-card-background: #{$color-pale-pink};
+  --color-card-background: #{$color-pale-green};
   --color-card-content: #{$color-dark-green};
+
+  // Product card
+  --color-spec-value-level-default: var(--theme-color-content-20);
 }
 
 html.t-dark-pink {

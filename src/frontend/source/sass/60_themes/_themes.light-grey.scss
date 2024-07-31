@@ -17,6 +17,9 @@
   // Cards
   --color-card-background: #{$color-dark-blue};
   --color-card-content: #{$color-white};
+
+  // Product card
+  --color-spec-value-level-default: #{$color-white};
 }
 
 html.t-white {
