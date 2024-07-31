@@ -59,7 +59,7 @@
           "value": "support",
           "id": "filter-support",
           "checked": false,
-          "attr": "data-url-replacement='replacement-url.html?customExampleValue=wowowow' data-endpoint='__api-response--filters.html'",
+          "attr": "data-url-replacement='replacement-url.html?customExampleValue=wowowow' data-endpoint='__api-response--filters-no-results.html'",
           "hook": "filters-input"
         },
         {

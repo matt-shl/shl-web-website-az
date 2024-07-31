@@ -29,7 +29,6 @@ $assets-path: '/assets/';
 @import '@/components/grid-overlay/stylesheet/_components.grid-overlay';
 @import '@/components/tag/stylesheet/_components.tag';
 @import '@/components/shape/stylesheet/_components.shape';
-@import '@/components/card-overlay/stylesheet/_components.card-overlay';
 @import '@/components/modal/stylesheet/_components.modal';
 @import '@/components/accordion/stylesheet/_components.accordion';
 @import '@/components/toast/stylesheet/_components.toast';
@@ -60,6 +59,7 @@ $assets-path: '/assets/';
 @import '@/components/form/stylesheet/_components.form';
 @import '@/components/form-elements/stylesheet/_components.form-elements';
 @import '@/components/loading-indicator/stylesheet/_components.loading-indicator';
+@import '@/components/empty-section/stylesheet/_components.empty-section';
 /* endinject */
 
 @import '50_scopes/scopes.rich-text';

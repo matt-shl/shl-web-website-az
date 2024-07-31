@@ -12,6 +12,11 @@
 /**
 * Button variants
 */
+
+.c-button--primary {
+  @include button--primary;
+}
+
 .c-button--secondary {
   @include button--secondary;
 }
