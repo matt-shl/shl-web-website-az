@@ -3,6 +3,14 @@
   background-color: $color-white;
   transition-property: transform, opacity, box-shadow;
 
+  &:first-child {
+    margin-top: $spacing-80;
+  }
+
+  .modal__body {
+    margin-top: calc(#{$spacing-16} * -1);
+  }
+
   @include screen-lg-and-bigger {
     top: 0;
     z-index: 15;
@@ -16,14 +24,6 @@
       border-top: 1px solid rgba(var(--color-dark-blue-rgb), 0.1);
       box-shadow: $box-shadow-sticky-under-header;
     }
-  }
-
-  &:first-child {
-    margin-top: $spacing-80;
-  }
-
-  .modal__body {
-    margin-top: calc(#{$spacing-16} * -1);
   }
 }
 
@@ -41,7 +41,7 @@
 }
 
 .filters__form {
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .filters__filter-container {

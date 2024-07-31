@@ -13,7 +13,7 @@ const JS_HOOK_FILTERS_INPUT = '[js-hook-filters-input]'
 const JS_HOOK_FILTERS_STICKY_BUTTON = '[js-hook-filters-sticky-button]'
 const JS_HOOK_FILTERS_RESET_BUTTON = '[js-hook-filters-reset-button]'
 const JS_HOOK_FILTER_TITLES = '[js-hook-accordion-item-title]'
-const JS_HOOK_FILTERS_MODAL_CLOSE_BTN = '[js-hook-button-modal-close]'
+const JS_HOOK_FILTERS_MODAL_CLOSE_BTN = '[js-hook-filters-button-modal-close]'
 const JS_HOOK_FILTERS_SHOW_MORE_OPTIONS = '[js-hook-filters-show-more-options]'
 const JS_HOOK_FORM = '[js-hook-form]'
 
@@ -26,6 +26,7 @@ class Filters {
   inputs: NodeListOf<HTMLInputElement> | undefined
   stickyButtons: NodeListOf<HTMLButtonElement> | undefined
   resetButton: HTMLButtonElement | null
+  closeModelButton: HTMLButtonElement | null
   showMoreOptionsButtons: HTMLButtonElement[] | null
   allFilterOptionNames: HTMLElement[] | null
   hasItemsSelected: boolean
@@ -43,11 +44,12 @@ class Filters {
     this.inputs = this.element.querySelectorAll(JS_HOOK_FILTERS_INPUT)
     this.stickyButtons = this.element.querySelectorAll(JS_HOOK_FILTERS_STICKY_BUTTON)
     this.resetButton = this.element.querySelector(JS_HOOK_FILTERS_RESET_BUTTON)
+    this.closeModelButton = this.element.querySelector(JS_HOOK_FILTERS_MODAL_CLOSE_BTN)
     this.showMoreOptionsButtons = Array.from(
       this.element.querySelectorAll(JS_HOOK_FILTERS_SHOW_MORE_OPTIONS),
     )
     this.allFilterOptionNames = Array.from(this.element.querySelectorAll(JS_HOOK_FILTER_TITLES))
-    this.hasItemsSelected = this.#hasItemsSeleted()
+    this.hasItemsSelected = this.#hasItemsSelected()
     this.filterFormElement = this.element.querySelector(JS_HOOK_FORM)
     this.#bindEvents()
   }
@@ -62,8 +64,16 @@ class Filters {
       }),
     )
 
+    this.closeModelButton?.addEventListener('click', () => {
+      const modalId = this.element.querySelector(JS_HOOK_FILTERS_MODAL)?.id
+      if (!modalId) return
+      Events.$trigger(`modal[${modalId}]::close`, { data: { modalId } })
+    })
+
     // get new results for reset button
-    this.resetButton?.addEventListener('click', this.#getNewResults.bind(this, this.resetButton))
+    this.resetButton?.addEventListener('click', () =>
+      this.#getNewResults(this.resetButton || undefined),
+    )
 
     // show more options
     this.showMoreOptionsButtons?.forEach(element =>
@@ -96,7 +106,7 @@ class Filters {
     }
   }
 
-  #hasItemsSeleted(): boolean {
+  #hasItemsSelected(): boolean {
     const checkedOptions = this.element.querySelectorAll('input:checked')
     return !!checkedOptions.length
   }
@@ -125,7 +135,7 @@ class Filters {
     const doc = new DOMParser().parseFromString(response.data, 'text/html')
     const newHtml = doc.documentElement
     // get the new element to focus on, this needs to happen before the content is replaced
-    const newSelectedElement = newHtml.querySelector(`#${element?.id}`)
+    const newSelectedElement = element?.id && newHtml.querySelector(`#${element.id}`)
 
     if (!newHtml) throw new Error('No new content found')
 
@@ -134,7 +144,9 @@ class Filters {
 
     // opens the accordion if the element is inside one + focus on the new element
     if (newSelectedElement) {
-      const parentCarousel = newSelectedElement.closest('details')
+      const parentCarousel = newSelectedElement.closest(
+        JS_HOOK_ACCORDION_DETAIL,
+      ) as HTMLDetailsElement | null
       if (parentCarousel) {
         parentCarousel.open = true
       }
