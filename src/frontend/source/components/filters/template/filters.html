@@ -7,7 +7,7 @@
   <div class="c-filters" js-hook-filters>
     <div class="filters__inner">
        {% if data.totalAmountLabel %}
-        <span class="filters__amount-label" js-hook-replace-content="filters-amount-label" aria-live="polite" ariaLabel="{{data.totalAmountLabel ~ " " ~ "items"}}">{{ data.totalAmountLabel }}</span>
+        <span class="filters__amount-label" js-hook-replace-content="filters-amount-label" aria-live="polite" aria-atomic="true" aria-label="{{data.totalAmountLabel ~ " " ~ "items"}}">{{ data.totalAmountLabel }}</span>
       {% endif %}
 
       <div class="filters__drawer-button-wrapper">

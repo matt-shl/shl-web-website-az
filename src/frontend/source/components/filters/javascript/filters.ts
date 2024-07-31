@@ -107,7 +107,6 @@ class Filters {
 
     if (this.endpoint) {
       Events.$trigger('loader::show')
-      this.#disableFilters()
 
       API.get(this.endpoint)
         .then(response => this.#newResultsSuccess(response, element, shouldPushState))
@@ -125,10 +124,22 @@ class Filters {
   ) {
     const doc = new DOMParser().parseFromString(response.data, 'text/html')
     const newHtml = doc.documentElement
+    // get the new element to focus on, this needs to happen before the content is replaced
+    const newSelectedElement = newHtml.querySelector(`#${element?.id}`)
 
     if (!newHtml) throw new Error('No new content found')
 
+    // replace the content
     ReplaceContent.replaceAllContent(newHtml)
+
+    // opens the accordion if the element is inside one + focus on the new element
+    if (newSelectedElement) {
+      const parentCarousel = newSelectedElement.closest('details')
+      if (parentCarousel) {
+        parentCarousel.open = true
+      }
+      ;(newSelectedElement as HTMLInputElement).focus()
+    }
 
     if (element?.dataset.endpoint && shouldPushState) {
       this.#updateUrlAndHistoryState()
@@ -149,29 +160,6 @@ class Filters {
       url: this.urlReplacement,
     }
     window.history.pushState(pushOptions.state, '', pushOptions.url)
-  }
-
-  #disableFilters() {
-    // disable accordion items and fieldsets
-    const accordionItems = this.element.querySelectorAll(JS_HOOK_ACCORDION_DETAIL)
-
-    accordionItems.forEach(accordionItem => {
-      const fieldset = accordionItem.querySelector('fieldset')
-      accordionItem.setAttribute('disabled', '')
-      fieldset?.setAttribute('disabled', '')
-    })
-
-    // disable sticky buttons
-    this.stickyButtons?.forEach(button => button.setAttribute('disabled', ''))
-
-    // disable close modal btns
-    const filtersModalCloseBtns = this.element.querySelectorAll<HTMLButtonElement>(
-      `${JS_HOOK_FILTERS_MODAL} ${JS_HOOK_FILTERS_MODAL_CLOSE_BTN}`,
-    )
-
-    filtersModalCloseBtns.forEach(button => {
-      button.setAttribute('disabled', '')
-    })
   }
 
   #toggleStickyClass() {

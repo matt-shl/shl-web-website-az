@@ -19,11 +19,11 @@
   }
 
   &:first-child {
-    margin-block-start: $spacing-80;
+    margin-top: $spacing-80;
   }
 
   .modal__body {
-    margin-block-start: calc(#{$spacing-16} * -1);
+    margin-top: calc(#{$spacing-16} * -1);
   }
 }
 

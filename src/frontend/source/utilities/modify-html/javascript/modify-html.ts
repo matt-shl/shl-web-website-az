@@ -1,17 +1,15 @@
-// @ts-nocheck
-
-import Events from '@/utilities/events'
+import Events from '@utilities/events'
 
 export const modifyHTML = (container, html, append = false) => {
-  return new Promise((resolve, reject) => {
+  return new Promise<void>((resolve, reject) => {
     try {
       const modifyEvent = append ? appendEvent : replaceEvent
 
-      if (!document.startViewTransition) {
+      if (!(document as Document & { startViewTransition?: any }).startViewTransition) {
         modifyEvent(container, html)
         resolve()
       } else {
-        document.startViewTransition(() => {
+        ;(document as Document & { startViewTransition?: any }).startViewTransition(() => {
           modifyEvent(container, html)
           resolve()
         })

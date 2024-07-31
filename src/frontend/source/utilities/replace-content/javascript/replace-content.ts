@@ -1,14 +1,9 @@
-import environment from '@utilities/environment'
 import Events from '@utilities/events'
 
 const JS_ATTRIBUTE_REPLACE_CONTENT = 'js-hook-replace-content'
 const JS_HOOK_REPLACE_CONTENT = `[${JS_ATTRIBUTE_REPLACE_CONTENT}]`
 
 class ReplaceContent {
-  constructor() {
-    console.log('ReplaceContent', [...document.querySelectorAll(JS_HOOK_REPLACE_CONTENT)])
-  }
-
   #getContentIds(newContent: Element) {
     return [...newContent.querySelectorAll(JS_HOOK_REPLACE_CONTENT)].map(element =>
       element.getAttribute(JS_ATTRIBUTE_REPLACE_CONTENT),

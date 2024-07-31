@@ -7,7 +7,7 @@
 {% set data = global.content.filters %}
 
 <menu>
-  <span class="filters__amount-label" js-hook-replace-content="filters-amount-label">2544 Items</span>
+  <span class="filters__amount-label" js-hook-replace-content="filters-amount-label" aria-live="polite" aria-atomic="true" aria-label="{{data.totalAmountLabel ~ " " ~ "items"}}">2544 Items</span>
   <div class="o-container" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px " js-hook-replace-content="number-items">
     {% for i in range(16) %}
       {{ cardNumber({title: loop.index, subtitle: "welkom", content: "Cool content"}) }}
