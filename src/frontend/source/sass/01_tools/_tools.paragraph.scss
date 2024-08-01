@@ -20,3 +20,9 @@
 @mixin body-xs {
   font-size: $font-size-body-xs;
 }
+
+@mixin rich-text {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-16;
+}

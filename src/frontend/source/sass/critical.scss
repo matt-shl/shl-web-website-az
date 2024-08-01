@@ -51,6 +51,10 @@ $assets-path: '/assets/';
 @import '@/components/section-card-carousel/stylesheet/_components.section-card-carousel';
 @import '@/components/card-knowledge/stylesheet/_components.card-knowledge';
 @import '@/components/card-contact/stylesheet/_components.card-contact';
+@import '@/components/breadcrumb/stylesheet/_components.breadcrumb';
+@import '@/components/product-description/stylesheet/_components.product-description';
+@import '@/components/description-list/stylesheet/_components.description-list';
+@import '@/components/card-product/stylesheet/_components.card-product';
 /* endinject */
 
 @import '50_scopes/scopes.rich-text';

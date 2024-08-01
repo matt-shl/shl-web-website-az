@@ -1,5 +1,4 @@
 @mixin cardOverlayVisible {
-  // @todo check if is-touch works as expected
   html.is-touch &, // for touch devices
   .c-card-overlay--is-visible &,
   .c-card-overlay-parent:hover & {

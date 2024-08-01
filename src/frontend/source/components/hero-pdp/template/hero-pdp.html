@@ -1,6 +1,7 @@
 {% from 'button.html' import button %}
 {% from 'image.html' import image %}
 {% from 'anchor-list.html' import anchorList %}
+{% from 'breadcrumb.html' import breadcrumb %}
 
 {% macro heroPdp(data) %}
 
@@ -9,7 +10,9 @@
            js-hook-hero>
     <div class="hero-pdp__container">
       <div class="hero-pdp__breadcrumbs">
-        <!-- TODO: breadcrumb -->
+        {{ breadcrumb({
+          items: data.breadcrumbs
+        }) }}
       </div>
 
       <div class="hero-pdp__col-left">

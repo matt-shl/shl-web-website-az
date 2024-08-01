@@ -18,12 +18,16 @@
   padding-block: $spacing-40;
 
   @include screen-lg-and-bigger {
-    padding-block: $spacing-80;
+    padding-block: $spacing-60 $spacing-80;
   }
 }
 
 .hero-pdp__breadcrumbs {
   @include col-span(12);
+
+  @include screen-lg-and-bigger {
+    margin-bottom: $spacing-12;
+  }
 }
 
 .hero-pdp__col-left {

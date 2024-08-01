@@ -1,5 +1,77 @@
 {
+  "description": {
+    "sectionTitle": "Meet Molly®",
+    "title": "Meet Molly® a patient-centric, 2-step autoinjector built on a modular platform technology.",
+    "image": true,
+    "content": {
+      "title": "Optional text",
+      "richText": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit.</p>"
+    }
+  },
+  "specifications": {
+    "sectionTitle": "Specifications",
+    "title": "Specifications",
+    "items": [
+      {
+        "label": "Device type",
+        "value": "Disposable autoinjector"
+      },
+      {
+        "label": "Primary container",
+        "value": "1.0 mL long pre-filled syringe"
+      },
+      {
+        "label": "Usage",
+        "value": "Single Dose | Disposable"
+      },
+      {
+        "label": "Dosage type",
+        "value": "Fixed | Full contents"
+      },
+      {
+        "label": "Needle attachment",
+        "value": "Pre-attached"
+      },
+      {
+        "label": "Route of administration",
+        "value": "Subcutaneous"
+      },
+      {
+        "label": "Activation",
+        "value": "Needle cover"
+      },
+      {
+        "label": "Injection feedback",
+        "value": "Audible click at beginning and end of injection"
+      }
+    ],
+    "cta": {
+      "label": "Full product specifications",
+      "icon": "download",
+      "url": "/"
+    }
+  },
   "footerScrollingText": "Caring. Inclusive. Driven.",
+  "breadcrumbs": {
+    "items": [
+      {
+        "url": "/home.html",
+        "label": "Home"
+      },
+      {
+        "url": "/parent-1.html",
+        "label": "Parent page 1"
+      },
+      {
+        "url": "/parent-2.html",
+        "label": "Parent page 2"
+      },
+      {
+        "url": "/current-item.html",
+        "label": "Current item"
+      }
+    ]
+  },
   "hero": {
     "image": true,
     "title": "Molly® autoinjectors",

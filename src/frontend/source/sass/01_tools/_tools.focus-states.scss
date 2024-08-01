@@ -70,3 +70,11 @@
     }
   }
 }
+
+@mixin keyboard-focus-within {
+  .has--keyboard-focus & {
+    &:focus-within {
+      @content;
+    }
+  }
+}

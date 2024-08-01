@@ -74,6 +74,14 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual string Intro => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionBasePage.GetIntro(this, _publishedValueFallback);
 
 		///<summary>
+		/// Theme
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("theme")]
+		public virtual global::Umbraco.Cms.Core.PropertyEditors.ValueConverters.ColorPickerValueConverter.PickedColor Theme => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionBasePage.GetTheme(this, _publishedValueFallback);
+
+		///<summary>
 		/// Title
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]

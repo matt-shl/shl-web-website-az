@@ -11,6 +11,8 @@ public abstract class NestedBlock : ViewComponentExtended
 
     protected virtual string DefaultViewName => GetType().Name;
 
+    protected string? Theme { get; set; }
+
     public async Task<IViewComponentResult> InvokeAsync(BlockListItem item, string? altView = null)
     {
         ProcessSettings(item.Settings);

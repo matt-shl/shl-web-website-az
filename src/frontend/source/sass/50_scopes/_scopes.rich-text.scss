@@ -4,7 +4,5 @@
 
 // Custom scope for RTE styles.
 .s-rich-text {
-  display: flex;
-  flex-direction: column;
-  gap: $spacing-16;
+  @include rich-text;
 }

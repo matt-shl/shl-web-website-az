@@ -22,7 +22,7 @@
     {%- if data.size %} button--{{ data.size }}{% endif -%}
     {%- if data.icon %} button--icon{% endif -%}
     {%- if data.srOnly %} button--icon-only{% endif -%}
-    {%- if data.iconposition %} button--icon-position-{{ data.iconposition }}{% endif -%}
+    {%- if data.iconposition or data.icon === 'download' %} button--icon-position-{{ 'start' if data.icon === 'download' or data.iconposition }}{% endif -%}
     {%- if data.class %} {{ data.class }}{% endif -%}"
     {%- if data.type %} type="{{ data.type }}"{% endif -%}
     {%- if not data.type and data.element == 'button' %} type="button"{% endif -%}
