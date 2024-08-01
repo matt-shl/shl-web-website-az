@@ -86,6 +86,10 @@
       <Visible>False</Visible>
     </AdditionalFiles>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Plugins\BlockThumbnails\Footer Column Links.png" />
+    <Content Include="App_Plugins\BlockThumbnails\Screenshot 2024-07-29 124919.png" />
+  </ItemGroup>
 
   <!-- Set this to false if ModelsBuilder mode is not SourceCodeAuto or SourceCodeManual -->
   <PropertyGroup>

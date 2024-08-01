@@ -1,4 +1,5 @@
 @import 'variant/mixin.background';
+@import 'variant/mixin.modal';
 
 :root {
   --video-background-color: #{$color-black};
@@ -240,4 +241,8 @@
 // Variants
 .c-video--background {
   @include video--background;
+}
+
+.c-video--modal {
+  @include video--modal;
 }

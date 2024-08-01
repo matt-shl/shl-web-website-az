@@ -10,6 +10,7 @@
 {% from 'section-card-carousel.html' import sectionCardCarousel %}
 {% from 'product-description.html' import productDescription %}
 {% from 'description-list.html' import descriptionList %}
+{% from 'text-media.html' import textMedia %}
 
 {% block hero %}
   {{ heroPdp({
@@ -40,7 +41,7 @@
 
   {{ sectionCardCarousel(global.content.productDetail.numbers) }}
 
-  <!-- Todo "Banner" -->
+  {{ textMedia(global.content.productDetail.textMedia1) }}
 
   <!-- Todo "Text, Image, Links or Accordions" -->
 

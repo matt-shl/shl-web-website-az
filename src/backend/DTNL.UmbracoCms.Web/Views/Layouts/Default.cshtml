@@ -18,11 +18,11 @@
     <vc:header current-page="@Model" />
     <main id="content" role="main">
         
+        <vc:hero page="@(Model as ICompositionBasePage)" />
 
-        <div class ="page__content">
+        <div class="page__content" id="main-content" js-hook-inview>
             @RenderBody()
         </div>
-
     </main>
     <vc:cookie-bar site-settings="@NodeProvider.SiteSettings" />
 

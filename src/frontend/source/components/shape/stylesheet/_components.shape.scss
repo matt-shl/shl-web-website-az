@@ -1,5 +1,6 @@
 .c-shape {
   --bg-color: #{$color-white};
+  --shape-height: 60px;
   color: var(--bg-color);
   display: flex;
   align-items: end;
@@ -11,19 +12,23 @@
 
 .shape__begin {
   width: 139px;
-  height: 60px;
+  height: var(--shape-height);
   color: var(--bg-color);
+
+  svg {
+    height: calc(100% + 1px);
+  }
 }
 
 .shape__end {
   width: 16px;
-  height: 76px;
+  height: calc(var(--shape-height) + 16px);
   color: var(--bg-color);
 }
 
 .shape__scale {
   flex-grow: 1;
-  height: 60px;
+  height: var(--shape-height);
   background: var(--bg-color);
   margin-right: -3px; /* pixel perfect align with end */
 }

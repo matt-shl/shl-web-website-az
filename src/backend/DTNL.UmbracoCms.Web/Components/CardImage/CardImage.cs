@@ -2,7 +2,7 @@ using Umbraco.Cms.Web.Common.PublishedModels;
 
 namespace DTNL.UmbracoCms.Web.Components;
 
-public class CardImage
+public class CardImage : ICard
 {
     public required string Title { get; set; }
 
@@ -16,11 +16,11 @@ public class CardImage
 
     public bool HasUrl { get; set; }
 
-    public string? ThemeCssClass { get; set; }
+    public string? CssClasses { get; set; }
 
     public string Element => HasUrl ? "a" : "article";
 
-    public CardImage? Create(NestedBlockImageCard imageCard, string? themeCssClass)
+    public static CardImage? Create(NestedBlockImageCard imageCard, string? cssClasses = null)
     {
         if (imageCard.Title.IsNullOrWhiteSpace())
         {
@@ -35,7 +35,7 @@ public class CardImage
             Image = Image.Create(imageCard.Image, cssClasses: "card-image__image"),
             Url = imageCard.Link?.Url,
             HasUrl = imageCard.Link is not null,
-            ThemeCssClass = themeCssClass,
+            CssClasses = cssClasses,
         };
     }
 }

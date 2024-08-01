@@ -1,0 +1,25 @@
+{% from 'video.html' import video %}
+{% from 'modal.html' import modal %}
+
+{# !! Note: keep prefix 'modal-video-' the same as in image.html #}
+
+{% macro videoModal(data) %}
+  {% call modal({
+    size: 'video',
+    id : 'modal-video-' + data.id,
+    keepScrollPosition: true,
+    closeAllOthers: true
+  }) %}
+    {{ video({
+      variant: 'modal',
+      instance_id: data.id,
+      id: data.id,
+      platform: 'native',
+      title: data.title,
+      controls: "true",
+      description: data.description,
+      sources: data.sources,
+      closedcaptions: data.closedcaptions
+    }) }}
+  {% endcall %}
+{% endmacro %}

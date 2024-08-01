@@ -57,6 +57,12 @@ class Video {
    * Bind generic events
    */
   _bindEvent() {
+    Events.$on(`video::all-pause`, () => {
+      this.videos.forEach(video => {
+        Events.$trigger(`video[${video.id}]::all-pause`)
+      })
+    })
+
     this.videos.forEach(video => {
       Events.$on<VideoElement>(`video[${video.id}]::inview`, (_, element) => {
         if (!element.inviewProperties?.isInViewport.vertical && !element.dataset.videoLoop) {

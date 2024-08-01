@@ -12,6 +12,7 @@ public class NodeProvider
 
     private PageHome? _homePage;
     private SiteSettings? _siteSettings;
+    private IPublishedContent? _currentNode;
 
     public NodeProvider(IUmbracoContextAccessor umbracoContextAccessor)
     {
@@ -27,10 +28,13 @@ public class NodeProvider
 
     public SiteSettings? SiteSettings => _siteSettings ??= GetSiteSettings(HomePage);
 
+    public IPublishedContent? CurrentNode => _currentNode ??= GetCurrentNode();
+
     internal void Reset()
     {
         _homePage = null;
         _siteSettings = null;
+        _currentNode = null;
     }
 
     private static PageHome? GetHomepage(IPublishedContent? content)
