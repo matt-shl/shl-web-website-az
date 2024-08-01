@@ -33,14 +33,14 @@ public class HomepageHero : ViewComponentExtended
         Image = image;
 
 
-        MainButton = element?.MainButtonLink is null ? null : Button.Create(element.MainButtonLink)
+        MainButton = Button.Create(element?.MainButtonLink)
             .With(b =>
             {
                 b.Class = "button--icon hero-home__cta";
                 b.Hook = "homepage-hero-button";
             });
 
-        SecondaryButton = element?.SecondaryButtonLink is null ? null : Button.Create(element.SecondaryButtonLink)
+        SecondaryButton = Button.Create(element?.SecondaryButtonLink)
             .With(b =>
             {
                 b.Class = "button--icon hero-home__cta";

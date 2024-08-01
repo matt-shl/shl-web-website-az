@@ -25,8 +25,8 @@
                 <div class="hero-home__description"> @Html.Raw(Model.ShortDescription) </div>
             </div>
             <div class="hero-home__col-right">
-                <partial asp-if="@Model.MainButton" name="Button" model="@Model.MainButton"></partial>
-                <partial asp-if="@Model.SecondaryButton" name="Button" model="@Model.SecondaryButton"></partial>
+                <partial name="Button" model="@Model.MainButton"></partial>
+                <partial name="Button" model="@Model.SecondaryButton"></partial>
                 <a class="hero-home__scroll-indicator" href="#main-content" aria-label="Go to content">
                     <svg src="@SvgAliases.Icons.LongArrowDown" />
                 </a>
