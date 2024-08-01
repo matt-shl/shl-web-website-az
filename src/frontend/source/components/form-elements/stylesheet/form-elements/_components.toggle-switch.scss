@@ -1,0 +1,101 @@
+:root {
+  --toggle-switch-height: 20px;
+  --toggle-switch-width: 34px;
+  --toggle-switch-background-color: var(--color-black-30);
+  --toggle-switch-border-radius: 34px;
+  --toggle-switch-transition: 0.2s;
+  --toggle-switch-gap: #{$global-spacing * 2};
+  --toggle-switch-margin-top: 2px;
+
+  --toggle-switch-handle-border-radius: 50%;
+  --toggle-switch-handle-background-color: var(--color-white);
+  --toggle-switch-handle-size: 14px;
+  --toggle-switch-handle-offset: 3px;
+  --toggle-switch-handle-transform-x: 14px;
+
+  --toggle-switch-checked-background-color: $color-dark-blue;
+  --toggle-switch-focus-border-color: var(--color-black);
+  --toggle-switch-disabled-background-color: var(--color-black-05);
+
+  --toggle-switch-content-max-width: none;
+  --toggle-switch-content-font-size: var(--font-size-medium);
+  --toggle-switch-content-title-font-weight: var(--font-weight-medium);
+}
+
+.c-toggle-switch {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--toggle-switch-gap);
+}
+
+.toggle-switch__label {
+  position: relative;
+  display: inline-block;
+  min-width: var(--toggle-switch-width);
+  height: var(--toggle-switch-height);
+  margin-top: var(--toggle-switch-margin-top); // compensate line height offset
+}
+
+.toggle-switch__toggle {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: var(--toggle-switch-background-color);
+  transition: var(--toggle-switch-transition);
+  border-radius: var(--toggle-switch-border-radius);
+
+  &::before {
+    position: absolute;
+    content: '';
+    height: var(--toggle-switch-handle-size);
+    width: var(--toggle-switch-handle-size);
+    left: var(--toggle-switch-handle-offset);
+    top: var(--toggle-switch-handle-offset);
+    background-color: var(--toggle-switch-handle-background-color);
+    transition: var(--toggle-switch-transition);
+    border-radius: var(--toggle-switch-handle-border-radius);
+  }
+}
+
+/* checked state */
+.toggle-switch__input:checked {
+  & + .toggle-switch__toggle {
+    background-color: var(--toggle-switch-checked-background-color);
+  }
+
+  & + .toggle-switch__toggle::before {
+    transform: translateX(var(--toggle-switch-handle-transform-x));
+  }
+}
+
+/* focus state */
+.toggle-switch__input:focus {
+  & + .toggle-switch__toggle {
+    box-shadow: 0 0 1px var(--toggle-switch-focus-border-color);
+  }
+}
+
+/* disabled state */
+.toggle-switch__input:disabled {
+  & + .toggle-switch__toggle {
+    cursor: default;
+    pointer-events: none;
+    background-color: var(--toggle-switch-disabled-background-color);
+  }
+}
+
+.toggle-switch__content {
+  font-size: var(--toggle-switch-content-font-size);
+  flex: 1 1 var(--toggle-switch-content-max-width);
+}
+
+.toggle-switch__title {
+  display: block;
+  font-weight: var(--toggle-switch-content-title-font-weight);
+}
+
+.toggle-switch__description {
+}

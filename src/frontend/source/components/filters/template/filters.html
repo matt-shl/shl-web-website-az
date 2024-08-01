@@ -1,0 +1,32 @@
+{% from 'button.html' import button %}
+
+{% set filtersLabels = global.resource.filters %}
+
+{% macro filters(data) %}
+
+  <div class="c-filters" js-hook-filters>
+    <div class="filters__outer">
+      <div class="filters__inner">
+       {% if data.totalAmountLabel %}
+        <span class="filters__amount-label" js-hook-replace-content="filters-amount-label" aria-live="polite" aria-atomic="true" aria-label="{{data.totalAmountLabel ~ " " ~ "items"}}">{{ data.totalAmountLabel }}</span>
+      {% endif %}
+
+      <div class="filters__drawer-button-wrapper">
+        {{ button({
+          label: filtersLabels.sortAndFilter,
+          variant: 'secondary',
+          class: 'filters__drawer-button',
+          element: 'button',
+          iconPosition: 'left',
+          icon: 'filters',
+          controls: 'modal-filters'
+        }) }}
+      </div>
+      </div>
+    </div>
+
+    {% include "filters-modal.html" %}
+  </div>
+{% endmacro %}
+
+
