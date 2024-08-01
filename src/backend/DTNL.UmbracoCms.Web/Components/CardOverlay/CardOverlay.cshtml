@@ -11,7 +11,7 @@
         {
             <partial name="Tag" model="@(new Tag { Label = Model.Tag })" />
         }
-        else
+        else if (!Model.Title.IsNullOrWhiteSpace())
         {
             <partial name="Button" model="@(new Button { Label = Model.Title, LabelSrOnly = true, Element = "span", Icon = SvgAliases.Icons.ArrowTopRight, Class = "card-overlay__button" })" />
         }

@@ -40,7 +40,8 @@ public partial class Image
         int height = 0,
         string cssClasses = "",
         bool objectFit = true,
-        IEnumerable<SrcSetEntry>? customSrcSet = null)
+        IEnumerable<SrcSetEntry>? customSrcSet = null,
+        string? style = null)
     {
         if (mediaWithCrops?.Content == null)
         {
@@ -54,7 +55,8 @@ public partial class Image
             cssClasses,
             objectFit,
             customSrcSet,
-            mediaWithCrops.LocalCrops.Crops?.Select(c => ImageCrop.Create(mediaWithCrops, c)).WhereNotNull()
+            mediaWithCrops.LocalCrops.Crops?.Select(c => ImageCrop.Create(mediaWithCrops, c)).WhereNotNull(),
+            style
         );
     }
 
@@ -65,7 +67,8 @@ public partial class Image
         string cssClasses = "",
         bool objectFit = true,
         IEnumerable<SrcSetEntry>? customSrcSet = null,
-        IEnumerable<ImageCrop>? localCrops = null)
+        IEnumerable<ImageCrop>? localCrops = null,
+        string? style = null)
     {
         return imageContent switch
         {
@@ -82,7 +85,8 @@ public partial class Image
         string cssClasses = "",
         bool objectFit = true,
         IEnumerable<SrcSetEntry>? customSrcSet = null,
-        IEnumerable<ImageCrop>? localCrops = null)
+        IEnumerable<ImageCrop>? localCrops = null,
+        string? style = null)
     {
         string? url = image.GetDefaultCropUrl(width, height);
         if (string.IsNullOrEmpty(url))
@@ -103,7 +107,7 @@ public partial class Image
                 },
                 Classes = cssClasses,
                 ObjectFit = objectFit,
-                Crops = GenerateCrops(localCrops),
+                Crops = GenerateCrops(localCrops, style),
                 AspectRatio = width != default && height != default ? (width, height) : (16, 9),
                 BackgroundColor = image.DominantColor,
             };
@@ -127,7 +131,8 @@ public partial class Image
         int height = 0,
         string cssClasses = "",
         bool objectFit = true,
-        IEnumerable<ImageCrop>? localCrops = null)
+        IEnumerable<ImageCrop>? localCrops = null,
+        string? style = null)
     {
         string? url = svg.UmbracoFile;
         if (string.IsNullOrEmpty(url))
@@ -135,7 +140,7 @@ public partial class Image
             return null;
         }
 
-        List<(ImageCrop ImageCrop, CssBreakpoint Breakpoint)>? crops = GenerateCrops(localCrops);
+        List<(ImageCrop ImageCrop, CssBreakpoint Breakpoint)>? crops = GenerateCrops(localCrops, style);
         return new Image
         {
             Url = url,
@@ -148,17 +153,41 @@ public partial class Image
         };
     }
 
-    private static List<(ImageCrop ImageCrop, CssBreakpoint Breakpoint)> GenerateCrops(IEnumerable<ImageCrop>? localCrops)
+    private static List<(ImageCrop ImageCrop, CssBreakpoint Breakpoint)> GenerateCrops(
+        IEnumerable<ImageCrop>? localCrops,
+        string? style = null)
     {
-        List<(ImageCrop ImageCrop, CssBreakpoint Breakpoint)> crops = localCrops?
-                                                                       .Select(imageCrop => (imageCrop, breakpoint: CssBreakpoints.GetBreakpoint(imageCrop.Name)))
-                                                                       .Where(c => c.breakpoint != null)
-                                                                       .OrderBy(c => c.breakpoint!.Start ?? 0)
-                                                                       .Select(c => (c.imageCrop, c.breakpoint!))
-                                                                       .ToList()
-                                                                   ?? [];
+        if (localCrops is null)
+        {
+            return [];
+        }
 
-        return [.. crops];
+        if (style is not null)
+        {
+            string styleSuffix = $"-{style}";
+
+            List<ImageCrop> styleCrops = [];
+
+            foreach (ImageCrop localCrop in localCrops.Where(c => c.Name.InvariantEndsWith(styleSuffix)))
+            {
+                localCrop.Name = localCrop.Name.TrimEnd(styleSuffix);
+
+                styleCrops.Add(localCrop);
+            }
+
+            localCrops = styleCrops;
+        }
+        else
+        {
+            localCrops = localCrops.Where(c => !c.Name.Contains('-'));
+        }
+
+        return localCrops
+            .Select(imageCrop => (imageCrop, breakpoint: CssBreakpoints.GetBreakpoint(imageCrop.Name)))
+            .Where(c => c.breakpoint != null)
+            .OrderBy(c => c.breakpoint!.Start ?? 0)
+            .Select(c => (c.imageCrop, c.breakpoint!))
+            .ToList();
     }
 
     private static (int Width, int Height) GetAspectRatio(IReadOnlyCollection<(ImageCrop ImageCrop, CssBreakpoint Breakpoint)> crops, int width, int height)
