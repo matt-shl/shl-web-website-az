@@ -9,22 +9,7 @@
 
 <menu>
   <span class="filters__amount-label" js-hook-replace-content="filters-amount-label" aria-live="polite" aria-atomic="true" aria-label="{{data.totalAmountLabel ~ " " ~ "items"}}">2544 Items</span>
-   {{ emptySection({
-    layoutSection: {
-      replaceContentId: 'number-items'
-    },
-    title: "Sorry, we have no products that match your search criteria",
-    content: "We currently don't have any products matching your criteria. Do you feel like something is missing in our assortiment, let us know!",
-    ctaPrimary: {
-      label: "Reset filters",
-      href: "#"
-    },
-    ctaSecondary: {
-      label: "View all items",
-      variant: "secondary",
-      href: "#"
-    }
-  }) }}
+   {{ emptySection(global.content.emptySection) }}
   <div class="modal__body" js-hook-modal-body js-hook-replace-content="modal-body-modal-filters">
   {% if data.filters.length %}
     {% call form.form({

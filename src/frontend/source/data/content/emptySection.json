@@ -1,0 +1,16 @@
+{
+  "layoutSection": {
+    "replaceContentId": "number-items"
+  },
+  "title": "Sorry, we have no products that match your search criteria",
+  "content": "We currently don't have any products matching your criteria. Do you feel like something is missing in our assortiment, let us know!",
+  "ctaPrimary": {
+    "label": "Reset filters",
+    "href": "#"
+  },
+  "ctaSecondary": {
+    "label": "View all items",
+    "variant": "primary",
+    "href": "#"
+  }
+}
