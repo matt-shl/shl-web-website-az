@@ -11,7 +11,7 @@ public class Header : ViewComponentExtended
 {
     public NestedBlockNavigation? Navigation { get; set; }
 
-    public IViewComponentResult Invoke(IPublishedContent currentPage)
+    public IViewComponentResult Invoke()
     {
         SiteSettings? siteSettings = NodeProvider.SiteSettings;
         NestedBlockNavigation? navigation = GetNavigation(siteSettings);
