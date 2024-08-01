@@ -11,7 +11,8 @@ const themes = [
   'white',
   'dark-pink',
   'light-grey',
-  'dark-green'
+  'dark-green',
+  'pastel-green'
 ] as const
 
 type Theme = (typeof themes)[number]

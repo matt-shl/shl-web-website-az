@@ -1,5 +1,6 @@
 import * as triggers from '../triggers'
 import {VideoOptions} from '../video'
+import Events from "@utilities/events";
 
 type NativeVideoSourceType = {
   url: string
@@ -87,19 +88,19 @@ class NativeVideo {
     })
 
     this.player.addEventListener('playing', () => {
-      if (this.options.videoControls) this.player.controls = false
-
       triggers.onPlaying(this.options)
     })
 
     this.player.addEventListener('pause', () => {
-      if (this.options.videoControls) this.player.controls = true
-
       triggers.onPaused(this.options)
     })
 
     this.player.addEventListener('ended', () => {
       triggers.onEnded(this.options)
+    })
+
+    Events.$on(`video[${this.options.element.id}]::all-pause`, () => {
+      if(!this.options.videoAutoplay) this.pause()
     })
   }
 

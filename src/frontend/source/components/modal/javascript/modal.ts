@@ -176,7 +176,7 @@ class Modal {
     const autoClose = parseInt(modal.el.dataset.autoClose || '')
 
     // Set scroll position for fixed body on mobile
-    if (keepScrollPosition && !ScreenDimensions.isTabletPortraitAndBigger) this.setScrollPosition()
+    if (keepScrollPosition) this.setScrollPosition()
 
     if (closeAllOthers) {
       Object.keys(this.store)
@@ -241,7 +241,7 @@ class Modal {
     // Scroll to original position
     const keepScrollPosition = modal.el.dataset.modalKeepScrollPosition === 'true'
 
-    if (keepScrollPosition && !ScreenDimensions.isTabletPortraitAndBigger && data.id.indexOf(NAVIGATION_MOBILE_ID) === -1)
+    if (keepScrollPosition && data.id.indexOf(NAVIGATION_MOBILE_ID) === -1)
       this.removeScrollPosition()
 
     // Remove tabindex and remove visible class
@@ -254,6 +254,7 @@ class Modal {
     modal.isOpen = false
 
     Events.$trigger('focustrap::deactivate')
+    Events.$trigger('video::all-pause')
 
     Modal.clearCurrentFocus()
   }
@@ -266,7 +267,6 @@ class Modal {
 
     this.scrollTop = this.scrollElement.scrollTop
     body.style.top = `-${this.scrollTop}px`
-
   }
 
   /**

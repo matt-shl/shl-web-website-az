@@ -19,10 +19,23 @@ Options:
 
   <div class="c-card-overlay
     {%- if data.position %} c-card-overlay--position-{{ data.position }}{% endif -%}
-    {%- if data.visible %} c-card-overlay--is-visible{% endif -%}">
+    {%- if data.visible %} c-card-overlay--is-visible{% endif -%}
+    {%- if data.video %} c-card-overlay--has-video{% endif -%}">
 
     <div class="card-overlay__content">
-      {% if data.tag %}
+      {% if data.video %}
+        <div class="card-overlay__video">
+          {{ button({
+            label: global.resource.common.openVideoModal,
+            srOnly: true,
+            element: 'span',
+            icon: 'play'
+          }) }}
+          {% if data.video.totalTime %}
+            {{ data.video.totalTime }}
+          {% endif %}
+        </div>
+      {% elseif data.tag %}
         {{ tag({
           classes: '',
           label: data.tag

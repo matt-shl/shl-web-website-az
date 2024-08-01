@@ -30,6 +30,12 @@ Options:
     {%- if data.autoClose %} data-modal-auto-close="{{ data.autoClose }}"{% endif -%}
        js-hook-modal>
 
+    {% if data.size === "video" %}
+      <button type="button" class="modal__button-close" js-hook-button-modal-close aria-label="{{ global.resource.navigation.close }}">
+        {% svg 'icons/cross' %}
+      </button>
+    {% endif %}
+
     <div class="modal__container">
 
       <div class="modal__content" role="dialog">
@@ -44,10 +50,12 @@ Options:
               {% endif %}
             </div>
 
-            {% if not data.noClose %}
-              <button type="button" class="modal__button-close" js-hook-button-modal-close aria-label="{{ global.resource.navigation.close }}">
-                {% svg 'icons/cross' %}
-              </button>
+            {% if data.size !== "video" %}
+              {% if not data.noClose %}
+                <button type="button" class="modal__button-close" js-hook-button-modal-close aria-label="{{ global.resource.navigation.close }}">
+                  {% svg 'icons/cross' %}
+                </button>
+              {% endif %}
             {% endif %}
           </div>
         {% else %}

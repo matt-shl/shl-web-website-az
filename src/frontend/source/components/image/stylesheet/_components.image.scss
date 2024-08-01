@@ -29,6 +29,7 @@
 }
 
 .image__holder {
+  position: relative;
   background-color: var(--image-skeleton-color);
 
   .image--is-loaded & {
@@ -44,4 +45,9 @@
   .image--is-loaded & {
     opacity: 1;
   }
+}
+
+.image__caption {
+  @include body-s;
+  margin-top: $spacing-16;
 }

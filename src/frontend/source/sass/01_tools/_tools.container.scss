@@ -19,3 +19,15 @@
 .o-container--with-grid {
   @include container-with-grid();
 }
+
+@mixin cta-container {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-16;
+  margin-top: $spacing-32;
+
+  @include screen-lg-and-bigger {
+    flex-direction: row;
+  }
+}

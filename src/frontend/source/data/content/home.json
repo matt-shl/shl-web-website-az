@@ -128,5 +128,147 @@
         "ctaLabel": "Register now"
       }
     ]
+  },
+  "textMedia1": {
+    "theme": "t-pastel-green",
+    "title": "Introducing the Electronic Motorized Autoinjector",
+    "description": "It's new, it's revolutionary, and it's here. Our flagship product Molly® is now available as an Electronic Motorized Autoinjector (EMAI).",
+    "image": {
+      "caption": "image caption example"
+    },
+    "cta1": {
+      "label": "Discover the power of EMAI",
+      "url": "#"
+    }
+  },
+  "textMedia2": {
+    "title": "We value diversity and strive for excellence",
+    "description": "At our workplace, we value our international environment. We're not deterred by setbacks, but instead, we carry on with determination. We diligently research because we believe in the power of knowledge. Above all, our priority is always people.",
+    "image": true,
+    "cta1": {
+      "label": "About SHL Medical",
+      "url": "#"
+    },
+    "cta2": {
+      "label": "Purpose & values",
+      "url": "#"
+    },
+    "video": {
+      "id": "text-media-video1",
+      "totalTime": "01:30",
+      "title": "Text media video 1",
+      "description": "Text media video 1 description",
+      "closedcaptions": [
+        {
+          "url": "subtitles.vtt",
+          "label": "Nederlands",
+          "lang": "nl",
+          "kind": "subtitles"
+        }
+      ],
+      "sources": [
+        {
+          "size": 1920,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        },
+        {
+          "size": 1280,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        },
+        {
+          "size": 1024,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        },
+        {
+          "size": 320,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "textMedia3": {
+    "theme": "t-pale-pink",
+    "title": "Join us in crafting future healthcare solutions",
+    "description": "Where innovation meets compassion in the realm of healthcare. We're revolutionizing the landscape of medical solutions.",
+    "image": {
+      "caption": "image caption example"
+    },
+    "cta1": {
+      "label": "Explore vacancies",
+      "url": "#"
+    },
+    "mediaPosition": "start",
+    "video": {
+      "id": "text-media-video2",
+      "totalTime": "01:30",
+      "title": "Text media video 2",
+      "description": "Text media video 2 description",
+      "closedcaptions": [
+        {
+          "url": "subtitles.vtt",
+          "label": "Nederlands",
+          "lang": "nl",
+          "kind": "subtitles"
+        }
+      ],
+      "sources": [
+        {
+          "size": 1920,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        },
+        {
+          "size": 1280,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        },
+        {
+          "size": 1024,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        },
+        {
+          "size": 320,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        }
+      ]
+    }
   }
 }

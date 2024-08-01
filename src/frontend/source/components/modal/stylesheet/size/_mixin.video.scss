@@ -1,0 +1,41 @@
+@mixin modal--video {
+  .modal__header {
+    padding: 0;
+  }
+
+  .modal__body {
+    padding: 0;
+    overflow: hidden;
+    border-radius: $radii-12;
+  }
+
+  .modal__container {
+    aspect-ratio: 16 / 9;
+    width: 93vw;
+    max-width: 1200px;
+
+    @include screen-lg-and-bigger {
+      width: 80vw;
+    }
+
+    @media only screen and (max-height: em(500px)) {
+      width: 70vw;
+    }
+  }
+
+  .modal__content {
+    margin: 0;
+  }
+
+  .modal__button-close {
+    position: absolute;
+    top: $spacing-24;
+    inset-inline-end: $spacing-24;
+    z-index: 2;
+
+    @include screen-lg-and-bigger {
+      top: $spacing-40;
+      inset-inline-end: $spacing-40;
+    }
+  }
+}
