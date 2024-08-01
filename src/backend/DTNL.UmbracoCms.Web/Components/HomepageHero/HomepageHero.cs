@@ -22,7 +22,7 @@ public class HomepageHero : ViewComponentExtended
     {
         Title = element?.HeroTitle;
 
-        Image? image = Image.Create(element?.HeroImage);
+        Image? image = Image.Create(element?.Image);
 
         if (image == null)
         {
@@ -48,11 +48,11 @@ public class HomepageHero : ViewComponentExtended
                 b.Hook = "homepage-hero-button";
             });
 
-        ShortDescription = element?.ShortDescription;
+        ShortDescription = element?.ShortDescription?.ToString();
 
 
 
-        VideoUrl = Video.Create((NestedBlockVideoNativeUrl?) element?.HeroVideo?.FirstOrDefault()?.Content);
+        VideoUrl = Video.Create((NestedBlockVideoNativeUrl?) element?.Video?.FirstOrDefault()?.Content);
 
 
         return View("HomepageHero", this);

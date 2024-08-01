@@ -18,24 +18,19 @@ using Umbraco.Extensions;
 
 namespace Umbraco.Cms.Web.Common.PublishedModels
 {
-	// Mixin Content Type with alias "compositionHomepageHero"
-	/// <summary>Composition Homepage Hero</summary>
-	public partial interface ICompositionHomepageHero : IPublishedContent
+	// Mixin Content Type with alias "nestedBlockHomepageHero"
+	/// <summary>Nested Block Homepage Hero</summary>
+	public partial interface INestedBlockHomepageHero : IPublishedElement
 	{
-		/// <summary>Hero Image</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		global::Umbraco.Cms.Core.Models.MediaWithCrops HeroImage { get; }
-
 		/// <summary>Hero Title</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		string HeroTitle { get; }
 
-		/// <summary>Hero Video</summary>
+		/// <summary>Image</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		global::Umbraco.Cms.Core.Models.Blocks.BlockListModel HeroVideo { get; }
+		global::Umbraco.Cms.Core.Models.MediaWithCrops Image { get; }
 
 		/// <summary>Main Button link</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
@@ -50,17 +45,22 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		/// <summary>Short Description</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		string ShortDescription { get; }
+		global::Umbraco.Cms.Core.Strings.IHtmlEncodedString ShortDescription { get; }
+
+		/// <summary>Video</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		global::Umbraco.Cms.Core.Models.Blocks.BlockListModel Video { get; }
 	}
 
-	/// <summary>Composition Homepage Hero</summary>
-	[PublishedModel("compositionHomepageHero")]
-	public partial class CompositionHomepageHero : PublishedContentModel, ICompositionHomepageHero
+	/// <summary>Nested Block Homepage Hero</summary>
+	[PublishedModel("nestedBlockHomepageHero")]
+	public partial class NestedBlockHomepageHero : PublishedElementModel, INestedBlockHomepageHero
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		public new const string ModelTypeAlias = "compositionHomepageHero";
+		public new const string ModelTypeAlias = "nestedBlockHomepageHero";
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
@@ -69,33 +69,20 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 			=> PublishedModelUtility.GetModelContentType(publishedSnapshotAccessor, ModelItemType, ModelTypeAlias);
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		public static IPublishedPropertyType GetModelPropertyType<TValue>(IPublishedSnapshotAccessor publishedSnapshotAccessor, Expression<Func<CompositionHomepageHero, TValue>> selector)
+		public static IPublishedPropertyType GetModelPropertyType<TValue>(IPublishedSnapshotAccessor publishedSnapshotAccessor, Expression<Func<NestedBlockHomepageHero, TValue>> selector)
 			=> PublishedModelUtility.GetModelPropertyType(GetModelContentType(publishedSnapshotAccessor), selector);
 #pragma warning restore 0109
 
 		private IPublishedValueFallback _publishedValueFallback;
 
 		// ctor
-		public CompositionHomepageHero(IPublishedContent content, IPublishedValueFallback publishedValueFallback)
+		public NestedBlockHomepageHero(IPublishedElement content, IPublishedValueFallback publishedValueFallback)
 			: base(content, publishedValueFallback)
 		{
 			_publishedValueFallback = publishedValueFallback;
 		}
 
 		// properties
-
-		///<summary>
-		/// Hero Image
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("heroImage")]
-		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops HeroImage => GetHeroImage(this, _publishedValueFallback);
-
-		/// <summary>Static getter for Hero Image</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		public static global::Umbraco.Cms.Core.Models.MediaWithCrops GetHeroImage(ICompositionHomepageHero that, IPublishedValueFallback publishedValueFallback) => that.Value<global::Umbraco.Cms.Core.Models.MediaWithCrops>(publishedValueFallback, "heroImage");
 
 		///<summary>
 		/// Hero Title
@@ -108,20 +95,20 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		/// <summary>Static getter for Hero Title</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		public static string GetHeroTitle(ICompositionHomepageHero that, IPublishedValueFallback publishedValueFallback) => that.Value<string>(publishedValueFallback, "heroTitle");
+		public static string GetHeroTitle(INestedBlockHomepageHero that, IPublishedValueFallback publishedValueFallback) => that.Value<string>(publishedValueFallback, "heroTitle");
 
 		///<summary>
-		/// Hero Video
+		/// Image
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("heroVideo")]
-		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel HeroVideo => GetHeroVideo(this, _publishedValueFallback);
+		[ImplementPropertyType("image")]
+		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops Image => GetImage(this, _publishedValueFallback);
 
-		/// <summary>Static getter for Hero Video</summary>
+		/// <summary>Static getter for Image</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		public static global::Umbraco.Cms.Core.Models.Blocks.BlockListModel GetHeroVideo(ICompositionHomepageHero that, IPublishedValueFallback publishedValueFallback) => that.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockListModel>(publishedValueFallback, "heroVideo");
+		public static global::Umbraco.Cms.Core.Models.MediaWithCrops GetImage(INestedBlockHomepageHero that, IPublishedValueFallback publishedValueFallback) => that.Value<global::Umbraco.Cms.Core.Models.MediaWithCrops>(publishedValueFallback, "image");
 
 		///<summary>
 		/// Main Button link
@@ -134,7 +121,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		/// <summary>Static getter for Main Button link</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		public static global::Umbraco.Cms.Core.Models.Link GetMainButtonLink(ICompositionHomepageHero that, IPublishedValueFallback publishedValueFallback) => that.Value<global::Umbraco.Cms.Core.Models.Link>(publishedValueFallback, "mainButtonLink");
+		public static global::Umbraco.Cms.Core.Models.Link GetMainButtonLink(INestedBlockHomepageHero that, IPublishedValueFallback publishedValueFallback) => that.Value<global::Umbraco.Cms.Core.Models.Link>(publishedValueFallback, "mainButtonLink");
 
 		///<summary>
 		/// Secondary Button Link
@@ -147,7 +134,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		/// <summary>Static getter for Secondary Button Link</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		public static global::Umbraco.Cms.Core.Models.Link GetSecondaryButtonLink(ICompositionHomepageHero that, IPublishedValueFallback publishedValueFallback) => that.Value<global::Umbraco.Cms.Core.Models.Link>(publishedValueFallback, "secondaryButtonLink");
+		public static global::Umbraco.Cms.Core.Models.Link GetSecondaryButtonLink(INestedBlockHomepageHero that, IPublishedValueFallback publishedValueFallback) => that.Value<global::Umbraco.Cms.Core.Models.Link>(publishedValueFallback, "secondaryButtonLink");
 
 		///<summary>
 		/// Short Description
@@ -155,11 +142,24 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("shortDescription")]
-		public virtual string ShortDescription => GetShortDescription(this, _publishedValueFallback);
+		public virtual global::Umbraco.Cms.Core.Strings.IHtmlEncodedString ShortDescription => GetShortDescription(this, _publishedValueFallback);
 
 		/// <summary>Static getter for Short Description</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		public static string GetShortDescription(ICompositionHomepageHero that, IPublishedValueFallback publishedValueFallback) => that.Value<string>(publishedValueFallback, "shortDescription");
+		public static global::Umbraco.Cms.Core.Strings.IHtmlEncodedString GetShortDescription(INestedBlockHomepageHero that, IPublishedValueFallback publishedValueFallback) => that.Value<global::Umbraco.Cms.Core.Strings.IHtmlEncodedString>(publishedValueFallback, "shortDescription");
+
+		///<summary>
+		/// Video
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("video")]
+		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel Video => GetVideo(this, _publishedValueFallback);
+
+		/// <summary>Static getter for Video</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		public static global::Umbraco.Cms.Core.Models.Blocks.BlockListModel GetVideo(INestedBlockHomepageHero that, IPublishedValueFallback publishedValueFallback) => that.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockListModel>(publishedValueFallback, "video");
 	}
 }

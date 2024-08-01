@@ -20,7 +20,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 {
 	/// <summary>Page Home</summary>
 	[PublishedModel("pageHome")]
-	public partial class PageHome : PublishedContentModel, ICompositionBasePage, ICompositionContentBlocks, ICompositionHomepageHero, ICompositionSeo, ICompositionSocialSharing
+	public partial class PageHome : PublishedContentModel, ICompositionBasePage, ICompositionContentBlocks, ICompositionSeo, ICompositionSocialSharing, INestedBlockHomepageHero
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
@@ -72,54 +72,6 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("contentBlocks")]
 		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel ContentBlocks => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionContentBlocks.GetContentBlocks(this, _publishedValueFallback);
-
-		///<summary>
-		/// Hero Image
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("heroImage")]
-		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops HeroImage => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionHomepageHero.GetHeroImage(this, _publishedValueFallback);
-
-		///<summary>
-		/// Hero Title
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("heroTitle")]
-		public virtual string HeroTitle => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionHomepageHero.GetHeroTitle(this, _publishedValueFallback);
-
-		///<summary>
-		/// Hero Video
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("heroVideo")]
-		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel HeroVideo => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionHomepageHero.GetHeroVideo(this, _publishedValueFallback);
-
-		///<summary>
-		/// Main Button link
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("mainButtonLink")]
-		public virtual global::Umbraco.Cms.Core.Models.Link MainButtonLink => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionHomepageHero.GetMainButtonLink(this, _publishedValueFallback);
-
-		///<summary>
-		/// Secondary Button Link
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("secondaryButtonLink")]
-		public virtual global::Umbraco.Cms.Core.Models.Link SecondaryButtonLink => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionHomepageHero.GetSecondaryButtonLink(this, _publishedValueFallback);
-
-		///<summary>
-		/// Short Description
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("shortDescription")]
-		public virtual string ShortDescription => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionHomepageHero.GetShortDescription(this, _publishedValueFallback);
 
 		///<summary>
 		/// Do Not Follow: Setting to true will prevent search engines from following the links on the page, so it will not index the pages it finds (only) on this page.
@@ -236,5 +188,53 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("twitterTitle")]
 		public virtual string TwitterTitle => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionSocialSharing.GetTwitterTitle(this, _publishedValueFallback);
+
+		///<summary>
+		/// Hero Title
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("heroTitle")]
+		public virtual string HeroTitle => global::Umbraco.Cms.Web.Common.PublishedModels.NestedBlockHomepageHero.GetHeroTitle(this, _publishedValueFallback);
+
+		///<summary>
+		/// Image
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("image")]
+		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops Image => global::Umbraco.Cms.Web.Common.PublishedModels.NestedBlockHomepageHero.GetImage(this, _publishedValueFallback);
+
+		///<summary>
+		/// Main Button link
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("mainButtonLink")]
+		public virtual global::Umbraco.Cms.Core.Models.Link MainButtonLink => global::Umbraco.Cms.Web.Common.PublishedModels.NestedBlockHomepageHero.GetMainButtonLink(this, _publishedValueFallback);
+
+		///<summary>
+		/// Secondary Button Link
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("secondaryButtonLink")]
+		public virtual global::Umbraco.Cms.Core.Models.Link SecondaryButtonLink => global::Umbraco.Cms.Web.Common.PublishedModels.NestedBlockHomepageHero.GetSecondaryButtonLink(this, _publishedValueFallback);
+
+		///<summary>
+		/// Short Description
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("shortDescription")]
+		public virtual global::Umbraco.Cms.Core.Strings.IHtmlEncodedString ShortDescription => global::Umbraco.Cms.Web.Common.PublishedModels.NestedBlockHomepageHero.GetShortDescription(this, _publishedValueFallback);
+
+		///<summary>
+		/// Video
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("video")]
+		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel Video => global::Umbraco.Cms.Web.Common.PublishedModels.NestedBlockHomepageHero.GetVideo(this, _publishedValueFallback);
 	}
 }

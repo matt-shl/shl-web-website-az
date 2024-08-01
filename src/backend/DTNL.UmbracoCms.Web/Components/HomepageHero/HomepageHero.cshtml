@@ -6,7 +6,7 @@
         {
             <partial name="Video" model="@Model.VideoUrl"></partial>
         }
-        @if (Model.Image is not null)
+        else if (Model.Image is not null)
         {
             <partial asp-if="@Model.Image" name="Image" model="Model.Image" />
         }
@@ -22,7 +22,7 @@
         <div class="hero-home__container">
             <div class="hero-home__col-left">
                 <h1 class="hero-home__title">@Model.Title</h1>
-                <p class="hero-home__description">@Model.ShortDescription</p>
+                <div class="hero-home__description"> @Html.Raw(Model.ShortDescription) </div>
             </div>
             <div class="hero-home__col-right">
                 <partial asp-if="@Model.MainButton" name="Button" model="@Model.MainButton"></partial>
