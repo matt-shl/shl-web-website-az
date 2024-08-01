@@ -2,16 +2,16 @@ using Umbraco.Cms.Web.Common.PublishedModels;
 
 namespace DTNL.UmbracoCms.Web.Components;
 
-public class CardNumber
+public class CardNumber : ICard
 {
     public required string Title { get; set; }
     public string? SubTitle { get; set; }
 
     public string? Text { get; set; }
 
-    public string? ThemeCssClass { get; set; }
+    public string? CssClasses { get; set; }
 
-    public CardNumber? Create(NestedBlockNumberCard numberCard, string? themeCssClass)
+    public static CardNumber? Create(NestedBlockNumberCard numberCard, string? cssClasses = null)
     {
         if (numberCard.Title.IsNullOrWhiteSpace())
         {
@@ -23,7 +23,7 @@ public class CardNumber
             Title = numberCard.Title,
             SubTitle = numberCard.SubTitle,
             Text = numberCard.Text?.ToHtmlString(),
-            ThemeCssClass = themeCssClass,
+            CssClasses = cssClasses,
         };
     }
 }

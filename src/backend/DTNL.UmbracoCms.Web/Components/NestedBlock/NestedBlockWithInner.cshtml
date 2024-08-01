@@ -1,0 +1,30 @@
+@model DTNL.UmbracoCms.Web.Components.NestedBlock.NestedBlockWithInner
+
+<section class="c-layout-section layout-section--variant-@Model.LayoutSection.Variant @Model.LayoutSection.CssClasses @(Model.LayoutSection.CssThemeClasses ?? Model.ThemeCssClasses)"
+         data-title="@Model.NavigationTitle"
+         id="@Model.Id"
+         js-hook-@Model.LayoutSection.JsHook
+         js-hook-section
+         js-hook-inview
+         data-inview-threshold="0.5"
+         data-inview-persistent="true"
+         data-inview-trigger="anchor-list::update">
+
+    <div class="layout-section__inner">
+        @if (!Model.LayoutSection.FullWidth)
+        {
+            <div class="layout-section__container @Model.LayoutSection.CssContainerClasses">
+                <div class="layout-section__wrapper">
+                    <partial name="@Model.InnerPartial" model="@Model.InnerComponent" />
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="layout-section__wrapper">
+                <partial name="@Model.InnerPartial" model="@Model.InnerComponent" />
+            </div>
+        }
+    </div>
+
+</section>

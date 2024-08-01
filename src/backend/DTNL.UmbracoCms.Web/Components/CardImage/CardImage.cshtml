@@ -1,7 +1,7 @@
 @using DTNL.UmbracoCms.Web.Components
 @model DTNL.UmbracoCms.Web.Components.CardImage
 
-<@(Model.Element) class="c-card-icon @(Model.HasUrl ? "c-card-icon--has-url c-card-overlay-parent" : null) @Model.ThemeCssClass"
+<@(Model.Element) class="c-card-icon @(Model.HasUrl ? "c-card-icon--has-url c-card-overlay-parent" : null) @Model.CssClasses"
 @(Model.HasUrl ? $"href=\"{Model.Url}\"" : null)
                   aria-label="@Model.Title">
 
