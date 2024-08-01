@@ -22,14 +22,13 @@ public class HomepageHero : ViewComponentExtended
     {
         Title = element?.HeroTitle;
 
-        Image? image = Image.Create(element?.Image);
+        Image? image = Image.Create(element?.Image, cssClasses: "homepage-hero__image");
 
         if (image == null)
         {
             return Content("");
         }
 
-        image.Classes = "homepage-hero__image";
         Image = image;
 
 
