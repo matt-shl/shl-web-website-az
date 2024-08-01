@@ -18,6 +18,11 @@ html {
   &.no--scroll {
     overflow-y: hidden !important;
   }
+
+  &:hover {
+    font-family: 'Poppins';
+    word-spacing: 0.15em;
+  }
 }
 
 body {
