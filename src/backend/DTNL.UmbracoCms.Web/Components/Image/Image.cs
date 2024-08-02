@@ -72,8 +72,8 @@ public partial class Image
     {
         return imageContent switch
         {
-            Umbraco.Cms.Web.Common.PublishedModels.Image image => Create(image, width, height, cssClasses, objectFit, customSrcSet, localCrops),
-            Umbraco.Cms.Web.Common.PublishedModels.UmbracoMediaVectorGraphics svg => Create(svg, width, height, cssClasses, objectFit, localCrops),
+            Umbraco.Cms.Web.Common.PublishedModels.Image image => Create(image, width, height, cssClasses, objectFit, customSrcSet, localCrops, style),
+            Umbraco.Cms.Web.Common.PublishedModels.UmbracoMediaVectorGraphics svg => Create(svg, width, height, cssClasses, objectFit, localCrops, style),
             _ => null,
         };
     }

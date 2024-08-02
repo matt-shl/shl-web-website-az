@@ -1,4 +1,6 @@
-@inherits UmbracoViewPage<PageProduct>
+@inherits UmbracoViewPage<PageProductOverview>
+
+<vc:overview-products product-overview-page="@Model"/>
 
 <div class="page__content-items">
     <partial name="_BlockList" model="@Model.ContentBlocks" />

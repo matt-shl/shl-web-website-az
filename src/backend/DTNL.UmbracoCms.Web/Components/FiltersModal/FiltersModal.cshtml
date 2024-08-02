@@ -1,0 +1,65 @@
+@using DTNL.UmbracoCms.Web.Components
+@using DTNL.UmbracoCms.Web.Helpers.Aliases
+@using DTNL.UmbracoCms.Web.Helpers.Extensions
+@using Microsoft.AspNetCore.Http.Extensions
+@using Umbraco.Cms.Core.Dictionary
+@model DTNL.UmbracoCms.Web.Components.FiltersModal
+
+@inject ICultureDictionary CultureDictionary
+
+@{
+    string applyFilters = CultureDictionary.GetTranslation(TranslationAliases.Common.Filters.ApplyFilters, Model.ResultsCount);
+
+    string resetFilters = CultureDictionary.GetTranslation(TranslationAliases.Common.Filters.ResetFilters);
+}
+
+@* TODO wrap form in modal upon merge *@
+
+<form class="c-form filters__form" action="@Model.ResultsOverviewPageUrl" method="GET" data-async="true" js-hook-form>
+
+    <partial name="Accordion"
+             model="@(new Accordion { Classes = "filters__accordion" })">
+
+        <span></span>
+
+        @foreach (FiltersModal.Filter filter in Model.Filters)
+        {
+            <partial name="Accordion/AccordionItem" model="@(new Accordion.Item { Id = filter.Name, Title = CultureDictionary.GetTranslation($"{TranslationAliases.Products.ProductCount}.{filter.Name}") })">
+                <fieldset class="filters__accordion-options @(filter.Options.Count > 4 ? "filters__accordion-options--hidden" : null)">
+                    @(await Component.InvokeAsync(filter.Type, new { filter.Name, filter.Options, Classes = "filters__accordion-options-item" }))
+                </fieldset>
+            </partial>
+
+            @if (filter.Options.Count > 4)
+            {
+                <partial name="Button" model="@(new Button {
+                                                  Label = CultureDictionary.GetTranslation(TranslationAliases.Common.Filters.ShowAll),
+                                                  Size = "small",
+                                                  Variant = "link-underlined",
+                                                  Class = "filters__options-link",
+                                                  Element = "button",
+                                                  Hook = "filters-show-more-options",
+                                              })"/>
+            }
+        }
+    </partial>
+</form>
+
+<div class="filters__sticky-buttons-wrapper">
+    <partial name="Button" model="@(new Button {
+                                      Label = applyFilters,
+                                      Class = "filters__sticky-button",
+                                      Element = "button",
+                                      Hook = "filters-sticky-button js-hook-filters-button-modal-close",
+                                  })"/>
+
+    <partial name="Button" model="@(new Button {
+                                      Label = resetFilters,
+                                      Size = "small",
+                                      Variant = "link-underlined",
+                                      Class = "filters__sticky-button",
+                                      Element = "button",
+                                      Hook = "filters-sticky-button js-hook-filters-reset-button",
+                                      Attributes = new Dictionary<string, string?> { ["data-url-replacement"] = Context.Request.GetDisplayUrl(), ["data-endpoint"]= "TODO" },
+                                  })"/>
+</div>

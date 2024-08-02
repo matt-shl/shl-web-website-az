@@ -1,3 +1,4 @@
+using DTNL.UmbracoCms.Web.Helpers.Extensions;
 using Umbraco.Cms.Web.Common.PublishedModels;
 
 namespace DTNL.UmbracoCms.Web.Components;
@@ -31,7 +32,7 @@ public class CardContact : ICard
         {
             FullName = contactCard.FullName,
             Role = contactCard.Role,
-            Location = null, // TODO implement tags
+            Location = string.Join(',', contactCard.Location.OrEmptyIfNull()),
             Email = contactCard.Email,
             PhoneNumber = contactCard.PhoneNumber,
             Text = contactCard.Description?.ToHtmlString(),

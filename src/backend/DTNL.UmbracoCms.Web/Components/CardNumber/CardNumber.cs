@@ -5,6 +5,7 @@ namespace DTNL.UmbracoCms.Web.Components;
 public class CardNumber : ICard
 {
     public required string Title { get; set; }
+
     public string? SubTitle { get; set; }
 
     public string? Text { get; set; }

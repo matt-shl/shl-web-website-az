@@ -1,3 +1,4 @@
+using System.Globalization;
 using Umbraco.Cms.Core.Dictionary;
 using Umbraco.Cms.Web.Common;
 
@@ -25,11 +26,11 @@ public static class UmbracoTranslationsExtensions
     }
 
     /// <summary>
-    /// Retrieves the translation corresponding to the given <paramref name="key"/> from Umbraco, and formats it using the specified <paramref name="parameters"/>
+    /// Retrieves the translation corresponding to the given <paramref name="key"/> from Umbraco, and formats it using the specified <paramref name="parameters"/>.
     /// </summary>
     /// <remarks>If not found, the given <paramref name="key"/> is returned instead.</remarks>
     public static string GetTranslation(this ICultureDictionary cultureDictionary, string key, params object[] parameters)
     {
-        return string.Format(cultureDictionary.GetTranslation(key), parameters);
+        return string.Format(CultureInfo.InvariantCulture, cultureDictionary.GetTranslation(key), parameters);
     }
 }

@@ -12,5 +12,5 @@ public class LayoutSection
 
     public string? JsHook { get; set; }
 
-    public bool FullWidth { get; set; } = false;
+    public bool FullWidth { get; set; }
 }
