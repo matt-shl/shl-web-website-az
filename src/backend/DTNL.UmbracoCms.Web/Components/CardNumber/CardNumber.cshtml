@@ -1,0 +1,9 @@
+@model DTNL.UmbracoCms.Web.Components.CardNumber
+
+<article class="c-card-number @Model.CssClasses">
+    <div class="card-number__container">
+        <h3 class="card-number__title">@Model.Title</h3>
+        <h4 class="card-number__subtitle">@Model.SubTitle</h4>
+        <div class="card-number__content">@Html.Raw(Model.Text)</div>
+    </div>
+</article>

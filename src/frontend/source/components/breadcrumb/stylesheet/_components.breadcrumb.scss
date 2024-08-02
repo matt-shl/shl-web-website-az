@@ -1,0 +1,113 @@
+.c-breadcrumb {
+  --breadcrumb-gap: #{$spacing-12};
+
+  @include body-m;
+  overflow: auto;
+  padding-block: $spacing-8;
+
+  @include keyboard-focus-within {
+    overflow: unset;
+  }
+}
+
+.breadcrumb__list {
+  display: flex;
+  gap: var(--breadcrumb-gap);
+  align-items: center;
+  flex-wrap: nowrap;
+  list-style: none;
+  padding-left: 0;
+}
+
+.breadcrumb__list-item {
+  display: flex;
+  align-items: center;
+  gap: var(--breadcrumb-gap);
+  position: relative;
+  overflow: hidden;
+
+  @include keyboard-focus-within {
+    overflow: unset;
+  }
+
+  .breadcrumb--small & {
+    &:not(:nth-last-child(2)) {
+      display: none;
+    }
+  }
+
+  @include screen-md-and-smaller {
+    &:not(:nth-last-child(2)) {
+      display: none;
+    }
+  }
+}
+
+.breadcrumb__item {
+  position: relative;
+  display: flex;
+  gap: var(--breadcrumb-gap);
+  align-items: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-decoration: none;
+  color: var(--color-content);
+  transition: 200ms ease-in-out;
+  transition-property: opacity;
+  opacity: 0.8;
+
+  @include hover-focus {
+    opacity: 1;
+  }
+
+  .breadcrumb__list-item--current & {
+    opacity: 1;
+    pointer-events: none;
+    font-weight: $font-weight-extrabold;
+  }
+}
+
+.breadcrumb__icon-back {
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .breadcrumb--full & {
+    display: none;
+
+    @include screen-md-and-smaller {
+      display: flex;
+    }
+  }
+
+  @include screen-lg-and-bigger {
+    display: none;
+  }
+
+  .breadcrumb--small & {
+    display: flex;
+  }
+}
+
+.breadcrumb__icon-next {
+  opacity: 0.4;
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .breadcrumb--small & {
+    display: none;
+  }
+
+  .breadcrumb__list-item--current & {
+    display: none;
+  }
+
+  @include screen-md-and-smaller {
+    display: none;
+  }
+}

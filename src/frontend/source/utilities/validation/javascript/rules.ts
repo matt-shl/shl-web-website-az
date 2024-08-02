@@ -14,11 +14,20 @@ import { isValidEmail, isValidFile, isValidIBAN, isValidZipcode } from './valida
  * 2. use the validationMessages object in here to render out the translated messages:
  * const rules = { required: { message: window.validationMessages.required, ..etc } }
  */
+
+type InputType = HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+
+// Define a type for the validation rule
+type ValidationRule = {
+  message: string
+  method: (el: InputType) => boolean
+}
+
 const rules = {
   required: {
     message: 'Veld is verplicht',
-    method: (el: HTMLInputElement) => {
-      if (el.type === 'checkbox') {
+    method: (el: InputType) => {
+      if (el instanceof HTMLInputElement && el.type === 'checkbox') {
         return el.checked
       } else if (el.type === 'radio') {
         const name = el.name
@@ -29,20 +38,20 @@ const rules = {
   },
   email: {
     message: 'Geen geldig e-mailadres',
-    method: (el: HTMLInputElement) => el.value === '' || isValidEmail(el.value),
+    method: (el: InputType) => el.value === '' || isValidEmail(el.value),
   },
   iban: {
     message: 'Geen geldig IBAN nummer',
-    method: (el: HTMLInputElement) => el.value === '' || isValidIBAN(el.value),
+    method: (el: InputType) => el.value === '' || isValidIBAN(el.value),
   },
   zipcode: {
     message: 'Geen geldige postcode',
-    method: (el: HTMLInputElement) => el.value === '' || isValidZipcode(el.value),
+    method: (el: InputType) => el.value === '' || isValidZipcode(el.value),
   },
   file: {
     message: 'Geen geldig bestand',
-    method: (el: HTMLInputElement) => el.value === '' || isValidFile(el),
+    method: (el: InputType) => el.value === '' || isValidFile(el as HTMLInputElement),
   },
 }
 
-export { rules }
+export { rules, ValidationRule }

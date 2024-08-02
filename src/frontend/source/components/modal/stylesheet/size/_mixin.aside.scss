@@ -1,4 +1,6 @@
 @mixin modal--aside {
+  overflow: hidden;
+
   &.modal--is-showing {
     .modal__container {
       transform: translate3d(-100%, 0, 0);
@@ -6,8 +8,25 @@
     }
   }
 
+  .modal__header {
+    padding: $spacing-24;
+    background-color: $color-white;
+    border-radius: $radii-12 $radii-12 0 0;
+    z-index: 5;
+
+    @include screen-sm-and-bigger {
+      padding: $spacing-40 $spacing-40 $spacing-32 $spacing-40;
+    }
+  }
+
+  .modal__button-close {
+    right: 0;
+  }
+
   .modal__container {
     height: 100%;
+    position: relative;
+    overflow: hidden;
     display: flex;
     max-width: 468px;
     transition: $modal-transition-time $modal-transition-ease;
@@ -23,5 +42,44 @@
     margin: $spacing-16;
     display: flex;
     flex-direction: column;
+  }
+
+  .modal__body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0 $spacing-24 $spacing-24 $spacing-24;
+
+    @include screen-sm-and-bigger {
+      padding: 0 $spacing-40 $spacing-40 $spacing-40;
+    }
+  }
+
+  .filters__sticky-buttons-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-16;
+    padding-block-start: $spacing-32;
+    align-items: center;
+
+    .c-button {
+      width: 100%;
+    }
+
+    &::before {
+      @include linear-gradient($color: #{$color-white-rgb}, $alpha-from: 0, $alpha-to: 1);
+      content: '';
+      position: absolute;
+      bottom: 100%;
+      left: 0;
+      width: 100%;
+      display: block;
+      height: 24px;
+      pointer-events: none;
+      transition: $modal-transition-time $modal-transition-ease;
+      transition-property: opacity;
+    }
   }
 }

@@ -1,0 +1,34 @@
+@using DTNL.UmbracoCms.Web.Components
+@using DTNL.UmbracoCms.Web.Helpers.Aliases
+@model DTNL.UmbracoCms.Web.Components.CardIcon
+
+<@(Model.Element) class="c-card-icon @(Model.HasUrl ? "c-card-icon--has-url c-card-overlay-parent" : null) @Model.CssClasses"
+@(Model.HasUrl ? $"href=\"{Model.Url}\"" : null)
+aria-label="@Model.Title">
+
+    <div class="card-icon__container">
+        @if (Model.IconAlias is not null)
+        {
+            <div class="card-icon__icon">
+                <svg src="@($"{SvgAliases.Icons}/{Model.IconAlias}.svg")" />
+            </div>
+        }
+
+        @if (Model.IconUrl is not null)
+        {
+            <div class="card-icon__icon">
+                <svg src="@Model.IconUrl" />
+            </div>
+        }
+
+        <h3 class="card-icon__title">@Model.Title</h3>
+
+        <div class="card-icon__content">@Html.Raw(Model.Text)</div>
+
+        @if (Model.HasUrl)
+        {
+            <partial name="CardOverlay" model="@(new CardOverlay { Title = Model.Title })" />
+        }
+    </div>
+
+</@(Model.Element)>

@@ -4,5 +4,7 @@
   "goToHomepage": "Go to Homepage",
   "readMoreAbout": "Read more about",
   "sendEmailTo": "Send an email to",
-  "call": "Call"
+  "call": "Call",
+  "openVideoModal": "Open video modal",
+  "viewMoreOptionsFor": "View more options for"
 }

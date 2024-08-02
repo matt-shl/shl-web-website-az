@@ -1,0 +1,37 @@
+{% set theme = "light-blue" %}
+{% set themeColor = "#007cbe" %}
+{% set headerIsWhite = true %}
+{% set showFiltersModal = true %}
+
+{% extends 'layouts/default.html' %}
+
+{% from 'hero-home.html' import heroHome %}
+{% from 'pagination.html' import pagination %}
+{% from 'filters.html' import filters %}
+{% from 'card-number.html' import cardNumber %}
+
+{% block hero %}
+  {{ heroHome({
+    title: global.content.home.hero.title,
+    description: global.content.home.hero.description,
+    ctas: global.content.home.hero.ctas,
+    video: global.content.home.hero.video
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  {{ filters(global.content.filters) }}
+
+
+  <div class="o-container" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px " js-hook-replace-content="number-items">
+    {% for i in range(16) %}
+    {{ cardNumber({title: loop.index, subtitle: "welkom", content: "Cool content"}) }}
+    {% endfor %}
+  </div>
+
+
+  {{ pagination (global.content.pagination) }}
+
+
+{% endblock %}

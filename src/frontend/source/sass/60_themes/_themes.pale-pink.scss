@@ -17,6 +17,9 @@
   // Cards
   --color-card-background: #{$color-dark-pink};
   --color-card-content: #{$color-white};
+
+  // Product card
+  --color-spec-value-level-default: var(--theme-color-content-20);
 }
 
 html.t-pale-pink {

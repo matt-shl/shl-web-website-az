@@ -1,13 +1,18 @@
 {% from 'button.html' import button %}
 {% from 'video.html' import video %}
 {% from 'tag.html' import tag %}
+{% from 'breadcrumb.html' import breadcrumb %}
 
 {% macro heroContent(data) %}
 
   <section class="c-hero-content">
     <div class="hero-content__container">
+      <div class="hero-content__breadcrumbs">
+        {{ breadcrumb({
+          items: data.breadcrumbs
+        }) }}
+      </div>
       <div class="hero-content__col-left">
-        <!-- TODO: breadcrumbs -->
         <h1>{{ data.title }}</h1>
         {% if data.subtitle %}
           <p class="hero-content__subtitle">{{ data.subtitle }}</p>

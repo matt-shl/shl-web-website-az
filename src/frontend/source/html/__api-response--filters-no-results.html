@@ -1,0 +1,86 @@
+{% from 'card-number.html' import cardNumber %}
+{% from 'button.html' import button %}
+{% import 'form-elements.html' as form %}
+{% import 'accordion.html' as accordion %}
+{% from 'empty-section.html' import emptySection %}
+
+{% set filtersLabels = global.resource.filters %}
+{% set data = global.content.filters %}
+
+<menu>
+  <span class="filters__amount-label" js-hook-replace-content="filters-amount-label" aria-live="polite" aria-atomic="true" aria-label="{{data.totalAmountLabel ~ " " ~ "items"}}">2544 Items</span>
+   {{ emptySection(global.content.emptySection) }}
+  <div class="modal__body" js-hook-modal-body js-hook-replace-content="modal-body-modal-filters">
+  {% if data.filters.length %}
+    {% call form.form({
+      class: 'filters__form',
+      method: 'GET',
+      action: global.api.filtersFormAction,
+      async: true
+    }) %}
+
+      {% call accordion.default({
+        classes: 'filters__accordion',
+        variant: 'specs'
+      }) %}
+        {# this emtpy span is needed for the first accordion item to get full height and animate correctly #}
+        <span></span>
+
+        {% for filter in data.filters %}
+
+          {% if filter.options.length %}
+            {% call accordion.item({
+              id: 'filter' + filter.label,
+              title: filter.label
+            }) %}
+
+              {% set moreThanFourOptions = filter.options.length > 4 %}
+
+              <fieldset class="filters__accordion-options {{'filters__accordion-options--hidden' if moreThanFourOptions }}">
+                {{ form[filter.inputType]({
+                  name: filter.label,
+                  class: 'filters__accordion-options-item',
+                  options: filter.options,
+                  inputHook: 'filter-checkbox'
+                }) }}
+              </fieldset>
+
+              {{ button({
+                element: 'button',
+                variant: 'link-underlined',
+                label: filtersLabels.viewMoreOptions,
+                class: 'filters__options-link',
+                hook: 'filters-show-more-options',
+                ariaLabel: filtersLabels.viewMoreOptionsFor + ' ' + filter.label
+              })}}
+
+            {% endcall %}
+          {% endif %}
+
+        {% endfor %}
+
+      {% endcall %}
+
+    {% endcall %}
+  {% endif %}
+
+  <div class="filters__sticky-buttons-wrapper">
+    {{ button({
+      label: global.resource.filters.show + ' ' + data.totalAmount + ' ' + global.resource.filters.results,
+      element: 'button',
+      class: 'filters__sticky-button',
+      hook: 'filters-sticky-button js-hook-filters-button-modal-close'
+    }) }}
+
+    {{ button({
+      label: global.resource.filters.resetAll,
+      element: 'button',
+      size: 'small',
+      variant: 'link-underlined',
+      hook: 'filters-sticky-button js-hook-filters-reset-button',
+      attr: "data-url-replacement='old-url.html' data-endpoint='__api-response--filters.html'"
+    }) }}
+  </div>
+  </div>
+  </div>
+</menu>

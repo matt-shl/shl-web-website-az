@@ -3,40 +3,70 @@
   --layout-section-gap: 24; // fallback value
 }
 
-.c-layout-section {
+@mixin layout-section-theme-style {
   @include theme;
-  border-radius: $radii-20 $radii-20;
+  border-radius: $radii-20;
 
   @include screen-md-and-bigger {
-    border-radius: $radii-40 $radii-40;
+    border-radius: $radii-40;
   }
+}
+
+.c-layout-section {
+  @include layout-section-theme-style;
 
   &:not(.t-white) {
     margin-block: $spacing-40;
 
     &:first-child {
-      margin-block-start: 0;
+      margin-top: 0;
     }
 
     &:last-child {
       margin-block-end: 0;
     }
   }
+
+  &--in-grid:not(.t-white) {
+    @include container;
+    background-color: transparent;
+  }
 }
 
 .layout-section__inner {
   padding-block: $spacing-40;
+  overflow: hidden;
+
+  .c-layout-section--in-grid & {
+    @include layout-section-theme-style;
+    padding-block: $spacing-24;
+  }
 
   @include screen-md-and-bigger {
     padding-block: $spacing-80;
   }
-  overflow: hidden;
+
+  @include screen-lg-and-bigger {
+    .c-layout-section--in-grid & {
+      padding-block: $spacing-80;
+    }
+  }
 }
 
 .layout-section__container {
   @include container;
   display: flex;
   flex-direction: column;
+
+  .c-layout-section--in-grid:not(.t-white) & {
+    --container-padding: #{$spacing-24};
+  }
+
+  @include screen-lg-and-bigger {
+    .c-layout-section--in-grid:not(.t-white) & {
+      --container-padding: #{$spacing-80};
+    }
+  }
 }
 
 .layout-section__wrapper {

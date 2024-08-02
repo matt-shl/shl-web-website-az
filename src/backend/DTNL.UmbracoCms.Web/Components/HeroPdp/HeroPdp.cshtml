@@ -1,0 +1,51 @@
+@using DTNL.UmbracoCms.Web.Helpers.Aliases
+@model DTNL.UmbracoCms.Web.Components.HeroPdp
+
+<section class="c-hero-pdp @Model.Theme" js-hook-hero>
+    <div class="hero-pdp__container">
+
+        <div class="hero-pdp__breadcrumbs">
+            <!-- TODO: breadcrumb -->
+            @* <vc:breadcrumb page="@Model.CurrentP"/> *@
+        </div>
+
+        <div class="hero-pdp__col-left">
+            <h1 class="hero-pdp__title">@Model.Title</h1>
+
+            <div class="hero-pdp__description" asp-if="@Model.Text">@Html.Raw(Model.Text)</div>
+
+            @if (Model.PrimaryLinkButton is not null || Model.SecondaryLinkButton is not null)
+            {
+                <div class="hero-pdp__ctas">
+                    <partial name="Button" model="@Model.PrimaryLinkButton" />
+
+                    <partial name="Button" model="@Model.SecondaryLinkButton" />
+                </div>
+            }
+        </div>
+        <div class="hero-pdp__col-right">
+            <div class="hero-pdp__image-container">
+                <partial name="Image" model="@Model.Image" />
+            </div>
+
+            <partial name="Button" model="@Model.PrimaryLinkButton" />
+        </div>
+    </div>
+
+    @if (Model.NavigationLinks is not null)
+    {
+        <div class="hero-pdp__shape-container">
+            <div class="hero-pdp__shape">
+                <div class="hero-pdp__shape-left"></div>
+                <div class="hero-pdp__shape-scale">
+                    <svg src="@SvgAliases.Shape.Pdp" />
+                </div>
+                <div class="hero-pdp__shape-right"></div>
+            </div>
+
+            <div class="hero-pdp__anchor-links-container">
+                <partial name="AnchorList" model="@Model.NavigationLinks" />
+            </div>
+        </div>
+    }
+</section>

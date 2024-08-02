@@ -1,12 +1,13 @@
 {% macro layoutSection(data) %}
 {% set themeClass = data.theme if data.theme else 't-white' %}
   <section class="c-layout-section
-    {%- if data.variant %} layout-section--variant-{{ data.variant }}{% endif %}
+    {%- if data.variant %} c-layout-section--{{ data.variant }}{% endif %}
     {%- if data.classes %} {{ data.classes }}{% endif %}
     {{themeClass}}"
     {%- if data.sectionTitle %} data-title="{{data.sectionTitle}}"{% endif %}
     {%- if data.id %} id="{{data.id}}"{% endif %}
     {%- if data.hook %} js-hook-{{ data.hook}} {% endif %}
+    {%- if data.replaceContentId %} js-hook-replace-content="{{ data.replaceContentId }}" {% endif %}
     js-hook-section
     js-hook-inview
     data-inview-threshold="0.5"

@@ -148,5 +148,80 @@
         "description": "<h4>Topic</h4><p>Development of silicone-based test model for autoinjector functional performance analysis</p></br><h4>When</h4><p>June 25 2024</p><p>10:00 (CEST)</p>"
       }
     ]
+  },
+  "product": {
+    "carouselCardType": "product",
+    "title": "Our products",
+    "ctaPrimary": {
+      "url": "#",
+      "label": "View all products"
+    },
+    "cards": [
+      {
+        "title": "Molly®",
+        "content": "Our autoinjectors are designed to deliver precise doses of medication quickly and easily. They are used by patients with chronic conditions such as diabetes and multiple sclerosis.",
+        "url": "#",
+        "specifications": [
+          {
+            "label": "Volume",
+            "value": 3
+          },
+          {
+            "label": "Viscosity",
+            "value": 2
+          }
+        ]
+      },
+      {
+        "title": "Elexy®",
+        "content": "We have 15 single-use injectors and multi-use pens to choose from. Which one fits your molecule?",
+        "url": "#",
+        "specifications": [
+          {
+            "label": "Volume",
+            "value": "5ml - 10ml"
+          },
+          {
+            "label": "Viscosity",
+            "value": "1.5 - 3.5 centipoise"
+          }]
+      },
+      {
+        "title": "Madie®",
+        "content": "Our needle-free injectors are designed to deliver medication without the need for a needle. They are used by patients with conditions such as migraines and allergies.",
+        "url": "#",
+        "specifications": [
+          {
+            "label": "Volume",
+            "value": 2
+          },
+          {
+            "label": "Viscosity",
+            "value": 3
+          }]
+      },
+      {
+        "title": "Tijn®",
+        "content": "Builder of these amazing cards",
+        "url": "#",
+        "specifications": [
+          {
+            "label": "Smart",
+            "value": 3
+          },
+          {
+            "label": "handsome",
+            "value": 3
+          },
+          {
+            "label": "cool",
+            "value": 3
+          },
+          {
+            "label": "funny",
+            "value": 0
+          }]
+      }
+    ]
   }
 }

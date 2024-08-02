@@ -8,11 +8,13 @@
 {% from 'hero-pdp.html' import heroPdp %}
 {% from 'anchor-list.html' import anchorList %}
 {% from 'section-card-carousel.html' import sectionCardCarousel %}
-
-{% from 'layout-section.html' import layoutSection %}
+{% from 'product-description.html' import productDescription %}
+{% from 'description-list.html' import descriptionList %}
+{% from 'text-media.html' import textMedia %}
 
 {% block hero %}
   {{ heroPdp({
+    breadcrumbs: global.content.productDetail.breadcrumbs.items,
     theme: global.content.productDetail.hero.theme or 't-light-grey',
     image: global.content.productDetail.hero.image,
     title: global.content.productDetail.hero.title,
@@ -29,7 +31,9 @@
     cta: global.content.productDetail.hero.cta1
   }) }}
 
-  <!-- Todo "Product image, info + specifications" -->
+  {{ productDescription(global.content.productDetail.description) }}
+
+  {{ descriptionList(global.content.productDetail.specifications) }}
 
   <!-- Todo "Product slider" -->
 
@@ -37,7 +41,7 @@
 
   {{ sectionCardCarousel(global.content.productDetail.numbers) }}
 
-  <!-- Todo "Banner" -->
+  {{ textMedia(global.content.productDetail.textMedia1) }}
 
   <!-- Todo "Text, Image, Links or Accordions" -->
 
@@ -46,61 +50,5 @@
   <!-- Todo "People carousel" -->
 
   <!-- Todo "Product slider" -->
-
-  <!-- Todo remove text sections one page starts to fill up with the actual components -->
-  {% call layoutSection({
-    id: "test1",
-    sectionTitle: "test1",
-    theme: "t-pale-green"
-  }) %}
-    <div style="min-height: 80vh;">
-      <h2>Temp test component for the anchor links</h2>
-      <Br/><Br/>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sagittis sollicitudin leo, eu aliquet nisi
-        posuere ut. In eu mollis lectus, ac lacinia tellus. Nulla vel eros molestie, sagittis neque quis, fringilla
-        diam. Nam est enim, semper in ligula et, hendrerit feugiat leo. Lorem ipsum dolor sit amet, consectetur
-        adipiscing elit. Nam a venenatis quam. Maecenas a eros vitae diam gravida pharetra. Integer bibendum nulla vitae
-        pellentesque posuere. Sed scelerisque tellus eu porttitor ultricies. Donec ullamcorper ornare tortor, id euismod
-        dolor porttitor ac. Phasellus fringilla vehicula elit, sit amet pharetra mi fringilla a. Morbi sapien orci,
-        rhoncus id scelerisque et, viverra sit amet nisl. In quis felis pharetra, sodales massa vel, hendrerit turpis.
-        Suspendisse consectetur purus justo, sed ornare dolor blandit id.</p>
-    </div>
-  {% endcall %}
-
-  {% call layoutSection({
-    id: "test2",
-    sectionTitle: "test2",
-    theme: "t-pale-green"
-  }) %}
-    <div style="min-height: 80vh;">
-      <h2>Temp test component for the anchor links</h2>
-      <Br/><Br/>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sagittis sollicitudin leo, eu aliquet nisi
-        posuere ut. In eu mollis lectus, ac lacinia tellus. Nulla vel eros molestie, sagittis neque quis, fringilla
-        diam. Nam est enim, semper in ligula et, hendrerit feugiat leo. Lorem ipsum dolor sit amet, consectetur
-        adipiscing elit. Nam a venenatis quam. Maecenas a eros vitae diam gravida pharetra. Integer bibendum nulla vitae
-        pellentesque posuere. Sed scelerisque tellus eu porttitor ultricies. Donec ullamcorper ornare tortor, id euismod
-        dolor porttitor ac. Phasellus fringilla vehicula elit, sit amet pharetra mi fringilla a. Morbi sapien orci,
-        rhoncus id scelerisque et, viverra sit amet nisl. In quis felis pharetra, sodales massa vel, hendrerit turpis.
-        Suspendisse consectetur purus justo, sed ornare dolor blandit id.</p>
-    </div>
-  {% endcall %}
-  {% call layoutSection({
-    id: "test3",
-    sectionTitle: "test3"
-  }) %}
-    <div style="min-height: 80vh;">
-      <h2>Temp test component for the anchor links</h2>
-      <Br/><Br/>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sagittis sollicitudin leo, eu aliquet nisi
-        posuere ut. In eu mollis lectus, ac lacinia tellus. Nulla vel eros molestie, sagittis neque quis, fringilla
-        diam. Nam est enim, semper in ligula et, hendrerit feugiat leo. Lorem ipsum dolor sit amet, consectetur
-        adipiscing elit. Nam a venenatis quam. Maecenas a eros vitae diam gravida pharetra. Integer bibendum nulla vitae
-        pellentesque posuere. Sed scelerisque tellus eu porttitor ultricies. Donec ullamcorper ornare tortor, id euismod
-        dolor porttitor ac. Phasellus fringilla vehicula elit, sit amet pharetra mi fringilla a. Morbi sapien orci,
-        rhoncus id scelerisque et, viverra sit amet nisl. In quis felis pharetra, sodales massa vel, hendrerit turpis.
-        Suspendisse consectetur purus justo, sed ornare dolor blandit id.</p>
-    </div>
-  {% endcall %}
 
 {% endblock %}
