@@ -10,9 +10,7 @@
                         Items = Model.Items
                     })" />
                 <div class="navigation-mobile__line"></div>
-                <div class="navigation-mobile-selector">
-                    <!-- Todo: language selector -->
-                </div>
+                <div class="navigation-mobile-selector"></div>
             </nav>
         </div>
 </partial>
@@ -59,13 +57,13 @@
                                     Items = subitem?.NestedSubmenu?.Links ?? [],
                                     Header = new Navigation.NavigationHeaderListItem {
                                             Title = subitem?.NestedSubmenu.Title,
-                                            Id = $"navigation-mobile-{item.Id}",
+                                            Id = $"navigation-mobile-{item?.Id}",
                                     },
                                     Parent = new Navigation.NavigationListItem {
                                             Title = item?.Submenu.Title,
                                             Id = subitem?.NestedSubmenu.Id,
                                     },
-                                    AllLink = new Link { Url = subitem?.All != null ? subitem?.All?.Url : null, Label = subitem?.All != null ? subitem?.All?.Label : null}
+                                    AllLink = new Link { Url = subitem?.All?.Url ?? "", Label = subitem?.All != null ? subitem?.All?.Label : null}
                                 })" 
                                 />
                         </div>
@@ -73,5 +71,4 @@
             }                   
         };
     }
-}
-; 
+};
