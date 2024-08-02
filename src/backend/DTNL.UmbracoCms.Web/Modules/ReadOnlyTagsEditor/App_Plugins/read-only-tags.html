@@ -1,0 +1,45 @@
+﻿<!--
+The following has been copied from ~\Umbraco-CMS\src\Umbraco.Web.UI.Client\src\views\components\tags\umb-tags-editor.html
+The only changes have been denoted with a CHANGE comment
+Make sure to update the code whenever Umbraco is updated by copying the above file again and re-applying the changes
+-->
+<div class="umb-tags-editor">
+    <ng-form name="vm.tagEditorForm">
+        <div ng-if="vm.isLoading">
+            <localize key="loading">Loading</localize>...
+        </div>
+
+        <div ng-if="!isLoading">
+
+            <input type="hidden" name="tagCount" ng-model="vm.viewModel.length" val-property-validator="vm.validateMandatory" />
+
+            <span ng-repeat="tag in vm.viewModel track by $index" class="label label-primary tag" ng-keyup="vm.onKeyUpOnTag(tag, $event)" tabindex="0">
+                <span ng-bind-html="tag"></span>
+
+                <umb-icon icon="icon-trash"
+                          ng-click="vm.showPrompt($index, tag)"
+                          localize="title"
+                          title="@buttons_deleteTag">
+                </umb-icon>
+
+                <umb-confirm-action ng-if="vm.promptIsVisible === $index"
+                                    direction="left"
+                                    on-confirm="vm.removeTag(tag)"
+                                    on-cancel="vm.hidePrompt()">
+                </umb-confirm-action>
+            </span>
+
+            <input type="text"
+                   id="{{vm.inputId}}"
+                   class="typeahead tags-{{vm.inputId}}"
+                   ng-model="vm.tagToAdd"
+                   localize="placeholder"
+                   ng-maxlength="200"
+                   maxlength="200"
+                   placeholder="@placeholders_enterTags" />
+            <!-- CHANGE:
+                On the above element, the ng-keydown and ng-blur attributes has been removed to avoid creating new tags
+            -->
+        </div>
+    </ng-form>
+</div>

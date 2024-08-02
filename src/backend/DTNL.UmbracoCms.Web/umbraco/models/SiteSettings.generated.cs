@@ -20,7 +20,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 {
 	/// <summary>Site Settings</summary>
 	[PublishedModel("siteSettings")]
-	public partial class SiteSettings : PublishedContentModel, ICompositionAnalytics, ICompositionCookieBar, ICompositionErrorHandling, ICompositionFooter, ICompositionRedirects, ICompositionSeoSettings, ICompositionSocialLinks, ICompositionStructuredData
+	public partial class SiteSettings : PublishedContentModel, ICompositionAnalytics, ICompositionCookieBar, ICompositionErrorHandling, ICompositionFooter, ICompositionRedirects, ICompositionSeoSettings, ICompositionSocialLinks, ICompositionStructuredData, ICompositionTagSettings
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
@@ -192,5 +192,61 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("companyName")]
 		public virtual string CompanyName => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionStructuredData.GetCompanyName(this, _publishedValueFallback);
+
+		///<summary>
+		/// Categories: Define allowed categories.
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("categories")]
+		public virtual global::System.Collections.Generic.IEnumerable<string> Categories => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionTagSettings.GetCategories(this, _publishedValueFallback);
+
+		///<summary>
+		/// Connectivity Types: Define allowed connectivity types.
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("connectivityTypes")]
+		public virtual global::System.Collections.Generic.IEnumerable<string> ConnectivityTypes => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionTagSettings.GetConnectivityTypes(this, _publishedValueFallback);
+
+		///<summary>
+		/// Container Types: Define allowed container types.
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("containerTypes")]
+		public virtual global::System.Collections.Generic.IEnumerable<string> ContainerTypes => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionTagSettings.GetContainerTypes(this, _publishedValueFallback);
+
+		///<summary>
+		/// Device Types: Define allowed device types.
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("deviceTypes")]
+		public virtual global::System.Collections.Generic.IEnumerable<string> DeviceTypes => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionTagSettings.GetDeviceTypes(this, _publishedValueFallback);
+
+		///<summary>
+		/// Locations: Define allowed locations.
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("locations")]
+		public virtual global::System.Collections.Generic.IEnumerable<string> Locations => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionTagSettings.GetLocations(this, _publishedValueFallback);
+
+		///<summary>
+		/// Routes Of Administration: Define allowed routes of administration.
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("routesOfAdministration")]
+		public virtual global::System.Collections.Generic.IEnumerable<string> RoutesOfAdministration => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionTagSettings.GetRoutesOfAdministration(this, _publishedValueFallback);
+
+		///<summary>
+		/// Volume Ranges: Define allowed volume ranges.
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("volumeRanges")]
+		public virtual global::System.Collections.Generic.IEnumerable<string> VolumeRanges => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionTagSettings.GetVolumeRanges(this, _publishedValueFallback);
 	}
 }
