@@ -62,6 +62,7 @@ $assets-path: '../' !default;
 @import '@/components/form-elements/stylesheet/_components.form-elements';
 @import '@/components/loading-indicator/stylesheet/_components.loading-indicator';
 @import '@/components/empty-section/stylesheet/_components.empty-section';
+@import '@/components/media-section/stylesheet/_components.media-section';
 /* endinject */
 
 @import '50_scopes/scopes.rich-text';
