@@ -20,7 +20,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 {
 	/// <summary>Page Home</summary>
 	[PublishedModel("pageHome")]
-	public partial class PageHome : PublishedContentModel, ICompositionBasePage, ICompositionContentBlocks, ICompositionSeo, ICompositionSocialSharing, INestedBlockHomepageHero
+	public partial class PageHome : PublishedContentModel, ICompositionBasePage, ICompositionContentBlocks, ICompositionSeo, ICompositionSocialSharing
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
@@ -48,6 +48,14 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		}
 
 		// properties
+
+		///<summary>
+		/// Hero
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("hero")]
+		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel Hero => this.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockListModel>(_publishedValueFallback, "hero");
 
 		///<summary>
 		/// Intro
@@ -196,53 +204,5 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("twitterTitle")]
 		public virtual string TwitterTitle => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionSocialSharing.GetTwitterTitle(this, _publishedValueFallback);
-
-		///<summary>
-		/// Hero Title
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("heroTitle")]
-		public virtual string HeroTitle => global::Umbraco.Cms.Web.Common.PublishedModels.NestedBlockHomepageHero.GetHeroTitle(this, _publishedValueFallback);
-
-		///<summary>
-		/// Image
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("image")]
-		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops Image => global::Umbraco.Cms.Web.Common.PublishedModels.NestedBlockHomepageHero.GetImage(this, _publishedValueFallback);
-
-		///<summary>
-		/// Main Button link
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("mainButtonLink")]
-		public virtual global::Umbraco.Cms.Core.Models.Link MainButtonLink => global::Umbraco.Cms.Web.Common.PublishedModels.NestedBlockHomepageHero.GetMainButtonLink(this, _publishedValueFallback);
-
-		///<summary>
-		/// Secondary Button Link
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("secondaryButtonLink")]
-		public virtual global::Umbraco.Cms.Core.Models.Link SecondaryButtonLink => global::Umbraco.Cms.Web.Common.PublishedModels.NestedBlockHomepageHero.GetSecondaryButtonLink(this, _publishedValueFallback);
-
-		///<summary>
-		/// Short Description
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("shortDescription")]
-		public virtual global::Umbraco.Cms.Core.Strings.IHtmlEncodedString ShortDescription => global::Umbraco.Cms.Web.Common.PublishedModels.NestedBlockHomepageHero.GetShortDescription(this, _publishedValueFallback);
-
-		///<summary>
-		/// Video
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("video")]
-		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel Video => global::Umbraco.Cms.Web.Common.PublishedModels.NestedBlockHomepageHero.GetVideo(this, _publishedValueFallback);
 	}
 }

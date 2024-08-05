@@ -20,9 +20,14 @@ public class HomepageHero : ViewComponentExtended
 
     public IViewComponentResult Invoke(PageHome? element)
     {
-        Title = element?.HeroTitle;
+        if (element?.Hero?.FirstOrDefault()?.Content is not NestedBlockHomepageHero hero)
+        {
+            return Content("");
+        }
 
-        Image? image = Image.Create(element?.Image, cssClasses: "homepage-hero__image");
+        Title = hero.HeroTitle;
+
+        Image? image = Image.Create(hero.Image, cssClasses: "homepage-hero__image");
 
         if (image == null)
         {
@@ -31,15 +36,14 @@ public class HomepageHero : ViewComponentExtended
 
         Image = image;
 
-
-        MainButton = Button.Create(element?.MainButtonLink)
+        MainButton = Button.Create(hero.MainButtonLink)
             .With(b =>
             {
                 b.Class = "button--icon hero-home__cta";
                 b.Hook = "homepage-hero-button";
             });
 
-        SecondaryButton = Button.Create(element?.SecondaryButtonLink)
+        SecondaryButton = Button.Create(hero.SecondaryButtonLink)
             .With(b =>
             {
                 b.Class = "button--icon hero-home__cta";
@@ -47,11 +51,11 @@ public class HomepageHero : ViewComponentExtended
                 b.Hook = "homepage-hero-button";
             });
 
-        ShortDescription = element?.ShortDescription?.ToString();
+        ShortDescription = hero?.ShortDescription?.ToString();
 
 
 
-        VideoUrl = Video.Create((NestedBlockVideoNativeUrl?) element?.Video?.FirstOrDefault()?.Content);
+        VideoUrl = Video.Create((NestedBlockVideoNativeUrl?) hero?.Video?.FirstOrDefault()?.Content);
 
 
         return View("HomepageHero", this);

@@ -28,36 +28,36 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		global::Umbraco.Cms.Core.Models.Blocks.BlockListModel Hero { get; }
 	}
 
-    /// <summary>Composition Hero</summary>
-    [PublishedModel("compositionHero")]
-    public partial class CompositionHero : PublishedContentModel, ICompositionHero
-    {
-        // helpers
+	/// <summary>Composition Hero</summary>
+	[PublishedModel("compositionHero")]
+	public partial class CompositionHero : PublishedContentModel, ICompositionHero
+	{
+		// helpers
 #pragma warning disable 0109 // new is redundant
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.0.3+a0f3c15")]
-        public new const string ModelTypeAlias = "compositionHero";
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.0.3+a0f3c15")]
-        public new const PublishedItemType ModelItemType = PublishedItemType.Content;
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.0.3+a0f3c15")]
-        [return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
-        public new static IPublishedContentType GetModelContentType(IPublishedSnapshotAccessor publishedSnapshotAccessor)
-            => PublishedModelUtility.GetModelContentType(publishedSnapshotAccessor, ModelItemType, ModelTypeAlias);
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.0.3+a0f3c15")]
-        [return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
-        public static IPublishedPropertyType GetModelPropertyType<TValue>(IPublishedSnapshotAccessor publishedSnapshotAccessor, Expression<Func<CompositionHero, TValue>> selector)
-            => PublishedModelUtility.GetModelPropertyType(GetModelContentType(publishedSnapshotAccessor), selector);
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.0.3+a0f3c15")]
+		public new const string ModelTypeAlias = "compositionHero";
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.0.3+a0f3c15")]
+		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.0.3+a0f3c15")]
+		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		public new static IPublishedContentType GetModelContentType(IPublishedSnapshotAccessor publishedSnapshotAccessor)
+			=> PublishedModelUtility.GetModelContentType(publishedSnapshotAccessor, ModelItemType, ModelTypeAlias);
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.0.3+a0f3c15")]
+		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		public static IPublishedPropertyType GetModelPropertyType<TValue>(IPublishedSnapshotAccessor publishedSnapshotAccessor, Expression<Func<CompositionHero, TValue>> selector)
+			=> PublishedModelUtility.GetModelPropertyType(GetModelContentType(publishedSnapshotAccessor), selector);
 #pragma warning restore 0109
 
-        private IPublishedValueFallback _publishedValueFallback;
+		private IPublishedValueFallback _publishedValueFallback;
 
-        // ctor
-        public CompositionHero(IPublishedContent content, IPublishedValueFallback publishedValueFallback)
-            : base(content, publishedValueFallback)
-        {
-            _publishedValueFallback = publishedValueFallback;
-        }
+		// ctor
+		public CompositionHero(IPublishedContent content, IPublishedValueFallback publishedValueFallback)
+			: base(content, publishedValueFallback)
+		{
+			_publishedValueFallback = publishedValueFallback;
+		}
 
-        // properties
+		// properties
 
 		///<summary>
 		/// Hero
