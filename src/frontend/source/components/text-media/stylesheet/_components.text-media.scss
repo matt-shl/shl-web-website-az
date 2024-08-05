@@ -54,6 +54,12 @@
   }
 }
 
+.text-media__title {
+  .c-layout-section--in-grid & {
+    @include h3;
+  }
+}
+
 .text-media__image {
   position: relative;
 

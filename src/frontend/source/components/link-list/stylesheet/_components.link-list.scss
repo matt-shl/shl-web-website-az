@@ -1,0 +1,32 @@
+.c-link-list {
+}
+
+.link-list__list {
+  @include list--reset;
+}
+
+.link-list__item {
+  border-bottom: 1px solid var(--theme-color-content-20);
+}
+
+.link-list__anchor {
+  @include body-xl;
+  font-weight: $font-weight-extrabold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: $spacing-16;
+  color: currentcolor;
+  padding-block: $spacing-20;
+  transition: 200ms ease-in-out;
+  transition-property: color;
+
+  svg {
+    width: 2.4rem;
+    height: 2.4rem;
+  }
+
+  @include hover-focus {
+    color: var(--theme-color-content-60);
+  }
+}
