@@ -6,14 +6,14 @@
 <header class="c-header" js-hook-header>
     <div class="header__container">
         <div class="header__content">
-            <a href="/" class="header__logo" title=CultureDictionary.GetTranslation(TranslationAliases.Navigation.Home>
+            <a href="/" class="header__logo" title=@Model.HomeTitle>
                 <svg src="@(SvgAliases.Brand.LogoColor)" />
             </a>
 
             <button js-hook-header-hamburger
                     class="header__hamburger"
                     aria-controls="navigation-mobile"
-                    aria-label=CultureDictionary.GetTranslation(TranslationAliases.Navigation.OpenMenu>
+                    aria-label=@Model.OpenMenuLabel>
                 <svg src="@(SvgAliases.Icons.Menu)" />
                 Menu
             </button>

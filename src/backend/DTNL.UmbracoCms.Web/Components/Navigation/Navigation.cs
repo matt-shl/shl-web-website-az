@@ -1,6 +1,7 @@
 using Umbraco.Cms.Core.Models;
 using Umbraco.Cms.Web.Common.PublishedModels;
 using static DTNL.UmbracoCms.Web.Components.Navigation;
+using DTNL.UmbracoCms.Web.Helpers.Aliases;
 
 namespace DTNL.UmbracoCms.Web.Components;
 

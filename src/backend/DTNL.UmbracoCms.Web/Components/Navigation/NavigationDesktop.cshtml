@@ -1,6 +1,8 @@
 @model DTNL.UmbracoCms.Web.Components.Navigation
 
-<nav class="c-navigation-desktop" js-hook-navigation-desktop title="mainNav">
+@inject ICultureDictionary CultureDictionary
+
+<nav class="c-navigation-desktop" js-hook-navigation-desktop title=" @CultureDictionary.GetTranslation(TranslationAliases.Navigation.Mainnavigation)">
 
     <ul class="navigation-desktop__list">
         @foreach (Components.Navigation.MenuItem item in Model.Items)

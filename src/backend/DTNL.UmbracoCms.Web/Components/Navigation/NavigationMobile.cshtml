@@ -1,10 +1,12 @@
 @using DTNL.UmbracoCms.Web.Components;
 @using static DTNL.UmbracoCms.Web.Components.Navigation;
+
 @model DTNL.UmbracoCms.Web.Components.Navigation;
+@inject ICultureDictionary CultureDictionary
 
 <partial name="Modal" model="@(new Modal {Id = "navigation-mobile", Title="navigation-mobile", Size = "navigation-mobile", KeepScrollPosition = true, CloseAllOthers = true })">
         <div class="c-navigation-mobile">
-        <nav title=CultureDictionary.GetTranslation(TranslationAliases.Navigation.MainNavigation>
+        <nav title=@CultureDictionary.GetTranslation(TranslationAliases.Navigation.Mainnavigation)>
                 <partial name="./NavigationMobileListItem.cshtml" model="@(new Components.Navigation
                     {
                         Items = Model.Items
