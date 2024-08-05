@@ -1,0 +1,23 @@
+:root {
+  --form-item-margin: #{$global-spacing * 3};
+  --form-padding-left: #{$global-spacing};
+  --form-item-error-border-width: 1px;
+  --form-item-error-border-radius: 0;
+  --form-item-error-border-color: var(--color-error);
+  --form-item-error-border-color-20: var(--color-error-20);
+  --form-item-error-fill-color: rgba(var(--form-item-error-border-color), 0.2);
+  --form-item-error-padding-top: #{$global-spacing/2};
+  --form-item-error-padding-bottom: #{$global-spacing/2};
+  --form-item-error-padding-left: --form-padding-left;
+  --form-item-error-padding-right: #{$global-spacing};
+}
+
+.form__item:not(.input--hidden) {
+  margin-bottom: var(--form-item-margin);
+}
+
+.form__item-link {
+  pointer-events: none;
+  text-decoration: none;
+  color: inherit;
+}

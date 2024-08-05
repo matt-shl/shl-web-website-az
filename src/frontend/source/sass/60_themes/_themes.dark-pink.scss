@@ -1,6 +1,6 @@
 .t-dark-pink {
   --color-background: #{$color-dark-pink};
-  --color-content: #{$color-pale-pink};
+  --color-content: #{$color-white};
   --focus-theme-color: #{$color-light-blue};
 
   // Buttons
@@ -11,7 +11,12 @@
   --button-secondary-border-color: var(--color-content);
 
   // Links
-  --theme-color-content-20: #{rgba($color-pale-pink-rgb, 0.2)};
+  --theme-color-content-60: #{rgba($color-white-rgb, 0.6)};
+  --theme-color-content-20: #{rgba($color-white-rgb, 0.2)};
+
+  // Cards
+  --color-card-background: #{$color-pale-pink};
+  --color-card-content: #{$color-dark-pink};
 }
 
 html.t-dark-pink {

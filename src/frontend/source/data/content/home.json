@@ -1,4 +1,5 @@
 {
+  "footerScrollingText": "Caring. Inclusive. Driven.",
   "hero": {
     "title": "This is a large title for the hero section",
     "description": "Here is some supporting text for the hero component, keep it short and sweet, but have a nice bite to it.",
@@ -56,5 +57,412 @@
         }
       ]
     }
+  },
+  "cards1": {
+    "carouselCardType": "image",
+    "title": "We provide advanced drug delivery systems",
+    "cards": [
+      {
+        "title": "Our flagship: Molly®",
+        "content": "Our most-wanted two-step device platform is modular and available for all. Fully customizable. ",
+        "url": "#"
+      },
+      {
+        "title": "Our products",
+        "content": "We have 15 single-use injectors and multi-use pens to choose from. Which one fits your molecule?",
+        "url": "#"
+      },
+      {
+        "title": "Our services",
+        "content": "Need specific help? We can help you with any of the 10 different services we offer. Explore the possibilities.",
+        "url": "#"
+      }
+    ]
+  },
+  "cards2": {
+    "carouselCardType": "icon",
+    "title": "One focus, many uses",
+    "description": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore.",
+    "cards": [
+      {
+        "url": "#",
+        "icon": "rocket",
+        "title": "For pharma & biotech",
+        "content": "New to the market? We can lend you a helping hand. Let’s bring that molecule to the world, together."
+      },
+      {
+        "url": "#",
+        "icon": "rocket",
+        "title": "For start-ups",
+        "content": "New to the market? We can lend you a helping hand. Let’s bring that molecule to the world, together."
+      }
+    ]
+  },
+  "cards3": {
+    "carouselCardType": "knowledge",
+    "showThreeCardsSideBySide": true,
+    "title": "Discover the latest news, events and insights",
+    "ctaPrimary": {
+      "url": "#",
+      "label": "Discover all"
+    },
+    "cards": [
+      {
+        "tag": "News",
+        "title": "SHL Medical expert to speak at Novartis Campus in Basel",
+        "content": "SHL Medical will be in Basel for the Drug-Device Combination Products for Parenteral Use workshop.",
+        "url": "#",
+        "ctaLabel": "Register now"
+      },
+      {
+        "tag": "Insights",
+        "title": "Strengthening a global manufacturing network through advanced simulation technologies",
+        "content": "In the Pre-filled Syringes and Injection Devices Issue of ONdrug Delivery Magazine, published ahead of the 2023 PDA Universe.",
+        "ctaLabel": "Register now"
+      },
+      {
+        "tag": "Events",
+        "title": "SHL to attend 2022 NSTC Science Train Program",
+        "content": "SHL Medical is excited to announce our first-time participation in the NSTC Science Train Program, 2022.",
+        "url": "#",
+        "ctaLabel": "Register now"
+      }
+    ]
+  },
+  "textMedia1": {
+    "theme": "t-pastel-green",
+    "title": "Introducing the Electronic Motorized Autoinjector",
+    "description": "It's new, it's revolutionary, and it's here. Our flagship product Molly® is now available as an Electronic Motorized Autoinjector (EMAI).",
+    "image": {
+      "caption": "image caption example"
+    },
+    "cta1": {
+      "label": "Discover the power of EMAI",
+      "url": "#"
+    }
+  },
+  "textMedia2": {
+    "title": "We value diversity and strive for excellence",
+    "description": "At our workplace, we value our international environment. We're not deterred by setbacks, but instead, we carry on with determination. We diligently research because we believe in the power of knowledge. Above all, our priority is always people.",
+    "image": true,
+    "cta1": {
+      "label": "About SHL Medical",
+      "url": "#"
+    },
+    "cta2": {
+      "label": "Purpose & values",
+      "url": "#"
+    },
+    "video": {
+      "id": "text-media-video1",
+      "totalTime": "01:30",
+      "title": "Text media video 1",
+      "description": "Text media video 1 description",
+      "closedcaptions": [
+        {
+          "url": "subtitles.vtt",
+          "label": "Nederlands",
+          "lang": "nl",
+          "kind": "subtitles"
+        }
+      ],
+      "sources": [
+        {
+          "size": 1920,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        },
+        {
+          "size": 1280,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        },
+        {
+          "size": 1024,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        },
+        {
+          "size": 320,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "textMedia3": {
+    "theme": "t-pale-pink",
+    "title": "Join us in crafting future healthcare solutions",
+    "description": "Where innovation meets compassion in the realm of healthcare. We're revolutionizing the landscape of medical solutions.",
+    "image": {
+      "caption": "image caption example"
+    },
+    "cta1": {
+      "label": "Explore vacancies",
+      "url": "#"
+    },
+    "mediaPosition": "start",
+    "video": {
+      "id": "text-media-video2",
+      "totalTime": "01:30",
+      "title": "Text media video 2",
+      "description": "Text media video 2 description",
+      "closedcaptions": [
+        {
+          "url": "subtitles.vtt",
+          "label": "Nederlands",
+          "lang": "nl",
+          "kind": "subtitles"
+        }
+      ],
+      "sources": [
+        {
+          "size": 1920,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        },
+        {
+          "size": 1280,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        },
+        {
+          "size": 1024,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        },
+        {
+          "size": 320,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "textMediaList1": {
+    "mediaPosition": "start",
+    "title": "We offer complete support throughout the entire journey",
+    "description": "With our 35 years of experience, we will make it happen. Including but not limited to:",
+    "image": {
+      "caption": "image caption example"
+    },
+    "cta1": {
+      "label": "Discover all services",
+      "url": "#"
+    },
+    "cta2": {
+      "label": "Why SHL Medical",
+      "url": "#"
+    },
+    "links": [
+      {
+        "label": "Drug development",
+        "url": "#"
+      },
+      {
+        "label": "Regulatory support",
+        "url": "#"
+      },
+      {
+        "label": "Manufacturing",
+        "url": "#"
+      },
+      {
+        "label": "Commercialization",
+        "url": "#"
+      }
+    ]
+  },
+  "textMediaList2": {
+    "theme": "t-general",
+    "title": "We offer complete support throughout the entire journey",
+    "description": "With our 35 years of experience, we will make it happen. Including but not limited to:",
+    "image": {
+      "caption": "image caption example"
+    },
+    "ctaSupport": "Short line of text to support the CTAs",
+    "cta1": {
+      "label": "Discover all services",
+      "url": "#"
+    },
+    "cta2": {
+      "label": "Why SHL Medical",
+      "url": "#"
+    },
+    "accordions": [
+      {
+        "id": "accordion1",
+        "title": "Drug development",
+        "content": "<p>We offer a wide range of services to support your drug development process.</p>"
+      },
+      {
+        "id": "accordion2",
+        "title": "Regulatory support",
+        "content": "<p>We offer a wide range of services to support your regulatory process.</p>"
+      },
+      {
+        "id": "accordion3",
+        "title": "Manufacturing",
+        "content": "<p>We offer a wide range of services to support your manufacturing process.</p>"
+      },
+      {
+        "id": "accordion4",
+        "title": "Commercialization",
+        "content": "<p>We offer a wide range of services to support your commercialization process.</p>"
+      }
+    ],
+    "video": {
+      "id": "text-media-list-video1",
+      "totalTime": "01:30",
+      "title": "Text media video 1",
+      "description": "Text media video 1 description",
+      "closedcaptions": [
+        {
+          "url": "subtitles.vtt",
+          "label": "Nederlands",
+          "lang": "nl",
+          "kind": "subtitles"
+        }
+      ],
+      "sources": [
+        {
+          "size": 1920,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        },
+        {
+          "size": 1280,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        },
+        {
+          "size": 1024,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        },
+        {
+          "size": 320,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "textMediaList3": {
+    "title": "Frequently asked questions",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.",
+    "accordions": [
+      {
+        "id": "accordion1",
+        "title": "Question about drug development",
+        "content": "<p>We offer a wide range of services to support your drug development process.</p>"
+      },
+      {
+        "id": "accordion2",
+        "title": "Question about Regulatory support",
+        "content": "<p>We offer a wide range of services to support your regulatory process.</p>"
+      },
+      {
+        "id": "accordion3",
+        "title": "Question about Manufacturing",
+        "content": "<p>We offer a wide range of services to support your manufacturing process.</p>"
+      },
+      {
+        "id": "accordion4",
+        "title": "Question about Commercialization",
+        "content": "<p>We offer a wide range of services to support your commercialization process.</p>"
+      },
+      {
+        "id": "accordion5",
+        "title": "Question about SHL Medical",
+        "content": "<p>We offer a wide range of services to support your SHL Medical process.</p>"
+      },
+      {
+        "id": "accordion6",
+        "title": "Question about SHL Medical",
+        "content": "<p>We offer a wide range of services to support your SHL Medical process.</p>"
+      },
+      {
+        "id": "accordion5",
+        "title": "Question about SHL Medical",
+        "content": "<p>We offer a wide range of services to support your SHL Medical process.</p>"
+      },
+      {
+        "id": "accordion6",
+        "title": "Question about SHL Medical",
+        "content": "<p>We offer a wide range of services to support your SHL Medical process.</p>"
+      }
+    ]
+  },
+  "textMediaList4": {
+    "theme": "t-pale-pink",
+    "title": "Section title",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.",
+    "links": [
+      {
+        "label": "Drug development",
+        "url": "#"
+      },
+      {
+        "label": "Regulatory support",
+        "url": "#"
+      },
+      {
+        "label": "Manufacturing",
+        "url": "#"
+      },
+      {
+        "label": "Commercialization",
+        "url": "#"
+      }
+    ]
   }
 }

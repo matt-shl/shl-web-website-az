@@ -1,0 +1,49 @@
+@import './variables/variables.loading-indicator';
+@import './mixins/mixins.indicator';
+@import './mixins/mixins.spinnert';
+@import './mixins/mixins.text';
+
+.c-loading-indicator {
+  @include indicator;
+  display: flex;
+}
+
+.loading-indicator__text {
+  @include text;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  font-size: 1rem;
+  font-weight: var(--font-weight-medium);
+  color: $loader-color;
+}
+
+.loading-indicator--fixed {
+  position: fixed;
+}
+
+.loading-indicator--dark-theme {
+  background-color: var(--color-primary);
+
+  .loading-indicator__spinner {
+    border-top: $loader-thickness solid var(--color-white-20);
+    border-right: $loader-thickness solid var(--color-white-20);
+    border-bottom: $loader-thickness solid var(--color-white-20);
+    border-left: $loader-thickness solid var(--color-white);
+  }
+}
+
+.loading-indicator__spinner {
+  @include spinnert;
+}
+
+@keyframes loading-indicator-reveal {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

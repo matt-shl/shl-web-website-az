@@ -19,6 +19,7 @@
         @(!Model.Size.IsNullOrEmpty() ? $" button--{Model.Size}" : "")
         @(!Model.Icon.IsNullOrEmpty() ? " button--icon" : "")
         @(Model.LabelSrOnly ? " button--icon-only" : "")
+        button--icon-position-@Model.IconPosition
         @Model.Class"
     @Html.Attribute(Model.Hook?.EnsureStartsWith("js-hook-"))
     @Html.Attributes(Model.Attributes)

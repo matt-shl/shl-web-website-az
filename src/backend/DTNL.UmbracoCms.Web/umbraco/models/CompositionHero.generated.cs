@@ -18,20 +18,15 @@ using Umbraco.Extensions;
 
 namespace Umbraco.Cms.Web.Common.PublishedModels
 {
-    // Mixin Content Type with alias "compositionHero"
-    /// <summary>Composition Hero</summary>
-    public partial interface ICompositionHero : IPublishedContent
-    {
-        /// <summary>Image</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.0.3+a0f3c15")]
-        [global::System.Diagnostics.CodeAnalysis.MaybeNull]
-        global::Umbraco.Cms.Core.Models.MediaWithCrops HeroImage { get; }
-
-        /// <summary>Text</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.0.3+a0f3c15")]
-        [global::System.Diagnostics.CodeAnalysis.MaybeNull]
-        string HeroText { get; }
-    }
+	// Mixin Content Type with alias "compositionHero"
+	/// <summary>Composition Hero</summary>
+	public partial interface ICompositionHero : IPublishedContent
+	{
+		/// <summary>Hero</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		global::Umbraco.Cms.Core.Models.Blocks.BlockListModel Hero { get; }
+	}
 
     /// <summary>Composition Hero</summary>
     [PublishedModel("compositionHero")]
@@ -64,30 +59,17 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 
         // properties
 
-        ///<summary>
-        /// Image
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.0.3+a0f3c15")]
-        [global::System.Diagnostics.CodeAnalysis.MaybeNull]
-        [ImplementPropertyType("heroImage")]
-        public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops HeroImage => GetHeroImage(this, _publishedValueFallback);
+		///<summary>
+		/// Hero
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("hero")]
+		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel Hero => GetHero(this, _publishedValueFallback);
 
-        /// <summary>Static getter for Image</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.0.3+a0f3c15")]
-        [return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
-        public static global::Umbraco.Cms.Core.Models.MediaWithCrops GetHeroImage(ICompositionHero that, IPublishedValueFallback publishedValueFallback) => that.Value<global::Umbraco.Cms.Core.Models.MediaWithCrops>(publishedValueFallback, "heroImage");
-
-        ///<summary>
-        /// Text
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.0.3+a0f3c15")]
-        [global::System.Diagnostics.CodeAnalysis.MaybeNull]
-        [ImplementPropertyType("heroText")]
-        public virtual string HeroText => GetHeroText(this, _publishedValueFallback);
-
-        /// <summary>Static getter for Text</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.0.3+a0f3c15")]
-        [return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
-        public static string GetHeroText(ICompositionHero that, IPublishedValueFallback publishedValueFallback) => that.Value<string>(publishedValueFallback, "heroText");
-    }
+		/// <summary>Static getter for Hero</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		public static global::Umbraco.Cms.Core.Models.Blocks.BlockListModel GetHero(ICompositionHero that, IPublishedValueFallback publishedValueFallback) => that.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockListModel>(publishedValueFallback, "hero");
+	}
 }

@@ -20,6 +20,8 @@ public class Button
 
     public string? Icon { get; set; }
 
+    public string? IconPosition { get; set; }
+
     public string? Controls { get; set; }
 
     public Dictionary<string, string?> Attributes { get; set; } = new(StringComparer.OrdinalIgnoreCase);

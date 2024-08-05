@@ -1,0 +1,115 @@
+{% from 'button.html' import button %}
+{% from 'layout-section.html' import layoutSection %}
+{% from 'carousel.html' import carousel %}
+
+{% from 'card-icon.html' import cardIcon %}
+{% from 'card-image.html' import cardImage %}
+{% from 'card-number.html' import cardNumber %}
+{% from 'card-knowledge.html' import cardKnowledge %}
+{% from 'card-contact.html' import cardContact %}
+{% from 'card-product.html' import cardProduct %}
+
+
+{#
+    carouselCardType = 'icon' | 'image' | 'number' | 'knowledge' | 'contact'
+    showThreeCardsSideBySide: boolean = false
+    This parameter determines whether the 3 cards are shown side by side or in a carousel.
+    2 or less cards are always shown side by side.
+    4 or more cards are always shown in a carousel.
+#}
+
+{% macro sectionCardCarousel(data) %}
+  {% set classShowCarousel = (" c-section-card-carousel--show-carousel" if (data.cards.length > 2 and data.showThreeCardsSideBySide != true) else "") %}
+  {% set classShowThreeCardsSideBySide = (" c-section-card-carousel--no-carousel-three" if (data.cards.length == 3 and data.showThreeCardsSideBySide == true) else "") %}
+
+  {% call layoutSection({
+    title: data.title,
+    id: data.id,
+    sectionTitle: data.sectionTitle,
+    classes: "c-section-card-carousel" ~ classShowCarousel ~ classShowThreeCardsSideBySide,
+    theme: data.theme
+  }) %}
+
+  {% if data.title %}
+    <h2 class="section-card-carousel__title">{{ data.title }}</h2>
+  {% endif %}
+
+   <div class="section-card-carousel__container">
+    {% if data.description or data.ctaPrimary or data.ctaSecondary %}
+    <div class="section-card-carousel__content-outer">
+      <div class="section-card-carousel__content-inner">
+      {% if data.description %}
+        <p class="section-card-carousel__description">{{ data.description }}</p>
+      {% endif %}
+      <div class="section-card-carousel__button-container">
+        {% if data.ctaPrimary %}
+         {{ button(data.ctaPrimary | clone | merge({icon: 'arrow-top-right'})) }}
+         {% endif %}
+        {% if data.ctaSecondary %}
+         {{ button(data.ctaSecondary| clone | merge({variant: "secondary", icon: 'arrow-top-right'})) }}
+         {% endif %}
+      </div>
+      </div>
+    </div>
+    {% endif %}
+    {# CASE: show no carousel | cards.length <= 2 or there are three card, with the option to not display them in a carousel  #}
+    {% if data.cards | length <= 2 or classShowThreeCardsSideBySide %}
+      {% for cardData in data.cards %}
+       {{ socialCarouselCard(cardData, data.carouselCardType) }}
+      {% endfor %}
+    {% else %}
+    {# CASE: show carousel | cards.length > 2  #}
+      {% call carousel({
+        classes: "section-card-carousel__carousel",
+        pagination: true,
+        slidesDesktop: 3,
+        slidesTablet: 2,
+        slidesMobile: 1.2
+      }) %}
+        {% for cardData in data.cards %}
+          <div class="swiper-slide">
+            {{ socialCarouselCard(cardData, data.carouselCardType) }}
+          </div>
+        {% endfor %}
+      {% endcall %}
+    {% endif %}
+   </div>
+
+
+  {% endcall %}
+{% endmacro %}
+
+
+{% set socialCarouselCardClasses = "section-card-carousel__card" %}
+
+{% macro socialCarouselCard(cardData, carouselCardType) %}
+  {% if carouselCardType == 'icon' %}
+    {{ cardIcon(cardData | clone | merge({
+      classes: socialCarouselCardClasses
+    })) }}
+  {% elif carouselCardType == 'image' %}
+    {{ cardImage(cardData | clone | merge({
+      classes: socialCarouselCardClasses
+    })) }}
+  {% elif carouselCardType == 'number' %}
+    {{ cardNumber(cardData | clone | merge({
+      classes: socialCarouselCardClasses
+    })) }}
+  {% elif carouselCardType == 'knowledge' %}
+    {{ cardKnowledge(cardData | clone | merge({
+      classes: socialCarouselCardClasses
+    })) }}
+  {% elif carouselCardType == 'contact' %}
+    {{ cardContact(cardData | clone | merge({
+      classes: socialCarouselCardClasses
+    })) }}
+  {% elif carouselCardType == 'product' %}
+    {{ cardProduct(cardData | clone | merge({
+      classes: socialCarouselCardClasses
+    })) }}
+  {% else %}
+    {{ cardIcon(cardData | clone | merge({
+      classes: socialCarouselCardClasses
+    })) }}
+  {% endif %}
+{% endmacro %}

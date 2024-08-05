@@ -28,7 +28,14 @@ Options:
     {%- if data.closeAllOthers %} data-modal-close-all-others="{{ data.closeAllOthers }}"{% endif -%}
     {%- if data.keepScrollPosition %} data-modal-keep-scroll-position="{{ data.keepScrollPosition }}"{% endif -%}
     {%- if data.autoClose %} data-modal-auto-close="{{ data.autoClose }}"{% endif -%}
+    {%- if data.hook %} js-hook-{{ data.hook }} {% endif -%}
        js-hook-modal>
+
+    {% if data.size === "video" %}
+      <button type="button" class="modal__button-close" js-hook-button-modal-close aria-label="{{ global.resource.navigation.close }}">
+        {% svg 'icons/cross' %}
+      </button>
+    {% endif %}
 
     <div class="modal__container">
 
@@ -44,10 +51,12 @@ Options:
               {% endif %}
             </div>
 
-            {% if not data.noClose %}
-              <button type="button" class="modal__button-close" js-hook-button-modal-close aria-label="{{ global.resource.navigation.close }}">
-                {% svg 'icons/cross' %}
-              </button>
+            {% if data.size !== "video" %}
+              {% if not data.noClose %}
+                <button type="button" class="modal__button-close" js-hook-button-modal-close aria-label="{{ global.resource.navigation.close }}">
+                  {% svg 'icons/cross' %}
+                </button>
+              {% endif %}
             {% endif %}
           </div>
         {% else %}
@@ -65,7 +74,7 @@ Options:
           </div>
         {% endif %}
 
-        <div class="modal__body" js-hook-modal-body>
+        <div class="modal__body" js-hook-modal-body js-hook-replace-content="{{ "modal-body-" + data.id }}">
           {{ caller() }}
         </div>
 

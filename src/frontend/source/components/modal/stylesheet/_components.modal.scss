@@ -1,5 +1,6 @@
 @import 'size/mixin.aside';
 @import 'size/mixin.navigation-mobile';
+@import 'size/mixin.video';
 
 $modal-max-width: 1600px !default;
 $modal-gutter: $global-spacing * 5 !default;
@@ -139,7 +140,6 @@ $modal-min-width-media-query: ($modal-max-width + $modal-gutter-small * 2) - 0.5
 
   @include screen-min-width($modal-min-width-media-query) {
     inset-inline-end: $modal-gutter-small;
-    right: $modal-gutter-small;
   }
 }
 
@@ -187,6 +187,10 @@ $modal-min-width-media-query: ($modal-max-width + $modal-gutter-small * 2) - 0.5
 }
 
 // SIZES
+.c-modal--size-video {
+  @include modal--video;
+}
+
 .c-modal--size-aside {
   @include modal--aside;
 }

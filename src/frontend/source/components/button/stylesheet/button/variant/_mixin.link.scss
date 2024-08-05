@@ -1,8 +1,9 @@
-@mixin button--link {
+@mixin button--link($transparent: true) {
   --button-link-color: var(--color-text);
   --button-link-underline-color: var(--color-text-10);
   --button-link-hover-color: var(--color-primary);
 
+  position: relative;
   color: var(--button-link-color);
   display: flex;
   align-items: center;
@@ -25,7 +26,7 @@
     var(--button-link-color),
     var(--button-link-underline-color),
     false,
-    true
+    $transparent
   );
 
   &[disabled] {

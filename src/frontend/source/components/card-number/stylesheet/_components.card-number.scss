@@ -4,7 +4,7 @@
 
 .card-number__container {
   @include card-container-base;
-  @include theme;
+  @include theme-card;
 }
 
 .card-number__title {

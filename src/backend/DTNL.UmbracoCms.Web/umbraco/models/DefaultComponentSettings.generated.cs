@@ -56,5 +56,13 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("identifier")]
 		public virtual string Identifier => this.Value<string>(_publishedValueFallback, "identifier");
+
+		///<summary>
+		/// Navigation Title
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("navigationTitle")]
+		public virtual string NavigationTitle => this.Value<string>(_publishedValueFallback, "navigationTitle");
 	}
 }

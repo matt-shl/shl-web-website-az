@@ -1,0 +1,199 @@
+{
+  "description": {
+    "sectionTitle": "Meet Molly®",
+    "title": "Meet Molly® a patient-centric, 2-step autoinjector built on a modular platform technology.",
+    "image": true,
+    "content": {
+      "title": "Optional text",
+      "richText": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit.</p>"
+    }
+  },
+  "specifications": {
+    "sectionTitle": "Specifications",
+    "title": "Specifications",
+    "items": [
+      {
+        "label": "Device type",
+        "value": "Disposable autoinjector"
+      },
+      {
+        "label": "Primary container",
+        "value": "1.0 mL long pre-filled syringe"
+      },
+      {
+        "label": "Usage",
+        "value": "Single Dose | Disposable"
+      },
+      {
+        "label": "Dosage type",
+        "value": "Fixed | Full contents"
+      },
+      {
+        "label": "Needle attachment",
+        "value": "Pre-attached"
+      },
+      {
+        "label": "Route of administration",
+        "value": "Subcutaneous"
+      },
+      {
+        "label": "Activation",
+        "value": "Needle cover"
+      },
+      {
+        "label": "Injection feedback",
+        "value": "Audible click at beginning and end of injection"
+      }
+    ],
+    "cta": {
+      "label": "Full product specifications",
+      "icon": "download",
+      "url": "/"
+    }
+  },
+  "footerScrollingText": "Caring. Inclusive. Driven.",
+  "breadcrumbs": {
+    "items": [
+      {
+        "url": "/home.html",
+        "label": "Home"
+      },
+      {
+        "url": "/parent-1.html",
+        "label": "Parent page 1"
+      },
+      {
+        "url": "/parent-2.html",
+        "label": "Parent page 2"
+      },
+      {
+        "url": "/current-item.html",
+        "label": "Current item"
+      }
+    ]
+  },
+  "hero": {
+    "image": true,
+    "title": "Molly® autoinjectors",
+    "description": "Modular platform with Bluetooth-enabled add-on and large-volume option. Fully customizable.",
+    "cta1": {
+      "label": "Contact us",
+      "url": "/"
+    },
+    "cta2": {
+      "variant": "secondary",
+      "label": "Product specifictions",
+      "url": "/"
+    },
+    "showAnchorLinks": true
+  },
+  "numbers": {
+    "id": "numbers",
+    "carouselCardType": "number",
+    "title": "Something about the numbers",
+    "sectionTitle": "Numbers",
+    "cards": [
+      {
+        "title": "2010",
+        "subtitle": "entered the market as an approved product",
+        "content": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+      },
+      {
+        "title": "12",
+        "subtitle": "pharmaceutical companies are using Molly® for their products",
+        "content": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+      },
+      {
+        "title": "17",
+        "subtitle": "combination products are approved for the market",
+        "content": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+      },
+      {
+        "title": "10+ devs",
+        "subtitle": "Working on this project",
+        "content": "We have a team of 10+ developers working on this project. They are dedicated to making the world a better place."
+      },
+      {
+        "title": "100%",
+        "subtitle": "Renewable energy",
+        "content": "We use 100% renewable energy to power our factories. This helps reduce our carbon footprint."
+      },
+      {
+        "title": "1,000,000",
+        "subtitle": "Trees planted",
+        "content": "We have planted 1,000,000 trees to help offset our carbon emissions. This is part of our commitment to sustainability."
+      },
+      {
+        "title": "100%",
+        "subtitle": "Recyclable packaging",
+        "content": "All of our packaging is 100% recyclable. This helps reduce waste and protect the environment."
+      }
+    ]
+  },
+  "textMedia1": {
+    "id": "introducing-the-electronic-motorized-autoinjector",
+    "sectionTitle": "New",
+    "theme": "t-pastel-green",
+    "title": "Introducing the Electronic Motorized Autoinjector",
+    "description": "It's new, it's revolutionary, and it's here. Our flagship product Molly® is now available as an Electronic Motorized Autoinjector (EMAI).",
+    "image": {
+      "caption": "image caption example"
+    },
+    "cta1": {
+      "label": "Discover the power of EMAI",
+      "url": "#"
+    },
+    "video": {
+      "id": "text-media-video1",
+      "totalTime": "01:30",
+      "title": "Text media video 1",
+      "description": "Text media video 1 description",
+      "closedcaptions": [
+        {
+          "url": "subtitles.vtt",
+          "label": "Nederlands",
+          "lang": "nl",
+          "kind": "subtitles"
+        }
+      ],
+      "sources": [
+        {
+          "size": 1920,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        },
+        {
+          "size": 1280,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        },
+        {
+          "size": 1024,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        },
+        {
+          "size": 320,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

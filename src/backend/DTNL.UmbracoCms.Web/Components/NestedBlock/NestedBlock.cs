@@ -1,3 +1,4 @@
+using DTNL.UmbracoCms.Web.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using Umbraco.Cms.Core.Models.Blocks;
 using Umbraco.Cms.Core.Models.PublishedContent;
@@ -9,7 +10,13 @@ public abstract class NestedBlock : ViewComponentExtended
 {
     public string? Id { get; set; }
 
-    protected virtual string DefaultViewName => GetType().Name;
+    public string? ThemeCssClasses => ThemeHelper.GetCssClasses(NodeProvider.CurrentNode);
+
+    public string? NavigationTitle => NodeProvider.CurrentNode?.Name;
+
+    protected virtual string ViewName => GetType().Name;
+
+    protected virtual string ViewPath => $"~/Components/NestedBlock/{ViewName}/{ViewName}.cshtml";
 
     public async Task<IViewComponentResult> InvokeAsync(BlockListItem item, string? altView = null)
     {
@@ -18,12 +25,14 @@ public abstract class NestedBlock : ViewComponentExtended
         return RenderBlock(model, altView);
     }
 
-    protected virtual void ProcessSettings(IPublishedElement settings)
+    protected virtual void ProcessSettings(IPublishedElement? settings)
     {
         if (settings is DefaultComponentSettings defaultSettings)
         {
             Id = defaultSettings.Identifier;
         }
+
+        Id ??= settings?.Key.ToString();
     }
 
     protected virtual object? ProcessBlock(IPublishedElement block)
@@ -45,8 +54,8 @@ public abstract class NestedBlock : ViewComponentExtended
             return Content("");
         }
 
-        string viewPath = EnsureAltViewExists(altView) ??
-                          $"~/Components/NestedBlock/{DefaultViewName}/{DefaultViewName}.cshtml";
+        string viewPath = EnsureAltViewExists(altView) ?? ViewPath;
+
         return View(viewPath, model);
     }
 

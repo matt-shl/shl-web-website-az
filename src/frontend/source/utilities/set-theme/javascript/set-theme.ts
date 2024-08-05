@@ -2,15 +2,19 @@ import Environment from '@utilities/environment'
 
 const themes = [
   'general',
+  'lightest-pink',
   'pale-pink',
   'pale-green',
   'pale-yellow',
+  'lightest-yellow',
   'pale-blue',
   'pastel-blue',
   'light-blue',
   'white',
   'dark-pink',
   'light-grey',
+  'dark-green',
+  'pastel-green'
 ] as const
 
 type Theme = (typeof themes)[number]
@@ -22,62 +26,62 @@ class SetTheme {
   html: HTMLElement
   currentTheme: Theme
   isSwitching: boolean
+  allThemedSections: HTMLElement[]
 
   constructor() {
     if (!Environment.isLocal && !Environment.isTest) return
 
     this.html = document.documentElement
-    this.currentTheme = this.#getCurrentTheme()
+    this.allThemedSections = Array.from(document.querySelectorAll('.c-layout-section'))
+    this.currentTheme = this.getCurrentTheme(this.html)
 
-    this.#bindEvents()
+    this.bindEvents()
   }
 
-  // When shift and T are pressed, switch theme
-  #bindEvents() {
+  bindEvents() {
     document.addEventListener('keydown', event => {
-      if (
-        event.shiftKey &&
-        event.key === 'T' &&
-        !this.#isInputElement(event.target as HTMLElement)
-      ) {
-        this.#switchTheme()
+      if (!this.isInputElement(event.target as HTMLElement)) {
+        if (event.shiftKey && event.key === 'T') {
+          if (this.isSwitching) return
+          this.switchTheme(this.html)
+          this.isSwitching = true
+          setTimeout(() => (this.isSwitching = false), SWITCH_THEME_DELAY_IN_MS)
+        } else if (event.ctrlKey && event.key === 't') {
+          if (this.isSwitching) return
+          this.switchThemeSection()
+          this.isSwitching = true
+          setTimeout(() => (this.isSwitching = false), SWITCH_THEME_DELAY_IN_MS)
+        }
       }
     })
   }
 
-  // Get current theme on page load
-  #getCurrentTheme(): Theme {
-    const classList = this.html.classList
-
-    for (const theme of themes) {
-      if (classList.contains(`${THEME_PREFIX}${theme}`)) {
-        return theme
-      }
-    }
-    return themes[0]
+  getCurrentTheme(el: HTMLElement): Theme {
+    const classList = el.classList
+    return themes.find(theme => classList.contains(`${THEME_PREFIX}${theme}`)) || themes[0]
   }
 
-  // Switch theme
-  #switchTheme() {
-    if (this.isSwitching) return
-
-    const currentIndex = themes.indexOf(this.currentTheme)
+  switchTheme(target: HTMLElement) {
+    console.log('switchTheme')
+    const currentTheme = this.getCurrentTheme(target)
+    const currentIndex = themes.indexOf(currentTheme)
     const nextIndex = (currentIndex + 1) % themes.length
-    const oldThemeClass = `${THEME_PREFIX}${this.currentTheme}`
     const newThemeClass = `${THEME_PREFIX}${themes[nextIndex]}`
 
-    this.html.classList.remove(oldThemeClass)
-    this.html.classList.add(newThemeClass)
-    this.currentTheme = themes[nextIndex]
+    target.classList.remove(`${THEME_PREFIX}${currentTheme}`)
+    target.classList.add(newThemeClass)
 
-    this.isSwitching = true
-
-    setTimeout(() => {
-      this.isSwitching = false
-    }, SWITCH_THEME_DELAY_IN_MS)
+    if (target === this.html) {
+      this.currentTheme = themes[nextIndex]
+    }
   }
 
-  #isInputElement(element: HTMLElement): boolean {
+  switchThemeSection() {
+    console.log(this.allThemedSections)
+    this.allThemedSections.forEach(section => this.switchTheme(section))
+  }
+
+  isInputElement(element: HTMLElement): boolean {
     return ['INPUT', 'TEXTAREA', 'SELECT'].includes(element.tagName)
   }
 }

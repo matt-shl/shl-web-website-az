@@ -1,0 +1,40 @@
+@using DTNL.UmbracoCms.Web.Components
+@model DTNL.UmbracoCms.Web.Components.CardCarousel
+
+<h2 class="section-card-carousel__title" asp-if="@Model.Title">@Model.Title</h2>
+
+<div class="section-card-carousel__container">
+    @if (!Model.Text.IsNullOrWhiteSpace() || Model.PrimaryLinkButton is not null || Model.SecondaryLinkButton is not null)
+    {
+        <div class="section-card-carousel__content-outer">
+            <div class="section-card-carousel__content-inner">
+                <div class="section-card-carousel__description" asp-if="@Model.Text">@Html.Raw(Model.Text)</div>
+
+                <div class="section-card-carousel__button-container">
+                    <partial name="Button" model="@Model.PrimaryLinkButton" />
+
+                    <partial name="Button" model="@Model.SecondaryLinkButton" />
+                </div>
+            </div>
+        </div>
+    }
+
+    @if (!Model.ShowCarousel)
+    {
+        foreach (ICard card in Model.Cards)
+        {
+            <partial name="@card.ViewPath" model="@card" />
+        }
+    }
+    else
+    {
+        <partial name="Carousel" model="@(new Carousel { Classes = "section-card-carousel__carousel", Pagination = true, SlidesDesktop = 3, SlidesMobile = 1.2 })">
+            @foreach (ICard card in Model.Cards)
+            {
+                <div class="swiper-slide">
+                    <partial name="@card.ViewPath" model="@card" />
+                </div>
+            }
+        </partial>
+    }
+</div>

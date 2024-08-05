@@ -1,27 +1,30 @@
 {#
-  Image macro
+Image macro
 
-  data {
-    classes?: string
-    backgroundColor?: 'hexColor' | 'rgba()'
-    aspect?: number[]
-    hidden?: boolean
-    objectFit?: boolean
-    attr?: 'string
-    caption?: string
-    alt: string
-    fetchPriority?: 'high' | 'low' | 'auto'
+data {
+  classes?: string
+  backgroundColor?: 'hexColor' | 'rgba()'
+  aspect?: number[]
+  hidden?: boolean
+  objectFit?: boolean
+  attr?: 'string
+  caption?: string
+  alt: string
+  fetchPriority?: 'high' | 'low' | 'auto'
 
-    // Using <picture> element
-    imageStyle?: string // Option in data/images/styles/${style}.json
+  // Using <picture> element
+  imageStyle?: string // Option in data/images/styles/${style}.json
 
-    // Using legacy <img /> element
-    preload?: string
-    image?: string
-    srcset?: string
-  }
+  // Using legacy <img /> element
+  preload?: string
+  image?: string
+  srcset?: string
+}
+#}
 
- #}
+{# !! Note: keep prefix 'modal-video-' the same as in video-modal.html #}
+
+{% from 'card-overlay.html' import cardOverlay %}
 
 {% macro image(data) %}
   {% set fetchPriority = data.fetchPriority if (data.fetchPriority in ["high", "low", "auto"]) else undefined %}
@@ -38,7 +41,10 @@
     {% set breakpoints = imageStyle.breakpoints %}
     {% set aspect = imageStyle.aspect or data.aspect or [16, 9] %}
 
-    <div class="image__holder">
+    {% set element = "button" if data.video else "div" %}
+    {% set attr = "aria-label='" + global.resource.common.openVideoModal + "' aria-controls='modal-video-" + data.video.id + "'" if data.video else "" %}
+
+    <{{ element }} class="image__holder" {{ attr | safe }}>
       {% if data.srcset or data.image %}
         <img class="image__default"
           {%- if data.preload %} src="{{ data.preload }}" {% endif -%}
@@ -70,7 +76,19 @@
           />
         </picture>
       {% endif %}
-    </div>
+
+      {% if data.video %}
+        {{ cardOverlay({
+          classes: "image__card-overlay",
+          video: {
+            id: data.video.id,
+            totalTime: data.video.totalTime
+          },
+          position: 'start',
+          visible: true
+        }) }}
+      {% endif %}
+    </{{ element }}>
 
     {%- if data.caption %}
     <figcaption class="image__caption">
