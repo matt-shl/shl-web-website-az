@@ -16,7 +16,7 @@
   @include layout-section-border-style;
 
   &:not(.t-white) {
-    margin-block: $spacing-40;
+    margin-block: $spacing-80;
 
     &:first-child {
       margin-top: 0;
@@ -49,6 +49,10 @@
 
   @include screen-md-and-bigger {
     padding-block: $spacing-80;
+
+    .c-layout-section--grid & {
+      padding-block: $spacing-40;
+    }
   }
 
   @include screen-lg-and-bigger {
@@ -86,4 +90,19 @@
 
 .layout-section__wrapper {
   width: 100%;
+
+  .c-layout-section--grid & {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-16;
+
+    @include screen-sm-and-bigger {
+      grid-template-columns: repeat(2, 1fr);
+      gap: $spacing-80 $spacing-16;
+    }
+
+    @include screen-md-and-bigger {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
 }

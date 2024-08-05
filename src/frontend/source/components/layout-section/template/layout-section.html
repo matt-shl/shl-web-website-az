@@ -19,7 +19,7 @@
     <div class="layout-section__container{% if data.containerClass %} {{ data.containerClass }}{% endif %}">
     {% endif %}
 
-      <div class="layout-section__wrapper">
+      <div class="layout-section__wrapper{% if data.wrapperClass %} {{ data.wrapperClass }}{% endif %}">
         {{ caller() }}
       </div>
 

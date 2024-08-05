@@ -1,16 +1,25 @@
 {% from 'card-number.html' import cardNumber %}
 {% from 'button.html' import button %}
+{% from 'layout-section.html' import layoutSection %}
+{% from 'card-product.html' import cardProduct %}
 {% import 'accordion.html' as accordion %}
 {% import 'form-elements.html' as form %}
 {% from 'button.html' import button %}
 
 {% set data = global.content.filtersApiExample %}
+{% set plpCards = global.content.productOverviewPage.productCards %}
+
 <menu>
-  <span class="filters__amount-label" js-hook-replace-content="filters-amount-label" aria-live="polite" aria-atomic="true" aria-label="{{data.totalAmountLabel ~ " " ~ "items"}}">3 Items</span>
-  <div class="o-container" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px " js-hook-replace-content="number-items">
-    {% for i in range(3) %}
-      {{ cardNumber({title: loop.index * 10, subtitle: "welkom", content: "Cool content"}) }}
-    {% endfor %}
+  <span class="filters__amount-label" js-hook-replace-content="filters-amount-label" aria-live="polite" aria-atomic="true" aria-label="{{data.totalAmountLabel ~ " " ~ "items"}}">6 Items</span>
+  <div js-hook-replace-content="overview-content">
+  {% call layoutSection({
+      variant: "grid",
+      id: "content"
+    }) %}
+      {% for data in plpCards.slice(0, 6) %}
+      {{ cardProduct(data) }}
+      {% endfor %}
+    {% endcall %}
   </div>
   <div class="modal__body" js-hook-modal-body js-hook-replace-content="modal-body-modal-filters">
      {% if data.filters.length %}
