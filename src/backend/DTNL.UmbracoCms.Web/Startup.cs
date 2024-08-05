@@ -182,7 +182,9 @@ public static class Startup
                 builder.AddObjectSrc().None();
                 builder.AddFormAction().Self();
                 builder.AddFrameAncestors().Self();
-                builder.AddScriptSrc().From("https://go.shl-medical.com");
+                builder.AddScriptSrc()
+                    .From("https://go.shl-medical.com")
+                    .UnsafeInline();
             })
             .AddFrameOptionsSameOrigin()
         );
