@@ -184,7 +184,8 @@ public static class Startup
                 builder.AddFrameAncestors().Self();
                 builder.AddScriptSrc()
                     .From("https://go.shl-medical.com")
-                    .UnsafeInline();
+                    .UnsafeInline()
+                    .Self();
             })
             .AddFrameOptionsSameOrigin()
         );
