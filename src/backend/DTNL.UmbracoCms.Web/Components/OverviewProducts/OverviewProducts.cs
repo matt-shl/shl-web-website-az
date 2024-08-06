@@ -15,6 +15,8 @@ public class OverviewProducts : ViewComponentExtended
 
     public int TotalCount { get; set; }
 
+    public EmptySection? NoResultsSection { get; set; }
+
     public required Filters Filters { get; set; }
 
     public required List<CardProduct> ResultCards { get; set; }
@@ -40,6 +42,11 @@ public class OverviewProducts : ViewComponentExtended
             .ToList();
 
         TotalCount = productPages.Count;
+
+        if (TotalCount == 0)
+        {
+            NoResultsSection = EmptySection.Create(productOverviewPage);
+        }
 
         Pagination = Pagination.Create(pageNumber, TotalCount, PageSize);
 

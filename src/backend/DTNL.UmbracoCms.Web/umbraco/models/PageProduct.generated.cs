@@ -98,7 +98,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel Hero => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionHero.GetHero(this, _publishedValueFallback);
 
 		///<summary>
-		/// Connectivity Type
+		/// Connectivity Type: Allowed options can be managed in Settings } Tag Settings } Connectivity Type
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
@@ -106,7 +106,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual global::System.Collections.Generic.IEnumerable<string> ConnectivityType => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionProductDetails.GetConnectivityType(this, _publishedValueFallback);
 
 		///<summary>
-		/// Container Type
+		/// Container Type: Allowed options can be managed in Settings } Tag Settings } Container Type
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
@@ -114,7 +114,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual global::System.Collections.Generic.IEnumerable<string> ContainerType => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionProductDetails.GetContainerType(this, _publishedValueFallback);
 
 		///<summary>
-		/// Device Type
+		/// Device Type: Allowed options can be managed in Settings } Tag Settings } Device Type
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
@@ -146,7 +146,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual string ProductName => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionProductDetails.GetProductName(this, _publishedValueFallback);
 
 		///<summary>
-		/// Route Of Administration
+		/// Route Of Administration: Allowed options can be managed in Settings } Tag Settings } Route Of Administration
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
@@ -170,7 +170,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual string VolumeLevel => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionProductDetails.GetVolumeLevel(this, _publishedValueFallback);
 
 		///<summary>
-		/// Volume Range
+		/// Volume Range: Allowed options can be managed in Settings } Tag Settings } Volume Range
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
