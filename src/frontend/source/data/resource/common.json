@@ -10,5 +10,9 @@
   "readMore": "Read more",
   "readLess": "Read less",
   "download": "Download",
-  "downloadPdf": "Download PDF"
+  "downloadPdf": "Download PDF",
+  "of": "of",
+  "next": "Next",
+  "previous": "Previous",
+  "quote": "Quote"
 }
