@@ -1,0 +1,84 @@
+{
+  "footerScrollingText": "Caring. Inclusive. Driven.",
+  "breadcrumbs": {
+    "items": [
+      {
+        "url": "/home.html",
+        "label": "Home"
+      },
+      {
+        "url": "/parent-1.html",
+        "label": "Parent page 1"
+      },
+      {
+        "url": "/parent-2.html",
+        "label": "Parent page 2"
+      },
+      {
+        "url": "/current-item.html",
+        "label": "Current item"
+      }
+    ]
+  },
+  "hero": {
+    "title": "SHL Medical expert to speak at Novartis Campus in Basel",
+    "subtitle": "March 24 2024",
+    "tags": [
+      {
+        "label": "Event"
+      }
+    ]
+  },
+  "mainImage": {
+    "caption": "hoi"
+  },
+  "eventDetail": {
+    "title": "Novartis Campus",
+    "column1": {
+      "title": "Where",
+      "content": "<p>Novartis Campus<br/>Fabrikstrasse 2<br/>4056 Basel, Switzerland</p>"
+    },
+    "column2": {
+      "title": "When",
+      "content": "<p>June 25-26 2024<br/>10:00 – 18:00 (CEST)</p>"
+    },
+    "cta": {
+      "label": "Register",
+      "url": "/"
+    }
+  },
+  "richText": {},
+  "speakers": {},
+  "latest": {
+    "carouselCardType": "knowledge",
+    "showThreeCardsSideBySide": true,
+    "title": "Latest events",
+    "ctaPrimary": {
+      "url": "#",
+      "label": "All events"
+    },
+    "cards": [
+      {
+        "tag": "Event",
+        "title": "SHL Medical expert to speak at Novartis Campus in Basel",
+        "content": "SHL Medical will be in Basel for the Drug-Device Combination Products for Parenteral Use workshop.",
+        "url": "#",
+        "ctaLabel": "Read more"
+      },
+      {
+        "tag": "Event",
+        "title": "Strengthening a global manufacturing network through advanced simulation technologies",
+        "content": "In the Pre-filled Syringes and Injection Devices Issue of ONdrug Delivery Magazine, published ahead of the 2023 PDA Universe.",
+        "url": "#",
+        "ctaLabel": "Read more"
+      },
+      {
+        "tag": "Event",
+        "title": "SHL to attend 2022 NSTC Science Train Program",
+        "content": "SHL Medical is excited to announce our first-time participation in the NSTC Science Train Program, 2022.",
+        "url": "#",
+        "ctaLabel": "Read more"
+      }
+    ]
+  }
+}

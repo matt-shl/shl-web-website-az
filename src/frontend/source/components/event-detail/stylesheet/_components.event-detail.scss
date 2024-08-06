@@ -1,0 +1,55 @@
+.c-event-detail {
+  @include container;
+  @include component-overlap-reverse;
+
+  @include screen-max-width-and-bigger {
+    border-end-end-radius: $radii-40;
+    border-end-start-radius: $radii-40;
+  }
+}
+
+.event-detail__container {
+  @include grid;
+}
+
+.event-detail__title {
+  margin-bottom: $spacing-40;
+}
+
+.event-detail__content {
+  @include col-span(12);
+  @include body-l;
+  padding-block: $spacing-40;
+
+  @include screen-lg-and-bigger {
+    padding-block: $spacing-80;
+    grid-column: 3 / span 8;
+  }
+}
+
+.event-detail__details {
+  @include grid(8);
+
+  @include screen-md-and-smaller {
+    grid-row-gap: $spacing-40;
+  }
+}
+
+.event-detail__col {
+  @include col-span(8);
+
+  @include screen-lg-and-bigger {
+    &--col1 {
+      @include col-span(2);
+    }
+
+    &--col2 {
+      grid-column: 4 / span 2;
+    }
+
+    &--cta {
+      grid-column: 7 / span 2;
+      text-align: end;
+    }
+  }
+}
