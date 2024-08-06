@@ -5,6 +5,7 @@
 
 @mixin layout-section-border-style {
   border-radius: $radii-20;
+  overflow: hidden;
 
   @include screen-md-and-bigger {
     border-radius: $radii-40;

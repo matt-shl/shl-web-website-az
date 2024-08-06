@@ -1,6 +1,6 @@
 .c-hero-content {
   @include theme;
-  @include hero-overlap;
+  @include component-overlap;
 }
 
 .hero-content__breadcrumbs {
