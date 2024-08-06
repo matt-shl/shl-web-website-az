@@ -18,7 +18,7 @@ using Umbraco.Extensions;
 
 namespace Umbraco.Cms.Web.Common.PublishedModels
 {
-	/// <summary>Nested Block Homepage Hero</summary>
+	/// <summary>Homepage Hero</summary>
 	[PublishedModel("nestedBlockHomepageHero")]
 	public partial class NestedBlockHomepageHero : PublishedElementModel
 	{

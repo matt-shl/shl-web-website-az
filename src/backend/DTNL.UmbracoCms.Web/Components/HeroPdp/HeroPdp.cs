@@ -21,7 +21,7 @@ public class HeroPdp : IHero
 
     public AnchorList? NavigationLinks { get; set; }
 
-    public static HeroPdp? Create(NestedBlockProductHero? productHero, ICompositionBasePage page)
+    public static HeroPdp? Create(NestedBlockProductHero? productHero)
     {
         if (productHero is null)
         {

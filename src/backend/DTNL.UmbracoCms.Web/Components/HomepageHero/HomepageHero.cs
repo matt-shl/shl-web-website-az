@@ -1,10 +1,10 @@
+using DTNL.UmbracoCms.Web.Components.Hero;
 using DTNL.UmbracoCms.Web.Helpers.Extensions;
-using Microsoft.AspNetCore.Mvc;
 using Umbraco.Cms.Web.Common.PublishedModels;
 
 namespace DTNL.UmbracoCms.Web.Components;
 
-public class HomepageHero : ViewComponentExtended
+public class HomepageHero : IHero
 {
     public string? Title { get; set; }
 
@@ -18,46 +18,45 @@ public class HomepageHero : ViewComponentExtended
 
     public string? ShortDescription { get; set; }
 
-    public IViewComponentResult Invoke(PageHome? element)
+    public static HomepageHero? Create(NestedBlockHomepageHero? homepageHero)
     {
-        if (element?.Hero?.FirstOrDefault()?.Content is not NestedBlockHomepageHero hero)
+        if (homepageHero is null)
         {
-            return Content("");
+            return null;
         }
 
-        Title = hero.HeroTitle;
-
-        Image? image = Image.Create(hero.Image, cssClasses: "homepage-hero__image");
-
-        if (image == null)
+        return new HomepageHero()
         {
-            return Content("");
-        }
+            Title = homepageHero.HeroTitle,
 
-        Image = image;
+            Image = Image.Create(homepageHero.Image, cssClasses: "homepage-hero__image"),
 
-        MainButton = Button.Create(hero.MainButtonLink)
+            MainButton = Button.Create(homepageHero.MainButtonLink)
             .With(b =>
             {
                 b.Class = "button--icon hero-home__cta";
                 b.Hook = "homepage-hero-button";
-            });
+            }),
 
-        SecondaryButton = Button.Create(hero.SecondaryButtonLink)
+            SecondaryButton = Button.Create(homepageHero.SecondaryButtonLink)
             .With(b =>
             {
                 b.Class = "button--icon hero-home__cta";
                 b.Variant = "secondary ";
                 b.Hook = "homepage-hero-button";
-            });
+            }),
 
-        ShortDescription = hero?.ShortDescription?.ToString();
+            ShortDescription = homepageHero.ShortDescription?.ToHtmlString(),
 
-
-
-        VideoUrl = Video.Create((NestedBlockVideoNativeUrl?) hero?.Video?.FirstOrDefault()?.Content);
-
-
-        return View("HomepageHero", this);
+            VideoUrl = Video.Create((NestedBlockVideoNativeUrl?) homepageHero.Video?.FirstOrDefault()?.Content, css: "c-video--background")
+            .With(v =>
+            {
+                v.InstanceId = "hero-video";
+                v.Title = "Homepage video";
+                v.Description = "Homepage video description"; // TO DO: change this one once the videos are agreed and if needed for accessibility
+                v.Autoplay = true;
+                v.Muted = true;
+            }),
+        };
     }
 }
