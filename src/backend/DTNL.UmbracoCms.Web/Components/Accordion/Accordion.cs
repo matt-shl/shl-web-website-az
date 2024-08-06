@@ -13,4 +13,6 @@ public partial class Accordion
     public bool TabsOnDesktop { get; set; }
 
     public bool DisableCloseDesktop { get; set; }
+
+    public bool ZeroTopMargin { get; set; }
 }

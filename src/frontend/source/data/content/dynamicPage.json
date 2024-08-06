@@ -86,5 +86,119 @@
         }
       ]
     }
+  },
+  "mediaSection1": {
+    "image": {
+      "caption": "image caption example"
+    },
+    "video": {
+      "id": "text-media-video1",
+      "totalTime": "01:30",
+      "title": "Text media video 2",
+      "description": "Text media video 2 description",
+      "closedcaptions": [
+        {
+          "url": "subtitles.vtt",
+          "label": "Nederlands",
+          "lang": "nl",
+          "kind": "subtitles"
+        }
+      ],
+      "sources": [
+        {
+          "size": 1920,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        },
+        {
+          "size": 1280,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        },
+        {
+          "size": 1024,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        },
+        {
+          "size": 320,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "mediaSection2": {
+    "image": {
+      "caption": "image caption example"
+    },
+    "video": {
+      "id": "text-media-video2",
+      "totalTime": "01:30",
+      "title": "Text media video 2",
+      "description": "Text media video 2 description",
+      "closedcaptions": [
+        {
+          "url": "subtitles.vtt",
+          "label": "Nederlands",
+          "lang": "nl",
+          "kind": "subtitles"
+        }
+      ],
+      "sources": [
+        {
+          "size": 1920,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        },
+        {
+          "size": 1280,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        },
+        {
+          "size": 1024,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        },
+        {
+          "size": 320,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        }
+      ]
+    }
   }
 }

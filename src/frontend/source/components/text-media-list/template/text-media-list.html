@@ -1,0 +1,109 @@
+{% from 'button.html' import button %}
+{% from 'layout-section.html' import layoutSection %}
+{% from 'image.html' import image %}
+{% from 'video-modal.html' import videoModal %}
+{% from 'link-list.html' import linkList %}
+
+{% import 'accordion.html' as accordion %}
+
+{% macro textMediaList(data) %}
+  {%- if data.theme %}
+    {% set theme = data.theme %}
+  {% else %}
+    {% set theme = "t-white" %}
+  {% endif -%}
+
+  {% call layoutSection({
+    theme: theme,
+    id: data.id,
+    sectionTitle: data.sectionTitle
+  }) %}
+
+    <div class="c-text-media-list
+                {%- if data.variant %} c-text-media-list--{{ data.variant }}{% endif %}
+                {%- if data.mediaPosition %} c-text-media-list--media-position-{{ data.mediaPosition }}{% endif -%}
+                {%- if not data.image %} c-text-media-list--no-media{% endif -%}
+                {%- if data.classes %} {{ data.classes }}{% endif %}">
+      <div class="text-media-list__container">
+        <div class="text-media-list__col text-media-list__col--title">
+          <h2 class="text-media-list__title">{{ data.title }}</h2>
+          {% if data.description and not data.image %}
+            <p class="text-media-list__description">{{ data.description }}</p>
+          {% endif %}
+        </div>
+        <div class="text-media-list__col text-media-list__col--text">
+          <div class="text-media-list__content">
+            {% if data.description and data.image %}
+              <p class="text-media-list__description">{{ data.description }}</p>
+            {% endif %}
+
+            {% if data.links %}
+              {{ linkList(data.links | clone | merge({
+                classes: "text-media-list__link-list"
+              }) ) }}
+            {% elseif data.accordions %}
+              {% call accordion.default({
+                autoclose: true,
+                classes: "text-media-list__accordions"
+              }) %}
+                {% for item in data.accordions %}
+                  {% call accordion.item({
+                    id: item.id,
+                    title: item.title
+                  }) %}
+                    {{ item.content | safe }}
+                  {% endcall %}
+                {% endfor %}
+              {% endcall %}
+            {% endif %}
+
+            {% if data.ctaSupport %}
+              <p class="text-media-list__ctas-support">{{ data.ctaSupport }}</p>
+            {% endif %}
+
+            {% if data.cta1 or data.cta2 %}
+              <div class="text-media-list__ctas">
+                {% if data.cta1 %}
+                  {{ button({
+                    class: 'text-media-list__cta1',
+                    label: data.cta1.label,
+                    url: data.cta1.url,
+                    variant: data.cta1.variant,
+                    icon: data.cta1.icon or 'arrow-top-right'
+                  }) }}
+                {% endif %}
+                {% if data.cta2 %}
+                  {{ button({
+                    class: 'text-media-list__cta2',
+                    label: data.cta2.label,
+                    url: data.cta2.url,
+                    variant: data.cta2.variant or 'secondary',
+                    icon: data.cta2.icon or 'arrow-top-right'
+                  }) }}
+                {% endif %}
+              </div>
+            {% endif %}
+          </div>
+        </div>
+        {% if data.image %}
+          <div class="text-media-list__col text-media-list__col--media">
+            <div class="text-media-list__image">
+              {% if data.image %}
+                {{ image(data.image | clone | merge({
+                  imageStyle: "text-media-list",
+                  objectFit: true,
+                  video: data.video
+                })) }}
+              {% endif %}
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  {% endcall %}
+
+  {% if data.video %}
+    {{ videoModal(data.video) }}
+  {% endif %}
+
+{% endmacro %}

@@ -11,6 +11,8 @@ $grid-breakpoints: (
   'xxl': $breakpoint-xxl,
 );
 
+$max-width-breakpoint: 1440px + 60px + 60px;
+
 /*----------------------------------*\
   #GRID
 \*----------------------------------*/

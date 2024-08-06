@@ -7,6 +7,7 @@
     {%- if data.sectionTitle %} data-title="{{data.sectionTitle}}"{% endif %}
     {%- if data.id %} id="{{data.id}}"{% endif %}
     {%- if data.hook %} js-hook-{{ data.hook}} {% endif %}
+    {%- if data.replaceContentId %} js-hook-replace-content="{{ data.replaceContentId }}" {% endif %}
     js-hook-section
     js-hook-inview
     data-inview-threshold="0.5"
@@ -18,7 +19,7 @@
     <div class="layout-section__container{% if data.containerClass %} {{ data.containerClass }}{% endif %}">
     {% endif %}
 
-      <div class="layout-section__wrapper">
+      <div class="layout-section__wrapper{% if data.wrapperClass %} {{ data.wrapperClass }}{% endif %}">
         {{ caller() }}
       </div>
 

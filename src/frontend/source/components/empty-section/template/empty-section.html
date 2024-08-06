@@ -1,0 +1,24 @@
+{% from 'button.html' import button %}
+{% from 'layout-section.html' import layoutSection %}
+
+{% macro emptySection(data) %}
+  {% call layoutSection(data.layoutSection | clone | merge({
+    classes: 'c-empty-section'
+  })) %}
+    <div class="empty-section__inner">
+      <h2 class="empty-section__title">{{ data.title }}</h2>
+      <p class="empty-section__content">{{ data.content }}</p>
+
+      {% if data.ctaPrimary or data.ctaSecondary %}
+        <div class="empty-section__buttons-container">
+          {% if data.ctaPrimary %}
+            {{ button({variant: 'primary', icon: "arrow-top-right"} | merge(data.ctaPrimary)) }}
+          {% endif %}
+          {% if data.ctaSecondary %}
+            {{ button({variant: 'secondary', icon: "arrow-top-right"} | merge(data.ctaSecondary)) }}
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
+  {% endcall %}
+{% endmacro %}

@@ -25,7 +25,7 @@
 .card-product__content-container {
   display: flex;
   flex-direction: column;
-  gap: $spacing-16;
+  gap: $spacing-8;
 }
 
 .card-product__title {
@@ -45,6 +45,7 @@
   display: grid;
   grid-template-columns: auto 1fr;
   gap: $spacing-8 $spacing-12;
+  padding-block: $spacing-8;
 }
 
 .card-product__specification-value {

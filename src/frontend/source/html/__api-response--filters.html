@@ -1,0 +1,96 @@
+{% from 'card-number.html' import cardNumber %}
+{% from 'button.html' import button %}
+{% from 'layout-section.html' import layoutSection %}
+{% from 'card-product.html' import cardProduct %}
+{% import 'accordion.html' as accordion %}
+{% import 'form-elements.html' as form %}
+{% from 'button.html' import button %}
+
+{% set data = global.content.filtersApiExample %}
+{% set plpCards = global.content.productOverviewPage.productCards %}
+
+<menu>
+  <span class="filters__amount-label" js-hook-replace-content="filters-amount-label" aria-live="polite" aria-atomic="true" aria-label="{{data.totalAmountLabel ~ " " ~ "items"}}">6 Items</span>
+  <div js-hook-replace-content="overview-content">
+  {% call layoutSection({
+      variant: "grid",
+      id: "content"
+    }) %}
+      {% for data in plpCards.slice(0, 6) %}
+      {{ cardProduct(data) }}
+      {% endfor %}
+    {% endcall %}
+  </div>
+  <div class="modal__body" js-hook-modal-body js-hook-replace-content="modal-body-modal-filters">
+     {% if data.filters.length %}
+      {% call form.form({
+        class: 'filters__form',
+        method: 'GET',
+        action: global.api.filtersFormAction,
+        async: true
+      }) %}
+
+        {% call accordion.default({
+          classes: 'filters__accordion',
+         zeroTopMargin: true
+        }) %}
+          {# this emtpy span is needed for the first accordion item to get full height and animate correctly #}
+          <span></span>
+
+          {% for filter in data.filters %}
+
+            {% if filter.options.length %}
+              {% call accordion.item({
+                id: 'filter' + filter.label,
+                title: filter.label
+              }) %}
+
+                {% set moreThanFourOptions = filter.options.length > 4 %}
+
+                <fieldset class="filters__accordion-options {{'filters__accordion-options--hidden' if moreThanFourOptions }}">
+                  {{ form[filter.inputType]({
+                    name: filter.label,
+                    class: 'filters__accordion-options-item',
+                    options: filter.options,
+                    inputHook: 'filter-checkbox'
+                  }) }}
+                </fieldset>
+
+                {{ button({
+                  element: 'button',
+                  variant: 'link-underlined',
+                  label: filtersLabels.viewMoreOptions,
+                  class: 'filters__options-link',
+                  hook: 'filters-show-more-options',
+                  ariaLabel: filtersLabels.viewMoreOptionsFor + ' ' + filter.label
+                })}}
+
+              {% endcall %}
+            {% endif %}
+
+          {% endfor %}
+
+        {% endcall %}
+
+      {% endcall %}
+    {% endif %}
+
+    <div class="filters__sticky-buttons-wrapper">
+    {{ button({
+      label: global.resource.filters.show + ' ' + 3 + ' ' + global.resource.filters.results,
+      element: 'button',
+      class: 'filters__sticky-button',
+      hook: 'filters-sticky-button js-hook-filters-button-modal-close'
+    }) }}
+
+   {{ button({
+      label: global.resource.filters.resetAll,
+      element: 'button',
+      size: 'small',
+      variant: 'link-underlined',
+      hook: 'filters-sticky-button js-hook-filters-reset-button',
+      attr: "data-url-replacement='old-url.html' data-endpoint='http://localhost:3000/__api-response--filters-reset.html'"
+    }) }}
+  </div>
+  </div>
+</menu>

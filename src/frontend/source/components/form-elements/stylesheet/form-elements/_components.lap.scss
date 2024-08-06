@@ -1,0 +1,57 @@
+:root {
+  --lap-transition-time: 300ms;
+  --lap-transition-ease: #{$ease-out-quad};
+  --lap-padding-width: var(--input-padding-left);
+  --lap-padding-height: var(--input-padding-top);
+  --lap-font-color: var(--color-text-70);
+  --lap-font-weight: var(--font-weight-regular);
+  --lap-active-bg-color: var(--color-white);
+  --lap-active-transform-y: -10px;
+  --lap-active-transform-x: 16px;
+  --lap-active-font-color: var(--color-black);
+}
+
+.form__item--lap {
+  .input__label,
+  .textarea__label,
+  .select__label {
+    pointer-events: none;
+    position: absolute;
+    transform: translate3d(var(--lap-padding-width), var(--lap-padding-height), 0);
+    transform-origin: 0 0;
+    transition: var(--lap-transition-time) var(--lap-transition-ease);
+    transition-property: transform, color, max-width;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: calc(100% - (var(--lap-padding-width) * 2));
+    text-overflow: ellipsis;
+    z-index: 1;
+    color: var(--lap-font-color);
+    font-weight: var(--lap-font-weight);
+  }
+
+  &.input--file {
+    .input__label {
+      left: 20px;
+      max-width: calc(100% - calc((var(--lap-padding-width) * 2) + 20px));
+    }
+  }
+}
+
+.form__item--lap-active {
+  .input__label,
+  .textarea__label,
+  .select__label,
+  &.input--file .input__label {
+    transform: translate3d(var(--lap-active-transform-x), var(--lap-active-transform-y), 0)
+      scale(0.8);
+    background-color: var(--lap-active-bg-color);
+    max-width: 120%;
+    color: var(--lap-active-font-color);
+    padding: 0 7px;
+  }
+
+  .input__label {
+    color: var(--color-grey);
+  }
+}
