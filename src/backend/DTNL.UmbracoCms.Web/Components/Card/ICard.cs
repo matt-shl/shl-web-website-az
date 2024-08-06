@@ -1,12 +1,11 @@
+using DTNL.UmbracoCms.Web.Components.PartialComponent;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Web.Common.PublishedModels;
 
 namespace DTNL.UmbracoCms.Web.Components;
 
-public interface ICard
+public interface ICard : IPartialViewPath
 {
-    string ViewPath => $"~/Components/{GetType().Name}/{GetType().Name}.cshtml";
-
     static ICard? Create(IPublishedElement card, string? cssClasses = null)
     {
         return card switch

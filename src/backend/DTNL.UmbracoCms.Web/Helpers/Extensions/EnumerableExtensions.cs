@@ -149,4 +149,38 @@ public static class EnumerableExtensions
 
         return (min, max);
     }
+
+    public static bool TryGetSingle<T>(this IEnumerable<T> source, [NotNullWhen(true)] out T? matchingElement)
+    {
+        matchingElement = default;
+
+        if (source is ICollection<T> { Count: 1 })
+        {
+            if (source.ElementAt(0) is not { } singleElement)
+            {
+                return false;
+            }
+
+            matchingElement = singleElement;
+            return true;
+
+        }
+
+        int count = 0;
+        foreach (T element in source)
+        {
+            checked
+            {
+                matchingElement = element;
+                count++;
+            }
+
+            if (count > 1)
+            {
+                break;
+            }
+        }
+
+        return count == 1;
+    }
 }

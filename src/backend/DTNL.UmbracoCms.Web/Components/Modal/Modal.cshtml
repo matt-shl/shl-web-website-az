@@ -1,0 +1,33 @@
+@using DTNL.UmbracoCms.Web.Helpers.Extensions
+@model DTNL.UmbracoCms.Web.Components.Modal
+
+<div class="c-modal @Model.Class @(Model.Size != null ? $"modal-size--{Model.Size}" : null)"
+     id="@Model.Id"
+     data-modal-auto-focus="@(Model.AutoFocus)"
+     data-modal-mobile-only="@(Model.MobileOnly)"
+     data-modal-no-body-class="@(Model.NoBodyClass)"
+     data-modal-close-all-others="@(Model.CloseAllOthers)"
+     data-modal-keep-scroll-position="@(Model.KeepScrollPosition)"
+     data-modal-auto-close="@(Model.AutoClose)"
+     js-hook-@Model.Hook
+     js-hook-modal>
+    <div class="modal__container">
+
+        <div class="modal__content" role="dialog">
+
+            @this.RenderPartialBody()
+
+            @if (!Model.NoClose)
+            {
+                <button type="button" class="modal__button-close" aria-label="Close modalbox" js-hook-button-modal-close>
+                    &times;
+                </button>
+            }
+
+        </div>
+
+    </div>
+
+    <div class="modal__background" js-hook-button-modal-close></div>
+
+</div>

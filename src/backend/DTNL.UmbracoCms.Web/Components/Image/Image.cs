@@ -34,6 +34,12 @@ public partial class Image
 
     public required (int Width, int Height) AspectRatio { get; set; }
 
+    public bool ImageHolderButton { get; set; }
+
+    public Dictionary<string, string?> ImageHolderAttributes { get; set; } = [];
+
+    public CardOverlay? CardOverlay { get; set; }
+
     public static Image? Create(
         MediaWithCrops? mediaWithCrops,
         int width = 0,

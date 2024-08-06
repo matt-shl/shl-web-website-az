@@ -52,10 +52,10 @@ public class Video
     public bool InView { get; set; } = true;
 
     public static Video? Create(
-        NestedBlockVideo block,
+        NestedBlockVideo? block,
         string? css = null)
     {
-        if (block.Video?.FirstOrDefault()?.Content is not { } videoElement)
+        if (block?.Video?.FirstOrDefault()?.Content is not { } videoElement)
         {
             return null;
         }

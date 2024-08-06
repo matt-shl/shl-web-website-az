@@ -12,37 +12,37 @@
     string resetFilters = CultureDictionary.GetTranslation(TranslationAliases.Common.Filters.ResetFilters);
 }
 
-@* TODO wrap form in modal upon merge *@
+<partial name="Modal" model="@(new Modal { Id= "modal-filters", Size = "aside", KeepScrollPosition = true, Class = "filters__modal modal--drawer-mobile-full-height", Hook = "filters-modal"})">
+    <form class="c-form filters__form" action="@Model.ResultsOverviewPageUrl" method="GET" data-async="true" js-hook-form>
 
-<form class="c-form filters__form" action="@Model.ResultsOverviewPageUrl" method="GET" data-async="true" js-hook-form>
+        <partial name="Accordion"
+                 model="@(new Accordion { Classes = "filters__accordion" })">
 
-    <partial name="Accordion"
-             model="@(new Accordion { Classes = "filters__accordion" })">
+            <span></span>
 
-        <span></span>
-
-        @foreach (FiltersModal.Filter filter in Model.Filters)
-        {
-            <partial name="Accordion/AccordionItem" model="@(new Accordion.Item { Id = filter.Name, Title = CultureDictionary.GetTranslation($"{TranslationAliases.Products.ProductCount}.{filter.Name}") })">
-                <fieldset class="filters__accordion-options @(filter.Options.Count > 4 ? "filters__accordion-options--hidden" : null)">
-                    @(await Component.InvokeAsync(filter.Type, new { filter.Name, filter.Options, Classes = "filters__accordion-options-item" }))
-                </fieldset>
-            </partial>
-
-            @if (filter.Options.Count > 4)
+            @foreach (FiltersModal.Filter filter in Model.Filters)
             {
-                <partial name="Button" model="@(new Button {
-                                                  Label = CultureDictionary.GetTranslation(TranslationAliases.Common.Filters.ShowAll),
-                                                  Size = "small",
-                                                  Variant = "link-underlined",
-                                                  Class = "filters__options-link",
-                                                  Element = "button",
-                                                  Hook = "filters-show-more-options",
-                                              })"/>
+                <partial name="Accordion/AccordionItem" model="@(new Accordion.Item { Id = filter.Name, Title = CultureDictionary.GetTranslation($"{TranslationAliases.Products.ProductCount}.{filter.Name}") })">
+                    <fieldset class="filters__accordion-options @(filter.Options.Count > 4 ? "filters__accordion-options--hidden" : null)">
+                        @(await Component.InvokeAsync(filter.Type, new { filter.Name, filter.Options, Classes = "filters__accordion-options-item" }))
+                    </fieldset>
+                </partial>
+
+                @if (filter.Options.Count > 4)
+                {
+                    <partial name="Button" model="@(new Button {
+                                                      Label = CultureDictionary.GetTranslation(TranslationAliases.Common.Filters.ShowAll),
+                                                      Size = "small",
+                                                      Variant = "link-underlined",
+                                                      Class = "filters__options-link",
+                                                      Element = "button",
+                                                      Hook = "filters-show-more-options",
+                                                  })"/>
+                }
             }
-        }
-    </partial>
-</form>
+        </partial>
+    </form>
+</partial>
 
 <div class="filters__sticky-buttons-wrapper">
     <partial name="Button" model="@(new Button {
