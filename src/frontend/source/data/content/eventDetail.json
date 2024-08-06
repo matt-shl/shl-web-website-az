@@ -30,7 +30,9 @@
     ]
   },
   "mainImage": {
-    "caption": "hoi"
+    "image": {
+      "caption": "Image caption"
+    }
   },
   "eventDetail": {
     "title": "Novartis Campus",
