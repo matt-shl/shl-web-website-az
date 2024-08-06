@@ -14,7 +14,7 @@
             @if (Model.LinkGroups.Count > 0)
             {
                 <partial name="Accordion"
-                         model="@(new Accordion { AutoClose = true, Classes = "footer__accordion", Items = Model.LinkGroups.Select(g => g.AccordionItem).ToList(), ZeroTopMargin: true })">
+                         model="@(new Accordion { AutoClose = true, Classes = "footer__accordion", Items = Model.LinkGroups.Select(g => g.AccordionItem).ToList(), ZeroTopMargin = true })">
 
                     @foreach ((Group<Button> linkGroup, Accordion.Item accordionItem) in Model.LinkGroups)
                     {
