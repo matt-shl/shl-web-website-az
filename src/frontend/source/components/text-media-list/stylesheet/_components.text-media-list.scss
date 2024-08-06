@@ -84,7 +84,7 @@
 
 .text-media-list__description {
   @include body-xl;
-  font-weight: $font-weight-extrabold;
+  font-weight: $font-weight-bold;
 
   .c-text-media-list--no-media & {
     @include body-m;

@@ -10,7 +10,7 @@ $link-transition-ease: $ease-in-out-quad;
   display: inline-block;
   color: currentcolor;
   cursor: pointer;
-  font-weight: $font-weight-extrabold;
+  font-weight: $font-weight-bold;
   text-overflow: ellipsis;
   transition: $link-transition-time $link-transition-ease;
   transition-property: text-decoration-color;

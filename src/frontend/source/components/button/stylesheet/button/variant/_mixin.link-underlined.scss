@@ -1,4 +1,4 @@
 @mixin button--link-underlined() {
   @include button--link(false);
-  font-weight: $font-weight-extrabold;
+  font-weight: $font-weight-bold;
 }

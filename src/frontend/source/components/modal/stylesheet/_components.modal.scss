@@ -113,7 +113,7 @@ $modal-min-width-media-query: ($modal-max-width + $modal-gutter-small * 2) - 0.5
 .modal__subtitle {
   @include body-l;
   margin-top: $spacing-8;
-  font-weight: $font-weight-extrabold;
+  font-weight: $font-weight-bold;
 
   @include screen-md-and-bigger {
     margin-top: $spacing-12;
