@@ -6,6 +6,8 @@
 {% from 'media-section.html' import mediaSection %}
 {% from 'section-card-carousel.html' import sectionCardCarousel %}
 {% from 'event-detail.html' import eventDetail %}
+{% from 'speakers.html' import speakers %}
+{% from 'rich-text.html' import richText %}
 
 {% block hero %}
   {{ heroContent({
@@ -21,9 +23,9 @@
 
   {{ eventDetail(global.content.eventDetail.eventDetail) }}
 
-  <!-- TODO add rich text -->
+  {{ richText(global.content.eventDetail.richText | clone | merge({readMoreDisabled: true})) }}
 
-  <!-- TODO speakers -->
+  {{ speakers(global.content.eventDetail.speakers) }}
 
   {{ sectionCardCarousel(global.content.eventDetail.latest | clone | merge({
     theme: 't-light-grey'
