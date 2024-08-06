@@ -33,6 +33,11 @@
   .button__icon {
     position: initial;
   }
+
+  &.button--small {
+    width: 3.2rem;
+    height: 3.2rem;
+  }
 }
 
 @mixin button--icon-position-start {

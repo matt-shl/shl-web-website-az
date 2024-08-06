@@ -18,7 +18,7 @@ public class HomepageHero : IHero
 
     public string? ShortDescription { get; set; }
 
-    public static HomepageHero? Create(NestedBlockHomepageHero? homepageHero)
+    public static HomepageHero? Create(NestedBlockHomepageHero? homepageHero, ICompositionBasePage page)
     {
         if (homepageHero is null)
         {

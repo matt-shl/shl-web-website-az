@@ -13,7 +13,7 @@
     target="@Model.Target.NullOrEmptyAsNull()"
     rel="@(Model.Target == "_blank" ? "noopener noreferrer" : null)"
     aria-controls="@Model.Controls.NullOrEmptyAsNull()"
-    aria-label="@Model.Label"
+    aria-label="@(Model.AriaLabel ?? Model.Label)"
     class="
         @(!Model.Variant.IsNullOrEmpty() ? $"c-button--{Model.Variant}" : "c-button")
         @(!Model.Size.IsNullOrEmpty() ? $" button--{Model.Size}" : "")

@@ -1,0 +1,38 @@
+.c-speakers {
+  @include grid;
+}
+
+.speakers__container {
+  @include col-span(12);
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-40;
+
+  @include screen-lg-and-bigger {
+    grid-column: 3 / span 8;
+    gap: $spacing-64;
+  }
+}
+
+.speakers__cards {
+  @include grid(2);
+  grid-row-gap: $spacing-40;
+}
+
+.speakers__card {
+  @include col-span(2);
+
+  .card-contact__role {
+    color: $color-light-blue;
+  }
+
+  @include screen-lg-and-bigger {
+    @include col-span(1);
+  }
+}
+
+.speakers__ctas {
+  @include cta-container;
+
+  margin-top: 0;
+}

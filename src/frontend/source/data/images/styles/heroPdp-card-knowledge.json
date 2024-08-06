@@ -1,0 +1,20 @@
+{
+  "breakpoints": {
+    "mobile-heroPdp": [260, 350],
+    "mobilePlus-heroPdp": [260, 350],
+    "tabletPortrait-heroPdp": [260, 350],
+    "tabletLandscape-heroPdp": [440, 585],
+    "laptop-heroPdp": [440, 585],
+    "desktop-heroPdp": [440, 585],
+    "widescreen-heroPdp": [440, 585],
+    "4k-heroPdp": [440, 585],
+    "mobile-card-knowledge": [343, 257],
+    "mobilePlus-card-knowledge": [343, 257],
+    "tabletPortrait-card-knowledge": [432, 324],
+    "tabletLandscape-card-knowledge": [432, 324],
+    "laptop-card-knowledge": [432, 324],
+    "desktop-card-knowledge": [432, 324],
+    "widescreen-card-knowledge": [432, 324],
+    "4k-card-knowledge": [432, 324]
+  }
+}

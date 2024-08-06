@@ -1,0 +1,171 @@
+{
+  "footerScrollingText": "Caring. Inclusive. Driven.",
+  "hero": {
+    "title": "Device platforms",
+    "description": "What's your molecule? With our device platforms, you don’t have to think about the self-service pen injector design. Because it's already there.",
+    "breadcrumbs": [
+      {
+        "url": "/home.html",
+        "label": "Home"
+      },
+      {
+        "url": "/parent-1.html",
+        "label": "What we offer"
+      },
+      {
+        "url": "/current-item.html",
+        "label": "Products"
+      }
+    ]
+  },
+  "textMedia1": {
+    "id": "introducing-the-electronic-motorized-autoinjector",
+    "sectionTitle": "New",
+    "theme": "t-pale-blue",
+    "title": "Introducing the Electronic Motorized Autoinjector",
+    "description": "It's new, it's revolutionary, and it's here. Our flagship product Molly® is now available as an Electronic Motorized Autoinjector (EMAI).",
+    "image": {
+      "caption": "image caption example"
+    },
+    "cta1": {
+      "label": "Discover the power of EMAI",
+      "url": "#"
+    },
+    "video": {
+      "id": "text-media-video1",
+      "totalTime": "01:30",
+      "title": "Text media video 1",
+      "description": "Text media video 1 description",
+      "closedcaptions": [
+        {
+          "url": "subtitles.vtt",
+          "label": "Nederlands",
+          "lang": "nl",
+          "kind": "subtitles"
+        }
+      ],
+      "sources": [
+        {
+          "size": 1920,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        },
+        {
+          "size": 1280,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        },
+        {
+          "size": 1024,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        },
+        {
+          "size": 320,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "cardsSection": {
+    "carouselCardType": "image",
+    "theme": "t-general",
+    "description": "We spend years and years developing new techniques to get them ready for the market. And they are here. Discover them now.",
+    "title": "Our latest innovations",
+    "ctaPrimary": {
+      "url": "#",
+      "label": "Discover all"
+    },
+    "cards": [
+      {
+        "title": "Electronic Motorized Autoinjectors (EMAI)",
+        "content": "You've probably seen it already. EMAI is hitting our market with our flagship product Molly® as the first example.",
+        "url": "#"
+      },
+      {
+        "title": "Needle Isolation Technology (NIT®)",
+        "content": "Our latest Maggie 5.0 autoinjector uses a permanently hidden needle, eliminating the need for patients to manually attach the needle before each injection.",
+        "url": "#"
+      }
+    ]
+  },
+  "productCards": [
+    {
+      "title": "Molly®",
+      "content": "Our autoinjectors are designed to deliver precise doses of medication quickly and easily. They are used by patients with chronic conditions such as diabetes and multiple sclerosis.",
+      "url": "#"
+    },
+    {
+      "title": "Elexy®",
+      "content": "We have 15 single-use injectors and multi-use pens to choose from. Which one fits your molecule?",
+      "url": "#"
+    },
+    {
+      "title": "Madie®",
+      "content": "Our needle-free injectors are designed to deliver medication without the need for a needle. They are used by patients with conditions such as migraines and allergies.",
+      "url": "#"
+    },
+    {
+      "title": "Tijn®",
+      "content": "Builder of these amazing cards",
+      "url": "#"
+    },
+    {
+      "title": "Molly®",
+      "content": "Our autoinjectors are designed to deliver precise doses of medication quickly and easily. They are used by patients with chronic conditions such as diabetes and multiple sclerosis.",
+      "url": "#"
+    },
+    {
+      "title": "Elexy®",
+      "content": "We have 15 single-use injectors and multi-use pens to choose from. Which one fits your molecule?",
+      "url": "#"
+    },
+    {
+      "title": "Madie®",
+      "content": "Our needle-free injectors are designed to deliver medication without the need for a needle. They are used by patients with conditions such as migraines and allergies.",
+      "url": "#"
+    },
+    {
+      "title": "Tijn®",
+      "content": "Builder of these amazing cards",
+      "url": "#"
+    },
+    {
+      "title": "Molly®",
+      "content": "Our autoinjectors are designed to deliver precise doses of medication quickly and easily. They are used by patients with chronic conditions such as diabetes and multiple sclerosis.",
+      "url": "#"
+    },
+    {
+      "title": "Elexy®",
+      "content": "We have 15 single-use injectors and multi-use pens to choose from. Which one fits your molecule?",
+      "url": "#"
+    },
+    {
+      "title": "Madie®",
+      "content": "Our needle-free injectors are designed to deliver medication without the need for a needle. They are used by patients with conditions such as migraines and allergies.",
+      "url": "#"
+    },
+    {
+      "title": "Tijn®",
+      "content": "Builder of these amazing cards",
+      "url": "#"
+    }
+  ]
+}

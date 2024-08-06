@@ -38,14 +38,14 @@
   &::before {
     content: attr(title);
     display: block;
-    font-weight: $font-weight-extrabold;
+    font-weight: $font-weight-bold;
     height: 0;
     overflow: hidden;
     visibility: hidden;
   }
 
   .is--open & {
-    font-weight: $font-weight-extrabold;
+    font-weight: $font-weight-bold;
 
     &::after {
       display: block;
@@ -53,6 +53,6 @@
   }
 
   @include hover-focus {
-    font-weight: $font-weight-extrabold;
+    font-weight: $font-weight-bold;
   }
 }

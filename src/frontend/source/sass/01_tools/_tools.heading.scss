@@ -1,6 +1,6 @@
 @mixin common-heading-styles($line-height) {
   line-height: $line-height;
-  font-weight: $font-weight-extrabold;
+  font-weight: $font-weight-bold;
   text-wrap: balance;
 }
 

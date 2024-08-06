@@ -14,8 +14,8 @@ public class Hero : ViewComponentExtended
     {
         IHero? hero = (page as ICompositionHero)?.Hero?.FirstOrDefault()?.Content switch
         {
-            NestedBlockProductHero heroPdp => HeroPdp.Create(heroPdp),
-            NestedBlockHomepageHero heroHomepage => HomepageHero.Create(heroHomepage),
+            NestedBlockProductHero heroPdp => HeroPdp.Create(heroPdp, page),
+            NestedBlockHomepageHero heroHomepage => HomepageHero.Create(heroHomepage, page),
             _ => null,
         };
 

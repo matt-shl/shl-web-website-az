@@ -1,4 +1,5 @@
 using DTNL.UmbracoCms.Web.Components.Hero;
+using DTNL.UmbracoCms.Web.Helpers;
 using DTNL.UmbracoCms.Web.Helpers.Aliases;
 using DTNL.UmbracoCms.Web.Helpers.Extensions;
 using Umbraco.Cms.Web.Common.PublishedModels;
@@ -7,7 +8,7 @@ namespace DTNL.UmbracoCms.Web.Components;
 
 public class HeroPdp : IHero
 {
-    public string? Theme { get; set; }
+    public string? ThemeCssClasses { get; set; }
 
     public string? Title { get; set; }
 
@@ -21,7 +22,7 @@ public class HeroPdp : IHero
 
     public AnchorList? NavigationLinks { get; set; }
 
-    public static HeroPdp? Create(NestedBlockProductHero? productHero)
+    public static HeroPdp? Create(NestedBlockProductHero? productHero, ICompositionBasePage page)
     {
         if (productHero is null)
         {
@@ -30,7 +31,7 @@ public class HeroPdp : IHero
 
         return new HeroPdp
         {
-            Theme = productHero.Theme?.Label, // TODO fix this upon merge of themes PR
+            ThemeCssClasses = ThemeHelper.GetCssClasses(page),
             Title = productHero.Title,
             Text = productHero.Text?.ToHtmlString(),
             PrimaryLinkButton = Button.Create(productHero.PrimaryLink)
@@ -39,7 +40,7 @@ public class HeroPdp : IHero
                     b.Class = "hero-pdp__cta1";
                     b.Icon = SvgAliases.Icons.ArrowTopRight;
                 }),
-            Image = Image.Create(productHero.Image, cssClasses: "hero-pdp__image"),
+            Image = Image.Create(productHero.Image, cssClasses: "hero-pdp__image", style: "heroPdp"),
             SecondaryLinkButton = Button.Create(productHero.SecondaryLink)
                 .With(b =>
                 {

@@ -14,6 +14,7 @@ public interface ICard
             NestedBlockImageCard imageCard => CardImage.Create(imageCard, cssClasses),
             NestedBlockNumberCard numberCard => CardNumber.Create(numberCard, cssClasses),
             NestedBlockIconCard iconCard => CardIcon.Create(iconCard, cssClasses),
+            NestedBlockPageCard pageCard => CardKnowledge.Create(pageCard, cssClasses),
             _ => null,
         };
     }

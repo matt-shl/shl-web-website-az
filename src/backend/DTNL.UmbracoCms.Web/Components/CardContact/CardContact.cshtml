@@ -1,0 +1,36 @@
+@using DTNL.UmbracoCms.Web.Components
+@using Umbraco.Cms.Core.Dictionary
+
+@inject ICultureDictionary CultureDictionary
+
+@model DTNL.UmbracoCms.Web.Components.CardContact
+
+<div class="c-card-contact @Model.CssClasses">
+
+    <div class="card-contact__image-container">
+        <partial name="Image" model="@Model.Image" />
+
+        @if (!Model.Location.IsNullOrWhiteSpace())
+        {
+            <partial name="CardOverlay" model="@(new CardOverlay{ Tag = Model.Location, Position = "start", Visible = true })" />
+        }
+    </div>
+
+    <h3 class="card-contact__name">@Model.FullName</h3>
+
+    <span class="card-contact__role card-contact__label" asp-if="@Model.Role">@Model.Role</span>
+
+    @if (Button.CreateForEmail(Model.Email, Model.FullName, CultureDictionary) is { } emailButton)
+    {
+        <partial name="Button" model="@emailButton" />
+    }
+
+    @if (Button.CreateForPhoneNumber(Model.PhoneNumber, Model.FullName, CultureDictionary) is { } phoneNumberButton)
+    {
+        <partial name="Button" model="@phoneNumberButton" />
+    }
+
+    <div class="card-contact__description s-rich-text" asp-if="@Model.Text">
+        @Html.Raw(Model.Text)
+    </div>
+</div>
