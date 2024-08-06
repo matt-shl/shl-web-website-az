@@ -2,6 +2,7 @@ using DTNL.UmbracoCms.Web.Components.FormElements;
 using DTNL.UmbracoCms.Web.Helpers.Extensions;
 using DTNL.UmbracoCms.Web.Models.Filters;
 using DTNL.UmbracoCms.Web.Models.Products;
+using Flurl;
 using Umbraco.Cms.Web.Common.PublishedModels;
 using static DTNL.UmbracoCms.Web.Components.FormElements.Checkbox;
 
@@ -17,7 +18,6 @@ public class FiltersModal
 
     public static FiltersModal Create(
         ProductFilters productFilters,
-        PageProductOverview productOverviewPage,
         List<PageProduct> productPages)
     {
         List<Filter> filters = [];
@@ -31,7 +31,7 @@ public class FiltersModal
         return new FiltersModal
         {
             ResultsCount = productPages.Count,
-            ResultsOverviewPageUrl = productOverviewPage.Url(),
+            ResultsOverviewPageUrl = productFilters.CurrentUrl.SetQueryParams(null),
             Filters = filters,
         };
     }
@@ -62,6 +62,12 @@ public class FiltersModal
                         filterOption.Id,
                         filterOption.Title,
                         filterOption.Id,
+                        attr: new Dictionary<string, string?>
+                        {
+                            ["data-url-replacement"] = productFilters
+                                .CurrentUrl
+                                .AppendQueryParam(name, filterOption.Id),
+                        },
                         selected: productFilters.IsSelected(name, filterOption)))
                     .OfType<IFormOption>()
                     .ToList(),

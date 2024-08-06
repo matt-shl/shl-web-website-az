@@ -11,13 +11,12 @@ public class Filters
 
     public static Filters Create(
         ProductFilters productFilters,
-        PageProductOverview productOverviewPage,
         List<PageProduct> productPages)
     {
         return new Filters
         {
             ResultsCount = productPages.Count,
-            FiltersModal = FiltersModal.Create(productFilters, productOverviewPage, productPages),
+            FiltersModal = FiltersModal.Create(productFilters, productPages),
         };
     }
 }

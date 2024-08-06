@@ -3,6 +3,7 @@ using DTNL.UmbracoCms.Web.Helpers.Extensions;
 using DTNL.UmbracoCms.Web.Models.Filters;
 using DTNL.UmbracoCms.Web.Models.Products;
 using DTNL.UmbracoCms.Web.Services;
+using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Umbraco.Cms.Web.Common.PublishedModels;
 
@@ -23,7 +24,7 @@ public class OverviewProducts : ViewComponentExtended
     public IViewComponentResult Invoke(PageProductOverview productOverviewPage)
     {
         HttpContext.VaryByPageNumber();
-        int pageNumber = HttpContext.Request.Query.GetPageNumber();
+        int pageNumber = Request.Query.GetPageNumber();
 
         List<PageProduct> productPages = NodeProvider
             .GetProductPages(productOverviewPage)
@@ -31,7 +32,7 @@ public class OverviewProducts : ViewComponentExtended
 
         ProductFilters productFilters = GetAndApplyFilters(productPages);
 
-        Filters = Filters.Create(productFilters, productOverviewPage, productPages);
+        Filters = Filters.Create(productFilters, productPages);
 
         ResultCards = productPages
             .Using(p => CardProduct.Create(p))
@@ -47,7 +48,10 @@ public class OverviewProducts : ViewComponentExtended
 
     private ProductFilters GetAndApplyFilters(List<PageProduct> productPages)
     {
-        ProductFilters productFilters = [];
+        ProductFilters productFilters = new()
+        {
+            CurrentUrl = Request.GetEncodedPathAndQuery(),
+        };
 
         foreach ((string name, Func<PageProduct, IEnumerable<string>?> getValues)
                  in ProductFilters.FilterFields)
@@ -73,7 +77,7 @@ public class OverviewProducts : ViewComponentExtended
     {
         HttpContext.VaryByQueryKeys(filterKey);
 
-        string? filterValue = HttpContext.Request.Query[filterKey];
+        string? filterValue = Request.Query[filterKey];
 
         return filterValue?.Split(',');
     }

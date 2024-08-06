@@ -1,7 +1,6 @@
 @using DTNL.UmbracoCms.Web.Components
 @using DTNL.UmbracoCms.Web.Helpers.Aliases
 @using DTNL.UmbracoCms.Web.Helpers.Extensions
-@using Microsoft.AspNetCore.Http.Extensions
 @using Umbraco.Cms.Core.Dictionary
 @model DTNL.UmbracoCms.Web.Components.FiltersModal
 
@@ -60,6 +59,6 @@
                                       Class = "filters__sticky-button",
                                       Element = "button",
                                       Hook = "filters-sticky-button js-hook-filters-reset-button",
-                                      Attributes = new Dictionary<string, string?> { ["data-url-replacement"] = Context.Request.GetDisplayUrl(), ["data-endpoint"]= "TODO" },
+                                      Attributes = new Dictionary<string, string?> { ["data-url-replacement"] = Model.ResultsOverviewPageUrl, },
                                   })"/>
 </div>

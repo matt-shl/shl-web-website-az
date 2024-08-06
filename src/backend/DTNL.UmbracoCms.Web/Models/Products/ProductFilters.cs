@@ -15,6 +15,8 @@ public class ProductFilters : Dictionary<string, FilterOption[]>
         (nameof(PageProduct.ConnectivityType), p => p.ConnectivityType),
     ];
 
+    public required string CurrentUrl { get; set; }
+
     public bool IsSelected(string name, FilterOption option)
     {
         return TryGetValue(name, out FilterOption[]? filterOptions) && filterOptions.Contains(option);
