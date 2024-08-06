@@ -1,4 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
+using DTNL.UmbracoCms.Web.Helpers.Aliases;
+using DTNL.UmbracoCms.Web.Helpers.Extensions;
+using Umbraco.Cms.Core.Dictionary;
 
 namespace DTNL.UmbracoCms.Web.Components;
 
@@ -7,6 +10,8 @@ public class Button
     public string Element { get; set; } = "a";
 
     public required string Label { get; set; }
+
+    public string? AriaLabel { get; set; }
 
     public bool LabelSrOnly { get; set; }
 
@@ -52,6 +57,40 @@ public class Button
             Url = link.Url,
             Label = link.Name ?? "",
             Target = link.Target,
+        };
+    }
+
+    public static Button? CreateForEmail(string? email, string? contactName, ICultureDictionary cultureDictionary)
+    {
+        if (email.IsNullOrWhiteSpace())
+        {
+            return null;
+        }
+
+        return new Button
+        {
+            Class = "card-contact__label",
+            Variant = "link",
+            Url = $"mailto:{email}",
+            Label = email,
+            AriaLabel = string.Format(cultureDictionary.GetTranslation(TranslationAliases.Common.Cards.SendEmailTo), contactName),
+        };
+    }
+
+    public static Button? CreateForPhoneNumber(string? phoneNumber, string? contactName, ICultureDictionary cultureDictionary)
+    {
+        if (phoneNumber.IsNullOrWhiteSpace())
+        {
+            return null;
+        }
+
+        return new Button
+        {
+            Class = "card-contact__label",
+            Variant = "link",
+            Url = $"tel:{phoneNumber}",
+            Label = phoneNumber,
+            AriaLabel = string.Format(cultureDictionary.GetTranslation(TranslationAliases.Common.Cards.MakePhoneCallTo), contactName),
         };
     }
 }
