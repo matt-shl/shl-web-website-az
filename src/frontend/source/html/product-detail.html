@@ -11,6 +11,7 @@
 {% from 'product-description.html' import productDescription %}
 {% from 'description-list.html' import descriptionList %}
 {% from 'text-media.html' import textMedia %}
+{% from 'banner-quote.html' import bannerQuote %}
 
 {% block hero %}
   {{ heroPdp({
@@ -46,6 +47,7 @@
   <!-- Todo "Text, Image, Links or Accordions" -->
 
   <!-- Todo "Banner Quotes" -->
+  {{ bannerQuote(global.content.productDetail.quoteBanner) }}
 
   <!-- Todo "People carousel" -->
 

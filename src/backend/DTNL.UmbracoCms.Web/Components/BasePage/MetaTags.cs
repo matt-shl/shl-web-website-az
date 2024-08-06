@@ -75,7 +75,7 @@ public class MetaTags : ViewComponentExtended
             return metaDescription;
         }
 
-        string? pageIntro = (page as ICompositionBasePage)?.Intro?.RemoveHtml().TruncateOnWholeWord(156);
+        string? pageIntro = (page as ICompositionBasePage)?.GetDescription().RemoveHtml().TruncateOnWholeWord(156);
         return pageIntro ?? "";
     }
 

@@ -6,5 +6,13 @@
   "sendEmailTo": "Send an email to",
   "call": "Call",
   "openVideoModal": "Open video modal",
-  "viewMoreOptionsFor": "View more options for"
+  "viewMoreOptionsFor": "View more options for",
+  "readMore": "Read more",
+  "readLess": "Read less",
+  "download": "Download",
+  "downloadPdf": "Download PDF",
+  "of": "of",
+  "next": "Next",
+  "previous": "Previous",
+  "quote": "Quote"
 }
