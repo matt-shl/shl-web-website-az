@@ -51,6 +51,15 @@
   @include screen-md-and-bigger {
     padding-block: $spacing-80;
 
+    .c-layout-section--reduce-margin-top & {
+      padding-top: $spacing-40;
+    }
+
+    .c-layout-section--reduce-margin-bottom & {
+      padding-bottom: $spacing-40;
+    }
+
+    .c-layout-section--reduce-margin-top-bottom &,
     .c-layout-section--grid & {
       padding-block: $spacing-40;
     }
