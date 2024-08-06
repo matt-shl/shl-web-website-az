@@ -7,7 +7,7 @@
 <footer class="c-footer" id="footer">
     @if(Model.FooterScrollingText != null)
     {
-        <partial name="Slogan" model="@(new Slogan { Text = Model.FooterScrollingText.Text ?? "", AnimateOnScroll = Model.FooterScrollingText.AnimateOnScroll, CssClasses = "footer__scrolling-text" })" />
+        <partial name="Slogan" model="@(Slogan.Create(Model.FooterScrollingText, "footer__scrolling-text"))" />
     }
     <div class="footer__main">
 
