@@ -10,14 +10,19 @@ public class Slogan
 
     public string? CssClasses { get; set; }
 
-    public static Slogan? Create(Umbraco.Cms.Web.Common.PublishedModels.Slogan slogan, string? cssClasses = null)
+    public static Slogan? Create(Umbraco.Cms.Web.Common.PublishedModels.Slogan? slogan, string? cssClasses = null)
     {
+        if (slogan == null)
+        {
+            return null;
+        }
+
         if (slogan.Text.IsNullOrWhiteSpace())
         {
             return null;
         }
 
-        return new Slogan { Text = slogan.Text ?? "", AnimateOnScroll = slogan.AnimateOnScroll, CssClasses = cssClasses };
+        return new Slogan { Text = slogan.Text, AnimateOnScroll = slogan.AnimateOnScroll, CssClasses = cssClasses };
     }
 
     public static Slogan? Create(NestedBlockSlogan block, string? cssClasses = null)
