@@ -12,11 +12,11 @@
                 {
                     <button class="navigation-desktop__item" js-hook-navigation-desktop-anchor
                     @Html.Attribute("aria-expanded", "false")
-                    @Html.Attribute("aria-controls", item?.Submenu != null ? $"flyout-@{item.Submenu?.Id}" : null)
+                    @Html.Attribute("aria-controls", item?.Submenu != null ? $"flyout-{item.Submenu?.Id}" : null)
                     >
                         @item?.Link?.Label
                     </button>
-                    <partial name="./Flyout.cshtml" model="@(item)" />
+                    <partial name="Navigation/Flyout" model="@(item)" />
                 } else {
                     <a href="@item?.Link?.Url"
                        target="@item?.Link?.Target"

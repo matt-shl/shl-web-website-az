@@ -41,17 +41,12 @@
                 }
             </ul>
 
-            @* @if(Model?.PromoBlock)
+            @if(Model?.PromoBlock != null)
             {
                 <div class="flyout__feature-column">
-                    {{ cardImage({
-                    url: data.feature.url,
-                    image: data.feature.image,
-                    title: data.feature.title,
-                    content: data.feature.content
-                    }) }}
+                    <partial name="CardImage" model="@(Model?.PromoBlock)" />
                 </div>
-            } *@
+            }
         </div>
     </div>
 </div>

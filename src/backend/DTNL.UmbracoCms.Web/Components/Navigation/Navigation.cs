@@ -31,7 +31,7 @@ public class Navigation
 
         public Link? All { get; set; }
 
-        public HeaderFeature? PromoBlock { get; set; }
+        public CardImage? PromoBlock { get; set; }
 
         public NavigationHeaderListItem? Header { get; set; }
 
@@ -71,17 +71,17 @@ public class Navigation
 
     }
 
-    public class PromoFeature
-    {
-        public string? Title { get; set; }
+    //public class PromoFeature
+    //{
+    //    public string? Title { get; set; }
 
-        public string? Content { get; set; }
+    //    public string? Content { get; set; }
 
-        public Link? Url { get; set; }
+    //    public Link? Url { get; set; }
 
-        public MediaWithCrops? Image { get; set; }
+    //    public MediaWithCrops? Image { get; set; }
 
-    }
+    //}
 
     public static Navigation Create(NestedBlockNavigation? navigation)
     {
@@ -99,7 +99,7 @@ public class Navigation
                     .Select(i => i.Content)
                     .OfType<NestedBlockHeaderLink>()
                     .Select((m, i) => m.MainLink != null
-                        ? new MenuItem { Id = i, Title = m.MainLink.Name, Description = m.Description, Link = Link.Create(m.MainLink), Submenu = BuildMenuLevel2(m, i), }
+                        ? new MenuItem { Id = i, Title = m.MainLink.Name, Description = m.Description, Link = Link.Create(m.MainLink), Submenu = BuildMenuLevel2(m, i), PromoBlock = BuildPromoBlock(m) }
                         : null)
                     .WhereNotNull().ToList(),
 
@@ -145,18 +145,13 @@ public class Navigation
         };
     }
 
-    private static PromoFeature? BuildPromoBlock(NestedBlockHeaderLink headerLink)
+    private static CardImage? BuildPromoBlock(NestedBlockHeaderLink headerLink)
     {
-        if (headerLink.Promo?.FirstOrDefault()?.Content is not HeaderFeature promoFeature)
+        if (headerLink.Promo?.FirstOrDefault()?.Content is not NestedBlockImageCard promoFeature)
         {
             return null;
         }
 
-        return new PromoFeature
-        {
-            Title = promoFeature.Title,
-            Content = promoFeature.Content,
-            Image = promoFeature.Image,
-        };
+        return CardImage.Create(promoFeature);
     }
 }
