@@ -26,6 +26,7 @@
 
   <div class="card-product__content-container">
     <h3 class="card-product__title">{{ data.title }}</h3>
+    {% if data.specifications %}
     <div class="card-product__specifications">
       {% for spec in data.specifications %}
           <span class="card-product__specification-label">{{ spec.label }}</span>
@@ -40,6 +41,7 @@
           </div>
       {% endfor %}
     </div>
+    {% endif %}
 
     <p class="card-product__content">{{ data.content }}</p>
   </div>

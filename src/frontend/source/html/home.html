@@ -8,6 +8,7 @@
 {% from 'hero-home.html' import heroHome %}
 {% from 'section-card-carousel.html' import sectionCardCarousel %}
 {% from 'text-media.html' import textMedia %}
+{% from 'text-media-list.html' import textMediaList %}
 
 {% block hero %}
   {{ heroHome({
@@ -26,7 +27,13 @@
 
   {{ sectionCardCarousel(global.content.home.cards2) }}
 
-  <!-- Todo "Text, Image, Links or Accordions" -->
+  {{ textMediaList(global.content.home.textMediaList1) }}
+
+  {{ textMediaList(global.content.home.textMediaList2) }}
+
+  {{ textMediaList(global.content.home.textMediaList3) }}
+
+  {{ textMediaList(global.content.home.textMediaList4) }}
 
   {{ textMedia(global.content.home.textMedia2) }}
 

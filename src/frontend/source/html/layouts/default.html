@@ -1,8 +1,11 @@
 {% from 'grid-overlay.html' import gridOverlay %}
 
+{% set lang = 'default' %}
+
 <!DOCTYPE html>
 <html lang="{{ global.site.language }}" dir="{{ global.site.direction }}"
-      class="t-{{ theme if theme else 'general' }}{{ ' is--header-white' if headerIsWhite else '' }}">
+      class="t-{{ theme if theme else 'general' }}{{ ' is--header-white' if headerIsWhite else '' }}
+             u-lang-{{lang if lang else 'default'}}">
 
 
 <head>

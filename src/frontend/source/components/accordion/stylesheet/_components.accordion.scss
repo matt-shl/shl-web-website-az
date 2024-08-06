@@ -28,8 +28,10 @@ $accordion-transition-ease: ease-out;
   border-bottom: 1px solid var(--color-content-20);
 
   &:last-child {
-    border-bottom: 0;
-    margin-bottom: 0;
+    .accordion--zero-top-margin & {
+      border-bottom: 0;
+      margin-bottom: 0;
+    }
   }
 }
 
@@ -51,7 +53,9 @@ $accordion-transition-ease: ease-out;
   }
 
   .accordion__detail:first-child & {
-    padding-top: 0;
+    .accordion--zero-top-margin & {
+      padding-top: 0;
+    }
   }
 
   [open] & {
@@ -106,7 +110,9 @@ $accordion-transition-ease: ease-out;
     transition-property: opacity, transform;
 
     .accordion__detail:first-child & {
-      top: 25%;
+      .accordion--zero-top-margin & {
+        top: 25%;
+      }
     }
 
     //IE only fallback

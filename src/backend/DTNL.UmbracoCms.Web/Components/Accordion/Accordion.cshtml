@@ -2,7 +2,7 @@
 @using DTNL.UmbracoCms.Web.Helpers.Extensions
 @model DTNL.UmbracoCms.Web.Components.Accordion
 
-<div class="c-accordion @Model.Classes @(Model.TabsOnDesktop ? "accordion--tabs-on-dekstop" : null)"
+<div class="c-accordion @Model.Classes @(Model.TabsOnDesktop ? "accordion--tabs-on-dekstop" : null) @(Model.ZeroTopMargin ? "accordion--zero-top-margin" : null)"
      data-autoclose="@(Model.AutoClose ? "true" : null)"
      @(Model.DisableCloseDesktop ? "data-disable-close-desktop=true" : null)
      @(Model.TabsOnDesktop ? "data-tabs-on-desktop=true" : null)
