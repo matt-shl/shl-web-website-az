@@ -98,7 +98,23 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel Hero => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionHero.GetHero(this, _publishedValueFallback);
 
 		///<summary>
-		/// Text
+		/// No Results Primary Link
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("noResultsPrimaryLink")]
+		public virtual global::Umbraco.Cms.Core.Models.Link NoResultsPrimaryLink => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionNoResults.GetNoResultsPrimaryLink(this, _publishedValueFallback);
+
+		///<summary>
+		/// No Results Secondary Link
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("noResultsSecondaryLink")]
+		public virtual global::Umbraco.Cms.Core.Models.Link NoResultsSecondaryLink => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionNoResults.GetNoResultsSecondaryLink(this, _publishedValueFallback);
+
+		///<summary>
+		/// No Results Text
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
@@ -106,28 +122,12 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual global::Umbraco.Cms.Core.Strings.IHtmlEncodedString NoResultsText => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionNoResults.GetNoResultsText(this, _publishedValueFallback);
 
 		///<summary>
-		/// Title
+		/// No Results Title
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("noResultsTitle")]
 		public virtual string NoResultsTitle => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionNoResults.GetNoResultsTitle(this, _publishedValueFallback);
-
-		///<summary>
-		/// Primary Link
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("primaryLink")]
-		public virtual global::Umbraco.Cms.Core.Models.Link PrimaryLink => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionNoResults.GetPrimaryLink(this, _publishedValueFallback);
-
-		///<summary>
-		/// Secondary Link
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("secondaryLink")]
-		public virtual global::Umbraco.Cms.Core.Models.Link SecondaryLink => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionNoResults.GetSecondaryLink(this, _publishedValueFallback);
 
 		///<summary>
 		/// Do Not Follow: Setting to true will prevent search engines from following the links on the page, so it will not index the pages it finds (only) on this page.

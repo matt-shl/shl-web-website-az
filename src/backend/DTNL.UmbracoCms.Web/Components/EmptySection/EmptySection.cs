@@ -20,13 +20,13 @@ public class EmptySection
         {
             Title = noResults.NoResultsTitle!,
             Text = noResults.NoResultsText!.ToHtmlString()!,
-            PrimaryLinkButton = Button.Create(noResults.PrimaryLink)
+            PrimaryLinkButton = Button.Create(noResults.NoResultsPrimaryLink)
                 .With(b =>
                 {
                     b.Variant = "primary";
                     b.Icon = SvgAliases.Icons.ArrowTopRight;
                 }),
-            SecondaryLinkButton = Button.Create(noResults.SecondaryLink)
+            SecondaryLinkButton = Button.Create(noResults.NoResultsSecondaryLink)
                 .With(b =>
                 {
                     b.Variant = "secondary";
