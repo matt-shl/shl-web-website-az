@@ -21,8 +21,16 @@ public static class UmbracoTranslationsExtensions
     /// <remarks>If not found, the given <paramref name="key"/> is returned instead.</remarks>
     public static string GetTranslation(this ICultureDictionary cultureDictionary, string key)
     {
+        return cultureDictionary.GetTranslationOrDefault(key, defaultValue: "{{" + key + "}}");
+    }
+
+    /// <summary>
+    /// Retrieves the translation corresponding to the given <paramref name="key"/> from Umbraco or the specified <paramref name="defaultValue"/>
+    /// </summary>
+    public static string GetTranslationOrDefault(this ICultureDictionary cultureDictionary, string key, string defaultValue)
+    {
         string? dictionaryValue = cultureDictionary[key];
-        return !string.IsNullOrWhiteSpace(dictionaryValue) ? dictionaryValue : "{{" + key + "}}";
+        return !string.IsNullOrWhiteSpace(dictionaryValue) ? dictionaryValue : defaultValue;
     }
 
     /// <summary>

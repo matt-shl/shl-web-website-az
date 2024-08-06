@@ -154,6 +154,14 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual global::System.Collections.Generic.IEnumerable<string> RouteOfAdministration => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionProductDetails.GetRouteOfAdministration(this, _publishedValueFallback);
 
 		///<summary>
+		/// Specifications File
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("specificationsFile")]
+		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops SpecificationsFile => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionProductDetails.GetSpecificationsFile(this, _publishedValueFallback);
+
+		///<summary>
 		/// Viscosity Level
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
