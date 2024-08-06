@@ -1,9 +1,14 @@
 @using DTNL.UmbracoCms.Web.Components
+@using Slogan = DTNL.UmbracoCms.Web.Components.Slogan
 @using DTNL.UmbracoCms.Web.Helpers.Aliases
 @using DTNL.UmbracoCms.Web.Helpers.Extensions
 @model DTNL.UmbracoCms.Web.Components.Footer
 
 <footer class="c-footer" id="footer">
+    @if(Model.FooterScrollingText != null)
+    {
+        <partial name="Slogan" model="@(new Slogan { Text = Model.FooterScrollingText.Text ?? "", AnimateOnScroll = Model.FooterScrollingText.AnimateOnScroll, CssClasses = "footer__scrolling-text" })" />
+    }
     <div class="footer__main">
 
         <p class="footer__description" asp-if="@Model.Text">
