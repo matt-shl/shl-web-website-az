@@ -1,0 +1,94 @@
+{% from 'button.html' import button %}
+{% from 'layout-section.html' import layoutSection %}
+{% from 'image.html' import image %}
+
+{% set commonLabels = global.resource.common %}
+
+{% macro bannerQuote(data) %}
+   {%-if data.theme %}
+    {% set theme = data.theme %}
+    {% set variant = "in-grid" %}
+  {% else %}
+    {% set theme = "t-white" %}
+  {% endif -%}
+
+  <div class="c-banner-quote" js-hook-banner-quote>
+      {% call layoutSection({
+    theme: theme,
+    id: data.id,
+    sectionTitle: data.sectionTitle,
+    variant: variant
+  }) %}
+    <div class="c-banner-quote">
+      <div class="banner-quote__container">
+        <div class="banner-quote__col banner-quote__col--text" aria-live="polite">
+        {% for quoteData in data.quotes %}
+          <div class="banner-quote__text-container {{ "is--active" if loop.index0 == 0 else '' }}" js-hook-banner-quote-text-container>
+            <blockquote class="banner-quote__title" tabIndex="0">{{ quoteData.title }}</blockquote>
+            {% if quoteData.author or quoteData.role %}
+              <div class="banner-quote__content">
+                  <span class="banner-quote__author">{{ quoteData.author }}</span>
+                  <span class="banner-quote__role">{{ quoteData.role }}</span>
+              </div>
+            {% endif %}
+            </div>
+          {% endfor %}
+          <div class="banner-quote__pagination-container">
+            {{ button({
+              label: commonLabels.previous + " " +commonLabels.quote,
+              icon: true,
+              srOnly: true,
+              size: "small",
+              element: "button",
+              variant: "secondary",
+              theme: "t-white",
+              link: data.link,
+              classes: "banner-quote__pagination-button",
+              icon: "arrow-left",
+              hook: "banner-quote-pagination-prev-button",
+              attr: "disabled"
+            }) }}
+            <span class="banner-quote-pagination-label" aria-live="polite" aria-atomic="true"><span js-hook-banner-quote-pagination-current-index>1</span> {{commonLabels.of}} {{data.quotes.length}}</span>
+            {{ button({
+              label: commonLabels.next + " " +commonLabels.quote,
+              icon: true,
+              srOnly: true,
+              size: "small",
+              element: "button",
+              variant: "secondary",
+              theme: "t-white",
+              link: data.link,
+              classes: "banner-quote__pagination-button",
+              icon: "arrow-right",
+              hook: "banner-quote-pagination-next-button"
+            }) }}
+          </div>
+        </div>
+        <div class="banner-quote__col banner-quote__col--media">
+          {% if data.quotes.length === 1 and data.quotes[0].image %}
+            <div class="banner-quote__image">
+            {{ image(data.quotes[0].image | clone | merge({
+              imageStyle: "in-grid-banner-image",
+              objectFit: true
+            })) }}
+            </div>
+          {% elif data.quotes.length > 1 %}
+            <div class="banner-quote__image-carousel" js-hook-banner-quote-image-carousel>
+                 {% for quoteData in data.quotes %}
+                 {% set imageData = quoteData.image %}
+                 <div class="banner-quote__image-item {{ "is--active" if loop.index0 == 0 else '' }}" js-hook-banner-quote-image data-index="{{loop.index0}}">
+                  {{ image(imageData | clone | merge({
+                    imageStyle: "in-grid-banner-image",
+                    objectFit: true,
+                    caption: false
+                  })) }}
+                 </div>
+              {% endfor %}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  {% endcall %}
+  </div>
+{% endmacro %}

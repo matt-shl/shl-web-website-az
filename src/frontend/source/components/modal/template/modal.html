@@ -28,6 +28,7 @@ Options:
     {%- if data.closeAllOthers %} data-modal-close-all-others="{{ data.closeAllOthers }}"{% endif -%}
     {%- if data.keepScrollPosition %} data-modal-keep-scroll-position="{{ data.keepScrollPosition }}"{% endif -%}
     {%- if data.autoClose %} data-modal-auto-close="{{ data.autoClose }}"{% endif -%}
+    {%- if data.hook %} js-hook-{{ data.hook }} {% endif -%}
        js-hook-modal>
 
     {% if data.size === "video" %}
@@ -73,7 +74,7 @@ Options:
           </div>
         {% endif %}
 
-        <div class="modal__body" js-hook-modal-body>
+        <div class="modal__body" js-hook-modal-body js-hook-replace-content="{{ "modal-body-" + data.id }}">
           {{ caller() }}
         </div>
 

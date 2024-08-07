@@ -1,6 +1,6 @@
 .c-hero-pdp {
   @include theme;
-  @include hero-overlap;
+  @include component-overlap;
   --hero-pdp-shape-height: 100px;
   z-index: 0;
 
@@ -112,7 +112,7 @@
 }
 
 .hero-pdp__anchor-links-container {
-  @include hero-overlap(false, false);
+  @include component-overlap(false, false);
   min-height: var(--hero-pdp-shape-height);
   color: $color-dark-blue;
 }

@@ -1,0 +1,44 @@
+{
+  "footerScrollingText": "Caring. Inclusive. Driven.",
+  "breadcrumbs": {
+    "items": [
+      {
+        "url": "/home.html",
+        "label": "Home"
+      },
+      {
+        "url": "/current-item.html",
+        "label": "Current item"
+      }
+    ]
+  },
+  "hero": {
+    "title": "Privacy Policy"
+  },
+  "richText1": {
+    "reduceMargin": "bottom",
+    "size": "large",
+    "content": "<h2>Heading 2</h2><p>Lorem ipsum dolor sit amet, <a href='home.html'>consectetur adipiscing elit</a>. Maecenas sagittis sollicitudin leo, eu aliquet nisiposuere ut. In eu mollis lectus, ac lacinia tellus. Nulla vel eros molestie, sagittis neque quis, fringilladiam. Nam est enim, semper in ligula et, hendrerit feugiat leo. Lorem ipsum dolor sit amet, consecteturadipiscing elit. Nam a venenatis quam. Maecenas a eros vitae diam gravida pharetra. Integer bibendum nulla vitaepellentesque posuere. Sed scelerisque tellus eu porttitor ultricies. Donec ullamcorper ornare tortor, id euismoddolor porttitor ac. Phasellus fringilla vehicula elit, sit amet pharetra mi fringilla a. Morbi sapien orci,rhoncus id scelerisque et, viverra sit amet nisl. In quis felis pharetra, sodales massa vel, hendrerit turpis. Suspendisse consectetur purus justo, sed ornare dolor blandit id.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sagittis sollicitudin leo, eu aliquet nisiposuere ut. In eu mollis lectus, ac lacinia tellus. Nulla vel eros molestie, sagittis neque quis, fringilladiam. Nam est enim, semper in ligula et, hendrerit feugiat leo. Lorem ipsum dolor sit amet, consecteturadipiscing elit. Nam a venenatis quam. Maecenas a eros vitae diam gravida pharetra. Integer bibendum nulla vitaepellentesque posuere. Sed scelerisque tellus eu porttitor ultricies. Donec ullamcorper ornare tortor, id euismoddolor porttitor ac. Phasellus fringilla vehicula elit, sit amet pharetra mi fringilla a. Morbi sapien orci,rhoncus id scelerisque et, viverra sit amet nisl. In quis felis pharetra, sodales massa vel, hendrerit turpis. Suspendisse consectetur purus justo, sed ornare dolor blandit id.</p>",
+    "cta1": {
+      "label": "Discover all services",
+      "url": "#"
+    },
+    "cta2": {
+      "label": "Why SHL Medical",
+      "url": "#"
+    }
+  },
+  "richText2": {
+    "reduceMargin": "top-bottom",
+    "size": "extra-small",
+    "content": "<h2>Heading 2</h2><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sagittis sollicitudin leo, eu aliquet nisiposuere ut. In eu mollis lectus, ac lacinia tellus. Nulla vel eros molestie, sagittis neque quis, fringilladiam. Nam est enim, semper in ligula et, hendrerit feugiat leo. Lorem ipsum dolor sit amet, consecteturadipiscing elit. Nam a venenatis quam. Maecenas a eros vitae diam gravida pharetra. Integer bibendum nulla vitaepellentesque posuere. Sed scelerisque tellus eu porttitor ultricies. Donec ullamcorper ornare tortor, id euismoddolor porttitor ac. Phasellus fringilla vehicula elit, sit amet pharetra mi fringilla a. Morbi sapien orci,rhoncus id scelerisque et, viverra sit amet nisl. In quis felis pharetra, sodales massa vel, hendrerit turpis. Suspendisse consectetur purus justo, sed ornare dolor blandit id.</p>"
+  },
+  "richText3": {
+    "reduceMargin": "top-bottom",
+    "content": "<h2>Heading 2</h2><p><b>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sagittis sollicitudin leo, eu aliquet nisiposuere ut. In eu mollis lectus, ac lacinia tellus. Nulla vel eros molestie, sagittis neque quis, fringilladiam. Nam est enim, semper in ligula et, hendrerit feugiat leo. Lorem ipsum dolor sit amet, consecteturadipiscing elit. Nam a venenatis quam. Maecenas a eros vitae diam gravida pharetra. Integer bibendum nulla vitaepellentesque posuere. Sed scelerisque tellus eu porttitor ultricies. Donec ullamcorper ornare tortor, id euismoddolor porttitor ac. Phasellus fringilla vehicula elit, sit amet pharetra mi fringilla a. Morbi sapien orci,rhoncus id scelerisque et, viverra sit amet nisl. In quis felis pharetra, sodales massa vel, hendrerit turpis. Suspendisse consectetur purus justo, sed ornare dolor blandit id.</b></p>"
+  },
+  "richText4": {
+    "reduceMargin": "top",
+    "content": "<h3>Heading 3</h3><ul><li>List item 1</li><li>List item 2</li><li>List item 3</li><li>List item 4</li><li>List item</li><li>List item</li><li>List item</li></ul><ol><li>List item 1<li>List item 2<li>List item 3<li>List item 4</ol><p>This is text with <u>underline</u>, <b>bold</b> and <i>italic</i> styling.<h3>Heading 3</h3><h4>Heading 4</h4><h5>Heading 5</h5><h6>Heading 6</h6>"
+  }
+}

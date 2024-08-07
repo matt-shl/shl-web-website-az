@@ -25,7 +25,7 @@
     {# Navigation Mobile #}
     <nav class="footer__sitemap footer__sitemap--mobile" aria-label="{{ footerLabels.footerNavigation }}">
       {% if footerContent.sitemap.length %}
-          {% call accordion.default({extendHook: 'footer', classes: 'footer__accordion', variant: 'specs', ariaLabel: footerLabels.footerSection}) %}
+          {% call accordion.default({extendHook: 'footer', classes: 'footer__accordion', ariaLabel: footerLabels.footerSection, zeroTopMargin: true}) %}
 
             {% for item in footerContent.sitemap %}
               {% call accordion.item({

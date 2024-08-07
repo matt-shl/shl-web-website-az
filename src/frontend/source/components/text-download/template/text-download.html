@@ -1,0 +1,47 @@
+{% from 'layout-section.html' import layoutSection %}
+{% from 'button.html' import button %}
+
+{% set commonLabels = global.resource.common %}
+
+{% macro textDownload(data) %}
+  {% call layoutSection({
+      theme: undefined,
+      id: data.id,
+      sectionTitle: data.sectionTitle
+    }) %}
+    <div class="c-text-download">
+      <div class="text-download__col text-download__col--text">
+        <h2 class="text-download__title">{{ data.title }}</h2>
+        {% if data.description %}
+          <p class="text-download__description">{{ data.description }}</p>
+        {% endif %}
+      </div>
+      <div class="text-download__col text-download__col--download">
+        {% for item in data.items %}
+          {{ downloadItem(item) }}
+        {% endfor %}
+      </div>
+    </div>
+  {% endcall %}
+{% endmacro %}
+
+{% macro downloadItem(data) %}
+  <div class="c-download-item">
+    <div class="download-item__icon-container">
+      {# @todo add custom svg icon  #}
+      {% svg 'icons/rocket' %}
+    </div>
+    <div class="download-item__content-container">
+      <span class="download-item__title">{{ data.title }}</span>
+      <p class="download-item__description">{{ data.description }}</p>
+    </div>
+    <div class="download-item__link-container">
+      <a href="{{ data.link }}" class="download-item__link" aria-label="{{ commonLabels.downloadPdf ~ ' ' ~ data.title}}">
+        <span class="download-item__link-icon">
+          {% svg 'icons/download' %}
+        </span>
+        <span> {{commonLabels.download}} ({{ data.size }})</span>
+      </a>
+    </div>
+  </div>
+{% endmacro %}

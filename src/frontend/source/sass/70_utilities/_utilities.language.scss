@@ -1,0 +1,26 @@
+.u-lang {
+  &-default {
+    // word-spacing used for Poppins font
+    word-spacing: 0.15em;
+  }
+
+  &-old {
+    font-family: $font-stack-old;
+  }
+
+  &-zh-hans {
+    font-family: $font-stack-zh-hans;
+  }
+
+  &-zh-hant {
+    font-family: $font-stack-zh-hant;
+  }
+
+  &-jp {
+    font-family: $font-stack-jp;
+  }
+
+  &-kr {
+    font-family: $font-stack-kr;
+  }
+}

@@ -8,10 +8,13 @@ import '@/utilities/detect-touch'
 import '@/utilities/detect-reduced-motion'
 import '@/utilities/detect-keyboard-focus'
 import '@/utilities/set-theme'
+import '@/utilities/set-language'
+import '@/utilities/replace-content'
 import '@/utilities/in-view'
 import '@/components/image'
 import '@/utilities/focus-trap'
 import '@/utilities/scroll-to'
+import '@/components/loading-indicator'
 
 import Events from '@utilities/events'
 
@@ -32,6 +35,9 @@ moduleInit.async('[js-hook-navigation-desktop]', () => import('@components/navig
 moduleInit.async('[js-hook-flyout]', () => import('@components/flyout'))
 moduleInit.async('[js-hook-anchor-list]', () => import('@components/anchor-list'))
 moduleInit.async('[js-hook-carousel]', () => import('@/components/carousel'))
+moduleInit.async('[js-hook-filters]', () => import('@components/filters'))
+moduleInit.async('[js-hook-rich-text]', () => import('@/components/rich-text'))
+moduleInit.async('[js-hook-banner-quote]', () => import('@components/banner-quote'))
 
 if (document.querySelector('[js-hook-video]')) {
   videoLoader(['native'])

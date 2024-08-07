@@ -73,17 +73,17 @@
 }
 
 .section-card-carousel__button-container {
-  margin-block-start: $spacing-24;
+  margin-top: $spacing-24;
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
 
   @include screen-md-and-bigger {
-    margin-block-start: $spacing-32;
+    margin-top: $spacing-32;
   }
 
   &:first-child {
-    margin-block-start: 0;
+    margin-top: 0;
   }
 }
 

@@ -54,7 +54,7 @@
           <div class="text-media__image">
             {% if data.image %}
               {{ image(data.image | clone | merge({
-                imageStyle: "text-media",
+                imageStyle: "in-grid-banner-image",
                 objectFit: true,
                 video: data.video
               })) }}

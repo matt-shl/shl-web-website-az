@@ -1,0 +1,25 @@
+{% from 'image.html' import image %}
+{% from 'video-modal.html' import videoModal %}
+{% from 'layout-section.html' import layoutSection %}
+
+{% macro mediaSection(data) %}
+  {% call layoutSection({
+    id: data.id,
+    sectionTitle: data.sectionTitle,
+    variant: data.variant or 'no-padding-inline-mobile',
+    theme: "t-white"
+  }) %}
+    <div class="c-media-section">
+      {{ image(data.image | clone | merge({
+        classes: "media-section__image",
+        imageStyle: "default",
+        objectFit: true,
+        video: data.video
+      })) }}
+    </div>
+  {% endcall %}
+
+  {% if data.video %}
+    {{ videoModal(data.video) }}
+  {% endif %}
+{% endmacro %}

@@ -195,5 +195,36 @@
         }
       ]
     }
+  },
+  "quoteBanner": {
+    "id": "quote-banner",
+    "sectionTitle": "Testimonials",
+    "theme": "t-pastel-green",
+    "quotes": [
+      {
+        "title": "“If I had to do it all again, I would start by choosing SHL Medical as our main partner as my very first“",
+        "author": "Dr. John Doe",
+        "role": "Chief Medical Officer, Softtech",
+        "image": {
+          "caption": "image caption example"
+      }
+    },
+    {
+      "title": "“Shl Medical is the best partner I have ever worked with. They are professional, reliable, and always deliver on time.“",
+      "author": "Dr. Jane Doe",
+      "role": "Quality Assurance Manager, Softtech",
+      "image": {
+        "caption": "image caption example"
+      }
+      },
+      {
+        "title": "“I have been working with SHL Medical for over 10 years and I can honestly say that they are the best in the business.“",
+        "author": "Dr. Jack Doe",
+        "role": "Head of Research and Development, Softtech",
+        "image": {
+          "caption": "image caption example"
+        }
+      }
+    ]
   }
 }

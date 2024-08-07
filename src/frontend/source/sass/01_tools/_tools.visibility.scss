@@ -13,7 +13,7 @@
   border: 0;
 }
 
-@mixin hero-overlap($theme: true, $paddingTop: true) {
+@mixin component-overlap($theme: true, $paddingTop: true) {
   // To overlap with the rounded corners of the main content
   padding-bottom: var(--rounded-corner-main-content-overlap-size);
   margin-bottom: calc(#{var(--rounded-corner-main-content-overlap-size)} * -1);
@@ -24,5 +24,15 @@
 
   @if ($paddingTop) {
     padding-top: var(--header-height); // To let the fixed header overlap the hero
+  }
+}
+
+@mixin component-overlap-reverse($theme: true) {
+  // To overlap with the rounded corners of the main content
+  padding-top: var(--rounded-corner-main-content-overlap-size);
+  margin-top: calc(#{var(--rounded-corner-main-content-overlap-size)} * -1);
+
+  @if ($theme) {
+    @include theme;
   }
 }

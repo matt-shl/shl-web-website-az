@@ -3,7 +3,12 @@
 \*----------------------------------*/
 
 // Font stacks
-$font-stack-primary: 'tenorite', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$font-stack-primary: 'Poppins', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$font-stack-zh-hans: 'Noto Sans SC', $font-stack-primary;
+$font-stack-zh-hant: 'Noto Sans TC', $font-stack-primary;
+$font-stack-jp: 'Noto Sans JP', $font-stack-primary;
+$font-stack-kr: 'Noto Sans KR', $font-stack-primary;
+$font-stack-old: 'tenorite', $font-stack-primary; // Please don't use this font outside of testing
 
 // Font sizes
 $font-size-root: 10px; // The font size set on the root html element.

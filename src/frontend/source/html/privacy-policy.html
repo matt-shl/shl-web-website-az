@@ -1,0 +1,20 @@
+{% set footerScrollingText = global.content.privacyPolicy.footerScrollingText %}
+
+{% extends 'layouts/default.html' %}
+
+{% from 'hero-content.html' import heroContent %}
+{% from 'rich-text.html' import richText %}
+
+{% block hero %}
+  {{ heroContent({
+    breadcrumbs: global.content.privacyPolicy.breadcrumbs.items,
+    title: global.content.privacyPolicy.hero.title
+  }) }}
+{% endblock %}
+
+{% block content %}
+  {{ richText(global.content.privacyPolicy.richText1 | clone | merge({readMoreDisabled: false})) }}
+  {{ richText(global.content.privacyPolicy.richText2 | clone | merge({readMoreDisabled: true})) }}
+  {{ richText(global.content.privacyPolicy.richText3 | clone | merge({readMoreDisabled: true})) }}
+  {{ richText(global.content.privacyPolicy.richText4) }}
+{% endblock %}
