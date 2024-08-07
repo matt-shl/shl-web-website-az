@@ -26,7 +26,7 @@
     </main>
     <vc:cookie-bar site-settings="@NodeProvider.SiteSettings" />
 
-    <vc:footer site-settings="@NodeProvider.SiteSettings" />
+    <vc:footer site-settings="@NodeProvider.SiteSettings" page="@Model as ICompositionBasePage" />
 
     <script async src="/assets/js/main.js" asp-append-version="true"></script>
     @Html.Raw(NodeProvider.SiteSettings?.BodyScripts)

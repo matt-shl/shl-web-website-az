@@ -2,10 +2,12 @@
 }
 
 .text-media-list__container {
+  @include grid(1);
   display: grid;
   grid-template-areas: 'title' 'media' 'text';
 
   @include screen-lg-and-bigger {
+    @include grid(2);
     align-items: flex-start;
     grid-template-areas: 'title title' 'colstart colend';
 

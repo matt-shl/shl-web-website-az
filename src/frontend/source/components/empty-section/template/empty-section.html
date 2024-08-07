@@ -3,11 +3,12 @@
 
 {% macro emptySection(data) %}
   {% call layoutSection(data.layoutSection | clone | merge({
-    classes: 'c-empty-section'
+    reduceMargin: 'bottom',
+    classes: 'c-empty-section' + (' c-empty-section--' + data.variant if data.variant or '')
   })) %}
     <div class="empty-section__inner">
-      <h2 class="empty-section__title">{{ data.title }}</h2>
-      <p class="empty-section__content">{{ data.content }}</p>
+      <h2 class="empty-section__title">{{ data.title | safe }}</h2>
+      <div class="empty-section__content">{{ data.content | safe }}</div>
 
       {% if data.ctaPrimary or data.ctaSecondary %}
         <div class="empty-section__buttons-container">
