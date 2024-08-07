@@ -1,26 +1,35 @@
 @using DTNL.UmbracoCms.Web.Components
+@using static DTNL.UmbracoCms.Web.Components.Navigation
+
 @model DTNL.UmbracoCms.Web.Components.Header
 
-<header class="c-header">
-	<div class="o-container">
-		<div class="u-flex u-flex-middle header__container">
-			<a href="@Model.LogoUrl" class="header__logo">
-				<svg src="@Model.LogoPath" />
-			</a>
-            <div class="header-navigation">
-                <nav class="header-navigation__nav" aria-label="Main menu" role="navigation">
-                    <ul class="header-navigation__list" role="menu">
-                        @foreach (Link? link in Model.Links)
-                        {
-                            <li class="header-navigation__item" role="menuitem">
-                                <partial name="Link" model="link" />
-                            </li>
-                        }
-                    </ul>
-                </nav>
+<header class="c-header" js-hook-header>
+    <div class="header__container">
+        <div class="header__content">
+            <a href="/" class="header__logo" title=@Model.HomeTitle>
+                <svg src="@(SvgAliases.Brand.LogoColor)" />
+            </a>
+
+            <button js-hook-header-hamburger
+                    class="header__hamburger"
+                    aria-controls="navigation-mobile"
+                    aria-label=@Model.OpenMenuLabel>
+                <svg src="@(SvgAliases.Icons.Menu)" />
+                Menu
+            </button>
+
+            <div class="header__navigation">
+                <partial name="Navigation/NavigationDesktop" model="@(Navigation.Create(Model.Navigation))" />
+            
             </div>
 
-            <vc:language-switch />
-		</div>
-	</div>
+            <div class="header__language-selector">
+            </div>
+        </div>
+    </div>
 </header>
+
+<div>
+    <partial name="Navigation/NavigationMobile" model="@(Navigation.Create(Model.Navigation))" />
+</div>
+
