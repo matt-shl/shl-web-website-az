@@ -15,9 +15,10 @@
     @Html.Raw(NodeProvider.SiteSettings?.HeaderScripts)
 </head>
 <body>
-    <main id="content" role="main">
-        <vc:header home-page="@NodeProvider.HomePage" />
+    <vc:header home-page="@NodeProvider.HomePage" />
 
+    <main id="content" role="main">
+        
         <vc:hero page="@(Model as ICompositionBasePage)" />
 
         <div class="page__content" id="main-content" js-hook-inview>
@@ -25,7 +26,7 @@
         </div>
     </main>
 
-    <vc:footer site-settings="@NodeProvider.SiteSettings" />
+    <vc:footer site-settings="@NodeProvider.SiteSettings" page="@Model as ICompositionBasePage" />
 
     <script async src="/assets/js/main.js" asp-append-version="true"></script>
     @Html.Raw(NodeProvider.SiteSettings?.BodyScripts)
