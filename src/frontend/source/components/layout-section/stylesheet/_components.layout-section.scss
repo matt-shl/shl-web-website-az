@@ -110,12 +110,12 @@
     grid-template-columns: 1fr;
     gap: $spacing-16;
 
-    @include screen-sm-and-bigger {
+    @include screen-md-and-bigger {
       grid-template-columns: repeat(2, 1fr);
       gap: $spacing-80 $spacing-16;
     }
 
-    @include screen-md-and-bigger {
+    @include screen-lg-and-bigger {
       grid-template-columns: repeat(3, 1fr);
     }
   }
