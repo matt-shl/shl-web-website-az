@@ -6,6 +6,12 @@
   display: flex;
   margin-block: $spacing-48;
 
+  &--in-hero {
+    @include component-overlap;
+    color: var(--color-content);
+    margin-bottom: 0;
+  }
+
   .is--reduced-motion & {
     @include h1;
     line-height: 1.1;
@@ -14,6 +20,10 @@
 
   @include screen-lg-and-bigger {
     margin-bottom: $spacing-80;
+
+    &--in-hero {
+      margin-bottom: 0;
+    }
   }
 }
 
