@@ -43,38 +43,3 @@
   transform-origin: 0%;
   background-color: var(--color-content);
 }
-
-.carousel__swipe-indicator {
-  border-radius: $radii-full;
-  background-color: $color-white;
-  position: fixed;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  opacity: 0;
-  width: 80px;
-  height: 80px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: $spacing-16;
-  transition: 300ms opacity;
-  z-index: 5;
-
-  svg {
-    width: 16px;
-    height: 16px;
-  }
-
-  &.is-active {
-    opacity: 1;
-  }
-
-  html.is-touch & {
-    display: none;
-  }
-
-  @include screen-md-and-smaller {
-    display: none;
-  }
-}
