@@ -10,6 +10,10 @@
         {
             bool isLastItem = (pos == Model.Pages.Count);
             <li class="breadcrumb__list-item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                <span class="breadcrumb__icon-back">
+                    <!--  icons/arrow-left.svg  -->
+                    <svg src="@SvgAliases.Icons.ArrowLeft" />
+                </span>
                 <a class="breadcrumb__item @(isLastItem ? "breadcrumb__item--current" : null)" itemprop="item" href="@(isLastItem ? "#" : item.Url)" title="@item.Label">
                     <span itemprop="name">
                         @item.Label
