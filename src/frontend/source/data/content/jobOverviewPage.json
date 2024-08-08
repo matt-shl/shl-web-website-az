@@ -1,0 +1,30 @@
+{
+  "footerScrollingText": "Caring. Inclusive. Driven.",
+  "hero": {
+    "title": "Find your dream job at SHL Medical",
+    "breadcrumbs": [
+      {
+        "url": "/home.html",
+        "label": "Home"
+      },
+      {
+        "url": "/job-overview.html",
+        "label": "Job Overview"
+      }
+    ]
+  },
+  "jobItems": [
+    {
+      "title": "Simulation Engineer - Structural",
+      "location": "Taiwan",
+      "url": "#",
+      "tags": ["Senior", "Full-time", "Engineering"]
+    },
+    {
+      "title": "Global Customer Order Manager",
+      "location": "Taiwan",
+      "url": "#",
+      "tags": ["Senior", "Full-time", "Customer Service"]
+    }
+  ]
+}

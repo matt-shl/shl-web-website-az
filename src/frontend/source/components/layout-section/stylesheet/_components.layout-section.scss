@@ -105,11 +105,14 @@
 .layout-section__wrapper {
   width: 100%;
 
+  .c-layout-section--grid-single-column &,
   .c-layout-section--grid & {
     display: grid;
     grid-template-columns: 1fr;
     gap: $spacing-16;
+  }
 
+  .c-layout-section--grid & {
     @include screen-md-and-bigger {
       grid-template-columns: repeat(2, 1fr);
       gap: $spacing-80 $spacing-16;

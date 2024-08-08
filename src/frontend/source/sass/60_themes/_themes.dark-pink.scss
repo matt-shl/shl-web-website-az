@@ -17,6 +17,13 @@
   // Cards
   --color-card-background: #{$color-pale-pink};
   --color-card-content: #{$color-dark-pink};
+
+  // Job listing item
+  --job-listing-item-color: #{$color-dark-pink};
+  --job-listing-item-bg-color: #{$color-white};
+  --job-listing-item-color-hover: #{$color-dark-pink};
+  --job-listing-item-bg-color-hover: #{$color-pale-pink};
+  --job-listing-item-tag-bg-color: #{$color-pale-pink};
 }
 
 html.t-dark-pink {
