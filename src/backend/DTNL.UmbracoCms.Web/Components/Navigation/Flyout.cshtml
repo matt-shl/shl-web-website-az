@@ -17,7 +17,9 @@
                     <li class="flyout__main-item @(i == 0 ? "is--open" : "")" js-hook-flyout-main-item>
                         <button class="flyout__main-item-button" title="@item.Title" js-hook-flyout-main-item-anchor aria-expanded="false" aria-controls="flyout-list-(@item.Id)-(i)">
                             @item.Title
-                            <svg src="@(SvgAliases.Icons.ChevronRight)" />
+                            <div class="flyout__main-item-button-icon">
+                                <svg src="@(SvgAliases.Icons.ChevronRight)" />
+                            </div>
                         </button>
 
                         <ul class="flyout__subitem-list" id="flyout-list-(@item.Id)-(i)">

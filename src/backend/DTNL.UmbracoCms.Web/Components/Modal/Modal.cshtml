@@ -1,6 +1,6 @@
 @model DTNL.UmbracoCms.Web.Components.Modal;
 
-<div class="c-modal @Model.Class @(Model.Size != null ? $"modal-size--{Model.Size}" : null)"
+<div class="c-modal @Model.Class @(Model.Size != null ? $"c-modal--size-{Model.Size}" : null)"
      id="@Model.Id"
      data-modal-auto-focus="@(Model.AutoFocus)"
      data-modal-mobile-only="@(Model.MobileOnly)"
