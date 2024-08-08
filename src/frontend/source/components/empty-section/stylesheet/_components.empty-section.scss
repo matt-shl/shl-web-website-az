@@ -11,6 +11,10 @@
   flex-direction: column;
   padding-bottom: $spacing-24;
 
+  .c-empty-section--tight & {
+    padding-bottom: 0;
+  }
+
   @include screen-md-and-bigger {
     grid-column: 2 / span 10;
     padding-block: $spacing-20;
@@ -28,6 +32,7 @@
 
 .empty-section__content {
   @include body-l;
+  @include rich-text;
 }
 
 .empty-section__buttons-container {

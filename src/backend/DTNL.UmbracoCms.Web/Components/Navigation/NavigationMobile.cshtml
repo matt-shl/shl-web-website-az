@@ -1,0 +1,76 @@
+@using DTNL.UmbracoCms.Web.Components;
+@using static DTNL.UmbracoCms.Web.Components.Navigation;
+
+@model DTNL.UmbracoCms.Web.Components.Navigation;
+@inject ICultureDictionary CultureDictionary
+
+<partial name="Modal" model="@(new Modal {Id = "navigation-mobile", Title="navigation-mobile", Size = "navigation-mobile", KeepScrollPosition = true, CloseAllOthers = true })">
+        <div class="c-navigation-mobile">
+        <nav title=@CultureDictionary.GetTranslation(TranslationAliases.Navigation.Mainnavigation)>
+                <partial name="./NavigationMobileListItem.cshtml" model="@(new Components.Navigation
+                    {
+                        Items = Model.Items
+                    })" />
+                <div class="navigation-mobile__line"></div>
+                <div class="navigation-mobile-selector"></div>
+            </nav>
+        </div>
+</partial>
+
+
+@foreach(MenuItem item in Model.Items)
+{
+    @if (item?.Submenu?.Items != null)
+    {
+        <partial name="Modal" model="@(new Modal {Id = $"navigation-mobile-{item?.Id}", Size = "navigation-mobile", KeepScrollPosition = true, CloseAllOthers = true })">
+            <div class="c-navigation-mobile">
+                <partial name="./NavigationMobileListItem.cshtml" model="@(new Components.Navigation
+                    {
+                        Items = item.Submenu.Items,
+                        Header = new Navigation.NavigationHeaderListItem {
+                                Title = item.Submenu.Title,
+                                Id = "navigation-mobile",
+                        },
+                        Parent = new Navigation.NavigationListItem {
+                                Title = item?.Submenu.Title,
+                                Id = item?.Submenu.Id,
+                        },
+                    })"
+                />               
+            </div>
+        </partial>
+    }
+}
+
+
+
+@foreach (MenuItem item in Model.Items)
+{
+    @if (item?.Submenu?.Items != null)
+    {
+        @foreach (MenuItem subitem in item.Submenu.Items)
+        {
+            @if (subitem?.NestedSubmenu?.Links != null)
+            {
+                    <partial name="Modal" model="@(new Modal {Id = $"navigation-mobile-{item?.Id}-{subitem?.Id}", Size = "navigation-mobile", KeepScrollPosition = true, CloseAllOthers = true })">
+                    <div class="c-navigation-mobile">
+                            <partial name="./NavigationMobileListItem.cshtml" model="@(new Components.Navigation
+                                {
+                                    Items = subitem?.NestedSubmenu?.Links ?? [],
+                                    Header = new Navigation.NavigationHeaderListItem {
+                                            Title = subitem?.NestedSubmenu.Title,
+                                            Id = $"navigation-mobile-{item?.Id}",
+                                    },
+                                    Parent = new Navigation.NavigationListItem {
+                                            Title = item?.Submenu.Title,
+                                            Id = subitem?.NestedSubmenu.Id,
+                                    },
+                                    AllLink = new Link { Url = subitem?.All?.Url ?? "", Label = subitem?.All != null ? subitem?.All?.Label : null}
+                                })" 
+                                />
+                        </div>
+                    </partial>
+            }                   
+        };
+    }
+};

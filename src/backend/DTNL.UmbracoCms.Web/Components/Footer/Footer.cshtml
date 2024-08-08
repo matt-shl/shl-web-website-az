@@ -4,6 +4,10 @@
 @model DTNL.UmbracoCms.Web.Components.Footer
 
 <footer class="c-footer" id="footer">
+    @if(Model.FooterScrollingText != null)
+    {
+        <partial name="Slogan" model="@(Model.FooterScrollingText)" />
+    }
     <div class="footer__main">
 
         <p class="footer__description" asp-if="@Model.Text">

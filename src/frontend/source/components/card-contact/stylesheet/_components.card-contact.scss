@@ -9,9 +9,10 @@
   @include theme-card;
   @include card-image-container-base;
 
+  pointer-events: none;
+
   &:has(.c-card-overlay) {
     border-end-start-radius: 0;
-    border-end-end-radius: 0;
   }
 }
 

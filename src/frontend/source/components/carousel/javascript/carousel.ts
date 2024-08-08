@@ -5,7 +5,7 @@ import { A11y, Scrollbar } from 'swiper/modules'
 import RafThrottle from '@/utilities/raf-throttle'
 import ScreenDimensions from '@/utilities/screen-dimensions'
 
-const JS_HOOK_CAROUSEL_SWIPE_INDICATOR = '[js-hook-carousel-swipe-indicator]'
+const JS_HOOK_CAROUSEL_SWIPE_INDICATOR = '[js-hook-carousel-indicator]'
 
 const CLASS_CAROUSEL_PAGINATION_ELEM = 'carousel__pagination'
 const CLASS_CAROUSEL_PAGINATION_ELEM_FILL = 'carousel__pagination-fill'
@@ -17,16 +17,21 @@ class Carousel {
   id: string
   initialized: boolean
   swipeIndicator: HTMLElement | null
+  allowPointerDownEvent: boolean
 
   constructor(element: HTMLElement) {
     this.element = element
     this.mobileOnly = this.element.dataset.mobileOnly === 'true'
     this.id = this.element.id
     this.initialized = false
-    this.swipeIndicator = this.element.querySelector(JS_HOOK_CAROUSEL_SWIPE_INDICATOR)
+    this.swipeIndicator = document.querySelector(JS_HOOK_CAROUSEL_SWIPE_INDICATOR)
+    // Check if the carousel has links inside the slides
+    this.allowPointerDownEvent =
+      [...this.element.querySelectorAll('.swiper-slide > a')].length === 0
 
     this.bindEvents()
     this.initCarousel()
+    this.#handleMouseIndicator()
   }
 
   bindEvents() {
@@ -39,8 +44,6 @@ class Carousel {
         delay: 250,
       },
     ])
-
-    // this.handleMouseIndicator()
   }
 
   initCarousel() {
@@ -77,6 +80,7 @@ class Carousel {
             draggable: false,
             dragClass: CLASS_CAROUSEL_PAGINATION_ELEM_FILL,
           },
+          touchStartPreventDefault: !this.allowPointerDownEvent,
           observer: true,
           observeParents: true,
           grabCursor: true,
@@ -96,52 +100,18 @@ class Carousel {
     }
   }
 
-  // handleMouseIndicator() {
-  //   gsap.set(JS_HOOK_CAROUSEL_SWIPE_INDICATOR, { xPercent: -50, yPercent: -50 })
+  #handleMouseIndicator() {
+    if (!this.swiper || !this.swipeIndicator || !!this.swiper.isLocked) return
+    if (!this.allowPointerDownEvent) return
 
-  //   const xTo = gsap.quickTo(JS_HOOK_CAROUSEL_SWIPE_INDICATOR, 'x', {
-  //       duration: 0.1,
-  //       ease: 'power3',
-  //     }),
-  //     yTo = gsap.quickTo(JS_HOOK_CAROUSEL_SWIPE_INDICATOR, 'y', { duration: 0.1, ease: 'power3' })
+    this.element.addEventListener('mouseenter', () => {
+      this.swipeIndicator?.classList.add('is-active')
+    })
 
-  //   //Define the scale animation for showing and hiding the indicator
-  //   const scaleNormal = () =>
-  //     gsap.to(JS_HOOK_CAROUSEL_SWIPE_INDICATOR, { scale: 1, duration: 0.2, ease: 'power3.out' })
-  //   const scaleDown = () =>
-  //     gsap.to(JS_HOOK_CAROUSEL_SWIPE_INDICATOR, { scale: 0.2, duration: 0.2, ease: 'power3.out' })
-  //   const scaleUp = () =>
-  //     gsap.to(JS_HOOK_CAROUSEL_SWIPE_INDICATOR, { scale: 2, duration: 0.2, ease: 'power3.out' })
-
-  //   this.element.addEventListener('mouseenter', () => {
-  //     const isScrollbarLocked = this.swiper.isLocked
-  //     if (isScrollbarLocked) return
-  //     this.swipeIndicator?.classList.add('is-active')
-  //     // Scale up when the mouse enters
-  //   })
-
-  //   this.element.addEventListener('mousedown', e => {
-  //     console.log('mousedown')
-  //     xTo(e.clientX)
-  //     yTo(e.clientY)
-  //     scaleUp() // Scale up when the mouse is down
-  //   })
-
-  //   this.element.addEventListener('mouseup', () => {
-  //     console.log('mouseup')
-  //     scaleNormal() // Scale up when the mouse is up
-  //   })
-
-  //   this.element.addEventListener('mousemove', e => {
-  //     xTo(e.clientX)
-  //     yTo(e.clientY)
-  //   })
-
-  //   this.element.addEventListener('mouseleave', () => {
-  //     this.swipeIndicator?.classList.remove('is-active')
-  //     // Scale down when the mouse leaves
-  //   })
-  //}
+    this.element.addEventListener('mouseleave', () => {
+      this.swipeIndicator?.classList.remove('is-active')
+    })
+  }
 }
 
 export default Carousel

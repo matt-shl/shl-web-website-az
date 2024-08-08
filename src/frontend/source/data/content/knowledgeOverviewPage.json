@@ -1,0 +1,210 @@
+{
+  "footerScrollingText": "Caring. Inclusive. Driven.",
+  "hero": {
+    "title": "News",
+    "breadcrumbs": [
+      {
+        "url": "/home.html",
+        "label": "Home"
+      },
+      {
+        "url": "/parent-1.html",
+        "label": "Knowledge and insights"
+      },
+      {
+        "url": "/current-item.html",
+        "label": "News"
+      }
+    ]
+  },
+  "cards": [
+    {
+      "tag": "Press Release",
+      "title": "SHL Medical lays the foundation stone for state-of-the-art headquarters",
+      "content": "SHL Medical, in collaboration with Tech Cluster Zug and esteemed partners, on May 23, 2024, proudly marked a significant milestone with the cornerstone ceremony for its forthcoming flagship headquarters, the “SHL-Südtor” project.",
+      "url": "#",
+      "ctaLabel": "Read more"
+    },
+    {
+      "tag": "Press Release",
+      "title": "SHL Medical partners with Spowdi for the Water Drop Initiative to support SEWA's women micro-entrepreneurs",
+      "content": "Within the framework of its ESG strategy, SHL Medical has pledged to support Spowdi Smart Farming and the 'Water Drop Initiative', an effort to empower small-hold farmers and women micro-entrepreneurs in India, with a sustainable irrigation system based on solar energy.  Small-hold farming contributes to one-third of global food production - in India, 85% of…",
+      "url": "#",
+      "ctaLabel": "Read more"
+    },
+    {
+      "tag": "Events",
+      "title": "SHL to attend 2022 NSTC Science Train Program",
+      "content": "SHL Medical is excited to announce our first-time participation in the NSTC Science Train Program, 2022.",
+      "url": "#",
+      "ctaLabel": "Read more"
+    },
+    {
+      "tag": "Donation",
+      "title": "SHL donates CHF150,000 to support humanitarian aid in Ukraine",
+      "content": "Due to the current situation in Ukraine, SHL Medical has committed to donating CHF150,000 to support people affected by the humanitarian crisis.  In order to support the widest possible range of relief efforts, the donation will be distributed among three major charitable organizations. Of the total amount, CHF50,000 will go to the International Committee of…",
+      "url": "#",
+      "ctaLabel": "Read more"
+    }
+  ],
+  "filter": {
+      "totalAmountLabel": "47 Results",
+      "totalAmount": 47,
+      "filters": [
+        {
+          "label": "Sort",
+          "inputType": "radio",
+          "options": [
+            {
+              "label": "Newest first",
+              "value": "sorting-newest",
+              "id": "filter-sorting-newest",
+              "checked": false,
+              "attr": "data-url-replacement='replacement-url.html?customExampleValue=wowowow' data-endpoint='__api-response--filters.html'",
+              "sortItem": true,
+              "hook": "filters-input"
+            },
+            {
+              "label": "Oldest first",
+              "value": "sorting-popular",
+              "id": "filter-sorting-popular",
+              "checked": true,
+              "attr": "data-url-replacement='replacement-url.html?customExampleValue=wowowow' data-endpoint='__api-response--filters.html'",
+              "sortItem": true,
+              "hook": "filters-input"
+            }
+          ]
+        },
+        {
+          "label": "Type",
+          "inputType": "checkbox",
+          "options": [
+            {
+              "label": "Business",
+              "value": "business",
+              "id": "filter-business",
+              "checked": false,
+              "attr": "data-url-replacement='replacement-url.html?customExampleValue=wowowow' data-endpoint='__api-response--filters-no-results.html'",
+              "hook": "filters-input"
+            },
+            {
+              "label": "Innovation",
+              "value": "innovation",
+              "id": "filter-innovation",
+              "checked": false,
+              "attr": "data-url-replacement='replacement-url.html?customExampleValue=wowowow' data-endpoint='__api-response--filters-no-results.html'",
+              "hook": "filters-input"
+            },
+            {
+              "label": "Donations",
+              "value": "donations",
+              "id": "filter-donations",
+              "checked": false,
+              "attr": "data-url-replacement='replacement-url.html?customExampleValue=wowowow' data-endpoint='__api-response--filters-no-results.html'",
+              "hook": "filters-input"
+            },
+            {
+              "label": "Support",
+              "value": "support",
+              "id": "filter-support",
+              "checked": false,
+              "attr": "data-url-replacement='replacement-url.html?customExampleValue=wowowow' data-endpoint='__api-response--filters-no-results.html'",
+              "hook": "filters-input"
+            },
+            {
+              "label": "Vision",
+              "value": "vision",
+              "id": "filter-vision",
+              "checked": false,
+              "attr": "data-url-replacement='replacement-url.html?customExampleValue=wowowow' data-endpoint='__api-response--filters-no-results.html'",
+              "hook": "filters-input"
+            }
+          ]
+        },
+        {
+          "label": "Reading time",
+          "inputType": "checkbox",
+          "options": [
+            {
+              "label": "0 - 5 minutes",
+              "value": "0-5-minutes",
+              "id": "filter-0-5-minutes",
+              "checked": false,
+              "attr": "data-url-replacement='replacement-url.html?customExampleValue=wowowow' data-endpoint='__api-response--filters.html'",
+              "hook": "filters-input"
+            },
+           {
+              "label": "5 - 10 minutes",
+              "value": "5-10-minutes",
+              "id": "filter-5-10-minutes",
+              "checked": false,
+              "attr": "data-url-replacement='replacement-url.html?customExampleValue=wowowow' data-endpoint='__api-response--filters.html'",
+              "hook": "filters-input"
+            },
+            {
+              "label": "10 - 15 minutes",
+              "value": "10-15-minutes",
+              "id": "filter-10-15-minutes",
+              "checked": false,
+              "attr": "data-url-replacement='replacement-url.html?customExampleValue=wowowow' data-endpoint='__api-response--filters.html'",
+              "hook": "filters-input"
+            },
+            {
+              "label": "15 - 20 minutes",
+              "value": "15-20-minutes",
+              "id": "filter-15-20-minutes",
+              "checked": false,
+              "attr": "data-url-replacement='replacement-url.html?customExampleValue=wowowow' data-endpoint='__api-response--filters.html'",
+              "hook": "filters-input"
+            },
+            {
+              "label": "20+ minutes",
+              "value": "20+-minutes",
+              "id": "filter-20+-minutes",
+              "checked": false,
+              "attr": "data-url-replacement='replacement-url.html?customExampleValue=wowowow' data-endpoint='__api-response--filters.html'",
+              "hook": "filters-input"
+            }
+          ]
+        },
+        {
+          "label": "Location",
+          "inputType": "checkbox",
+          "options": [
+           {
+            "label": "Switzerland",
+            "value": "switzerland",
+            "id": "filter-switzerland",
+            "checked": false,
+            "attr": "data-url-replacement='replacement-url.html?customExampleValue=wowowow' data-endpoint='__api-response--filters.html'",
+            "hook": "filters-input"
+           },
+           {
+            "label": "Germany",
+            "value": "germany",
+            "id": "filter-germany",
+            "checked": false,
+            "attr": "data-url-replacement='replacement-url.html?customExampleValue=wowowow' data-endpoint='__api-response--filters.html'",
+            "hook": "filters-input"
+           },
+           {
+            "label": "Taiwan",
+            "value": "taiwan",
+            "id": "filter-taiwan",
+            "checked": false,
+            "attr": "data-url-replacement='replacement-url.html?customExampleValue=wowowow' data-endpoint='__api-response--filters.html'",
+            "hook": "filters-input"
+           },
+           {
+            "label": "Sweden",
+            "value": "sweden",
+            "id": "filter-sweden",
+            "checked": false,
+            "attr": "data-url-replacement='replacement-url.html?customExampleValue=wowowow' data-endpoint='__api-response--filters.html'",
+            "hook": "filters-input"
+           }
+          ]
+        }
+      ]
+    }
+}

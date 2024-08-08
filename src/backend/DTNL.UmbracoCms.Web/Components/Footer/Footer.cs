@@ -30,8 +30,12 @@ public class Footer : ViewComponentExtended
 
     public required List<Button> BottomLinks { get; set; }
 
-    public IViewComponentResult Invoke(SiteSettings? siteSettings)
+    public Slogan? FooterScrollingText { get; set; }
+
+    public IViewComponentResult Invoke(SiteSettings? siteSettings, ICompositionBasePage? page)
     {
+        FooterScrollingText = Slogan.Create(page?.Slogan?.Select(block => block.Content).OfType<Umbraco.Cms.Web.Common.PublishedModels.Slogan>().FirstOrDefault(), "footer__scrolling-text");
+
         Text = siteSettings?.FooterText;
 
         LinkGroupsAriaLabel = CultureDictionary.GetTranslation(TranslationAliases.Common.Footer.LinkGroupsLabel);
