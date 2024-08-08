@@ -39,6 +39,7 @@
   margin-top: 0;
 
   @include screen-lg-and-bigger {
+    min-height: 1.9em; // force it to be at least almost 2 lines high
     margin-top: calc(#{var(--hero-home-shape-height)} * -1 + 100px);
   }
 }

@@ -1,6 +1,7 @@
+import Events from "@utilities/events";
+
 import * as triggers from '../triggers'
 import {VideoOptions} from '../video'
-import Events from "@utilities/events";
 
 type NativeVideoSourceType = {
   url: string
@@ -122,7 +123,7 @@ class NativeVideo {
   _addMediaSources() {
     this.sourceData.source.forEach(source => {
       const sourceElement = document.createElement('source')
-      sourceElement.type = source.type
+      sourceElement.type = source.type || "video/mp4"
       sourceElement.src = source.url
       this.player.appendChild(sourceElement)
     })
