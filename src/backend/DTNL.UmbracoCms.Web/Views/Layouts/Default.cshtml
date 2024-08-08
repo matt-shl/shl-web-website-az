@@ -3,7 +3,7 @@
 
 <!DOCTYPE html>
 
-<html lang="@System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName" dir="ltr" class="o-html is--header-white u-lang-default @ViewBag.HtmlClass @ThemeHelper.GetCssClasses(Model)">
+<html lang="@System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName" dir="ltr" class="o-html u-lang-default @ViewBag.HtmlClass @HeaderColorHelper.GetColor(Model) @ThemeHelper.GetCssClasses(Model)">
 <head>
     <vc:meta-tags page="@Model" site-settings="@NodeProvider.SiteSettings" />
     <vc:structured-data home-page="@NodeProvider.HomePage" site-settings="@NodeProvider.SiteSettings" />
@@ -20,7 +20,9 @@
         
         <vc:hero page="@(Model as ICompositionBasePage)" />
         <div class="page__content" id="main-content" js-hook-inview>
-            @RenderBody()
+            <div class="page__content-items">
+                @RenderBody()
+            </div>
         </div>
     </main>
     <vc:cookie-bar site-settings="@NodeProvider.SiteSettings" />
