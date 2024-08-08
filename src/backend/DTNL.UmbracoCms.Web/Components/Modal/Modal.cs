@@ -12,17 +12,17 @@ public class Modal
 
     public string? Id { get; set; }
 
-    public bool? MobileOnly { get; set; }
+    public bool MobileOnly { get; set; }
 
-    public bool? AutoFocus { get; set; }
+    public bool AutoFocus { get; set; }
 
-    public bool? NoBodyClass { get; set; }
+    public bool NoBodyClass { get; set; }
 
-    public bool? CloseAllOthers { get; set; }
+    public bool CloseAllOthers { get; set; }
 
-    public bool? KeepScrollPosition { get; set; }
+    public bool KeepScrollPosition { get; set; }
 
-    public bool? AutoClose { get; set; }
+    public bool AutoClose { get; set; }
 
     public bool NoClose { get; set; }
 }

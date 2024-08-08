@@ -2,12 +2,12 @@
 
 <div class="c-modal @Model.Class @(Model.Size != null ? $"modal-size--{Model.Size}" : null)"
      id="@Model.Id"
-     data-modal-auto-focus="@(Model.AutoFocus is true ? "true" : "false")"
-     data-modal-mobile-only="@(Model.MobileOnly is true ? "true" : "false")"
-     data-modal-no-body-class="@(Model.NoBodyClass is true ? "true" : "false")"
-     data-modal-close-all-others="@(Model?.CloseAllOthers is true ? "true" : "false")"
-     data-modal-keep-scroll-position="@(Model?.KeepScrollPosition is true ? "true" : "false")"
-     data-modal-auto-close="@(Model?.AutoClose is true ? "true" : "false")"
+     data-modal-auto-focus="@(Model.AutoFocus ? "true" : "false")"
+     data-modal-mobile-only="@(Model.MobileOnly ? "true" : "false")"
+     data-modal-no-body-class="@(Model.NoBodyClass ? "true" : "false")"
+     data-modal-close-all-others="@(Model.CloseAllOthers ? "true" : "false")"
+     data-modal-keep-scroll-position="@(Model.KeepScrollPosition ? "true" : "false")"
+     data-modal-auto-close="@(Model.AutoClose ? "true" : "false")"
      js-hook-modal>
     <div class="modal__container">
         <div class="modal__content" role="dialog">
