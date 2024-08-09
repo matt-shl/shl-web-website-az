@@ -20,9 +20,15 @@
     <div class="layout-section__container{% if data.containerClass %} {{ data.containerClass }}{% endif %}">
     {% endif %}
 
-      <div class="layout-section__wrapper{% if data.wrapperClass %} {{ data.wrapperClass }}{% endif %}">
-        {{ caller() }}
-      </div>
+      {% if data.listLabel %}
+        <ul class="layout-section__wrapper layout-section__wrapper--list {% if data.wrapperClass %} {{ data.wrapperClass }}{% endif %}" aria-label="{{ data.listLabel }}">
+          {{ caller() }}
+        </ul>
+      {% else %}
+        <div class="layout-section__wrapper {% if data.wrapperClass %} {{ data.wrapperClass }}{% endif %}">
+          {{ caller() }}
+        </div>
+      {% endif %}
 
     {% if not data.fullWidth %}
     </div>

@@ -25,12 +25,15 @@
   <div js-hook-replace-content="overview-content">
     {% call layoutSection({
       variant: "grid-single-column",
+      listLabel: "Job overview items",
       id: "content"
     }) %}
       {# this first for is just to show the same card multiple times #}
       {% for _ in range(3) %}
         {% for data in jobData.jobItems %}
+          <li>
           {{ jobListingItem(data) }}
+          </li>
         {% endfor %}
       {% endfor %}
     {% endcall %}
