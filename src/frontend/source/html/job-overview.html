@@ -3,6 +3,7 @@
 
 {% set headerIsWhite = true %}
 {% set showFiltersModal = true %}
+{% set footerScrollingText = global.content.home.footerScrollingText %}
 
 {% extends 'layouts/default.html' %}
 
@@ -11,6 +12,7 @@
 {% from 'filters.html' import filters %}
 {% from 'job-listing-item.html' import jobListingItem %}
 {% from 'layout-section.html' import layoutSection %}
+{% from 'text-media.html' import textMedia %}
 
 {% set jobData = global.content.jobOverviewPage %}
 
@@ -26,6 +28,7 @@
     {% call layoutSection({
       variant: "grid-single-column",
       listLabel: "Job overview items",
+      reduceMargin: "top-bottom",
       id: "content"
     }) %}
       {# this first for is just to show the same card multiple times #}
@@ -40,5 +43,7 @@
 
     {{ pagination (global.content.pagination) }}
   </div>
+
+  {{ textMedia(jobData.textMedia) }}
 
 {% endblock %}
