@@ -4,11 +4,11 @@
   },
   "title": "Sorry, we have no products that match your search criteria",
   "content": "<p>We currently don't have any products matching your criteria. Do you feel like something is missing in our assortiment, let us know!</p>",
-  "ctaPrimary": {
+  "cta1": {
     "label": "Reset filters",
     "href": "#"
   },
-  "ctaSecondary": {
+  "cta2": {
     "label": "View all items",
     "href": "#"
   }

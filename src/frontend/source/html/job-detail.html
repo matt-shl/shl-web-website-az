@@ -1,0 +1,28 @@
+{% set theme = "dark-pink" %}
+{% set themeColor = "#662949" %}
+
+{% set headerIsWhite = true %}
+{% set showFiltersModal = true %}
+
+{% extends 'layouts/default.html' %}
+
+{% from 'hero-content.html' import heroContent %}
+{% from 'job-listing-item.html' import jobListingItem %}
+{% from 'layout-section.html' import layoutSection %}
+{% from 'section-image-carousel.html' import sectionImageCarousel %}
+
+{% set showCarouselMouseIndicator = true %}
+
+{% set jobDetailData = global.content.jobDetailPage %}
+
+{% block hero %}
+  {{ heroContent(jobDetailData.hero) }}
+{% endblock %}
+
+{% block content %}
+
+  <div js-hook-replace-content="overview-content">
+    {{ sectionImageCarousel(jobDetailData.imageCarousel) }}
+  </div>
+
+{% endblock %}

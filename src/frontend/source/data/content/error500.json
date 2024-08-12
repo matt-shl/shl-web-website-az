@@ -5,11 +5,11 @@
   "content": {
     "title": "Sorry, something went wrong",
     "content": "<ul><li>Check your internet connection</li><li>Refresh the page</li><li>Try again later</li></ul>",
-    "ctaPrimary": {
+    "cta1": {
       "label": "Homepage",
       "href": "#"
     },
-    "ctaSecondary": {
+    "cta2": {
       "label": "Product overview",
       "href": "#"
     }

@@ -89,7 +89,7 @@
     "theme": "t-general",
     "description": "We spend years and years developing new techniques to get them ready for the market. And they are here. Discover them now.",
     "title": "Our latest innovations",
-    "ctaPrimary": {
+    "cta1": {
       "url": "#",
       "label": "Discover all"
     },

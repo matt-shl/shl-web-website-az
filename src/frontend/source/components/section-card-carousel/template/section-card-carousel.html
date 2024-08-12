@@ -35,18 +35,18 @@
   {% endif %}
 
    <div class="section-card-carousel__container">
-    {% if data.description or data.ctaPrimary or data.ctaSecondary %}
+    {% if data.description or data.cta1 or data.cta2 %}
     <div class="section-card-carousel__content-outer">
       <div class="section-card-carousel__content-inner">
       {% if data.description %}
         <p class="section-card-carousel__description">{{ data.description }}</p>
       {% endif %}
       <div class="section-card-carousel__button-container">
-        {% if data.ctaPrimary %}
-         {{ button(data.ctaPrimary | clone | merge({icon: 'arrow-top-right'})) }}
+        {% if data.cta1 %}
+         {{ button(data.cta1 | clone | merge({icon: data.cta1.icon or "arrow-top-right"})) }}
          {% endif %}
-        {% if data.ctaSecondary %}
-         {{ button(data.ctaSecondary| clone | merge({variant: "secondary", icon: 'arrow-top-right'})) }}
+        {% if data.cta2 %}
+         {{ button(data.cta2| clone | merge({variant: data.cta2.variant or "secondary", icon: data.cta2.icon or "arrow-top-right"})) }}
          {% endif %}
       </div>
       </div>

@@ -53,25 +53,25 @@ class Carousel {
           breakpoints: {
             0: {
               slidesPerView: Number(this.element.dataset.slidesMobile) || 1,
-              spaceBetween: Number(this.element.dataset.spaceBetweenMobile) || 8,
+              spaceBetween: Number(this.element.dataset.spaceBetweenMobile) || 16,
               allowTouchMove: true,
             },
             480: {
               slidesPerView: Number(this.element.dataset.slidesMobile) || 1,
-              spaceBetween: Number(this.element.dataset.spaceBetweenMobile) || 8,
+              spaceBetween: Number(this.element.dataset.spaceBetweenMobile) || 16,
               allowTouchMove: true,
             },
             768: {
               slidesPerView: Number(this.element.dataset.slidesTabletPortrait) || 2,
-              spaceBetween: Number(this.element.dataset.spaceBetweenTabletPortrait) || 8,
+              spaceBetween: Number(this.element.dataset.spaceBetweenTabletPortrait) || 16,
             },
             1024: {
               slidesPerView: Number(this.element.dataset.slidesTabletLandscape) || 3,
-              spaceBetween: Number(this.element.dataset.spaceBetweenTabletLandscape) || 8,
+              spaceBetween: Number(this.element.dataset.spaceBetweenTabletLandscape) || 16,
             },
             1240: {
               slidesPerView: Number(this.element.dataset.slidesDesktop) || 3,
-              spaceBetween: Number(this.element.dataset.spaceBetweenDesktop) || 8,
+              spaceBetween: Number(this.element.dataset.spaceBetweenDesktop) || 16,
             },
           },
           modules: [Scrollbar, A11y],
@@ -80,6 +80,7 @@ class Carousel {
             draggable: false,
             dragClass: CLASS_CAROUSEL_PAGINATION_ELEM_FILL,
           },
+
           touchStartPreventDefault: !this.allowPointerDownEvent,
           observer: true,
           observeParents: true,

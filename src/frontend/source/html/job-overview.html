@@ -14,10 +14,10 @@
 {% from 'layout-section.html' import layoutSection %}
 {% from 'text-media.html' import textMedia %}
 
-{% set jobData = global.content.jobOverviewPage %}
+{% set jobOverview = global.content.jobOverviewPage %}
 
 {% block hero %}
-  {{ heroContent(jobData.hero) }}
+  {{ heroContent(jobOverview.hero) }}
 {% endblock %}
 
 {% block content %}
@@ -33,7 +33,7 @@
     }) %}
       {# this first for is just to show the same card multiple times #}
       {% for _ in range(3) %}
-        {% for data in jobData.jobItems %}
+        {% for data in jobOverview.jobItems %}
           <li>
           {{ jobListingItem(data) }}
           </li>
