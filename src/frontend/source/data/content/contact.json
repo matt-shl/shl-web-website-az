@@ -1,61 +1,21 @@
 {
-  "hero": {
-    "title": "Electronic Motorized Autoinjector (EMAI)",
-    "theme": "t-general",
-    "description": "What's your molecule? With our device platforms, you don’t have to think about the self-service pen injector design. Because it's already there.",
-    "ctas": [
-      {
-        "label": "Get in touch",
-        "variant": "primary",
-        "url": "#"
-      },
-      {
-        "label": "Product specifications",
-        "variant": "secondary",
-        "url": "#"
-      }
-    ],
-    "breadcrumbs": [
+  "footerScrollingText": "Caring. Inclusive. Driven.",
+  "breadcrumbs": {
+    "items": [
       {
         "url": "/home.html",
         "label": "Home"
       },
       {
-        "url": "/parent-1.html",
-        "label": "What we offer"
-      },
-      {
-        "url": "/current-item.html",
-        "label": "Products"
+        "url": "/contact.html",
+        "label": "Contact"
       }
     ]
   },
-  "textDownload": {
-    "title": "Download our shared knowledge",
-    "description": "Explore technical specifications and expert analysis to enhance your knowledge and decision-making.",
-    "items": [
-      {
-        "title": "Molly® product specifications",
-        "description": "Molly® product specifications",
-        "size": "1.2 MB",
-        "link": "#"
-      },
-      {
-        "title": "Final assembly, labeling, and packaging",
-        "description": "Explore all possibilities of Molly® in our product specification.n our product brochure.",
-        "size": "1.2 MB",
-        "link": "#"
-      },
-      {
-        "title": "Molly® product specifications",
-        "description": "Molly® product specifications",
-        "size": "1.2 MB",
-        "link": "#"
-      }
-    ]
+  "hero": {
+    "title": "Get in touch"
   },
   "contactBlock": {
-    "theme": "t-lightest-pink",
     "title": "Got a question? We've got the answers, contact us today",
     "description": "We usually respond within 24 hours.",
     "items": [

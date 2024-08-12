@@ -1,0 +1,39 @@
+{% import 'form-elements.html' as form %}
+{% from 'button.html' import button %}
+
+{% macro pardotForm(data) %}
+    {% call form.form({
+      class: 'c-pardot-form' + (" " + data.classes if data.classes),
+      method: 'POST',
+      action: data.action,
+      attr: 'novalidate'
+    }) %}
+
+      {% for field in data.fields %}
+        {% if field.type === "text" or field.type === "tel" or field.type === "email" %}
+          {{ form.input(field) }}
+        {% elseif field.type === "textarea" %}
+          {{ form.textarea(field) }}
+        {% elseif field.type === "select" %}
+          {{ form.select(field) }}
+        {% elseif field.type === "checkbox" %}
+          {{ form.checkbox(field) }}
+        {% elseif field.type === "radio" %}
+          {{ form.radio(field) }}
+        {% elseif field.type === "hidden" %}
+          <input
+            type="hidden"
+            name="{{ field.name }}"
+            value="{{ field.value }}"/>
+        {% endif %}
+      {% endfor %}
+
+      {{ button({
+        element: 'button',
+        class: 'pardot-form__submit',
+        label: data.submit.label,
+        icon: 'arrow-top-right',
+        type: "submit"
+      }) }}
+    {% endcall %}
+{% endmacro %}

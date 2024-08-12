@@ -1,0 +1,42 @@
+{% from 'layout-section.html' import layoutSection %}
+{% from 'pardot-form.html' import pardotForm %}
+
+{% macro contactBlock(data) %}
+  {% call layoutSection({
+    id: data.id,
+    sectionTitle: data.sectionTitle,
+    theme: data.theme or "t-white"
+  }) %}
+    <div class="c-contact-block">
+
+      <div class="contact-block__col contact-block__col--content">
+        <h2  class="contact-block__title">{{ data.title }}</h2>
+        <div class="contact-block__content">
+          {% if data.description %}
+            <p class="contact-block__description">{{ data.description }}</p>
+          {% endif %}
+
+          <div class="contact-block__items">
+            {% for item in data.items %}
+              <div class="contact-block__item">
+                {% svg 'icons/' + item.icon %}
+                <div class="contact-block__item-text">
+                  <p><strong>{{ item.title }}</strong></p>
+                  <p>{{ item.description }}</p>
+                  <div class="contact-block__item-content">
+                    <strong>{{ item.content | safe }}</strong>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-block__col contact-block__col--form t-light-grey">
+        {{ pardotForm(data.form) }}
+      </div>
+
+    </div>
+  {% endcall %}
+{% endmacro %}
