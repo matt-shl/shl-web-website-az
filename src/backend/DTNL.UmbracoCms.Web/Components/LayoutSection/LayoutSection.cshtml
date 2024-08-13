@@ -1,0 +1,30 @@
+@using DTNL.UmbracoCms.Web.Helpers.Extensions
+@model DTNL.UmbracoCms.Web.Components.LayoutSection
+
+<section class="c-layout-section layout-section--variant-@Model.Variant @Model.CssClasses @Model.CssThemeClasses"
+         data-title="@Model.NavigationTitle"
+         id="@Model.Id"
+         js-hook-@Model.JsHook
+         js-hook-section
+         js-hook-inview
+         data-inview-threshold="0.5"
+         data-inview-persistent="true"
+         data-inview-trigger="anchor-list::update">
+
+    <div class="layout-section__inner">
+        @if (!Model.FullWidth)
+        {
+            <div class="layout-section__container @Model.CssContainerClasses">
+                <div class="layout-section__wrapper">
+                    @this.RenderPartialBody()
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="layout-section__wrapper">
+                @this.RenderPartialBody()
+            </div>
+        }
+    </div>
+</section>

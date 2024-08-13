@@ -20,7 +20,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 {
 	/// <summary>Site Settings</summary>
 	[PublishedModel("siteSettings")]
-	public partial class SiteSettings : PublishedContentModel, ICompositionAnalytics, ICompositionCookieBar, ICompositionErrorHandling, ICompositionFooter, ICompositionHeader, ICompositionRedirects, ICompositionSeoSettings, ICompositionSocialLinks, ICompositionStructuredData
+	public partial class SiteSettings : PublishedContentModel, ICompositionAnalytics, ICompositionCookieBar, ICompositionErrorHandling, ICompositionFooter, ICompositionHeader, ICompositionRedirects, ICompositionSeoSettings, ICompositionSocialLinks, ICompositionStructuredData, ICompositionTagSettings
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
@@ -121,34 +121,34 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[ImplementPropertyType("umbracoError500")]
 		public virtual global::Umbraco.Cms.Core.Models.PublishedContent.IPublishedContent UmbracoError500 => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionErrorHandling.GetUmbracoError500(this, _publishedValueFallback);
 
-        ///<summary>
-        /// Bottom Links
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-        [global::System.Diagnostics.CodeAnalysis.MaybeNull]
-        [ImplementPropertyType("footerBottomLinks")]
-        public virtual global::System.Collections.Generic.IEnumerable<global::Umbraco.Cms.Core.Models.Link> FooterBottomLinks => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionFooter.GetFooterBottomLinks(this, _publishedValueFallback);
+		///<summary>
+		/// Bottom Links
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("footerBottomLinks")]
+		public virtual global::System.Collections.Generic.IEnumerable<global::Umbraco.Cms.Core.Models.Link> FooterBottomLinks => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionFooter.GetFooterBottomLinks(this, _publishedValueFallback);
 
-        ///<summary>
-        /// Link Groups
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-        [global::System.Diagnostics.CodeAnalysis.MaybeNull]
-        [ImplementPropertyType("footerLinkGroups")]
-        public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel FooterLinkGroups => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionFooter.GetFooterLinkGroups(this, _publishedValueFallback);
+		///<summary>
+		/// Link Groups
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("footerLinkGroups")]
+		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel FooterLinkGroups => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionFooter.GetFooterLinkGroups(this, _publishedValueFallback);
 
-        ///<summary>
-        /// Text
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-        [global::System.Diagnostics.CodeAnalysis.MaybeNull]
-        [ImplementPropertyType("footerText")]
-        public virtual string FooterText => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionFooter.GetFooterText(this, _publishedValueFallback);
+		///<summary>
+		/// Text
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("footerText")]
+		public virtual string FooterText => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionFooter.GetFooterText(this, _publishedValueFallback);
 
-        ///<summary>
-        /// Main
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		///<summary>
+		/// Main
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("mainHeader")]
 		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListItem<global::Umbraco.Cms.Web.Common.PublishedModels.NestedBlockNavigation> MainHeader => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionHeader.GetMainHeader(this, _publishedValueFallback);
@@ -169,26 +169,26 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[ImplementPropertyType("websiteName")]
 		public virtual string WebsiteName => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionSeoSettings.GetWebsiteName(this, _publishedValueFallback);
 
-        ///<summary>
-        /// Social Links: Supported platforms: Facebook, Instagram, X, Youtube and LinkedIn
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-        [global::System.Diagnostics.CodeAnalysis.MaybeNull]
-        [ImplementPropertyType("socialLinks")]
-        public virtual global::System.Collections.Generic.IEnumerable<global::Umbraco.Cms.Core.Models.Link> SocialLinks => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionSocialLinks.GetSocialLinks(this, _publishedValueFallback);
+		///<summary>
+		/// Social Links: Supported platforms: Facebook, Instagram, X, Youtube and LinkedIn
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("socialLinks")]
+		public virtual global::System.Collections.Generic.IEnumerable<global::Umbraco.Cms.Core.Models.Link> SocialLinks => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionSocialLinks.GetSocialLinks(this, _publishedValueFallback);
 
-        ///<summary>
-        /// Social Media Policy Link
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-        [global::System.Diagnostics.CodeAnalysis.MaybeNull]
-        [ImplementPropertyType("socialMediaPolicyLink")]
-        public virtual global::Umbraco.Cms.Core.Models.Link SocialMediaPolicyLink => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionSocialLinks.GetSocialMediaPolicyLink(this, _publishedValueFallback);
+		///<summary>
+		/// Social Media Policy Link
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("socialMediaPolicyLink")]
+		public virtual global::Umbraco.Cms.Core.Models.Link SocialMediaPolicyLink => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionSocialLinks.GetSocialMediaPolicyLink(this, _publishedValueFallback);
 
-        ///<summary>
-        /// Company Logo: For Google Structured Data tags
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		///<summary>
+		/// Company Logo: For Google Structured Data tags
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("companyLogo")]
 		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops CompanyLogo => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionStructuredData.GetCompanyLogo(this, _publishedValueFallback);
@@ -200,5 +200,61 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("companyName")]
 		public virtual string CompanyName => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionStructuredData.GetCompanyName(this, _publishedValueFallback);
+
+		///<summary>
+		/// Categories: Define allowed categories.
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("categories")]
+		public virtual global::System.Collections.Generic.IEnumerable<string> Categories => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionTagSettings.GetCategories(this, _publishedValueFallback);
+
+		///<summary>
+		/// Connectivity Types: Define allowed connectivity types.
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("connectivityTypes")]
+		public virtual global::System.Collections.Generic.IEnumerable<string> ConnectivityTypes => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionTagSettings.GetConnectivityTypes(this, _publishedValueFallback);
+
+		///<summary>
+		/// Container Types: Define allowed container types.
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("containerTypes")]
+		public virtual global::System.Collections.Generic.IEnumerable<string> ContainerTypes => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionTagSettings.GetContainerTypes(this, _publishedValueFallback);
+
+		///<summary>
+		/// Device Types: Define allowed device types.
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("deviceTypes")]
+		public virtual global::System.Collections.Generic.IEnumerable<string> DeviceTypes => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionTagSettings.GetDeviceTypes(this, _publishedValueFallback);
+
+		///<summary>
+		/// Locations: Define allowed locations.
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("locations")]
+		public virtual global::System.Collections.Generic.IEnumerable<string> Locations => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionTagSettings.GetLocations(this, _publishedValueFallback);
+
+		///<summary>
+		/// Routes Of Administration: Define allowed routes of administration.
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("routesOfAdministration")]
+		public virtual global::System.Collections.Generic.IEnumerable<string> RoutesOfAdministration => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionTagSettings.GetRoutesOfAdministration(this, _publishedValueFallback);
+
+		///<summary>
+		/// Volume Ranges: Define allowed volume ranges.
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("volumeRanges")]
+		public virtual global::System.Collections.Generic.IEnumerable<string> VolumeRanges => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionTagSettings.GetVolumeRanges(this, _publishedValueFallback);
 	}
 }

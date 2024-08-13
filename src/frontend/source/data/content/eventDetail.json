@@ -77,7 +77,7 @@
     "carouselCardType": "knowledge",
     "showThreeCardsSideBySide": true,
     "title": "Latest events",
-    "ctaPrimary": {
+    "cta1": {
       "url": "#",
       "label": "All events"
     },

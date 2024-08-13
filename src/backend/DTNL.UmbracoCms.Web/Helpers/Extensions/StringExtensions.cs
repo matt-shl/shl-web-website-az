@@ -1,5 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using System.Net;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace DTNL.UmbracoCms.Web.Helpers.Extensions;
@@ -65,4 +67,53 @@ public static partial class StringExtensions
 
     [GeneratedRegex(@"\\s{2,}")]
     private static partial Regex MultipleConsecutiveSpacesRegex();
+
+    public static string RemoveSpecialCharacters(this string str)
+    {
+        StringBuilder sb = new();
+
+        foreach (char c in str)
+        {
+            if (c is >= '0' and <= '9' or >= 'A' and <= 'Z' or >= 'a' and <= 'z' or ' ')
+            {
+                sb.Append(c);
+            }
+        }
+
+        return sb.ToString();
+    }
+
+    public static string RemoveDiacritics(this string? input)
+    {
+        if (string.IsNullOrWhiteSpace(input))
+        {
+            return string.Empty;
+        }
+
+        StringBuilder stringBuilder = new();
+
+        string normalizedString = input.Normalize(NormalizationForm.FormD);
+
+        foreach (char c in normalizedString)
+        {
+            if (CharUnicodeInfo.GetUnicodeCategory(c) != UnicodeCategory.NonSpacingMark)
+            {
+                stringBuilder.Append(c);
+            }
+        }
+
+        return stringBuilder.ToString();
+    }
+
+    [return: NotNullIfNotNull(nameof(input))]
+    public static string? ToUrlString(this string? input)
+    {
+        return input?
+            .RemoveDiacritics()
+            .RemoveSpecialCharacters()
+            .ToLowerInvariant()
+            .Replace(" ", "-")
+            .Replace(Environment.NewLine, "-")
+            .Trim();
+    }
 }

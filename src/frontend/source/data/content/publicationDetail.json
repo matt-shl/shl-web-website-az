@@ -50,7 +50,7 @@
     "carouselCardType": "knowledge",
     "showThreeCardsSideBySide": true,
     "title": "Latest news",
-    "ctaPrimary": {
+    "cta1": {
       "url": "#",
       "label": "All news"
     },

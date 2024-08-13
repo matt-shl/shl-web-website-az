@@ -57,6 +57,7 @@ public class BannerTextMedia
             Video = Video.Create((VideoMedia?) textMediaBanner.Video?.FirstOrDefault()?.Content)
             .With(v =>
             {
+                v.Id = (textMediaBanner?.Video?.FirstOrDefault()?.Content as VideoMedia)?.Title?.Trim().ToLower().Replace(" ", "-");
                 v.Description = (textMediaBanner?.Video?.FirstOrDefault()?.Content as VideoMedia)?.Description;
                 v.Autoplay = false;
                 v.Muted = true;

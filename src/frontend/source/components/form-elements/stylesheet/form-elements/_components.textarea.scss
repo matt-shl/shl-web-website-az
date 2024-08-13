@@ -19,7 +19,7 @@
   --textarea-background-color-disabled: var(--input-background-color-disabled);
   --textarea-border-color: var(--input-border-color);
   --textarea-error-color: var(--input-error-color);
-  --textarea-fill-color: var(--input-fill-color);
+  --textarea-fill-color: var(--input-background-color);
 }
 
 .c-textarea {
@@ -36,18 +36,22 @@
 .textarea__input {
   display: block;
   appearance: none;
-  width: 100%;
   padding-top: var(--textarea-padding-top);
   padding-bottom: var(--textarea-padding-bottom);
   padding-left: var(--textarea-padding-left);
   padding-right: var(--textarea-padding-right);
   border-radius: var(--textarea-border-radius);
+  color: var(--input-text-color);
   border: 0;
   box-shadow: 0 0 0 var(--textarea-border-width) var(--textarea-border-color) inset;
   background-color: var(--textarea-fill-color);
   line-height: var(--font-line-height-regular);
   font-size: var(--textarea-font-size);
   font-weight: var(--textarea-font-weight);
+  min-height: 160px;
+  max-width: 100%; // Only allow vertical resizing
+  min-width: 100%; // Only allow vertical resizing
+  width: 100%;
 
   &[disabled] {
     opacity: 0.5;

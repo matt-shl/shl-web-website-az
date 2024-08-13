@@ -1,0 +1,42 @@
+@using DTNL.UmbracoCms.Web.Components
+@using DTNL.UmbracoCms.Web.Helpers.Aliases
+@using DTNL.UmbracoCms.Web.Helpers.Extensions
+@using DTNL.UmbracoCms.Web.Models.Products
+@model DTNL.UmbracoCms.Web.Components.CardProduct
+
+<a class="c-card-product c-card-overlay-parent @Model.CssClasses"
+   href="@Model.Url"
+   aria-label="@Model.Title">
+
+    <div class="card-product__image-container">
+        <partial name="Image" model="@Model.Image" />
+
+        <partial name="CardOverlay"
+                 model="@(new CardOverlay{ Title = Model.Title, Position = "end" })" />
+    </div>
+
+    <div class="card-product__content-container">
+        <h3 class="card-product__title">@Model.Title</h3>
+        <div class="card-product__specifications">
+            @foreach (CardProduct.ProductSpecification specification in Model.Specifications)
+            {
+                <span class="card-product__specification-label" asp-translation="@($"{TranslationAliases.Products.ProductCount}.{specification.Name}")"></span>
+                <div class="card-product__specification-value">
+                    @if (specification.Value.GetEnumOrNull<SpecificationLevel>() is { } level)
+                    {
+                        for (int currentLevel = 1; currentLevel <= 3; currentLevel++)
+                        {
+                            <span class="card-product__specification-value-level @(currentLevel < (int) level ? "card-product__specification-value-level--activated" : null)"></span>
+                        }
+                    }
+                    else
+                    {
+                        @specification.Value
+                    }
+                </div>
+            }
+        </div>
+
+        <div class="card-product__content" asp-if="@Model.Text">@Html.Raw(Model.Text)</div>
+    </div>
+</a>

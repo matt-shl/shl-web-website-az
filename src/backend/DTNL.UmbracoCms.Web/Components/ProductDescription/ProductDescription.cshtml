@@ -1,0 +1,18 @@
+@model DTNL.UmbracoCms.Web.Components.ProductDescription
+
+<div class="c-product-description">
+    <div class="product-description__title-container">
+        <h2 class="product-description__title">@Model.Title</h2>
+    </div>
+
+    <div class="product-description__image-container">
+        <partial name="Image" model="@Model.Image" />
+    </div>
+
+    <div class="product-description__content-container" asp-if="@Model.Text">
+        <div class="product-description__content">
+            <h3 class="product-description__content-title" asp-if="@Model.SubTitle">@Model.SubTitle</h3>
+            <div class="product-description__content-rich-text">@Html.Raw(Model.Text)</div>
+        </div>
+    </div>
+</div>

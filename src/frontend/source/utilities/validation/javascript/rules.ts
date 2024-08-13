@@ -1,4 +1,4 @@
-import { isValidEmail, isValidFile, isValidIBAN, isValidZipcode } from './validation'
+import {isValidEmail, isValidFile, isValidIBAN, isValidZipcode} from './validation'
 
 /**
  * A set of generic form validation rules which you can use on a form input as:

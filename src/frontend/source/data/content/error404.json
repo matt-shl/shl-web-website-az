@@ -5,11 +5,11 @@
   "content": {
     "title": "We can't find the page you're looking for,<br/>here's what you can do",
     "content": "<ul><li>Check the URL for typos</li><li>Go back to the previous page</li><li>Visit our homepage</li></ul>",
-    "ctaPrimary": {
+    "cta1": {
       "label": "Homepage",
       "href": "#"
     },
-    "ctaSecondary": {
+    "cta2": {
       "label": "Get in touch",
       "icon": "",
       "href": "#"

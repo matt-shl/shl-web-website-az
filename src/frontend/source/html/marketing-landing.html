@@ -12,6 +12,7 @@
 
 {% from 'hero-content.html' import heroContent %}
 {% from 'text-download.html' import textDownload %}
+{% from 'contact-block.html' import contactBlock %}
 
 
 {% set theme = 'general' %}
@@ -23,5 +24,7 @@
 
 {% block content %}
   {{ textDownload(mlData.textDownload) }}
+
+  {{ contactBlock(mlData.contactBlock) }}
 {% endblock %}
 

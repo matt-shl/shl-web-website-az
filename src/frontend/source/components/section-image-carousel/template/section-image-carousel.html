@@ -1,0 +1,56 @@
+{% from 'button.html' import button %}
+{% from 'layout-section.html' import layoutSection %}
+{% from 'carousel.html' import carousel %}
+{% from 'image.html' import image %}
+
+{% macro sectionImageCarousel(data) %}
+   {% call layoutSection({
+    title: data.title,
+    id: data.id,
+    sectionTitle: data.sectionTitle,
+    classes: "c-section-image-carousel" + (" " + data.classes if data.classes),
+    theme: data.theme
+  }) %}
+
+  {% if data.title %}
+    <h2 class="section-image-carousel__title">{{ data.title }}</h2>
+  {% endif %}
+
+  <div class="section-image-carousel__container">
+    {% if data.description or data.cta1 or data.cta2 %}
+    <div class="section-image-carousel__content-outer">
+      <div class="section-image-carousel__content-inner">
+      {% if data.description %}
+        <p class="section-image-carousel__description">{{ data.description }}</p>
+      {% endif %}
+      <div class="section-image-carousel__button-container">
+        {% if data.cta1 %}
+         {{ button(data.cta1 | clone | merge({icon: data.cta1.icon or 'arrow-top-right'})) }}
+         {% endif %}
+        {% if data.cta2 %}
+         {{ button(data.cta2| clone | merge({variant: data.cta2.variant or "secondary", icon: data.cta2.icon or 'arrow-top-right'})) }}
+         {% endif %}
+      </div>
+      </div>
+    </div>
+    {% endif %}
+
+    {% call carousel({
+    classes: "section-image-carousel__carousel",
+    pagination: true,
+    slidesDesktop: 3,
+    slidesTablet: 2,
+    slidesMobile: 1.2
+  }) %}
+    {# these are the two options for the image carousel #}
+    {% set randomImageStyles = ["image4-3", "image3-4"] %}
+    {% for imageData in data.images %}
+      <div class="swiper-slide">
+        {{image(imageData | merge({classes: "section-image-carousel__image", imageStyle: randomImageStyles[loop.index0 % randomImageStyles.length]}))}}
+      </div>
+    {% endfor %}
+  {% endcall %}
+  </div>
+
+  {% endcall %}
+{% endmacro %}

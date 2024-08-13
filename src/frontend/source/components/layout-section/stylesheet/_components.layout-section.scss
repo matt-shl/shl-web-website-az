@@ -105,6 +105,11 @@
 .layout-section__wrapper {
   width: 100%;
 
+  &--list {
+    all: unset;
+    list-style: none;
+  }
+
   .c-layout-section--grid-single-column &,
   .c-layout-section--grid & {
     display: grid;

@@ -37,7 +37,22 @@
                 {
                     <partial name="Image" model="@(Image.Create(Model?.ImageContent?.Image).With(i => {
                             i.ImageStyle = "in-grid-banner-image";
-                            i.Video = Model?.Video;
+                            i.CardOverlay = Model?.Video != null ? new CardOverlay {
+                                Video = new Video {
+                                    Id = Model?.Video?.Id,
+                                    InstanceId = Model?.Video?.InstanceId ?? "",
+                                    Platform = "native",
+                                    TotalTime = Model?.Video?.TotalTime ?? ""
+                                },
+                                Position = "start",
+                                Visible = true,
+                            } : null;
+                            i.ImageHolderButton =  Model?.Video != null;
+                            i.ImageHolderAttributes = new Dictionary<string, string?>
+                            {
+                                ["aria-label"] = "Open video Modal",
+                                ["aria-controls"] = Model?.Video != null ? $"modal-video-{Model?.Video?.Id}" : null,
+                            };
                             i.ObjectFit = true;
                         }))"
                     />

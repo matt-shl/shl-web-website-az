@@ -4,19 +4,19 @@
     "items": [
       {
         "url": "/home.html",
-        "label": "Home"
+        "label": "Home this is a very long label for the first item in the breadcrumb"
       },
       {
         "url": "/parent-1.html",
-        "label": "Parent page 1"
+        "label": "Parent page 1 this is a very long label for the second item in the breadcrumb"
       },
       {
         "url": "/parent-2.html",
-        "label": "Parent page 2"
+        "label": "Parent page 2 this is a very long label for the third item in the breadcrumb"
       },
       {
         "url": "/current-item.html",
-        "label": "Current item"
+        "label": "Current item this is a very long label for the last item in the breadcrumb"
       }
     ]
   },
