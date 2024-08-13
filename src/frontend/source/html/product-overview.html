@@ -15,6 +15,7 @@
 
 {% set plpData = global.content.productOverviewPage %}
 {% set plpCards = global.content.productOverviewPage.productCards %}
+{% set commonLabels = global.resource.common %}
 
 {% block hero %}
   {{ heroContent(plpData.hero) }}
@@ -27,10 +28,13 @@
   <div js-hook-replace-content="overview-content">
     {% call layoutSection({
       variant: "grid",
-      id: "content"
+      id: "content",
+      listLabel: commonLabels.productList
     }) %}
       {% for data in plpCards.slice(0, 6) %}
+      <li>
       {{ cardProduct(data) }}
+      </li>
       {% endfor %}
     {% endcall %}
 
@@ -40,10 +44,13 @@
 
     {% call layoutSection({
       variant: "grid",
-      id: "content"
+      id: "content",
+      listLabel: commonLabels.productList
     }) %}
       {% for data in plpCards.slice(6) %}
-      {{ cardProduct(data) }}
+        <li>
+          {{ cardProduct(data) }}
+        </li>
       {% endfor %}
     {% endcall %}
 

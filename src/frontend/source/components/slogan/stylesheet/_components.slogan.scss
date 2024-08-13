@@ -2,9 +2,18 @@
   @include d1;
   overflow: hidden;
   width: 100%;
-  line-height: 1.1;
   display: flex;
-  margin-block: $spacing-48;
+  margin-block: $spacing-40 $spacing-32;
+
+  &--in-hero {
+    @include component-overlap;
+    padding-bottom: 0;
+    margin-bottom: $spacing-16;
+  }
+
+  .c-footer & {
+    margin-block: calc(#{$spacing-8} * -1) $spacing-80;
+  }
 
   .is--reduced-motion & {
     @include h1;
@@ -13,7 +22,15 @@
   }
 
   @include screen-lg-and-bigger {
-    margin-bottom: $spacing-80;
+    margin-block: $spacing-32 $spacing-56;
+
+    &--in-hero {
+      margin-top: $spacing-64;
+    }
+
+    .c-footer & {
+      margin-bottom: $spacing-96;
+    }
   }
 }
 
@@ -39,6 +56,7 @@
 }
 
 .slogan__content {
+  line-height: 1.3;
   display: inline-block;
   white-space: nowrap;
   padding-inline-end: $spacing-24;

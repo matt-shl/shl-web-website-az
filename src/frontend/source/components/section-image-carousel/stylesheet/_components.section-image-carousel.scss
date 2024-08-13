@@ -1,0 +1,67 @@
+.c-section-image-carousel {
+}
+
+.section-image-carousel__image {
+  pointer-events: none;
+
+  > .image__holder {
+    border-radius: $radii-12;
+    overflow: hidden;
+  }
+}
+
+.section-image-carousel__container {
+  @include grid;
+  column-gap: $spacing-40;
+}
+
+.section-image-carousel__title {
+  @include h2;
+  max-width: calc(66% + #{$spacing-8});
+  margin-bottom: $spacing-24;
+
+  @include screen-md-and-bigger {
+    margin-bottom: $spacing-40;
+  }
+}
+
+.section-image-carousel__content-outer {
+  grid-column: span 12;
+
+  @include screen-md-and-bigger {
+    grid-column: 4 / span 6;
+  }
+
+  @include screen-lg-and-bigger {
+    grid-column: 5 / span 5;
+  }
+}
+
+.section-image-carousel__description {
+  @include body-l;
+
+  text-wrap: balance;
+}
+
+.section-image-carousel__button-container {
+  @include cta-container;
+  flex-wrap: wrap;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  @include screen-md-and-bigger {
+    margin-top: $spacing-32;
+  }
+}
+
+.section-image-carousel__carousel {
+  @include col-span(12);
+
+  margin-top: $spacing-40;
+
+  @include screen-md-and-bigger {
+    margin-top: $spacing-64;
+  }
+}

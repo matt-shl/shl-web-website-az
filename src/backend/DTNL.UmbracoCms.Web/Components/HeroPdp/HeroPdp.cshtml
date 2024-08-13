@@ -1,12 +1,12 @@
 @using DTNL.UmbracoCms.Web.Helpers.Aliases
 @model DTNL.UmbracoCms.Web.Components.HeroPdp
+@inject NodeProvider NodeProvider
 
 <section class="c-hero-pdp @Model.ThemeCssClasses" js-hook-hero>
     <div class="hero-pdp__container">
 
         <div class="hero-pdp__breadcrumbs">
-            <!-- TODO: breadcrumb -->
-            @* <vc:breadcrumb page="@Model.CurrentP"/> *@
+            <vc:breadcrumb page="@NodeProvider.GetCurrentNode()" />
         </div>
 
         <div class="hero-pdp__col-left">

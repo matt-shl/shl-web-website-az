@@ -37,6 +37,8 @@ public class Video
 
     public bool Controls { get; set; } = true;
 
+    public bool CustomControls { get; set; } = true;
+
     public bool Loop { get; set; } = true;
 
     private IEnumerable<VideoSizeSource>? Sources { get; init; }
@@ -96,6 +98,30 @@ public class Video
             Classes = css,
             Sources = sources,
             Thumbnail = Image.Create(block.Preview, 720, 400, "video__image"),
+        };
+    }
+
+    public static Video? Create(
+        NestedBlockVideoNativeUrl? block,
+        string? css = null)
+    {
+        if (block is null)
+        {
+            return null;
+        }
+
+        string? id = null;
+        string platform;
+
+        platform = "native";
+
+        return new Video
+        {
+            Id = id,
+            InstanceId = $"{Random.Shared.Next()}",
+            Platform = platform,
+            Classes = css,
+            Sources = GetSources(block),
         };
     }
 

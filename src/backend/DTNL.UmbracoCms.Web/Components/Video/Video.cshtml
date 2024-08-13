@@ -22,19 +22,38 @@
      role="application"
      js-hook-video>
 
-    @if (!Model.Title.IsNullOrEmpty()){<meta itemprop="name" content="@Model.Title" />}
-	@if (!Model.Description.IsNullOrEmpty()){<meta itemprop="description" content="@Model.Description" />}
-	@if (!Model.TotalTime.IsNullOrEmpty()){<meta itemprop="duration" content="@Model.TotalTime" />}
-	@if (!(Model.Thumbnail?.Url).IsNullOrEmpty()){<meta itemprop="thumbnailUrl" content="@Model.Thumbnail.Url" />}
-	@if (!Model.EmbedUrl.IsNullOrEmpty()){<meta itemprop="embedURL" content="@Model.EmbedUrl" />}
-	@if (!Model.UploadDate.IsNullOrEmpty()){<meta itemprop="uploadDate" content="@Model.UploadDate" />}
+    @if (!Model.Title.IsNullOrEmpty())
+    {
+        <meta itemprop="name" content="@Model.Title" />
+    }
+    @if (!Model.Description.IsNullOrEmpty())
+    {
+        <meta itemprop="description" content="@Model.Description" />
+    }
+    @if (!Model.TotalTime.IsNullOrEmpty())
+    {
+        <meta itemprop="duration" content="@Model.TotalTime" />
+    }
+    @if (!(Model.Thumbnail?.Url).IsNullOrEmpty())
+    {
+        <meta itemprop="thumbnailUrl" content="@Model.Thumbnail.Url" />
+    }
+    @if (!Model.EmbedUrl.IsNullOrEmpty())
+    {
+        <meta itemprop="embedURL" content="@Model.EmbedUrl" />
+    }
+    @if (!Model.UploadDate.IsNullOrEmpty())
+    {
+        <meta itemprop="uploadDate" content="@Model.UploadDate" />
+    }
 
 
     <div class="video__player" js-hook-video-player></div>
 
     <div class="video__loader"></div>
+    <div class="video__button-container">
 
-    @if (Model.Controls)
+    @if (Model.CustomControls)
     {
         <button class="video__button video__button--play" js-hook-video-play>
             <span class="video__button-icon"></span>
@@ -51,8 +70,6 @@
             <span class="u-sr-only">Replay</span>
         </button>
     }
-
+    </div>
     <partial name="Image" model="Model.Thumbnail" />
-
-    <vc:cookie-wall />
 </div>

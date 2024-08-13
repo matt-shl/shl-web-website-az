@@ -1,0 +1,82 @@
+.c-contact-block {
+  @include grid;
+}
+
+.contact-block__col {
+  @include col-span(12);
+
+  &--form {
+    @include theme;
+    margin-top: $spacing-24;
+    border-radius: $radii-12;
+    padding: $spacing-40 $spacing-24;
+  }
+
+  @include screen-lg-and-bigger {
+    &--content {
+      @include col-span(5);
+    }
+
+    &--form {
+      grid-column: 7 / span 6;
+      margin-top: 0;
+      padding-inline: $spacing-40;
+    }
+  }
+}
+
+.contact-block__title {
+  @include h3;
+  margin-bottom: $spacing-24;
+
+  @include screen-lg-and-bigger {
+    margin-bottom: $spacing-40;
+  }
+}
+
+.contact-block__description {
+  @include body-l;
+  margin-bottom: $spacing-24;
+
+  @include screen-lg-and-bigger {
+    margin-bottom: $spacing-40;
+  }
+}
+
+.contact-block__content {
+  @include screen-lg-and-bigger {
+    padding-inline-start: $spacing-40;
+  }
+}
+
+.contact-block__items {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-40;
+}
+
+.contact-block__item {
+  display: flex;
+  gap: $spacing-12;
+}
+
+.contact-block__item-text {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-8;
+}
+
+.contact-block__item-content {
+  @include rich-text;
+
+  a {
+    color: inherit;
+    font-weight: $font-weight-bold;
+    text-decoration: none;
+    transition: color 200ms ease-in-out;
+
+    @include hover-focus {
+      color: $color-light-blue;
+    }
+  }
+}

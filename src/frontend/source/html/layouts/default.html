@@ -95,6 +95,10 @@
   {{ gridOverlay() }}
 {% endif %}
 
+{% if showCarouselMouseIndicator %}
+  {% include "carousel-indicator.html" %}
+{% endif %}
+
 {% if global.site.gtm and global.site.gtm != 'GTM-XXXX' %}
 
   {% include "generic/gtm.html" %}

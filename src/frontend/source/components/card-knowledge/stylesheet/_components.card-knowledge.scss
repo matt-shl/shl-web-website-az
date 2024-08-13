@@ -48,6 +48,8 @@
 .card-knowledge__content {
   @include body-m;
   margin-bottom: $spacing-24;
+
+  @include truncate-text(3);
 }
 
 .card-knowledge__cta {

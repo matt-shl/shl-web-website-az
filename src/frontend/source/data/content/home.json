@@ -102,7 +102,7 @@
     "carouselCardType": "knowledge",
     "showThreeCardsSideBySide": true,
     "title": "Discover the latest news, events and insights",
-    "ctaPrimary": {
+    "cta1": {
       "url": "#",
       "label": "Discover all"
     },

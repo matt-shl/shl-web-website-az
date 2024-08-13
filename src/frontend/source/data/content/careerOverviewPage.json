@@ -1,0 +1,179 @@
+{
+  "footerScrollingText": "Caring. Inclusive. Driven.",
+  "breadcrumbs": {
+    "items": [
+      {
+        "url": "/home.html",
+        "label": "Home"
+      },
+      {
+        "url": "/parent-1.html",
+        "label": "Parent page 1"
+      },
+      {
+        "url": "/parent-2.html",
+        "label": "Parent page 2"
+      },
+      {
+        "url": "/current-item.html",
+        "label": "Current item"
+      }
+    ]
+  },
+  "hero": {
+    "title": "Empower your future with SHL Medical"
+  },
+  "mainImage": {
+    "image": true,
+    "video": {
+      "id": "text-media-video1",
+      "totalTime": "01:30",
+      "title": "Text media video 1",
+      "description": "Text media video 1 description",
+      "closedcaptions": [
+        {
+          "url": "subtitles.vtt",
+          "label": "Nederlands",
+          "lang": "nl",
+          "kind": "subtitles"
+        }
+      ],
+      "sources": [
+        {
+          "size": 1920,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        },
+        {
+          "size": 1280,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        },
+        {
+          "size": 1024,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        },
+        {
+          "size": 320,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "textMediaList1": {
+    "mediaPosition": "start",
+    "title": "Starting the next generation of pioneeers",
+    "links": [
+      {
+        "label": "Drug development",
+        "url": "#"
+      },
+      {
+        "label": "Regulatory support",
+        "url": "#"
+      },
+      {
+        "label": "Manufacturing",
+        "url": "#"
+      },
+      {
+        "label": "Commercialization",
+        "url": "#"
+      }
+    ]
+  },
+  "carousel1": {
+    "carouselCardType": "image",
+    "title": "Our locations",
+    "cards": [
+      {
+        "title": "Switzerland",
+        "content": "Switzerland is known for its beautiful landscapes and high quality of life. It is also home to SHL Medical, where we design and manufacture our products.",
+        "url": "#"
+      },
+      {
+        "title": "Taiwan",
+        "content": "Taiwan is a hub for technology and innovation. It is also home to one of our manufacturing facilities, where we produce our products."
+      },
+      {
+        "title": "Sweden",
+        "content": "Sweden is known for its commitment to sustainability and environmental protection. It is also home to one of our research and development centers.",
+        "url": "#"
+      }
+    ]
+  },
+  "quoteBanner1": {
+    "id": "quote-banner",
+    "sectionTitle": "Testimonials",
+    "theme": "t-pastel-green",
+    "quotes": [
+      {
+        "title": "“SHL Medical’s dedication to precision and innovation inspires me every day, and I take pride in contributing to the development of life-changing medical devices.“",
+        "author": "Dr. John Doe",
+        "role": "Chief Medical Officer, Softtech",
+        "image": {
+          "caption": ""
+        }
+      },
+      {
+        "title": "“Shl Medical is the best partner I have ever worked with. They are professional, reliable, and always deliver on time.“",
+        "author": "Dr. Jane Doe",
+        "role": "Quality Assurance Manager, Softtech",
+        "image": {
+          "caption": ""
+        }
+      },
+      {
+        "title": "“I have been working with SHL Medical for over 10 years and I can honestly say that they are the best in the business.“",
+        "author": "Dr. Jack Doe",
+        "role": "Head of Research and Development, Softtech",
+        "image": {
+          "caption": ""
+        }
+      }
+    ]
+  },
+  "textMediaList2": {
+    "title": "Where do you fit in?",
+    "image": {
+      "caption": "image caption"
+    },
+    "description": "We wouldn’t manage a day without our structured collaboration between all teams involved. What’s your perfect fit?",
+    "links": [
+      {
+        "label": "Research & development",
+        "url": "#"
+      },
+      {
+        "label": "Engineering",
+        "url": "#"
+      },
+      {
+        "label": "Manufacturing",
+        "url": "#"
+      },
+      {
+        "label": "Commercialization",
+        "url": "#"
+      }
+    ]
+  }
+}

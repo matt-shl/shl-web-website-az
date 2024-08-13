@@ -1,0 +1,36 @@
+{% set footerScrollingText = global.content.careerOverviewPage.footerScrollingText %}
+{% set theme = "dark-pink" %}
+{% set themeColor = "#662949" %}
+
+{% extends 'layouts/default.html' %}
+
+{% from 'hero-content.html' import heroContent %}
+{% from 'media-section.html' import mediaSection %}
+{% from 'text-media-list.html' import textMediaList %}
+{% from 'section-card-carousel.html' import sectionCardCarousel %}
+{% from 'banner-quote.html' import bannerQuote %}
+
+{% block hero %}
+  <!-- Todo finish hero-content with content data -->
+  {{ heroContent({
+    breadcrumbs: global.content.careerOverviewPage.breadcrumbs.items,
+    title: global.content.careerOverviewPage.hero.title,
+    ctas: global.content.careerOverviewPage.hero.ctas
+  }) }}
+{% endblock %}
+
+{% block content %}
+  {{ mediaSection(global.content.careerOverviewPage.mainImage | clone | merge({ variant: "no-padding" })) }}
+
+  {{ textMediaList(global.content.careerOverviewPage.textMediaList1) }}
+
+  {{ sectionCardCarousel(global.content.careerOverviewPage.carousel1) }}
+
+  <!-- TODO image carousel -->
+
+  {{ bannerQuote(global.content.careerOverviewPage.quoteBanner1) }}
+
+  {{ textMediaList(global.content.careerOverviewPage.textMediaList2) }}
+
+  <!-- TODO featured job listings  -->
+{% endblock %}

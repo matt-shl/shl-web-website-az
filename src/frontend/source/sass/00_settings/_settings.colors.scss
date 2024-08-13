@@ -4,6 +4,8 @@
 
 $color-black: var(--color-black);
 $color-black-rgb: var(--color-black-rgb);
+$color-grey: var(--color-grey);
+$color-medium-grey: var(--color-medium-grey);
 $color-light-grey: var(--color-light-grey);
 $color-white: var(--color-white);
 $color-white-rgb: var(--color-white-rgb);
@@ -37,7 +39,8 @@ $color-darkest-yellow-rgb: var(--color-darkest-yellow-rgb);
   --color-black: rgb(var(--color-black-rgb));
   --color-dark-grey: #6d6d6d;
   --color-grey: #bbbdbf;
-  --color-light-grey: #e6e7e8;
+  --color-medium-grey: #e6e7e8;
+  --color-light-grey: #f6f6f6;
   --color-white-rgb: 255, 255, 255;
   --color-white: rgb(var(--color-white-rgb));
   --color-dark-blue-rgb: 6, 47, 84;
@@ -64,4 +67,5 @@ $color-darkest-yellow-rgb: var(--color-darkest-yellow-rgb);
   --color-pale-yellow: #fef1d1;
   --color-lightest-yellow-rgb: 255, 249, 237;
   --color-lightest-yellow: rgb(var(--color-lightest-yellow-rgb));
+  --color-error: #f12020;
 }

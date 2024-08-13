@@ -1,0 +1,30 @@
+{% set theme = "light-blue" %}
+{% set themeColor = "#007cbe" %}
+{% set headerIsWhite = true %}
+{% set footerScrollingText = global.content.home.footerScrollingText %}
+
+{% extends 'layouts/default.html' %}
+
+{% from 'hero-home.html' import heroHome %}
+{% from 'section-card-carousel.html' import sectionCardCarousel %}
+{% from 'text-media.html' import textMedia %}
+{% from 'text-media-list.html' import textMediaList %}
+
+{% from 'hero-content.html' import heroContent %}
+{% from 'text-download.html' import textDownload %}
+{% from 'contact-block.html' import contactBlock %}
+
+
+{% set theme = 'general' %}
+{% set mlData = global.content.marketingLandingPage %}
+
+{% block hero %}
+  {{ heroContent(mlData.hero) }}
+{% endblock %}
+
+{% block content %}
+  {{ textDownload(mlData.textDownload) }}
+
+  {{ contactBlock(mlData.contactBlock) }}
+{% endblock %}
+

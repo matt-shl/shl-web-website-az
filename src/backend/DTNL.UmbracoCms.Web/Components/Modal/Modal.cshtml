@@ -1,29 +1,55 @@
-@using DTNL.UmbracoCms.Web.Helpers.Extensions
-@model DTNL.UmbracoCms.Web.Components.Modal
+@model DTNL.UmbracoCms.Web.Components.Modal;
 
-<div class="c-modal @Model.Class @(Model.Size != null ? $"modal-size--{Model.Size}" : null)"
+<div class="c-modal @Model.Class @(Model.Size != null ? $"c-modal--size-{Model.Size}" : null)"
      id="@Model.Id"
-     data-modal-auto-focus="@(Model.AutoFocus)"
-     data-modal-mobile-only="@(Model.MobileOnly)"
-     data-modal-no-body-class="@(Model.NoBodyClass)"
-     data-modal-close-all-others="@(Model.CloseAllOthers)"
-     data-modal-keep-scroll-position="@(Model.KeepScrollPosition)"
-     data-modal-auto-close="@(Model.AutoClose)"
-     js-hook-@Model.Hook
+     data-modal-auto-focus="@(Model.AutoFocus ? "true" : "false")"
+     data-modal-mobile-only="@(Model.MobileOnly ? "true" : "false")"
+     data-modal-no-body-class="@(Model.NoBodyClass ? "true" : "false")"
+     data-modal-close-all-others="@(Model.CloseAllOthers ? "true" : "false")"
+     data-modal-keep-scroll-position="@(Model.KeepScrollPosition ? "true" : "false")"
+     data-modal-auto-close="@(Model.AutoClose ? "true" : "false")"
      js-hook-modal>
     <div class="modal__container">
-
         <div class="modal__content" role="dialog">
-
-            @this.RenderPartialBody()
-
-            @if (!Model.NoClose)
+            @if (Model?.Size != "navigation-mobile")
             {
-                <button type="button" class="modal__button-close" aria-label="Close modalbox" js-hook-button-modal-close>
-                    &times;
-                </button>
+                <div class="modal__header">
+                     <div>
+                        <h2 class="modal__title">{{ Model.Title }}</h2>
+
+                        @if (Model?.Subtitle != null)
+                        {
+                            <h3 class="modal__subtitle">{{ Model.Subtitle }}</h3>
+                        }
+                    </div>
+
+                    @if (!Model!.NoClose)
+                    {
+                        <button type="button" class="modal__button-close" js-hook-button-modal-close aria-label="{{ global.resource.navigation.close }}">
+                            <svg src="@(SvgAliases.Icons.Cross)" />
+                        </button>
+                    }
+                </div>
+            } else
+            {
+                <div class="modal__header">
+                    @*  {{ global.resource.navigation.home }} *@
+                    <a href="/" class="modal__header-logo" title="Home">
+                        <svg src="@(SvgAliases.Brand.LogoColor)" />
+                    </a>
+
+                    <button class="modal__header-hamburger"
+                            js-hook-button-modal-close>
+                        <svg src="@(SvgAliases.Icons.Cross)" />
+                       @*  {{ global.resource.navigation.close }} *@
+                       Close
+                    </button>
+                </div>
             }
 
+            <div class="modal__body" js-hook-modal-body>
+                @this.RenderPartialBody()
+            </div>
         </div>
 
     </div>

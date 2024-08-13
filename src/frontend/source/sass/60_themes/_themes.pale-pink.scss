@@ -2,6 +2,7 @@
   --color-background: #{$color-pale-pink};
   --color-content: #{$color-dark-pink};
   --focus-theme-color: #{$color-light-blue};
+  --color-error: #{$color-dark-pink};
 
   // Buttons
   --button-primary-font-color: #{$color-white};
@@ -20,6 +21,13 @@
 
   // Product card
   --color-spec-value-level-default: var(--theme-color-content-20);
+
+  // Job listing item
+  --job-listing-item-color: #{$color-dark-pink};
+  --job-listing-item-bg-color: #{$color-white};
+  --job-listing-item-color-hover: #{$color-white};
+  --job-listing-item-bg-color-hover: #{$color-dark-pink};
+  --job-listing-item-tag-bg-color: #{$color-pale-pink};
 }
 
 html.t-pale-pink {
