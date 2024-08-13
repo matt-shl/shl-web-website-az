@@ -1,8 +1,10 @@
-{% set theme = "dark-pink" %}
-{% set themeColor = "#662949" %}
+{% set theme = "dark-green" %}
+{% set themeColor = "#0a5f5a" %}
 
-{% set headerIsWhite = true %}
+{% set headerIsWhite = false %}
 {% set showFiltersModal = true %}
+
+{% set footerScrollingText = global.content.jobDetailPage.footerScrollingText %}
 
 {% extends 'layouts/default.html' %}
 
@@ -10,6 +12,9 @@
 {% from 'job-listing-item.html' import jobListingItem %}
 {% from 'layout-section.html' import layoutSection %}
 {% from 'section-image-carousel.html' import sectionImageCarousel %}
+{% from 'rich-text.html' import richText %}
+{% from 'section-job-vacancies.html' import sectionJobVacancies %}
+{% from 'mobile-floating-button.html' import mobileFloatingButton %}
 
 {% set showCarouselMouseIndicator = true %}
 
@@ -17,12 +22,13 @@
 
 {% block hero %}
   {{ heroContent(jobDetailData.hero) }}
+  {{ mobileFloatingButton({buttonData: jobDetailData.mobileFloatingButton}) }}
 {% endblock %}
 
 {% block content %}
 
-  <div js-hook-replace-content="overview-content">
-    {{ sectionImageCarousel(jobDetailData.imageCarousel) }}
-  </div>
+  {{ richText(global.content.eventDetail.richText | clone | merge({readMoreDisabled: true})) }}
+  {{ sectionImageCarousel(jobDetailData.imageCarousel) }}
+  {{ sectionJobVacancies(jobDetailData.jobVacancies) }}
 
 {% endblock %}

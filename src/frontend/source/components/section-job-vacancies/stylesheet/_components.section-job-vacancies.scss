@@ -1,0 +1,22 @@
+.section-job-vacacies__container {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-40;
+
+  @include screen-lg-and-bigger {
+    gap: $spacing-56;
+  }
+}
+
+.section-job-vacancies__title {
+  @include h2;
+  text-wrap: balance;
+}
+
+.section-job-vacancies__list {
+  padding-left: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-16;
+}

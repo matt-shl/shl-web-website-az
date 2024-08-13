@@ -18,7 +18,7 @@ import '@/components/loading-indicator'
 
 import Events from '@utilities/events'
 
-import {videoLoader} from '@/components/video'
+import { videoLoader } from '@/components/video'
 import moduleInit from '@/utilities/module-init'
 
 if (document.querySelector('[js-hook-page-load-animation-trigger]')) {
@@ -40,6 +40,10 @@ moduleInit.async('[js-hook-rich-text]', () => import('@/components/rich-text'))
 moduleInit.async('[js-hook-banner-quote]', () => import('@components/banner-quote'))
 moduleInit.async('[js-hook-carousel-indicator]', () => import('@components/carousel-indicator'))
 moduleInit.async('[js-hook-form]', () => import('@/components/form'))
+moduleInit.async(
+  '[js-hook-mobile-floating-button]',
+  () => import('@components/mobile-floating-button'),
+)
 
 if (document.querySelector('[js-hook-video]')) {
   videoLoader(['native'])
