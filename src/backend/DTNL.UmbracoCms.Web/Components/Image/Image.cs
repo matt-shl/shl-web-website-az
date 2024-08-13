@@ -34,6 +34,12 @@ public partial class Image
 
     public required (int Width, int Height) AspectRatio { get; set; }
 
+    public bool ImageHolderButton { get; set; }
+
+    public Dictionary<string, string?> ImageHolderAttributes { get; set; } = [];
+
+    public CardOverlay? CardOverlay { get; set; }
+
     public static Image? Create(
         MediaWithCrops? mediaWithCrops,
         int width = 0,
@@ -72,8 +78,8 @@ public partial class Image
     {
         return imageContent switch
         {
-            Umbraco.Cms.Web.Common.PublishedModels.Image image => Create(image, width, height, cssClasses, objectFit, customSrcSet, localCrops),
-            Umbraco.Cms.Web.Common.PublishedModels.UmbracoMediaVectorGraphics svg => Create(svg, width, height, cssClasses, objectFit, localCrops),
+            Umbraco.Cms.Web.Common.PublishedModels.Image image => Create(image, width, height, cssClasses, objectFit, customSrcSet, localCrops, style),
+            Umbraco.Cms.Web.Common.PublishedModels.UmbracoMediaVectorGraphics svg => Create(svg, width, height, cssClasses, objectFit, localCrops, style),
             _ => null,
         };
     }

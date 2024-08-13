@@ -101,8 +101,12 @@ public static class PublishedContentExtensions
     /// </summary>
     public static string? GetCategory(this ICompositionBasePage content)
     {
-        // TODO once tags are implemented
-        return "";
+        if (content is ICompositionCardDetails cardDetails)
+        {
+            return string.Join(',', cardDetails.Category.OrEmptyIfNull());
+        }
+
+        return null;
     }
 
     /// <summary>

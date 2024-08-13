@@ -1,12 +1,10 @@
+using DTNL.UmbracoCms.Web.Components.PartialComponent;
 using Microsoft.AspNetCore.Mvc;
 using Umbraco.Cms.Web.Common.PublishedModels;
 
 namespace DTNL.UmbracoCms.Web.Components.Hero;
 
-public interface IHero
-{
-    string ViewPath => $"~/Components/{GetType().Name}/{GetType().Name}.cshtml";
-}
+public interface IHero : IPartialViewPath;
 
 public class Hero : ViewComponentExtended
 {

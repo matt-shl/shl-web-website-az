@@ -1,0 +1,27 @@
+@using DTNL.UmbracoCms.Web.Components
+@using DTNL.UmbracoCms.Web.Helpers.Aliases
+@using DTNL.UmbracoCms.Web.Helpers.Extensions
+@using Umbraco.Cms.Core.Dictionary
+
+@model DTNL.UmbracoCms.Web.Components.DescriptionList
+
+@inject ICultureDictionary CultureDictionary
+
+<div class="c-description-list">
+    <div class="description-list__content">
+        <h2 class="description-list__title">@Model.Title.FallBack(CultureDictionary.GetTranslation(TranslationAliases.Products.Specifications))</h2>
+
+        <dl class="description-list__list">
+            @foreach (DescriptionList.DescriptionListItem descriptionListItem in Model.Items)
+            {
+                <div class="description-list__item">
+                    <dt class="description-list__term">@CultureDictionary.GetTranslation($"{TranslationAliases.Products}.{descriptionListItem.Title}").FallBack(descriptionListItem.Title)</dt>
+                    <dd class="description-list__details">@descriptionListItem.Text</dd>
+                </div>
+            }
+        </dl>
+
+        <partial name="Button" model="@Model.DownloadLinkButton.With(b => b.Label = CultureDictionary.GetTranslation(TranslationAliases.Products.DownloadSpecifications))"/>
+        
+    </div>
+</div>

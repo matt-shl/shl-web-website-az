@@ -79,7 +79,7 @@ public static class QueryStringHelper
     /// <remarks>If response caching is set, only the configured keys are used to generate the new url.</remarks>
     public static string GetNewQueryUrl(this HttpContext httpContext, string key, StringValues value)
     {
-        return httpContext.GetNewQueryUrl(new[] { new KeyValuePair<string, StringValues>(key, value) }) is { } queryUrl and not ""
+        return httpContext.GetNewQueryUrl([new KeyValuePair<string, StringValues>(key, value)]) is { } queryUrl and not ""
             ? queryUrl
             : "?";
     }

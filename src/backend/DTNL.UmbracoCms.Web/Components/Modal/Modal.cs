@@ -25,4 +25,6 @@ public class Modal
     public bool AutoClose { get; set; }
 
     public bool NoClose { get; set; }
+
+    public string? Hook { get; set; }
 }

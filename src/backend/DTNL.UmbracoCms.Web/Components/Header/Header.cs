@@ -1,4 +1,3 @@
-using DTNL.UmbracoCms.Web.Helpers.Aliases;
 using DTNL.UmbracoCms.Web.Helpers.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Umbraco.Cms.Web.Common.PublishedModels;
@@ -21,8 +20,8 @@ public class Header : ViewComponentExtended
         if (navigation is not null)
         {
             Navigation = navigation;
-            HomeTitle = CultureDictionary.GetTranslation(TranslationAliases.Navigation.Home);
-            OpenMenuLabel = CultureDictionary.GetTranslation(TranslationAliases.Navigation.Openmenu);
+            HomeTitle = CultureDictionary.GetTranslation(Helpers.Aliases.TranslationAliases.Navigation.Home);
+            OpenMenuLabel = CultureDictionary.GetTranslation(Helpers.Aliases.TranslationAliases.Navigation.Openmenu);
         }
 
         return View("Header", this);
@@ -30,6 +29,6 @@ public class Header : ViewComponentExtended
 
     private NestedBlockNavigation? GetNavigation(SiteSettings? settings)
     {
-       return settings!.MainHeader!.Content;
+        return settings!.MainHeader!.Content;
     }
 }

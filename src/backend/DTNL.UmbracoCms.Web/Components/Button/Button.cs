@@ -60,7 +60,7 @@ public class Button
         };
     }
 
-    public static Button? CreateForEmail(string? email, string? contactName, ICultureDictionary cultureDictionary)
+    public static Button? CreateForEmail(string? email, string contactName, ICultureDictionary cultureDictionary)
     {
         if (email.IsNullOrWhiteSpace())
         {
@@ -73,11 +73,11 @@ public class Button
             Variant = "link",
             Url = $"mailto:{email}",
             Label = email,
-            AriaLabel = string.Format(cultureDictionary.GetTranslation(TranslationAliases.Common.Cards.SendEmailTo), contactName),
+            AriaLabel = cultureDictionary.GetTranslation(TranslationAliases.Common.Cards.SendEmailTo, contactName),
         };
     }
 
-    public static Button? CreateForPhoneNumber(string? phoneNumber, string? contactName, ICultureDictionary cultureDictionary)
+    public static Button? CreateForPhoneNumber(string? phoneNumber, string contactName, ICultureDictionary cultureDictionary)
     {
         if (phoneNumber.IsNullOrWhiteSpace())
         {
@@ -90,7 +90,7 @@ public class Button
             Variant = "link",
             Url = $"tel:{phoneNumber}",
             Label = phoneNumber,
-            AriaLabel = string.Format(cultureDictionary.GetTranslation(TranslationAliases.Common.Cards.MakePhoneCallTo), contactName),
+            AriaLabel = cultureDictionary.GetTranslation(TranslationAliases.Common.Cards.MakePhoneCallTo, contactName),
         };
     }
 }
