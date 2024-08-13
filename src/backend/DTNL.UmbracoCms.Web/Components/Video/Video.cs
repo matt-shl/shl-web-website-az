@@ -37,6 +37,8 @@ public class Video
 
     public bool Controls { get; set; } = true;
 
+    public bool CustomControls { get; set; } = true;
+
     public bool Loop { get; set; } = true;
 
     private IEnumerable<VideoSizeSource>? Sources { get; init; }

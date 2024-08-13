@@ -56,6 +56,7 @@ public class HomepageHero : IHero
                 v.Description = "Homepage video description"; // TO DO: change this one once the videos are agreed and if needed for accessibility
                 v.Autoplay = true;
                 v.Controls = false;
+                v.CustomControls = true;
                 v.Muted = true;
             }),
         };
