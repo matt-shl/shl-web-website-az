@@ -82,6 +82,11 @@ public class Video
                 sources = GetSources(nativeCmsVideo);
                 platform = "native";
                 break;
+
+            case VideoMedia videoMedia:
+                sources = GetSources(videoMedia);
+                platform = "native";
+                break;
             default:
                 throw new NotImplementedException($"Video type {videoElement.GetType().Name} not implemented");
         }
@@ -121,6 +126,40 @@ public class Video
             Classes = css,
             Sources = GetSources(block),
         };
+    }
+
+    public static Video? Create(
+       VideoMedia? block,
+       string? css = null)
+    {
+        if (block is null)
+        {
+            return null;
+        }
+
+        string? id = null;
+        string platform;
+
+        platform = "native";
+
+        return new Video
+        {
+            Id = id,
+            InstanceId = $"{Random.Shared.Next()}",
+            Platform = platform,
+            Classes = css,
+            Sources = GetSources(block),
+        };
+    }
+
+    private static IEnumerable<VideoSizeSource> GetSources(VideoMedia nativeUrlVideo)
+    {
+        return nativeUrlVideo.Sources?
+                   .Select(s => s.Content)
+                   .Cast<VideoSourceUrl>()
+                   .Select(s => GetSource(s.VideoLink, s.SourceSize))
+                   .WhereNotNull()
+               ?? [];
     }
 
     private static IEnumerable<VideoSizeSource> GetSources(NestedBlockVideoNativeUrl nativeUrlVideo)

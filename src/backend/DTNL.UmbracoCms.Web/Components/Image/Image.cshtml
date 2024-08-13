@@ -1,4 +1,5 @@
 @using DEPT.Umbraco.SourceGenerators.CssBreakpoints
+@using DTNL.UmbracoCms.Web.Components;
 @model DTNL.UmbracoCms.Web.Components.Image?
 
 @if(Model is null){ return; }
@@ -10,7 +11,12 @@
         asp-extra-attribs="@Model.Attributes">
 
     @{ string preloadSvg = $"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 {Model.AspectRatio.Width} {Model.AspectRatio.Height}'/%3E"; }
-    <div class="image__holder">
+
+    <@Model.Element
+        class="image__holder"
+        aria-label="Open video Modal"
+                    aria-controls="@(Model.Video != null ? $"modal-video-{Model.Video.Id}" : null)" >
+    
 		@if (!Model.Crops.Any() || !Model.SrcSet.IsNullOrEmpty())
 		{
 		    <img class="image__default" alt="@Model.Alt" src="@(Model.ShowPreload ? (!Model.Preload.IsNullOrEmpty() ? Model.Preload : preloadSvg) : null)" data-src="@Model.Url" data-srcset="@Model.SrcSet" />
@@ -28,7 +34,21 @@
                 <img class="image__default" alt="@Model.Alt" src="@(Model.ShowPreload ? (!Model.Preload.IsNullOrEmpty() ? Model.Preload : preloadSvg) : null)" />
             </picture>
 		}
-	</div>
+	</@Model.Element>
+
+    @if(Model.Video != null)
+    {
+      <partial name="CardOverlay" model="@(new CardOverlay {
+          Video = new Video {
+            Id = Model.Video.Id,
+            InstanceId = Model.Video.InstanceId,
+            Platform = "native",
+            TotalTime = Model.Video.TotalTime
+          },
+         Position = "start",
+         Visible = true,
+    })" />
+    }
 
 	@if (!Model.Caption.IsNullOrEmpty())
 	{
