@@ -1,4 +1,5 @@
-{% set footerScrollingText = global.content.careerOverviewPage.footerScrollingText %}
+{% set careerOverviewPageData = global.content.careerOverviewPage %}
+{% set footerScrollingText = careerOverviewPageData.footerScrollingText %}
 {% set theme = "dark-pink" %}
 {% set themeColor = "#662949" %}
 
@@ -12,25 +13,21 @@
 
 {% block hero %}
   <!-- Todo finish hero-content with content data -->
-  {{ heroContent({
-    breadcrumbs: global.content.careerOverviewPage.breadcrumbs.items,
-    title: global.content.careerOverviewPage.hero.title,
-    ctas: global.content.careerOverviewPage.hero.ctas
-  }) }}
+  {{ heroContent(careerOverviewPageData.hero) }}
 {% endblock %}
 
 {% block content %}
-  {{ mediaSection(global.content.careerOverviewPage.mainImage | clone | merge({ variant: "no-padding" })) }}
+  {{ mediaSection(careerOverviewPageData.mainImage | clone | merge({ variant: "no-padding" })) }}
 
-  {{ textMediaList(global.content.careerOverviewPage.textMediaList1) }}
+  {{ textMediaList(careerOverviewPageData.textMediaList1) }}
 
-  {{ sectionCardCarousel(global.content.careerOverviewPage.carousel1) }}
+  {{ sectionCardCarousel(careerOverviewPageData.carousel1) }}
 
   <!-- TODO image carousel -->
 
-  {{ bannerQuote(global.content.careerOverviewPage.quoteBanner1) }}
+  {{ bannerQuote(careerOverviewPageData.quoteBanner1) }}
 
-  {{ textMediaList(global.content.careerOverviewPage.textMediaList2) }}
+  {{ textMediaList(careerOverviewPageData.textMediaList2) }}
 
   <!-- TODO featured job listings  -->
 {% endblock %}

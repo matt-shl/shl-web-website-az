@@ -1,0 +1,281 @@
+{
+  "footerScrollingText": "Caring. Inclusive. Driven.",
+  "hero": {
+    "title": "Empower your future with SHL Medical",
+    "description": "Welcome to the world of possibilities",
+    "breadcrumbs": [
+      {
+        "url": "/home.html",
+        "label": "Home"
+      },
+      {
+        "url": "/parent-1.html",
+        "label": "What we offer"
+      },
+      {
+        "url": "/parent-2.html",
+        "label": "Products"
+      },
+      {
+        "url": "/current-item.html",
+        "label": "Latest innovations"
+      }
+    ]
+  },
+  "mainImage": {
+    "image": true,
+    "video": {
+      "id": "text-media-video1",
+      "totalTime": "01:30",
+      "title": "Text media video 1",
+      "description": "Text media video 1 description",
+      "closedcaptions": [
+        {
+          "url": "subtitles.vtt",
+          "label": "Nederlands",
+          "lang": "nl",
+          "kind": "subtitles"
+        }
+      ],
+      "sources": [
+        {
+          "size": 1920,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        },
+        {
+          "size": 1280,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        },
+        {
+          "size": 1024,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        },
+        {
+          "size": 320,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "carousel1": {
+    "carouselCardType": "knowledge",
+    "title": "We're changing thousands of lives every day",
+    "showThreeCardsSideBySide": true,
+    "cta1": {
+      "label": "All stories",
+      "url": "#"
+    },
+    "cards": [
+      {
+        "title": "Supporting people with chronic illnesses",
+        "content": "Our self-injecting drug delivery systems help people who battle medical issues every day with reclaiming the reins of their lives.",
+        "url": "#",
+        "ctaLabel": "Read Marjorie's story",
+        "tag": "Story"
+      },
+      {
+        "title": "Powering medical revolutions",
+        "content": "By helping starting and well-established pharmaceutical companies getting their product in the market, we support medical breakthroughs.",
+        "url": "#",
+        "ctaLabel": "See Vincent's breakthrough",
+        "tag": "Story"
+      },
+      {
+        "title": "Creating impossible experiences",
+        "content": "Quis ornare erat nam proin. Tristique proin auctor in et sed cursus rutrum. Adipiscing mauris faucibus enim ultricies.",
+        "url": "#",
+        "ctaLabel": "See Vincent's breakthrough",
+        "tag": "Story"
+      }
+    ]
+  },
+  "carousel2": {
+    "carouselCardType": "number",
+    "title": "In 2023 we made an inpact",
+    "description": "We only have two goals. We want to keep innovating for life. And we want to create the most sustainable device there is.",
+    "cards": [
+      {
+        "title": "480,000",
+        "subtitle": "Tons of plastic saved",
+        "content": "We saved 480,000 tons of plastic by moving to a new manufacturing machine. That’s the weight of 24 elephants."
+      },
+      {
+        "title": "193,000",
+        "subtitle": "Liters of water saved",
+        "content": "193,000 liters of water saved by using a sustainable dye for our products."
+      },
+      {
+        "title": "80%",
+        "subtitle": "Manufacturing waste recycled",
+        "content": "80% of our manufacturing waste is recycled. "
+      },
+      {
+        "title": "10+ devs",
+        "subtitle": "Working on this project",
+        "content": "We have a team of 10+ developers working on this project. They are dedicated to making the world a better place."
+      },
+      {
+        "title": "100%",
+        "subtitle": "Renewable energy",
+        "content": "We use 100% renewable energy to power our factories. This helps reduce our carbon footprint."
+      },
+      {
+        "title": "1,000,000",
+        "subtitle": "Trees planted",
+        "content": "We have planted 1,000,000 trees to help offset our carbon emissions. This is part of our commitment to sustainability."
+      },
+      {
+        "title": "100%",
+        "subtitle": "Recyclable packaging",
+        "content": "All of our packaging is 100% recyclable. This helps reduce waste and protect the environment."
+      }
+    ]
+  },
+  "textMedia": {
+    "theme": "t-white",
+    "mediaPosition": "start",
+    "title": "We value our international work environment",
+    "description": "We value our international working environment. We are not set back by failures. We research our stuff because knowledge is power. And foremost, we care about people.",
+    "image": {
+      "caption": "image caption example"
+    },
+    "cta1": {
+      "label": "Our culture & values",
+      "url": "#"
+    }
+  },
+  "quoteBanner1": {
+    "id": "quote-banner",
+    "sectionTitle": "Testimonials",
+    "theme": "t-pastel-green",
+    "quotes": [
+      {
+        "title": "“SHL Medical’s dedication to precision and innovation inspires me every day, and I take pride in contributing to the development of life-changing medical devices.“",
+        "author": "Dr. John Doe",
+        "role": "Chief Medical Officer, Softtech",
+        "image": {
+          "caption": ""
+        }
+      },
+      {
+        "title": "“Shl Medical is the best partner I have ever worked with. They are professional, reliable, and always deliver on time.“",
+        "author": "Dr. Jane Doe",
+        "role": "Quality Assurance Manager, Softtech",
+        "image": {
+          "caption": ""
+        }
+      },
+      {
+        "title": "“I have been working with SHL Medical for over 10 years and I can honestly say that they are the best in the business.“",
+        "author": "Dr. Jack Doe",
+        "role": "Head of Research and Development, Softtech",
+        "image": {
+          "caption": ""
+        }
+      }
+    ]
+  },
+  "textMediaList2": {
+    "title": "Where do you fit in?",
+    "image": {
+      "caption": "image caption"
+    },
+    "description": "We wouldn’t manage a day without our structured collaboration between all teams involved. What’s your perfect fit?",
+    "links": [
+      {
+        "label": "Research & development",
+        "url": "#"
+      },
+      {
+        "label": "Engineering",
+        "url": "#"
+      },
+      {
+        "label": "Manufacturing",
+        "url": "#"
+      },
+      {
+        "label": "Commercialization",
+        "url": "#"
+      }
+    ]
+  },
+  "carousel3": {
+    "carouselCardType": "icon",
+    "title": "Discover more of SHL Medical",
+    "cards": [
+      {
+        "title": "How we work",
+        "icon": "rocket"
+      },
+      {
+        "title": "Perks & benefits",
+        "icon": "rocket"
+      },
+      {
+       "title": "Career paths",
+       "icon": "rocket"
+      }
+    ]
+  },
+  "jobVacancies": {
+    "title": "Ready for a new adventure?",
+    "theme": "t-general",
+    "id": "jobs",
+    "sectionTitle": "jobs",
+    "cta1": {
+      "label": "View All Jobs",
+      "url": "#"
+    },
+    "cta2": {
+      "label": "Apply Now",
+      "url": "#"
+    },
+    "jobs": [
+      {
+        "title": "Senior Software Engineer",
+        "location": "Zurich, Switzerland",
+        "url": "#",
+        "tags": ["Full Time", "Engineering"]
+      },
+      {
+        "title": "Product Manager",
+        "location": "Taipei, Taiwan",
+        "url": "#",
+        "tags": ["Full Time", "Product"]
+      },
+      {
+        "title": "UX Designer",
+        "location": "Stockholm, Sweden",
+        "url": "#",
+        "tags": ["Freelancer", "Design"]
+      },
+      {
+        "title": "Data Scientist",
+        "location": "Taipei, Taiwan",
+        "url": "#",
+        "tags": ["Full Time", "Data"]
+      }
+    ]
+  }
+}
