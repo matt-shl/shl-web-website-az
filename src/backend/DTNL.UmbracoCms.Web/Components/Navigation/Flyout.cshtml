@@ -22,23 +22,26 @@
                             </div>
                         </button>
 
-                        <ul class="flyout__subitem-list" id="flyout-list-(@item.Id)-(i)">
-                            @foreach(MenuItem subLink in item.NestedSubmenu.Links)
-                            {
-                                <li class="flyout__subitem">
-                                    <a class="flyout__subitem-anchor" title="@subLink?.Link?.Label" href="@subLink?.Link?.Url">
-                                        @subLink?.Link?.Label
-                                    </a>
-                                </li>
-                            }
+                        @if (item.NestedSubmenu is not null)
+                        {
+                            <ul class="flyout__subitem-list" id="flyout-list-(@item.Id)-(i)">
+                                @foreach (MenuItem subLink in item.NestedSubmenu.Links)
+                                {
+                                    <li class="flyout__subitem">
+                                        <a class="flyout__subitem-anchor" title="@subLink?.Link?.Label" href="@subLink?.Link?.Url">
+                                            @subLink?.Link?.Label
+                                        </a>
+                                    </li>
+                                }
 
-                            @if (item.All != null)
-                            {
-                                <li>
-                                    <a class="flyout__subitem-all" href="@item.All.Url">All @item.All.Label</a>
-                                </li>
-                            }
-                        </ul>
+                                @if (item.All != null)
+                                {
+                                    <li>
+                                        <a class="flyout__subitem-all" href="@item.All.Url">All @item.All.Label</a>
+                                    </li>
+                                }
+                            </ul>
+                        }                       
                     </li>
                 }
             </ul>
