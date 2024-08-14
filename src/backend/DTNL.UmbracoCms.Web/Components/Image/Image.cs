@@ -42,15 +42,6 @@ public partial class Image
 
     public string? ImageStyle { get; set; }
 
-    //public Video? Video { get; set; }
-
-    // public string Element {
-    //     get
-    //     {
-    //         return Video != null ? "button" : "div";
-    //     }
-    // }
-
     public static Image? Create(
         MediaWithCrops? mediaWithCrops,
         int width = 0,
