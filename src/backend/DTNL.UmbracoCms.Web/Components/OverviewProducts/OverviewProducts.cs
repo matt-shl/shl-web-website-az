@@ -50,12 +50,6 @@ public class OverviewProducts : ViewComponentExtended
 
         Pagination = Pagination.Create(pageNumber, TotalCount, PageSize);
 
-
-
-
-
-
-
         return View("OverviewProducts", this);
     }
 
