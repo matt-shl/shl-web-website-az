@@ -6,7 +6,7 @@
 @(Model.HasUrl ? $"href=\"{Model.Url}\"" : null)
                   aria-label="@Model.Title">
 
-    <div class="card-image__image-container">
+    <div class="card-knowledge__image-container">
         <partial name="Image" model="@Model.Image" />
 
         @if (!Model.Tag.IsNullOrWhiteSpace())
