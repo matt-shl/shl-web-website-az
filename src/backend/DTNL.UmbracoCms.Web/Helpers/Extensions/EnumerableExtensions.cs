@@ -19,6 +19,11 @@ public static class EnumerableExtensions
         return source != null && source.Any();
     }
 
+    public static IEnumerable<T> EnsureNotNull<T>(this IEnumerable<T?>? source)
+    {
+        return source?.OfType<T>() ?? [];
+    }
+
     public static bool HasAny<T>(this IEnumerable<T>? source, Func<T, bool> predicate)
     {
         return source != null && source.Any(predicate);
