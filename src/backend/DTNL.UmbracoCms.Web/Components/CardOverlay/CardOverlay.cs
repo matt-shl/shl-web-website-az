@@ -9,4 +9,6 @@ public class CardOverlay
     public string? Position { get; set; }
 
     public bool Visible { get; set; }
+
+    public Video? Video { get; set; }
 }

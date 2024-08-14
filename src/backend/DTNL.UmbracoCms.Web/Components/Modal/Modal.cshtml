@@ -1,4 +1,5 @@
 @model DTNL.UmbracoCms.Web.Components.Modal;
+@inject ICultureDictionary CultureDictionary;
 
 <div class="c-modal @Model.Class @(Model.Size != null ? $"c-modal--size-{Model.Size}" : null)"
      id="@Model.Id"
@@ -9,31 +10,43 @@
      data-modal-keep-scroll-position="@(Model.KeepScrollPosition ? "true" : "false")"
      data-modal-auto-close="@(Model.AutoClose ? "true" : "false")"
      js-hook-modal>
+
+    @if (Model?.Size == "video")
+    {
+        <button type="button" class="modal__button-close" js-hook-button-modal-close aria-label=CultureDictionary.GetTranslation(TranslationAliases.Navigation.Close>
+            <svg src="@(SvgAliases.Icons.Cross)" />
+        </button>
+    }
+    
+    {% endif %}
     <div class="modal__container">
         <div class="modal__content" role="dialog">
             @if (Model?.Size != "navigation-mobile")
             {
                 <div class="modal__header">
                      <div>
-                        <h2 class="modal__title">{{ Model.Title }}</h2>
+                        <h2 class="modal__title">@Model?.Title</h2>
 
                         @if (Model?.Subtitle != null)
                         {
-                            <h3 class="modal__subtitle">{{ Model.Subtitle }}</h3>
+                            <h3 class="modal__subtitle">@Model.Subtitle</h3>
                         }
                     </div>
 
-                    @if (!Model!.NoClose)
+                    @if (Model?.Size != "video")
                     {
-                        <button type="button" class="modal__button-close" js-hook-button-modal-close aria-label="{{ global.resource.navigation.close }}">
-                            <svg src="@(SvgAliases.Icons.Cross)" />
-                        </button>
-                    }
+                        @if (!Model!.NoClose)
+                        {
+                            <button type="button" class="modal__button-close" js-hook-button-modal-close aria-label=CultureDictionary.GetTranslation(TranslationAliases.Navigation.Close>
+                                <svg src="@(SvgAliases.Icons.Cross)" />
+                            </button>
+                        }
+                    }                   
                 </div>
             } else
             {
                 <div class="modal__header">
-                    @*  {{ global.resource.navigation.home }} *@
+                    @CultureDictionary.GetTranslation(TranslationAliases.Navigation.Home)
                     <a href="/" class="modal__header-logo" title="Home">
                         <svg src="@(SvgAliases.Brand.LogoColor)" />
                     </a>
@@ -41,8 +54,7 @@
                     <button class="modal__header-hamburger"
                             js-hook-button-modal-close>
                         <svg src="@(SvgAliases.Icons.Cross)" />
-                       @*  {{ global.resource.navigation.close }} *@
-                       Close
+                        @CultureDictionary.GetTranslation(TranslationAliases.Navigation.Close)
                     </button>
                 </div>
             }

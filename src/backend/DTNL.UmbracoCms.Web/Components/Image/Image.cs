@@ -40,6 +40,8 @@ public partial class Image
 
     public CardOverlay? CardOverlay { get; set; }
 
+    public string? ImageStyle { get; set; }
+
     public static Image? Create(
         MediaWithCrops? mediaWithCrops,
         int width = 0,
