@@ -42,7 +42,7 @@ public class FiltersModal
 
         public required string Type { get; set; }
 
-        public required List<IFormOption> Options { get; set; }
+        public required List<CheckboxOption> Options { get; set; }
 
         public static Filter Create(
             string name,
@@ -69,7 +69,6 @@ public class FiltersModal
                                 .AppendQueryParam(name, filterOption.Id),
                         },
                         selected: productFilters.IsSelected(name, filterOption)))
-                    .OfType<IFormOption>()
                     .ToList(),
             };
         }
