@@ -1,5 +1,6 @@
 {% from 'modal.html' import modal %}
 {% from 'navigation-mobile-list.html' import navigationMobileList %}
+{% from 'language-selector.html' import languageSelector %}
 
 {# Modal to show level 1 items #}
 {% call modal({
@@ -14,8 +15,8 @@
         items: global.content.navigation.items
       }) }}
       <div class="navigation-mobile__line"></div>
-      <div class="navigation-mobile-selector">
-        <!-- Todo: language selector -->
+      <div class="navigation-mobile__language-selector">
+        {{ languageSelector({mobile: true}) }}
       </div>
     </nav>
   </div>
