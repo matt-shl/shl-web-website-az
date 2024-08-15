@@ -39,13 +39,16 @@ public class Video
 
     public bool CustomControls { get; set; } = true;
 
+
     public bool Loop { get; set; } = true;
 
     private IEnumerable<VideoSizeSource>? Sources { get; init; }
 
     public string? SourcesJson => Sources?.Any() == true ? JsonSerializer.Serialize(Sources, JsonOptions) : null;
 
-    public string? ClosedCaptions { get; set; }
+    public IEnumerable<VideoClosedCaptions>? ClosedCaptions { get; set; }
+
+    public string? CaptionsJson => ClosedCaptions?.Any() == true ? JsonSerializer.Serialize(ClosedCaptions, JsonOptions) : null;
 
     public string? EmbedUrl { get; set; }
 
@@ -151,6 +154,15 @@ public class Video
             Platform = platform,
             Classes = css,
             Sources = GetSources(block),
+            ClosedCaptions = block?.ClosedCaptions?.Select(c => new VideoClosedCaptions
+            {
+                Url = (block.ClosedCaptions?.FirstOrDefault()?.Content as ClosedCaptions)?.Url ?? "",
+                Kind = (block.ClosedCaptions?.FirstOrDefault()?.Content as ClosedCaptions)?.Kind,
+                Label = (block.ClosedCaptions?.FirstOrDefault()?.Content as ClosedCaptions)?.Label,
+                Lang = (block.ClosedCaptions?.FirstOrDefault()?.Content as ClosedCaptions)?.Lang,
+
+            }
+            ),
         };
     }
 

@@ -1,6 +1,7 @@
 @using DTNL.UmbracoCms.Web.Helpers.Extensions
 @model DTNL.UmbracoCms.Web.Components.Video
 
+
 <div class="c-video @Model.Classes"
      itemprop="video" itemscope itemtype="http://schema.org/VideoObject"
      id="video-@Model.InstanceId"
@@ -14,7 +15,7 @@
      asp-data-video-controls="@(Model.Controls ? "true" : null)"
      asp-data-video-loop="@(Model.Loop ? "true" : null)"
      asp-data-video-sources="@Model.SourcesJson"
-     asp-data-video-closedcaptions="@Model.ClosedCaptions"
+     asp-data-video-closedcaptions="@Model.CaptionsJson"
      aria-label="@Model.Title.NullOrEmptyAsNull()"
      js-hook-inview="@(Model.InView ? "" : null)"
      asp-data-inview-persistent="@(Model.InView ? "true" : null)"

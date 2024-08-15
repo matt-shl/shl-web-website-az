@@ -19,7 +19,7 @@ public class TextMediaBanner : NestedBlockWithInner
 
         LayoutSection.CssClasses = textMediaBannerBlock.Theme != null ? $"t-{textMediaBannerBlock?.Theme?.Label}" : "t-white";
         LayoutSection.Variant = "in-grid";
-        Id = textMediaBanner.Title.Trim().ToLower().Replace(" ", "-");
+        Id = textMediaBanner.Id;
 
         return textMediaBanner;
     }
