@@ -1,0 +1,51 @@
+{% set theme = "dark-pink" %}
+{% set themeColor = "#662949" %}
+
+{% set headerIsWhite = true %}
+{% set showFiltersModal = true %}
+{% set footerScrollingText = global.content.home.footerScrollingText %}
+
+{% set footerScrollingText = global.content.jobOverviewPage.footerScrollingText %}
+
+{% extends 'layouts/default.html' %}
+
+{% from 'hero-content.html' import heroContent %}
+{% from 'pagination.html' import pagination %}
+{% from 'filters.html' import filters %}
+{% from 'job-listing-item.html' import jobListingItem %}
+{% from 'layout-section.html' import layoutSection %}
+{% from 'text-media.html' import textMedia %}
+
+{% set jobOverview = global.content.jobOverviewPage %}
+
+{% block hero %}
+  {{ heroContent(jobOverview.hero) }}
+{% endblock %}
+
+{% block content %}
+
+  {{ filters(global.content.filters) }}
+
+  <div js-hook-replace-content="overview-content">
+    {% call layoutSection({
+      variant: "grid-single-column",
+      listLabel: "Job overview items",
+      reduceMargin: "top-bottom",
+      id: "content"
+    }) %}
+      {# this first for is just to show the same card multiple times #}
+      {% for _ in range(3) %}
+        {% for data in jobOverview.jobItems %}
+          <li>
+          {{ jobListingItem(data) }}
+          </li>
+        {% endfor %}
+      {% endfor %}
+    {% endcall %}
+
+    {{ pagination (global.content.pagination) }}
+  </div>
+
+  {{ textMedia(jobData.textMedia) }}
+
+{% endblock %}

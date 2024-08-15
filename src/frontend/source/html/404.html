@@ -1,0 +1,20 @@
+{% extends 'layouts/default.html' %}
+
+{% from 'empty-section.html' import emptySection %}
+{% from 'text-media.html' import textMedia %}
+{% from 'slogan.html' import slogan %}
+
+{% block hero %}
+  {{ slogan({
+    text: global.content.error404.hero.title,
+    variant: "in-hero"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  {{ emptySection(global.content.error404.content | clone | merge({
+    variant: "tight"
+  })) }}
+
+  {{ textMedia(global.content.error404.textMedia) }}
+{% endblock %}

@@ -2,6 +2,7 @@
 {% set themeClass = data.theme if data.theme else 't-white' %}
   <section class="c-layout-section
     {%- if data.variant %} c-layout-section--{{ data.variant }}{% endif %}
+    {%- if data.reduceMargin %} c-layout-section--reduce-margin-{{ data.reduceMargin }}{% endif %}
     {%- if data.classes %} {{ data.classes }}{% endif %}
     {{themeClass}}"
     {%- if data.sectionTitle %} data-title="{{data.sectionTitle}}"{% endif %}
@@ -19,9 +20,15 @@
     <div class="layout-section__container{% if data.containerClass %} {{ data.containerClass }}{% endif %}">
     {% endif %}
 
-      <div class="layout-section__wrapper">
-        {{ caller() }}
-      </div>
+      {% if data.listLabel %}
+        <ul class="layout-section__wrapper layout-section__wrapper--list {% if data.wrapperClass %} {{ data.wrapperClass }}{% endif %}" aria-label="{{ data.listLabel }}">
+          {{ caller() }}
+        </ul>
+      {% else %}
+        <div class="layout-section__wrapper {% if data.wrapperClass %} {{ data.wrapperClass }}{% endif %}">
+          {{ caller() }}
+        </div>
+      {% endif %}
 
     {% if not data.fullWidth %}
     </div>

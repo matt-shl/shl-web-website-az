@@ -1,0 +1,19 @@
+@using DTNL.UmbracoCms.Web.Components
+@model DTNL.UmbracoCms.Web.Components.EmptySection
+
+<partial name="LayoutSection" model="@(new LayoutSection { CssClasses = "c-empty-section"})">
+    <div class="empty-section__inner">
+        <h2 class="empty-section__title">@Model.Title</h2>
+
+        <div class="empty-section__content">@Html.Raw(Model.Text)</div>
+
+        @if (Model.PrimaryLinkButton is not null || Model.SecondaryLinkButton is not null)
+        {
+            <div class="empty-section__buttons-container">
+                <partial name="Button" model="@Model.PrimaryLinkButton" />
+
+                <partial name="Button" model="@Model.SecondaryLinkButton" />
+            </div>
+        }
+    </div>
+</partial>

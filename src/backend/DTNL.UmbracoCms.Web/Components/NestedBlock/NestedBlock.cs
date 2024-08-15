@@ -10,7 +10,7 @@ public abstract class NestedBlock : ViewComponentExtended
 {
     public string? Id { get; set; }
 
-    public string? ThemeCssClasses => ThemeHelper.GetCssClasses(NodeProvider.CurrentNode);
+    public string ThemeCssClasses => ThemeHelper.GetCssClasses(NodeProvider.CurrentNode);
 
     public string? NavigationTitle => NodeProvider.CurrentNode?.Name;
 

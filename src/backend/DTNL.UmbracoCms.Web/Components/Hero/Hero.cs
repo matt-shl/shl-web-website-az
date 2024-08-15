@@ -1,12 +1,10 @@
+using DTNL.UmbracoCms.Web.Components.PartialComponent;
 using Microsoft.AspNetCore.Mvc;
 using Umbraco.Cms.Web.Common.PublishedModels;
 
 namespace DTNL.UmbracoCms.Web.Components.Hero;
 
-public interface IHero
-{
-    string ViewPath => $"~/Components/{GetType().Name}/{GetType().Name}.cshtml";
-}
+public interface IHero : IPartialViewPath;
 
 public class Hero : ViewComponentExtended
 {
@@ -15,8 +13,11 @@ public class Hero : ViewComponentExtended
         IHero? hero = (page as ICompositionHero)?.Hero?.FirstOrDefault()?.Content switch
         {
             NestedBlockProductHero heroPdp => HeroPdp.Create(heroPdp, page),
+            NestedBlockHomepageHero heroHomepage => HomepageHero.Create(heroHomepage, page),
+            NestedBlockContentHero heroContent => HeroContent.Create(heroContent, page),
             _ => null,
         };
+
 
         if (hero is null)
         {

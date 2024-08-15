@@ -9,9 +9,10 @@
   @include theme-card;
   @include card-image-container-base;
 
+  pointer-events: none;
+
   &:has(.c-card-overlay) {
     border-end-start-radius: 0;
-    border-end-end-radius: 0;
   }
 }
 
@@ -26,7 +27,7 @@
 
 .card-contact__role {
   color: var(--contact-role-color, var(--content-color));
-  font-weight: $font-weight-extrabold;
+  font-weight: $font-weight-bold;
 }
 
 .card-contact__label {

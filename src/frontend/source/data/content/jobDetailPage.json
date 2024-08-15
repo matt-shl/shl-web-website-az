@@ -1,0 +1,74 @@
+{
+  "footerScrollingText": "Stronger. Smarter. Better.",
+  "hero": {
+    "title": "Quality Engineer Design & Development",
+    "breadcrumbs": [
+      {
+        "url": "/home.html",
+        "label": "Home"
+      },
+      {
+        "url": "/job-overview.html",
+        "label": "Job Overview"
+      }
+    ]
+  },
+  "imageCarousel": {
+    "title": "A glimpse into our culture and work environment",
+    "theme": "t-pale-green",
+    "description": "We are a team of passionate individuals who are committed to delivering the best possible experience for our customers. We are always looking for talented individuals to join our team.",
+    "cta1": {
+      "label": "primary",
+      "url": "#"
+    },
+    "cta2": {
+      "label": "secondary",
+      "url": "#"
+    },
+    "images": [{"caption": "hello"}, {"caption": "hello"}, {"caption": "hello"}, {"caption": "hello"}]
+  },
+  "jobVacancies": {
+    "title": "Other Jobs You May Be Interested In",
+    "theme": "t-pale-green",
+    "id": "jobs",
+    "sectionTitle": "jobs",
+    "cta1": {
+      "label": "View All Jobs",
+      "url": "#"
+    },
+    "cta2": {
+      "label": "Apply Now",
+      "url": "#"
+    },
+    "jobs": [
+      {
+        "title": "Senior Software Engineer",
+        "location": "Zurich, Switzerland",
+        "url": "#",
+        "tags": ["Full Time", "Engineering"]
+      },
+      {
+        "title": "Product Manager",
+        "location": "Taipei, Taiwan",
+        "url": "#",
+        "tags": ["Full Time", "Product"]
+      },
+      {
+        "title": "UX Designer",
+        "location": "Stockholm, Sweden",
+        "url": "#",
+        "tags": ["Freelancer", "Design"]
+      },
+      {
+        "title": "Data Scientist",
+        "location": "Taipei, Taiwan",
+        "url": "#",
+        "tags": ["Full Time", "Data"]
+      }
+    ]
+  },
+  "mobileFloatingButton": {
+    "label": "Apply Now",
+    "url": "#"
+  }
+}

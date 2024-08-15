@@ -3,9 +3,9 @@
   --layout-section-gap: 24; // fallback value
 }
 
-@mixin layout-section-theme-style {
-  @include theme;
+@mixin layout-section-border-style {
   border-radius: $radii-20;
+  overflow: hidden;
 
   @include screen-md-and-bigger {
     border-radius: $radii-40;
@@ -13,16 +13,17 @@
 }
 
 .c-layout-section {
-  @include layout-section-theme-style;
+  @include theme;
+  @include layout-section-border-style;
 
   &:not(.t-white) {
-    margin-block: $spacing-40;
+    margin-block: $spacing-80;
 
     &:first-child {
       margin-top: 0;
     }
 
-    &:last-child {
+    &:last-of-type {
       margin-block-end: 0;
     }
   }
@@ -30,6 +31,10 @@
   &--in-grid:not(.t-white) {
     @include container;
     background-color: transparent;
+
+    &:last-of-type {
+      margin-block-end: $spacing-80;
+    }
   }
 }
 
@@ -38,12 +43,30 @@
   overflow: hidden;
 
   .c-layout-section--in-grid & {
-    @include layout-section-theme-style;
+    @include theme;
+    @include layout-section-border-style;
     padding-block: $spacing-24;
+  }
+
+  .c-layout-section--no-padding & {
+    padding-block: 0;
   }
 
   @include screen-md-and-bigger {
     padding-block: $spacing-80;
+
+    .c-layout-section--reduce-margin-top & {
+      padding-top: $spacing-40;
+    }
+
+    .c-layout-section--reduce-margin-bottom & {
+      padding-bottom: $spacing-40;
+    }
+
+    .c-layout-section--reduce-margin-top-bottom &,
+    .c-layout-section--grid & {
+      padding-block: $spacing-40;
+    }
   }
 
   @include screen-lg-and-bigger {
@@ -62,6 +85,16 @@
     --container-padding: #{$spacing-24};
   }
 
+  .c-layout-section--no-padding & {
+    padding-inline: 0;
+  }
+
+  @include screen-sm-and-smaller {
+    .c-layout-section--no-padding-inline-mobile & {
+      padding-inline: 0;
+    }
+  }
+
   @include screen-lg-and-bigger {
     .c-layout-section--in-grid:not(.t-white) & {
       --container-padding: #{$spacing-80};
@@ -71,4 +104,27 @@
 
 .layout-section__wrapper {
   width: 100%;
+
+  &--list {
+    all: unset;
+    list-style: none;
+  }
+
+  .c-layout-section--grid-single-column &,
+  .c-layout-section--grid & {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-16;
+  }
+
+  .c-layout-section--grid & {
+    @include screen-md-and-bigger {
+      grid-template-columns: repeat(2, 1fr);
+      gap: $spacing-80 $spacing-16;
+    }
+
+    @include screen-lg-and-bigger {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
 }

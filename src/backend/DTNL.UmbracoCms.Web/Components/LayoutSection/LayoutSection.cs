@@ -2,6 +2,10 @@ namespace DTNL.UmbracoCms.Web.Components;
 
 public class LayoutSection
 {
+    public string? Id { get; set; }
+
+    public string? NavigationTitle { get; set; }
+
     public string? CssThemeClasses { get; set; }
 
     public string? CssClasses { get; set; }
@@ -12,5 +16,5 @@ public class LayoutSection
 
     public string? JsHook { get; set; }
 
-    public bool FullWidth { get; set; } = false;
+    public bool FullWidth { get; set; }
 }

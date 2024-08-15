@@ -73,7 +73,7 @@
   border-radius: $radii-4;
   color: $color-dark-blue;
   display: flex;
-  font-weight: $font-weight-extrabold;
+  font-weight: $font-weight-bold;
   gap: $spacing-16;
   justify-content: space-between;
   padding: $spacing-16;
@@ -116,8 +116,6 @@
   color: $color-dark-blue;
   display: inline-block;
   padding: $spacing-8 $spacing-16;
-
-  // TODO: hover state (waiting on reusable hover from the footer)
 }
 
 .flyout__subitem-all {
@@ -127,6 +125,14 @@
 
 .flyout__feature-column {
   display: none;
+
+  .card-image__image-container .c-shape {
+    --bg-color: #{$color-white};
+  }
+
+  .c-card-image--has-url:hover .card-image__title {
+    color: $color-light-blue;
+  }
 
   @include screen-xl-and-bigger {
     @include col-span(3);

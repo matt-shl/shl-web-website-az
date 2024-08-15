@@ -1,0 +1,42 @@
+@using DTNL.UmbracoCms.Web.Helpers.Aliases
+@model DTNL.UmbracoCms.Web.Components.HeroContent
+@inject NodeProvider NodeProvider
+
+
+<section class="c-hero-content">
+    <div class="hero-content__container">
+        <div class="hero-content__breadcrumbs">
+            <vc:breadcrumb page="@NodeProvider.GetCurrentNode()" />
+        </div>
+        <div class="hero-content__col-left">
+            <h1>@Model.Title</h1>
+            @if (!string.IsNullOrEmpty(Model.Subtitle))
+            {
+                <p class="hero-content__subtitle">@Model.Subtitle></p>
+            }
+            <div class="hero-content__tags">
+                @foreach (var tag in Model.Tags.EnsureNotNull())
+                {
+                    <partial name="Tag" model="@tag" />
+                }
+            </div>
+        </div>
+        <div class="hero-content__col-right">
+            <p class="hero-content__description">@Model.ShortDescription</p>
+            <div class="hero-content__ctas">
+                @if (Model.PrimaryLinkButton is not null)
+                {
+                    <partial name="Button" model="@Model.PrimaryLinkButton"></partial>
+
+                }
+                @if (Model.SecondaryLinkButton is not null)
+                {
+                    <partial name="Button" model="@Model.SecondaryLinkButton"></partial>
+
+                }
+            </div>
+        </div>
+
+    </div>
+
+</section>

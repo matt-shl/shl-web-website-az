@@ -24,5 +24,9 @@
 @mixin rich-text {
   display: flex;
   flex-direction: column;
-  gap: $spacing-16;
+  gap: $spacing-24;
+
+  a {
+    font-weight: $font-weight-regular;
+  }
 }

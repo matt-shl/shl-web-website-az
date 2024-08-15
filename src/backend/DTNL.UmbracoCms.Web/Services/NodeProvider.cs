@@ -30,6 +30,11 @@ public class NodeProvider
 
     public IPublishedContent? CurrentNode => _currentNode ??= GetCurrentNode();
 
+    public static IEnumerable<PageProduct> GetProductPages(PageProductOverview overviewPage)
+    {
+        return overviewPage.Children<PageProduct>() ?? [];
+    }
+
     internal void Reset()
     {
         _homePage = null;

@@ -5,33 +5,61 @@
 
 {% extends 'layouts/default.html' %}
 
-{% from 'hero-home.html' import heroHome %}
+{% from 'hero-content.html' import heroContent %}
 {% from 'pagination.html' import pagination %}
 {% from 'filters.html' import filters %}
-{% from 'card-number.html' import cardNumber %}
+{% from 'card-product.html' import cardProduct %}
+{% from 'layout-section.html' import layoutSection %}
+{% from 'text-media.html' import textMedia %}
+{% from 'section-card-carousel.html' import sectionCardCarousel %}
+
+{% set plpData = global.content.productOverviewPage %}
+{% set plpCards = global.content.productOverviewPage.productCards %}
+{% set commonLabels = global.resource.common %}
 
 {% block hero %}
-  {{ heroHome({
-    title: global.content.home.hero.title,
-    description: global.content.home.hero.description,
-    ctas: global.content.home.hero.ctas,
-    video: global.content.home.hero.video
-  }) }}
+  {{ heroContent(plpData.hero) }}
 {% endblock %}
 
 {% block content %}
 
   {{ filters(global.content.filters) }}
 
+  <div js-hook-replace-content="overview-content">
+    {% call layoutSection({
+      variant: "grid",
+      id: "content",
+      listLabel: commonLabels.productList
+    }) %}
+      {% for data in plpCards.slice(0, 6) %}
+      <li>
+      {{ cardProduct(data) }}
+      </li>
+      {% endfor %}
+    {% endcall %}
 
-  <div class="o-container" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px " js-hook-replace-content="number-items">
-    {% for i in range(16) %}
-    {{ cardNumber({title: loop.index, subtitle: "welkom", content: "Cool content"}) }}
-    {% endfor %}
+    {% if plpCards.length > 6 %}
+    {{ textMedia(global.content.productOverviewPage.textMedia1) }}
+    {% endif %}
+
+    {% call layoutSection({
+      variant: "grid",
+      id: "content",
+      listLabel: commonLabels.productList
+    }) %}
+      {% for data in plpCards.slice(6) %}
+        <li>
+          {{ cardProduct(data) }}
+        </li>
+      {% endfor %}
+    {% endcall %}
+
+    {{ pagination (global.content.pagination) }}
   </div>
 
+  {{ sectionCardCarousel(global.content.productOverviewPage.cardsSection) }}
 
-  {{ pagination (global.content.pagination) }}
+  {{ textMedia(global.content.productOverviewPage.textMedia1) }}
 
 
 {% endblock %}

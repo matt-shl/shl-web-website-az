@@ -2,9 +2,11 @@ import Environment from '@utilities/environment'
 
 const themes = [
   'general',
+  'lightest-pink',
   'pale-pink',
   'pale-green',
   'pale-yellow',
+  'lightest-yellow',
   'pale-blue',
   'pastel-blue',
   'light-blue',

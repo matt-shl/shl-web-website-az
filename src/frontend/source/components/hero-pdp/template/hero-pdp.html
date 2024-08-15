@@ -9,13 +9,14 @@
       {%- if data.theme %} {{ data.theme }}{% endif -%}"
            js-hook-hero>
     <div class="hero-pdp__container">
-      <div class="hero-pdp__breadcrumbs">
-        {{ breadcrumb({
-          items: data.breadcrumbs
-        }) }}
-      </div>
-
       <div class="hero-pdp__col-left">
+
+        <div class="hero-pdp__breadcrumbs">
+          {{ breadcrumb({
+            items: data.breadcrumbs
+          }) }}
+        </div>
+
         <h1 class="hero-pdp__title">{{ data.title }}</h1>
         {% if data.description %}
           <p class="hero-pdp__description">{{ data.description }}</p>

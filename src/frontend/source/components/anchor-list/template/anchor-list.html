@@ -11,6 +11,7 @@
 {% macro anchorList(data) %}
 
   <section class="c-anchor-list
+      t-white
       {%- if data.alignment %} c-anchor-list--{{ data.alignment }}{% endif -%}
       {%- if data.isComponent %} c-anchor-list--is-component{% endif -%}
       {%- if data.classes %} {{ data.classes }}{% endif -%}"

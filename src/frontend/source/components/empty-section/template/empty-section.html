@@ -3,19 +3,20 @@
 
 {% macro emptySection(data) %}
   {% call layoutSection(data.layoutSection | clone | merge({
-    classes: 'c-empty-section'
+    reduceMargin: 'bottom',
+    classes: 'c-empty-section' + (' c-empty-section--' + data.variant if data.variant or '')
   })) %}
     <div class="empty-section__inner">
-      <h2 class="empty-section__title">{{ data.title }}</h2>
-      <p class="empty-section__content">{{ data.content }}</p>
+      <h2 class="empty-section__title">{{ data.title | safe }}</h2>
+      <div class="empty-section__content">{{ data.content | safe }}</div>
 
-      {% if data.ctaPrimary or data.ctaSecondary %}
+      {% if data.cta1 or data.cta2 %}
         <div class="empty-section__buttons-container">
-          {% if data.ctaPrimary %}
-            {{ button({variant: 'primary', icon: "arrow-top-right"} | merge(data.ctaPrimary)) }}
+          {% if data.cta1 %}
+            {{ button({variant: 'primary', icon: "arrow-top-right"} | merge(data.cta1)) }}
           {% endif %}
-          {% if data.ctaSecondary %}
-            {{ button({variant: 'secondary', icon: "arrow-top-right"} | merge(data.ctaSecondary)) }}
+          {% if data.cta2 %}
+            {{ button({variant: 'secondary', icon: "arrow-top-right"} | merge(data.cta2)) }}
           {% endif %}
         </div>
       {% endif %}

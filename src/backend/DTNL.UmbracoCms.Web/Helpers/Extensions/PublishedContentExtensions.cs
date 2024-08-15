@@ -1,6 +1,8 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
+using Umbraco.Cms.Core.Models;
 using Umbraco.Cms.Core.Models.PublishedContent;
+using Umbraco.Cms.Web.Common.PublishedModels;
 
 namespace DTNL.UmbracoCms.Web.Helpers.Extensions;
 
@@ -28,12 +30,83 @@ public static class PublishedContentExtensions
     /// </summary>
     public static string GetTitle(this IPublishedContent content)
     {
-        if (content is Umbraco.Cms.Web.Common.PublishedModels.ICompositionBasePage { Title: { } title } && !string.IsNullOrEmpty(title))
+        string? title = null;
+
+        if (content is ICompositionHero compositionHero &&
+            compositionHero.Hero?.FirstOrDefault()?.Content is { } hero)
         {
-            return title;
+            title = hero switch
+            {
+                NestedBlockProductHero productHero => productHero.Title,
+                _ => null,
+            };
         }
 
-        return content.Name ?? "";
+        return title.FallBack(content.Name);
+    }
+
+    /// <summary>
+    /// Returns a description for the page.
+    /// </summary>
+    public static string GetDescription(this ICompositionBasePage content)
+    {
+        string? cardDescription = null;
+
+        if (content is ICompositionHero compositionHero &&
+            compositionHero.Hero?.FirstOrDefault()?.Content is { } hero)
+        {
+            cardDescription = hero switch
+            {
+                NestedBlockProductHero productHero => productHero.Text?.ToHtmlString(),
+                _ => null,
+            };
+        }
+
+        return cardDescription ?? "";
+    }
+
+    /// <summary>
+    /// Returns a card image for the page.
+    /// </summary>
+    public static MediaWithCrops? GetCardImage(this ICompositionBasePage content)
+    {
+        MediaWithCrops? cardImage = (content as ICompositionCardDetails)?.CardImage;
+
+        if (cardImage is null &&
+            content is ICompositionHero compositionHero &&
+            compositionHero.Hero?.FirstOrDefault()?.Content is { } hero)
+        {
+            cardImage = hero switch
+            {
+                NestedBlockProductHero productHero => productHero.Image,
+                _ => null,
+            };
+        }
+
+        return cardImage;
+    }
+
+    /// <summary>
+    /// Returns a card description for the page.
+    /// </summary>
+    public static string GetCardDescription(this ICompositionBasePage content)
+    {
+        string? cardDescription = (content as ICompositionCardDetails)?.CardDescription?.ToHtmlString();
+
+        return cardDescription.FallBack(content.GetDescription());
+    }
+
+    /// <summary>
+    /// Returns a description for the page.
+    /// </summary>
+    public static string? GetCategory(this ICompositionBasePage content)
+    {
+        if (content is ICompositionCardDetails cardDetails)
+        {
+            return string.Join(',', cardDetails.Category.OrEmptyIfNull());
+        }
+
+        return null;
     }
 
     /// <summary>

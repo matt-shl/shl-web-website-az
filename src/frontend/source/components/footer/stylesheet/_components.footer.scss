@@ -72,7 +72,7 @@
 .footer__navigation-title {
   @include body-l;
   display: block;
-  font-weight: $font-weight-extrabold;
+  font-weight: $font-weight-bold;
   margin-block-end: $spacing-16;
 }
 
@@ -230,7 +230,7 @@
 
 .footer__sub-navigation-link {
   font-size: $font-size-body-s;
-  font-weight: $font-weight-extrabold;
+  font-weight: $font-weight-bold;
   line-height: $font-line-height-body-m;
 
   @include screen-md-and-bigger {

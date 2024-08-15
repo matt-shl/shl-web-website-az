@@ -1,6 +1,8 @@
+$hero-pdp-content-offset: 14.5%; // 1 col
+
 .c-hero-pdp {
   @include theme;
-  @include hero-overlap;
+  @include component-overlap;
   --hero-pdp-shape-height: 100px;
   z-index: 0;
 
@@ -23,10 +25,11 @@
 }
 
 .hero-pdp__breadcrumbs {
-  @include col-span(12);
+  margin-bottom: $spacing-16;
 
   @include screen-lg-and-bigger {
-    margin-bottom: $spacing-12;
+    margin-bottom: $spacing-24;
+    margin-inline-end: calc(#{$hero-pdp-content-offset} * -1);
   }
 }
 
@@ -34,7 +37,8 @@
   @include col-span(12);
 
   @include screen-lg-and-bigger {
-    @include col-span(6);
+    @include col-span(7);
+    padding-right: $hero-pdp-content-offset;
   }
 }
 
@@ -42,7 +46,7 @@
   @include col-span(12);
 
   @include screen-lg-and-bigger {
-    @include col-span(6);
+    @include col-span(5);
     align-items: flex-end;
     display: flex;
     flex-direction: column;
@@ -58,26 +62,26 @@
 }
 
 .hero-pdp__image-container {
-  @include grid(6);
   width: 100%;
   height: 375px; // Prevent block fom jumping while loading
+  margin-top: $spacing-24;
 
   @include screen-lg-and-bigger {
     height: auto;
-    aspect-ratio: 1.143; // Prevent block fom jumping while loading
+    aspect-ratio: 0.85; // Prevent block fom jumping while loading
+    margin-top: 0;
   }
 }
 
 .hero-pdp__image {
-  grid-column: span 6;
   margin-inline: auto;
-  max-width: 260px;
-  margin-top: $spacing-24;
+  max-width: 320px;
+  border-radius: $radii-4;
+  overflow: hidden;
 
   @include screen-lg-and-bigger {
     max-width: none;
-    grid-column: 2 / span 4;
-    margin-top: 0;
+    margin-inline-end: 0;
   }
 }
 
@@ -112,7 +116,7 @@
 }
 
 .hero-pdp__anchor-links-container {
-  @include hero-overlap(false, false);
+  @include component-overlap(false, false);
   min-height: var(--hero-pdp-shape-height);
   color: $color-dark-blue;
 }

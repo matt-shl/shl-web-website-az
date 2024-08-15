@@ -3,7 +3,7 @@
   --checkbox-border-width: 1px;
   --checkbox-border-radius: #{$radii-4};
   --checkbox-checked-color: var(--color-dark-blue);
-  --checkbox-hover-focus-color: rgba(var(--color-dark-blue-rgb), 0.8);
+  --checkbox-hover-focus-color: currentcolor;
   --checkbox-unchecked-color: var(--color-dark-blue);
   --checkbox-error-color: var(--input-error-color);
   --checkbox-margin-right: #{$global-spacing * 2};
@@ -13,7 +13,7 @@
   --checkbox-checkmark-svg-size: 14px;
   --checkbox-font-size: var(--font-size-medium);
   --checkbox-font-weight: var(--font-weight-regular);
-  --checkbox-label-color: var(--color-dark-blue);
+  --checkbox-label-color: currentcolor;
 
   --checkbox-label-color-disabled: var(--color-black-30);
   --checkbox-color-disabled: rgba(var(--color-dark-blue-rgb), 0, 2);
@@ -134,8 +134,11 @@
   }
 
   a {
+    text-decoration: underline;
+    color: currentcolor;
+
     @include hover-focus {
-      color: var(--color-secondary);
+      color: $color-light-blue;
     }
   }
 

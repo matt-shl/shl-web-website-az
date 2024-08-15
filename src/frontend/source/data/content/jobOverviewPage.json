@@ -1,0 +1,96 @@
+{
+  "footerScrollingText": "Caring. Inclusive. Driven.",
+  "hero": {
+    "title": "Find your dream job at SHL Medical",
+    "breadcrumbs": [
+      {
+        "url": "/home.html",
+        "label": "Home"
+      },
+      {
+        "url": "/job-overview.html",
+        "label": "Job Overview"
+      }
+    ]
+  },
+  "jobItems": [
+    {
+      "title": "Simulation Engineer - Structural",
+      "location": "Taiwan",
+      "url": "#",
+      "tags": ["Senior", "Full-time", "Engineering"]
+    },
+    {
+      "title": "Global Customer Order Manager",
+      "location": "Taiwan",
+      "url": "#",
+      "tags": ["Senior", "Full-time", "Customer Service"]
+    }
+  ],
+  "textMedia": {
+    "id": "the-benefits-of-working-at-shl-medical",
+    "sectionTitle": "Benefits",
+    "theme": "t-pale-blue",
+    "title": "The benefits of working at SHL Medical",
+    "description": "With over 5,000 employees worldwide and an average contract duration of 9.8 years, we know how to care for our employees. Discover why people choose SHL Medical.",
+    "image": {
+      "caption": "image caption example"
+    },
+    "cta1": {
+      "label": "Discover the power of EMAI",
+      "url": "#"
+    },
+    "video": {
+      "id": "text-media-video1",
+      "totalTime": "01:30",
+      "title": "Text media video 1",
+      "description": "Text media video 1 description",
+      "closedcaptions": [
+        {
+          "url": "subtitles.vtt",
+          "label": "Nederlands",
+          "lang": "nl",
+          "kind": "subtitles"
+        }
+      ],
+      "sources": [
+        {
+          "size": 1920,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        },
+        {
+          "size": 1280,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        },
+        {
+          "size": 1024,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        },
+        {
+          "size": 320,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

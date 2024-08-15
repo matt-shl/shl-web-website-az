@@ -3,11 +3,11 @@
     "carouselcarouselCardType": "icon",
     "title": "One focus, many uses",
     "description": "A single-minded dedication can unlock a world of possibilities. By honing in on one core skill or idea, you create a foundation for diverse applications. This focused approach allows for deep expertise while simultaneously enabling adaptability across various domains.",
-    "ctaPrimary": {
+    "cta1": {
       "url": "#",
       "label": "About SHL Medical"
     },
-    "ctaSecondary": {
+    "cta2": {
       "url": "#",
       "label": "Purpose & values"
     },
@@ -71,7 +71,7 @@
   "image": {
     "carouselCardType": "image",
     "title": "Where we are",
-    "ctaPrimary": {
+    "cta1": {
       "url": "#",
       "label": "View all locations"
     },
@@ -95,7 +95,7 @@
   "knowledge": {
     "carouselCardType": "knowledge",
     "title": "Discover the latest news, events and insights",
-    "ctaPrimary": {
+    "cta1": {
       "url": "#",
       "label": "Discover all"
     },
@@ -126,7 +126,7 @@
     "carouselCardType": "contact",
     "title": "We value diversity and strive for excellence",
     "description": "At our workplace, we value our international environment. We're not deterred by setbacks, but instead, we carry on with determination. We diligently research because we believe in the power of knowledge. Above all, our priority is always people.",
-    "ctaPrimary": {
+    "cta1": {
       "url": "#",
       "label": "Discover all"
     },
@@ -152,7 +152,7 @@
   "product": {
     "carouselCardType": "product",
     "title": "Our products",
-    "ctaPrimary": {
+    "cta1": {
       "url": "#",
       "label": "View all products"
     },

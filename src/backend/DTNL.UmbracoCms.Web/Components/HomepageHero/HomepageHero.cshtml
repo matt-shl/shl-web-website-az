@@ -1,0 +1,37 @@
+ @model DTNL.UmbracoCms.Web.Components.HomepageHero;
+
+<section class="c-hero-home" js-hook-page-load-animation-trigger="">
+    <div class="hero-home__video-container">
+        @if (Model.VideoUrl is not null)
+        {
+            <partial name="Video" model="@Model.VideoUrl"></partial>
+        }
+        else if (Model.Image is not null)
+        {
+            <partial asp-if="@Model.Image" name="Image" model="Model.Image" />
+        }
+    </div>
+    <div class="hero-home__shape-container">
+        <div class="hero-home__shape">
+            <div class="hero-home__shape-left"></div>
+            <div class="hero-home__shape-scale">
+                <svg src="@SvgAliases.Shape.Hero" />
+            </div>
+            <div class="hero-home__shape-right"></div>
+        </div>
+        <div class="hero-home__container">
+            <div class="hero-home__col-left">
+                <h1 class="hero-home__title">@Model.Title</h1>
+                <div class="hero-home__description"> @Html.Raw(Model.ShortDescription) </div>
+            </div>
+            <div class="hero-home__col-right">
+                <partial name="Button" model="@Model.MainButton"></partial>
+                <partial name="Button" model="@Model.SecondaryButton"></partial>
+                <a class="hero-home__scroll-indicator" href="#main-content" aria-label="Go to content">
+                    <svg src="@SvgAliases.Icons.LongArrowDown" />
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+

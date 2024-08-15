@@ -1,9 +1,9 @@
-import { AxiosError, Method } from 'axios'
+import {AxiosError, Method} from 'axios'
 
 import API from '@/utilities/api'
 import Events from '@/utilities/events'
 import serializeObject from '@/utilities/serialize-object'
-import { rules, ValidationRule } from '@/utilities/validation'
+import {rules, ValidationRule} from '@/utilities/validation'
 
 type FormErrorMessages = Record<string, string>
 type InputType = HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
@@ -245,7 +245,11 @@ class Form {
       .split(',')
       .map(type => type.trim() as keyof typeof rules)
       .filter(type => !rules[type].method(input))
-      .map(type => rules[type].message)
+      .map(type => {
+        const errorType = type === "email" ? 'pattern' : type
+        const message = input.getAttribute(`data-${errorType}-error`)
+        return message || rules[type].message
+      })
       .join(', ')
   }
 

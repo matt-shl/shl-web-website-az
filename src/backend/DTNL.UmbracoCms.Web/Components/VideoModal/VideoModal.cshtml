@@ -1,0 +1,6 @@
+@using DTNL.UmbracoCms.Web.Components
+@model DTNL.UmbracoCms.Web.Components.VideoModal
+
+<partial name="Modal" model="@(new Modal { Id= $"modal-video-{Model.Video.InstanceId}", KeepScrollPosition = true, CloseAllOthers = true, Size = "video"})">
+    <partial name="Video" model="@Model.Video"/>
+</partial>

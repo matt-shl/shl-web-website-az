@@ -1,0 +1,33 @@
+{% set footerScrollingText = global.content.dynamicPage.footerScrollingText %}
+
+{% extends 'layouts/default.html' %}
+
+{% from 'hero-content.html' import heroContent %}
+{% from 'media-section.html' import mediaSection %}
+{% from 'section-card-carousel.html' import sectionCardCarousel %}
+{% from 'event-detail.html' import eventDetail %}
+{% from 'speakers.html' import speakers %}
+{% from 'rich-text.html' import richText %}
+
+{% block hero %}
+  {{ heroContent({
+    breadcrumbs: global.content.eventDetail.breadcrumbs.items,
+    title: global.content.eventDetail.hero.title,
+    subtitle: global.content.eventDetail.hero.subtitle,
+    tags: global.content.eventDetail.hero.tags
+  }) }}
+{% endblock %}
+
+{% block content %}
+  {{ mediaSection(global.content.eventDetail.mainImage | clone | merge({ variant: "no-padding" })) }}
+
+  {{ eventDetail(global.content.eventDetail.eventDetail) }}
+
+  {{ richText(global.content.eventDetail.richText | clone | merge({readMoreDisabled: true})) }}
+
+  {{ speakers(global.content.eventDetail.speakers) }}
+
+  {{ sectionCardCarousel(global.content.eventDetail.latest | clone | merge({
+    theme: 't-light-grey'
+  })) }}
+{% endblock %}

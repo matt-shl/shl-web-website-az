@@ -4,19 +4,19 @@
     "items": [
       {
         "url": "/home.html",
-        "label": "Home"
+        "label": "Home this is a very long label for the first item in the breadcrumb"
       },
       {
         "url": "/parent-1.html",
-        "label": "Parent page 1"
+        "label": "Parent page 1 this is a very long label for the second item in the breadcrumb"
       },
       {
         "url": "/parent-2.html",
-        "label": "Parent page 2"
+        "label": "Parent page 2 this is a very long label for the third item in the breadcrumb"
       },
       {
         "url": "/current-item.html",
-        "label": "Current item"
+        "label": "Current item this is a very long label for the last item in the breadcrumb"
       }
     ]
   },
@@ -47,6 +47,120 @@
       "id": "hero-video",
       "title": "Homepage video",
       "description": "Homepage video description",
+      "sources": [
+        {
+          "size": 1920,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        },
+        {
+          "size": 1280,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        },
+        {
+          "size": 1024,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        },
+        {
+          "size": 320,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "mediaSection1": {
+    "image": {
+      "caption": "image caption example"
+    },
+    "video": {
+      "id": "text-media-video1",
+      "totalTime": "01:30",
+      "title": "Text media video 2",
+      "description": "Text media video 2 description",
+      "closedcaptions": [
+        {
+          "url": "subtitles.vtt",
+          "label": "Nederlands",
+          "lang": "nl",
+          "kind": "subtitles"
+        }
+      ],
+      "sources": [
+        {
+          "size": 1920,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        },
+        {
+          "size": 1280,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        },
+        {
+          "size": 1024,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        },
+        {
+          "size": 320,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "mediaSection2": {
+    "image": {
+      "caption": "image caption example"
+    },
+    "video": {
+      "id": "text-media-video2",
+      "totalTime": "01:30",
+      "title": "Text media video 2",
+      "description": "Text media video 2 description",
+      "closedcaptions": [
+        {
+          "url": "subtitles.vtt",
+          "label": "Nederlands",
+          "lang": "nl",
+          "kind": "subtitles"
+        }
+      ],
       "sources": [
         {
           "size": 1920,

@@ -1,0 +1,26 @@
+.c-mobile-floating-button {
+  position: fixed;
+  display: flex;
+  padding-inline: $spacing-16;
+  padding-bottom: $spacing-24;
+  align-items: center;
+  justify-content: center;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  opacity: 0;
+  pointer-events: none;
+  transition: 300ms ease-out opacity;
+
+  @include screen-sm-and-smaller {
+    &.is--active {
+      opacity: 1;
+      pointer-events: initial;
+    }
+  }
+}
+
+.mobile-floating-button__button {
+  width: 100%;
+}

@@ -1,0 +1,62 @@
+.c-carousel-indicator {
+  opacity: 0;
+  transition: 300ms ease-out;
+  transition-property: opacity, transform;
+  z-index: 5;
+
+  &.is-active {
+    opacity: 1;
+  }
+
+  html.is-touch & {
+    display: none;
+  }
+
+  @include screen-md-and-smaller {
+    display: none;
+  }
+}
+
+.carousel-indicator__container,
+.carousel-indicator__icons-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.carousel-indicator__container {
+  border-radius: $radii-full;
+  background-color: $color-white;
+  width: 80px;
+  height: 80px;
+}
+
+.carousel-indicator__icons-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: $spacing-24;
+
+  svg {
+    transition: 600ms ease-out;
+    transition-property: transform, color;
+    width: 16px;
+    height: 16px;
+  }
+
+  .c-carousel-indicator.is-pressed & {
+    svg {
+      color: $color-white;
+
+      &:first-child {
+        transform: translateX(calc(#{$spacing-8} * -1));
+      }
+
+      &:last-child {
+        transform: translateX(#{$spacing-8});
+      }
+    }
+  }
+}
