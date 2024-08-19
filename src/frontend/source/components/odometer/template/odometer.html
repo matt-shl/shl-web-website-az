@@ -1,0 +1,13 @@
+{% set odoMeterUpString = "0 9 8 7 6 5 4 3 2 1 0" %}
+{% set odoMeterDownString = "0 1 2 3 4 5 6 7 8 9 0" %}
+
+{% macro odometer(data) %}
+  {% set direction = ("up" if data.direction == "up" else "down") %}
+  <div class="c-odometer" id="{{ data.id or "none" }}" js-hook-odometer>
+    {% for digit in data.digits %}
+      <div class="odometer__digit-container" js-hook-odometer-digit-container>
+         <div class="odometer__digit" data-number="{{digit or 0}}" data-dur="{{direction}}">{{ odoMeterUpString if direction == "up" else odoMeterDownString}}</div>
+      </div>
+    {% endfor %}
+  </div>
+{% endmacro %}

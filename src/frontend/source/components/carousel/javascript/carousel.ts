@@ -1,4 +1,4 @@
-// import gsap from 'gsap'
+import Events from '@utilities/events'
 import Swiper from 'swiper'
 import { A11y, Scrollbar } from 'swiper/modules'
 
@@ -35,6 +35,9 @@ class Carousel {
   }
 
   bindEvents() {
+    Events.$on(`swiper[${this.id}]::indexChange`, (_, data: { index: number }) =>
+      this.slideToIndex(data.index),
+    )
     RafThrottle.set([
       {
         element: window,
@@ -89,6 +92,9 @@ class Carousel {
             enabled: true,
           },
           watchOverflow: true,
+          on: {
+            slideChange: () => this.onSlideChange(),
+          },
         })
 
         this.initialized = true
@@ -111,6 +117,22 @@ class Carousel {
 
     this.element.addEventListener('mouseleave', () => {
       this.swipeIndicator?.classList.remove('is-active')
+    })
+  }
+
+  slideToIndex(index: number, speed: number = 750) {
+    if (this.swiper) {
+      this.swiper.slideTo(index, speed)
+    }
+  }
+
+  onSlideChange() {
+    const currentIndex = this.swiper.realIndex
+    // Add any additional logic you want to execute when the slide changes
+    Events.$trigger(`swiper[${this.id}]::slideChange`, {
+      data: {
+        index: currentIndex,
+      },
     })
   }
 }
