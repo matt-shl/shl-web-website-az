@@ -1,19 +1,22 @@
-@mixin common-heading-styles($line-height) {
+@mixin common-heading-styles($line-height, $text-wrap: false) {
   line-height: $line-height;
   font-weight: $font-weight-bold;
-  text-wrap: balance;
+
+  @if $text-wrap {
+    text-wrap: balance;
+  }
 }
 
 @mixin d1 {
   @include fluid-type($font-size-d1, $font-size-d1-mobile);
   @include fluid-type($font-letter-spacing-d1, $font-letter-spacing-d1-mobile, letter-spacing);
-  @include common-heading-styles($font-line-height-d1);
+  @include common-heading-styles($font-line-height-d1, true);
 }
 
 @mixin h1 {
   @include fluid-type($font-size-h1, $font-size-h1-mobile);
   @include fluid-type($font-letter-spacing-h1, $font-letter-spacing-h1-mobile, letter-spacing);
-  @include common-heading-styles($font-line-height-h1);
+  @include common-heading-styles($font-line-height-h1, true);
 }
 
 @mixin h2 {
@@ -69,7 +72,7 @@
     $smallest-container-size,
     letter-spacing
   );
-  @include common-heading-styles($font-line-height-h1);
+  @include common-heading-styles($font-line-height-h1, true);
 
   @supports not (container-type: inline-size) {
     @include h1;
