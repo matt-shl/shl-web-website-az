@@ -11,15 +11,15 @@
 {% from 'card-knowledge.html' import cardKnowledge %}
 {% from 'layout-section.html' import layoutSection %}
 
-{% set newsData = global.content.newsOverviewPage %}
+{% set publicationsData = global.content.publicationsOverviewPage %}
 
 {% block hero %}
-  {{ heroContent(newsData.hero) }}
+  {{ heroContent(publicationsData.hero) }}
 {% endblock %}
 
 {% block content %}
 
-  {{ filters(newsData.filter) }}
+  {{ filters(publicationsData.filter) }}
 
   <div js-hook-replace-content="overview-content">
     {% call layoutSection({
@@ -28,7 +28,7 @@
     }) %}
       {# this first for is just to show the same card multiple times #}
       {% for _ in range(3) %}
-        {% for data in newsData.cards %}
+        {% for data in publicationsData.cards %}
           {{ cardKnowledge(data) }}
         {% endfor %}
       {% endfor %}
