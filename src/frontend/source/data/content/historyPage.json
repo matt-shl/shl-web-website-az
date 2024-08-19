@@ -1,0 +1,87 @@
+{
+  "footerScrollingText": "Caring. Inclusive. Driven.",
+  "hero": {
+    "title": "Our history",
+    "description": "Relive the historic moments of SHL’s past and get to know some key events that shaped SHL in the past 30 years. And let’s not forget to look forward to a bright future.",
+    "ctas": [
+      {
+        "label": "Our values",
+        "url": "/values.html"
+      },
+      {
+        "label": "Our values",
+        "url": "/values.html",
+        "variant": "secondary"
+      }
+    ],
+    "breadcrumbs": [
+      {
+        "url": "/home.html",
+        "label": "Home"
+      },
+      {
+        "url": "/history.html",
+        "label": "history"
+      }
+    ]
+  },
+  "historyTimeline": {
+    "theme": "t-general",
+    "events": [
+      {
+        "year": "1996",
+        "title": "Launch of the First Auto Injector",
+        "shortTitle": "First Auto Injector",
+        "description": "In 1996, SHL Medical launched its first auto injector, marking a significant breakthrough and positioning the company as a key player in the medical device industry.",
+        "image": {
+          "caption": "First Auto Injector"
+        }
+      },
+      {
+        "year": "2004",
+        "title": "Expansion with New Design Centres",
+        "shortTitle": "New Design Centres",
+        "description": "In 2004, SHL Medical expanded significantly, opening design centres in Sweden and the U.S., and a 25,000 square meter manufacturing site in Taiwan.",
+        "image": {
+          "caption": "New Design Centres"
+        }
+      },
+      {
+        "year": "2006",
+        "title": "Introduction of Advanced Manufacturing Techniques",
+        "shortTitle": "Advanced Manufacturing",
+        "description": "In 2006, SHL Medical introduced advanced manufacturing techniques, enhancing production efficiency and product quality.",
+        "image": {
+          "caption": "Advanced Manufacturing"
+        }
+      },
+      {
+        "year": "2008",
+        "title": "Launch of the Next-Generation Auto Injector",
+        "shortTitle": "Next-Gen Auto Injector",
+        "description": "In 2008, SHL Medical launched its next-generation auto injector, featuring improved design and functionality.",
+        "image": {
+          "caption": "Next-Gen Auto Injector"
+        }
+      },
+      {
+        "year": "2010",
+        "title": "Global Expansion and New Partnerships",
+        "shortTitle": "Global Expansion",
+        "description": "In 2010, SHL Medical expanded its global presence and formed new partnerships with leading pharmaceutical companies.",
+        "image": {
+          "caption": "Global Expansion"
+        }
+      },
+      {
+        "year": "2024",
+        "title": "SHL New website",
+        "shortTitle": "New website",
+        "description": "In 2024, SHL Medical worked together with DEPT to create this new website.",
+        "image": {
+          "caption": "Global Expansion"
+        }
+      }
+    ]
+  }
+}

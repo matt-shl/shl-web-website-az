@@ -77,6 +77,8 @@ $assets-path: '/assets/';
 @import '@/components/section-job-vacancies/stylesheet/_components.section-job-vacancies';
 @import '@/components/mobile-floating-button/stylesheet/_components.mobile-floating-button';
 @import '@/components/language-selector/stylesheet/_components.language-selector';
+@import '@/components/history-timeline/stylesheet/_components.history-timeline';
+@import '@/components/odometer/stylesheet/_components.odometer';
 /* endinject */
 
 @import '50_scopes/scopes.rich-text';

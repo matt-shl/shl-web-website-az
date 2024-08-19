@@ -45,6 +45,8 @@ moduleInit.async(
   '[js-hook-mobile-floating-button]',
   () => import('@components/mobile-floating-button'),
 )
+moduleInit.async('[js-hook-odometer]', () => import('@components/odometer'))
+moduleInit.async('[js-hook-history-timeline]', () => import('@components/history-timeline'))
 
 if (document.querySelector('[js-hook-video]')) {
   videoLoader(['native'])
