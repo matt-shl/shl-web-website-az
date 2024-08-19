@@ -1,0 +1,23 @@
+@model DTNL.UmbracoCms.Web.Components.DownloadItem
+@inject ICultureDictionary CultureDictionary
+
+ <div class="c-download-item">
+    <div class="download-item__icon-container">
+        <svg src="@Model.Icon"/>
+            </div>
+    <div class="download-item__content-container">
+        <span class="download-item__title">@Model.Title</span>
+        <p class="download-item__description">@Model.Description</p>
+    </div>
+    <div class="download-item__link-container">
+        <a href="#" class="download-item__link" aria-label="@CultureDictionary.GetTranslation(TranslationAliases.Common.Downloads.Downloadpdf) ~ ' ' ~ @Model.Title}}">
+            <span class="download-item__link-icon">
+                <svg src="@SvgAliases.Icons.Download"/>
+            </span>
+             @* TO DO: this will be changed for the implementation of SM-290 Download overlay. *@
+            <span> @CultureDictionary.GetTranslation(TranslationAliases.Common.Downloads) (1.2MB)</span>
+        </a>
+    </div>
+</div>
+
+ 
