@@ -20,19 +20,6 @@ public class BannerQuote
             return null;
         }
 
-        var ssss = quoteBanner?.Quotes?.Count > 0 ? quoteBanner.Quotes
-            .Select(qb => qb.Content)
-            .OfType<NestedBlockQuote>()
-            .WhereNotNull()
-            .Select(q => new Quote
-            {
-                Quotetext = q.QuoteText ?? "",
-                Name = q.NameAuthor ?? "",
-                Company = q.Company,
-                Role = q.Role,
-                Image = q.Image,
-            }).ToList() : [];
-
         return new BannerQuote
         {
             Quotes = quoteBanner?.Quotes?.Count > 0 ? quoteBanner.Quotes
