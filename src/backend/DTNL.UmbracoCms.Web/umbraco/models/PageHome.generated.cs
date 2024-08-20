@@ -66,20 +66,20 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel Hero => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionHomePage.GetHero(this, _publishedValueFallback);
 
 		///<summary>
+		/// Page Theme
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("pageTheme")]
+		public virtual global::Umbraco.Cms.Core.PropertyEditors.ValueConverters.ColorPickerValueConverter.PickedColor PageTheme => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionHomePage.GetPageTheme(this, _publishedValueFallback);
+
+		///<summary>
 		/// Slogan
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("slogan")]
 		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel Slogan => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionHomePage.GetSlogan(this, _publishedValueFallback);
-
-		///<summary>
-		/// Theme
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("theme")]
-		public virtual global::Umbraco.Cms.Core.PropertyEditors.ValueConverters.ColorPickerValueConverter.PickedColor Theme => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionHomePage.GetTheme(this, _publishedValueFallback);
 
 		///<summary>
 		/// Do Not Follow: Setting to true will prevent search engines from following the links on the page, so it will not index the pages it finds (only) on this page.
