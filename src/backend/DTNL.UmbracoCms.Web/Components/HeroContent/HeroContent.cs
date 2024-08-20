@@ -29,7 +29,8 @@ public class HeroContent : IHero
             return null;
         }
 
-        bool isFirstButtonPrimary = contentHero.PrimaryButton?.Equals("Second", StringComparison.OrdinalIgnoreCase) ?? true;
+        bool isFirstButtonPrimaryVariant = !contentHero.FirstLinkVariant?.Equals("secondary", StringComparison.OrdinalIgnoreCase) ?? true;
+        bool isSecondaryButtonPrimaryVariant = !contentHero.SecondLinkVariant?.Equals("secondary", StringComparison.OrdinalIgnoreCase) ?? true;
 
         return new HeroContent
         {
@@ -48,14 +49,14 @@ public class HeroContent : IHero
                 {
                     b.Class = "hero-content__cta";
                     b.Icon = SvgAliases.Icons.ArrowTopRight;
-                    b.Variant = isFirstButtonPrimary ? null : "secondary";
+                    b.Variant = isFirstButtonPrimaryVariant ? null : "secondary";
                 }),
             SecondButton = Button.Create(contentHero.SecondLink)
                 .With(b =>
                 {
                     b.Class = "hero-content__cta";
                     b.Icon = SvgAliases.Icons.ArrowTopRight;
-                    b.Variant = !isFirstButtonPrimary ? null : "secondary";
+                    b.Variant = isSecondaryButtonPrimaryVariant ? null : "secondary";
                 }),
         };
     }

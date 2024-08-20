@@ -58,12 +58,12 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual global::Umbraco.Cms.Core.Models.Link FirstLink => this.Value<global::Umbraco.Cms.Core.Models.Link>(_publishedValueFallback, "firstLink");
 
 		///<summary>
-		/// Primary Button: Choose which button to have primary button styling
+		/// First Link Variant: Select button variant
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("primaryButton")]
-		public virtual string PrimaryButton => this.Value<string>(_publishedValueFallback, "primaryButton");
+		[ImplementPropertyType("firstLinkVariant")]
+		public virtual string FirstLinkVariant => this.Value<string>(_publishedValueFallback, "firstLinkVariant");
 
 		///<summary>
 		/// Second Link
@@ -72,6 +72,14 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("secondLink")]
 		public virtual global::Umbraco.Cms.Core.Models.Link SecondLink => this.Value<global::Umbraco.Cms.Core.Models.Link>(_publishedValueFallback, "secondLink");
+
+		///<summary>
+		/// Second Link Variant: Select button variant
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("secondLinkVariant")]
+		public virtual string SecondLinkVariant => this.Value<string>(_publishedValueFallback, "secondLinkVariant");
 
 		///<summary>
 		/// Short description
