@@ -1,0 +1,40 @@
+{% set theme = "general" %}
+{% set themeColor = "#082E55" %}
+{% set headerIsWhite = false %}
+{% set showFiltersModal = true %}
+
+{% extends 'layouts/default.html' %}
+
+{% from 'hero-content.html' import heroContent %}
+{% from 'pagination.html' import pagination %}
+{% from 'filters.html' import filters %}
+{% from 'card-knowledge.html' import cardKnowledge %}
+{% from 'layout-section.html' import layoutSection %}
+
+{% set publicationsData = global.content.publicationsOverviewPage %}
+
+{% block hero %}
+  {{ heroContent(publicationsData.hero) }}
+{% endblock %}
+
+{% block content %}
+
+  {{ filters(publicationsData.filter) }}
+
+  <div js-hook-replace-content="overview-content">
+    {% call layoutSection({
+      variant: "grid",
+      id: "content"
+    }) %}
+      {# this first for is just to show the same card multiple times #}
+      {% for _ in range(3) %}
+        {% for data in publicationsData.cards %}
+          {{ cardKnowledge(data) }}
+        {% endfor %}
+      {% endfor %}
+    {% endcall %}
+
+    {{ pagination (global.content.pagination) }}
+  </div>
+
+{% endblock %}

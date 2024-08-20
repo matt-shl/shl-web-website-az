@@ -5,10 +5,22 @@ namespace DTNL.UmbracoCms.Web.Helpers;
 
 public static class ThemeHelper
 {
-    public static string GetCssClasses(IPublishedContent? page)
+    public static string GetCssClasses(IPublishedContent page)
     {
-        string theme = (page as ICompositionBasePage)?.Theme?.Label ?? "general";
+        if (page.ContentType.Alias is "pageHome")
+        {
+            string theme = (page as ICompositionHomePage)?.PageTheme?.Label ?? "general";
 
-        return $"t-{theme}";
+            return $"t-{theme}";
+        }
+
+        if (page is ICompositionBasePage)
+        {
+            string theme = (page as ICompositionBasePage)?.PageTheme?.Label ?? "general";
+
+            return $"t-{theme}";
+        }
+
+        return $"t-general";
     }
 }

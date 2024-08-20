@@ -66,20 +66,20 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel Feature => this.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockListModel>(_publishedValueFallback, "feature");
 
 		///<summary>
+		/// Page Theme
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("pageTheme")]
+		public virtual global::Umbraco.Cms.Core.PropertyEditors.ValueConverters.ColorPickerValueConverter.PickedColor PageTheme => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionBasePage.GetPageTheme(this, _publishedValueFallback);
+
+		///<summary>
 		/// Slogan
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("slogan")]
 		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel Slogan => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionBasePage.GetSlogan(this, _publishedValueFallback);
-
-		///<summary>
-		/// Theme
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("theme")]
-		public virtual global::Umbraco.Cms.Core.PropertyEditors.ValueConverters.ColorPickerValueConverter.PickedColor Theme => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionBasePage.GetTheme(this, _publishedValueFallback);
 
 		///<summary>
 		/// Description: Defaults to Hero Text, if not set.

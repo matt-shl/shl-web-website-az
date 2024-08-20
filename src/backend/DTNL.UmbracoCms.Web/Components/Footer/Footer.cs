@@ -34,7 +34,7 @@ public class Footer : ViewComponentExtended
 
     public IViewComponentResult Invoke(SiteSettings? siteSettings, ICompositionBasePage? page)
     {
-        FooterScrollingText = Slogan.Create(page?.Slogan?.Select(block => block.Content).OfType<Umbraco.Cms.Web.Common.PublishedModels.Slogan>().FirstOrDefault(), "footer__scrolling-text");
+        FooterScrollingText = Slogan.Create(page?.Slogan?.Select(block => block.Content).OfType<NestedBlockSlogan>().FirstOrDefault(), "footer__scrolling-text");
 
         Text = siteSettings?.FooterText;
 

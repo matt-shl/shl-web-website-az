@@ -1,0 +1,16 @@
+@model DTNL.UmbracoCms.Web.Components.Downloads
+
+@inject ICultureDictionary CultureDictionary
+
+<div class="c-text-download">
+    <div class="text-download__col text-download__col--text">
+        <h2 class="text-download__title">@Model.Title</h2>
+        <p class="text-download__description">@Model.Description</p>
+    </div>
+    <div class="text-download__col text-download__col--download">
+        @foreach(var item in Model.Items.EnsureNotNull())
+        {
+            <partial name="Downloads/DownloadItem" model="@item"></partial>
+        }
+        </div>
+</div>

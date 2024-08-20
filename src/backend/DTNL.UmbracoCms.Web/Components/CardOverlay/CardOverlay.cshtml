@@ -4,9 +4,21 @@
 
 <div class="c-card-overlay
     c-card-overlay--position-@Model.Position
-    @(Model.Visible ? "c-card-overlay--is-visible" : null)">
+    @(Model.Visible ? "c-card-overlay--is-visible" : null)
+    @(Model.Video != null ? "c-card-overlay--has-video" : null)
+">
 
     <div class="card-overlay__content">
+        @if (Model.Video != null)
+        {
+            <div class="card-overlay__video">
+                <partial name="Button" model="@(new Button { Label = "Open video modal", LabelSrOnly = true, Element = "span", Icon = SvgAliases.Icons.Play })" />
+                @if (!Model.Video.TotalTime.IsNullOrWhiteSpace())
+                {
+                    @Model.Video.TotalTime
+                }
+            </div>
+        }
         @if (!Model.Tag.IsNullOrWhiteSpace())
         {
             <partial name="Tag" model="@(new Tag { Label = Model.Tag })" />

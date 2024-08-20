@@ -55,6 +55,7 @@
         },
         {
           "label": "All jobs",
+          "supLabel": 37,
           "url": "#"
         }
       ]

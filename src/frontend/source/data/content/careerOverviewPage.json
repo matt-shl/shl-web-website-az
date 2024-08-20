@@ -1,7 +1,8 @@
 {
   "footerScrollingText": "Caring. Inclusive. Driven.",
-  "breadcrumbs": {
-    "items": [
+  "hero": {
+    "title": "Empower your future with SHL Medical",
+    "breadcrumbs":[
       {
         "url": "/home.html",
         "label": "Home"
@@ -19,9 +20,6 @@
         "label": "Current item"
       }
     ]
-  },
-  "hero": {
-    "title": "Empower your future with SHL Medical"
   },
   "mainImage": {
     "image": true,

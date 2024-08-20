@@ -1,5 +1,6 @@
 using DTNL.UmbracoCms.Web.Components.PartialComponent;
 using Microsoft.AspNetCore.Mvc;
+using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Web.Common.PublishedModels;
 
 namespace DTNL.UmbracoCms.Web.Components.Hero;
@@ -8,22 +9,34 @@ public interface IHero : IPartialViewPath;
 
 public class Hero : ViewComponentExtended
 {
-    public IViewComponentResult Invoke(ICompositionBasePage page)
+    public IViewComponentResult Invoke(IPublishedContent page)
     {
-        IHero? hero = (page as ICompositionHero)?.Hero?.FirstOrDefault()?.Content switch
+        if (page.ContentType.Alias is "pageHome")
         {
-            NestedBlockProductHero heroPdp => HeroPdp.Create(heroPdp, page),
-            NestedBlockHomepageHero heroHomepage => HomepageHero.Create(heroHomepage, page),
-            NestedBlockContentHero heroContent => HeroContent.Create(heroContent, page),
-            _ => null,
-        };
+            IHero? hero = HomepageHero.Create((page as ICompositionHomePage)?.Hero?.FirstOrDefault()?.Content as NestedBlockHomepageHero);
 
+            if (hero is null)
+            {
+                return Content("");
+            }
 
-        if (hero is null)
-        {
-            return Content("");
+            return View(hero.ViewPath, hero);
         }
+        else
+        {
+            IHero? hero = (page as ICompositionHero)?.Hero?.FirstOrDefault()?.Content switch
+            {
+                NestedBlockProductHero heroPdp => HeroPdp.Create(heroPdp, (ICompositionBasePage) page),
+                NestedBlockHomepageHero heroHomepage => HomepageHero.Create(heroHomepage),
+                NestedBlockContentHero heroContent => HeroContent.Create(heroContent, (ICompositionBasePage) page),
+                _ => null,
+            };
+            if (hero is null)
+            {
+                return Content("");
+            }
 
-        return View(hero.ViewPath, hero);
+            return View(hero.ViewPath, hero);
+        }
     }
 }

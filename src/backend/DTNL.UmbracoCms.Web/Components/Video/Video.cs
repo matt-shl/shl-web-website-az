@@ -39,13 +39,16 @@ public class Video
 
     public bool CustomControls { get; set; } = true;
 
+
     public bool Loop { get; set; } = true;
 
     private IEnumerable<VideoSizeSource>? Sources { get; init; }
 
     public string? SourcesJson => Sources?.Any() == true ? JsonSerializer.Serialize(Sources, JsonOptions) : null;
 
-    public string? ClosedCaptions { get; set; }
+    public IEnumerable<VideoClosedCaptions>? ClosedCaptions { get; set; }
+
+    public string? CaptionsJson => ClosedCaptions?.Any() == true ? JsonSerializer.Serialize(ClosedCaptions, JsonOptions) : null;
 
     public string? EmbedUrl { get; set; }
 
@@ -82,6 +85,11 @@ public class Video
                 break;
             case NestedBlockVideoNativeCms nativeCmsVideo:
                 sources = GetSources(nativeCmsVideo);
+                platform = "native";
+                break;
+
+            case VideoMedia videoMedia:
+                sources = GetSources(videoMedia);
                 platform = "native";
                 break;
             default:
@@ -123,6 +131,49 @@ public class Video
             Classes = css,
             Sources = GetSources(block),
         };
+    }
+
+    public static Video? Create(
+       VideoMedia? block,
+       string? css = null)
+    {
+        if (block is null)
+        {
+            return null;
+        }
+
+        string? id = null;
+        string platform;
+
+        platform = "native";
+
+        return new Video
+        {
+            Id = id,
+            InstanceId = $"{Random.Shared.Next()}",
+            Platform = platform,
+            Classes = css,
+            Sources = GetSources(block),
+            ClosedCaptions = block?.ClosedCaptions?.Select(c => new VideoClosedCaptions
+            {
+                Url = (block.ClosedCaptions?.FirstOrDefault()?.Content as ClosedCaptions)?.Url ?? "",
+                Kind = (block.ClosedCaptions?.FirstOrDefault()?.Content as ClosedCaptions)?.Kind,
+                Label = (block.ClosedCaptions?.FirstOrDefault()?.Content as ClosedCaptions)?.Label,
+                Lang = (block.ClosedCaptions?.FirstOrDefault()?.Content as ClosedCaptions)?.Lang,
+
+            }
+            ),
+        };
+    }
+
+    private static IEnumerable<VideoSizeSource> GetSources(VideoMedia nativeUrlVideo)
+    {
+        return nativeUrlVideo.Sources?
+                   .Select(s => s.Content)
+                   .Cast<VideoSourceUrl>()
+                   .Select(s => GetSource(s.VideoLink, s.SourceSize))
+                   .WhereNotNull()
+               ?? [];
     }
 
     private static IEnumerable<VideoSizeSource> GetSources(NestedBlockVideoNativeUrl nativeUrlVideo)
