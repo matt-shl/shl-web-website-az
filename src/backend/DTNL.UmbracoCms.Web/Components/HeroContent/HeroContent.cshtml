@@ -12,7 +12,7 @@
             <h1>@Model.Title</h1>
             @if (!string.IsNullOrEmpty(Model.Subtitle))
             {
-                <p class="hero-content__subtitle">@Model.Subtitle></p>
+                <p class="hero-content__subtitle">@Model.Subtitle</p>
             }
             <div class="hero-content__tags">
                 @foreach (var tag in Model.Tags.EnsureNotNull())
@@ -24,14 +24,14 @@
         <div class="hero-content__col-right">
             <p class="hero-content__description">@Model.ShortDescription</p>
             <div class="hero-content__ctas">
-                @if (Model.PrimaryLinkButton is not null)
+                @if (Model.FirstButton is not null)
                 {
-                    <partial name="Button" model="@Model.PrimaryLinkButton"></partial>
+                    <partial name="Button" model="@Model.FirstButton"></partial>
 
                 }
-                @if (Model.SecondaryLinkButton is not null)
+                @if (Model.SecondButton is not null)
                 {
-                    <partial name="Button" model="@Model.SecondaryLinkButton"></partial>
+                    <partial name="Button" model="@Model.SecondButton"></partial>
 
                 }
             </div>

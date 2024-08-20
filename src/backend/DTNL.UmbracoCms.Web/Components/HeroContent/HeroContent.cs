@@ -18,10 +18,9 @@ public class HeroContent : IHero
 
     public IEnumerable<Tag>? Tags { get; set; }
 
-    public required Button? PrimaryLinkButton { get; set; }
+    public Button? FirstButton { get; set; }
 
-    public required Button? SecondaryLinkButton { get; set; }
-
+    public Button? SecondButton { get; set; }
 
     public static HeroContent? Create(NestedBlockContentHero? contentHero, ICompositionBasePage page)
     {
@@ -30,30 +29,34 @@ public class HeroContent : IHero
             return null;
         }
 
+        bool isFirstButtonPrimaryVariant = !contentHero.FirstLinkVariant?.Equals("secondary", StringComparison.OrdinalIgnoreCase) ?? true;
+        bool isSecondaryButtonPrimaryVariant = !contentHero.SecondLinkVariant?.Equals("secondary", StringComparison.OrdinalIgnoreCase) ?? true;
+
         return new HeroContent
         {
             ThemeCssClasses = ThemeHelper.GetCssClasses(page),
             Title = contentHero.Title,
             Subtitle = contentHero.Subtitle,
-            Tags = contentHero.Tags?.Select(tag => new Tag()
+            Tags = contentHero.Tags?.Take(2).Select(tag => new Tag()
             {
                 Label = tag,
                 CssClasses = "hero-content__tag",
 
             }) ?? [],
             ShortDescription = contentHero.ShortDescription,
-            PrimaryLinkButton = Button.Create(contentHero.PrimaryLink)
+            FirstButton = Button.Create(contentHero.FirstLink)
                 .With(b =>
                 {
                     b.Class = "hero-content__cta";
                     b.Icon = SvgAliases.Icons.ArrowTopRight;
+                    b.Variant = isFirstButtonPrimaryVariant ? null : "secondary";
                 }),
-            SecondaryLinkButton = Button.Create(contentHero.SecondaryLink)
+            SecondButton = Button.Create(contentHero.SecondLink)
                 .With(b =>
                 {
                     b.Class = "hero-content__cta";
                     b.Icon = SvgAliases.Icons.ArrowTopRight;
-                    b.Variant = "secondary";
+                    b.Variant = isSecondaryButtonPrimaryVariant ? null : "secondary";
                 }),
         };
     }
