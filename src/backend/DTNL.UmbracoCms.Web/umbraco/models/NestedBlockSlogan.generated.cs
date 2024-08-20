@@ -18,7 +18,7 @@ using Umbraco.Extensions;
 
 namespace Umbraco.Cms.Web.Common.PublishedModels
 {
-	/// <summary>Nested Block Slogan</summary>
+	/// <summary>Slogan</summary>
 	[PublishedModel("nestedBlockSlogan")]
 	public partial class NestedBlockSlogan : PublishedElementModel
 	{
@@ -50,11 +50,18 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		// properties
 
 		///<summary>
-		/// Slogan
+		/// AnimateOnScroll
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[ImplementPropertyType("animateOnScroll")]
+		public virtual bool AnimateOnScroll => this.Value<bool>(_publishedValueFallback, "animateOnScroll");
+
+		///<summary>
+		/// Text
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("slogan")]
-		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel Slogan => this.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockListModel>(_publishedValueFallback, "slogan");
+		[ImplementPropertyType("text")]
+		public virtual string Text => this.Value<string>(_publishedValueFallback, "text");
 	}
 }

@@ -30,7 +30,7 @@ public class BannerTextMedia
 
     public string? Theme { get; set; }
 
-    public static BannerTextMedia? Create(TextMediaBanner textMediaBanner)
+    public static BannerTextMedia? Create(NestedBlockTextMediaBanner textMediaBanner)
     {
         if (textMediaBanner.Title.IsNullOrWhiteSpace() || textMediaBanner.Description.IsNullOrWhiteSpace())
         {

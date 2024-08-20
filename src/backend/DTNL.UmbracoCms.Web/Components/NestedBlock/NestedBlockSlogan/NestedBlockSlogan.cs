@@ -2,25 +2,23 @@ using Umbraco.Cms.Core.Models.PublishedContent;
 
 namespace DTNL.UmbracoCms.Web.Components.NestedBlock;
 
-public class NestedBlockSlogan : NestedBlock
+public class NestedBlockSlogan : NestedBlockWithInner
 {
-    public required Slogan Slogan { get; set; }
-
-    protected override object? ProcessBlock(IPublishedElement block)
+    protected override object? GetInnerComponent(IPublishedElement block)
     {
         if (block is not Umbraco.Cms.Web.Common.PublishedModels.NestedBlockSlogan nestedBlockSlogan)
         {
             return null;
         }
 
-        Slogan? slogan = Slogan.Create(nestedBlockSlogan);
-        if (slogan == null)
+        if (Slogan.Create(nestedBlockSlogan) is not { } slogan)
         {
             return null;
         }
 
-        Slogan = slogan;
+        LayoutSection.CssContainerClasses = "styleguide__component-col styleguide__component-col--theme styleguide__component-col--12";
+        LayoutSection.CssThemeClasses = "t-white";
 
-        return this;
+        return slogan;
     }
 }

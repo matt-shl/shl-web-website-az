@@ -10,7 +10,7 @@ public class Slogan
 
     public string? CssClasses { get; set; }
 
-    public static Slogan? Create(Umbraco.Cms.Web.Common.PublishedModels.Slogan? slogan, string? cssClasses = null)
+    public static Slogan? Create(NestedBlockSlogan? slogan, string? cssClasses = null)
     {
         if (slogan == null)
         {
@@ -25,17 +25,17 @@ public class Slogan
         return new Slogan { Text = slogan.Text, AnimateOnScroll = slogan.AnimateOnScroll, CssClasses = cssClasses };
     }
 
-    public static Slogan? Create(NestedBlockSlogan block, string? cssClasses = null)
-    {
-        Umbraco.Cms.Web.Common.PublishedModels.Slogan? slogan = block?.Slogan?.Select(block => block.Content).OfType<Umbraco.Cms.Web.Common.PublishedModels.Slogan>().FirstOrDefault();
+    //public static Slogan? CreateForFooter(NestedBlockSlogan block, string? cssClasses = null)
+    //{
+    //    NestedBlockSlogan? slogan = block?.Slogan?.Select(block => block.Content).OfType<Umbraco.Cms.Web.Common.PublishedModels.NestedBlockSlogan>().FirstOrDefault();
 
-        if (slogan is not { } scrollingText)
-        {
-            return null;
-        }
+    //    if (slogan is not { } scrollingText)
+    //    {
+    //        return null;
+    //    }
 
-        return new Slogan { Text = scrollingText?.Text ?? "", AnimateOnScroll = scrollingText!.AnimateOnScroll, CssClasses = cssClasses };
-    }
+    //    return new Slogan { Text = scrollingText?.Text ?? "", AnimateOnScroll = scrollingText!.AnimateOnScroll, CssClasses = cssClasses };
+    //}
 
 
 }
