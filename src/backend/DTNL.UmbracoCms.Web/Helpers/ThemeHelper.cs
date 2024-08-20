@@ -9,14 +9,14 @@ public static class ThemeHelper
     {
         if (page.ContentType.Alias is "pageHome")
         {
-            string theme = (page as ICompositionHomePage)?.Theme?.Label ?? "general";
+            string theme = (page as ICompositionHomePage)?.PageTheme?.Label ?? "general";
 
             return $"t-{theme}";
         }
 
         if (page is ICompositionBasePage)
         {
-            string theme = (page as ICompositionBasePage)?.Theme?.Label ?? "general";
+            string theme = (page as ICompositionBasePage)?.PageTheme?.Label ?? "general";
 
             return $"t-{theme}";
         }
