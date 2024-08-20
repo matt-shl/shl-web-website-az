@@ -16,7 +16,7 @@ public class TextMediaList
 
     public Image? Image { get; set; }
 
-    public VideoModal? VideoModal { get; set; }
+    public Video? Video { get; set; }
 
     public Button? PrimaryLinkButton { get; set; }
 
@@ -30,19 +30,42 @@ public class TextMediaList
 
     public static TextMediaList Create(NestedBlockTextMediaList textMediaListBlock)
     {
-        Image? image = Image.Create(textMediaListBlock.Image)
-            .With(i => i.Caption = textMediaListBlock.MediaDescription);
+        Video? video = Video.Create((VideoMedia?) textMediaListBlock.Video?.FirstOrDefault()?.Content)
+         .With(v =>
+         {
+             v.Id = (textMediaListBlock?.Video?.FirstOrDefault()?.Content as VideoMedia)?.Title?.Trim().ToLower().Replace(" ", "-");
+             v.Description = (textMediaListBlock?.Video?.FirstOrDefault()?.Content as VideoMedia)?.Description;
+             v.Autoplay = false;
+             v.Muted = true;
+             v.TotalTime = (textMediaListBlock?.Video?.FirstOrDefault()?.Content as VideoMedia)?.TotalTime;
+         });
 
-        // TODO add card overlay to image when video is set
-        VideoModal? videoModal = VideoModal
-            .Create(textMediaListBlock.Video.GetSingleContentOrNull<NestedBlockVideo>());
+        Image? image = Image.Create(textMediaListBlock.Image)
+        .With(i =>
+        {
+            i.ImageStyle = "text-media-list";
+            i.Caption = textMediaListBlock.MediaDescription;
+            i.CardOverlay = video != null ? new CardOverlay
+            {
+                Video = video,
+                Position = "start",
+                Visible = true,
+            } : null;
+            i.ImageHolderButton = video != null;
+            i.ImageHolderAttributes = new Dictionary<string, string?>
+            {
+                ["aria-label"] = "Open video Modal",
+                ["aria-controls"] = video != null ? $"modal-video-{video.Id}" : null,
+            };
+            i.ObjectFit = true;
+        });
 
         return new TextMediaList
         {
             Title = textMediaListBlock.Title!,
             Text = textMediaListBlock.Text!.ToHtmlString(),
             Image = image,
-            VideoModal = videoModal,
+            Video = video,
             MediaPosition = textMediaListBlock.MediaPosition,
             LinkList = LinkList
                 .Create(textMediaListBlock.Items.GetSingleContentOrNull<NestedBlockTextMediaListLinks>()),
