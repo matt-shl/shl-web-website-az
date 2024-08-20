@@ -150,6 +150,7 @@
 }
 
 .banner-quote__image-item {
+  display: flex;
   min-width: 100%;
   width: 100%;
   transition: var(--bq-transition-duration) var(--bq-transition-easing) margin-left;
