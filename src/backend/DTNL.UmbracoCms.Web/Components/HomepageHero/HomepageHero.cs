@@ -48,17 +48,17 @@ public class HomepageHero : IHero
 
             ShortDescription = homepageHero.ShortDescription?.ToHtmlString(),
 
-            //VideoUrl = Video.Create((NestedBlockVideoNativeUrl?) homepageHero.Video?.FirstOrDefault()?.Content, css: "c-video--background")
-            //.With(v =>
-            //{
-            //    v.InstanceId = "hero-video";
-            //    v.Title = "Homepage video";
-            //    v.Description = "Homepage video description"; // TO DO: change this one once the videos are agreed and if needed for accessibility
-            //    v.Autoplay = true;
-            //    v.Controls = false;
-            //    v.CustomControls = true;
-            //    v.Muted = true;
-            //}),
+            VideoUrl = Video.Create((NestedBlockVideoNativeUrl?) homepageHero.Video?.FirstOrDefault()?.Content, css: "c-video--background")
+            .With(v =>
+            {
+                v.InstanceId = "hero-video";
+                v.Title = "Homepage video";
+                v.Description = "Homepage video description"; // TO DO: change this one once the videos are agreed and if needed for accessibility
+                v.Autoplay = true;
+                v.Controls = false;
+                v.CustomControls = true;
+                v.Muted = true;
+            }),
         };
     }
 }
