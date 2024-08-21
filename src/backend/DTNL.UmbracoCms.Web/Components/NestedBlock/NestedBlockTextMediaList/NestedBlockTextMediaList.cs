@@ -18,6 +18,8 @@ public class NestedBlockTextMediaList : NestedBlockWithInner
 
         LayoutSection.CssClasses = textMediaListBlock.Theme != null ? $"t-{textMediaListBlock?.Theme?.Label}" : "t-white";
         LayoutSection.Variant = "in-grid";
+        LayoutSection.Id = textMediaList.AnchorId;
+        LayoutSection.NavigationTitle = textMediaList.AnchorTitle;
 
         return textMediaList;
     }

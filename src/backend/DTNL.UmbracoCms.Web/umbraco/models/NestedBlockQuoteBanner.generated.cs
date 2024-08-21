@@ -20,7 +20,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 {
 	/// <summary>Quote Banner</summary>
 	[PublishedModel("nestedBlockQuoteBanner")]
-	public partial class NestedBlockQuoteBanner : PublishedElementModel
+	public partial class NestedBlockQuoteBanner : PublishedElementModel, ICompositionAnchors
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
@@ -64,5 +64,21 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("theme")]
 		public virtual global::Umbraco.Cms.Core.PropertyEditors.ValueConverters.ColorPickerValueConverter.PickedColor Theme => this.Value<global::Umbraco.Cms.Core.PropertyEditors.ValueConverters.ColorPickerValueConverter.PickedColor>(_publishedValueFallback, "theme");
+
+		///<summary>
+		/// Anchor Id
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("anchorId")]
+		public virtual string AnchorId => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionAnchors.GetAnchorId(this, _publishedValueFallback);
+
+		///<summary>
+		/// Anchor Title
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("anchorTitle")]
+		public virtual string AnchorTitle => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionAnchors.GetAnchorTitle(this, _publishedValueFallback);
 	}
 }

@@ -19,6 +19,8 @@ public class NestedBlockCards : NestedBlockWithInner
         LayoutSection.CssClasses = cardCarousel.ShowCarousel
             ? "c-section-card-carousel c-section-card-carousel--show-carousel"
             : "c-section-card-carousel c-section-card-carousel--no-carousel-three";
+        LayoutSection.Id = cardCarousel.AnchorId;
+        LayoutSection.NavigationTitle = cardCarousel.AnchorTitle;
 
         return cardCarousel;
     }

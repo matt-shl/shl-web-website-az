@@ -14,6 +14,9 @@ public class NestedBlockDownloads : NestedBlockWithInner
         }
 
         LayoutSection.CssThemeClasses = "t-white";
+        LayoutSection.Id = downloadsBlock.AnchorId;
+        LayoutSection.NavigationTitle = downloadsBlock.AnchorTitle;
+
         return Downloads.Create(downloadsBlock);
     }
 }

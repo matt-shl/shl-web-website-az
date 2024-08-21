@@ -12,7 +12,9 @@ public class BannerTextMedia
         Start,
     }
 
-    public string? Id { get; set; }
+    public string? AnchorId { get; set; }
+
+    public string? AnchorTitle { get; set; }
 
     public required string Title { get; set; }
 
@@ -39,7 +41,8 @@ public class BannerTextMedia
 
         return new BannerTextMedia
         {
-            Id = textMediaBanner.BannerId,
+            AnchorId = textMediaBanner.AnchorId,
+            AnchorTitle = textMediaBanner.AnchorTitle,
             Title = textMediaBanner.Title,
             Description = textMediaBanner.Description,
             MediaPosition = textMediaBanner.MediaPosition,
