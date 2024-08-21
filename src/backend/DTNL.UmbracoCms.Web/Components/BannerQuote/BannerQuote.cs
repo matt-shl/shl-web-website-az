@@ -1,3 +1,4 @@
+using DTNL.UmbracoCms.Web.Helpers.Extensions;
 using Umbraco.Cms.Web.Common.PublishedModels;
 
 namespace DTNL.UmbracoCms.Web.Components;
@@ -22,7 +23,7 @@ public class BannerQuote
 
         return new BannerQuote
         {
-            Quotes = quoteBanner?.Quotes?.Count > 0 ? quoteBanner.Quotes
+            Quotes = quoteBanner.Quotes?.Count > 0 ? quoteBanner.Quotes
             .Select(qb => qb.Content)
             .OfType<NestedBlockQuote>()
             .WhereNotNull()
@@ -32,7 +33,11 @@ public class BannerQuote
                 Name = q.NameAuthor ?? "",
                 Company = q.Company,
                 Role = q.Role,
-                Image = q.Image,
+                Image = Image.Create(q.Image).With(i =>
+                {
+                    i.ImageStyle = "in-grid-banner-image";
+                    i.ObjectFit = true;
+                }),
             }).ToList() : [],
         };
     }
