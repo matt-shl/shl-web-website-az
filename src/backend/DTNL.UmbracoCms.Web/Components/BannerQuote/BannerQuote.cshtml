@@ -53,7 +53,7 @@
                 @if (Model.Quotes.Count == 1 && Model.Quotes[0].Image != null)
                 {
                     <div class="banner-quote__image">
-                        <partial name="Image" model="@(Image.Create(Model.Quotes[0].Image).With(i => {
+                        <partial name="Image" model="@(Model.Quotes[0].Image.With(i => {
                             i.ImageStyle = "in-grid-banner-image";                                
                             i.ObjectFit = true;
                         }))" />
@@ -66,10 +66,7 @@
                         {
                             var quoteData = Model.Quotes[i] as Components.Quote;
                             <div class="banner-quote__image-item @(i == 0 ? "is--active" : "")" js-hook-banner-quote-image data-index=@i>
-                                <partial name="Image" model="@(Image.Create(Model.Quotes[i].Image).With(i => {
-                                    i.ImageStyle = "in-grid-banner-image";
-                                    i.ObjectFit = true;
-                                }))" />
+                                <partial name="Image" model="@(Model.Quotes[i].Image)" />
                             </div>
                         }
                     </div>
