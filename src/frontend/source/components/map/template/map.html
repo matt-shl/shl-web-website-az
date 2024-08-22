@@ -1,0 +1,160 @@
+{% from 'layout-section.html' import layoutSection %}
+{% from 'office-modal.html' import officeModal %}
+{% import 'accordion.html' as accordion %}
+
+{% macro map(data) %}
+  {% call layoutSection({
+    id: data.id,
+    sectionTitle: data.sectionTitle,
+    variant: "no-padding",
+    theme: "t-general"
+  }) %}
+    <div class="c-map" js-hook-map>
+      <div class="map__content-container map__content-container--title-mobile">
+        <div class="map__content">
+          <h2 class="map__title">{{ data.title }}</h2>
+        </div>
+      </div>
+      <div class="map__content-container">
+        <div class="map__content">
+          <h2 class="map__title">{{ data.title }}</h2>
+
+          <div class="map__list">
+            {% call accordion.default({
+              autoclose: "true",
+              classes: "map__accordion"
+            }) %}
+              {{ mapList({
+                id: 'europe',
+                label: 'Europe',
+                amount: data.offices.europe.amount,
+                countries: data.offices.europe.countries
+              }) }}
+              {{ mapList({
+                id: 'asia',
+                label: 'Asia',
+                amount: data.offices.asia.amount,
+                countries: data.offices.asia.countries
+              }) }}
+              {{ mapList({
+                id: 'americas',
+                label: 'Americas',
+                amount: data.offices.americas.amount,
+                countries: data.offices.americas.countries
+              }) }}
+            {% endcall %}
+          </div>
+        </div>
+      </div>
+
+      <div class="map__svg" js-hook-map-svg>
+        {% svg 'brand/map' %}
+
+        <button
+          js-hook-continent-trigger
+          class="map__location-trigger map__location-trigger--continent map__location-trigger--europe"
+          data-zoom-level-visible="world"
+          data-continent-id="europe">
+          <span class="map__location-trigger-label-desktop">Europe</span> <span class="map__location-trigger-label-amount">{{ data.offices.europe.amount }}</span>
+        </button>
+        {{ mapTriggers({
+          continentId: 'europe',
+          countries: data.offices.europe.countries
+        }) }}
+
+        <button
+          js-hook-continent-trigger
+          class="map__location-trigger map__location-trigger--continent map__location-trigger--asia"
+          data-zoom-level-visible="world"
+          data-continent-id="asia">
+          <span class="map__location-trigger-label-desktop">Asia</span> <span class="map__location-trigger-label-amount">{{ data.offices.asia.amount }}</span>
+        </button>
+        {{ mapTriggers({
+          continentId: 'asia',
+          countries: data.offices.asia.countries
+        }) }}
+
+        <button
+          js-hook-continent-trigger
+          class="map__location-trigger map__location-trigger--continent map__location-trigger--americas"
+          data-zoom-level-visible="world"
+          data-continent-id="americas">
+          <span class="map__location-trigger-label-desktop">Americas</span> <span class="map__location-trigger-label-amount">{{ data.offices.americas.amount }}</span>
+        </button>
+        {{ mapTriggers({
+          continentId: 'americas',
+          countries: data.offices.americas.countries
+        }) }}
+
+      </div>
+    </div>
+  {% endcall %}
+
+  {{ officeModals(data.offices.europe.countries) }}
+  {{ officeModals(data.offices.asia.countries) }}
+  {{ officeModals(data.offices.americas.countries) }}
+{% endmacro %}
+
+{% macro officeModals(data) %}
+  {% for country in data %}
+    {% for office in country.items %}
+      {{ officeModal(office) }}
+    {% endfor %}
+  {% endfor %}
+{% endmacro %}
+
+{% macro mapList(data) %}
+  {% call accordion.item({
+    id: data.id,
+    title: data.label + '<span>' + data.amount + ' locations</span>',
+    icon: 'chevron-down'
+  }) %}
+
+    {% for country in data.countries %}
+      {% for office in country.items %}
+        <button
+          js-hook-office-trigger
+          class="map__office-trigger"
+          data-office-id="{{ office.id }}"
+          data-country-id="{{ country.id }}"
+          data-country-zoom="{{ country.map.zoom }}"
+          data-country-x="{{ country.map.x }}"
+          data-country-y="{{ country.map.y }}">
+          {{ office.city }}, {{ country.label }}
+        </button>
+      {% endfor %}
+    {% endfor %}
+
+  {% endcall %}
+{% endmacro %}
+
+{% macro mapTriggers(data) %}
+  {% for country in data.countries %}
+    <button
+      js-hook-country-trigger
+      data-zoom-level-visible="{{ data.continentId }}"
+      data-country-id="{{ country.id }}"
+      data-country-zoom="{{ country.map.zoom }}"
+      data-country-x="{{ country.map.x }}"
+      data-country-y="{{ country.map.y }}"
+      style="{{ 'inset-inline-start:' + country.trigger.x + '%; top:' + country.trigger.y + '%;' }}"
+      class="{{ 'is--hidden map__location-trigger map__location-trigger--country-' + data.continentId + ' map__location-trigger--' + country.id }}">
+      <span class="map__location-trigger-label-desktop">{{ country.label }}</span> <span class="map__location-trigger-label-amount">{{ country.items.length }}</span>
+    </button>
+
+    {% for office in country.items %}
+      <button
+        js-hook-office-trigger
+        data-zoom-level-visible="{{ country.id }}"
+        data-office-id="{{ office.id }}"
+        data-country-id="{{ country.id }}"
+        data-country-zoom="{{ country.map.zoom }}"
+        data-country-x="{{ country.map.x }}"
+        data-country-y="{{ country.map.y }}"
+        style="{{ 'inset-inline-start:' + office.x + '%; top:' + office.y + '%;' }}"
+        class="{{ 'is--hidden map__location-trigger map__location-trigger--office map__location-trigger--office-' + country.id }}">
+        {% svg 'icons/plus' %} {{ office.city }}
+      </button>
+    {% endfor %}
+  {% endfor %}
+{% endmacro %}

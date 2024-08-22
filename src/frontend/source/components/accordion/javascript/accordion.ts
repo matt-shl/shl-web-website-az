@@ -101,6 +101,8 @@ class Accordion {
   }
 
   close(item: AccordionItem) {
+    Events.$trigger(`accordion[${item.id}]::closing`)
+
     item.isClosing = true
 
     const startHeight = `${item.detail?.offsetHeight || 0}px`
@@ -128,10 +130,13 @@ class Accordion {
     )
       this.closeAll()
 
+    Events.$trigger(`accordion[${item.id}]::opening`)
+
     item.detail.style.height = `${item.detail.offsetHeight}px`
     item.detail.open = true
 
     window.requestAnimationFrame(() => this.expand(item))
+
 
     this.element
       .querySelector(`[aria-controls='${item.id}']`)

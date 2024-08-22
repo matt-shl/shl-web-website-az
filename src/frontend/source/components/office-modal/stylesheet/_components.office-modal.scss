@@ -1,0 +1,54 @@
+.c-office-modal {
+  @include body-m;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-16;
+  min-height: 100%;
+  overflow: auto;
+}
+
+.office-modal__image {
+  aspect-ratio: 4 / 3;
+  border-radius: $radii-24;
+  flex-shrink: 0;
+  height: auto;
+  margin-bottom: $spacing-8;
+  overflow: hidden;
+  width: 100%;
+}
+
+.office-modal__address,
+.office-modal__phone,
+.office-modal__email {
+  display: flex;
+  gap: $spacing-12;
+
+  div {
+    @include rich-text;
+  }
+
+  a {
+    color: inherit;
+    font-weight: $font-weight-regular;
+    text-decoration: none;
+    transition: color 200ms ease-in-out;
+
+    @include hover-focus {
+      color: $color-light-blue;
+    }
+  }
+
+  svg {
+    flex-shrink: 0;
+    height: 20px;
+    width: 20px;
+  }
+}
+
+.office-modal__description {
+  margin-top: $spacing-16;
+}
+
+.office-modal__cta {
+  margin-top: auto;
+}

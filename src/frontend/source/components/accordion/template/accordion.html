@@ -12,7 +12,6 @@
 #}
 
 {% macro default(data) %}
-
     <div class="c-accordion
         {%- if data.tabsOnDesktop %} accordion--tabs-on-dekstop{% endif %}
         {%- if data.zeroTopMargin %} accordion--zero-top-margin{% endif %}
@@ -50,8 +49,12 @@
 
     <details class="accordion__detail" id="{{ data.id }}" {%- if data.open %} open{% endif %} js-hook-accordion-detail>
         <summary class="accordion__item-summary" js-hook-accordion-summary>
-            {{ data.title }}
-            <span class="accordion__item-icon"></span>
+            {{ data.title | safe }}
+            <span class="accordion__item-icon">
+              {% if data.icon %}
+                {% svg 'icons/' + data.icon %}
+              {% endif %}
+            </span>
         </summary>
         <div class="accordion__item-content" js-hook-accordion-content>
             {{ caller() }}

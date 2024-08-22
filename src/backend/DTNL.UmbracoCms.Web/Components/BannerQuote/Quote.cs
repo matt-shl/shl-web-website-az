@@ -1,6 +1,3 @@
-using Umbraco.Cms.Core.Models;
-using Umbraco.Cms.Web.Common.PublishedModels;
-
 namespace DTNL.UmbracoCms.Web.Components;
 
 public class Quote
@@ -13,5 +10,5 @@ public class Quote
 
     public string? Company { get; set; }
 
-    public MediaWithCrops? Image { get; set; }
+    public Image? Image { get; set; }
 }

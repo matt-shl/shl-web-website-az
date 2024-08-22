@@ -1,4 +1,4 @@
-// stylelint-disable property-no-vendor-prefix, declaration-no-important
+// stylelint-disable property-no-vendor-prefix, declaration-no-important, scss/at-rule-no-unknown
 
 html,
 body {
@@ -36,4 +36,9 @@ body {
   body {
     overflow: hidden;
   }
+}
+
+// Makes view transitions for browsers that support it a bit nicer
+@view-transition {
+  navigation: auto;
 }

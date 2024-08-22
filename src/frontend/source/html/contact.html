@@ -6,6 +6,7 @@
 
 {% from 'hero-content.html' import heroContent %}
 {% from 'contact-block.html' import contactBlock %}
+{% from 'map.html' import map %}
 
 {% block hero %}
   {{ heroContent({
@@ -18,7 +19,7 @@
 
   {{ contactBlock(global.content.contact.contactBlock) }}
 
-  <!-- TODO: map -->
+  {{ map(global.content.map) }}
 
 {% endblock %}
 
