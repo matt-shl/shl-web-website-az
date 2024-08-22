@@ -1,3 +1,17 @@
+@using DTNL.UmbracoCms.Web.Components
 @inherits UmbracoViewPage<PageProduct>
 
+<partial name="AnchorList" model="@(AnchorList.Create(Model).With(a =>
+                    {
+                        a.LinkButton = Button.Create(((Model?.Hero?.FirstOrDefault()?.Content as NestedBlockProductHero)?.PrimaryLink?.FirstOrDefault()?.Content as ButtonLink)?.Link)
+                            .With(b =>
+                            {
+                                b.Class = "anchor-list__cta";
+                                b.Icon = SvgAliases.Icons.ArrowTopRight;
+                                b.Variant = "primary";
+                            });
+                        a.Alignment = "horizontal";
+                        a.IsComponent = true;
+                    })
+)" />
 <partial name="_BlockList" model="Model.ContentBlocks" />

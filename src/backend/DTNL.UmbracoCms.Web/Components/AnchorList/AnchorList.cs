@@ -1,5 +1,3 @@
-using DTNL.UmbracoCms.Web.Helpers.Aliases;
-using DTNL.UmbracoCms.Web.Helpers.Extensions;
 using Umbraco.Cms.Web.Common.PublishedModels;
 
 namespace DTNL.UmbracoCms.Web.Components;
@@ -14,22 +12,25 @@ public class AnchorList
 
     public required List<Link> Links { get; set; }
 
-    public required Button? LinkButton { get; set; }
+    public Button? LinkButton { get; set; }
 
-    public static AnchorList Create(NestedBlockLinks? linksBlock = null)
+    public class Anchor
     {
+        public required string AnchorId { get; set; }
+
+        public required string AnchorTitle { get; set; }
+    }
+
+    public static AnchorList Create(ICompositionContentBlocks? block = null)
+    {
+        List<Link>? links = block?.ContentBlocks
+                        ?.Select(b => b.Content as ICompositionAnchors)
+                        .Select(b => new Link { Label = b?.AnchorTitle, Url = $"#{b?.AnchorId}" })
+                        .ToList();
         return new AnchorList
         {
-            IsComponent = linksBlock is null,
-            Links = (linksBlock?.Links)
-                .Using(link => Link.Create(link))
-                .ToList(),
-            LinkButton = Button.Create((Link?) null)
-                .With(b =>
-                {
-                    b.Class = "anchor-list__cta";
-                    b.Icon = SvgAliases.Icons.ArrowTopRight;
-                }),
+            IsComponent = block is null,
+            Links = links ?? [],
         };
     }
 }

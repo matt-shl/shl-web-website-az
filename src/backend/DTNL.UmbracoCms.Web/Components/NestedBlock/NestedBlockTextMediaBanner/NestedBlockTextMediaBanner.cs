@@ -18,7 +18,8 @@ public class NestedBlockTextMediaBanner : NestedBlockWithInner
 
         LayoutSection.CssClasses = textMediaBannerBlock.Theme != null ? $"t-{textMediaBannerBlock?.Theme?.Label}" : "t-white";
         LayoutSection.Variant = "in-grid";
-        Id = textMediaBanner.Id;
+        LayoutSection.Id = "banenr-id";
+        LayoutSection.NavigationTitle = "banner title";
 
         return textMediaBanner;
     }

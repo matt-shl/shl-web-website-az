@@ -3,7 +3,7 @@
 @inject NodeProvider NodeProvider
 
 
-<section class="c-hero-content">
+<section class="c-hero-content @Model.ThemeCssClasses">
     <div class="hero-content__container">
         <div class="hero-content__breadcrumbs">
             <vc:breadcrumb page="@NodeProvider.GetCurrentNode()" />

@@ -6,6 +6,9 @@ namespace DTNL.UmbracoCms.Web.Components;
 
 public class CardCarousel
 {
+    public string? AnchorId { get; set; }
+
+    public string? AnchorTitle { get; set; }
     public string? Title { get; set; }
 
     public string? Text { get; set; }
@@ -31,6 +34,8 @@ public class CardCarousel
 
         return new CardCarousel
         {
+            AnchorId = cardsBlock.AnchorId,
+            AnchorTitle = cardsBlock.AnchorTitle,
             Title = cardsBlock.Title,
             Text = cardsBlock.Text?.ToHtmlString(),
             PrimaryLinkButton = Button

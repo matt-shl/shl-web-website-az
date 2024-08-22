@@ -34,7 +34,7 @@ public class HeroContent : IHero
 
         return new HeroContent
         {
-            ThemeCssClasses = ThemeHelper.GetCssClasses(page),
+            ThemeCssClasses = contentHero.Theme is not null ? $"t-{contentHero.Theme?.Label ?? "general"}" : ThemeHelper.GetCssClasses(page),
             Title = contentHero.Title,
             Subtitle = contentHero.Subtitle,
             Tags = contentHero.Tags?.Take(2).Select(tag => new Tag()

@@ -22,7 +22,7 @@ public class HeroPdp : IHero
 
     public AnchorList? NavigationLinks { get; set; }
 
-    public static HeroPdp? Create(NestedBlockProductHero? productHero, ICompositionBasePage page)
+    public static HeroPdp? Create(NestedBlockProductHero? productHero, ICompositionContentBlocks page)
     {
         if (productHero is null)
         {
@@ -31,26 +31,26 @@ public class HeroPdp : IHero
 
         return new HeroPdp
         {
-            ThemeCssClasses = ThemeHelper.GetCssClasses(page),
+            ThemeCssClasses = productHero.Theme is not null ? $"t-{productHero.Theme?.Label ?? "general"}" : ThemeHelper.GetCssClasses(page),
             Title = productHero.Title,
             Text = productHero.Text?.ToHtmlString(),
-            PrimaryLinkButton = Button.Create(productHero.PrimaryLink)
+            PrimaryLinkButton = Button.Create((productHero.PrimaryLink?.FirstOrDefault()?.Content as ButtonLink)?.Link)
                 .With(b =>
                 {
                     b.Class = "hero-pdp__cta1";
                     b.Icon = SvgAliases.Icons.ArrowTopRight;
                 }),
-            Image = Image.Create(productHero.Image, cssClasses: "hero-pdp__image", style: "heroPdp"),
-            SecondaryLinkButton = Button.Create(productHero.SecondaryLink)
+            Image = Image.Create(productHero?.Image, cssClasses: "hero-pdp__image", style: "heroPdp"),
+            SecondaryLinkButton = Button.Create((productHero?.SecondaryLink?.FirstOrDefault()?.Content as ButtonLink)?.Link)
                 .With(b =>
                 {
                     b.Class = "hero-pdp__cta2";
                     b.Icon = SvgAliases.Icons.ArrowTopRight;
                     b.Variant = "secondary";
                 }),
-            NavigationLinks = productHero.HideNavigationLinks
+            NavigationLinks = productHero!.HideNavigationLinks
                 ? null
-                : AnchorList.Create()
+                : AnchorList.Create(page)
                     .With(a =>
                     {
                         a.CssClasses = "hero-pdp__anchor-links";

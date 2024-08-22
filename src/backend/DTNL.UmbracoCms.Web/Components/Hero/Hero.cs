@@ -1,4 +1,5 @@
 using DTNL.UmbracoCms.Web.Components.PartialComponent;
+using DTNL.UmbracoCms.Web.Helpers.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Web.Common.PublishedModels;
@@ -26,7 +27,7 @@ public class Hero : ViewComponentExtended
         {
             IHero? hero = (page as ICompositionHero)?.Hero?.FirstOrDefault()?.Content switch
             {
-                NestedBlockProductHero heroPdp => HeroPdp.Create(heroPdp, (ICompositionBasePage) page),
+                NestedBlockProductHero heroPdp => HeroPdp.Create(heroPdp, (ICompositionContentBlocks) page),
                 NestedBlockHomepageHero heroHomepage => HomepageHero.Create(heroHomepage),
                 NestedBlockContentHero heroContent => HeroContent.Create(heroContent, (ICompositionBasePage) page),
                 _ => null,

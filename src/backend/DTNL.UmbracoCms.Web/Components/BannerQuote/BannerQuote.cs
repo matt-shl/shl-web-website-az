@@ -5,6 +5,10 @@ namespace DTNL.UmbracoCms.Web.Components;
 
 public class BannerQuote
 {
+    public string? AnchorId { get; set; }
+
+    public string? AnchorTitle { get; set; }
+
     public string? Theme { get; set; }
 
     public required List<Quote> Quotes { get; set; } = new List<Quote>();
@@ -23,6 +27,8 @@ public class BannerQuote
 
         return new BannerQuote
         {
+            AnchorId = quoteBanner.AnchorId,
+            AnchorTitle = quoteBanner.AnchorTitle,
             Quotes = quoteBanner.Quotes?.Count > 0 ? quoteBanner.Quotes
             .Select(qb => qb.Content)
             .OfType<NestedBlockQuote>()

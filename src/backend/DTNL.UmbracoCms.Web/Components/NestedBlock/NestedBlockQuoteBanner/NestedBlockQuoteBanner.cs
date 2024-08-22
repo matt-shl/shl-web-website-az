@@ -18,6 +18,8 @@ public class NestedBlockQuoteBanner : NestedBlockWithInner
 
         LayoutSection.CssClasses = quoteBannerBlock.Theme != null ? $"t-{quoteBannerBlock?.Theme?.Label}" : "t-white";
         LayoutSection.Variant = quoteBannerBlock?.Theme != null ? "in-grid" : "";
+        LayoutSection.Id = quoteBanner.AnchorId;
+        LayoutSection.NavigationTitle = quoteBanner.AnchorTitle;
 
         return quoteBanner;
     }

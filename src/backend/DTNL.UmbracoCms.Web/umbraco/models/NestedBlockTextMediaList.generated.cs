@@ -20,7 +20,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 {
 	/// <summary>Text Media List</summary>
 	[PublishedModel("nestedBlockTextMediaList")]
-	public partial class NestedBlockTextMediaList : PublishedElementModel
+	public partial class NestedBlockTextMediaList : PublishedElementModel, ICompositionAnchors
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
@@ -128,5 +128,21 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("video")]
 		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel Video => this.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockListModel>(_publishedValueFallback, "video");
+
+		///<summary>
+		/// Anchor Id
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("anchorId")]
+		public virtual string AnchorId => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionAnchors.GetAnchorId(this, _publishedValueFallback);
+
+		///<summary>
+		/// Anchor Title
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("anchorTitle")]
+		public virtual string AnchorTitle => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionAnchors.GetAnchorTitle(this, _publishedValueFallback);
 	}
 }

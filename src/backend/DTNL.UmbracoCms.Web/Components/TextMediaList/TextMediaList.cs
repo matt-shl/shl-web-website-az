@@ -6,6 +6,10 @@ namespace DTNL.UmbracoCms.Web.Components;
 
 public class TextMediaList
 {
+    public string? AnchorId { get; set; }
+
+    public string? AnchorTitle { get; set; }
+
     public required string Title { get; set; }
 
     public string? Text { get; set; }
@@ -62,6 +66,8 @@ public class TextMediaList
 
         return new TextMediaList
         {
+            AnchorId = textMediaListBlock.AnchorId,
+            AnchorTitle = textMediaListBlock.AnchorTitle,
             Title = textMediaListBlock.Title!,
             Text = textMediaListBlock.Text!.ToHtmlString(),
             Image = image,
