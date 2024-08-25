@@ -1,4 +1,5 @@
 using DTNL.UmbracoCms.Web.Components.Hero;
+using DTNL.UmbracoCms.Web.Helpers.Aliases;
 using DTNL.UmbracoCms.Web.Helpers.Extensions;
 using Umbraco.Cms.Web.Common.PublishedModels;
 
@@ -12,9 +13,9 @@ public class HomepageHero : IHero
 
     public Video? VideoUrl { get; set; }
 
-    public Button? MainButton { get; set; }
+    public ButtonLink? MainButton { get; set; }
 
-    public Button? SecondaryButton { get; set; }
+    public ButtonLink? SecondaryButton { get; set; }
 
     public string? ShortDescription { get; set; }
 
@@ -31,20 +32,8 @@ public class HomepageHero : IHero
 
             Image = Image.Create(homepageHero.Image, cssClasses: "homepage-hero__image"),
 
-            MainButton = Button.Create(homepageHero.MainButtonLink)
-            .With(b =>
-            {
-                b.Class = "button--icon hero-home__cta";
-                b.Hook = "homepage-hero-button";
-            }),
-
-            SecondaryButton = Button.Create(homepageHero.SecondaryButtonLink)
-            .With(b =>
-            {
-                b.Class = "button--icon hero-home__cta";
-                b.Variant = "secondary ";
-                b.Hook = "homepage-hero-button";
-            }),
+            MainButton = ButtonLink.Create(homepageHero.MainButtonLink?.FirstOrDefault(), cssClasses: "button--icon hero-home__cta", jsHook: "homepage-hero-button", svgIcon: SvgAliases.Icons.ArrowTopRight),
+            SecondaryButton = ButtonLink.Create(homepageHero.SecondaryButtonLink?.FirstOrDefault(), cssClasses: "button--icon hero-home__cta", jsHook: "homepage-hero-button", svgIcon: SvgAliases.Icons.ArrowTopRight),
 
             ShortDescription = homepageHero.ShortDescription?.ToHtmlString(),
 

@@ -50,36 +50,20 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		// properties
 
 		///<summary>
-		/// First Link
+		/// Primary Link
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("firstLink")]
-		public virtual global::Umbraco.Cms.Core.Models.Link FirstLink => this.Value<global::Umbraco.Cms.Core.Models.Link>(_publishedValueFallback, "firstLink");
+		[ImplementPropertyType("primaryLink")]
+		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel PrimaryLink => this.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockListModel>(_publishedValueFallback, "primaryLink");
 
 		///<summary>
-		/// First Link Variant: Select button variant
+		/// Secondary Link
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("firstLinkVariant")]
-		public virtual string FirstLinkVariant => this.Value<string>(_publishedValueFallback, "firstLinkVariant");
-
-		///<summary>
-		/// Second Link
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("secondLink")]
-		public virtual global::Umbraco.Cms.Core.Models.Link SecondLink => this.Value<global::Umbraco.Cms.Core.Models.Link>(_publishedValueFallback, "secondLink");
-
-		///<summary>
-		/// Second Link Variant: Select button variant
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("secondLinkVariant")]
-		public virtual string SecondLinkVariant => this.Value<string>(_publishedValueFallback, "secondLinkVariant");
+		[ImplementPropertyType("secondaryLink")]
+		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel SecondaryLink => this.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockListModel>(_publishedValueFallback, "secondaryLink");
 
 		///<summary>
 		/// Short description
@@ -98,7 +82,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual string Subtitle => this.Value<string>(_publishedValueFallback, "subtitle");
 
 		///<summary>
-		/// Tags: Maximum of 2 tags will be displayed on the page
+		/// Tags
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
