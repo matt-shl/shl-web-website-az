@@ -14,6 +14,7 @@ public interface ICard : IPartialViewPath
             NestedBlockNumberCard numberCard => CardNumber.Create(numberCard, cssClasses),
             NestedBlockIconCard iconCard => CardIcon.Create(iconCard, cssClasses),
             NestedBlockPageCard pageCard => CardKnowledge.Create(pageCard, cssClasses),
+            NestedBlockContactCard contactCard => CardContact.Create(contactCard, cssClasses),
             NestedBlockProductCard { ProductPage: PageProduct productPage } => CardProduct.Create(productPage, cssClasses),
             _ => null,
         };

@@ -18,14 +18,14 @@ using Umbraco.Extensions;
 
 namespace Umbraco.Cms.Web.Common.PublishedModels
 {
-	/// <summary>Site Settings</summary>
-	[PublishedModel("siteSettings")]
-	public partial class SiteSettings : PublishedContentModel, ICompositionAnalytics, ICompositionCookieBar, ICompositionErrorHandling, ICompositionFooter, ICompositionHeader, ICompositionRedirects, ICompositionSeoSettings, ICompositionSocialLinks, ICompositionStructuredData, ICompositionTagSettings
+	/// <summary>Page News</summary>
+	[PublishedModel("pageNews")]
+	public partial class PageNews : PublishedContentModel, ICompositionBasePage, ICompositionCardDetails, ICompositionContentBlocks, ICompositionKnowledgePage, ICompositionSeo, ICompositionTagSettings
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		public new const string ModelTypeAlias = "siteSettings";
+		public new const string ModelTypeAlias = "pageNews";
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
@@ -34,14 +34,14 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 			=> PublishedModelUtility.GetModelContentType(publishedSnapshotAccessor, ModelItemType, ModelTypeAlias);
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		public static IPublishedPropertyType GetModelPropertyType<TValue>(IPublishedSnapshotAccessor publishedSnapshotAccessor, Expression<Func<SiteSettings, TValue>> selector)
+		public static IPublishedPropertyType GetModelPropertyType<TValue>(IPublishedSnapshotAccessor publishedSnapshotAccessor, Expression<Func<PageNews, TValue>> selector)
 			=> PublishedModelUtility.GetModelPropertyType(GetModelContentType(publishedSnapshotAccessor), selector);
 #pragma warning restore 0109
 
 		private IPublishedValueFallback _publishedValueFallback;
 
 		// ctor
-		public SiteSettings(IPublishedContent content, IPublishedValueFallback publishedValueFallback)
+		public PageNews(IPublishedContent content, IPublishedValueFallback publishedValueFallback)
 			: base(content, publishedValueFallback)
 		{
 			_publishedValueFallback = publishedValueFallback;
@@ -50,164 +50,151 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		// properties
 
 		///<summary>
-		/// Types
+		/// Hero
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("types")]
-		public virtual global::System.Collections.Generic.IEnumerable<string> Types => this.Value<global::System.Collections.Generic.IEnumerable<string>>(_publishedValueFallback, "types");
+		[ImplementPropertyType("hero")]
+		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel Hero => this.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockListModel>(_publishedValueFallback, "hero");
 
 		///<summary>
-		/// Body Scripts: Insert here your Hotjar/Google Analytics scripts to be inserted at body of the page.
+		/// Page Theme
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("bodyScripts")]
-		public virtual string BodyScripts => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionAnalytics.GetBodyScripts(this, _publishedValueFallback);
+		[ImplementPropertyType("pageTheme")]
+		public virtual global::Umbraco.Cms.Core.PropertyEditors.ValueConverters.ColorPickerValueConverter.PickedColor PageTheme => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionBasePage.GetPageTheme(this, _publishedValueFallback);
 
 		///<summary>
-		/// Header Scripts: Insert here your Hotjar/Google Analytics scripts to be inserted at header of the page.
+		/// Slogan
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("headerScripts")]
-		public virtual string HeaderScripts => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionAnalytics.GetHeaderScripts(this, _publishedValueFallback);
+		[ImplementPropertyType("slogan")]
+		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel Slogan => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionBasePage.GetSlogan(this, _publishedValueFallback);
 
 		///<summary>
-		/// Search Console Verification: When set the ID will be placed in a meta tag in the head for Google Search Console Verification:  {meta name="google-site-verification" content="your verification string"}
+		/// Description: Defaults to Hero Text, if not set.
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("searchConsoleVerification")]
-		public virtual string SearchConsoleVerification => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionAnalytics.GetSearchConsoleVerification(this, _publishedValueFallback);
+		[ImplementPropertyType("cardDescription")]
+		public virtual global::Umbraco.Cms.Core.Strings.IHtmlEncodedString CardDescription => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionCardDetails.GetCardDescription(this, _publishedValueFallback);
 
 		///<summary>
-		/// Text
+		/// Image: Defaults to Hero Image, if not set.
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("cookieMediaWallText")]
-		public virtual global::Umbraco.Cms.Core.Strings.IHtmlEncodedString CookieMediaWallText => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionCookieBar.GetCookieMediaWallText(this, _publishedValueFallback);
+		[ImplementPropertyType("cardImage")]
+		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops CardImage => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionCardDetails.GetCardImage(this, _publishedValueFallback);
 
 		///<summary>
-		/// Cookie Page: Select the cookies page to change preferences
+		/// Category
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("cookiePage")]
-		public virtual global::Umbraco.Cms.Core.Models.Link CookiePage => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionCookieBar.GetCookiePage(this, _publishedValueFallback);
+		[ImplementPropertyType("category")]
+		public virtual global::System.Collections.Generic.IEnumerable<string> Category => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionCardDetails.GetCategory(this, _publishedValueFallback);
 
 		///<summary>
-		/// Text
+		/// Content Blocks
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("cookieText")]
-		public virtual string CookieText => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionCookieBar.GetCookieText(this, _publishedValueFallback);
+		[ImplementPropertyType("contentBlocks")]
+		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel ContentBlocks => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionContentBlocks.GetContentBlocks(this, _publishedValueFallback);
 
 		///<summary>
-		/// Cookie Version
+		/// Content Tags
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("cookieVersion")]
-		public virtual string CookieVersion => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionCookieBar.GetCookieVersion(this, _publishedValueFallback);
+		[ImplementPropertyType("contentTags")]
+		public virtual global::System.Collections.Generic.IEnumerable<string> ContentTags => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionKnowledgePage.GetContentTags(this, _publishedValueFallback);
 
 		///<summary>
-		/// 404 Page not found: Set page to be shown on 404 errors
+		/// Date
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("umbracoError404")]
-		public virtual global::Umbraco.Cms.Core.Models.PublishedContent.IPublishedContent UmbracoError404 => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionErrorHandling.GetUmbracoError404(this, _publishedValueFallback);
+		[ImplementPropertyType("date")]
+		public virtual global::System.DateTime Date => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionKnowledgePage.GetDate(this, _publishedValueFallback);
 
 		///<summary>
-		/// 500 Error occured: Set page to be shown on 500 error
+		/// Page Type
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("umbracoError500")]
-		public virtual global::Umbraco.Cms.Core.Models.PublishedContent.IPublishedContent UmbracoError500 => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionErrorHandling.GetUmbracoError500(this, _publishedValueFallback);
+		[ImplementPropertyType("pageType")]
+		public virtual global::System.Collections.Generic.IEnumerable<string> PageType => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionKnowledgePage.GetPageType(this, _publishedValueFallback);
 
 		///<summary>
-		/// Bottom Links
+		/// Do Not Follow: Setting to true will prevent search engines from following the links on the page, so it will not index the pages it finds (only) on this page.
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("footerBottomLinks")]
-		public virtual global::System.Collections.Generic.IEnumerable<global::Umbraco.Cms.Core.Models.Link> FooterBottomLinks => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionFooter.GetFooterBottomLinks(this, _publishedValueFallback);
+		[ImplementPropertyType("doNotFollow")]
+		public virtual bool DoNotFollow => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionSeo.GetDoNotFollow(this, _publishedValueFallback);
 
 		///<summary>
-		/// Link Groups
+		/// Do Not Index: Setting to true will prevent a page from appearing in Google Search by including a noindex meta tag in the page's HTML code. This will also exclude the page from the sitemap.
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("footerLinkGroups")]
-		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel FooterLinkGroups => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionFooter.GetFooterLinkGroups(this, _publishedValueFallback);
+		[ImplementPropertyType("doNotIndex")]
+		public virtual bool DoNotIndex => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionSeo.GetDoNotIndex(this, _publishedValueFallback);
 
 		///<summary>
-		/// Text
+		/// Hide from search
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("footerText")]
-		public virtual string FooterText => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionFooter.GetFooterText(this, _publishedValueFallback);
+		[ImplementPropertyType("hideFromSearch")]
+		public virtual bool HideFromSearch => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionSeo.GetHideFromSearch(this, _publishedValueFallback);
 
 		///<summary>
-		/// Main
+		/// Keywords: Use this field to add specific search keys that can be used ONLY in the search of the site. Separate your keywords by comma.
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("mainHeader")]
-		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListItem<global::Umbraco.Cms.Web.Common.PublishedModels.NestedBlockNavigation> MainHeader => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionHeader.GetMainHeader(this, _publishedValueFallback);
+		[ImplementPropertyType("searchKeywords")]
+		public virtual string SearchKeywords => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionSeo.GetSearchKeywords(this, _publishedValueFallback);
 
 		///<summary>
-		/// Redirects File: Upload an Excel file here with the first column with Old urls, and second column with the new urls to redirect to.
+		/// Meta Description: Meta Descriptions are commonly used in search engine result pages, and are extremely important in gaining user click-through. Make sure to let users know whether the page contains the information they're looking for. It is recommended to keep it between 50 and 160 characters.  See also: https://moz.com/learn/seo/meta-description
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("redirectsFile")]
-		public virtual string RedirectsFile => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionRedirects.GetRedirectsFile(this, _publishedValueFallback);
+		[ImplementPropertyType("seoMetaDescription")]
+		public virtual string SeoMetaDescription => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionSeo.GetSeoMetaDescription(this, _publishedValueFallback);
 
 		///<summary>
-		/// Website Name: If filled in, the website name will be added to the end of the page title
+		/// Meta Title: The title should be an accurate and concise description of a page's content, and is critical to both a user experience and search engine optimization. It is recommended to keep it under 60 characters.  See also: https://moz.com/learn/seo/title-tag
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("websiteName")]
-		public virtual string WebsiteName => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionSeoSettings.GetWebsiteName(this, _publishedValueFallback);
+		[ImplementPropertyType("seoMetaTitle")]
+		public virtual string SeoMetaTitle => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionSeo.GetSeoMetaTitle(this, _publishedValueFallback);
 
 		///<summary>
-		/// Social Links: Supported platforms: Facebook, Instagram, X, Youtube and LinkedIn
+		/// Hide page in Navigation
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("socialLinks")]
-		public virtual global::System.Collections.Generic.IEnumerable<global::Umbraco.Cms.Core.Models.Link> SocialLinks => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionSocialLinks.GetSocialLinks(this, _publishedValueFallback);
+		[ImplementPropertyType("umbracoNaviHide")]
+		public virtual bool UmbracoNaviHide => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionSeo.GetUmbracoNaviHide(this, _publishedValueFallback);
 
 		///<summary>
-		/// Social Media Policy Link
+		/// Url Alias: This property allow us to provide multiple URLs for a page. The values that we type has to be lowercase and we have not to use a leading or trailing slash.
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("socialMediaPolicyLink")]
-		public virtual global::Umbraco.Cms.Core.Models.Link SocialMediaPolicyLink => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionSocialLinks.GetSocialMediaPolicyLink(this, _publishedValueFallback);
+		[ImplementPropertyType("umbracoUrlAlias")]
+		public virtual string UmbracoUrlAlias => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionSeo.GetUmbracoUrlAlias(this, _publishedValueFallback);
 
 		///<summary>
-		/// Company Logo: For Google Structured Data tags
+		/// Url Name Change: Umbraco generates the URL name of a page from the Page name that we have defined. If we want to define a different name we can use this property to set a new URL name for the page.
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("companyLogo")]
-		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops CompanyLogo => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionStructuredData.GetCompanyLogo(this, _publishedValueFallback);
-
-		///<summary>
-		/// Company Name: For Google Structured Data tags
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("companyName")]
-		public virtual string CompanyName => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionStructuredData.GetCompanyName(this, _publishedValueFallback);
+		[ImplementPropertyType("umbracoUrlName")]
+		public virtual string UmbracoUrlName => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionSeo.GetUmbracoUrlName(this, _publishedValueFallback);
 
 		///<summary>
 		/// Categories: Define allowed categories.

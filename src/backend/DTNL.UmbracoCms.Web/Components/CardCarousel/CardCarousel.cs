@@ -9,6 +9,7 @@ public class CardCarousel
     public string? AnchorId { get; set; }
 
     public string? AnchorTitle { get; set; }
+
     public string? Title { get; set; }
 
     public string? Text { get; set; }
@@ -21,11 +22,24 @@ public class CardCarousel
 
     public bool ShowCarousel { get; set; }
 
-    public static CardCarousel? Create(NestedBlockCards cardsBlock)
+    public static CardCarousel? Create(ICompositionCards cardsBlock)
     {
-        List<ICard> cards = cardsBlock.Cards
-            .Using(cardBlock => ICard.Create(cardBlock.Content, cssClasses: "section-card-carousel__card"))
-            .ToList();
+        List<ICard> cards = cardsBlock switch
+        {
+            NestedBlockContactCards block => block.Cards
+                .Using(cardBlock => ICard.Create(cardBlock.Content, cssClasses: "section-card-carousel__card"))
+                .ToList(),
+            NestedBlockGenericCards block => block.Cards
+                .Using(cardBlock => ICard.Create(cardBlock.Content, cssClasses: "section-card-carousel__card"))
+                .ToList(),
+            NestedBlockKnowledgeCards block => block.Cards
+                .Using(cardBlock => ICard.Create(cardBlock.Content, cssClasses: "section-card-carousel__card"))
+                .ToList(),
+            NestedBlockProductCards block => block.Cards
+                .Using(cardBlock => ICard.Create(cardBlock.Content, cssClasses: "section-card-carousel__card"))
+                .ToList(),
+            _ => [],
+        };
 
         if (cards.Count == 0)
         {
@@ -34,8 +48,8 @@ public class CardCarousel
 
         return new CardCarousel
         {
-            AnchorId = cardsBlock.AnchorId,
-            AnchorTitle = cardsBlock.AnchorTitle,
+            AnchorId = (cardsBlock as ICompositionAnchors)?.AnchorId,
+            AnchorTitle = (cardsBlock as ICompositionAnchors)?.AnchorTitle,
             Title = cardsBlock.Title,
             Text = cardsBlock.Text?.ToHtmlString(),
             PrimaryLinkButton = Button
