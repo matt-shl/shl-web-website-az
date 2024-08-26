@@ -1,0 +1,107 @@
+$search-in-hero-mobile-x-padding: $spacing-20;
+$search-in-hero-mobile-y-padding: $spacing-16;
+
+.c-search {
+  &--in-flyout {
+    padding: $spacing-16 $spacing-24;
+  }
+
+  &--in-hero {
+    margin-top: $spacing-48;
+  }
+
+  @include screen-md-and-smaller {
+    &--in-hero {
+      margin-top: $spacing-16;
+    }
+  }
+}
+
+.search__icon-submit {
+  svg {
+    color: $color-dark-blue;
+    height: 20px;
+    width: 20px;
+  }
+
+  @include screen-sm-and-smaller {
+    .c-search--in-hero & {
+      margin-inline-end: $spacing-16;
+    }
+  }
+}
+
+.search__form {
+  align-items: center;
+  background-color: $color-white;
+  border: 1px solid $color-dark-blue;
+  border-radius: $radii-4;
+  display: flex;
+  gap: $spacing-20;
+  padding-block: $spacing-8;
+  padding-inline: $spacing-24 $spacing-8;
+  width: 100%;
+
+  .c-search--in-flyout & {
+    padding: $spacing-20 $spacing-16;
+  }
+
+  ::placeholder {
+    color: $color-grey;
+  }
+
+  @include screen-sm-and-smaller {
+    .c-search--in-hero & {
+      flex-wrap: wrap;
+      gap: 0;
+      padding-inline: $search-in-hero-mobile-x-padding;
+      padding-block: 0 $search-in-hero-mobile-y-padding;
+    }
+  }
+}
+
+.search__input {
+  @include body-m;
+  border: none;
+  color: $color-dark-blue;
+  flex-grow: 1;
+  min-width: 0;
+
+  @include screen-lg-and-bigger {
+    @include body-l;
+  }
+
+  @include screen-sm-and-smaller {
+    .c-search--in-hero & {
+      padding-block: $search-in-hero-mobile-y-padding;
+    }
+  }
+}
+
+.search__input-reset {
+  svg {
+    height: 20px;
+    width: 20px;
+  }
+}
+
+.search__cta-submit {
+  @include screen-sm-and-smaller {
+    .c-search--in-hero & {
+      width: 100%;
+    }
+  }
+}
+
+.search__hr {
+  display: none;
+  width: calc(100% + #{$search-in-hero-mobile-x-padding} * 2);
+  margin-inline: calc(#{$search-in-hero-mobile-x-padding} * -1);
+  border: 0;
+  border-top: 1px solid $color-grey;
+
+  @include screen-sm-and-smaller {
+    display: block;
+    margin-bottom: $search-in-hero-mobile-y-padding;
+  }
+}

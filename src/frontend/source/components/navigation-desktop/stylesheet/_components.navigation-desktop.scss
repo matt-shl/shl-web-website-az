@@ -44,6 +44,18 @@
     visibility: hidden;
   }
 
+  &--search {
+    height: 40px;
+    min-width: 40px;
+    padding: $spacing-8;
+    border-radius: $radii-4;
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
   .is--open & {
     font-weight: $font-weight-bold;
 

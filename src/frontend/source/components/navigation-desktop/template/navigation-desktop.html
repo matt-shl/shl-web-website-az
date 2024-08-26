@@ -1,4 +1,5 @@
 {% from 'flyout.html' import flyout %}
+{% from 'flyout-search.html' import flyoutSearch %}
 
 <nav class="c-navigation-desktop" js-hook-navigation-desktop title="{{ global.resource.navigation.mainNavigation }}">
   <ul class="navigation-desktop__list">
@@ -16,5 +17,14 @@
         {% endif %}
       </li>
     {% endfor %}
+    <li class="navigation-desktop__list-item" js-hook-navigation-desktop-item>
+      <button class="navigation-desktop__item navigation-desktop__item--search" js-hook-navigation-desktop-anchor aria-expanded="false" aria-controls="flyout-search">
+        {% svg 'icons/search' %}
+        <span class="u-sr-only">{{ global.resource.navigation.openSearch }}</span>
+      </button>
+      {{ flyoutSearch({
+        id: 'search'
+      }) }}
+    </li>
   </ul>
 </nav>

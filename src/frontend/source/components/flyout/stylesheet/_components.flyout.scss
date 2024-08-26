@@ -31,6 +31,14 @@
   min-height: 500px;
   overflow: auto;
   padding-block: $spacing-40;
+
+  &--shrink {
+    min-height: auto;
+  }
+}
+
+.flyout__search-column {
+  @include col-span(12);
 }
 
 .flyout__title-column {
