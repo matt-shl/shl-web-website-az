@@ -14,19 +14,24 @@
     {
         <button class="image__holder" asp-extra-attribs="@Model.ImageHolderAttributes">
             <partial name="./ImageOrPicture.cshtml" model="@Model"/>
+            @if (Model.CardOverlay is not null)
+            {
+                <partial name="CardOverlay" model="@Model.CardOverlay" />
+            }
         </button>
     }
     else
     {
         <div class="image__holder" asp-extra-attribs="@Model.ImageHolderAttributes">
             <partial name="./ImageOrPicture.cshtml" model="@Model"/>
+            @if (Model.CardOverlay is not null)
+            {
+                <partial name="CardOverlay" model="@Model.CardOverlay" />
+            }
         </div>
     }
 
-    @if (Model.CardOverlay is not null)
-    {
-        <partial name="CardOverlay" model="@Model.CardOverlay"/>
-    }
+    
 
     @if (!Model.Caption.IsNullOrEmpty())
 	{

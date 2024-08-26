@@ -3,8 +3,8 @@
 @model DTNL.UmbracoCms.Web.Components.TextMediaList
 
 <div class="c-text-media-list
-    c-text-media-list--@Model.Variant
-    c-text-media-list--media-position-@Model.MediaPosition
+    @(Model.Variant.IsNullOrWhiteSpace() ? "" : $"c-text-media-list--{Model.Variant}")
+    @(Model.MediaPosition.IsNullOrWhiteSpace() ? "" : $"c-text-media-list--media-position-{Model.MediaPosition}")
     @(Model.Image is null ? "c-text-media-list--no-media" : null) @Model.CssClasses">
 
     <div class="text-media-list__container">
@@ -41,6 +41,8 @@
                         }
                     </partial>
                 }
+
+                <p class="text-media-list__ctas-support" asp-if="@(!Model.CtaSupportText.IsNullOrWhiteSpace())">@Model.CtaSupportText</p>
 
                 <div class="text-media-list__ctas" asp-if="@((Model.PrimaryLinkButton ?? Model.SecondaryLinkButton) is not null)">
                     <partial name="Button" model="@Model.PrimaryLinkButton" />

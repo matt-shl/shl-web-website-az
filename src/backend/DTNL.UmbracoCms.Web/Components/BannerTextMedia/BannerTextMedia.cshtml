@@ -1,5 +1,4 @@
 @using DTNL.UmbracoCms.Web.Components
-@using Image=DTNL.UmbracoCms.Web.Components.Image;
 @using Umbraco.Cms.Core.Models
 @model DTNL.UmbracoCms.Web.Components.BannerTextMedia;
 
@@ -33,28 +32,9 @@
         </div>
         <div class="text-media__col text-media__col--media">
             <div class="text-media__image">
-                @if (Model.ImageContent != null)
+                @if (Model.ImageData != null)
                 {
-                    <partial name="Image" model="@(Image.Create(Model?.ImageContent?.Image).With(i => {
-                            i.ImageStyle = "in-grid-banner-image";
-                            i.CardOverlay = Model?.Video != null ? new CardOverlay {
-                                Video = new Video {
-                                    Id = Model?.Video?.Id,
-                                    InstanceId = Model?.Video?.InstanceId ?? "",
-                                    Platform = "native",
-                                    TotalTime = Model?.Video?.TotalTime ?? ""
-                                },
-                                Position = "start",
-                                Visible = true,
-                            } : null;
-                            i.ImageHolderButton =  Model?.Video != null;
-                            i.ImageHolderAttributes = new Dictionary<string, string?>
-                            {
-                                ["aria-label"] = "Open video Modal",
-                                ["aria-controls"] = Model?.Video != null ? $"modal-video-{Model?.Video?.Id}" : null,
-                            };
-                            i.ObjectFit = true;
-                        }))"
+                    <partial name="Image" model="@(Model.ImageData)"
                     />
                 }
             </div>
