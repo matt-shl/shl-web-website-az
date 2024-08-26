@@ -71,7 +71,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("mainButtonLink")]
-		public virtual global::Umbraco.Cms.Core.Models.Link MainButtonLink => this.Value<global::Umbraco.Cms.Core.Models.Link>(_publishedValueFallback, "mainButtonLink");
+		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel MainButtonLink => this.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockListModel>(_publishedValueFallback, "mainButtonLink");
 
 		///<summary>
 		/// Secondary Button Link
@@ -79,7 +79,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("secondaryButtonLink")]
-		public virtual global::Umbraco.Cms.Core.Models.Link SecondaryButtonLink => this.Value<global::Umbraco.Cms.Core.Models.Link>(_publishedValueFallback, "secondaryButtonLink");
+		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel SecondaryButtonLink => this.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockListModel>(_publishedValueFallback, "secondaryButtonLink");
 
 		///<summary>
 		/// Short Description

@@ -29,35 +29,40 @@ public class HeroContent : IHero
             return null;
         }
 
-        bool isFirstButtonPrimaryVariant = !contentHero.FirstLinkVariant?.Equals("secondary", StringComparison.OrdinalIgnoreCase) ?? true;
-        bool isSecondaryButtonPrimaryVariant = !contentHero.SecondLinkVariant?.Equals("secondary", StringComparison.OrdinalIgnoreCase) ?? true;
+        NestedBlockButtonLink? primaryButtonLink = contentHero.PrimaryLink?.FirstOrDefault()?.Content as NestedBlockButtonLink;
+        NestedBlockButtonLink? secondaryButtonLink = contentHero.SecondaryLink?.FirstOrDefault()?.Content as NestedBlockButtonLink;
 
         return new HeroContent
         {
             ThemeCssClasses = contentHero.Theme is not null ? $"t-{contentHero.Theme?.Label ?? "general"}" : ThemeHelper.GetCssClasses(page),
+
             Title = contentHero.Title,
+
             Subtitle = contentHero.Subtitle,
+
             Tags = contentHero.Tags?.Take(2).Select(tag => new Tag()
             {
                 Label = tag,
                 CssClasses = "hero-content__tag",
-
             }) ?? [],
+
             ShortDescription = contentHero.ShortDescription,
-            FirstButton = Button.Create(contentHero.FirstLink)
-                .With(b =>
-                {
-                    b.Class = "hero-content__cta";
-                    b.Icon = SvgAliases.Icons.ArrowTopRight;
-                    b.Variant = isFirstButtonPrimaryVariant ? null : "secondary";
-                }),
-            SecondButton = Button.Create(contentHero.SecondLink)
-                .With(b =>
-                {
-                    b.Class = "hero-content__cta";
-                    b.Icon = SvgAliases.Icons.ArrowTopRight;
-                    b.Variant = isSecondaryButtonPrimaryVariant ? null : "secondary";
-                }),
+
+            FirstButton = Button.Create(primaryButtonLink?.Link).With(b =>
+            {
+                b.Class = "hero-content__cta";
+                b.Hook = "homepage-hero-button";
+                b.Icon = SvgAliases.Icons.ArrowTopRight;
+                b.Variant = primaryButtonLink?.Variant;
+            }),
+
+            SecondButton = Button.Create(secondaryButtonLink?.Link).With(b =>
+            {
+                b.Class = "hero-content__cta";
+                b.Hook = "homepage-hero-button";
+                b.Icon = SvgAliases.Icons.ArrowTopRight;
+                b.Variant = secondaryButtonLink?.Variant;
+            }),
         };
     }
 }
