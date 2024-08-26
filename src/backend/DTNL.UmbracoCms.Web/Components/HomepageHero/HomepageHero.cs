@@ -26,14 +26,30 @@ public class HomepageHero : IHero
             return null;
         }
 
+        NestedBlockButtonLink? primaryButtonLink = homepageHero.MainButtonLink?.FirstOrDefault()?.Content as NestedBlockButtonLink;
+        NestedBlockButtonLink? secondaryButtonLink = homepageHero.SecondaryButtonLink?.FirstOrDefault()?.Content as NestedBlockButtonLink;
+
         return new HomepageHero()
         {
             Title = homepageHero.HeroTitle,
 
             Image = Image.Create(homepageHero.Image, cssClasses: "homepage-hero__image"),
 
-            MainButton = Button.Create(homepageHero.MainButtonLink?.FirstOrDefault(), cssClasses: "button--icon hero-home__cta", jsHook: "homepage-hero-button", svgIcon: SvgAliases.Icons.ArrowTopRight),
-            SecondaryButton = Button.Create(homepageHero.SecondaryButtonLink?.FirstOrDefault(), cssClasses: "button--icon hero-home__cta", jsHook: "homepage-hero-button", svgIcon: SvgAliases.Icons.ArrowTopRight),
+            MainButton = Button.Create(primaryButtonLink?.Link).With(b =>
+            {
+                b.Class = "button--icon hero-home__cta";
+                b.Hook = "homepage-hero-button";
+                b.Icon = SvgAliases.Icons.ArrowTopRight;
+                b.Variant = primaryButtonLink?.Variant;
+            }),
+
+            SecondaryButton = Button.Create(secondaryButtonLink?.Link).With(b =>
+            {
+                b.Class = "button--icon hero-home__cta";
+                b.Hook = "homepage-hero-button";
+                b.Icon = SvgAliases.Icons.ArrowTopRight;
+                b.Variant = secondaryButtonLink?.Variant;
+            }),
 
             ShortDescription = homepageHero.ShortDescription?.ToHtmlString(),
 

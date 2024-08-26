@@ -29,6 +29,9 @@ public class HeroContent : IHero
             return null;
         }
 
+        NestedBlockButtonLink? primaryButtonLink = contentHero.PrimaryLink?.FirstOrDefault()?.Content as NestedBlockButtonLink;
+        NestedBlockButtonLink? secondaryButtonLink = contentHero.SecondaryLink?.FirstOrDefault()?.Content as NestedBlockButtonLink;
+
         return new HeroContent
         {
             ThemeCssClasses = contentHero.Theme is not null ? $"t-{contentHero.Theme?.Label ?? "general"}" : ThemeHelper.GetCssClasses(page),
@@ -45,18 +48,20 @@ public class HeroContent : IHero
 
             ShortDescription = contentHero.ShortDescription,
 
-            FirstButton = Button.Create(contentHero.PrimaryLink?.FirstOrDefault()).With(b =>
+            FirstButton = Button.Create(primaryButtonLink?.Link).With(b =>
             {
                 b.Class = "hero-content__cta";
                 b.Hook = "homepage-hero-button";
                 b.Icon = SvgAliases.Icons.ArrowTopRight;
+                b.Variant = primaryButtonLink?.Variant;
             }),
 
-            SecondButton = Button.Create(contentHero.SecondaryLink?.FirstOrDefault()).With(b =>
+            SecondButton = Button.Create(secondaryButtonLink?.Link).With(b =>
             {
                 b.Class = "hero-content__cta";
                 b.Hook = "homepage-hero-button";
                 b.Icon = SvgAliases.Icons.ArrowTopRight;
+                b.Variant = secondaryButtonLink?.Variant;
             }),
         };
     }

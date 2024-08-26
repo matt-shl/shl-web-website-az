@@ -29,6 +29,9 @@ public class HeroPdp : IHero
             return null;
         }
 
+        NestedBlockButtonLink? primaryButtonLink = productHero.PrimaryLink?.FirstOrDefault()?.Content as NestedBlockButtonLink;
+        NestedBlockButtonLink? secondaryButtonLink = productHero.SecondaryLink?.FirstOrDefault()?.Content as NestedBlockButtonLink;
+
         return new HeroPdp
         {
             ThemeCssClasses = productHero.Theme is not null ? $"t-{productHero.Theme?.Label ?? "general"}" : ThemeHelper.GetCssClasses(page),
@@ -37,11 +40,21 @@ public class HeroPdp : IHero
 
             Text = productHero.Text?.ToHtmlString(),
 
-            PrimaryLinkButton = Button.Create(productHero.PrimaryLink?.FirstOrDefault(), cssClasses: "hero-pdp__cta1", svgIcon: SvgAliases.Icons.ArrowTopRight),
+            PrimaryLinkButton = Button.Create(primaryButtonLink?.Link).With(b =>
+            {
+                b.Class = "hero-pdp__cta1";
+                b.Icon = SvgAliases.Icons.ArrowTopRight;
+                b.Variant = primaryButtonLink?.Variant;
+            }),
 
             Image = Image.Create(productHero.Image, cssClasses: "hero-pdp__image", style: "heroPdp"),
 
-            SecondaryLinkButton = Button.Create(productHero.SecondaryLink?.FirstOrDefault(), cssClasses: "hero-pdp__cta2", svgIcon: SvgAliases.Icons.ArrowTopRight),
+            SecondaryLinkButton = Button.Create(secondaryButtonLink?.Link).With(b =>
+            {
+                b.Class = "hero-pdp__cta2";
+                b.Icon = SvgAliases.Icons.ArrowTopRight;
+                b.Variant = secondaryButtonLink?.Variant;
+            }),
 
             NavigationLinks = productHero!.HideNavigationLinks
                 ? null

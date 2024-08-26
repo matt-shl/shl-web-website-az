@@ -17,50 +17,46 @@ public class AnchorList
 
     public Button? LinkButton { get; set; }
 
-    public static AnchorList Create(ICompositionContentBlocks? block = null)
+    public static AnchorList? Create(IPublishedContent? content = null, bool isComponent = false)
     {
+        ICompositionContentBlocks? block = (ICompositionContentBlocks?) content;
+
+        NestedBlockProductHero? hero = null;
+        if (content is PageProduct pageProduct)
+        {
+            hero = pageProduct.Hero?.FirstOrDefault()?.Content as NestedBlockProductHero;
+        }
+
         List<Link>? links = block?.ContentBlocks
-                        ?.Select(b => b.Content as ICompositionAnchors)
-                        .Select(b => new Link { Label = b?.AnchorTitle, Url = $"#{b?.AnchorId}" })
-                        .ToList();
-        return new AnchorList
-        {
-            IsComponent = block is null,
-            Links = links ?? [],
-        };
-    }
-
-    public static AnchorList? CreateforPage(IPublishedContent? content = null)
-    {
-        if (content is not ICompositionContentBlocks contentBlock)
-        {
-            return null;
-        }
-
-        if (content is not PageProduct pageProduct)
-        {
-            return null;
-        }
-
-        List<Link>? links = contentBlock.ContentBlocks
                        ?.Select(b => b.Content as ICompositionAnchors)
                        .Select(b => new Link { Label = b?.AnchorTitle, Url = $"#{b?.AnchorId}" })
                        .ToList();
 
-        NestedBlockProductHero? hero = pageProduct.Hero?.FirstOrDefault()?.Content as NestedBlockProductHero;
+        var anchorButtonlilnk = hero?.PrimaryLink?.FirstOrDefault()?.Content as NestedBlockButtonLink;
 
-        return new AnchorList
+        if (isComponent)
         {
-            LinkButton = Button.Create(hero?.PrimaryLink?.FirstOrDefault())?.With(b =>
-            {
-                b.Class = "anchor-list__cta";
-                b.Icon = SvgAliases.Icons.ArrowTopRight;
-                b.Variant = "primary";
-            }),
-            Alignment = "horizontal",
-            IsComponent = true,
-            Links = links ?? [],
 
-        };
+            return new AnchorList
+            {
+                LinkButton = Button.Create(anchorButtonlilnk?.Link)?.With(b =>
+                {
+                    b.Class = "anchor-list__cta";
+                    b.Icon = SvgAliases.Icons.ArrowTopRight;
+                    b.Variant = "primary";
+                }),
+                Alignment = "horizontal",
+                IsComponent = isComponent,
+                Links = links ?? [],
+            };
+        }
+        else
+        {
+            return new AnchorList
+            {
+                IsComponent = isComponent,
+                Links = links ?? [],
+            };
+        }
     }
 }

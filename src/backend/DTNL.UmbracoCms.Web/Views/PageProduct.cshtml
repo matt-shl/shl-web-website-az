@@ -1,5 +1,5 @@
 @using DTNL.UmbracoCms.Web.Components
 @inherits UmbracoViewPage<PageProduct>
 
-<partial name="AnchorList" model="@AnchorList.CreateforPage(Model)" />
+<partial name="AnchorList" model="@(AnchorList.Create(Model, true))" />
 <partial name="_BlockList" model="Model.ContentBlocks" />
