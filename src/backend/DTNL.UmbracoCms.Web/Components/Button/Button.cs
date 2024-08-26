@@ -60,7 +60,6 @@ public class Button
         };
     }
 
-
     public static Button? CreateForEmail(string? email, string contactName, ICultureDictionary cultureDictionary)
     {
         if (email.IsNullOrWhiteSpace())
