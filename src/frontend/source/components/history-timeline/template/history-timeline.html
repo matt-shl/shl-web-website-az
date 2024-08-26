@@ -84,7 +84,15 @@
               {% endif %}
               {% if loop.index == data.events.length %}
                 <div class="swiper-slide">
-               </div>
+                  <div class="history-timeline__restart-timeline-button-container">
+                    {{ button({
+                      as: "button",
+                      label: historyLabels.restartTimeline,
+                      variant: 'link-underlined',
+                      hook: "history-timeline-restart-timeline-button"
+                    })}}
+                  </div>
+                </div>
               {% endif %}
             {% endfor %}
           {% endcall %}

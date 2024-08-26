@@ -9,6 +9,7 @@ const JS_HOOK_HISTORY_TIMELINE_PAGINATION_NEXT_BUTTON =
 const JS_HOOK_HISTORY_TIMELINE_IMAGE_CAROUSEL = '[js-hook-history-timeline-image-carousel]'
 const JS_HOOK_HISTORY_TIMELINE_IMAGE = '[js-hook-history-timeline-image]'
 const JS_HOOK_HISTORY_TIMELINE_CONTAINER = '[js-hook-history-timeline-text-container]'
+const JS_HOOK_HISTORY_TIMELINE_RESTART_BUTTON = '[js-hook-history-timeline-restart-timeline-button]'
 
 const CSS_ACTIVE_CLASS = 'is--active'
 
@@ -17,6 +18,7 @@ class HistoryTimeline {
   years: number[]
   prevButton: HTMLButtonElement | null
   nextButton: HTMLButtonElement | null
+  restartButton: HTMLButtonElement | null
   imageCarousel: HTMLElement | null
   images: HTMLElement[] | null
   textContainerElements: HTMLElement[] | null
@@ -27,6 +29,7 @@ class HistoryTimeline {
     this.element = element
     this.prevButton = this.element.querySelector(JS_HOOK_HISTORY_TIMELINE_PAGINATION_PREV_BUTTON)
     this.nextButton = this.element.querySelector(JS_HOOK_HISTORY_TIMELINE_PAGINATION_NEXT_BUTTON)
+    this.restartButton = this.element.querySelector(JS_HOOK_HISTORY_TIMELINE_RESTART_BUTTON)
     this.currentIndex = 0
     this.odometerId = this.element.querySelector(JS_HOOK_ODO_METER)?.id || null
 
@@ -58,12 +61,19 @@ class HistoryTimeline {
       this.prevButton.addEventListener('click', () => this.#handleHistoryChange(false))
       this.nextButton.addEventListener('click', () => this.#handleHistoryChange())
     }
+
+    this.restartButton?.addEventListener('click', () => this.#handleHistoryChange(true, 0))
   }
 
-  #handleHistoryChange(next: boolean = true) {
-    this.currentIndex = next
-      ? (this.currentIndex + 1) % this.totalItems
-      : (this.currentIndex - 1 + this.totalItems) % this.totalItems
+  #handleHistoryChange(next: boolean = true, newIndex?: number) {
+    if (newIndex != null) {
+      this.currentIndex = newIndex
+    } else {
+      this.currentIndex =
+        newIndex || next
+          ? (this.currentIndex + 1) % this.totalItems
+          : (this.currentIndex - 1 + this.totalItems) % this.totalItems
+    }
 
     Events.$trigger(`swiper[history-timeline-carousel]::indexChange`, {
       data: {

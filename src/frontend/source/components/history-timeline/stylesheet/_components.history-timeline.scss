@@ -1,18 +1,28 @@
+.c-history-timeline {
+  .layout-section__wrapper {
+    position: relative;
+  }
+}
+
 .history-timeline__container {
   --ht-transition-duration: 750ms;
   --ht-transition-easing: ease-out;
 
-  @include grid(24);
+  @include grid(3);
   gap: $spacing-16;
+
+  @include screen-md-and-bigger {
+    @include grid(24);
+  }
 }
 
 .history-timeline__main-content {
-  @include col-span(24);
+  @include col-span(3);
   display: flex;
   flex-direction: column;
   gap: $spacing-16;
 
-  @include screen-lg-and-bigger {
+  @include screen-md-and-bigger {
     grid-column: span 12 / -1;
     grid-row: 1 / 1;
   }
@@ -67,13 +77,16 @@
 .history-timeline__timeline-carousel-container {
   position: relative;
 
-  @include screen-md-and-smaller {
-    grid-column: 1 / span 6;
-    grid-row: 3;
+  @include screen-sm-and-smaller {
+    position: absolute;
+    inset: 0;
+    right: 66%;
+    top: $spacing-40;
+    z-index: 5;
   }
 
-  @include screen-lg-and-bigger {
-    grid-column: 13 / span 3;
+  @include screen-md-and-bigger {
+    grid-column: 13 / span 5;
     grid-row: 2 / 2;
 
     align-content: flex-end;
@@ -89,15 +102,21 @@
       z-index: 5;
     }
   }
+
+  @include screen-lg-and-bigger {
+    grid-column: 13 / span 3;
+    grid-row: 2 / 2;
+  }
 }
 
 .history-timeline__images-container {
-  @include screen-md-and-smaller {
-    @include col-span(24);
-    margin-block: $spacing-16;
+  @include screen-sm-and-smaller {
+    @include col-span(3);
+    margin-top: $spacing-32;
+    margin-bottom: $spacing-64;
   }
 
-  @include screen-lg-and-bigger {
+  @include screen-md-and-bigger {
     z-index: 6;
     grid-column: 1 / span 10;
     grid-row: 1 / span 2;
@@ -155,19 +174,37 @@
   border-radius: $radii-12;
   overflow: hidden;
 
-  @include screen-md-and-smaller {
+  @include screen-sm-and-smaller {
     display: none;
   }
 }
 
 .history-timeline__timeline-mini-item-title {
-  @include screen-md-and-smaller {
+  @include screen-sm-and-smaller {
     opacity: 0.3;
   }
 }
 
 .history-timeline__timeline-mini-item-description {
-  @include screen-md-and-smaller {
+  @include screen-sm-and-smaller {
     display: none;
+  }
+}
+
+.history-timeline__restart-timeline-button-container {
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+}
+
+// ------- spacial carousel change --------
+.history-timeline__timeline-carousel {
+  @include screen-sm-and-smaller {
+    height: 100%;
+
+    .swiper-slide {
+      display: flex;
+      align-items: flex-end;
+    }
   }
 }
