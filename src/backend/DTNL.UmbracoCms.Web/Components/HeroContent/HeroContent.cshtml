@@ -26,12 +26,12 @@
             <div class="hero-content__ctas">
                 @if (Model.FirstButton is not null)
                 {
-                    <partial name="Button" model="@Model.FirstButton?.Button"></partial>
+                    <partial name="Button" model="@Model.FirstButton"></partial>
 
                 }
                 @if (Model.SecondButton is not null)
                 {
-                    <partial name="Button" model="@Model.SecondButton?.Button"></partial>
+                    <partial name="Button" model="@Model.SecondButton"></partial>
 
                 }
             </div>

@@ -14,11 +14,11 @@ public class HeroPdp : IHero
 
     public string? Text { get; set; }
 
-    public required ButtonLink? PrimaryLinkButton { get; set; }
+    public required Button? PrimaryLinkButton { get; set; }
 
     public Image? Image { get; set; }
 
-    public required ButtonLink? SecondaryLinkButton { get; set; }
+    public required Button? SecondaryLinkButton { get; set; }
 
     public AnchorList? NavigationLinks { get; set; }
 
@@ -37,11 +37,11 @@ public class HeroPdp : IHero
 
             Text = productHero.Text?.ToHtmlString(),
 
-            PrimaryLinkButton = ButtonLink.Create(productHero.PrimaryLink?.FirstOrDefault(), cssClasses: "hero-pdp__cta1", svgIcon: SvgAliases.Icons.ArrowTopRight),
+            PrimaryLinkButton = Button.Create(productHero.PrimaryLink?.FirstOrDefault(), cssClasses: "hero-pdp__cta1", svgIcon: SvgAliases.Icons.ArrowTopRight),
 
             Image = Image.Create(productHero.Image, cssClasses: "hero-pdp__image", style: "heroPdp"),
 
-            SecondaryLinkButton = ButtonLink.Create(productHero.SecondaryLink?.FirstOrDefault(), cssClasses: "hero-pdp__cta2", svgIcon: SvgAliases.Icons.ArrowTopRight),
+            SecondaryLinkButton = Button.Create(productHero.SecondaryLink?.FirstOrDefault(), cssClasses: "hero-pdp__cta2", svgIcon: SvgAliases.Icons.ArrowTopRight),
 
             NavigationLinks = productHero!.HideNavigationLinks
                 ? null

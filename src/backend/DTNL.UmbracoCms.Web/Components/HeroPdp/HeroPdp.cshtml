@@ -15,11 +15,11 @@
             <div class="hero-pdp__description" asp-if="@Model.Text">@Html.Raw(Model.Text)</div>
 
             <div class="hero-pdp__ctas">
-                @if (Model.PrimaryLinkButton?.Button is not null || Model.SecondaryLinkButton?.Button is not null)
+                @if (Model.PrimaryLinkButton is not null || Model.SecondaryLinkButton is not null)
                 {
-                    <partial name="Button" model="@Model.PrimaryLinkButton?.Button" />
+                    <partial name="Button" model="@Model.PrimaryLinkButton" />
 
-                    <partial name="Button" model="@Model.SecondaryLinkButton?.Button" />
+                    <partial name="Button" model="@Model.SecondaryLinkButton" />
                 }
             </div>
         </div>
@@ -28,7 +28,7 @@
                 <partial name="Image" model="@Model.Image" />
             </div>
 
-            <partial name="Button" model="@Model.PrimaryLinkButton?.Button" />
+            <partial name="Button" model="@Model.PrimaryLinkButton" />
         </div>
     </div>
 

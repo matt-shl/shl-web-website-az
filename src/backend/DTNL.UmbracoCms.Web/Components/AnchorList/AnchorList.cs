@@ -51,7 +51,7 @@ public class AnchorList
 
         return new AnchorList
         {
-            LinkButton = ButtonLink.Create(hero?.PrimaryLink?.FirstOrDefault())?.Button.With(b =>
+            LinkButton = Button.Create(hero?.PrimaryLink?.FirstOrDefault())?.With(b =>
             {
                 b.Class = "anchor-list__cta";
                 b.Icon = SvgAliases.Icons.ArrowTopRight;

@@ -1,7 +1,7 @@
 using DTNL.UmbracoCms.Web.Components.Hero;
 using DTNL.UmbracoCms.Web.Helpers;
 using DTNL.UmbracoCms.Web.Helpers.Aliases;
-
+using DTNL.UmbracoCms.Web.Helpers.Extensions;
 using Umbraco.Cms.Web.Common.PublishedModels;
 
 namespace DTNL.UmbracoCms.Web.Components;
@@ -18,9 +18,9 @@ public class HeroContent : IHero
 
     public IEnumerable<Tag>? Tags { get; set; }
 
-    public ButtonLink? FirstButton { get; set; }
+    public Button? FirstButton { get; set; }
 
-    public ButtonLink? SecondButton { get; set; }
+    public Button? SecondButton { get; set; }
 
     public static HeroContent? Create(NestedBlockContentHero? contentHero, ICompositionBasePage page)
     {
@@ -45,9 +45,19 @@ public class HeroContent : IHero
 
             ShortDescription = contentHero.ShortDescription,
 
-            FirstButton = ButtonLink.Create(contentHero.PrimaryLink?.FirstOrDefault(), cssClasses: "hero-content__cta", jsHook: "homepage-hero-button", svgIcon: SvgAliases.Icons.ArrowTopRight),
+            FirstButton = Button.Create(contentHero.PrimaryLink?.FirstOrDefault()).With(b =>
+            {
+                b.Class = "hero-content__cta";
+                b.Hook = "homepage-hero-button";
+                b.Icon = SvgAliases.Icons.ArrowTopRight;
+            }),
 
-            SecondButton = ButtonLink.Create(contentHero.SecondaryLink?.FirstOrDefault(), cssClasses: "hero-content__cta", jsHook: "homepage-hero-button", svgIcon: SvgAliases.Icons.ArrowTopRight),
+            SecondButton = Button.Create(contentHero.SecondaryLink?.FirstOrDefault()).With(b =>
+            {
+                b.Class = "hero-content__cta";
+                b.Hook = "homepage-hero-button";
+                b.Icon = SvgAliases.Icons.ArrowTopRight;
+            }),
         };
     }
 }

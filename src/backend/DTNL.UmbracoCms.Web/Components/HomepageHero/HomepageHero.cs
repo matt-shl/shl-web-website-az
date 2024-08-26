@@ -13,9 +13,9 @@ public class HomepageHero : IHero
 
     public Video? VideoUrl { get; set; }
 
-    public ButtonLink? MainButton { get; set; }
+    public Button? MainButton { get; set; }
 
-    public ButtonLink? SecondaryButton { get; set; }
+    public Button? SecondaryButton { get; set; }
 
     public string? ShortDescription { get; set; }
 
@@ -32,8 +32,8 @@ public class HomepageHero : IHero
 
             Image = Image.Create(homepageHero.Image, cssClasses: "homepage-hero__image"),
 
-            MainButton = ButtonLink.Create(homepageHero.MainButtonLink?.FirstOrDefault(), cssClasses: "button--icon hero-home__cta", jsHook: "homepage-hero-button", svgIcon: SvgAliases.Icons.ArrowTopRight),
-            SecondaryButton = ButtonLink.Create(homepageHero.SecondaryButtonLink?.FirstOrDefault(), cssClasses: "button--icon hero-home__cta", jsHook: "homepage-hero-button", svgIcon: SvgAliases.Icons.ArrowTopRight),
+            MainButton = Button.Create(homepageHero.MainButtonLink?.FirstOrDefault(), cssClasses: "button--icon hero-home__cta", jsHook: "homepage-hero-button", svgIcon: SvgAliases.Icons.ArrowTopRight),
+            SecondaryButton = Button.Create(homepageHero.SecondaryButtonLink?.FirstOrDefault(), cssClasses: "button--icon hero-home__cta", jsHook: "homepage-hero-button", svgIcon: SvgAliases.Icons.ArrowTopRight),
 
             ShortDescription = homepageHero.ShortDescription?.ToHtmlString(),
 

@@ -2,6 +2,8 @@ using System.Diagnostics.CodeAnalysis;
 using DTNL.UmbracoCms.Web.Helpers.Aliases;
 using DTNL.UmbracoCms.Web.Helpers.Extensions;
 using Umbraco.Cms.Core.Dictionary;
+using Umbraco.Cms.Core.Models.Blocks;
+using Umbraco.Cms.Web.Common.PublishedModels;
 
 namespace DTNL.UmbracoCms.Web.Components;
 
@@ -57,6 +59,23 @@ public class Button
             Url = link.Url,
             Label = link.Name ?? "",
             Target = link.Target,
+        };
+    }
+
+    public static Button? Create(BlockListItem? buttonLink, string? cssClasses = null, string? svgIcon = null, string? jsHook = null)
+    {
+        if (buttonLink?.Content is not NestedBlockButtonLink button)
+        {
+            return null;
+        }
+
+        return new Button()
+        {
+            Class = cssClasses,
+            Icon = button.ButtonIcon?.LocalCrops.Src ?? svgIcon,
+            Variant = button.Variant,
+            Hook = jsHook,
+            Label = button.Link?.Name ?? "",
         };
     }
 
