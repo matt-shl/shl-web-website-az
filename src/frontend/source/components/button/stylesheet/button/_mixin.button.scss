@@ -37,6 +37,8 @@
     fill: var(--button-font-color);
     transition: var(--button-transition-time) var(--button-transition-ease);
     transition-property: fill;
+    width: 16px;
+    height: 16px;
   }
 
   @include hover-focus {
