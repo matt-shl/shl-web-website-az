@@ -24,7 +24,6 @@ body {
   @include fluid-type($font-size-body, $font-size-body * 0.875);
   display: flex;
   flex-direction: column;
-  hyphens: auto;
   line-height: $font-line-height-body;
   min-height: 100vh;
   word-break: normal;

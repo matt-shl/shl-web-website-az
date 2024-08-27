@@ -147,8 +147,6 @@ $map-default-country-opacity: 0.3;
 }
 
 .map__title {
-  hyphens: initial;
-
   @include screen-md-and-smaller {
     .map__content-container:not(.map__content-container--title-mobile) & {
       display: none;
