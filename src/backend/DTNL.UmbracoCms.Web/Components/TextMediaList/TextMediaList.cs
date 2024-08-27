@@ -66,6 +66,12 @@ public class TextMediaList
             i.ObjectFit = true;
         });
 
+        LinkList? linkList = LinkList.Create(textMediaListBlock.Items.GetSingleContentOrNull<NestedBlockTextMediaListLinks>());
+        List<(string Text, Accordion.Item AccordionItem)>? accordions = textMediaListBlock.Items.GetSingleContentOrNull<NestedBlockTextMediaListAccordions>()?.Accordions
+                .Using(i => i.Content as NestedBlockTextMediaListAccordionItem)
+                .Select(i => (i.Text!.ToHtmlString()!, new Accordion.Item { Id = i.Key.ToString(), Title = i.Title, }))
+                .ToList();
+
         return new TextMediaList
         {
             AnchorId = textMediaListBlock.AnchorId,
@@ -75,12 +81,8 @@ public class TextMediaList
             Image = image,
             Video = video,
             MediaPosition = textMediaListBlock.MediaPosition,
-            LinkList = LinkList
-                .Create(textMediaListBlock.Items.GetSingleContentOrNull<NestedBlockTextMediaListLinks>()),
-            AccordionItems = textMediaListBlock.Items
-                .Using(i => i.Content as NestedBlockTextMediaListAccordionItem)
-                .Select(i => (i.Text!.ToHtmlString()!, new Accordion.Item { Id = i.Key.ToString(), Title = i.Title, }))
-                .ToList(),
+            LinkList = linkList,
+            AccordionItems = accordions ?? [],
             PrimaryLinkButton = Button.Create(textMediaListBlock.PrimaryLink)
                 .With(b =>
                 {

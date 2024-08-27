@@ -1,5 +1,6 @@
 using DTNL.UmbracoCms.Web.Helpers.Extensions;
 using Umbraco.Cms.Web.Common.PublishedModels;
+using static Umbraco.Cms.Core.Constants;
 
 namespace DTNL.UmbracoCms.Web.Components;
 
@@ -16,7 +17,7 @@ public class LinkList
             : new LinkList
             {
                 Links = textMediaListLinks.Links
-                .Using(l => Link.Create(l, cssClasses: "link-list__anchor"))
+                .Using(l => Link.Create(((NestedBlockTextMediaListItem) l.Content).Link, cssClasses: "link-list__anchor"))
                 .ToList(),
                 CssClasses = "text-media-list__link-list",
             };

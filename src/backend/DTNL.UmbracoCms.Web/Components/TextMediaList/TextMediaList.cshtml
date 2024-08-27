@@ -3,8 +3,8 @@
 @model DTNL.UmbracoCms.Web.Components.TextMediaList
 
 <div class="c-text-media-list
-    @(Model.Variant.IsNullOrWhiteSpace() ? "" : $"c-text-media-list--{Model.Variant}")
-    @(Model.MediaPosition.IsNullOrWhiteSpace() ? "" : $"c-text-media-list--media-position-{Model.MediaPosition}")
+    @(!Model.Variant.IsNullOrWhiteSpace() ? $"c-text-media-list--media-position-{Model.MediaPosition}": null)
+    @(!Model.MediaPosition.IsNullOrWhiteSpace() ? $"c-text-media-list--media-position-{Model.MediaPosition}" : null )
     @(Model.Image is null ? "c-text-media-list--no-media" : null) @Model.CssClasses">
 
     <div class="text-media-list__container">
