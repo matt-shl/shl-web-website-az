@@ -43,7 +43,7 @@ public class HeroPdp : IHero
             PrimaryLinkButton = Button.Create(primaryButtonLink?.Link).With(b =>
             {
                 b.Class = "hero-pdp__cta1";
-                b.Icon = SvgAliases.Icons.ArrowTopRight;
+                b.Icon = primaryButtonLink?.ButtonIcon?.LocalCrops.Src ?? SvgAliases.Icons.ArrowTopRight;
                 b.Variant = primaryButtonLink?.Variant;
             }),
 
@@ -52,7 +52,7 @@ public class HeroPdp : IHero
             SecondaryLinkButton = Button.Create(secondaryButtonLink?.Link).With(b =>
             {
                 b.Class = "hero-pdp__cta2";
-                b.Icon = SvgAliases.Icons.ArrowTopRight;
+                b.Icon = secondaryButtonLink?.ButtonIcon?.LocalCrops.Src ?? SvgAliases.Icons.ArrowTopRight;
                 b.Variant = secondaryButtonLink?.Variant;
             }),
 
