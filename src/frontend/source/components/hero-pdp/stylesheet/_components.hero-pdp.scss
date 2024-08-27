@@ -63,26 +63,30 @@ $hero-pdp-content-offset: 14.5%; // 1 col
 
 .hero-pdp__image-container {
   width: 100%;
-  height: 375px; // Prevent block fom jumping while loading
   margin-top: $spacing-24;
 
   @include screen-lg-and-bigger {
-    height: auto;
-    aspect-ratio: 0.85; // Prevent block fom jumping while loading
     margin-top: 0;
   }
 }
 
 .hero-pdp__image {
+  width: 100%;
+  height: 375px; // Prevent block fom jumping while loading
   margin-inline: auto;
   max-width: 320px;
-  height: 100%;
   border-radius: $radii-4;
   overflow: hidden;
+
+  &[js-hook-objectfit] img {
+    object-fit: contain;
+  }
 
   @include screen-lg-and-bigger {
     max-width: none;
     margin-inline-end: 0;
+    height: auto;
+    aspect-ratio: 0.85; // Prevent block fom jumping while loading
   }
 }
 
