@@ -35,7 +35,7 @@ public class EventDetails
             Link = Button.Create(buttonLink?.Link).With(b =>
                 b.Icon = SvgAliases.Icons.ArrowTopRight),
             Image = Image.Create(eventDetails.EventImage).With(i =>
-            i.Classes = "media-section__image image--is-loaded"),
+            i.Classes = "media-section__image"),
         };
     }
 }
