@@ -33,7 +33,6 @@ data {
     {{ data.classes if data.classes }} {{ 'image--is-loaded' if fetchPriority }}"
     {%- if data.attr %} {{ data.attr|safe }}{% endif -%}
     {%- if data.hidden %} aria-hidden="true"{% endif %}
-    {%- if data.backgroundColor %} style="--image-skeleton-color: {{ data.backgroundColor }};"{% endif -%}
     {%- if data.objectFit %} js-hook-objectfit{% endif -%}>
 
     {% set showPreload = data.showPreload if data.showPreload == false else true %}

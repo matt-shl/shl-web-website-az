@@ -6,7 +6,6 @@
 
 <figure class="c-image @Model.Classes"
         aria-hidden="@(Model.Hidden ? "true" : null)"
-        style="@(!Model.BackgroundColor.IsNullOrEmpty() ? $"--image-skeleton-color: {Model.BackgroundColor};" : null)"
         js-hook-objectfit="@(Model.ObjectFit ? "" : null)"
         asp-extra-attribs="@Model.Attributes">
 
