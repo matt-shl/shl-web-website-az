@@ -52,7 +52,7 @@ public class HeroContent : IHero
             {
                 b.Class = "hero-content__cta";
                 b.Hook = "homepage-hero-button";
-                b.Icon = SvgAliases.Icons.ArrowTopRight;
+                b.Icon = primaryButtonLink?.ButtonIcon?.LocalCrops.Src ?? SvgAliases.Icons.ArrowTopRight;
                 b.Variant = primaryButtonLink?.Variant;
             }),
 
@@ -60,7 +60,7 @@ public class HeroContent : IHero
             {
                 b.Class = "hero-content__cta";
                 b.Hook = "homepage-hero-button";
-                b.Icon = SvgAliases.Icons.ArrowTopRight;
+                b.Icon = secondaryButtonLink?.ButtonIcon?.LocalCrops.Src ?? SvgAliases.Icons.ArrowTopRight;
                 b.Variant = secondaryButtonLink?.Variant;
             }),
         };
