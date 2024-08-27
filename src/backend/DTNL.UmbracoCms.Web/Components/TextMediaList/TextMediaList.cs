@@ -1,5 +1,6 @@
 using DTNL.UmbracoCms.Web.Helpers.Aliases;
 using DTNL.UmbracoCms.Web.Helpers.Extensions;
+using MimeKit;
 using Umbraco.Cms.Web.Common.PublishedModels;
 
 namespace DTNL.UmbracoCms.Web.Components;
@@ -46,11 +47,12 @@ public class TextMediaList
              v.TotalTime = (textMediaListBlock?.Video?.FirstOrDefault()?.Content as VideoMedia)?.TotalTime;
          });
 
-        Image? image = Image.Create(textMediaListBlock.Image)
+        NestedBlockImage? imageContent = (NestedBlockImage?) textMediaListBlock.Image?.FirstOrDefault()?.Content;
+        Image? image = Image.Create(imageContent?.Image)
         .With(i =>
         {
             i.ImageStyle = "text-media-list";
-            i.Caption = textMediaListBlock.MediaDescription;
+            i.Caption = imageContent?.Caption;
             i.CardOverlay = video != null ? new CardOverlay
             {
                 Video = video,
@@ -80,7 +82,7 @@ public class TextMediaList
             Text = textMediaListBlock.Text!.ToHtmlString(),
             Image = image,
             Video = video,
-            MediaPosition = textMediaListBlock.MediaPosition,
+            MediaPosition = String.Equals(textMediaListBlock.MediaPosition, "left") ? "start" : "end",
             LinkList = linkList,
             AccordionItems = accordions ?? [],
             PrimaryLinkButton = Button.Create(textMediaListBlock.PrimaryLink)
