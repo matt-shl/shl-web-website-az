@@ -6,7 +6,6 @@
 
 <figure class="c-image @Model.Classes"
         aria-hidden="@(Model.Hidden ? "true" : null)"
-        style="@(!Model.BackgroundColor.IsNullOrEmpty() ? $"--image-skeleton-color: {Model.BackgroundColor};" : null)"
         js-hook-objectfit="@(Model.ObjectFit ? "" : null)"
         asp-extra-attribs="@Model.Attributes">
 
@@ -14,19 +13,24 @@
     {
         <button class="image__holder" asp-extra-attribs="@Model.ImageHolderAttributes">
             <partial name="./ImageOrPicture.cshtml" model="@Model"/>
+            @if (Model.CardOverlay is not null)
+            {
+                <partial name="CardOverlay" model="@Model.CardOverlay" />
+            }
         </button>
     }
     else
     {
         <div class="image__holder" asp-extra-attribs="@Model.ImageHolderAttributes">
             <partial name="./ImageOrPicture.cshtml" model="@Model"/>
+            @if (Model.CardOverlay is not null)
+            {
+                <partial name="CardOverlay" model="@Model.CardOverlay" />
+            }
         </div>
     }
 
-    @if (Model.CardOverlay is not null)
-    {
-        <partial name="CardOverlay" model="@Model.CardOverlay"/>
-    }
+    
 
     @if (!Model.Caption.IsNullOrEmpty())
 	{

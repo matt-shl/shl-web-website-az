@@ -81,6 +81,8 @@ $assets-path: '/assets/';
 @import '@/components/language-selector/stylesheet/_components.language-selector';
 @import '@/components/history-timeline/stylesheet/_components.history-timeline';
 @import '@/components/odometer/stylesheet/_components.odometer';
+@import '@/components/search/stylesheet/_components.search';
+@import '@/components/search-trigger/stylesheet/_components.search-trigger';
 /* endinject */
 
 @import '50_scopes/scopes.rich-text';

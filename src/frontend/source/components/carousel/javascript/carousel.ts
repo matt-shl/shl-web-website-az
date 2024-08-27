@@ -1,6 +1,6 @@
 import Events from '@utilities/events'
 import Swiper from 'swiper'
-import { A11y, Scrollbar } from 'swiper/modules'
+import { A11y, Keyboard, Scrollbar } from 'swiper/modules'
 
 import RafThrottle from '@/utilities/raf-throttle'
 import ScreenDimensions from '@/utilities/screen-dimensions'
@@ -77,13 +77,12 @@ class Carousel {
               spaceBetween: Number(this.element.dataset.spaceBetweenDesktop) || 16,
             },
           },
-          modules: [Scrollbar, A11y],
+          modules: [Scrollbar, A11y, Keyboard],
           scrollbar: {
             el: `.${CLASS_CAROUSEL_PAGINATION_ELEM}`,
             draggable: false,
             dragClass: CLASS_CAROUSEL_PAGINATION_ELEM_FILL,
           },
-
           touchStartPreventDefault: !this.allowPointerDownEvent,
           observer: true,
           observeParents: true,

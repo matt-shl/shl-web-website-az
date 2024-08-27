@@ -1,0 +1,15 @@
+{% from 'search.html' import search %}
+
+{% macro flyoutSearch(data) %}
+
+  <div class="c-flyout" js-hook-flyout aria-hidden="true" id="flyout-{{ data.id }}">
+    <div class="flyout__container">
+      <div class="flyout__content flyout__content--shrink">
+        <div class="flyout__search-column">
+          {{ search() }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endmacro %}

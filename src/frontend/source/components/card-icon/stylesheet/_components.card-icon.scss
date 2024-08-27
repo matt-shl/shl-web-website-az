@@ -1,6 +1,8 @@
 .c-card-icon {
   @include card-base;
+}
 
+.c-card-icon--has-url {
   //Remove annoying small colored corner on hover
   @include hover-focus {
     .card-icon__container {
