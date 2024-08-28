@@ -33,8 +33,6 @@ public class CardIcon : ICard
         {
             Title = iconCard.Title,
             Text = iconCard.Text?.ToHtmlString(),
-            //IconUrl = iconCard.SvgIcon?.MediaUrl(),
-            //IconAlias = iconCard.Icon,
             Icon = Image.Create(iconCard.Icon),
             Url = iconCard.Link?.Url,
             CssClasses = cssClasses,
