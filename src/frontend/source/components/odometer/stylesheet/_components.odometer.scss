@@ -1,0 +1,35 @@
+.c-odometer {
+  --odometer-transition-duration: 1.2s;
+  --odometer-transition-timing-function: ease-out;
+  display: flex;
+}
+
+.odometer__digit-container {
+  @include h1;
+  display: inline-block;
+  overflow: hidden;
+  width: 0.5em;
+  height: 1em;
+}
+
+.odometer__digit {
+  transition-property: transform;
+  transition: var(--odometer-transition-duration) var(--odometer-transition-timing-function);
+  transform: translateY(0);
+  line-height: 1em;
+  position: relative;
+  text-align: center;
+
+  // This is how we determine the offset
+  @for $i from 0 through 9 {
+    &[data-number='#{$i}'][data-dur='up'] {
+      transform: translateY(($i * 1em) - 10em);
+    }
+  }
+
+  @for $i from 0 through 9 {
+    &[data-number='#{$i}'][data-dur='down'] {
+      transform: translateY(($i * -1em));
+    }
+  }
+}

@@ -1,6 +1,6 @@
-// import gsap from 'gsap'
+import Events from '@utilities/events'
 import Swiper from 'swiper'
-import { A11y, Scrollbar } from 'swiper/modules'
+import { A11y, Keyboard, Scrollbar } from 'swiper/modules'
 
 import RafThrottle from '@/utilities/raf-throttle'
 import ScreenDimensions from '@/utilities/screen-dimensions'
@@ -35,6 +35,9 @@ class Carousel {
   }
 
   bindEvents() {
+    Events.$on(`swiper[${this.id}]::indexChange`, (_, data: { index: number }) =>
+      this.slideToIndex(data.index),
+    )
     RafThrottle.set([
       {
         element: window,
@@ -74,13 +77,12 @@ class Carousel {
               spaceBetween: Number(this.element.dataset.spaceBetweenDesktop) || 16,
             },
           },
-          modules: [Scrollbar, A11y],
+          modules: [Scrollbar, A11y, Keyboard],
           scrollbar: {
             el: `.${CLASS_CAROUSEL_PAGINATION_ELEM}`,
             draggable: false,
             dragClass: CLASS_CAROUSEL_PAGINATION_ELEM_FILL,
           },
-
           touchStartPreventDefault: !this.allowPointerDownEvent,
           observer: true,
           observeParents: true,
@@ -89,6 +91,9 @@ class Carousel {
             enabled: true,
           },
           watchOverflow: true,
+          on: {
+            slideChange: () => this.onSlideChange(),
+          },
         })
 
         this.initialized = true
@@ -111,6 +116,22 @@ class Carousel {
 
     this.element.addEventListener('mouseleave', () => {
       this.swipeIndicator?.classList.remove('is-active')
+    })
+  }
+
+  slideToIndex(index: number, speed: number = 750) {
+    if (this.swiper) {
+      this.swiper.slideTo(index, speed)
+    }
+  }
+
+  onSlideChange() {
+    const currentIndex = this.swiper.realIndex
+    // Add any additional logic you want to execute when the slide changes
+    Events.$trigger(`swiper[${this.id}]::slideChange`, {
+      data: {
+        index: currentIndex,
+      },
     })
   }
 }

@@ -1,0 +1,343 @@
+$map-transition-duration: 800ms;
+$map-default-country-opacity: 0.3;
+
+.c-map {
+  position: relative;
+
+  &::before,
+  &::after {
+    content: '';
+    display: block;
+    height: 300px;
+    left: 50%;
+    pointer-events: none;
+    position: absolute;
+    transform: translateX(-50%);
+    width: 100vw;
+    z-index: 1;
+  }
+
+  &::before {
+    @include linear-gradient(var(--color-dark-blue-rgb), 1, 0);
+    top: 0;
+  }
+
+  &::after {
+    @include linear-gradient(var(--color-dark-blue-rgb), 0, 1);
+    bottom: 0;
+  }
+
+  @include screen-lg-and-bigger {
+    min-height: 820px; // To accommodate for the absolute positioned map
+  }
+
+  @include screen-md-and-smaller {
+    @include grid(1);
+    grid-template-areas: 'title' 'map' 'list';
+
+    &::before,
+    &::after {
+      display: none;
+    }
+  }
+}
+
+.map__accordion {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-8;
+}
+
+.map__content-container {
+  @include grid;
+  padding: var(--container-padding);
+  pointer-events: none;
+  position: relative;
+  z-index: 3;
+
+  @include screen-lg-and-bigger {
+    &--title-mobile {
+      display: none;
+    }
+  }
+
+  @include screen-md-and-smaller {
+    grid-area: list;
+
+    &--title-mobile {
+      grid-area: title;
+    }
+  }
+}
+
+.map__content {
+  @include col-span(12);
+  pointer-events: all;
+
+  @include screen-lg-and-bigger {
+    @include col-span(3);
+  }
+}
+
+.map__svg {
+  @include col-span(12);
+  position: relative;
+  width: 100%;
+
+  > svg {
+    cursor: zoom-out;
+    transform: scale(1.05) translateX(0) translateY(0);
+    transition: $map-transition-duration cubic-bezier(0.33, 1, 0.68, 1);
+    transition-property: transform;
+    width: 100%;
+
+    &[data-level='world'] {
+      cursor: initial;
+    }
+  }
+
+  path {
+    fill: $color-bright-blue;
+    opacity: $map-default-country-opacity;
+    transition: $map-transition-duration / 2 ease-in-out;
+    transition-delay: $map-transition-duration * 0.75;
+    transition-property: opacity;
+    transform-origin: 50%;
+  }
+
+  .is-europe-highlighted {
+    .map__path-europe {
+      opacity: 1;
+    }
+  }
+
+  .is-asia-highlighted {
+    .map__path-asia {
+      opacity: 1;
+    }
+  }
+
+  .is-americas-highlighted {
+    .map__path-americas {
+      opacity: 1;
+    }
+  }
+
+  .is-country-highlighted {
+    .is--active {
+      opacity: 1;
+    }
+  }
+
+  @include screen-lg-and-bigger {
+    inset-inline-end: 0;
+    position: absolute;
+    width: 80%;
+    top: 50%;
+    transform: translateY(-50%);
+
+    > svg {
+      transform: scale(0.85) translateX(0) translateY(0);
+    }
+  }
+
+  @include screen-md-and-smaller {
+    grid-area: map;
+  }
+}
+
+.map__title {
+  @include screen-md-and-smaller {
+    .map__content-container:not(.map__content-container--title-mobile) & {
+      display: none;
+    }
+  }
+
+  @include screen-lg-and-bigger {
+    margin-bottom: $spacing-40;
+    margin-inline-end: calc(#{$spacing-112} * -1); // Give it room to grow to the right
+  }
+}
+
+.map__accordion {
+  .accordion__detail {
+    backdrop-filter: blur(25px);
+    background-color: rgba($color-white-rgb, 0.08);
+    border: 0;
+    border-radius: $radii-12;
+    padding-block: 0;
+    padding-inline: $spacing-16;
+  }
+
+  .accordion__item-icon {
+    display: flex;
+    inset-inline-end: 0;
+    position: absolute;
+    top: 18px;
+
+    svg {
+      height: 16px;
+      transition: transform 200ms ease-in-out;
+      width: 16px;
+    }
+
+    &::before,
+    &::after {
+      content: none;
+    }
+  }
+
+  .accordion__item-summary {
+    @include h6;
+    padding-block: $spacing-12;
+    padding-inline: 0;
+    transition: color 200ms ease-in-out;
+
+    span:not(.accordion__item-icon) {
+      @include body-s;
+      color: $color-white;
+      display: block;
+      font-weight: $font-weight-regular;
+      margin-top: $spacing-4;
+      opacity: 0.8;
+    }
+  }
+
+  .accordion__item-content {
+    @include body-m;
+    align-items: flex-start;
+    border-top: 1px solid rgba($color-white-rgb, 0.08);
+    display: flex;
+    flex-direction: column;
+    font-weight: $font-weight-bold;
+    gap: $spacing-16;
+    padding-block: $spacing-12;
+    padding-inline: 0;
+  }
+
+  // Open accordion
+  .accordion__detail[open] {
+    .accordion__item-icon svg {
+      color: $color-bright-blue;
+      transform: rotate(180deg);
+    }
+
+    .accordion__item-summary {
+      color: $color-bright-blue;
+    }
+  }
+}
+
+.map__office-trigger {
+  display: block;
+  text-align: left;
+  transition: color 300ms ease-in-out;
+
+  &.is--active {
+    color: $color-bright-blue;
+  }
+
+  @include hover-focus {
+    color: $color-bright-blue;
+  }
+}
+
+.map__location-trigger {
+  @include body-m;
+  background-color: $color-white;
+  border-radius: $radii-12;
+  color: $color-dark-blue;
+  font-weight: $font-weight-bold;
+  opacity: 1;
+  padding: $spacing-6 $spacing-12;
+  pointer-events: all;
+  position: absolute;
+  transition:
+    opacity 400ms ease-in-out 400ms,
+    color 200ms ease-in-out;
+  white-space: nowrap;
+  z-index: 2;
+
+  // Active / Inactive is only added when the office overlay is shown
+  &.is--active {
+    opacity: 1;
+  }
+
+  &.is--inactive {
+    opacity: 0.5;
+  }
+
+  // Hidden is added determined on zoom level
+  &.is--hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  @include screen-md-and-smaller {
+    &--office {
+      @include body-s;
+      padding: $spacing-4 $spacing-8;
+    }
+
+    &:not(&--office) {
+      border-radius: $radii-full;
+      height: 4rem;
+      width: 4rem;
+      line-height: 1;
+    }
+  }
+
+  @include hover-focus {
+    color: $color-light-blue;
+  }
+
+  &--office {
+    svg {
+      height: 16px;
+      transition: transform 200ms ease-in-out;
+      width: 16px;
+
+      path {
+        fill: currentcolor;
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    &.is--active {
+      svg {
+        transform: rotate(135deg);
+      }
+    }
+  }
+
+  &--europe {
+    left: 47%;
+    top: 43%;
+  }
+
+  &--asia {
+    left: 74%;
+    top: 54%;
+  }
+
+  &--americas {
+    left: 22%;
+    top: 53%;
+  }
+}
+
+.map__location-trigger-label-desktop {
+  @include screen-md-and-smaller {
+    display: none;
+  }
+}
+
+.map__location-trigger-label-amount {
+  @include screen-lg-and-bigger {
+    // Make it superscript
+    font-size: 0.7em;
+    position: relative;
+    top: -2px;
+  }
+}

@@ -22,35 +22,43 @@ public class HeroPdp : IHero
 
     public AnchorList? NavigationLinks { get; set; }
 
-    public static HeroPdp? Create(NestedBlockProductHero? productHero, ICompositionBasePage page)
+    public static HeroPdp? Create(NestedBlockProductHero? productHero, ICompositionContentBlocks page)
     {
         if (productHero is null)
         {
             return null;
         }
 
+        NestedBlockButtonLink? primaryButtonLink = productHero.PrimaryLink?.FirstOrDefault()?.Content as NestedBlockButtonLink;
+        NestedBlockButtonLink? secondaryButtonLink = productHero.SecondaryLink?.FirstOrDefault()?.Content as NestedBlockButtonLink;
+
         return new HeroPdp
         {
-            ThemeCssClasses = ThemeHelper.GetCssClasses(page),
+            ThemeCssClasses = productHero.Theme is not null ? $"t-{productHero.Theme?.Label ?? "general"}" : ThemeHelper.GetCssClasses(page),
+
             Title = productHero.Title,
+
             Text = productHero.Text?.ToHtmlString(),
-            PrimaryLinkButton = Button.Create(productHero.PrimaryLink)
-                .With(b =>
-                {
-                    b.Class = "hero-pdp__cta1";
-                    b.Icon = SvgAliases.Icons.ArrowTopRight;
-                }),
+
+            PrimaryLinkButton = Button.Create(primaryButtonLink?.Link).With(b =>
+            {
+                b.Class = "hero-pdp__cta1";
+                b.Icon = primaryButtonLink?.ButtonIcon?.LocalCrops.Src ?? SvgAliases.Icons.ArrowTopRight;
+                b.Variant = primaryButtonLink?.Variant;
+            }),
+
             Image = Image.Create(productHero.Image, cssClasses: "hero-pdp__image", style: "heroPdp"),
-            SecondaryLinkButton = Button.Create(productHero.SecondaryLink)
-                .With(b =>
-                {
-                    b.Class = "hero-pdp__cta2";
-                    b.Icon = SvgAliases.Icons.ArrowTopRight;
-                    b.Variant = "secondary";
-                }),
-            NavigationLinks = productHero.HideNavigationLinks
+
+            SecondaryLinkButton = Button.Create(secondaryButtonLink?.Link).With(b =>
+            {
+                b.Class = "hero-pdp__cta2";
+                b.Icon = secondaryButtonLink?.ButtonIcon?.LocalCrops.Src ?? SvgAliases.Icons.ArrowTopRight;
+                b.Variant = secondaryButtonLink?.Variant;
+            }),
+
+            NavigationLinks = productHero!.HideNavigationLinks
                 ? null
-                : AnchorList.Create()
+                : AnchorList.Create(page)
                     .With(a =>
                     {
                         a.CssClasses = "hero-pdp__anchor-links";

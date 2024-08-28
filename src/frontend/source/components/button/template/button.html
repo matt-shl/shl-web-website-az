@@ -32,7 +32,7 @@
     {%- if data.ariaLabel %} aria-label="{{ data.ariaLabel }}"{% endif -%}
     {%- if data.attr %} {{ data.attr|safe }}{% endif -%}>
 
-        <span class="button__label{%- if data.srOnly %} u-sr-only{% endif -%}">{{ data.label }}</span>
+        <span class="button__label{%- if data.srOnly %} u-sr-only{% endif -%}">{{ data.label }}{% if data.supLabel %}<sup class="button__label-sup">{{data.supLabel}}</sup>{% endif %}</span>
 
         {%- if data.icon %}
           <span class="button__icon">{% svg 'icons/' + data.icon %}</span>

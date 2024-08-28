@@ -1,0 +1,147 @@
+{% from "layout-section.html" import layoutSection %}
+{% from "button.html" import button %}
+{% from "image.html" import image %}
+{% from "odometer.html" import odometer %}
+{% from "carousel.html" import carousel %}
+
+
+{% set commonLabels = global.resource.common %}
+{% set historyLabels = global.resource.historyTimeline %}
+
+{% macro historyTimeline(data) %}
+    {% call layoutSection({
+    theme: data.theme or 't-white',
+    reduceMargin: true,
+    classes: "c-history-timeline" ~ (" " ~ data.classes if data.classes),
+    hook: "history-timeline",
+    variant: data.variant
+    })
+    %}
+    <div class="history-timeline__container" aria-label="{{ historyLabels.introDescription}}">
+
+      <div class="history-timeline__main-content">
+        <div class="history-timeline__pagination-container">
+          {{ button({
+            label: commonLabels.previous + " " +commonLabels.event,
+            icon: true,
+            srOnly: true,
+            size: "small",
+            element: "button",
+            variant: "secondary",
+            theme: "t-white",
+            classes: "history-timeline__pagination-button",
+            icon: "arrow-left",
+            hook: "history-timeline-pagination-prev-button",
+            attr: "disabled"
+          }) }}
+          {{ button({
+            label: commonLabels.next + " " +commonLabels.event,
+            icon: true,
+            srOnly: true,
+            size: "small",
+            element: "button",
+            variant: "secondary",
+            theme: "t-white",
+            classes: "history-timeline__pagination-button",
+            icon: "arrow-right",
+            hook: "history-timeline-pagination-next-button"
+          }) }}
+        </div>
+        <div class="history-timeline__odometer-container">
+          {{ odometer({
+            digits: [1, 9, 9, 6],
+            direction: "down",
+            id: "history-timeline"
+          }) }}
+        </div>
+        <div class="history-timeline__title-descriptions" aria-live="polite" aria-atomic="true">
+          {% for event in data.events %}
+            <div class="history-timeline__title-description-instance {{ "is--active" if loop.index0 == 0 else '' }}" data-year="{{ event.year }}" js-hook-history-timeline-text-container>
+              <h3 class="history-timeline__title">{{ event.title }}</h3>
+              <p class="history-timeline__description">{{ event.description }}</p>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="history-timeline__timeline-carousel-container">
+          {% call carousel({
+            classes: "history-timeline__timeline-carousel",
+            pagination: false,
+            slidesMobile: 1,
+            slidesMobilePlus: 1,
+            slidesTabletPortrait: 1,
+            slidesTabletLandscape: 1,
+            slidesLaptop: 1,
+            slidesDesktop: 1,
+            id: "history-timeline-carousel"
+          }) %}
+            {% for event in data.events %}
+              {% if loop.index0 != 0 %}
+                <div class="swiper-slide">
+                  {{ miniTimelineItem(event) }}
+                </div>
+              {% endif %}
+              {% if loop.index == data.events.length %}
+                <div class="swiper-slide">
+                  <div class="history-timeline__restart-timeline-button-container">
+                    {{ button({
+                      as: "button",
+                      label: historyLabels.restartTimeline,
+                      variant: 'link-underlined',
+                      hook: "history-timeline-restart-timeline-button"
+                    })}}
+                  </div>
+                </div>
+              {% endif %}
+            {% endfor %}
+          {% endcall %}
+      </div>
+
+
+      <div class="history-timeline__images-container">
+        {% if data.events.length === 1 and data.events[0].image %}
+            <div class="history-timeline__image">
+            {{ image(data.events[0].image | clone | merge({
+              imageStyle: "history-timeline",
+              objectFit: true
+            })) }}
+            </div>
+        {% elif data.events.length > 1 %}
+            <div class="history-timeline__image-carousel">
+              <div class="history-timeline__image-carousel-container" js-hook-history-timeline-image-carousel>
+                {% for eventData in data.events %}
+                  {% set imageData = eventData.image %}
+                  <div class="history-timeline__image-item {{ "is--active" if loop.index0 == 0 else '' }}" js-hook-history-timeline-image data-index="{{loop.index0}}">
+                    {{ image(imageData | clone | merge({
+                      imageStyle: "history-timeline",
+                      objectFit: true,
+                      caption: false,
+                      fetchPriority: "auto" if loop.index0 == 0 else "low"
+                    })) }}
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+        {% endif %}
+      </div>
+    </div>
+    {% endcall %}
+{% endmacro %}
+
+
+{% macro miniTimelineItem(data) %}
+    <div class="history-timeline__timeline-mini-item">
+      <div class="history-timeline__timeline-mini-item-image-container">
+        {{ image(data.image | clone | merge({
+          imageStyle: "history-timeline-mini",
+          objectFit: true,
+          caption: false
+        })) }}
+      </div>
+      <div class="history-timeline__timeline-mini-item-content">
+        <h6 class="history-timeline__timeline-mini-item-title">{{ data.year }}</h6>
+        <p class="history-timeline__timeline-mini-item-description">{{ data.shortTitle }}</p>
+      </div>
+    </div>
+{% endmacro %}

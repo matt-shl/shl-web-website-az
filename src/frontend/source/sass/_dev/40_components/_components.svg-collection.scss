@@ -45,6 +45,13 @@
   }
 
   svg {
+    transition: color 200ms;
     color: $color-dark-blue;
+  }
+
+  .c-svg-collection__tile:hover & {
+    svg {
+      color: $color-pale-pink;
+    }
   }
 }

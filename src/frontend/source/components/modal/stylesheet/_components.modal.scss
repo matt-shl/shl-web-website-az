@@ -129,6 +129,11 @@ $modal-min-width-media-query: ($modal-max-width + $modal-gutter-small * 2) - 0.5
   border-radius: $radii-full;
   border: 1px solid $color-light-grey;
 
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+
   transition: var(--button-transition-time) var(--button-transition-ease);
   transition-property: background-color, border-color, color;
 
@@ -184,6 +189,13 @@ $modal-min-width-media-query: ($modal-max-width + $modal-gutter-small * 2) - 0.5
   cursor: pointer;
   transition: 0ms linear $modal-transition-time;
   transition-property: inset-inline-start;
+}
+
+.modal__header-hamburger {
+  svg {
+    width: 20px;
+    height: 20px;
+  }
 }
 
 // SIZES

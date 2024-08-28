@@ -11,7 +11,7 @@
 .card-product__image-container {
   @include theme-card;
   @include card-image-container-base;
-  background-color: $color-pastel-blue;
+  background-color: var(--color-card-background, $color-pastel-blue);
 }
 
 .card-product__image {

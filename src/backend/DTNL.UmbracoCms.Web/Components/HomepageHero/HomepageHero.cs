@@ -1,4 +1,5 @@
 using DTNL.UmbracoCms.Web.Components.Hero;
+using DTNL.UmbracoCms.Web.Helpers.Aliases;
 using DTNL.UmbracoCms.Web.Helpers.Extensions;
 using Umbraco.Cms.Web.Common.PublishedModels;
 
@@ -18,12 +19,15 @@ public class HomepageHero : IHero
 
     public string? ShortDescription { get; set; }
 
-    public static HomepageHero? Create(NestedBlockHomepageHero? homepageHero, ICompositionBasePage page)
+    public static HomepageHero? Create(NestedBlockHomepageHero? homepageHero)
     {
         if (homepageHero is null)
         {
             return null;
         }
+
+        NestedBlockButtonLink? primaryButtonLink = homepageHero.MainButtonLink?.FirstOrDefault()?.Content as NestedBlockButtonLink;
+        NestedBlockButtonLink? secondaryButtonLink = homepageHero.SecondaryButtonLink?.FirstOrDefault()?.Content as NestedBlockButtonLink;
 
         return new HomepageHero()
         {
@@ -31,19 +35,20 @@ public class HomepageHero : IHero
 
             Image = Image.Create(homepageHero.Image, cssClasses: "homepage-hero__image"),
 
-            MainButton = Button.Create(homepageHero.MainButtonLink)
-            .With(b =>
+            MainButton = Button.Create(primaryButtonLink?.Link).With(b =>
             {
                 b.Class = "button--icon hero-home__cta";
                 b.Hook = "homepage-hero-button";
+                b.Icon = primaryButtonLink?.ButtonIcon?.LocalCrops.Src ?? SvgAliases.Icons.ArrowTopRight;
+                b.Variant = primaryButtonLink?.Variant;
             }),
 
-            SecondaryButton = Button.Create(homepageHero.SecondaryButtonLink)
-            .With(b =>
+            SecondaryButton = Button.Create(secondaryButtonLink?.Link).With(b =>
             {
                 b.Class = "button--icon hero-home__cta";
-                b.Variant = "secondary ";
                 b.Hook = "homepage-hero-button";
+                b.Icon = secondaryButtonLink?.ButtonIcon?.LocalCrops.Src ?? SvgAliases.Icons.ArrowTopRight;
+                b.Variant = secondaryButtonLink?.Variant;
             }),
 
             ShortDescription = homepageHero.ShortDescription?.ToHtmlString(),

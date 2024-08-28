@@ -16,5 +16,8 @@
   "previous": "Previous",
   "quote": "Quote",
   "vacancy": "Vacancy",
-  "productList": "Product List"
+  "event": "Event",
+  "productList": "Product List",
+  "search": "Search",
+  "whatAreYouLookingFor": "What are you looking for?"
 }

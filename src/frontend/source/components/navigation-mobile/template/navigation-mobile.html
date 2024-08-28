@@ -1,5 +1,8 @@
 {% from 'modal.html' import modal %}
 {% from 'navigation-mobile-list.html' import navigationMobileList %}
+{% from 'language-selector.html' import languageSelector %}
+{% from 'search-trigger.html' import searchTrigger %}
+{% from 'search.html' import search %}
 
 {# Modal to show level 1 items #}
 {% call modal({
@@ -10,12 +13,13 @@
 }) %}
   <div class="c-navigation-mobile">
     <nav title="{{ global.resource.navigation.mainNavigation }}">
+      {{ searchTrigger() }}
       {{ navigationMobileList({
         items: global.content.navigation.items
       }) }}
       <div class="navigation-mobile__line"></div>
-      <div class="navigation-mobile-selector">
-        <!-- Todo: language selector -->
+      <div class="navigation-mobile__language-selector">
+        {{ languageSelector({mobile: true}) }}
       </div>
     </nav>
   </div>
@@ -79,3 +83,18 @@
     {% endfor %}
   {% endif %}
 {% endfor %}
+
+
+{# Modal to show search bar #}
+{% call modal({
+  size: 'navigation-mobile',
+  id : 'navigation-mobile-search',
+  keepScrollPosition: true,
+  closeAllOthers: true
+}) %}
+  <div class="c-navigation-mobile">
+    {{ search({
+      variant: "in-flyout"
+    }) }}
+  </div>
+{% endcall %}

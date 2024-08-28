@@ -1,0 +1,230 @@
+{
+  "title": "Our global presence",
+  "offices": {
+    "europe": {
+      "amount": "3",
+      "countries": [
+        {
+          "id": "SE",
+          "label": "Sweden",
+          "map": {
+            "zoom": 7,
+            "x": -2,
+            "y": 15
+          },
+          "trigger": {
+            "x": 44,
+            "y": 35
+          },
+          "items": [
+            {
+              "id": "01",
+              "city": "Stockholm",
+              "x": "46",
+              "y": "71",
+              "image": true,
+              "address": "<p>Kungsgatan 37<br/>111 56 Stockholm<br/>Sweden</p>",
+              "email": "<p><a href='mailto:info@shl-medical.com'>info@shl-medical.com</a></p>",
+              "phone": "<p><a href='tel:0041413680000'>+41 41 368 00 00</a></p>",
+              "description": "At the Stockholm office, we pursue sustainable operations and innovative technologies while leveraging our strong capabilities in design and process development.",
+              "cta": {
+                "label": "More details",
+                "url": "#"
+              }
+            }
+          ]
+        },
+        {
+          "id": "CH",
+          "label": "Switzerland",
+          "map": {
+            "zoom": 60,
+            "x": 0.6,
+            "y": 2.65
+          },
+          "trigger": {
+            "x": 38,
+            "y": 70
+          },
+          "items": [
+            {
+              "id": "02",
+              "city": "Zug",
+              "x": "49",
+              "y": "27",
+              "image": true,
+              "address": "<p>Kungsgatan 37<br/>111 56 Zug<br/>Switzerland</p>",
+              "email": "<p><a href='mailto:info@shl-medical.com'>info@shl-medical.com</a></p>",
+              "phone": "<p><a href='tel:0041413680000'>+41 41 368 00 00</a></p>",
+              "description": "At the Zug office, we pursue sustainable operations and innovative technologies while leveraging our strong capabilities in design and process development.",
+              "cta": {
+                "label": "More details",
+                "url": "#"
+              }
+            },
+            {
+              "id": "03",
+              "city": "Küssnacht am Rigi",
+              "x": "45",
+              "y": "41",
+              "image": true,
+              "address": "<p>Kungsgatan 37<br/>111 56 Küssnacht am Rigi<br/>Switzerland</p>",
+              "email": "<p><a href='mailto:info@shl-medical.com'>info@shl-medical.com</a></p>",
+              "phone": "<p><a href='tel:0041413680000'>+41 41 368 00 00</a></p>",
+              "description": "At the Zug office, we pursue sustainable operations and innovative technologies while leveraging our strong capabilities in design and process development.",
+              "cta": {
+                "label": "More details",
+                "url": "#"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "americas": {
+      "amount": "3",
+      "countries": [
+        {
+          "id": "US",
+          "label": "USA",
+          "map": {
+            "zoom": 6,
+            "x": 28,
+            "y": -3.5
+          },
+          "trigger": {
+            "x": 48,
+            "y": 46
+          },
+          "items": [
+            {
+              "id": "04",
+              "city": "Florida",
+              "x": "60",
+              "y": "74",
+              "image": true,
+              "address": "<p>Kungsgatan 37<br/>111 56 Florida<br/>USA</p>",
+              "email": "<p><a href='mailto:info@shl-medical.com'>info@shl-medical.com</a></p>",
+              "phone": "<p><a href='tel:0041413680000'>+41 41 368 00 00</a></p>",
+              "description": "At the Florida office, we pursue sustainable operations and innovative technologies while leveraging our strong capabilities in design and process development.",
+              "cta": {
+                "label": "More details",
+                "url": "#"
+              }
+            },
+            {
+              "id": "05",
+              "city": "South Carolina",
+              "x": "58",
+              "y": "58",
+              "image": true,
+              "address": "<p>Kungsgatan 37<br/>111 56 South Carolina<br/>USA</p>",
+              "email": "<p><a href='mailto:info@shl-medical.com'>info@shl-medical.com</a></p>",
+              "phone": "<p><a href='tel:0041413680000'>+41 41 368 00 00</a></p>",
+              "description": "At the South Carolina office, we pursue sustainable operations and innovative technologies while leveraging our strong capabilities in design and process development.",
+              "cta": {
+                "label": "More details",
+                "url": "#"
+              }
+            }
+          ]
+        },
+        {
+          "id": "MX",
+          "label": "Mexico",
+          "map": {
+            "zoom": 10,
+            "x": 31,
+            "y": -9
+          },
+          "trigger": {
+            "x": 40,
+            "y": 57
+          },
+          "items": [
+            {
+              "id": "06",
+              "city": "Puebla",
+              "x": "53",
+              "y": "68",
+              "image": true,
+              "address": "<p>Kungsgatan 37<br/>111 56 Puebla<br/>Mexicop</p>",
+              "email": "<p><a href='mailto:info@shl-medical.com'>info@shl-medical.com</a></p>",
+              "phone": "<p><a href='tel:0041413680000'>+41 41 368 00 00</a></p>",
+              "description": "At the Puebla office, we pursue sustainable operations and innovative technologies while leveraging our strong capabilities in design and process development.",
+              "cta": {
+                "label": "More details",
+                "url": "#"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "asia": {
+      "amount": "2",
+      "countries": [
+        {
+          "id": "TW",
+          "label": "Taiwan",
+          "map": {
+            "zoom": 50,
+            "x": -30.8,
+            "y": -9.3
+          },
+          "trigger": {
+            "x": 77,
+            "y": 61
+          },
+          "items": [
+            {
+              "id": "07",
+              "city": "Taoyuan",
+              "x": "45",
+              "y": "21",
+              "image": true,
+              "address": "<p>Kungsgatan 37<br/>111 56 Taoyuan<br/>Taiwan</p>",
+              "email": "<p><a href='mailto:info@shl-medical.com'>info@shl-medical.com</a></p>",
+              "phone": "<p><a href='tel:0041413680000'>+41 41 368 00 00</a></p>",
+              "description": "At the Taoyuan office, we pursue sustainable operations and innovative technologies while leveraging our strong capabilities in design and process development.",
+              "cta": {
+                "label": "More details",
+                "url": "#"
+              }
+            }
+          ]
+        },
+        {
+          "id": "CN",
+          "label": "China",
+          "map": {
+            "zoom": 5,
+            "x": -26.5,
+            "y": -2
+          },
+          "trigger": {
+            "x": 68,
+            "y": 50
+          },
+          "items": [
+            {
+              "id": "08",
+              "city": "Shanghai",
+              "x": "68",
+              "y": "68",
+              "image": true,
+              "address": "<p>Kungsgatan 37<br/>111 56 Shanghai<br/>China</p>",
+              "email": "<p><a href='mailto:info@shl-medical.com'>info@shl-medical.com</a></p>",
+              "phone": "<p><a href='tel:0041413680000'>+41 41 368 00 00</a></p>",
+              "description": "At the Shanghai office, we pursue sustainable operations and innovative technologies while leveraging our strong capabilities in design and process development.",
+              "cta": {
+                "label": "More details",
+                "url": "#"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -2,6 +2,7 @@ using DTNL.UmbracoCms.Web.Components.BasePage;
 using DTNL.UmbracoCms.Web.Helpers.Aliases;
 using DTNL.UmbracoCms.Web.Helpers.Extensions;
 using Microsoft.AspNetCore.Mvc;
+using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Web.Common.PublishedModels;
 
 namespace DTNL.UmbracoCms.Web.Components;
@@ -32,9 +33,11 @@ public class Footer : ViewComponentExtended
 
     public Slogan? FooterScrollingText { get; set; }
 
-    public IViewComponentResult Invoke(SiteSettings? siteSettings, ICompositionBasePage? page)
+    public IViewComponentResult Invoke(SiteSettings? siteSettings, IPublishedContent? page)
     {
-        FooterScrollingText = Slogan.Create(page?.Slogan?.Select(block => block.Content).OfType<Umbraco.Cms.Web.Common.PublishedModels.Slogan>().FirstOrDefault(), "footer__scrolling-text");
+        FooterScrollingText = page is ICompositionHomePage
+            ? Slogan.Create((page as ICompositionHomePage)?.Slogan?.Select(block => block.Content).OfType<NestedBlockSlogan>().FirstOrDefault(), "footer__scrolling-text")
+            : Slogan.Create((page as ICompositionBasePage)?.Slogan?.Select(block => block.Content).OfType<NestedBlockSlogan>().FirstOrDefault(), "footer__scrolling-text");
 
         Text = siteSettings?.FooterText;
 

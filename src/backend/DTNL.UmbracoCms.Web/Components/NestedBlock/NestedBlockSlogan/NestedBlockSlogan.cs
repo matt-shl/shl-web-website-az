@@ -4,8 +4,6 @@ namespace DTNL.UmbracoCms.Web.Components.NestedBlock;
 
 public class NestedBlockSlogan : NestedBlock
 {
-    public required Slogan Slogan { get; set; }
-
     protected override object? ProcessBlock(IPublishedElement block)
     {
         if (block is not Umbraco.Cms.Web.Common.PublishedModels.NestedBlockSlogan nestedBlockSlogan)
@@ -13,14 +11,11 @@ public class NestedBlockSlogan : NestedBlock
             return null;
         }
 
-        Slogan? slogan = Slogan.Create(nestedBlockSlogan);
-        if (slogan == null)
+        if (Slogan.Create(nestedBlockSlogan) is not { } slogan)
         {
             return null;
         }
 
-        Slogan = slogan;
-
-        return this;
+        return slogan;
     }
 }

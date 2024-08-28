@@ -18,7 +18,7 @@ import '@/components/loading-indicator'
 
 import Events from '@utilities/events'
 
-import { videoLoader } from '@/components/video'
+import {videoLoader} from '@/components/video'
 import moduleInit from '@/utilities/module-init'
 
 if (document.querySelector('[js-hook-page-load-animation-trigger]')) {
@@ -40,10 +40,15 @@ moduleInit.async('[js-hook-rich-text]', () => import('@/components/rich-text'))
 moduleInit.async('[js-hook-banner-quote]', () => import('@components/banner-quote'))
 moduleInit.async('[js-hook-carousel-indicator]', () => import('@components/carousel-indicator'))
 moduleInit.async('[js-hook-form]', () => import('@/components/form'))
+moduleInit.async('[js-hook-map]', () => import('@/components/map'))
+moduleInit.async('[js-hook-language-selector]', () => import('@components/language-selector'))
 moduleInit.async(
   '[js-hook-mobile-floating-button]',
   () => import('@components/mobile-floating-button'),
 )
+moduleInit.async('[js-hook-odometer]', () => import('@components/odometer'))
+moduleInit.async('[js-hook-history-timeline]', () => import('@components/history-timeline'))
+moduleInit.async('[js-hook-search]', () => import('@components/search'))
 
 if (document.querySelector('[js-hook-video]')) {
   videoLoader(['native'])
