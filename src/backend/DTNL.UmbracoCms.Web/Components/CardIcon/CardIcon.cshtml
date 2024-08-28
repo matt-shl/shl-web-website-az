@@ -6,17 +6,10 @@
 @(Model.HasUrl ? $"href={Model.Url}" : null)
 aria-label="@Model.Title">
     <div class="card-icon__container">
-        @if (Model.IconAlias is not null)
+        @if (Model.Icon is not null)
         {
             <div class="card-icon__icon">
-                <svg src="@($"{SvgAliases.Icons}/{Model.IconAlias}.svg")" />
-            </div>
-        }
-
-        @if (Model.IconUrl is not null)
-        {
-            <div class="card-icon__icon">
-                <svg src="@Model.IconUrl" />
+                <partial name="Image" model="@Model.Icon" />
             </div>
         }
 
