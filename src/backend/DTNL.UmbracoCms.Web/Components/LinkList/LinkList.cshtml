@@ -11,7 +11,10 @@
         @foreach(Link link in Model.Links)
         {
             <li class="link-list__item">
-                <partial name="Link"model="@link"/>
+                <a class="link-list__anchor" href="@link.Url">
+                    @link.Label
+                    <svg src="@SvgAliases.Icons.ArrowTopRight" />
+                </a>                
             </li>
         }
     </ul>
