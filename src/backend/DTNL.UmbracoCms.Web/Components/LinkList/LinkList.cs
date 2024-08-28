@@ -1,6 +1,5 @@
 using DTNL.UmbracoCms.Web.Helpers.Extensions;
 using Umbraco.Cms.Web.Common.PublishedModels;
-using static Umbraco.Cms.Core.Constants;
 
 namespace DTNL.UmbracoCms.Web.Components;
 
