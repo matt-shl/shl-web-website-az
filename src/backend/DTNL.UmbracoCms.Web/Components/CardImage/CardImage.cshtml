@@ -3,8 +3,7 @@
 
 <@(Model.Element) class="c-card-icon @(Model.HasUrl ? "c-card-icon--has-url c-card-overlay-parent" : null) @Model.CssClasses"
 @(Model.HasUrl ? $"href=\"{Model.Url}\"" : null)
-                  aria-label="@Model.Title">
-
+aria-label="@Model.Title">
     <div class="card-image__image-container">
        <partial name="Image" model="@Model.Image" />
 

@@ -1,20 +1,9 @@
 @using DTNL.UmbracoCms.Web.Components
 @model DTNL.UmbracoCms.Web.Components.OverviewItems
 
-@* <partial name="Filters" model="@Model.Filters" /> *@
-
-@if (Model.NoResultsSection is not null)
-{
-    <partial name="EmptySection" model="@Model.NoResultsSection" />
-}
-else
-{
-    <div class="o-container" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px " js-hook-replace-content="number-items">
-        @foreach (CardKnowledge resultCard in Model.ResultCards)
-        {
-            <partial name="CardKnowledge" model="@resultCard" />
-        }
-    </div>
-
-    <partial name="Pagination" model="@Model.Pagination" />
-}
+<div class="o-container" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px " js-hook-replace-content="number-items">
+    @foreach (CardKnowledge resultCard in Model.ResultCards)
+    {
+        <partial name="CardKnowledge" model="@resultCard" />
+    }
+</div>

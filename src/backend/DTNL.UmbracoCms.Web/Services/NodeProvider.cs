@@ -37,7 +37,7 @@ public class NodeProvider
 
     public static IEnumerable<ICompositionKnowledgePage> GetOverviewPages(PageKnowledgeOverview overviewPage)
     {
-        return overviewPage.Children<IPublishedContent>()?.WhereNotNull().Select(c => (ICompositionKnowledgePage) c) ?? [];
+        return overviewPage.Children<IPublishedContent>()?.WhereNotNull().Cast<ICompositionKnowledgePage>() ?? [];
     }
 
     internal void Reset()

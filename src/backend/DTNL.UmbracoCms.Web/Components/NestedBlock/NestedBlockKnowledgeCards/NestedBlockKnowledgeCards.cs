@@ -16,12 +16,7 @@ public class NestedBlockKnowledgeCards : NestedBlockWithInner
             return null;
         }
 
-        LayoutSection.CssClasses = $"{(cardCarousel.ShowCarousel
-            ? "c-section-card-carousel c-section-card-carousel--show-carousel"
-            : "c-section-card-carousel c-section-card-carousel--no-carousel-three")}" + $" {(cardsBlock.Theme != null ? $"t-{cardsBlock?.Theme?.Label}" : "t-white")}";
-        LayoutSection.Variant = cardsBlock?.Theme != null ? "in-grid" : "";
-        LayoutSection.Id = cardCarousel.AnchorId;
-        LayoutSection.NavigationTitle = cardCarousel.AnchorTitle;
+        SetCarouselsLayout(cardCarousel, cardsBlock.Theme);
 
         return cardCarousel;
     }

@@ -1,4 +1,5 @@
 using Umbraco.Cms.Core.Models.PublishedContent;
+using Umbraco.Cms.Core.PropertyEditors.ValueConverters;
 
 namespace DTNL.UmbracoCms.Web.Components.NestedBlock;
 
@@ -38,5 +39,15 @@ public abstract class NestedBlockWithInner : NestedBlock
     protected virtual Task<object?> GetInnerComponentAsync(IPublishedElement block)
     {
         return Task.FromResult(GetInnerComponent(block));
+    }
+
+    protected void SetCarouselsLayout(CardCarousel cardCarousel, ColorPickerValueConverter.PickedColor? theme)
+    {
+        LayoutSection.CssClasses = $"{(cardCarousel.ShowCarousel
+            ? "c-section-card-carousel c-section-card-carousel--show-carousel"
+            : "c-section-card-carousel c-section-card-carousel--no-carousel-three")}" + $" {(theme != null ? $"t-{theme.Label}" : "t-white")}";
+        LayoutSection.Variant = theme != null ? "in-grid" : "";
+        LayoutSection.Id = cardCarousel.AnchorId;
+        LayoutSection.NavigationTitle = cardCarousel.AnchorTitle;
     }
 }

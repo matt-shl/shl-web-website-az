@@ -2,9 +2,9 @@
 @using DTNL.UmbracoCms.Web.Helpers.Aliases
 @model DTNL.UmbracoCms.Web.Components.CardKnowledge
 
-<@(Model.Element) class="c-card-knowledge @Model.CssClasses"
-@(Model.HasUrl ? $"href={Model.Url}" : null)
-                  aria-label="@Model.Title">
+<@(Model.Element) class="c-card-knowledge @Model.CssClasses" 
+@(Model.Url.IsNullOrEmpty() ? $"href={Model.Url}" : null) 
+aria-label="@Model.Title">
 
     <div class="card-knowledge__image-container">
         <partial name="Image" model="@Model.Image" />

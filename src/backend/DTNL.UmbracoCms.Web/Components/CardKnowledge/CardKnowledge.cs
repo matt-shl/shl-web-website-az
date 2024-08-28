@@ -15,11 +15,9 @@ public class CardKnowledge : ICard
 
     public string? Url { get; set; }
 
-    public bool HasUrl { get; set; }
-
     public string? CssClasses { get; set; }
 
-    public string Element => HasUrl ? "a" : "article";
+    public string Element => !Url.IsNullOrEmpty() ? "a" : "article";
 
     public static CardKnowledge? Create(NestedBlockPageCard pageCard, string? cssClasses = null)
     {
@@ -35,7 +33,6 @@ public class CardKnowledge : ICard
             Text = page.GetCardDescription(),
             Image = Image.Create(page.GetCardImage(), cssClasses: "card-knowledge__image", style: "card-knowledge"),
             Url = page.Url(),
-            HasUrl = true,
             CssClasses = cssClasses,
         };
     }
@@ -54,7 +51,6 @@ public class CardKnowledge : ICard
             Text = page.GetCardDescription(),
             Image = Image.Create(page.GetCardImage(), cssClasses: "card-knowledge__image", style: "card-knowledge"),
             Url = page.Url(),
-            HasUrl = true,
             CssClasses = cssClasses,
         };
     }
