@@ -39,23 +39,21 @@ class NavigationDesktop {
     })
 
     this.anchors.forEach(anchor => {
-      anchor.addEventListener('click', event => this.handleAnchorClick(event, anchor))
+      anchor.addEventListener('click', () => this.handleAnchorClick(anchor))
       anchor.addEventListener('focus', () => this.closeAllItems())
     })
   }
 
-  handleAnchorClick(event: MouseEvent, anchor: HTMLAnchorElement) {
+  handleAnchorClick(anchor: HTMLAnchorElement) {
     const item = anchor.closest(JS_HOOK_ITEM) as HTMLUListElement;
     const itemHasFlyout = item.querySelector(JS_HOOK_FLOUT)
     if (!itemHasFlyout) return;
 
-    event.preventDefault();
     this.toggleItem(item)
   }
 
   handleItemKeydown(event: KeyboardEvent, item: HTMLUListElement) {
     if (event.key === 'Enter') {
-      event.preventDefault()
       this.toggleItem(item)
     }
   }
