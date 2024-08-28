@@ -50,6 +50,14 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		// properties
 
 		///<summary>
+		/// Types
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("types")]
+		public virtual global::System.Collections.Generic.IEnumerable<string> Types => this.Value<global::System.Collections.Generic.IEnumerable<string>>(_publishedValueFallback, "types");
+
+		///<summary>
 		/// Body Scripts: Insert here your Hotjar/Google Analytics scripts to be inserted at body of the page.
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]

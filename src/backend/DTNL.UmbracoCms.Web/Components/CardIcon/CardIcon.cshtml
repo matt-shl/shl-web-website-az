@@ -3,21 +3,13 @@
 @model DTNL.UmbracoCms.Web.Components.CardIcon
 
 <@(Model.Element) class="c-card-icon @(Model.HasUrl ? "c-card-icon--has-url c-card-overlay-parent" : null) @Model.CssClasses"
-@(Model.HasUrl ? $"href=\"{Model.Url}\"" : null)
+@(Model.HasUrl ? $"href={Model.Url}" : null)
 aria-label="@Model.Title">
-
     <div class="card-icon__container">
-        @if (Model.IconAlias is not null)
+        @if (Model.Icon is not null)
         {
             <div class="card-icon__icon">
-                <svg src="@($"{SvgAliases.Icons}/{Model.IconAlias}.svg")" />
-            </div>
-        }
-
-        @if (Model.IconUrl is not null)
-        {
-            <div class="card-icon__icon">
-                <svg src="@Model.IconUrl" />
+                <partial name="Image" model="@Model.Icon" />
             </div>
         }
 

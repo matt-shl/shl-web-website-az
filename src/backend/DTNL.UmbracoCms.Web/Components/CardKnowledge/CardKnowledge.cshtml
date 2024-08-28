@@ -2,14 +2,14 @@
 @using DTNL.UmbracoCms.Web.Helpers.Aliases
 @model DTNL.UmbracoCms.Web.Components.CardKnowledge
 
-<@(Model.Element) class="c-card-knowledge @Model.CssClasses"
-@(Model.HasUrl ? $"href=\"{Model.Url}\"" : null)
-                  aria-label="@Model.Title">
+<@(Model.Element) class="c-card-knowledge @Model.CssClasses" 
+@(Model.HasUrl ? $"href={Model.Url}" : null) 
+aria-label="@Model.Title">
 
     <div class="card-knowledge__image-container">
         <partial name="Image" model="@Model.Image" />
 
-        @if (!Model.Tag.IsNullOrWhiteSpace())
+        @if (Model.HasUrl)
         {
             <partial name="CardOverlay" model="@(new CardOverlay { Position = "start", Visible = true, Tag = Model.Tag })" />
         }
@@ -17,7 +17,7 @@
 
     <h3 class="card-knowledge__title">@Model.Title</h3>
 
-    <p class="card-knowledge__content" asp-if="@Model.Text">@Model.Text</p>
+    <p class="card-knowledge__content" asp-if="@Model.Text">@Html.Raw(Model.Text)</p>
 
     <p class="card-knowledge__cta" asp-translation="@TranslationAliases.Common.Cards.ReadMore"></p>
 

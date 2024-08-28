@@ -39,4 +39,14 @@ public abstract class NestedBlockWithInner : NestedBlock
     {
         return Task.FromResult(GetInnerComponent(block));
     }
+
+    protected void SetCarouselsLayout(CardCarousel cardCarousel, string? theme)
+    {
+        LayoutSection.CssClasses = $"{(cardCarousel.ShowCarousel
+            ? "c-section-card-carousel c-section-card-carousel--show-carousel"
+            : "c-section-card-carousel c-section-card-carousel--no-carousel-three")}" + $" {(theme != null ? $"t-{theme}" : "t-white")}";
+        LayoutSection.Variant = theme != null ? "in-grid" : "";
+        LayoutSection.Id = cardCarousel.AnchorId;
+        LayoutSection.NavigationTitle = cardCarousel.AnchorTitle;
+    }
 }
