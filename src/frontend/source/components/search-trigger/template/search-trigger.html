@@ -1,0 +1,10 @@
+{% macro searchTrigger(data) %}
+  <div class="c-search-trigger">
+    <button
+      class="search-trigger__button"
+      aria-controls="navigation-mobile-search">
+      {% svg 'icons/search' %}
+      {{ global.resource.common.whatAreYouLookingFor }}
+    </button>
+  </div>
+{% endmacro %}

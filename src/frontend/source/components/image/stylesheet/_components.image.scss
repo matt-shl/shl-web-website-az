@@ -1,7 +1,7 @@
 :root {
   --image-transition-duration: 300ms;
   --image-transition-timing: #{$ease-out-quad};
-  --image-skeleton-color: #{rgba($color-black, 0.03)};
+  --image-skeleton-color: transparent;
 }
 
 .c-image {

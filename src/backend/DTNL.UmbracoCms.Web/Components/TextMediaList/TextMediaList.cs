@@ -26,6 +26,8 @@ public class TextMediaList
 
     public Button? SecondaryLinkButton { get; set; }
 
+    public string? CtaSupportText { get; set; }
+
     public string? Variant { get; set; }
 
     public string? MediaPosition { get; set; }
@@ -93,6 +95,7 @@ public class TextMediaList
                     b.Variant = "secondary";
                     b.Icon = SvgAliases.Icons.ArrowTopRight;
                 }),
+            CtaSupportText = textMediaListBlock?.ButtonsSupportText,
         };
     }
 }

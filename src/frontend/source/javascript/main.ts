@@ -48,6 +48,7 @@ moduleInit.async(
 )
 moduleInit.async('[js-hook-odometer]', () => import('@components/odometer'))
 moduleInit.async('[js-hook-history-timeline]', () => import('@components/history-timeline'))
+moduleInit.async('[js-hook-search]', () => import('@components/search'))
 
 if (document.querySelector('[js-hook-video]')) {
   videoLoader(['native'])

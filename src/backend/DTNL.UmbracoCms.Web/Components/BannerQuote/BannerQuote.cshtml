@@ -13,16 +13,16 @@
                     var quoteData = Model.Quotes[i] as Components.Quote;
                     <div class="banner-quote__text-container @(i == 0 ? "is--active" : "")" js-hook-banner-quote-text-container>
                         <blockquote class="banner-quote__title" tabIndex="0">@quoteData.Quotetext</blockquote>
-                        <span class="banner-quote__author">@quoteData.Name</span>
-                        @if (!quoteData.Role.IsNullOrEmpty())
-                        {
-                            <div class="banner-quote__content">
+                        <div class="banner-quote__content">
+                            <span class="banner-quote__author">@quoteData.Name</span>
+                            @if (!quoteData.Role.IsNullOrEmpty())
+                            {
                                 <span class="banner-quote__role">@quoteData.Role@(quoteData.Company.IsNullOrEmpty() ? "" : ",") @quoteData.Company </span>
-                            </div>
-                        }
+                            }
+                        </div>
                     </div>
                 }
-               
+
                 <div class="banner-quote__pagination-container">
                     <partial name="Button" model="@(new Button {
                                 Label = $"{CultureDictionary.GetTranslation(TranslationAliases.Common.Pagination.Previous)} {CultureDictionary.GetTranslation(TranslationAliases.Common.Quote)}",
@@ -54,7 +54,7 @@
                 {
                     <div class="banner-quote__image">
                         <partial name="Image" model="@(Model.Quotes[0].Image.With(i => {
-                            i.ImageStyle = "in-grid-banner-image";                                
+                            i.ImageStyle = "in-grid-banner-image";
                             i.ObjectFit = true;
                         }))" />
                     </div>

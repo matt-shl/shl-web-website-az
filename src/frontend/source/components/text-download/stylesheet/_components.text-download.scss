@@ -115,6 +115,12 @@
     border-bottom: 1px solid rgba(var(--color-dark-blue-rgb), 0.2);
   }
 
+  @include screen-lg-and-bigger {
+    &:not(:first-child) {
+      padding-top: $spacing-32;
+    }
+  }
+
   @include screen-xl-and-bigger {
     grid-template-columns: auto 1fr auto;
   }
@@ -136,6 +142,12 @@
 
 .download-item__title {
   @include h6;
+  display: block;
+  margin-bottom: $spacing-8;
+
+  @include screen-lg-and-bigger {
+    margin-bottom: $spacing-20;
+  }
 }
 
 .download-item__title,
@@ -151,6 +163,7 @@
 .download-item__link {
   display: inline-flex;
   align-items: center;
+  line-height: 1;
   gap: $spacing-8;
   background-color: $color-pastel-blue;
   color: $color-dark-blue;
