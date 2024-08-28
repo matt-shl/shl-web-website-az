@@ -14,9 +14,9 @@ public class CardIcon : ICard
 
     public string? Url { get; set; }
 
-    public bool HasUrl { get; set; }
-
     public string? CssClasses { get; set; }
+
+    public bool HasUrl => !Url.IsNullOrWhiteSpace();
 
     public string Element => HasUrl ? "a" : "article";
 
@@ -34,7 +34,6 @@ public class CardIcon : ICard
             IconUrl = iconCard.SvgIcon?.MediaUrl(),
             IconAlias = iconCard.Icon,
             Url = iconCard.Link?.Url,
-            HasUrl = iconCard.Link is not null,
             CssClasses = cssClasses,
         };
     }

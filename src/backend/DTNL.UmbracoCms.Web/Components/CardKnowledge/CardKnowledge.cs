@@ -17,7 +17,9 @@ public class CardKnowledge : ICard
 
     public string? CssClasses { get; set; }
 
-    public string Element => !Url.IsNullOrEmpty() ? "a" : "article";
+    public bool HasUrl => !Url.IsNullOrWhiteSpace();
+
+    public string Element => !Url.IsNullOrWhiteSpace() ? "a" : "article";
 
     public static CardKnowledge? Create(NestedBlockPageCard pageCard, string? cssClasses = null)
     {

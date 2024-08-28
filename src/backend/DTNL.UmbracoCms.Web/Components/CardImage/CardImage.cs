@@ -14,9 +14,9 @@ public class CardImage : ICard
 
     public string? Url { get; set; }
 
-    public bool HasUrl { get; set; }
-
     public string? CssClasses { get; set; }
+
+    public bool HasUrl => !Url.IsNullOrWhiteSpace();
 
     public string Element => HasUrl ? "a" : "article";
 
@@ -34,7 +34,6 @@ public class CardImage : ICard
             Text = imageCard.Text?.ToHtmlString(),
             Image = Image.Create(imageCard.Image, cssClasses: "card-image__image"),
             Url = imageCard.Link?.Url,
-            HasUrl = imageCard.Link is not null,
             CssClasses = cssClasses,
         };
     }

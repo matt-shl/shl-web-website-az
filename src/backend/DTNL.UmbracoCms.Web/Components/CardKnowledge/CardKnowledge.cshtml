@@ -3,13 +3,13 @@
 @model DTNL.UmbracoCms.Web.Components.CardKnowledge
 
 <@(Model.Element) class="c-card-knowledge @Model.CssClasses" 
-@(Model.Url.IsNullOrEmpty() ? $"href={Model.Url}" : null) 
+@(Model.HasUrl ? $"href={Model.Url}" : null) 
 aria-label="@Model.Title">
 
     <div class="card-knowledge__image-container">
         <partial name="Image" model="@Model.Image" />
 
-        @if (!Model.Tag.IsNullOrWhiteSpace())
+        @if (Model.HasUrl)
         {
             <partial name="CardOverlay" model="@(new CardOverlay { Position = "start", Visible = true, Tag = Model.Tag })" />
         }

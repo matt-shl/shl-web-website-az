@@ -16,7 +16,7 @@ public class NestedBlockContactCards : NestedBlockWithInner
             return null;
         }
 
-        SetCarouselsLayout(cardCarousel, cardsBlock.Theme);
+        SetCarouselsLayout(cardCarousel, cardsBlock.Theme?.Label);
 
         return cardCarousel;
     }
