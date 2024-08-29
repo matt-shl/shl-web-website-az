@@ -68,6 +68,10 @@
   }
 }
 
+.hero-content__col-search {
+  @include col-span(12);
+}
+
 .hero-content__ctas {
   @include cta-container;
 }

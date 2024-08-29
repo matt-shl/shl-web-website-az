@@ -1,8 +1,9 @@
 {% from 'button.html' import button %}
+{% import 'form-elements.html' as form %}
 
 {% macro search(data) %}
   <div class="c-search{%- if data.variant %} c-search--{{ data.variant }}{% endif -%}" js-hook-search>
-    <form class="search__form t-white" action="search-results.html" method="get" js-hook-search-form>
+    <form class="search__form" action="search-results.html" method="get" js-hook-search-form>
 
       <button type="submit" class="search__icon-submit">
         {% svg 'icons/search' %}
@@ -30,13 +31,26 @@
       {% endif %}
 
       {% if data.variant !== "in-flyout" %}
-        {{ button({
-          element: 'button',
-          class: 'search__cta-submit',
-          label: global.resource.common.search,
-          icon: 'arrow-top-right',
-          type: "submit"
-        }) }}
+      <div class="search__buttons-container">
+
+        {% if data.variant == 'job' %}
+        {% for selectData in data.searchOptions %}
+          {{ form.select(selectData | clone | merge({
+            sronly: true,
+            class: "search__select"
+          }))}}
+        {% endfor %}
+        {% endif %}
+
+
+          {{ button({
+            element: 'button',
+            class: 'search__cta-submit',
+            label: global.resource.common.search,
+            icon: 'arrow-top-right',
+            type: "submit"
+          }) }}
+      </div>
       {% endif %}
     </form>
   </div>

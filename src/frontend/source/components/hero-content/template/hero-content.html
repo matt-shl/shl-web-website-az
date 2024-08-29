@@ -51,21 +51,16 @@
         </div>
       {% endif %}
 
-      {% if data.searchType %}
+      {% if data.search.searchType %}
         <div class="hero-content__col-search">
-          {% if data.searchType === 'generic' %}
-            {{ search({
-              variant: "in-hero",
+            {{ search(data.search | clone | merge({
+              variant: 'in-hero' if data.search.searchType == 'generic' else 'job',
               value: data.searchTerm
-            }) }}
-          {% else %}
-            <!-- TODO: job search -->
-          {% endif %}
+            })) }}
         </div>
       {% endif %}
 
     </div>
-
   </section>
 
 {% endmacro %}
