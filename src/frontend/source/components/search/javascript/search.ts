@@ -1,5 +1,4 @@
 import Events from "@utilities/events";
-import { KeyboardEvents } from "swiper/types";
 
 const JS_HOOK_FORM = '[js-hook-search-form]'
 const JS_HOOK_INPUT = '[js-hook-search-input]'

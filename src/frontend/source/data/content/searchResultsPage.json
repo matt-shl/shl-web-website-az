@@ -1,0 +1,16 @@
+{
+  "footerScrollingText": "Caring. Inclusive. Driven.",
+  "hero": {
+    "title": "Search",
+    "breadcrumbs": [
+      {
+        "url": "/home.html",
+        "label": "Home"
+      },
+      {
+        "url": "/search-results.html",
+        "label": "Search"
+      }
+    ]
+  }
+}
