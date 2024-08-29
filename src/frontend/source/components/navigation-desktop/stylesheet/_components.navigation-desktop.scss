@@ -1,7 +1,11 @@
 .navigation-desktop__list {
   @include list--reset;
   display: flex;
-  gap: $spacing-12;
+  align-items: center;
+
+  @include screen-custom-and-bigger($header-desktop-custom-breakpoint) {
+    gap: $spacing-12;
+  }
 
   @include screen-xl-and-bigger {
     gap: $spacing-16;
@@ -17,8 +21,13 @@
 .navigation-desktop__item {
   color: currentcolor;
   display: inline-block;
-  padding: $spacing-8 $spacing-16;
+  padding: $spacing-16 $spacing-10;
   position: relative;
+  text-align: center;
+
+  @include screen-custom-and-bigger($header-desktop-custom-breakpoint) {
+    padding-inline: $spacing-16;
+  }
 
   // Created bigger hover area when flyout is showing
   &::after {
