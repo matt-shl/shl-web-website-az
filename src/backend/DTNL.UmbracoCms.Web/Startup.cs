@@ -183,6 +183,7 @@ public static class Startup
                 builder.AddFormAction().Self();
                 builder.AddFrameAncestors().Self();
                 builder.AddScriptSrc()
+                    .From("https://*.shl-medical.com")
                     .From("https://go.shl-medical.com")
                     .UnsafeInline()
                     .UnsafeEval()

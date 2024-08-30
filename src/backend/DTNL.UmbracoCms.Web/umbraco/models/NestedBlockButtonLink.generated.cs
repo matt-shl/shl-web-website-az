@@ -18,7 +18,7 @@ using Umbraco.Extensions;
 
 namespace Umbraco.Cms.Web.Common.PublishedModels
 {
-	/// <summary>Button Link (Internal)</summary>
+	/// <summary>Button Link</summary>
 	[PublishedModel("nestedBlockButtonLink")]
 	public partial class NestedBlockButtonLink : PublishedElementModel
 	{

@@ -2,6 +2,7 @@ using DTNL.UmbracoCms.Web.Components.Hero;
 using DTNL.UmbracoCms.Web.Helpers;
 using DTNL.UmbracoCms.Web.Helpers.Aliases;
 using DTNL.UmbracoCms.Web.Helpers.Extensions;
+using Umbraco.Cms.Core.Models;
 using Umbraco.Cms.Web.Common.PublishedModels;
 
 namespace DTNL.UmbracoCms.Web.Components;
@@ -47,7 +48,7 @@ public class HeroPdp : IHero
                 b.Variant = primaryButtonLink?.Variant;
             }),
 
-            Image = Image.Create(productHero.Image, cssClasses: "hero-pdp__image", style: "heroPdp"),
+            Image = Image.Create(productHero.Image, imageCropMode: ImageCropMode.Max, cssClasses: "hero-pdp__image", style: "heroPdp"),
 
             SecondaryLinkButton = Button.Create(secondaryButtonLink?.Link).With(b =>
             {
