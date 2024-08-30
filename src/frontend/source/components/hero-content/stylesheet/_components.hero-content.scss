@@ -28,6 +28,10 @@
   }
 }
 
+.hero-content__col-search {
+  @include col-span(12);
+}
+
 .hero-content__subtitle {
   @include h5;
   margin-top: $spacing-24;
@@ -62,6 +66,10 @@
   @include screen-xl-and-bigger {
     grid-column: 8 / span 4;
   }
+}
+
+.hero-content__col-search {
+  @include col-span(12);
 }
 
 .hero-content__ctas {

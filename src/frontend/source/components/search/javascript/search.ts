@@ -1,5 +1,4 @@
-import Events from "@utilities/events";
-import { KeyboardEvents } from "swiper/types";
+import Events from '@utilities/events'
 
 const JS_HOOK_FORM = '[js-hook-search-form]'
 const JS_HOOK_INPUT = '[js-hook-search-input]'
@@ -9,9 +8,9 @@ const HIDDEN_CLASS = 'u-hidden'
 
 class Search {
   element: HTMLElement
-  private form: HTMLFormElement | null;
-  private input: HTMLInputElement | null;
-  private inputReset: HTMLButtonElement | null;
+  private form: HTMLFormElement | null
+  private input: HTMLInputElement | null
+  private inputReset: HTMLButtonElement | null
 
   constructor(element: HTMLElement) {
     this.element = element
@@ -23,20 +22,16 @@ class Search {
   }
 
   #bindEvents() {
-    this.input?.addEventListener('keydown', (event) => this.onTyping(event))
+    this.input?.addEventListener('keydown', () => this.onTyping())
 
-    this.inputReset?.addEventListener('click', (event) => this.resetInput(event))
+    this.inputReset?.addEventListener('click', event => this.resetInput(event))
 
     Events.$on('modal[navigation-mobile-search]::open', () => this.onOpenFlyout())
   }
 
-  onTyping(event: KeyboardEvent) {
+  onTyping() {
     const valueLength = this.input?.value?.length
     this.inputReset?.classList[valueLength ? 'remove' : 'add'](HIDDEN_CLASS)
-
-    if (event.key === 'Enter') {
-      this.form?.submit()
-    }
   }
 
   onOpenFlyout() {
