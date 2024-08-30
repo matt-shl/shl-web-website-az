@@ -7,14 +7,13 @@ public static class ThemeHelper
 {
     public static string GetCssClasses(IPublishedContent? page)
     {
-        if (page is ICompositionBasePage basePage)
+        if (page is IPageTheme pageTheme)
         {
-            string theme = basePage.PageTheme?.Label ?? "general";
+            string theme = pageTheme.PageTheme?.Label ?? "general";
 
             return $"t-{theme}";
         }
 
         return "t-general";
-
     }
 }
