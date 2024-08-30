@@ -6,8 +6,6 @@ public class Slogan
 {
     public required string Text { get; set; }
 
-    public bool AnimateOnScroll { get; set; }
-
     public string? CssClasses { get; set; }
 
     public static Slogan? Create(NestedBlockSlogan? slogan, string? cssClasses = null)
@@ -22,6 +20,6 @@ public class Slogan
             return null;
         }
 
-        return new Slogan { Text = slogan.Text, AnimateOnScroll = slogan.AnimateOnScroll, CssClasses = cssClasses };
+        return new Slogan { Text = slogan.Text, CssClasses = cssClasses };
     }
 }
