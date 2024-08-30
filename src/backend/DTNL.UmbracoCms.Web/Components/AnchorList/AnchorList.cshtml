@@ -8,20 +8,23 @@
       @Model.CssClasses"
          js-hook-anchor-list>
 
-    <div class="anchor-list__container">
-        <ul class="anchor-list__list" js-hook-anchor-list-list>
-            @foreach (Link link in Model.Links)
-            {
-                <li class="anchor-list__item">
-                    <a href="@link.Url" class="anchor-list__anchor" js-hook-anchor-list-anchor>
-                    <svg src="@SvgAliases.Icons.ArrowRight" />
+    @if (Model.ShowLinks)
+    {
+        <div class="anchor-list__container">
+            <ul class="anchor-list__list" js-hook-anchor-list-list>
+                @foreach (Link link in Model.Links)
+                {
+                    <li class="anchor-list__item">
+                        <a href="@link.Url" class="anchor-list__anchor" js-hook-anchor-list-anchor>
+                            <svg src="@SvgAliases.Icons.ArrowRight"/>
 
-                    @link.Label
-                    </a>
-                </li>
-            }
-        </ul>
+                            @link.Label
+                        </a>
+                    </li>
+                }
+            </ul>
 
-        <partial name="Button" model="@Model.LinkButton"/>
-    </div>
+            <partial name="Button" model="@Model.LinkButton"/>
+        </div>
+    }
 </section>

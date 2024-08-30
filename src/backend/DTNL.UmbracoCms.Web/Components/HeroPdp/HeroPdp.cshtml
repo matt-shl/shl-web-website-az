@@ -40,11 +40,9 @@
             </div>
             <div class="hero-pdp__shape-right"></div>
         </div>
-        @if (Model.NavigationLinks is not null)
-        {
-            <div class="hero-pdp__anchor-links-container">
-                <partial name="AnchorList" model="@Model.NavigationLinks" />
-            </div>
-        }
+
+        <div class="hero-pdp__anchor-links-container">
+            <partial name="AnchorList" model="@Model.AnchorLinks" />
+        </div>
     </div>
 </section>
