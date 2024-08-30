@@ -1,0 +1,28 @@
+@using DTNL.UmbracoCms.Web.Helpers.Aliases
+@using DTNL.UmbracoCms.Web.Models.Globalization
+
+@model DTNL.UmbracoCms.Web.Components.LanguageSelector
+
+<div class="c-language-selector @(Model.Mobile ? "c-language-selector--mobile" : null)">
+    <div class="language-selector__icon-container">
+        <svg src="@SvgAliases.Icons.Translate" />
+    </div>
+
+    @if (Model.Mobile)
+    {
+        <span class="language-selector__language-label">@Model.CurrentLanguageName</span>
+    }
+
+    <div class="language-selector__container">
+        <label for="language" class="u-sr-only" asp-translation="@TranslationAliases.Navigation.SelectLanguage"></label>
+
+        <select name="language" id="language" class="language-selector__select" js-hook-language-selector>
+            @foreach (AlternateUrl alternateUrl in Model.AlternateLanguageUrls)
+            {
+                <option selected="@(Model.CurrentLanguageName == alternateUrl.LanguageName)" value="@alternateUrl.Url">
+                    @alternateUrl.LanguageName
+                </option>
+            }
+        </select>
+    </div>
+</div>
