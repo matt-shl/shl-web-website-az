@@ -14,11 +14,15 @@ public class Carousel
 
     public double? SlidesMobile { get; set; }
 
+    public double? SlidesMobilePlus { get; set; }
+
     public double? SlidesTabletPortrait { get; set; }
 
     public double? SlidesTabletLandscape { get; set; }
 
     public double? SlidesDesktop { get; set; }
+
+    public double? SlidesLaptop { get; set; }
 
     public double? SpaceBetweenMobile { get; set; }
 
