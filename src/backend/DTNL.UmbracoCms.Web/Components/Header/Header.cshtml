@@ -1,25 +1,24 @@
-@using DTNL.UmbracoCms.Web.Components
-@using static DTNL.UmbracoCms.Web.Components.Navigation
+@using DTNL.UmbracoCms.Web.Helpers.Aliases
 
 @model DTNL.UmbracoCms.Web.Components.Header
 
 <header class="c-header" js-hook-header>
     <div class="header__container">
         <div class="header__content">
-            <a href="/" class="header__logo" title=@Model.HomeTitle>
-                <svg src="@(SvgAliases.Brand.LogoColor)" />
+            <a href="/" class="header__logo" title="@Model.HomeTitle">
+                <svg src="@SvgAliases.Brand.LogoColor" />
             </a>
 
             <button js-hook-header-hamburger
                     class="header__hamburger"
                     aria-controls="navigation-mobile"
                     aria-label=@Model.OpenMenuLabel>
-                <svg src="@(SvgAliases.Icons.Menu)" />
-                Menu
+                <svg src="@SvgAliases.Icons.Menu" />
+                @Model.MenuLabel
             </button>
 
             <div class="header__navigation">
-                <partial name="Navigation/NavigationDesktop" model="@(Navigation.Create(Model.Navigation))" />
+                <partial name="Navigation/NavigationDesktop" model="@Model.Navigation" />
             
             </div>
 
@@ -31,6 +30,6 @@
 </header>
 
 <div>
-    <partial name="Navigation/NavigationMobile" model="@(Navigation.Create(Model.Navigation))" />
+    <partial name="Navigation/NavigationMobile" model="@Model.Navigation" />
 </div>
 
