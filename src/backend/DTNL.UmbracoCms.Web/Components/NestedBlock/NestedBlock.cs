@@ -1,4 +1,3 @@
-using DTNL.UmbracoCms.Web.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using Umbraco.Cms.Core.Models.Blocks;
 using Umbraco.Cms.Core.Models.PublishedContent;
@@ -9,10 +8,6 @@ namespace DTNL.UmbracoCms.Web.Components.NestedBlock;
 public abstract class NestedBlock : ViewComponentExtended
 {
     public string? Id { get; set; }
-
-    public string ThemeCssClasses => ThemeHelper.GetCssClasses(NodeProvider.CurrentNode);
-
-    public string? NavigationTitle => NodeProvider.CurrentNode?.Name;
 
     protected virtual string ViewName => GetType().Name;
 
