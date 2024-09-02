@@ -18,6 +18,7 @@ Options:
     theme: "t-white"
   }) %}
     <div class="c-rich-text rich-text--is-closed
+      {%- if data.variant %} c-rich-text--{{ data.variant }}{% endif -%}
       {%- if data.size %} c-rich-text--size-{{ data.size }}{% endif %}
       {%- if data.classes %} {{ data.classes }}{% endif %}"
       {%-if data.readMoreDisabled %} read-more-disabled {% endif -%}
@@ -25,6 +26,7 @@ Options:
       js-hook-rich-text>
       <div class="rich-text__container" js-hook-rich-text-container>
         <div class="rich-text__content">
+          {% if data.title %}<h5>{{ data.title }}</h5>{% endif %}
           {{ data.content | safe }}
         </div>
         {% if data.cta1 or data.cta2 %}

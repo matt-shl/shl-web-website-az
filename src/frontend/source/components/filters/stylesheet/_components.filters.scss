@@ -13,7 +13,7 @@
   z-index: 9;
 
   &:first-child {
-    margin-top: $spacing-80;
+    margin-top: $spacing-24;
   }
 
   .is--filters-sticky & {
@@ -23,6 +23,10 @@
   @include screen-lg-and-bigger {
     top: 0;
     position: sticky;
+
+    &:first-child {
+      margin-top: $spacing-80;
+    }
 
     .header--is-going-up.is--filters-sticky & {
       transform: translateY(var(--header-height));
