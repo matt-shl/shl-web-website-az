@@ -6,7 +6,7 @@ using Umbraco.Cms.Core.Models.PublishedContent;
 
 namespace DTNL.UmbracoCms.Web.Components;
 
-public partial class Image
+public partial class Image : ICard
 {
     public string? Classes { get; set; }
 
@@ -47,7 +47,7 @@ public partial class Image
         ImageCropMode imageCropMode = ImageCropMode.Crop,
         int width = 0,
         int height = 0,
-        string cssClasses = "",
+        string? cssClasses = "",
         bool objectFit = true,
         IEnumerable<SrcSetEntry>? customSrcSet = null,
         string? style = null)
@@ -75,7 +75,7 @@ public partial class Image
         ImageCropMode imageCropMode = ImageCropMode.Crop,
         int width = 0,
         int height = 0,
-        string cssClasses = "",
+        string? cssClasses = "",
         bool objectFit = true,
         IEnumerable<SrcSetEntry>? customSrcSet = null,
         IEnumerable<ImageCrop>? localCrops = null,
@@ -94,7 +94,7 @@ public partial class Image
         ImageCropMode imageCropMode = ImageCropMode.Crop,
         int width = 0,
         int height = 0,
-        string cssClasses = "",
+        string? cssClasses = "",
         bool objectFit = true,
         IEnumerable<SrcSetEntry>? customSrcSet = null,
         IEnumerable<ImageCrop>? localCrops = null,
@@ -141,7 +141,7 @@ public partial class Image
         Umbraco.Cms.Web.Common.PublishedModels.UmbracoMediaVectorGraphics svg,
         int width = 0,
         int height = 0,
-        string cssClasses = "",
+        string? cssClasses = "",
         bool objectFit = true,
         IEnumerable<ImageCrop>? localCrops = null,
         string? style = null)

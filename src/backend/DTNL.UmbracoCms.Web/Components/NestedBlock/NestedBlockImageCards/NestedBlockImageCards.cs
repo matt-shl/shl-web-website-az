@@ -2,16 +2,16 @@ using Umbraco.Cms.Core.Models.PublishedContent;
 
 namespace DTNL.UmbracoCms.Web.Components.NestedBlock;
 
-public class NestedBlockProductCards : NestedBlockWithInner
+public class NestedBlockImageCards : NestedBlockWithInner
 {
-    protected override CardCarousel? GetInnerComponent(IPublishedElement block)
+    protected override ImageCarousel? GetInnerComponent(IPublishedElement block)
     {
-        if (block is not Umbraco.Cms.Web.Common.PublishedModels.NestedBlockProductCards cardsBlock)
+        if (block is not Umbraco.Cms.Web.Common.PublishedModels.NestedBlockImageCards cardsBlock)
         {
             return null;
         }
 
-        if (CardCarousel.Create(cardsBlock) is not { } cardCarousel)
+        if (ImageCarousel.Create(cardsBlock) is not { } cardCarousel)
         {
             return null;
         }
