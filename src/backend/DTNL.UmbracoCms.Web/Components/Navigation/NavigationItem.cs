@@ -25,14 +25,14 @@ public class NavigationItem
             NestedBlockNavigationLink navigationLink => new()
             {
                 Id = navigationLink.Key.ToString(),
-                Link = Link.Create(navigationLink.Link!),
+                Link = Link.Create(navigationLink.Link)!,
                 Title = navigationLink.Link!.Name!,
                 SubItems = [],
             },
             NestedBlockNavigationMenuItem navigationMenuItem => new()
             {
                 Id = navigationMenuItem.Key.ToString(),
-                Link = Link.Create(navigationMenuItem.Link!),
+                Link = Link.Create(navigationMenuItem.Link)!,
                 Title = navigationMenuItem.Title!,
                 Text = navigationMenuItem.Text,
                 SubItems = navigationMenuItem.SubItems
