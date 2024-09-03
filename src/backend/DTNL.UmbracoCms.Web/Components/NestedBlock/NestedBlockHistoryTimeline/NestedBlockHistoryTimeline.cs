@@ -17,6 +17,7 @@ public class NestedBlockHistoryTimeline : NestedBlockWithInner
         }
 
         LayoutSection.CssClasses = "c-history-timeline";
+        LayoutSection.JsHook = "history-timeline";
 
         return historyTimeline;
     }
