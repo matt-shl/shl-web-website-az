@@ -1,9 +1,9 @@
 @using DTNL.UmbracoCms.Web.Helpers.Extensions
 @model DTNL.UmbracoCms.Web.Components.LayoutSection
 
-<section class="c-layout-section @(!string.IsNullOrEmpty(Model.Variant) ? "c-layout-section--" + Model.Variant : "") @Model.CssClasses @Model.CssThemeClasses"
-         data-title="@Model.NavigationTitle"
-         id="@Model.Id"
+<section class="c-layout-section @(!string.IsNullOrEmpty(Model.Variant) ? "c-layout-section--" + Model.Variant : null) @Model.CssClasses @Model.CssThemeClasses"
+         @(!string.IsNullOrEmpty(Model.NavigationTitle) ? $"data-title=\"{Model.NavigationTitle}\"" : null)
+@(!string.IsNullOrEmpty(Model.Id) ? $"id=\"{Model.Id}\"" : null)
          @(string.IsNullOrEmpty(Model.JsHook) ? "" : "js-hook-" + Model.JsHook)
          js-hook-section
          js-hook-inview
