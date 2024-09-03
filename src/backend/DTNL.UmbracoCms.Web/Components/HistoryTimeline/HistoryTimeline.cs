@@ -11,6 +11,8 @@ public partial class HistoryTimeline
 
     public required Odometer Odometer { get; set; }
 
+    public string? RestartLinkLabel { get; set; }
+
     public static HistoryTimeline? Create(NestedBlockHistoryTimeline historyTimeline)
     {
         List<HistoryTimelineItem> historyTimelineItems = historyTimeline.Items
@@ -30,6 +32,7 @@ public partial class HistoryTimeline
             Odometer = Odometer
                 .Create(historyTimelineItems.First().Year)
                 .With(o => o.Id = "history-timeline"),
+            RestartLinkLabel = historyTimeline.RestartLinkLabel,
         };
     }
 }

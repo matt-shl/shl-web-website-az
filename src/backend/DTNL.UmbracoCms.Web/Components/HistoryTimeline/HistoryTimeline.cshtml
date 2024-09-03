@@ -42,11 +42,12 @@
                     </div>
                 }
 
-                @if (index == Model.Items.Count - 1)
+                @if (index == Model.Items.Count - 1 &&
+                     !Model.RestartLinkLabel.IsNullOrWhiteSpace())
                 {
                     <div class="swiper-slide">
                         <div class="history-timeline__restart-timeline-button-container">
-                            <partial name="Button" model="@(new Button { Label = "TODO", Variant = "link-underlined", Hook = "history-timeline-restart-timeline-button" })" />
+                            <partial name="Button" model="@(new Button { Label = Model.RestartLinkLabel, Variant = "link-underlined", Hook = "history-timeline-restart-timeline-button" })" />
                         </div>
                     </div>
                 }
