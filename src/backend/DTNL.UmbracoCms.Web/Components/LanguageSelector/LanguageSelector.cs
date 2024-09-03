@@ -25,7 +25,7 @@ public class LanguageSelector : ViewComponentExtended
         Mobile = mobile;
 
         if (NodeProvider.CurrentNode is not ICompositionBasePage page ||
-            _globalizationService.GetAlternateUrls(page) is not { Count: > 1 } alternateUrls)
+            _globalizationService.GetAlternateUrls(page, filterNonCrawlable: false) is not { Count: > 1 } alternateUrls)
         {
             return Content("");
         }
