@@ -27,7 +27,7 @@ public class HomepageHero : IHero
 
         return new HomepageHero
         {
-            Title = homepageHero.HeroTitle,
+            Title = homepageHero.Title,
 
             Image = Image.Create(homepageHero.Image, cssClasses: "homepage-hero__image"),
 
@@ -47,7 +47,7 @@ public class HomepageHero : IHero
                     b.Hook = "homepage-hero-button";
                 }),
 
-            ShortDescription = homepageHero.ShortDescription?.ToHtmlString(),
+            ShortDescription = homepageHero.Text?.ToHtmlString(),
 
             VideoUrl = Video.Create((NestedBlockVideoNativeUrl?) homepageHero.Video?.FirstOrDefault()?.Content, css: "c-video--background")
             .With(v =>
