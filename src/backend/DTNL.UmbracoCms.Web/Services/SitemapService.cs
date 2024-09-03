@@ -156,7 +156,7 @@ public class SitemapService : ISitemapService
                     ChangeFrequency = GetChangeFrequency(n),
                     Priority = GetPriority(n),
                     Translations = _globalizationService.GetAlternateUrls(n) is { Count: > 1 } alternateUrls // Has other cultures
-                        ? alternateUrls.ConvertAll(u => new SitemapPageTranslation(u.Url, u.Lang))
+                        ? alternateUrls.ConvertAll(u => new SitemapPageTranslation(u.Url, u.LanguageCode))
                         : [],
                 })
                 .ToList()
