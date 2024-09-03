@@ -1,0 +1,48 @@
+{
+  "aspect": [
+    3,
+    4
+  ],
+  "breakpoints": {
+    "mobile-history-timeline": [
+      150,
+      200
+    ],
+    "mobilePlus-history-timeline": [
+      150,
+      200
+    ],
+    "tabletPortrait-history-timeline": [
+      150,
+      200
+    ],
+    "tabletLandscape-history-timeline": [
+      150,
+      200
+    ],
+    "laptop-history-timeline": [
+      150,
+      200
+    ],
+    "mobile-history-timeline-mini": [
+      150,
+      200
+    ],
+    "mobilePlus-history-timeline-mini": [
+      150,
+      200
+    ],
+    "tabletPortrait-history-timeline-mini": [
+      150,
+      200
+    ],
+    "tabletLandscape-history-timeline-mini": [
+      150,
+      200
+    ],
+    "laptop-history-timeline-mini": [
+      150,
+      200
+    ]
+  }
+}

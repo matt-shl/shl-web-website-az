@@ -22,10 +22,10 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 	/// <summary>Composition Header</summary>
 	public partial interface ICompositionHeader : IPublishedElement
 	{
-		/// <summary>Main</summary>
+		/// <summary>Main Navigation Items</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		global::Umbraco.Cms.Core.Models.Blocks.BlockListItem<global::Umbraco.Cms.Web.Common.PublishedModels.NestedBlockNavigation> MainHeader { get; }
+		global::Umbraco.Cms.Core.Models.Blocks.BlockListModel MainNavigationItems { get; }
 	}
 
 	/// <summary>Composition Header</summary>
@@ -60,16 +60,16 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		// properties
 
 		///<summary>
-		/// Main
+		/// Main Navigation Items
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("mainHeader")]
-		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListItem<global::Umbraco.Cms.Web.Common.PublishedModels.NestedBlockNavigation> MainHeader => GetMainHeader(this, _publishedValueFallback);
+		[ImplementPropertyType("mainNavigationItems")]
+		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel MainNavigationItems => GetMainNavigationItems(this, _publishedValueFallback);
 
-		/// <summary>Static getter for Main</summary>
+		/// <summary>Static getter for Main Navigation Items</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		public static global::Umbraco.Cms.Core.Models.Blocks.BlockListItem<global::Umbraco.Cms.Web.Common.PublishedModels.NestedBlockNavigation> GetMainHeader(ICompositionHeader that, IPublishedValueFallback publishedValueFallback) => that.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockListItem<global::Umbraco.Cms.Web.Common.PublishedModels.NestedBlockNavigation>>(publishedValueFallback, "mainHeader");
+		public static global::Umbraco.Cms.Core.Models.Blocks.BlockListModel GetMainNavigationItems(ICompositionHeader that, IPublishedValueFallback publishedValueFallback) => that.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockListModel>(publishedValueFallback, "mainNavigationItems");
 	}
 }
