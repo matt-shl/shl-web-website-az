@@ -11,9 +11,9 @@
 
     <div class="history-timeline__main-content">
         <div class="history-timeline__pagination-container">
-            <partial name="Button" model="@(new Button { Label = CultureDictionary.GetTranslation(TranslationAliases.Common.Pagination.Previous), LabelSrOnly = true, Size = "small", Variant = "secondary", Icon = SvgAliases.Icons.ArrowLeft, Element = "button", Class = "history-timeline__pagination-button", Hook = "history-timeline-pagination-prev-button"})" />
+            <partial name="Button" model="@(new Button { Label = CultureDictionary.GetTranslation(TranslationAliases.Common.Pagination.Previous), LabelSrOnly = true, Size = "small", Variant = "secondary", Icon = SvgAliases.Icons.ArrowLeft, Element = "button", Hook = "history-timeline-pagination-prev-button", Attributes = { ["disabled"] = "disabled" }})" />
 
-            <partial name="Button" model="@(new Button { Label = CultureDictionary.GetTranslation(TranslationAliases.Common.Pagination.Next), LabelSrOnly = true, Size = "small", Variant = "secondary", Icon = SvgAliases.Icons.ArrowRight, Element = "button", Class = "history-timeline__pagination-button", Hook = "history-timeline-pagination-next-button"})" />
+            <partial name="Button" model="@(new Button { Label = CultureDictionary.GetTranslation(TranslationAliases.Common.Pagination.Next), LabelSrOnly = true, Size = "small", Variant = "secondary", Icon = SvgAliases.Icons.ArrowRight, Element = "button", Hook = "history-timeline-pagination-next-button" })" />
         </div>
 
         <div class="history-timeline__odometer-container">
@@ -25,7 +25,7 @@
             {
                 <div class="history-timeline__title-description-instance @(index == 0 ? "is--active" : null)" data-year="@item.Year" js-hook-history-timeline-text-container>
                     <h3 class="history-timeline__title" asp-if="@item.Title">@item.Title</h3>
-                    <div class="history-timeline__description" asp-if="@item.Text">@item.Text</div>
+                    <div class="history-timeline__description" asp-if="@item.Text">@Html.Raw(item.Text)</div>
                 </div>
             }
         </div>

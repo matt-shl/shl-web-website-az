@@ -1,7 +1,7 @@
 @model DTNL.UmbracoCms.Web.Components.Odometer
 
 <div class="c-odometer" id="@Model.Id" js-hook-odometer>
-    @foreach (int digit in Model.Digits)
+    @foreach (char digit in Model.Digits)
     {
         <div class="odometer__digit-container" js-hook-odometer-digit-container>
             <div class="odometer__digit" data-number="@digit" data-dur="@Model.Direction">
