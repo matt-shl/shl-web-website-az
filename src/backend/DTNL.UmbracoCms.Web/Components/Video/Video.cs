@@ -105,7 +105,7 @@ public class Video
             Description = block.Description,
             Classes = css,
             Sources = sources,
-            Thumbnail = Image.Create(block.Preview, 720, 400, "video__image"),
+            Thumbnail = Image.Create(block.Preview, width: 720, height: 400, cssClasses: "video__image"),
         };
     }
 

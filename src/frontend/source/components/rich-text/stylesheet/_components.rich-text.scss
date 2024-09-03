@@ -8,6 +8,14 @@
   @include grid;
   grid-row-gap: 0;
 
+  &--no-results {
+    margin-bottom: $spacing-40;
+
+    @include screen-lg-and-bigger {
+      margin-bottom: $spacing-80;
+    }
+  }
+
   &--size-extra-large {
     @include body-xl;
   }

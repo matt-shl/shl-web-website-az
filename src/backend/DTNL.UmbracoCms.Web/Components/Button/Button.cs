@@ -2,6 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using DTNL.UmbracoCms.Web.Helpers.Aliases;
 using DTNL.UmbracoCms.Web.Helpers.Extensions;
 using Umbraco.Cms.Core.Dictionary;
+using Umbraco.Cms.Web.Common.PublishedModels;
 
 namespace DTNL.UmbracoCms.Web.Components;
 
@@ -58,6 +59,19 @@ public class Button
             Label = link.Name ?? "",
             Target = link.Target,
         };
+    }
+
+    [return: NotNullIfNotNull(nameof(buttonLink))]
+    public static Button? Create(
+        NestedBlockButtonLink? buttonLink,
+        string? fallBackIcon = null)
+    {
+        return Create(buttonLink?.Link)
+            .With(b =>
+            {
+                b.Icon = buttonLink?.ButtonIcon?.LocalCrops.Src ?? fallBackIcon ?? SvgAliases.Icons.ArrowTopRight;
+                b.Variant = buttonLink?.Variant ?? "primary";
+            });
     }
 
     public static Button? CreateForEmail(string? email, string contactName, ICultureDictionary cultureDictionary)

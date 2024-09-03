@@ -15,6 +15,7 @@
   @include theme-card;
   @include card-container-base;
   padding: 0;
+  overflow: hidden;
 
   @include screen-md-and-bigger {
     padding: 0;

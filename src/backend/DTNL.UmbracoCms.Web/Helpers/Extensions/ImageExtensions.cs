@@ -15,11 +15,12 @@ public static class ImageExtensions
         int? width = null,
         int? height = null,
         int quality = 80,
-        UrlMode urlMode = UrlMode.Default)
+        UrlMode urlMode = UrlMode.Default,
+        ImageCropMode imageCropMode = ImageCropMode.Crop)
     {
         Image.ImageCropDimensions dimensions = GetImageCropDimensions(image, width, height);
 
-        return image.GetCropUrl(dimensions.Width, dimensions.Height, quality: quality, imageCropMode: ImageCropMode.Crop, urlMode: urlMode);
+        return image.GetCropUrl(dimensions.Width, dimensions.Height, quality: quality, imageCropMode: imageCropMode, urlMode: urlMode);
     }
 
     /// <summary>

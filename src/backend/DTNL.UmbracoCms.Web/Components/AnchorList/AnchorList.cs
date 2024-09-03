@@ -1,12 +1,12 @@
-using DTNL.UmbracoCms.Web.Helpers.Aliases;
 using DTNL.UmbracoCms.Web.Helpers.Extensions;
-using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Web.Common.PublishedModels;
 
 namespace DTNL.UmbracoCms.Web.Components;
 
 public class AnchorList
 {
+    public bool ShowLinks { get; set; }
+
     public string? Alignment { get; set; }
 
     public string? CssClasses { get; set; }
@@ -17,46 +17,31 @@ public class AnchorList
 
     public Button? LinkButton { get; set; }
 
-    public static AnchorList? Create(IPublishedContent? content = null, bool isComponent = false)
+    public static AnchorList Create(PageProduct productPage)
     {
-        ICompositionContentBlocks? block = (ICompositionContentBlocks?) content;
+        NestedBlockProductHero? hero = productPage.Hero
+            .GetSingleContentOrNull<NestedBlockProductHero>();
 
-        NestedBlockProductHero? hero = null;
-        if (content is PageProduct pageProduct)
+        return new AnchorList
         {
-            hero = pageProduct.Hero?.FirstOrDefault()?.Content as NestedBlockProductHero;
-        }
+            ShowLinks = hero is not null,
+            LinkButton = Button
+                .Create(hero?.PrimaryLink.GetSingleContentOrNull<NestedBlockButtonLink>())
+                .With(b => b.Class = "anchor-list__cta"),
+            IsComponent = true,
+            Links = [],
+        };
+    }
 
-        List<Link>? links = block?.ContentBlocks
-                       ?.Select(b => b.Content as ICompositionAnchors)
-                       .Select(b => new Link { Label = b?.AnchorTitle, Url = $"#{b?.AnchorId}" })
-                       .ToList();
-
-        var anchorButtonlilnk = hero?.PrimaryLink?.FirstOrDefault()?.Content as NestedBlockButtonLink;
-
-        if (isComponent)
+    public static AnchorList Create(NestedBlockProductHero productHero)
+    {
+        return new AnchorList
         {
-
-            return new AnchorList
-            {
-                LinkButton = Button.Create(anchorButtonlilnk?.Link)?.With(b =>
-                {
-                    b.Class = "anchor-list__cta";
-                    b.Icon = SvgAliases.Icons.ArrowTopRight;
-                    b.Variant = "primary";
-                }),
-                Alignment = "horizontal",
-                IsComponent = isComponent,
-                Links = links ?? [],
-            };
-        }
-        else
-        {
-            return new AnchorList
-            {
-                IsComponent = isComponent,
-                Links = links ?? [],
-            };
-        }
+            ShowLinks = !productHero.HideAnchorLinks,
+            Alignment = "vertical",
+            CssClasses = "hero-pdp__anchor-links",
+            IsComponent = false,
+            Links = [],
+        };
     }
 }
