@@ -45,7 +45,7 @@ public class GlobalizationService : IGlobalizationService
             .Where(c => IsPublishedAndRoutable(node, c.Key))
             .Select(cultureAndInfo => new AlternateUrl
             {
-                LanguageName = new CultureInfo(cultureAndInfo.Value.Culture).NativeName,
+                LanguageName = new CultureInfo(cultureAndInfo.Value.Culture.Split("-").First()).NativeName,
                 LanguageCode = cultureAndInfo.Key,
                 Url = node.Url(cultureAndInfo.Key, UrlMode.Absolute),
                 IsDefault = defaultCulture is not null && cultureAndInfo.Key.Equals(defaultCulture, StringComparison.OrdinalIgnoreCase),
