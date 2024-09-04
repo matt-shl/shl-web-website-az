@@ -5,7 +5,7 @@
          @(Model.Open ? "open" : null)
          js-hook-accordion-detail>
     <summary class="accordion__item-summary" js-hook-accordion-summary>
-        @Model.Title
+        @Html.Raw(Model.Title)
         
         <span class="accordion__item-icon">
         </span>
