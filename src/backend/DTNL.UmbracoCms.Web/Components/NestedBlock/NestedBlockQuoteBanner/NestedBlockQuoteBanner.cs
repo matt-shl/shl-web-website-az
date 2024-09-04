@@ -1,6 +1,6 @@
 using Umbraco.Cms.Core.Models.PublishedContent;
 
-namespace DTNL.UmbracoCms.Web.Components.NestedBlock.NestedBlockQuoteBanner;
+namespace DTNL.UmbracoCms.Web.Components.NestedBlock;
 
 public class NestedBlockQuoteBanner : NestedBlockWithInner
 {
