@@ -25,7 +25,14 @@ public abstract class NestedBlockWithInner : NestedBlock
     {
         InnerComponent = await GetInnerComponentAsync(block);
 
-        return InnerComponent is null ? null : this;
+        if (InnerComponent is not null)
+        {
+            SetLayoutSectionTheme(block);
+
+            return this;
+        }
+
+        return null;
     }
 
     protected virtual object? GetInnerComponent(IPublishedElement block)
@@ -48,5 +55,12 @@ public abstract class NestedBlockWithInner : NestedBlock
         LayoutSection.Variant = theme != null ? "in-grid" : "";
         LayoutSection.Id = cardCarousel.AnchorId;
         LayoutSection.NavigationTitle = cardCarousel.AnchorTitle;
+    }
+
+    protected void SetLayoutSectionTheme(IPublishedElement block, string fallBackTheme = "t-white")
+    {
+        //LayoutSection.CssThemeClasses = ThemeHelper.GetCssClasses()
+        //LayoutSection.Id = cardCarousel.AnchorId;
+        //LayoutSection.NavigationTitle = cardCarousel.AnchorTitle;
     }
 }
