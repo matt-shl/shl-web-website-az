@@ -5,46 +5,34 @@ namespace DTNL.UmbracoCms.Web.Components;
 
 public class BannerQuote
 {
-    public string? AnchorId { get; set; }
+    public required List<Quote> Quotes { get; set; }
 
-    public string? AnchorTitle { get; set; }
-
-    public string? Theme { get; set; }
-
-    public required List<Quote> Quotes { get; set; } = new List<Quote>();
-
-    public static BannerQuote? Create(NestedBlockQuoteBanner? quoteBanner)
+    public static BannerQuote? Create(NestedBlockQuotesBanner? quotesBanner)
     {
-        if (quoteBanner is null)
-        {
-            return null;
-        }
+        List<Quote> quotes = (quotesBanner?.Quotes)
+            .Using(qb => qb.Content as NestedBlockQuote)
+            .Using(q => new Quote
+            {
+                QuoteText = q.QuoteText!,
+                Name = q.NameAuthor!,
+                Company = q.Company,
+                Role = q.Role,
+                Image = Image.Create(q.Image)
+                    .With(i =>
+                    {
+                        i.ImageStyle = "in-grid-banner-image";
+                    }),
+            })
+            .ToList();
 
-        if (!(quoteBanner.Quotes?.Count > 0))
+        if (quotes.Count == 0)
         {
             return null;
         }
 
         return new BannerQuote
         {
-            AnchorId = quoteBanner.AnchorId,
-            AnchorTitle = quoteBanner.AnchorTitle,
-            Quotes = quoteBanner.Quotes?.Count > 0 ? quoteBanner.Quotes
-            .Select(qb => qb.Content)
-            .OfType<NestedBlockQuote>()
-            .WhereNotNull()
-            .Select(q => new Quote
-            {
-                Quotetext = q.QuoteText ?? "",
-                Name = q.NameAuthor ?? "",
-                Company = q.Company,
-                Role = q.Role,
-                Image = Image.Create(q.Image).With(i =>
-                {
-                    i.ImageStyle = "in-grid-banner-image";
-                    i.ObjectFit = true;
-                }),
-            }).ToList() : [],
+            Quotes = quotes,
         };
     }
 }

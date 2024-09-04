@@ -13,6 +13,6 @@ public static class ThemeHelper
 
     public static string GetCssClasses(ColorPickerValueConverter.PickedColor? theme, string fallBackTheme)
     {
-        return $"t-{theme?.Label ?? fallBackTheme}";
+        return (theme?.Label ?? fallBackTheme).EnsureStartsWith("t-");
     }
 }

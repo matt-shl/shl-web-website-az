@@ -1,7 +1,10 @@
 @using DTNL.UmbracoCms.Web.Components
-@using Image=DTNL.UmbracoCms.Web.Components.Image;
+@using DTNL.UmbracoCms.Web.Helpers.Aliases
+@using DTNL.UmbracoCms.Web.Helpers.Extensions
+@using Umbraco.Cms.Core.Dictionary
 
 @model DTNL.UmbracoCms.Web.Components.BannerQuote
+
 @inject ICultureDictionary CultureDictionary
 
 <div class="c-banner-quote" js-hook-banner-quote>
@@ -10,14 +13,14 @@
             <div class="banner-quote__col banner-quote__col--text" aria-live="polite">
                 @for (var i = 0; i < @Model.Quotes.Count; i++)
                 {
-                    var quoteData = Model.Quotes[i] as Components.Quote;
+                    Quote quote = Model.Quotes[i];
                     <div class="banner-quote__text-container @(i == 0 ? "is--active" : "")" js-hook-banner-quote-text-container>
-                        <blockquote class="banner-quote__title" tabIndex="0">@quoteData.Quotetext</blockquote>
+                        <blockquote class="banner-quote__title" tabIndex="0">@quote.QuoteText</blockquote>
                         <div class="banner-quote__content">
-                            <span class="banner-quote__author">@quoteData.Name</span>
-                            @if (!quoteData.Role.IsNullOrEmpty())
+                            <span class="banner-quote__author">@quote.Name</span>
+                            @if (!quote.Role.IsNullOrEmpty())
                             {
-                                <span class="banner-quote__role">@quoteData.Role@(quoteData.Company.IsNullOrEmpty() ? "" : ",") @quoteData.Company </span>
+                                <span class="banner-quote__role">@quote.Role@(quote.Company.IsNullOrEmpty() ? "" : ",") @quote.Company </span>
                             }
                         </div>
                     </div>
@@ -50,13 +53,10 @@
                 </div>
             </div>
             <div class="banner-quote__col banner-quote__col--media">
-                @if (Model.Quotes.Count == 1 && Model.Quotes[0].Image != null)
+                @if (Model.Quotes is [{ Image: not null }])
                 {
                     <div class="banner-quote__image">
-                        <partial name="Image" model="@(Model.Quotes[0].Image.With(i => {
-                            i.ImageStyle = "in-grid-banner-image";
-                            i.ObjectFit = true;
-                        }))" />
+                        <partial name="Image" model="@Model.Quotes[0].Image" />
                     </div>
                 }
                 else if (Model.Quotes.Count > 1)
@@ -64,9 +64,9 @@
                     <div class="banner-quote__image-carousel" js-hook-banner-quote-image-carousel>
                         @for (var i = 0; i < @Model.Quotes.Count; i++)
                         {
-                            var quoteData = Model.Quotes[i] as Components.Quote;
+                            Quote quoteData = Model.Quotes[i];
                             <div class="banner-quote__image-item @(i == 0 ? "is--active" : "")" js-hook-banner-quote-image data-index=@i>
-                                <partial name="Image" model="@(Model.Quotes[i].Image)" />
+                                <partial name="Image" model="@Model.Quotes[i].Image" />
                             </div>
                         }
                     </div>

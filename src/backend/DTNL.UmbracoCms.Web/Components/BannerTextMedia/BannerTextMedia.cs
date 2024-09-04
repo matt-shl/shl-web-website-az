@@ -1,8 +1,5 @@
 using DTNL.UmbracoCms.Web.Helpers.Extensions;
-using DTNL.UmbracoCms.Web.Components;
-using Umbraco.Cms.Core.Models;
 using Umbraco.Cms.Web.Common.PublishedModels;
-using Image = DTNL.UmbracoCms.Web.Components.Image;
 
 namespace DTNL.UmbracoCms.Web.Components;
 
@@ -12,10 +9,6 @@ public class BannerTextMedia
     {
         Start,
     }
-
-    public string? AnchorId { get; set; }
-
-    public string? AnchorTitle { get; set; }
 
     public required string Title { get; set; }
 
@@ -45,8 +38,6 @@ public class BannerTextMedia
 
         return new BannerTextMedia
         {
-            AnchorId = textMediaBanner.AnchorId,
-            AnchorTitle = textMediaBanner.AnchorTitle,
             Title = textMediaBanner.Title,
             Description = textMediaBanner.Description,
             MediaPosition = textMediaBanner.MediaPosition,
@@ -66,7 +57,7 @@ public class BannerTextMedia
             Video = Video.Create(videoContent)
             .With(v =>
             {
-                v.Id = videoContent?.Title?.Trim().ToLower().Replace(" ", "-");
+                v.Id = videoContent?.Title?.Trim().ToLowerInvariant().Replace(" ", "-");
                 v.Description = videoContent?.Description;
                 v.TotalTime = videoContent?.TotalTime;
             }),
@@ -78,8 +69,8 @@ public class BannerTextMedia
                 {
                     Video = new Video
                     {
-                        Id = videoContent?.Title?.Trim().ToLower().Replace(" ", "-"),
-                        InstanceId = videoContent?.Title?.Trim().ToLower().Replace(" ", "-") ?? "",
+                        Id = videoContent.Title?.Trim().ToLowerInvariant().Replace(" ", "-"),
+                        InstanceId = videoContent.Title?.Trim().ToLowerInvariant().Replace(" ", "-") ?? "",
                         Platform = "native",
                         TotalTime = videoContent?.TotalTime ?? "",
                     },
@@ -90,10 +81,10 @@ public class BannerTextMedia
                 i.ImageHolderAttributes = new Dictionary<string, string?>
                 {
                     ["aria-label"] = "Open video Modal",
-                    ["aria-controls"] = videoContent != null ? $"modal-video-{videoContent?.Title?.Trim().ToLower().Replace(" ", "-")}" : null,
+                    ["aria-controls"] = videoContent != null ? $"modal-video-{videoContent.Title?.Trim().ToLowerInvariant().Replace(" ", "-")}" : null,
                 };
                 i.ObjectFit = true;
-                i.Caption = videoContent is not null ? videoContent?.Description : imageContent?.Caption;
+                i.Caption = videoContent is not null ? videoContent.Description : imageContent?.Caption;
             }),
         };
     }
