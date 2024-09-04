@@ -102,7 +102,7 @@ public partial class Map
                         Phone = office.Phone,
                         Image = Image.Create(office.Image, cssClasses: "office-modal__image"),
                         Description = office.Description,
-                        LinkButton = Button.Create(office.LinkButton),
+                        LinkButton = Button.Create(office.LinkButton).With(b => b.Class = "office-modal__cta"),
                         TriggerX = office.TriggerX,
                         TriggerY = office.TriggerY,
                     };
