@@ -17,11 +17,7 @@ public class BannerQuote
                 Name = q.NameAuthor!,
                 Company = q.Company,
                 Role = q.Role,
-                Image = Image.Create(q.Image)
-                    .With(i =>
-                    {
-                        i.ImageStyle = "in-grid-banner-image";
-                    }),
+                Image = Image.Create(q.Image, style: "in-grid-banner-image"),
             })
             .ToList();
 

@@ -61,10 +61,9 @@ public class BannerTextMedia
                 v.Description = videoContent?.Description;
                 v.TotalTime = videoContent?.TotalTime;
             }),
-            ImageData = Image.Create(imageContent?.Image)
+            ImageData = Image.Create(imageContent?.Image, style: "in-grid-banner-image")
             .With(i =>
             {
-                i.ImageStyle = "in-grid-banner-image";
                 i.CardOverlay = videoContent != null ? new CardOverlay
                 {
                     Video = new Video

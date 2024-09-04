@@ -32,36 +32,37 @@ public class TextMediaList
 
     public static TextMediaList Create(NestedBlockTextMediaList textMediaListBlock)
     {
-        Video? video = Video.Create((VideoMedia?) textMediaListBlock.Video?.FirstOrDefault()?.Content)
-         .With(v =>
-         {
-             v.Id = (textMediaListBlock?.Video?.FirstOrDefault()?.Content as VideoMedia)?.Title?.Trim().ToLower().Replace(" ", "-");
-             v.Description = (textMediaListBlock?.Video?.FirstOrDefault()?.Content as VideoMedia)?.Description;
-             v.Autoplay = false;
-             v.Muted = true;
-             v.TotalTime = (textMediaListBlock?.Video?.FirstOrDefault()?.Content as VideoMedia)?.TotalTime;
-         });
+        VideoMedia? videoMedia = textMediaListBlock.Video.GetSingleContentOrNull<VideoMedia>();
+        Video? video = Video
+            .Create(videoMedia)
+            .With(v =>
+            {
+                v.Id = videoMedia!.Key.ToString();
+                v.Description = videoMedia.Description;
+                v.Autoplay = false;
+                v.Muted = true;
+                v.TotalTime = videoMedia.TotalTime;
+            });
 
-        NestedBlockImage? imageContent = (NestedBlockImage?) textMediaListBlock.Image?.FirstOrDefault()?.Content;
-        Image? image = Image.Create(imageContent?.Image)
-        .With(i =>
-        {
-            i.ImageStyle = "text-media-list";
-            i.Caption = imageContent?.Caption;
-            i.CardOverlay = video != null ? new CardOverlay
+        NestedBlockImage? imageContent = textMediaListBlock.Image.GetSingleContentOrNull<NestedBlockImage>();
+        Image? image = Image
+            .Create(imageContent?.Image, style: "text-media-list")
+            .With(i =>
             {
-                Video = video,
-                Position = "start",
-                Visible = true,
-            } : null;
-            i.ImageHolderButton = video != null;
-            i.ImageHolderAttributes = new Dictionary<string, string?>
-            {
-                ["aria-label"] = "Open video Modal",
-                ["aria-controls"] = video != null ? $"modal-video-{video.Id}" : null,
-            };
-            i.ObjectFit = true;
-        });
+                i.Caption = imageContent?.Caption;
+                i.CardOverlay = video != null ? new CardOverlay
+                {
+                    Video = video,
+                    Position = "start",
+                    Visible = true,
+                } : null;
+                i.ImageHolderButton = video != null;
+                i.ImageHolderAttributes = new Dictionary<string, string?>
+                {
+                    ["aria-label"] = "Open video Modal",
+                    ["aria-controls"] = video != null ? $"modal-video-{video.Id}" : null,
+                };
+            });
 
         LinkList? linkList = LinkList.Create(textMediaListBlock.Items.GetSingleContentOrNull<NestedBlockTextMediaListLinks>());
         List<(string Text, Accordion.Item AccordionItem)>? accordions = textMediaListBlock.Items.GetSingleContentOrNull<NestedBlockTextMediaListAccordions>()?.Accordions
@@ -92,7 +93,7 @@ public class TextMediaList
                     b.Variant = "secondary";
                     b.Icon = SvgAliases.Icons.ArrowTopRight;
                 }),
-            CtaSupportText = textMediaListBlock?.ButtonsSupportText,
+            CtaSupportText = textMediaListBlock.ButtonsSupportText,
         };
     }
 }
