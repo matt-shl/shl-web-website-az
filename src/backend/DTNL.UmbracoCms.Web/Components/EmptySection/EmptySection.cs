@@ -16,20 +16,23 @@ public class EmptySection
 
     public static EmptySection Create(ICompositionNoResults noResults)
     {
+        NestedBlockButtonLink? primaryLinkButtonContent = noResults.NoResultsPrimaryLink?.FirstOrDefault()?.Content as NestedBlockButtonLink;
+        NestedBlockButtonLink? secondaryLinkButtonContent = noResults.NoResultsSecondaryLink?.FirstOrDefault()?.Content as NestedBlockButtonLink;
+
         return new EmptySection
         {
             Title = noResults.NoResultsTitle!,
             Text = noResults.NoResultsText!.ToHtmlString()!,
-            PrimaryLinkButton = Button.Create(noResults.NoResultsPrimaryLink)
+            PrimaryLinkButton = Button.Create(primaryLinkButtonContent?.Link)
                 .With(b =>
                 {
-                    b.Variant = "primary";
+                    b.Variant = primaryLinkButtonContent?.Variant ?? "primary";
                     b.Icon = SvgAliases.Icons.ArrowTopRight;
                 }),
-            SecondaryLinkButton = Button.Create(noResults.NoResultsSecondaryLink)
+            SecondaryLinkButton = Button.Create(secondaryLinkButtonContent?.Link)
                 .With(b =>
                 {
-                    b.Variant = "secondary";
+                    b.Variant = secondaryLinkButtonContent?.Variant ?? "secondary";
                     b.Icon = SvgAliases.Icons.ArrowTopRight;
                 }),
         };

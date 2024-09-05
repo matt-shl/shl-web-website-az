@@ -23,6 +23,15 @@ public class OverviewProducts : ViewComponentExtended
 
     public Pagination? Pagination { get; set; }
 
+    public LayoutSection LayoutSection
+    { get; set; }
+    = new()
+    {
+        CssClasses = "t-white",
+        Variant = "grid",
+        Id = "content",
+    };
+
     public IViewComponentResult Invoke(PageProductOverview productOverviewPage)
     {
         HttpContext.VaryByPageNumber();
@@ -57,7 +66,8 @@ public class OverviewProducts : ViewComponentExtended
     {
         ProductFilters productFilters = new()
         {
-            CurrentUrl = Request.GetEncodedPathAndQuery(),
+            CurrentUrl = new Uri($"{Request.Scheme}://{Request.Host}{Request.Path}{Request.QueryString}").ToString(),
+            OverviewUrl = new Uri($"{Request.Scheme}://{Request.Host}{Request.Path}").ToString(),
         };
 
         foreach ((string name, Func<PageProduct, IEnumerable<string>?> getValues)

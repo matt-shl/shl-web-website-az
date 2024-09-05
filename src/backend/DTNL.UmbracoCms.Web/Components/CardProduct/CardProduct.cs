@@ -19,14 +19,15 @@ public class CardProduct : ICard
 
     public static CardProduct Create(PageProduct productPage, string? cssClasses = null)
     {
+        NestedBlockProductBanner? banner = (NestedBlockProductBanner?) productPage.Banner?.FirstOrDefault()?.Content;
         return new CardProduct
         {
             Title = productPage.GetTitle(),
             Specifications = ProductSpecification.Create(productPage).ToList(),
             Text = (productPage.CardDescription?.ToHtmlString())
-                .FallBack(productPage.ProductDescription?.ToHtmlString())
+                .FallBack(banner?.Text?.ToHtmlString())
                 .FallBack(productPage.GetDescription()),
-            Image = Image.Create(productPage.CardImage ?? productPage.ProductImage, cssClasses: "card-product__image"),
+            Image = Image.Create(productPage.CardImage ?? banner?.Image, cssClasses: "card-product__image"),
             Url = productPage.Url(),
             CssClasses = cssClasses,
         };

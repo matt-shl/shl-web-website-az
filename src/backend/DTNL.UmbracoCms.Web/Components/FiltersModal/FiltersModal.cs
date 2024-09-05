@@ -3,8 +3,11 @@ using DTNL.UmbracoCms.Web.Helpers.Extensions;
 using DTNL.UmbracoCms.Web.Models.Filters;
 using DTNL.UmbracoCms.Web.Models.Products;
 using Flurl;
+using Umbraco.Cms.Core.DeliveryApi;
 using Umbraco.Cms.Web.Common.PublishedModels;
 using static DTNL.UmbracoCms.Web.Components.FormElements.Checkbox;
+using static DTNL.UmbracoCms.Web.Components.FormElements.Radio;
+using FilterOption = DTNL.UmbracoCms.Web.Models.Filters.FilterOption;
 
 namespace DTNL.UmbracoCms.Web.Components;
 
@@ -13,6 +16,8 @@ public class FiltersModal
     public int ResultsCount { get; set; }
 
     public required string ResultsOverviewPageUrl { get; set; }
+
+    public required string OverviewPageUrl { get; set; }
 
     public required List<Filter> Filters { get; set; }
 
@@ -31,7 +36,8 @@ public class FiltersModal
         return new FiltersModal
         {
             ResultsCount = productPages.Count,
-            ResultsOverviewPageUrl = productFilters.CurrentUrl.SetQueryParams(null),
+            ResultsOverviewPageUrl = productFilters.CurrentUrl.SetQueryParam(null),
+            OverviewPageUrl = productFilters.OverviewUrl,
             Filters = filters,
         };
     }
@@ -58,15 +64,21 @@ public class FiltersModal
                     .SelectMany(p => getValues(p).OrEmptyIfNull())
                     .Distinct()
                     .Select(FilterOption.CreateForSearch)
-                    .Select(filterOption => new CheckboxOption(
+                    .Select(
+                        filterOption => new CheckboxOption(
                         filterOption.Id,
                         filterOption.Title,
-                        filterOption.Id,
+                        filterOption.Title,
+                        null,
+                        hook: "js-hook-filters-input",
                         attr: new Dictionary<string, string?>
                         {
                             ["data-url-replacement"] = productFilters
                                 .CurrentUrl
-                                .AppendQueryParam(name, filterOption.Id),
+                                .AppendQueryParam(name, filterOption.Title),
+                            ["data-endpoint"] = productFilters
+                                .CurrentUrl
+                                .AppendQueryParam(name, filterOption.Title),
                         },
                         selected: productFilters.IsSelected(name, filterOption)))
                     .ToList(),

@@ -13,9 +13,14 @@ public partial class DescriptionList
     public Button? DownloadLinkButton { get; set; }
 
     public static DescriptionList? Create(
-        NestedBlockProductSpecifications productSpecificationsBlock,
+        NestedBlockProductSpecifications? block,
         PageProduct? productPage = null)
     {
+        if (block is not NestedBlockProductSpecifications productSpecificationsBlock)
+        {
+            return null;
+        }
+
         List<DescriptionListItem> items =
             DescriptionListItem.CreateFor(productPage)
             .Concat(productSpecificationsBlock.Specifications

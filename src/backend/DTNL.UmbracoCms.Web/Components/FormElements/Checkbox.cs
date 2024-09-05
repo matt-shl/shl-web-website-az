@@ -1,3 +1,5 @@
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DTNL.UmbracoCms.Web.Components.FormElements;
@@ -97,5 +99,10 @@ public class Checkbox : ViewComponentExtended
         public string? Validate { get; set; }
 
         public bool Selected { get; set; }
+
+        internal IFormOption ToList()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

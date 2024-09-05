@@ -12,8 +12,13 @@ public class ProductDescription
 
     public string? Text { get; set; }
 
-    public static ProductDescription Create(NestedBlockProductBanner productBannerBlock)
+    public static ProductDescription? Create(NestedBlockProductBanner? block)
     {
+        if (block is not NestedBlockProductBanner productBannerBlock)
+        {
+            return null;
+        }
+
         return new ProductDescription
         {
             Title = productBannerBlock.Title,
