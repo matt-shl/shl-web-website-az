@@ -11,7 +11,7 @@ public class OverviewItems : ViewComponentExtended
 
     public required List<CardKnowledge> ResultCards { get; set; }
 
-    public IViewComponentResult Invoke(PageKnowledgeOverview overviewPage)
+    public IViewComponentResult Invoke(PageOverview overviewPage)
     {
         HttpContext.VaryByPageNumber();
 
