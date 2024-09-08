@@ -12,5 +12,9 @@
         "label": "Search"
       }
     ]
+  },
+  "empty": {
+    "title": "We didn’t find any results for ",
+    "content": "<ul><li>Have you checked the spelling of your keyword for typos?</li><li>Have you tried alternate, more general keywords?</li><li>Have you tried entering fewer keywords?</li></ul><p>Still no results? Please <a href='contact.html'><b>get in touch</b></a> — we'd love to help you further.</p>"
   }
 }

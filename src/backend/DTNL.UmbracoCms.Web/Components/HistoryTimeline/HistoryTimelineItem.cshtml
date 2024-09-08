@@ -1,0 +1,12 @@
+@model DTNL.UmbracoCms.Web.Components.HistoryTimeline.HistoryTimelineItem
+
+<div class="history-timeline__timeline-mini-item">
+    <div class="history-timeline__timeline-mini-item-image-container">
+        <partial name="Image" model="@Model.ThumbnailImage" />
+    </div>
+
+    <div class="history-timeline__timeline-mini-item-content">
+        <h6 class="history-timeline__timeline-mini-item-title">@Model.Year</h6>
+        <p class="history-timeline__timeline-mini-item-description" asp-if="@Model.ShortTitle">@Model.ShortTitle</p>
+    </div>
+</div>

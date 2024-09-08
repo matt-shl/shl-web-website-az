@@ -1,0 +1,44 @@
+{
+  "breakpoints": {
+    "mobile-image3-4": [
+      350,
+      467
+    ],
+    "mobilePlus-image3-4": [
+      375,
+      500
+    ],
+    "tabletPortrait-image3-4": [
+      375,
+      500
+    ],
+    "tabletLandscape-image3-4": [
+      400,
+      533
+    ],
+    "laptop-image3-4": [
+      435,
+      580
+    ],
+    "mobile-image4-3": [
+      467,
+      350
+    ],
+    "mobilePlus-image4-3": [
+      500,
+      375
+    ],
+    "tabletPortrait-image4-3": [
+      500,
+      375
+    ],
+    "tabletLandscape-image4-3": [
+      533,
+      400
+    ],
+    "laptop-image4-3": [
+      580,
+      435
+    ]
+  }
+}

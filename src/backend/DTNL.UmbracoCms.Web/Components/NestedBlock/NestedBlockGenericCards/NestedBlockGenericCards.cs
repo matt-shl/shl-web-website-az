@@ -1,6 +1,6 @@
 using Umbraco.Cms.Core.Models.PublishedContent;
 
-namespace DTNL.UmbracoCms.Web.Components.NestedBlock.NestedBlockGenericCards;
+namespace DTNL.UmbracoCms.Web.Components.NestedBlock;
 
 public class NestedBlockGenericCards : NestedBlockWithInner
 {

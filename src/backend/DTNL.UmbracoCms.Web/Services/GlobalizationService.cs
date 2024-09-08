@@ -1,3 +1,4 @@
+using System.Globalization;
 using DTNL.UmbracoCms.Web.Helpers;
 using DTNL.UmbracoCms.Web.Infrastructure.Configuration.Options;
 using DTNL.UmbracoCms.Web.Infrastructure.DependencyInjection;
@@ -39,14 +40,15 @@ public class GlobalizationService : IGlobalizationService
     public List<AlternateUrl> GetAlternateUrls(IPublishedContent node, bool filterNonCrawlable = true)
     {
         string? defaultCulture = _umbracoContextAccessor.GetRequiredUmbracoContext().Domains?.DefaultCulture;
-        List<string> cultures = node.Cultures.Keys.Where(c => IsPublishedAndRoutable(node, c)).ToList();
 
-        List<AlternateUrl> alternateUrls = cultures
-            .Select(c => new AlternateUrl
+        List<AlternateUrl> alternateUrls = node.Cultures
+            .Where(c => IsPublishedAndRoutable(node, c.Key))
+            .Select(cultureAndInfo => new AlternateUrl
             {
-                Lang = c,
-                Url = node.Url(c, UrlMode.Absolute),
-                IsDefault = defaultCulture is not null && c.Equals(defaultCulture, StringComparison.OrdinalIgnoreCase),
+                LanguageName = new CultureInfo(cultureAndInfo.Value.Culture.Split("-").First()).NativeName,
+                LanguageCode = cultureAndInfo.Key,
+                Url = node.Url(cultureAndInfo.Key, UrlMode.Absolute),
+                IsDefault = defaultCulture is not null && cultureAndInfo.Key.Equals(defaultCulture, StringComparison.OrdinalIgnoreCase),
             })
             .Where(u => !filterNonCrawlable || _applicationOptions.CurrentValue.IsCrawlableUrl(new Uri(u.Url)))
             .ToList();
