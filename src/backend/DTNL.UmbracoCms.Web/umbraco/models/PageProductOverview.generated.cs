@@ -20,7 +20,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 {
 	/// <summary>Page Product Overview</summary>
 	[PublishedModel("pageProductOverview")]
-	public partial class PageProductOverview : PublishedContentModel, ICompositionBasePage, ICompositionCardDetails, ICompositionContentBlocks, ICompositionHero, ICompositionNoResults, ICompositionSeo, ICompositionSocialSharing, ICompositionSocialSharingOptions
+	public partial class PageProductOverview : PublishedContentModel, ICompositionBasePage, ICompositionCardDetails, ICompositionColorOptions, ICompositionContentBlocks, ICompositionHero, ICompositionNoResults, ICompositionSeo, ICompositionSocialSharing, ICompositionSocialSharingOptions
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
@@ -48,14 +48,6 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		}
 
 		// properties
-
-		///<summary>
-		/// Page Theme
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("pageTheme")]
-		public virtual global::Umbraco.Cms.Core.PropertyEditors.ValueConverters.ColorPickerValueConverter.PickedColor PageTheme => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionBasePage.GetPageTheme(this, _publishedValueFallback);
 
 		///<summary>
 		/// Slogan
@@ -88,6 +80,14 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("category")]
 		public virtual global::System.Collections.Generic.IEnumerable<string> Category => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionCardDetails.GetCategory(this, _publishedValueFallback);
+
+		///<summary>
+		/// Page Theme
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("pageTheme")]
+		public virtual global::Umbraco.Cms.Core.PropertyEditors.ValueConverters.ColorPickerValueConverter.PickedColor PageTheme => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionColorOptions.GetPageTheme(this, _publishedValueFallback);
 
 		///<summary>
 		/// Content Blocks

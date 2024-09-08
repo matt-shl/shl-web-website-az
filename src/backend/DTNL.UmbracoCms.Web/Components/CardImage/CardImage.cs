@@ -20,9 +20,9 @@ public class CardImage : ICard
 
     public string Element => HasUrl ? "a" : "article";
 
-    public static CardImage? Create(NestedBlockImageCard imageCard, string? cssClasses = null)
+    public static CardImage? Create(NestedBlockImageCard? imageCard, string? cssClasses = null)
     {
-        if (imageCard.Title.IsNullOrWhiteSpace())
+        if (string.IsNullOrWhiteSpace(imageCard?.Title))
         {
             return null;
         }

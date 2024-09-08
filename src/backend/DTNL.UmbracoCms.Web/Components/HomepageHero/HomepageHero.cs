@@ -1,5 +1,4 @@
 using DTNL.UmbracoCms.Web.Components.Hero;
-using DTNL.UmbracoCms.Web.Helpers.Aliases;
 using DTNL.UmbracoCms.Web.Helpers.Extensions;
 using Umbraco.Cms.Web.Common.PublishedModels;
 
@@ -26,30 +25,27 @@ public class HomepageHero : IHero
             return null;
         }
 
-        NestedBlockButtonLink? primaryButtonLink = homepageHero.MainButtonLink?.FirstOrDefault()?.Content as NestedBlockButtonLink;
-        NestedBlockButtonLink? secondaryButtonLink = homepageHero.SecondaryButtonLink?.FirstOrDefault()?.Content as NestedBlockButtonLink;
-
-        return new HomepageHero()
+        return new HomepageHero
         {
             Title = homepageHero.HeroTitle,
 
             Image = Image.Create(homepageHero.Image, cssClasses: "homepage-hero__image"),
 
-            MainButton = Button.Create(primaryButtonLink?.Link).With(b =>
-            {
-                b.Class = "button--icon hero-home__cta";
-                b.Hook = "homepage-hero-button";
-                b.Icon = primaryButtonLink?.ButtonIcon?.LocalCrops.Src ?? SvgAliases.Icons.ArrowTopRight;
-                b.Variant = primaryButtonLink?.Variant;
-            }),
+            MainButton = Button
+                .Create(homepageHero.MainButtonLink.GetSingleContentOrNull<NestedBlockButtonLink>())
+                .With(b =>
+                {
+                    b.Class = "button--icon hero-home__cta";
+                    b.Hook = "homepage-hero-button";
+                }),
 
-            SecondaryButton = Button.Create(secondaryButtonLink?.Link).With(b =>
-            {
-                b.Class = "button--icon hero-home__cta";
-                b.Hook = "homepage-hero-button";
-                b.Icon = secondaryButtonLink?.ButtonIcon?.LocalCrops.Src ?? SvgAliases.Icons.ArrowTopRight;
-                b.Variant = secondaryButtonLink?.Variant;
-            }),
+            SecondaryButton = Button
+                .Create(homepageHero.SecondaryButtonLink.GetSingleContentOrNull<NestedBlockButtonLink>())
+                .With(b =>
+                {
+                    b.Class = "button--icon hero-home__cta";
+                    b.Hook = "homepage-hero-button";
+                }),
 
             ShortDescription = homepageHero.ShortDescription?.ToHtmlString(),
 
@@ -58,7 +54,7 @@ public class HomepageHero : IHero
             {
                 v.InstanceId = "hero-video";
                 v.Title = "Homepage video";
-                v.Description = "Homepage video description"; // TO DO: change this one once the videos are agreed and if needed for accessibility
+                v.Description = "Homepage video description"; // TODO: change this one once the videos are agreed and if needed for accessibility
                 v.Autoplay = true;
                 v.Controls = false;
                 v.CustomControls = true;

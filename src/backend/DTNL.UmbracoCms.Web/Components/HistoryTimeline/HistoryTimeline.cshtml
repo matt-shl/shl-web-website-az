@@ -1,0 +1,81 @@
+@using DTNL.UmbracoCms.Web.Components
+@using DTNL.UmbracoCms.Web.Helpers.Aliases
+@using DTNL.UmbracoCms.Web.Helpers.Extensions
+@using Umbraco.Cms.Core.Dictionary
+
+@model DTNL.UmbracoCms.Web.Components.HistoryTimeline
+
+@inject ICultureDictionary CultureDictionary
+
+<div class="history-timeline__container" aria-label="@Model.Title">
+
+    <div class="history-timeline__main-content">
+        <div class="history-timeline__pagination-container">
+            <partial name="Button" model="@(new Button { Label = CultureDictionary.GetTranslation(TranslationAliases.Common.Pagination.Previous), LabelSrOnly = true, Size = "small", Variant = "secondary", Icon = SvgAliases.Icons.ArrowLeft, Element = "button", Hook = "history-timeline-pagination-prev-button", Attributes = { ["disabled"] = "disabled" }})" />
+
+            <partial name="Button" model="@(new Button { Label = CultureDictionary.GetTranslation(TranslationAliases.Common.Pagination.Next), LabelSrOnly = true, Size = "small", Variant = "secondary", Icon = SvgAliases.Icons.ArrowRight, Element = "button", Hook = "history-timeline-pagination-next-button" })" />
+        </div>
+
+        <div class="history-timeline__odometer-container">
+            <partial name="Odometer" model="@Model.Odometer" />
+        </div>
+
+        <div class="history-timeline__title-descriptions" aria-live="polite" aria-atomic="true">
+            @foreach ((HistoryTimeline.HistoryTimelineItem item, int index) in Model.Items.WithIndex())
+            {
+                <div class="history-timeline__title-description-instance @(index == 0 ? "is--active" : null)" data-year="@item.Year" js-hook-history-timeline-text-container>
+                    <h3 class="history-timeline__title" asp-if="@item.Title">@item.Title</h3>
+                    <div class="history-timeline__description" asp-if="@item.Text">@Html.Raw(item.Text)</div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="history-timeline__timeline-carousel-container">
+        <partial name="Carousel" model="@(new Carousel { Id = "history-timeline-carousel", Classes = "history-timeline__timeline-carousel", Pagination = false, SlidesMobile = 1, SlidesMobilePlus = 1, SlidesTabletPortrait = 1, SlidesTabletLandscape = 1, SlidesDesktop = 1, SlidesLaptop = 1 })">
+            @foreach ((HistoryTimeline.HistoryTimelineItem item, int index) in Model.Items.WithIndex())
+            {
+                @if (index != 0)
+                {
+                    <div class="swiper-slide">
+                        <partial name="./HistoryTimelineItem.cshtml" model="@item" />
+                    </div>
+                }
+
+                @if (index == Model.Items.Count - 1 &&
+                     !Model.RestartLinkLabel.IsNullOrWhiteSpace())
+                {
+                    <div class="swiper-slide">
+                        <div class="history-timeline__restart-timeline-button-container">
+                            <partial name="Button" model="@(new Button { Label = Model.RestartLinkLabel, Variant = "link-underlined", Hook = "history-timeline-restart-timeline-button" })" />
+                        </div>
+                    </div>
+                }
+            }
+        </partial>
+    </div>
+
+    <div class="history-timeline__images-container">
+        @if (Model.Items.Count == 1)
+        {
+            <div class="history-timeline__image">
+                <partial name="Image" model="@Model.Items[0].Image" />
+            </div>
+        }
+        else
+        {
+            <div class="history-timeline__image-carousel">
+                <div class="history-timeline__image-carousel-container" js-hook-history-timeline-image-carousel>
+                    @foreach ((HistoryTimeline.HistoryTimelineItem item, int index) in Model.Items.WithIndex())
+                    {
+                        <div class="history-timeline__image-item @(index == 0 ? "is--active" : null)"
+                             js-hook-history-timeline-image data-index="@index">
+
+                            <partial name="Image" model="@item.Image" />
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+</div>

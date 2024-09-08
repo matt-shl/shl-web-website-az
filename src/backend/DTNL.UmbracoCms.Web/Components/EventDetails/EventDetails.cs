@@ -1,4 +1,3 @@
-using DTNL.UmbracoCms.Web.Helpers.Aliases;
 using DTNL.UmbracoCms.Web.Helpers.Extensions;
 using Umbraco.Cms.Web.Common.PublishedModels;
 
@@ -25,17 +24,16 @@ public class EventDetails
             return null;
         }
 
-        NestedBlockButtonLink? buttonLink = eventDetails.EventUrl?.FirstOrDefault()?.Content as NestedBlockButtonLink;
-
         return new EventDetails
         {
             Title = eventDetails.EventTitle,
             Location = eventDetails.EventLocationInfo?.ToHtmlString(),
             Time = eventDetails.EventTime?.ToHtmlString(),
-            Link = Button.Create(buttonLink?.Link).With(b =>
-                b.Icon = SvgAliases.Icons.ArrowTopRight),
-            Image = Image.Create(eventDetails.EventImage).With(i =>
-            i.Classes = "media-section__image"),
+            Link = Button
+                .Create(eventDetails.EventUrl.GetSingleContentOrNull<NestedBlockButtonLink>()),
+            Image = Image
+                .Create(eventDetails.EventImage)
+                .With(i => i.Classes = "media-section__image"),
         };
     }
 }

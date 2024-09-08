@@ -1,34 +1,26 @@
 using DTNL.UmbracoCms.Web.Helpers.Extensions;
 using Microsoft.AspNetCore.Mvc;
-using Umbraco.Cms.Web.Common.PublishedModels;
 
 namespace DTNL.UmbracoCms.Web.Components;
 
 public class Header : ViewComponentExtended
 {
-    public NestedBlockNavigation? Navigation { get; set; }
+    public required Navigation Navigation { get; set; }
 
-    public string? HomeTitle { get; set; }
+    public required string HomeTitle { get; set; }
 
-    public string? OpenMenuLabel { get; set; }
+    public required string OpenMenuLabel { get; set; }
+
+    public required string MenuLabel { get; set; }
 
     public IViewComponentResult Invoke()
     {
-        SiteSettings? siteSettings = NodeProvider.SiteSettings;
-        NestedBlockNavigation? navigation = GetNavigation(siteSettings);
+        Navigation = Navigation.Create(NodeProvider.SiteSettings);
 
-        if (navigation is not null)
-        {
-            Navigation = navigation;
-            HomeTitle = CultureDictionary.GetTranslation(Helpers.Aliases.TranslationAliases.Navigation.Home);
-            OpenMenuLabel = CultureDictionary.GetTranslation(Helpers.Aliases.TranslationAliases.Navigation.Openmenu);
-        }
+        HomeTitle = CultureDictionary.GetTranslation(Helpers.Aliases.TranslationAliases.Navigation.Home);
+        OpenMenuLabel = CultureDictionary.GetTranslation(Helpers.Aliases.TranslationAliases.Navigation.OpenMenu);
+        MenuLabel = CultureDictionary.GetTranslation(Helpers.Aliases.TranslationAliases.Navigation.Menu);
 
         return View("Header", this);
-    }
-
-    private NestedBlockNavigation? GetNavigation(SiteSettings? settings)
-    {
-        return settings!.MainHeader!.Content;
     }
 }

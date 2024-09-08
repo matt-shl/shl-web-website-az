@@ -188,4 +188,9 @@ public static class EnumerableExtensions
 
         return count == 1;
     }
+
+    public static IEnumerable<(T item, int index)> WithIndex<T>(this IEnumerable<T> source, int offset = 0)
+    {
+        return source?.Select((item, index) => (item, index + offset)) ?? [];
+    }
 }

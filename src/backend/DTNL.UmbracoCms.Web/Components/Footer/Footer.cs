@@ -35,9 +35,8 @@ public class Footer : ViewComponentExtended
 
     public IViewComponentResult Invoke(SiteSettings? siteSettings, IPublishedContent? page)
     {
-        FooterScrollingText = page is ICompositionHomePage
-            ? Slogan.Create((page as ICompositionHomePage)?.Slogan?.Select(block => block.Content).OfType<NestedBlockSlogan>().FirstOrDefault(), "footer__scrolling-text")
-            : Slogan.Create((page as ICompositionBasePage)?.Slogan?.Select(block => block.Content).OfType<NestedBlockSlogan>().FirstOrDefault(), "footer__scrolling-text");
+        FooterScrollingText = Slogan
+            .Create((page as ICompositionBasePage)?.Slogan.GetSingleContentOrNull<NestedBlockSlogan>(), "footer__scrolling-text");
 
         Text = siteSettings?.FooterText;
 
