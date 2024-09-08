@@ -20,7 +20,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 {
 	/// <summary>Rich Text Component</summary>
 	[PublishedModel("nestedBlockRichTextComponent")]
-	public partial class NestedBlockRichTextComponent : PublishedElementModel
+	public partial class NestedBlockRichTextComponent : PublishedElementModel, ICompositionAnchors
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
@@ -50,12 +50,27 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		// properties
 
 		///<summary>
-		/// firstButton
+		/// First Button
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("firstButton")]
 		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel FirstButton => this.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockListModel>(_publishedValueFallback, "firstButton");
+
+		///<summary>
+		/// Read more/less option
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[ImplementPropertyType("readMorelessOption")]
+		public virtual bool ReadMorelessOption => this.Value<bool>(_publishedValueFallback, "readMorelessOption");
+
+		///<summary>
+		/// Reduce Margin: The ability to choose for less margin on the top & bottom of the component for better visual stacking of multiple Rich Text components.
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("reduceMargin")]
+		public virtual string ReduceMargin => this.Value<string>(_publishedValueFallback, "reduceMargin");
 
 		///<summary>
 		/// RTE Content
@@ -66,7 +81,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual global::Umbraco.Cms.Core.Strings.IHtmlEncodedString RTecontent => this.Value<global::Umbraco.Cms.Core.Strings.IHtmlEncodedString>(_publishedValueFallback, "rTEContent");
 
 		///<summary>
-		/// secondButton
+		/// Second Button
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
@@ -74,17 +89,27 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel SecondButton => this.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockListModel>(_publishedValueFallback, "secondButton");
 
 		///<summary>
-		/// Should Have ReadMore
+		/// Text Size
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[ImplementPropertyType("shouldHaveReadMore")]
-		public virtual bool ShouldHaveReadMore => this.Value<bool>(_publishedValueFallback, "shouldHaveReadMore");
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("textSize")]
+		public virtual string TextSize => this.Value<string>(_publishedValueFallback, "textSize");
 
 		///<summary>
-		/// Small text
+		/// Anchor Id
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[ImplementPropertyType("smallText")]
-		public virtual bool SmallText => this.Value<bool>(_publishedValueFallback, "smallText");
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("anchorId")]
+		public virtual string AnchorId => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionAnchors.GetAnchorId(this, _publishedValueFallback);
+
+		///<summary>
+		/// Anchor Title
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("anchorTitle")]
+		public virtual string AnchorTitle => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionAnchors.GetAnchorTitle(this, _publishedValueFallback);
 	}
 }

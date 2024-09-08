@@ -1,7 +1,6 @@
 using DTNL.UmbracoCms.Web.Helpers.Aliases;
 using DTNL.UmbracoCms.Web.Helpers.Extensions;
 using Umbraco.Cms.Core.Dictionary;
-using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Web.Common.PublishedModels;
 
 namespace DTNL.UmbracoCms.Web.Components;
@@ -16,49 +15,66 @@ public class RichTextComponent : LayoutSection
 
     public Button? ReadMoreButton { get; set; }
 
-    public string? SmallTextClass { get; set; }
+    public Button? ReadLessButton { get; set; }
 
-    public string? ReadMoreTextClass { get; set; }
+    public string? TextSize { get; set; }
 
-    public bool ShouldHaveReadMore { get; set; }
+    public string? ReadMoreOptionClass { get; set; }
+
+    public bool ReadMoreOption { get; set; }
 
     public static RichTextComponent Create(NestedBlockRichTextComponent richTextComponent, ICultureDictionary cultureDictionary)
     {
         NestedBlockButtonLink? firstButton = richTextComponent.FirstButton?.FirstOrDefault()?.Content as NestedBlockButtonLink;
-        NestedBlockButtonLink? secondButton = richTextComponent.FirstButton?.FirstOrDefault()?.Content as NestedBlockButtonLink;
+        NestedBlockButtonLink? secondButton = richTextComponent.SecondButton?.FirstOrDefault()?.Content as NestedBlockButtonLink;
 
         return new RichTextComponent
         {
-            ShouldHaveReadMore = richTextComponent.ShouldHaveReadMore,
-
             Content = richTextComponent.RTecontent?.ToHtmlString(),
-
-            FirstButton = Button.Create(firstButton?.Link).With(b =>
+            TextSize = !string.IsNullOrWhiteSpace(richTextComponent.TextSize) ? $"c-rich-text--size-{richTextComponent.TextSize}" : null,
+            FirstButton = Button.Create(firstButton).With(b =>
             {
-                b.Label = TranslationAliases.Common.Richtextcomponent.Readmore;
+                b.Class = "rich-text__cta1";
+                b.Label = firstButton?.Link?.Name ?? "";
+                b.Variant = firstButton?.Variant ?? "primary";
                 b.Hook = "js-hook-rich-text-button";
                 b.Icon = firstButton?.ButtonIcon?.LocalCrops.Src ?? SvgAliases.Icons.ArrowTopRight;
             }),
-
-            SecondButton = Button.Create(secondButton?.Link).With(b =>
+            SecondButton = Button.Create(secondButton).With(b =>
             {
-                b.Label = TranslationAliases.Common.Richtextcomponent.Readless;
+                b.Class = "rich-text__cta2";
+                b.Label = secondButton?.Link?.Name ?? "";
                 b.Hook = "js-hook-rich-text-button";
-                b.Variant = "secondary";
+                b.Variant = secondButton?.Variant ?? "secondary";
                 b.Icon = secondButton?.ButtonIcon?.LocalCrops.Src ?? SvgAliases.Icons.ArrowTopRight;
             }),
-
-            ReadMoreButton = Button.Create(Link.Create(richTextComponent as IPublishedContent).With(l =>
+            ReadMoreOption = richTextComponent.ReadMorelessOption,
+            ReadMoreButton = new Button
             {
-                l.Url = "#";
-                l.Label = cultureDictionary.GetTranslation(TranslationAliases.Common.Richtextcomponent.Readmore);
-            }
-            )),
-
-            ReadMoreTextClass = richTextComponent.ShouldHaveReadMore ? "c-rich-text--is-closed" : null,
-
-            SmallTextClass = richTextComponent.SmallText ? "c-rich-text--size-small" : "c-rich-text--size-large",
-
+                Url = "#",
+                Element = "button",
+                Label = $"{cultureDictionary.GetTranslation(TranslationAliases.Common.RichText.ReadMore)}",
+                Class = "rich-text__button rich-text__button-more",
+                Variant = "link-underlined",
+                Hook = "rich-text-button",
+                Attributes = new Dictionary<string, string?>
+                {
+                    ["aria-hidden"] = "true",
+                },
+            },
+            ReadLessButton = new Button
+            {
+                Url = "#",
+                Label = cultureDictionary.GetTranslation(TranslationAliases.Common.RichText.ReadLess),
+                Element = "button",
+                Class = "rich-text__button rich-text__button-less",
+                Variant = "link-underlined",
+                Hook = "rich-text-button",
+                Attributes = new Dictionary<string, string?>
+                {
+                    ["aria-hidden"] = "true",
+                },
+            },
         };
     }
 }

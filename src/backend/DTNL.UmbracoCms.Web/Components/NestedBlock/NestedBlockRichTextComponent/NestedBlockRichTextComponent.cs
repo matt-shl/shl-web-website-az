@@ -12,7 +12,9 @@ public class NestedBlockRichTextComponent : NestedBlockWithInner
         }
 
         LayoutSection.CssClasses = "t-white";
-        LayoutSection.Variant = "reduce-margin-bottom";
+        LayoutSection.ReduceMargin = richTextComponent.ReduceMargin;
+        LayoutSection.Id = richTextComponent.AnchorId;
+        LayoutSection.NavigationTitle = richTextComponent.AnchorTitle;
 
         return RichTextComponent.Create(richTextComponent, CultureDictionary);
     }

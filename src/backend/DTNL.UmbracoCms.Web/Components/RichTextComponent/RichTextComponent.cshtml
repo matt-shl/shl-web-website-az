@@ -1,25 +1,29 @@
 @model DTNL.UmbracoCms.Web.Components.RichTextComponent
 
-<div class="c-rich-text rich-text--is-closed @Model.SmallTextClass @Model.ReadMoreTextClass"
-@* @(Model. ? null : "read-more-disabled") *@
-     js-hook-rich-text>  @* check for style here *@
+<div class="c-rich-text rich-text--is-closed @(Model.TextSize.IsNullOrWhiteSpace() ? $"c-rich-text--size-{Model.TextSize}" : null) @(!Model.ReadMoreOption ? "read-more-disabled" : null)"
+     js-hook-rich-text>
     <div class="rich-text__container" js-hook-rich-text-container >
         <div class="rich-text__content">
             @Html.Raw(Model.Content)
         </div>
-        <div class="rich-text__ctas">
-            <partial name="Button" model="@Model.FirstButton" />
-            <partial name="Button" model="@Model.SecondButton" />
 
+        <div class="rich-text__ctas">
+            @if (Model.FirstButton is not null)
+            {
+                <partial name="Button" model="@Model.FirstButton" />
+            }
+            @if (Model.SecondButton is not null)
+            {
+                <partial name="Button" model="@Model.SecondButton" />
+            }
         </div>
     </div>
-    @if (Model.ShouldHaveReadMore)
+
+    @if (Model.ReadMoreOption)
     {
         <div class="rich-text__button-wrapper">
             <partial name="Button" model="@Model.ReadMoreButton" />
-            <button class="c-button--link-underlined rich-text__button rich-text__button-less" type="button" js-hook-rich-text-button aria-hidden="">
-                <span class="button__label">@CultureDictionary.GetTranslation(TranslationAliases.Common.Richtextcomponent.Readless)</span>
-            </button>
+            <partial name="Button" model="@Model.ReadLessButton" />
         </div>
     }
 </div>
