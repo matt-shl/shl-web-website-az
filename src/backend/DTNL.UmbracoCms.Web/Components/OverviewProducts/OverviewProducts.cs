@@ -1,16 +1,24 @@
 using DTNL.UmbracoCms.Web.Helpers;
+using DTNL.UmbracoCms.Web.Helpers.Aliases;
 using DTNL.UmbracoCms.Web.Helpers.Extensions;
 using DTNL.UmbracoCms.Web.Models.Filters;
 using DTNL.UmbracoCms.Web.Models.Products;
 using DTNL.UmbracoCms.Web.Services;
-using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
+using Umbraco.Cms.Core.Dictionary;
 using Umbraco.Cms.Web.Common.PublishedModels;
 
 namespace DTNL.UmbracoCms.Web.Components;
 
 public class OverviewProducts : ViewComponentExtended
 {
+    private readonly ICultureDictionary _cultureDictionary;
+
+    public OverviewProducts(ICultureDictionary cultureDictionary)
+    {
+        _cultureDictionary = cultureDictionary;
+    }
+
     public const int PageSize = 6;
 
     public int TotalCount { get; set; }
@@ -43,7 +51,7 @@ public class OverviewProducts : ViewComponentExtended
 
         ProductFilters productFilters = GetAndApplyFilters(productPages);
 
-        Filters = Filters.Create(productFilters, productPages);
+        Filters = Filters.Create(productFilters, productPages, _cultureDictionary);
 
         ResultCards = productPages
             .Using(p => CardProduct.Create(p))
@@ -86,6 +94,11 @@ public class OverviewProducts : ViewComponentExtended
                 name,
                 filters.Select(FilterOption.CreateForSearch).ToArray());
         }
+
+        string? sort = GetFilters("Sort")?.FirstOrDefault();
+        bool hasSort = sort is not null && sort == _cultureDictionary.GetTranslation(TranslationAliases.Common.Filters.SortOldestFirst);
+
+        productPages.Sort((x, y) => hasSort ? DateTime.Compare(y.CreateDate, x.CreateDate) : DateTime.Compare(x.CreateDate, y.CreateDate));
 
         return productFilters;
     }
