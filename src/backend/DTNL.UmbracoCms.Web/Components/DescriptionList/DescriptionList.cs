@@ -13,10 +13,10 @@ public partial class DescriptionList
     public Button? DownloadLinkButton { get; set; }
 
     public static DescriptionList? Create(
-        NestedBlockProductSpecifications? block,
+        NestedBlockProductSpecifications? productSpecificationsBlock,
         PageProduct? productPage = null)
     {
-        if (block is not NestedBlockProductSpecifications productSpecificationsBlock)
+        if (productSpecificationsBlock is null)
         {
             return null;
         }

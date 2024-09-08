@@ -19,7 +19,7 @@ public class CardProduct : ICard
 
     public static CardProduct Create(PageProduct productPage, string? cssClasses = null)
     {
-        NestedBlockProductBanner? banner = (NestedBlockProductBanner?) productPage.Banner?.FirstOrDefault()?.Content;
+        NestedBlockProductBanner? banner = productPage.Banner?.GetSingleContentOrNull<NestedBlockProductBanner>();
         return new CardProduct
         {
             Title = productPage.GetTitle(),

@@ -41,7 +41,7 @@ public class FiltersModal
         return new FiltersModal
         {
             ResultsCount = productPages.Count,
-            ResultsOverviewPageUrl = productFilters.CurrentUrl.SetQueryParam(null),
+            ResultsOverviewPageUrl = productFilters.CurrentUrl.SetQueryParams(null),
             OverviewPageUrl = productFilters.OverviewUrl,
             Filters = filters,
             Sorter = sort,
@@ -81,9 +81,6 @@ public class FiltersModal
                             attr: new Dictionary<string, string?>
                             {
                                 ["data-url-replacement"] = productFilters
-                                    .CurrentUrl
-                                    .AppendQueryParam(name, filterOption.Title),
-                                ["data-endpoint"] = productFilters
                                     .CurrentUrl
                                     .AppendQueryParam(name, filterOption.Title),
                             },
