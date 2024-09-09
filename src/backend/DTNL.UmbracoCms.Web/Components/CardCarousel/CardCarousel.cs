@@ -22,6 +22,8 @@ public class CardCarousel
 
     public bool ShowCarousel { get; set; }
 
+    public bool ShowThreeSideBySide { get; set; }
+
     public static CardCarousel? Create(ICompositionCards cardsBlock)
     {
         List<ICard> cards = cardsBlock switch
@@ -46,24 +48,32 @@ public class CardCarousel
             return null;
         }
 
+        NestedBlockButtonLink? primaryLinkButtonContent = cardsBlock.PrimaryLink?.FirstOrDefault()?.Content as NestedBlockButtonLink;
+        NestedBlockButtonLink? secondaryLinkButtonContent = cardsBlock.SecondaryLink?.FirstOrDefault()?.Content as NestedBlockButtonLink;
+
+
         return new CardCarousel
         {
             AnchorId = (cardsBlock as ICompositionAnchors)?.AnchorId,
             AnchorTitle = (cardsBlock as ICompositionAnchors)?.AnchorTitle,
             Title = cardsBlock.Title,
             Text = cardsBlock.Text?.ToHtmlString(),
-            PrimaryLinkButton = Button
-                .Create(cardsBlock.PrimaryLink)
-                .With(b => b.Icon = SvgAliases.Icons.ArrowTopRight),
-            SecondaryLinkButton = Button
-                .Create(cardsBlock.SecondaryLink)
+            PrimaryLinkButton = Button.Create(primaryLinkButtonContent)
                 .With(b =>
                 {
-                    b.Icon = SvgAliases.Icons.ArrowTopRight;
-                    b.Variant = "secondary";
+                    b.Variant = b.Variant ?? "primary";
+                    b.Icon = b.Icon ?? SvgAliases.Icons.ArrowTopRight;
+                }),
+            SecondaryLinkButton = Button
+                .Create(secondaryLinkButtonContent)
+                .With(b =>
+                {
+                    b.Variant = b.Variant ?? "primary";
+                    b.Icon = b.Icon ?? SvgAliases.Icons.ArrowTopRight;
                 }),
             Cards = cards,
             ShowCarousel = cards.Count > 3 || (cardsBlock.ShowCarousel && cards.Count == 3),
+            ShowThreeSideBySide = !cardsBlock.ShowCarousel && cards.Count == 3,
         };
     }
 }
