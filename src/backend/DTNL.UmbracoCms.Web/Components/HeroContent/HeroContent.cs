@@ -36,7 +36,7 @@ public class HeroContent : IHero
 
             Subtitle = contentHero.Subtitle,
 
-            Tags = contentHero.Tags?.Take(2).Select(tag => new Tag
+            Tags = (page as ICompositionKnowledgePage)?.ContentTags?.Take(2).Select(tag => new Tag
             {
                 Label = tag,
                 CssClasses = "hero-content__tag",
