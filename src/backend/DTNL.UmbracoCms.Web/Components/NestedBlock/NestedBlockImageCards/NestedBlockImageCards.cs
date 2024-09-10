@@ -18,6 +18,8 @@ public class NestedBlockImageCards : NestedBlockWithInner
 
         SetCarouselsLayout(cardCarousel, cardsBlock.Theme?.Label);
 
+        LayoutSection.CssClasses += " c-section-image-carousel";
+
         return cardCarousel;
     }
 }
