@@ -1,55 +1,56 @@
-@using DTNL.UmbracoCms.Web.Components;
-@using static DTNL.UmbracoCms.Web.Components.Navigation
+@using DTNL.UmbracoCms.Web.Components
+@using DTNL.UmbracoCms.Web.Helpers.Aliases
 
-<div class="c-flyout" js-hook-flyout aria-hidden="true" id="flyout-@Model?.Id">
+@model DTNL.UmbracoCms.Web.Components.NavigationItem
+
+<div class="c-flyout" js-hook-flyout aria-hidden="true" id="flyout-@Model.Id">
     <div class="flyout__container">
         <div class="flyout__content">
             <div class="flyout__title-column">
-                <h2 class="flyout__title">@Model?.Title</h2>
-                <p class="flyout__description">@Model?.Description</p>
-                <a class="flyout__cta" href="@Model?.Link.Url">@Model?.Title</a>
+                <h2 class="flyout__title">@Model.Title</h2>
+                <p class="flyout__description" asp-if="@Model.Text">@Model.Text</p>
+
+                <a class="flyout__cta" href="@Model.Link.Url">@Model.Link.Label</a>
             </div>
 
             <ul class="flyout__main-item-list">
-                @for (var i = 0; i < @Model?.Submenu.Items.Count; i++)
+                @for (int i = 0; i < Model.SubItems.Count; i++)
                 {
-                    var item = Model.Submenu.Items[i];
+                    NavigationSubItem item = Model.SubItems[i];
+
                     <li class="flyout__main-item @(i == 0 ? "is--open" : "")" js-hook-flyout-main-item>
-                        <button class="flyout__main-item-button" title="@item.Title" js-hook-flyout-main-item-anchor aria-expanded="false" aria-controls="flyout-list-(@item.Id)-(i)">
-                            @item.Title
+                        <button class="flyout__main-item-button" title="@item.Link.Label" js-hook-flyout-main-item-anchor aria-expanded="false" aria-controls="flyout-list-@item.Id-@i">
+                            @item.Link.Label
                             <div class="flyout__main-item-button-icon">
-                                <svg src="@(SvgAliases.Icons.ChevronRight)" />
+                                <svg src="@SvgAliases.Icons.ChevronRight" />
                             </div>
                         </button>
 
-                        @if (item.NestedSubmenu is not null)
+                        @if (item.SubLinks.Count > 0)
                         {
-                            <ul class="flyout__subitem-list" id="flyout-list-(@item.Id)-(i)">
-                                @foreach (MenuItem subLink in item.NestedSubmenu.Links)
+                            <ul class="flyout__subitem-list" id="flyout-list-@item.Id-@i">
+                                @foreach (Link subLink in item.SubLinks)
                                 {
                                     <li class="flyout__subitem">
-                                        <a class="flyout__subitem-anchor" title="@subLink?.Link?.Label" href="@subLink?.Link?.Url">
-                                            @subLink?.Link?.Label
+                                        <a class="flyout__subitem-anchor" title="@subLink.Label" href="@subLink.Url">
+                                            @subLink.Label
                                         </a>
                                     </li>
                                 }
 
-                                @if (item.All != null)
-                                {
-                                    <li>
-                                        <a class="flyout__subitem-all" href="@item.All.Url">All @item.All.Label</a>
-                                    </li>
-                                }
+                                <li>
+                                    <a class="flyout__subitem-all" href="@item.Link.Url">All @item.Link.Label</a>
+                                </li>
                             </ul>
-                        }                       
+                        }
                     </li>
                 }
             </ul>
 
-            @if(Model?.PromoBlock != null)
+            @if (Model.HighlightedCard is not null)
             {
                 <div class="flyout__feature-column">
-                    <partial name="CardImage" model="@(Model?.PromoBlock)" />
+                    <partial name="CardImage" model="@Model.HighlightedCard" />
                 </div>
             }
         </div>

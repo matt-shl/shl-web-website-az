@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using DTNL.UmbracoCms.Web.Helpers.Extensions;
 using Umbraco.Cms.Core.Models.PublishedContent;
 
@@ -56,6 +57,7 @@ public class Link
         };
     }
 
+    [return: NotNullIfNotNull(nameof(link))]
     public static Link? Create(Umbraco.Cms.Core.Models.Link? link, string? cssClasses = null, string? icon = null, bool hideLabel = false)
     {
         if (link == null)

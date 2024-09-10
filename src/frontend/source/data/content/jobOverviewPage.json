@@ -2,6 +2,68 @@
   "footerScrollingText": "Caring. Inclusive. Driven.",
   "hero": {
     "title": "Find your dream job at SHL Medical",
+    "search": {
+      "searchType": "job",
+      "searchOptions": [{
+       "label": "Location",
+       "id": "location",
+       "name": "location",
+        "options": [
+          {
+            "label": "All locations",
+            "value": ""
+          },
+          {
+            "label": "Taiwan",
+            "value": "taiwan"
+          },
+          {
+            "label": "Sweden",
+            "value": "sweden"
+          },
+          {
+            "label": "USA",
+            "value": "usa"
+          }
+        ]
+    }, {
+      "label": "Seniority level",
+      "id": "seniority",
+      "name": "seniority",
+      "options": [
+        {
+          "label": "All seniority levels",
+          "value": ""
+        },
+        {
+          "label": "Senior",
+          "value": "senior"
+        },
+        {
+          "label": "Junior",
+          "value": "junior"
+        }
+      ]
+    }, {
+      "label": "Employment type",
+      "id": "employment",
+      "name": "employment",
+      "options": [
+        {
+          "label": "All employment types",
+          "value": ""
+        },
+        {
+          "label": "Full-time",
+          "value": "full-time"
+        },
+        {
+          "label": "Part-time",
+          "value": "part-time"
+        }
+      ]
+    }]
+    },
     "breadcrumbs": [
       {
         "url": "/home.html",

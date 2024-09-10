@@ -1,4 +1,3 @@
-@using Umbraco.Cms.Core.Models.PublishedContent
 @inherits UmbracoViewPage
 @inject NodeProvider NodeProvider
 
@@ -16,7 +15,10 @@
     @Html.Raw(NodeProvider.SiteSettings?.HeaderScripts)
 </head>
 <body>
+    <partial name="CarouselIndicator" />
+
     <vc:header current-page="@Model" />
+
     <main id="content" role="main">
         
         <vc:hero page="@Model" />
@@ -28,7 +30,7 @@
     </main>
     <vc:cookie-bar site-settings="@NodeProvider.SiteSettings" />
 
-    <vc:footer site-settings="@NodeProvider.SiteSettings" page="@Model as IPublishedContent" />
+    <vc:footer site-settings="@NodeProvider.SiteSettings" page="@Model" />
 
     <script async src="/assets/js/main.js" asp-append-version="true"></script>
     @Html.Raw(NodeProvider.SiteSettings?.BodyScripts)

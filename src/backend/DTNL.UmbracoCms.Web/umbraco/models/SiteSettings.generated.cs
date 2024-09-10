@@ -50,6 +50,14 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		// properties
 
 		///<summary>
+		/// Types
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("types")]
+		public virtual global::System.Collections.Generic.IEnumerable<string> Types => this.Value<global::System.Collections.Generic.IEnumerable<string>>(_publishedValueFallback, "types");
+
+		///<summary>
 		/// Body Scripts: Insert here your Hotjar/Google Analytics scripts to be inserted at body of the page.
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
@@ -146,12 +154,12 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual string FooterText => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionFooter.GetFooterText(this, _publishedValueFallback);
 
 		///<summary>
-		/// Main
+		/// Main Navigation Items
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("mainHeader")]
-		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListItem<global::Umbraco.Cms.Web.Common.PublishedModels.NestedBlockNavigation> MainHeader => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionHeader.GetMainHeader(this, _publishedValueFallback);
+		[ImplementPropertyType("mainNavigationItems")]
+		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel MainNavigationItems => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionHeader.GetMainNavigationItems(this, _publishedValueFallback);
 
 		///<summary>
 		/// Redirects File: Upload an Excel file here with the first column with Old urls, and second column with the new urls to redirect to.

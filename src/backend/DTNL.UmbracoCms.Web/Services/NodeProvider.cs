@@ -35,6 +35,11 @@ public class NodeProvider
         return overviewPage.Children<PageProduct>() ?? [];
     }
 
+    public static IEnumerable<ICompositionKnowledgePage> GetOverviewPages(PageKnowledgeOverview overviewPage)
+    {
+        return overviewPage.Children<IPublishedContent>()?.WhereNotNull().Cast<ICompositionKnowledgePage>() ?? [];
+    }
+
     internal void Reset()
     {
         _homePage = null;

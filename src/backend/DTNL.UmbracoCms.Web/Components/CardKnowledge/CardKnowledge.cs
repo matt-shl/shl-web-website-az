@@ -15,11 +15,11 @@ public class CardKnowledge : ICard
 
     public string? Url { get; set; }
 
-    public bool HasUrl { get; set; }
-
     public string? CssClasses { get; set; }
 
-    public string Element => HasUrl ? "a" : "article";
+    public bool HasUrl => !Url.IsNullOrWhiteSpace();
+
+    public string Element => !Url.IsNullOrWhiteSpace() ? "a" : "article";
 
     public static CardKnowledge? Create(NestedBlockPageCard pageCard, string? cssClasses = null)
     {
@@ -35,7 +35,24 @@ public class CardKnowledge : ICard
             Text = page.GetCardDescription(),
             Image = Image.Create(page.GetCardImage(), cssClasses: "card-knowledge__image", style: "card-knowledge"),
             Url = page.Url(),
-            HasUrl = true,
+            CssClasses = cssClasses,
+        };
+    }
+
+    public static CardKnowledge? CreateOverview(ICompositionKnowledgePage overviewPage, string? cssClasses = null)
+    {
+        if (overviewPage is not ICompositionBasePage page)
+        {
+            return null;
+        }
+
+        return new CardKnowledge
+        {
+            Title = page.GetTitle(),
+            Tag = overviewPage?.PageType?.FirstOrDefault(),
+            Text = page.GetCardDescription(),
+            Image = Image.Create(page.GetCardImage(), cssClasses: "card-knowledge__image", style: "card-knowledge"),
+            Url = page.Url(),
             CssClasses = cssClasses,
         };
     }

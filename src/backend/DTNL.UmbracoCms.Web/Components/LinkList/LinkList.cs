@@ -16,7 +16,7 @@ public class LinkList
             : new LinkList
             {
                 Links = textMediaListLinks.Links
-                .Using(l => Link.Create(l, cssClasses: "link-list__anchor"))
+                .Using(l => Link.Create(((NestedBlockTextMediaListItem) l.Content).Link, cssClasses: "link-list__anchor"))
                 .ToList(),
                 CssClasses = "text-media-list__link-list",
             };

@@ -6,7 +6,7 @@ using Umbraco.Cms.Core.Models.PublishedContent;
 
 namespace DTNL.UmbracoCms.Web.Components;
 
-public partial class Image
+public partial class Image : ICard
 {
     public string? Classes { get; set; }
 
@@ -44,9 +44,10 @@ public partial class Image
 
     public static Image? Create(
         MediaWithCrops? mediaWithCrops,
+        ImageCropMode imageCropMode = ImageCropMode.Crop,
         int width = 0,
         int height = 0,
-        string cssClasses = "",
+        string? cssClasses = "",
         bool objectFit = true,
         IEnumerable<SrcSetEntry>? customSrcSet = null,
         string? style = null)
@@ -58,6 +59,7 @@ public partial class Image
 
         return Create(
             mediaWithCrops.Content,
+            imageCropMode,
             width,
             height,
             cssClasses,
@@ -70,9 +72,10 @@ public partial class Image
 
     public static Image? Create(
         IPublishedContent? imageContent,
+        ImageCropMode imageCropMode = ImageCropMode.Crop,
         int width = 0,
         int height = 0,
-        string cssClasses = "",
+        string? cssClasses = "",
         bool objectFit = true,
         IEnumerable<SrcSetEntry>? customSrcSet = null,
         IEnumerable<ImageCrop>? localCrops = null,
@@ -80,7 +83,7 @@ public partial class Image
     {
         return imageContent switch
         {
-            Umbraco.Cms.Web.Common.PublishedModels.Image image => Create(image, width, height, cssClasses, objectFit, customSrcSet, localCrops, style),
+            Umbraco.Cms.Web.Common.PublishedModels.Image image => Create(image, imageCropMode, width, height, cssClasses, objectFit, customSrcSet, localCrops, style),
             Umbraco.Cms.Web.Common.PublishedModels.UmbracoMediaVectorGraphics svg => Create(svg, width, height, cssClasses, objectFit, localCrops, style),
             _ => null,
         };
@@ -88,15 +91,16 @@ public partial class Image
 
     private static Image? Create(
         Umbraco.Cms.Web.Common.PublishedModels.Image image,
+        ImageCropMode imageCropMode = ImageCropMode.Crop,
         int width = 0,
         int height = 0,
-        string cssClasses = "",
+        string? cssClasses = "",
         bool objectFit = true,
         IEnumerable<SrcSetEntry>? customSrcSet = null,
         IEnumerable<ImageCrop>? localCrops = null,
         string? style = null)
     {
-        string? url = image.GetDefaultCropUrl(width, height);
+        string? url = image.GetDefaultCropUrl(width, height, imageCropMode: imageCropMode);
         if (string.IsNullOrEmpty(url))
         {
             return null;
@@ -137,7 +141,7 @@ public partial class Image
         Umbraco.Cms.Web.Common.PublishedModels.UmbracoMediaVectorGraphics svg,
         int width = 0,
         int height = 0,
-        string cssClasses = "",
+        string? cssClasses = "",
         bool objectFit = true,
         IEnumerable<ImageCrop>? localCrops = null,
         string? style = null)

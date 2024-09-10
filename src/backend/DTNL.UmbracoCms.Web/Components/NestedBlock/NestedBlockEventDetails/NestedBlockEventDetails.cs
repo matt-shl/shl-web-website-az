@@ -16,7 +16,7 @@ public class NestedBlockEventDetails : NestedBlockWithInner
             return null;
         }
 
-        LayoutSection.CssClasses = "c-layout-section--no-padding t-white";
+        LayoutSection.CssClasses = "c-layout-section--no-padding c-media-section-container t-white";
 
         return slogan;
     }

@@ -2,6 +2,7 @@
 {% from 'video.html' import video %}
 {% from 'tag.html' import tag %}
 {% from 'breadcrumb.html' import breadcrumb %}
+{% from 'search.html' import search %}
 
 {% macro heroContent(data) %}
 
@@ -50,8 +51,16 @@
         </div>
       {% endif %}
 
-    </div>
+      {% if data.search.searchType %}
+        <div class="hero-content__col-search">
+            {{ search(data.search | clone | merge({
+              variant: 'in-hero' if data.search.searchType == 'generic' else 'job',
+              value: data.searchTerm
+            })) }}
+        </div>
+      {% endif %}
 
+    </div>
   </section>
 
 {% endmacro %}

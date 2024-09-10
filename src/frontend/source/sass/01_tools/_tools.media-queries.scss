@@ -104,6 +104,12 @@ $xxl-end: $breakpoint-xxl - 0.5;
   }
 }
 
+@mixin screen-custom-and-bigger($screensize) {
+  @media only screen and (min-width: em($screensize)) {
+    @content;
+  }
+}
+
 /**
  * Media queries targeting a device and bigger
  * - - screen-mobile-only? > use screen-base-and-smaller

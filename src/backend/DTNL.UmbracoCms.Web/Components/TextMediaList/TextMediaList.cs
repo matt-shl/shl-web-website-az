@@ -46,11 +46,12 @@ public class TextMediaList
              v.TotalTime = (textMediaListBlock?.Video?.FirstOrDefault()?.Content as VideoMedia)?.TotalTime;
          });
 
-        Image? image = Image.Create(textMediaListBlock.Image)
+        NestedBlockImage? imageContent = (NestedBlockImage?) textMediaListBlock.Image?.FirstOrDefault()?.Content;
+        Image? image = Image.Create(imageContent?.Image)
         .With(i =>
         {
             i.ImageStyle = "text-media-list";
-            i.Caption = textMediaListBlock.MediaDescription;
+            i.Caption = imageContent?.Caption;
             i.CardOverlay = video != null ? new CardOverlay
             {
                 Video = video,
@@ -66,6 +67,12 @@ public class TextMediaList
             i.ObjectFit = true;
         });
 
+        LinkList? linkList = LinkList.Create(textMediaListBlock.Items.GetSingleContentOrNull<NestedBlockTextMediaListLinks>());
+        List<(string Text, Accordion.Item AccordionItem)>? accordions = textMediaListBlock.Items.GetSingleContentOrNull<NestedBlockTextMediaListAccordions>()?.Accordions
+                .Using(i => i.Content as NestedBlockTextMediaListAccordionItem)
+                .Select(i => (i.Text!.ToHtmlString()!, new Accordion.Item { Id = i.Key.ToString(), Title = i.Title, }))
+                .ToList();
+
         return new TextMediaList
         {
             AnchorId = textMediaListBlock.AnchorId,
@@ -74,13 +81,9 @@ public class TextMediaList
             Text = textMediaListBlock.Text!.ToHtmlString(),
             Image = image,
             Video = video,
-            MediaPosition = textMediaListBlock.MediaPosition,
-            LinkList = LinkList
-                .Create(textMediaListBlock.Items.GetSingleContentOrNull<NestedBlockTextMediaListLinks>()),
-            AccordionItems = textMediaListBlock.Items
-                .Using(i => i.Content as NestedBlockTextMediaListAccordionItem)
-                .Select(i => (i.Text!.ToHtmlString()!, new Accordion.Item { Id = i.Key.ToString(), Title = i.Title, }))
-                .ToList(),
+            MediaPosition = String.Equals(textMediaListBlock.MediaPosition, "left") ? "start" : "end",
+            LinkList = linkList,
+            AccordionItems = accordions ?? [],
             PrimaryLinkButton = Button.Create(textMediaListBlock.PrimaryLink)
                 .With(b =>
                 {

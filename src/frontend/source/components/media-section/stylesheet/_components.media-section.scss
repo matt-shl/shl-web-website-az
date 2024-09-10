@@ -1,3 +1,7 @@
+.c-media-section-container {
+  background-color: transparent;
+}
+
 .c-media-section {
   @include screen-max-width-and-bigger {
     // If the first contentblock of the page is the layout-section without padding,

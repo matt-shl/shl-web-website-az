@@ -6,11 +6,11 @@ namespace DTNL.UmbracoCms.Web.Components;
 
 public class DownloadItem
 {
-    public string? Title { get; set; }
+    public required string Title { get; set; }
 
     public string? Description { get; set; }
 
-    // TO DO: this will be changed for the implementation of SM-290 Download overlay.
+    // TODO: this will be changed for the implementation of SM-290 Download overlay.
     public Button? DownloadLink { get; set; }
 
     public string? Icon { get; set; }
@@ -22,9 +22,9 @@ public class DownloadItem
             return null;
         }
 
-        return new DownloadItem()
+        return new DownloadItem
         {
-            Title = downloadItem.DownloadItemTitle,
+            Title = downloadItem.DownloadItemTitle!,
             Description = downloadItem.DownloadItemDescription,
             Icon = downloadItem.DownloadIcon?.LocalCrops.Src,
             DownloadLink = Button.Create(downloadItem.DownloadButtonLabel)

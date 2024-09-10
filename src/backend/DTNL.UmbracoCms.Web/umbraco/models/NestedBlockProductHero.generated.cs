@@ -50,11 +50,11 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		// properties
 
 		///<summary>
-		/// Hide Navigation Links?
+		/// Hide Anchor Links?
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[ImplementPropertyType("hideNavigationLinks")]
-		public virtual bool HideNavigationLinks => this.Value<bool>(_publishedValueFallback, "hideNavigationLinks");
+		[ImplementPropertyType("hideAnchorLinks")]
+		public virtual bool HideAnchorLinks => this.Value<bool>(_publishedValueFallback, "hideAnchorLinks");
 
 		///<summary>
 		/// Image

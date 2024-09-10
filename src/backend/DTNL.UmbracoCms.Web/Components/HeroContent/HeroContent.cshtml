@@ -24,14 +24,14 @@
         <div class="hero-content__col-right">
             <p class="hero-content__description">@Model.ShortDescription</p>
             <div class="hero-content__ctas">
-                @if (Model.FirstButton is not null)
+                @if (Model.PrimaryButton is not null)
                 {
-                    <partial name="Button" model="@Model.FirstButton"></partial>
+                    <partial name="Button" model="@Model.PrimaryButton"></partial>
 
                 }
-                @if (Model.SecondButton is not null)
+                @if (Model.SecondaryButton is not null)
                 {
-                    <partial name="Button" model="@Model.SecondButton"></partial>
+                    <partial name="Button" model="@Model.SecondaryButton"></partial>
 
                 }
             </div>
