@@ -58,19 +58,8 @@ public class CardCarousel
             AnchorTitle = (cardsBlock as ICompositionAnchors)?.AnchorTitle,
             Title = cardsBlock.Title,
             Text = cardsBlock.Text?.ToHtmlString(),
-            PrimaryLinkButton = Button.Create(primaryLinkButtonContent)
-                .With(b =>
-                {
-                    b.Variant = b.Variant ?? "primary";
-                    b.Icon = b.Icon ?? SvgAliases.Icons.ArrowTopRight;
-                }),
-            SecondaryLinkButton = Button
-                .Create(secondaryLinkButtonContent)
-                .With(b =>
-                {
-                    b.Variant = b.Variant ?? "primary";
-                    b.Icon = b.Icon ?? SvgAliases.Icons.ArrowTopRight;
-                }),
+            PrimaryLinkButton = Button.Create(primaryLinkButtonContent),
+            SecondaryLinkButton = Button.Create(secondaryLinkButtonContent),
             Cards = cards,
             ShowCarousel = cards.Count > 3 || (cardsBlock.ShowCarousel && cards.Count == 3),
             ShowThreeSideBySide = !cardsBlock.ShowCarousel && cards.Count == 3,
