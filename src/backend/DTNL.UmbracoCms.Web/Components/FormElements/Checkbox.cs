@@ -97,10 +97,5 @@ public class Checkbox : ViewComponentExtended
         public string? Validate { get; set; }
 
         public bool Selected { get; set; }
-
-        internal IFormOption ToList()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

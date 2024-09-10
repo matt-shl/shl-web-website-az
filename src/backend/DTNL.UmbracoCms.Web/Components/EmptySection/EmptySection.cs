@@ -23,17 +23,11 @@ public class EmptySection
         {
             Title = noResults.NoResultsTitle!,
             Text = noResults.NoResultsText!.ToHtmlString()!,
-            PrimaryLinkButton = Button.Create(primaryLinkButtonContent)
-                .With(b =>
-                {
-                    b.Variant = primaryLinkButtonContent?.Variant ?? "primary";
-                    b.Icon = SvgAliases.Icons.ArrowTopRight;
-                }),
+            PrimaryLinkButton = Button.Create(primaryLinkButtonContent),
             SecondaryLinkButton = Button.Create(secondaryLinkButtonContent)
                 .With(b =>
                 {
                     b.Variant = secondaryLinkButtonContent?.Variant ?? "secondary";
-                    b.Icon = SvgAliases.Icons.ArrowTopRight;
                 }),
         };
     }
