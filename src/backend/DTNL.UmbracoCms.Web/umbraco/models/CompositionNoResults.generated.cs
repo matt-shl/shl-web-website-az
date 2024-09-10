@@ -25,12 +25,12 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		/// <summary>No Results Primary Link</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		global::Umbraco.Cms.Core.Models.Link NoResultsPrimaryLink { get; }
+		global::Umbraco.Cms.Core.Models.Blocks.BlockListModel NoResultsPrimaryLink { get; }
 
 		/// <summary>No Results Secondary Link</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		global::Umbraco.Cms.Core.Models.Link NoResultsSecondaryLink { get; }
+		global::Umbraco.Cms.Core.Models.Blocks.BlockListModel NoResultsSecondaryLink { get; }
 
 		/// <summary>No Results Text</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
@@ -80,12 +80,12 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("noResultsPrimaryLink")]
-		public virtual global::Umbraco.Cms.Core.Models.Link NoResultsPrimaryLink => GetNoResultsPrimaryLink(this, _publishedValueFallback);
+		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel NoResultsPrimaryLink => GetNoResultsPrimaryLink(this, _publishedValueFallback);
 
 		/// <summary>Static getter for No Results Primary Link</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		public static global::Umbraco.Cms.Core.Models.Link GetNoResultsPrimaryLink(ICompositionNoResults that, IPublishedValueFallback publishedValueFallback) => that.Value<global::Umbraco.Cms.Core.Models.Link>(publishedValueFallback, "noResultsPrimaryLink");
+		public static global::Umbraco.Cms.Core.Models.Blocks.BlockListModel GetNoResultsPrimaryLink(ICompositionNoResults that, IPublishedValueFallback publishedValueFallback) => that.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockListModel>(publishedValueFallback, "noResultsPrimaryLink");
 
 		///<summary>
 		/// No Results Secondary Link
@@ -93,12 +93,12 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("noResultsSecondaryLink")]
-		public virtual global::Umbraco.Cms.Core.Models.Link NoResultsSecondaryLink => GetNoResultsSecondaryLink(this, _publishedValueFallback);
+		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel NoResultsSecondaryLink => GetNoResultsSecondaryLink(this, _publishedValueFallback);
 
 		/// <summary>Static getter for No Results Secondary Link</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		public static global::Umbraco.Cms.Core.Models.Link GetNoResultsSecondaryLink(ICompositionNoResults that, IPublishedValueFallback publishedValueFallback) => that.Value<global::Umbraco.Cms.Core.Models.Link>(publishedValueFallback, "noResultsSecondaryLink");
+		public static global::Umbraco.Cms.Core.Models.Blocks.BlockListModel GetNoResultsSecondaryLink(ICompositionNoResults that, IPublishedValueFallback publishedValueFallback) => that.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockListModel>(publishedValueFallback, "noResultsSecondaryLink");
 
 		///<summary>
 		/// No Results Text
