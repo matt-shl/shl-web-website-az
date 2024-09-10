@@ -36,7 +36,7 @@ public class HeroContent : IHero
 
             SubTitle = contentHero.SubTitle.FallBack((page as ICompositionContentDetails)?.Date.ToLongDateString()),
 
-            Tags = contentHero.Tags?.Take(2).Select(tag => new Tag
+            Tags = (page as ICompositionKnowledgePage)?.ContentTags?.Take(2).Select(tag => new Tag
             {
                 Label = tag,
                 CssClasses = "hero-content__tag",

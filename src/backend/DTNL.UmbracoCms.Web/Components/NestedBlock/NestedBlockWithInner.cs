@@ -44,7 +44,9 @@ public abstract class NestedBlockWithInner : NestedBlock
     {
         LayoutSection.CssClasses = $"{(cardCarousel.ShowCarousel
             ? "c-section-card-carousel c-section-card-carousel--show-carousel"
-            : "c-section-card-carousel c-section-card-carousel--no-carousel-three")}" + $" {(theme != null ? $"t-{theme}" : "t-white")}";
+            : "c-section-card-carousel")}" + $"{(cardCarousel.ShowThreeSideBySide
+            ? "c-section-card-carousel--no-carousel-three"
+            : null)}" + $" {(theme != null ? $"t-{theme}" : "t-white")}";
         LayoutSection.Variant = theme != null ? "in-grid" : "";
         LayoutSection.Id = cardCarousel.AnchorId;
         LayoutSection.NavigationTitle = cardCarousel.AnchorTitle;
