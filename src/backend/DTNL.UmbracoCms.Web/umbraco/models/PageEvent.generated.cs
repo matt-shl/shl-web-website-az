@@ -18,14 +18,14 @@ using Umbraco.Extensions;
 
 namespace Umbraco.Cms.Web.Common.PublishedModels
 {
-	/// <summary>Page Content</summary>
-	[PublishedModel("pageContent")]
-	public partial class PageContent : PublishedContentModel, ICompositionBasePage, ICompositionCardDetails, ICompositionColorOptions, ICompositionContentBlocks, ICompositionContentDetails, ICompositionHero, ICompositionSeo, ICompositionSocialSharing, ICompositionSocialSharingOptions
+	/// <summary>Page Event</summary>
+	[PublishedModel("pageEvent")]
+	public partial class PageEvent : PublishedContentModel, ICompositionBasePage, ICompositionCardDetails, ICompositionColorOptions, ICompositionContentBlocks, ICompositionContentDetails, ICompositionHero, ICompositionSeo, ICompositionTagSettings
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		public new const string ModelTypeAlias = "pageContent";
+		public new const string ModelTypeAlias = "pageEvent";
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
@@ -34,14 +34,14 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 			=> PublishedModelUtility.GetModelContentType(publishedSnapshotAccessor, ModelItemType, ModelTypeAlias);
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		public static IPublishedPropertyType GetModelPropertyType<TValue>(IPublishedSnapshotAccessor publishedSnapshotAccessor, Expression<Func<PageContent, TValue>> selector)
+		public static IPublishedPropertyType GetModelPropertyType<TValue>(IPublishedSnapshotAccessor publishedSnapshotAccessor, Expression<Func<PageEvent, TValue>> selector)
 			=> PublishedModelUtility.GetModelPropertyType(GetModelContentType(publishedSnapshotAccessor), selector);
 #pragma warning restore 0109
 
 		private IPublishedValueFallback _publishedValueFallback;
 
 		// ctor
-		public PageContent(IPublishedContent content, IPublishedValueFallback publishedValueFallback)
+		public PageEvent(IPublishedContent content, IPublishedValueFallback publishedValueFallback)
 			: base(content, publishedValueFallback)
 		{
 			_publishedValueFallback = publishedValueFallback;
@@ -197,59 +197,59 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual string UmbracoUrlName => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionSeo.GetUmbracoUrlName(this, _publishedValueFallback);
 
 		///<summary>
-		/// Description: To overrule the description property for social sharing
+		/// Categories: Define allowed categories.
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("ogDescription")]
-		public virtual string OgDescription => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionSocialSharing.GetOgDescription(this, _publishedValueFallback);
+		[ImplementPropertyType("categories")]
+		public virtual global::System.Collections.Generic.IEnumerable<string> Categories => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionTagSettings.GetCategories(this, _publishedValueFallback);
 
 		///<summary>
-		/// Image: The image for sharing on social media. Facebook recommends 1200 x 630px
+		/// Connectivity Types: Define allowed connectivity types.
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("ogImage")]
-		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops OgImage => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionSocialSharing.GetOgImage(this, _publishedValueFallback);
+		[ImplementPropertyType("connectivityTypes")]
+		public virtual global::System.Collections.Generic.IEnumerable<string> ConnectivityTypes => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionTagSettings.GetConnectivityTypes(this, _publishedValueFallback);
 
 		///<summary>
-		/// Title: To overrule the title property for social sharing
+		/// Container Types: Define allowed container types.
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("ogTitle")]
-		public virtual string OgTitle => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionSocialSharing.GetOgTitle(this, _publishedValueFallback);
+		[ImplementPropertyType("containerTypes")]
+		public virtual global::System.Collections.Generic.IEnumerable<string> ContainerTypes => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionTagSettings.GetContainerTypes(this, _publishedValueFallback);
 
 		///<summary>
-		/// Twitter Description: Optional override for twitter card description. If you do not fill in this field, Twitter will use the Open Graph tag.
+		/// Device Types: Define allowed device types.
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("twitterDescription")]
-		public virtual string TwitterDescription => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionSocialSharing.GetTwitterDescription(this, _publishedValueFallback);
+		[ImplementPropertyType("deviceTypes")]
+		public virtual global::System.Collections.Generic.IEnumerable<string> DeviceTypes => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionTagSettings.GetDeviceTypes(this, _publishedValueFallback);
 
 		///<summary>
-		/// Twitter Image: Optional override for image card title. If you do not fill in this field, Twitter will use the Open Graph tag.
+		/// Locations: Define allowed locations.
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("twitterImage")]
-		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops TwitterImage => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionSocialSharing.GetTwitterImage(this, _publishedValueFallback);
+		[ImplementPropertyType("locations")]
+		public virtual global::System.Collections.Generic.IEnumerable<string> Locations => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionTagSettings.GetLocations(this, _publishedValueFallback);
 
 		///<summary>
-		/// Twitter title: Optional override for twitter card title. If you do not fill in this field, Twitter will use the Open Graph tag.
+		/// Routes Of Administration: Define allowed routes of administration.
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("twitterTitle")]
-		public virtual string TwitterTitle => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionSocialSharing.GetTwitterTitle(this, _publishedValueFallback);
+		[ImplementPropertyType("routesOfAdministration")]
+		public virtual global::System.Collections.Generic.IEnumerable<string> RoutesOfAdministration => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionTagSettings.GetRoutesOfAdministration(this, _publishedValueFallback);
 
 		///<summary>
-		/// Disable socials: Select the social options that you want to hide from the page
+		/// Volume Ranges: Define allowed volume ranges.
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("disableSocialShare")]
-		public virtual global::System.Collections.Generic.IEnumerable<string> DisableSocialShare => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionSocialSharingOptions.GetDisableSocialShare(this, _publishedValueFallback);
+		[ImplementPropertyType("volumeRanges")]
+		public virtual global::System.Collections.Generic.IEnumerable<string> VolumeRanges => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionTagSettings.GetVolumeRanges(this, _publishedValueFallback);
 	}
 }
