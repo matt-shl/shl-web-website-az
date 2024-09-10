@@ -1,0 +1,5 @@
+﻿@inherits UmbracoViewPage<PageOverview>
+
+<vc:overview-items overview-page="@Model"/>
+
+<partial name="_BlockList" model="@Model.ContentBlocks" />

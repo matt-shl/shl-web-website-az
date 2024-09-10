@@ -18,9 +18,9 @@ using Umbraco.Extensions;
 
 namespace Umbraco.Cms.Web.Common.PublishedModels
 {
-	// Mixin Content Type with alias "compositionKnowledgePage"
-	/// <summary>Composition Knowledge Page</summary>
-	public partial interface ICompositionKnowledgePage : IPublishedElement
+	// Mixin Content Type with alias "compositionContentDetails"
+	/// <summary>Composition Content Details</summary>
+	public partial interface ICompositionContentDetails : IPublishedElement
 	{
 		/// <summary>Content Tags</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
@@ -37,14 +37,14 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		global::System.Collections.Generic.IEnumerable<string> PageType { get; }
 	}
 
-	/// <summary>Composition Knowledge Page</summary>
-	[PublishedModel("compositionKnowledgePage")]
-	public partial class CompositionKnowledgePage : PublishedElementModel, ICompositionKnowledgePage
+	/// <summary>Composition Content Details</summary>
+	[PublishedModel("compositionContentDetails")]
+	public partial class CompositionContentDetails : PublishedElementModel, ICompositionContentDetails
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		public new const string ModelTypeAlias = "compositionKnowledgePage";
+		public new const string ModelTypeAlias = "compositionContentDetails";
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
@@ -53,14 +53,14 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 			=> PublishedModelUtility.GetModelContentType(publishedSnapshotAccessor, ModelItemType, ModelTypeAlias);
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		public static IPublishedPropertyType GetModelPropertyType<TValue>(IPublishedSnapshotAccessor publishedSnapshotAccessor, Expression<Func<CompositionKnowledgePage, TValue>> selector)
+		public static IPublishedPropertyType GetModelPropertyType<TValue>(IPublishedSnapshotAccessor publishedSnapshotAccessor, Expression<Func<CompositionContentDetails, TValue>> selector)
 			=> PublishedModelUtility.GetModelPropertyType(GetModelContentType(publishedSnapshotAccessor), selector);
 #pragma warning restore 0109
 
 		private IPublishedValueFallback _publishedValueFallback;
 
 		// ctor
-		public CompositionKnowledgePage(IPublishedElement content, IPublishedValueFallback publishedValueFallback)
+		public CompositionContentDetails(IPublishedElement content, IPublishedValueFallback publishedValueFallback)
 			: base(content, publishedValueFallback)
 		{
 			_publishedValueFallback = publishedValueFallback;
@@ -79,7 +79,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		/// <summary>Static getter for Content Tags</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		public static global::System.Collections.Generic.IEnumerable<string> GetContentTags(ICompositionKnowledgePage that, IPublishedValueFallback publishedValueFallback) => that.Value<global::System.Collections.Generic.IEnumerable<string>>(publishedValueFallback, "contentTags");
+		public static global::System.Collections.Generic.IEnumerable<string> GetContentTags(ICompositionContentDetails that, IPublishedValueFallback publishedValueFallback) => that.Value<global::System.Collections.Generic.IEnumerable<string>>(publishedValueFallback, "contentTags");
 
 		///<summary>
 		/// Date
@@ -90,7 +90,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 
 		/// <summary>Static getter for Date</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		public static global::System.DateTime GetDate(ICompositionKnowledgePage that, IPublishedValueFallback publishedValueFallback) => that.Value<global::System.DateTime>(publishedValueFallback, "date");
+		public static global::System.DateTime GetDate(ICompositionContentDetails that, IPublishedValueFallback publishedValueFallback) => that.Value<global::System.DateTime>(publishedValueFallback, "date");
 
 		///<summary>
 		/// Page Type
@@ -103,6 +103,6 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		/// <summary>Static getter for Page Type</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		public static global::System.Collections.Generic.IEnumerable<string> GetPageType(ICompositionKnowledgePage that, IPublishedValueFallback publishedValueFallback) => that.Value<global::System.Collections.Generic.IEnumerable<string>>(publishedValueFallback, "pageType");
+		public static global::System.Collections.Generic.IEnumerable<string> GetPageType(ICompositionContentDetails that, IPublishedValueFallback publishedValueFallback) => that.Value<global::System.Collections.Generic.IEnumerable<string>>(publishedValueFallback, "pageType");
 	}
 }
