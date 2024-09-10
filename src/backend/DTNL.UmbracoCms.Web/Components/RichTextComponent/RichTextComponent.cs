@@ -36,9 +36,7 @@ public class RichTextComponent : LayoutSection
             {
                 b.Class = "rich-text__cta1";
                 b.Label = firstButton?.Link?.Name ?? "";
-                b.Variant = firstButton?.Variant ?? "primary";
                 b.Hook = "js-hook-rich-text-button";
-                b.Icon = firstButton?.ButtonIcon?.LocalCrops.Src ?? SvgAliases.Icons.ArrowTopRight;
             }),
             SecondButton = Button.Create(secondButton).With(b =>
             {
@@ -46,7 +44,6 @@ public class RichTextComponent : LayoutSection
                 b.Label = secondButton?.Link?.Name ?? "";
                 b.Hook = "js-hook-rich-text-button";
                 b.Variant = secondButton?.Variant ?? "secondary";
-                b.Icon = secondButton?.ButtonIcon?.LocalCrops.Src ?? SvgAliases.Icons.ArrowTopRight;
             }),
             ReadMoreOption = richTextComponent.ReadMorelessOption,
             ReadMoreButton = new Button
