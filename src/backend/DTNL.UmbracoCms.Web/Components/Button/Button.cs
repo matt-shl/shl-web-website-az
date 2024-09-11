@@ -2,6 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using DTNL.UmbracoCms.Web.Helpers.Aliases;
 using DTNL.UmbracoCms.Web.Helpers.Extensions;
 using Umbraco.Cms.Core.Dictionary;
+using Umbraco.Cms.Core.Models.Blocks;
 using Umbraco.Cms.Web.Common.PublishedModels;
 
 namespace DTNL.UmbracoCms.Web.Components;
@@ -59,6 +60,11 @@ public class Button
             Label = link.Name ?? "",
             Target = link.Target,
         };
+    }
+
+    public static Button? Create(BlockListModel? blockList)
+    {
+        return Create(blockList?.GetSingleContentOrNull<NestedBlockButtonLink>());
     }
 
     [return: NotNullIfNotNull(nameof(buttonLink))]

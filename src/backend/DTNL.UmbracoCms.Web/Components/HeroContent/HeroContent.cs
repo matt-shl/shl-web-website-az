@@ -45,7 +45,7 @@ public class HeroContent : IHero
             ShortDescription = contentHero.Text?.ToHtmlString(),
 
             PrimaryButton = Button
-                .Create(contentHero.PrimaryLink.GetSingleContentOrNull<NestedBlockButtonLink>())
+                .Create(contentHero.PrimaryLink)
                 .With(b =>
                 {
                     b.Class = "hero-content__cta";
@@ -53,7 +53,7 @@ public class HeroContent : IHero
                 }),
 
             SecondaryButton = Button
-                .Create(contentHero.SecondaryLink.GetSingleContentOrNull<NestedBlockButtonLink>())
+                .Create(contentHero.SecondaryLink)
                 .With(b =>
                 {
                     b.Class = "hero-content__cta";

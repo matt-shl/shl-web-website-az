@@ -29,8 +29,7 @@ public class EventDetails
             Title = eventDetails.EventTitle,
             Location = eventDetails.EventLocationInfo?.ToHtmlString(),
             Time = eventDetails.EventTime?.ToHtmlString(),
-            Link = Button
-                .Create(eventDetails.EventUrl.GetSingleContentOrNull<NestedBlockButtonLink>()),
+            Link = Button.Create(eventDetails.EventUrl),
             Image = Image
                 .Create(eventDetails.EventImage)
                 .With(i => i.Classes = "media-section__image"),
