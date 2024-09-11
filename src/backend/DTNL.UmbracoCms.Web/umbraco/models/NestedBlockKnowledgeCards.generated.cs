@@ -63,7 +63,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("primaryLink")]
-		public virtual global::Umbraco.Cms.Core.Models.Link PrimaryLink => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionCards.GetPrimaryLink(this, _publishedValueFallback);
+		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel PrimaryLink => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionCards.GetPrimaryLink(this, _publishedValueFallback);
 
 		///<summary>
 		/// Secondary Link
@@ -71,7 +71,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("secondaryLink")]
-		public virtual global::Umbraco.Cms.Core.Models.Link SecondaryLink => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionCards.GetSecondaryLink(this, _publishedValueFallback);
+		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel SecondaryLink => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionCards.GetSecondaryLink(this, _publishedValueFallback);
 
 		///<summary>
 		/// Show Carousel?: This option only works when there are 3 cards selected.

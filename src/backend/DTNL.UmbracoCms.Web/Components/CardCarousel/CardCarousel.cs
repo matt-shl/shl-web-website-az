@@ -18,6 +18,8 @@ public class CardCarousel
 
     public bool ShowCarousel { get; set; }
 
+    public bool ShowThreeSideBySide { get; set; }
+
     public static CardCarousel? Create(ICompositionCards cardsBlock)
     {
         List<ICard> cards = cardsBlock switch
@@ -42,22 +44,19 @@ public class CardCarousel
             return null;
         }
 
+        NestedBlockButtonLink? primaryLinkButtonContent = cardsBlock.PrimaryLink?.FirstOrDefault()?.Content as NestedBlockButtonLink;
+        NestedBlockButtonLink? secondaryLinkButtonContent = cardsBlock.SecondaryLink?.FirstOrDefault()?.Content as NestedBlockButtonLink;
+
+
         return new CardCarousel
         {
             Title = cardsBlock.Title,
             Text = cardsBlock.Text?.ToHtmlString(),
-            PrimaryLinkButton = Button
-                .Create(cardsBlock.PrimaryLink)
-                .With(b => b.Icon = SvgAliases.Icons.ArrowTopRight),
-            SecondaryLinkButton = Button
-                .Create(cardsBlock.SecondaryLink)
-                .With(b =>
-                {
-                    b.Icon = SvgAliases.Icons.ArrowTopRight;
-                    b.Variant = "secondary";
-                }),
+            PrimaryLinkButton = Button.Create(primaryLinkButtonContent),
+            SecondaryLinkButton = Button.Create(secondaryLinkButtonContent),
             Cards = cards,
             ShowCarousel = cards.Count > 3 || (cardsBlock.ShowCarousel && cards.Count == 3),
+            ShowThreeSideBySide = !cardsBlock.ShowCarousel && cards.Count == 3,
         };
     }
 }

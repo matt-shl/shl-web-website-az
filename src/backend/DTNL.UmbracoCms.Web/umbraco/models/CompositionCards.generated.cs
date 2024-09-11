@@ -25,12 +25,12 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		/// <summary>Primary Link</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		global::Umbraco.Cms.Core.Models.Link PrimaryLink { get; }
+		global::Umbraco.Cms.Core.Models.Blocks.BlockListModel PrimaryLink { get; }
 
 		/// <summary>Secondary Link</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		global::Umbraco.Cms.Core.Models.Link SecondaryLink { get; }
+		global::Umbraco.Cms.Core.Models.Blocks.BlockListModel SecondaryLink { get; }
 
 		/// <summary>Show Carousel?</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
@@ -84,12 +84,12 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("primaryLink")]
-		public virtual global::Umbraco.Cms.Core.Models.Link PrimaryLink => GetPrimaryLink(this, _publishedValueFallback);
+		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel PrimaryLink => GetPrimaryLink(this, _publishedValueFallback);
 
 		/// <summary>Static getter for Primary Link</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		public static global::Umbraco.Cms.Core.Models.Link GetPrimaryLink(ICompositionCards that, IPublishedValueFallback publishedValueFallback) => that.Value<global::Umbraco.Cms.Core.Models.Link>(publishedValueFallback, "primaryLink");
+		public static global::Umbraco.Cms.Core.Models.Blocks.BlockListModel GetPrimaryLink(ICompositionCards that, IPublishedValueFallback publishedValueFallback) => that.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockListModel>(publishedValueFallback, "primaryLink");
 
 		///<summary>
 		/// Secondary Link
@@ -97,12 +97,12 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("secondaryLink")]
-		public virtual global::Umbraco.Cms.Core.Models.Link SecondaryLink => GetSecondaryLink(this, _publishedValueFallback);
+		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel SecondaryLink => GetSecondaryLink(this, _publishedValueFallback);
 
 		/// <summary>Static getter for Secondary Link</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		public static global::Umbraco.Cms.Core.Models.Link GetSecondaryLink(ICompositionCards that, IPublishedValueFallback publishedValueFallback) => that.Value<global::Umbraco.Cms.Core.Models.Link>(publishedValueFallback, "secondaryLink");
+		public static global::Umbraco.Cms.Core.Models.Blocks.BlockListModel GetSecondaryLink(ICompositionCards that, IPublishedValueFallback publishedValueFallback) => that.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockListModel>(publishedValueFallback, "secondaryLink");
 
 		///<summary>
 		/// Show Carousel?: This option only works when there are 3 cards selected.

@@ -18,14 +18,14 @@ using Umbraco.Extensions;
 
 namespace Umbraco.Cms.Web.Common.PublishedModels
 {
-	/// <summary>Product Cards</summary>
-	[PublishedModel("nestedBlockProductCards")]
-	public partial class NestedBlockProductCards : PublishedElementModel, ICompositionCards
+	/// <summary>Rich Text Component</summary>
+	[PublishedModel("nestedBlockRichTextComponent")]
+	public partial class NestedBlockRichTextComponent : PublishedElementModel, ICompositionAnchors
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		public new const string ModelTypeAlias = "nestedBlockProductCards";
+		public new const string ModelTypeAlias = "nestedBlockRichTextComponent";
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
@@ -34,14 +34,14 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 			=> PublishedModelUtility.GetModelContentType(publishedSnapshotAccessor, ModelItemType, ModelTypeAlias);
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		public static IPublishedPropertyType GetModelPropertyType<TValue>(IPublishedSnapshotAccessor publishedSnapshotAccessor, Expression<Func<NestedBlockProductCards, TValue>> selector)
+		public static IPublishedPropertyType GetModelPropertyType<TValue>(IPublishedSnapshotAccessor publishedSnapshotAccessor, Expression<Func<NestedBlockRichTextComponent, TValue>> selector)
 			=> PublishedModelUtility.GetModelPropertyType(GetModelContentType(publishedSnapshotAccessor), selector);
 #pragma warning restore 0109
 
 		private IPublishedValueFallback _publishedValueFallback;
 
 		// ctor
-		public NestedBlockProductCards(IPublishedElement content, IPublishedValueFallback publishedValueFallback)
+		public NestedBlockRichTextComponent(IPublishedElement content, IPublishedValueFallback publishedValueFallback)
 			: base(content, publishedValueFallback)
 		{
 			_publishedValueFallback = publishedValueFallback;
@@ -50,50 +50,66 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		// properties
 
 		///<summary>
-		/// Cards
+		/// First Button
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("cards")]
-		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel Cards => this.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockListModel>(_publishedValueFallback, "cards");
+		[ImplementPropertyType("firstButton")]
+		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel FirstButton => this.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockListModel>(_publishedValueFallback, "firstButton");
 
 		///<summary>
-		/// Primary Link
+		/// Read more/less option
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[ImplementPropertyType("readMorelessOption")]
+		public virtual bool ReadMorelessOption => this.Value<bool>(_publishedValueFallback, "readMorelessOption");
+
+		///<summary>
+		/// Reduce Margin: The ability to choose for less margin on the top & bottom of the component for better visual stacking of multiple Rich Text components.
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("primaryLink")]
-		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel PrimaryLink => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionCards.GetPrimaryLink(this, _publishedValueFallback);
+		[ImplementPropertyType("reduceMargin")]
+		public virtual string ReduceMargin => this.Value<string>(_publishedValueFallback, "reduceMargin");
 
 		///<summary>
-		/// Secondary Link
+		/// RTE Content
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("secondaryLink")]
-		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel SecondaryLink => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionCards.GetSecondaryLink(this, _publishedValueFallback);
+		[ImplementPropertyType("rTEContent")]
+		public virtual global::Umbraco.Cms.Core.Strings.IHtmlEncodedString RTecontent => this.Value<global::Umbraco.Cms.Core.Strings.IHtmlEncodedString>(_publishedValueFallback, "rTEContent");
 
 		///<summary>
-		/// Show Carousel?: This option only works when there are 3 cards selected.
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[ImplementPropertyType("showCarousel")]
-		public virtual bool ShowCarousel => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionCards.GetShowCarousel(this, _publishedValueFallback);
-
-		///<summary>
-		/// Text
+		/// Second Button
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("text")]
-		public virtual global::Umbraco.Cms.Core.Strings.IHtmlEncodedString Text => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionCards.GetText(this, _publishedValueFallback);
+		[ImplementPropertyType("secondButton")]
+		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel SecondButton => this.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockListModel>(_publishedValueFallback, "secondButton");
 
 		///<summary>
-		/// Title
+		/// Text Size
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("title")]
-		public virtual string Title => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionCards.GetTitle(this, _publishedValueFallback);
+		[ImplementPropertyType("textSize")]
+		public virtual string TextSize => this.Value<string>(_publishedValueFallback, "textSize");
+
+		///<summary>
+		/// Anchor Id
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("anchorId")]
+		public virtual string AnchorId => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionAnchors.GetAnchorId(this, _publishedValueFallback);
+
+		///<summary>
+		/// Anchor Title
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("anchorTitle")]
+		public virtual string AnchorTitle => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionAnchors.GetAnchorTitle(this, _publishedValueFallback);
 	}
 }
