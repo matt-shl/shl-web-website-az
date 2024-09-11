@@ -1,4 +1,3 @@
-using DTNL.UmbracoCms.Web.Helpers.Aliases;
 using DTNL.UmbracoCms.Web.Helpers.Extensions;
 using Umbraco.Cms.Web.Common.PublishedModels;
 
@@ -14,24 +13,28 @@ public class EmptySection
 
     public Button? SecondaryLinkButton { get; set; }
 
+    public string? Variant { get; set; }
+
     public static EmptySection Create(ICompositionNoResults noResults)
     {
         return new EmptySection
         {
             Title = noResults.NoResultsTitle!,
             Text = noResults.NoResultsText!.ToHtmlString()!,
-            PrimaryLinkButton = Button.Create(noResults.NoResultsPrimaryLink)
-                .With(b =>
-                {
-                    b.Variant = "primary";
-                    b.Icon = SvgAliases.Icons.ArrowTopRight;
-                }),
-            SecondaryLinkButton = Button.Create(noResults.NoResultsSecondaryLink)
-                .With(b =>
-                {
-                    b.Variant = "secondary";
-                    b.Icon = SvgAliases.Icons.ArrowTopRight;
-                }),
+            PrimaryLinkButton = Button.Create(noResults.NoResultsPrimaryLink.GetSingleContentOrNull<NestedBlockButtonLink>()),
+            SecondaryLinkButton = Button.Create(noResults.NoResultsSecondaryLink.GetSingleContentOrNull<NestedBlockButtonLink>()),
+        };
+    }
+
+    public static EmptySection Create(PageError errorPage)
+    {
+        return new EmptySection
+        {
+            Title = errorPage.ErrorMessage!,
+            Text = errorPage.ErrorDescription!.ToHtmlString()!,
+            PrimaryLinkButton = Button.Create(errorPage.PrimaryLink.GetSingleContentOrNull<NestedBlockButtonLink>()),
+            SecondaryLinkButton = Button.Create(errorPage.SecondaryLink.GetSingleContentOrNull<NestedBlockButtonLink>()),
+            Variant = "tight",
         };
     }
 }
