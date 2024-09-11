@@ -23,29 +23,27 @@ public class RichTextComponent : LayoutSection
 
     public bool ReadMoreOption { get; set; }
 
-    public static RichTextComponent Create(NestedBlockRichTextComponent richTextComponent, ICultureDictionary cultureDictionary)
+    public static RichTextComponent Create(NestedBlockRichText richTextBlock, ICultureDictionary cultureDictionary)
     {
-        NestedBlockButtonLink? firstButton = richTextComponent.FirstButton?.FirstOrDefault()?.Content as NestedBlockButtonLink;
-        NestedBlockButtonLink? secondButton = richTextComponent.SecondButton?.FirstOrDefault()?.Content as NestedBlockButtonLink;
-
         return new RichTextComponent
         {
-            Content = richTextComponent.RTecontent?.ToHtmlString(),
-            TextSize = !string.IsNullOrWhiteSpace(richTextComponent.TextSize) ? $"c-rich-text--size-{richTextComponent.TextSize}" : null,
-            FirstButton = Button.Create(firstButton).With(b =>
-            {
-                b.Class = "rich-text__cta1";
-                b.Label = firstButton?.Link?.Name ?? "";
-                b.Hook = "js-hook-rich-text-button";
-            }),
-            SecondButton = Button.Create(secondButton).With(b =>
-            {
-                b.Class = "rich-text__cta2";
-                b.Label = secondButton?.Link?.Name ?? "";
-                b.Hook = "js-hook-rich-text-button";
-                b.Variant = secondButton?.Variant ?? "secondary";
-            }),
-            ReadMoreOption = richTextComponent.ReadMorelessOption,
+            Content = richTextBlock.Text?.ToHtmlString(),
+            TextSize = !string.IsNullOrWhiteSpace(richTextBlock.TextSize) ? $"c-rich-text--size-{richTextBlock.TextSize}" : null,
+            FirstButton = Button
+                .Create(richTextBlock.PrimaryLink, fallBackVariant: "primary")
+                .With(b =>
+                {
+                    b.Class = "rich-text__cta1";
+                    b.Hook = "js-hook-rich-text-button";
+                }),
+            SecondButton = Button
+                .Create(richTextBlock.SecondLink, fallBackVariant: "secondary")
+                .With(b =>
+                {
+                    b.Class = "rich-text__cta2";
+                    b.Hook = "js-hook-rich-text-button";
+                }),
+            ReadMoreOption = richTextBlock.ShowReadMoreOption,
             ReadMoreButton = new Button
             {
                 Url = "#",

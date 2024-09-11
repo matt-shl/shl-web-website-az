@@ -7,11 +7,15 @@
     return;
 }
 
+@if (!Model.Url.IsNullOrWhiteSpace())
+{
+    Model.Attributes.TryAdd("href", Model.Url);
+}
+
 <@(Model.Element)
-    type="@(!Model.Type.IsNullOrEmpty() ? Model.Type : Model.Element == "button" ? "button" : null)"
-    href="@Model.Url.NullOrEmptyAsNull()"
-    target="@Model.Target.NullOrEmptyAsNull()"
+    target = "@Model.Target.NullOrEmptyAsNull()"
     rel="@(Model.Target == "_blank" ? "noopener noreferrer" : null)"
+    type="@(!Model.Type.IsNullOrEmpty() ? Model.Type : Model.Element == "button" ? "button" : null)"
     aria-controls="@Model.Controls.NullOrEmptyAsNull()"
     aria-label="@(Model.AriaLabel ?? Model.Label)"
     class="

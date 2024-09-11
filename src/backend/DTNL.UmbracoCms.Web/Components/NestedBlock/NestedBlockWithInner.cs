@@ -1,4 +1,6 @@
+using DTNL.UmbracoCms.Web.Helpers;
 using Umbraco.Cms.Core.Models.PublishedContent;
+using Umbraco.Cms.Web.Common.PublishedModels;
 
 namespace DTNL.UmbracoCms.Web.Components.NestedBlock;
 
@@ -14,6 +16,25 @@ public abstract class NestedBlockWithInner : NestedBlock
 
     public virtual string InnerViewName => InnerComponent!.GetType().Name;
 
+    protected override void ProcessSettings(IPublishedElement? settings)
+    {
+        base.ProcessSettings(settings);
+
+        LayoutSection.Id ??= Id;
+        LayoutSection.NavigationTitle ??= NavigationTitle;
+
+        if (settings is ColorComponentSettings colorComponentSettings)
+        {
+            LayoutSection.Variant = colorComponentSettings.Theme is not null ? "in-grid" : null;
+
+            LayoutSection.CssThemeClasses = ThemeHelper.GetCssClasses(colorComponentSettings.Theme, "white");
+        }
+        else
+        {
+            LayoutSection.CssThemeClasses = "t-white";
+        }
+    }
+
     protected override object? ProcessBlock(IPublishedElement block)
     {
         InnerComponent = GetInnerComponent(block);
@@ -25,7 +46,7 @@ public abstract class NestedBlockWithInner : NestedBlock
     {
         InnerComponent = await GetInnerComponentAsync(block);
 
-        return InnerComponent is null ? null : this;
+        return InnerComponent is not null ? this : null;
     }
 
     protected virtual object? GetInnerComponent(IPublishedElement block)
@@ -40,15 +61,10 @@ public abstract class NestedBlockWithInner : NestedBlock
         return Task.FromResult(GetInnerComponent(block));
     }
 
-    protected void SetCarouselsLayout(CardCarousel cardCarousel, string? theme)
+    protected void SetCarouselsLayout(CardCarousel cardCarousel)
     {
-        LayoutSection.CssClasses = $"{(cardCarousel.ShowCarousel
+        LayoutSection.CssClasses = cardCarousel.ShowCarousel
             ? "c-section-card-carousel c-section-card-carousel--show-carousel"
-            : "c-section-card-carousel")}" + $"{(cardCarousel.ShowThreeSideBySide
-            ? "c-section-card-carousel--no-carousel-three"
-            : null)}" + $" {(theme != null ? $"t-{theme}" : "t-white")}";
-        LayoutSection.Variant = theme != null ? "in-grid" : "";
-        LayoutSection.Id = cardCarousel.AnchorId;
-        LayoutSection.NavigationTitle = cardCarousel.AnchorTitle;
+            : "c-section-card-carousel c-section-card-carousel--no-carousel-three";
     }
 }

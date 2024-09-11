@@ -1,4 +1,3 @@
-using DTNL.UmbracoCms.Web.Helpers.Aliases;
 using DTNL.UmbracoCms.Web.Helpers.Extensions;
 using Umbraco.Cms.Web.Common.PublishedModels;
 
@@ -6,10 +5,6 @@ namespace DTNL.UmbracoCms.Web.Components;
 
 public class CardCarousel
 {
-    public string? AnchorId { get; set; }
-
-    public string? AnchorTitle { get; set; }
-
     public string? Title { get; set; }
 
     public string? Text { get; set; }
@@ -48,18 +43,12 @@ public class CardCarousel
             return null;
         }
 
-        NestedBlockButtonLink? primaryLinkButtonContent = cardsBlock.PrimaryLink?.FirstOrDefault()?.Content as NestedBlockButtonLink;
-        NestedBlockButtonLink? secondaryLinkButtonContent = cardsBlock.SecondaryLink?.FirstOrDefault()?.Content as NestedBlockButtonLink;
-
-
         return new CardCarousel
         {
-            AnchorId = (cardsBlock as ICompositionAnchors)?.AnchorId,
-            AnchorTitle = (cardsBlock as ICompositionAnchors)?.AnchorTitle,
             Title = cardsBlock.Title,
             Text = cardsBlock.Text?.ToHtmlString(),
-            PrimaryLinkButton = Button.Create(primaryLinkButtonContent),
-            SecondaryLinkButton = Button.Create(secondaryLinkButtonContent),
+            PrimaryLinkButton = Button.Create(cardsBlock.PrimaryLink, fallBackVariant: "primary"),
+            SecondaryLinkButton = Button.Create(cardsBlock.SecondaryLink, fallBackVariant: "secondary"),
             Cards = cards,
             ShowCarousel = cards.Count > 3 || (cardsBlock.ShowCarousel && cards.Count == 3),
             ShowThreeSideBySide = !cardsBlock.ShowCarousel && cards.Count == 3,

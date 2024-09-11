@@ -18,14 +18,14 @@ using Umbraco.Extensions;
 
 namespace Umbraco.Cms.Web.Common.PublishedModels
 {
-	/// <summary>Rich Text Component</summary>
-	[PublishedModel("nestedBlockRichTextComponent")]
-	public partial class NestedBlockRichTextComponent : PublishedElementModel, ICompositionAnchors
+	/// <summary>Map Country</summary>
+	[PublishedModel("nestedBlockMapCountry")]
+	public partial class NestedBlockMapCountry : PublishedElementModel
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		public new const string ModelTypeAlias = "nestedBlockRichTextComponent";
+		public new const string ModelTypeAlias = "nestedBlockMapCountry";
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
@@ -34,14 +34,14 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 			=> PublishedModelUtility.GetModelContentType(publishedSnapshotAccessor, ModelItemType, ModelTypeAlias);
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		public static IPublishedPropertyType GetModelPropertyType<TValue>(IPublishedSnapshotAccessor publishedSnapshotAccessor, Expression<Func<NestedBlockRichTextComponent, TValue>> selector)
+		public static IPublishedPropertyType GetModelPropertyType<TValue>(IPublishedSnapshotAccessor publishedSnapshotAccessor, Expression<Func<NestedBlockMapCountry, TValue>> selector)
 			=> PublishedModelUtility.GetModelPropertyType(GetModelContentType(publishedSnapshotAccessor), selector);
 #pragma warning restore 0109
 
 		private IPublishedValueFallback _publishedValueFallback;
 
 		// ctor
-		public NestedBlockRichTextComponent(IPublishedElement content, IPublishedValueFallback publishedValueFallback)
+		public NestedBlockMapCountry(IPublishedElement content, IPublishedValueFallback publishedValueFallback)
 			: base(content, publishedValueFallback)
 		{
 			_publishedValueFallback = publishedValueFallback;
@@ -50,66 +50,62 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		// properties
 
 		///<summary>
-		/// First Button
+		/// Country Code
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("firstButton")]
-		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel FirstButton => this.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockListModel>(_publishedValueFallback, "firstButton");
+		[ImplementPropertyType("countryCode")]
+		public virtual string CountryCode => this.Value<string>(_publishedValueFallback, "countryCode");
 
 		///<summary>
-		/// Read more/less option
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[ImplementPropertyType("readMorelessOption")]
-		public virtual bool ReadMorelessOption => this.Value<bool>(_publishedValueFallback, "readMorelessOption");
-
-		///<summary>
-		/// Reduce Margin: The ability to choose for less margin on the top & bottom of the component for better visual stacking of multiple Rich Text components.
+		/// Name
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("reduceMargin")]
-		public virtual string ReduceMargin => this.Value<string>(_publishedValueFallback, "reduceMargin");
+		[ImplementPropertyType("countryName")]
+		public virtual string CountryName => this.Value<string>(_publishedValueFallback, "countryName");
 
 		///<summary>
-		/// RTE Content
+		/// Map X
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[ImplementPropertyType("mapX")]
+		public virtual decimal MapX => this.Value<decimal>(_publishedValueFallback, "mapX");
+
+		///<summary>
+		/// Map Y
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[ImplementPropertyType("mapY")]
+		public virtual decimal MapY => this.Value<decimal>(_publishedValueFallback, "mapY");
+
+		///<summary>
+		/// Map Zoom
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[ImplementPropertyType("mapZoom")]
+		public virtual decimal MapZoom => this.Value<decimal>(_publishedValueFallback, "mapZoom");
+
+		///<summary>
+		/// Offices
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("rTEContent")]
-		public virtual global::Umbraco.Cms.Core.Strings.IHtmlEncodedString RTecontent => this.Value<global::Umbraco.Cms.Core.Strings.IHtmlEncodedString>(_publishedValueFallback, "rTEContent");
+		[ImplementPropertyType("offices")]
+		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel Offices => this.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockListModel>(_publishedValueFallback, "offices");
 
 		///<summary>
-		/// Second Button
+		/// Trigger X
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("secondButton")]
-		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel SecondButton => this.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockListModel>(_publishedValueFallback, "secondButton");
+		[ImplementPropertyType("triggerX")]
+		public virtual decimal TriggerX => this.Value<decimal>(_publishedValueFallback, "triggerX");
 
 		///<summary>
-		/// Text Size
+		/// Trigger Y
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("textSize")]
-		public virtual string TextSize => this.Value<string>(_publishedValueFallback, "textSize");
-
-		///<summary>
-		/// Anchor Id
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("anchorId")]
-		public virtual string AnchorId => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionAnchors.GetAnchorId(this, _publishedValueFallback);
-
-		///<summary>
-		/// Anchor Title
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("anchorTitle")]
-		public virtual string AnchorTitle => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionAnchors.GetAnchorTitle(this, _publishedValueFallback);
+		[ImplementPropertyType("triggerY")]
+		public virtual decimal TriggerY => this.Value<decimal>(_publishedValueFallback, "triggerY");
 	}
 }

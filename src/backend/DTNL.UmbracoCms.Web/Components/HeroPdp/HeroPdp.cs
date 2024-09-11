@@ -37,12 +37,14 @@ public class HeroPdp : IHero
 
             Text = productHero.Text?.ToHtmlString(),
 
-            PrimaryLinkButton = Button.Create(productHero.PrimaryLink.GetSingleContentOrNull<NestedBlockButtonLink>())
+            PrimaryLinkButton = Button
+                .Create(productHero.PrimaryLink, fallBackVariant: "primary")
                 .With(b => b.Class = "hero-pdp__cta1"),
 
             Image = Image.Create(productHero.Image, imageCropMode: ImageCropMode.Max, cssClasses: "hero-pdp__image", style: "heroPdp"),
 
-            SecondaryLinkButton = Button.Create(productHero.SecondaryLink.GetSingleContentOrNull<NestedBlockButtonLink>())
+            SecondaryLinkButton = Button
+                .Create(productHero.SecondaryLink, fallBackVariant: "secondary")
                 .With(b => b.Class = "hero-pdp__cta2"),
 
             AnchorLinks = AnchorList.Create(productHero),

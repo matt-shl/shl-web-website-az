@@ -2,7 +2,7 @@ namespace DTNL.UmbracoCms.Web.Components;
 
 public class Quote
 {
-    public required string Quotetext { get; set; }
+    public required string QuoteText { get; set; }
 
     public required string Name { get; set; }
 

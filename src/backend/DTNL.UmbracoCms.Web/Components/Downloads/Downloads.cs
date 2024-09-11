@@ -1,33 +1,32 @@
+using DTNL.UmbracoCms.Web.Helpers.Extensions;
 using Umbraco.Cms.Web.Common.PublishedModels;
 
 namespace DTNL.UmbracoCms.Web.Components;
 
 public class Downloads
 {
-    public string? AnchorId { get; set; }
-
-    public string? AnchorTitle { get; set; }
-
     public string? Title { get; set; }
 
     public string? Description { get; set; }
 
-    public IEnumerable<DownloadItem?>? Items { get; set; }
+    public required List<DownloadItem> Items { get; set; }
 
     public static Downloads? Create(NestedBlockDownloads downloads)
     {
-        if (downloads == null)
+        List<DownloadItem> downloadItems = downloads.DownloadsList
+            .Using(block => DownloadItem.Create(block.Content))
+            .ToList();
+
+        if (downloadItems.Count == 0)
         {
             return null;
         }
 
         return new Downloads
         {
-            AnchorId = downloads.AnchorId,
-            AnchorTitle = downloads.AnchorTitle,
-            Title = downloads.DownloadTitle,
-            Description = downloads.DownloadsSubtitle,
-            Items = downloads.DownloadsList?.Select(block => DownloadItem.Create(block.Content)),
+            Title = downloads.Title,
+            Description = downloads.SubTitle,
+            Items = downloadItems,
         };
     }
 }

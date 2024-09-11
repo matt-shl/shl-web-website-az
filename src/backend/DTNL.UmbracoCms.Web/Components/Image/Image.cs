@@ -40,8 +40,6 @@ public partial class Image : ICard
 
     public CardOverlay? CardOverlay { get; set; }
 
-    public string? ImageStyle { get; set; }
-
     public static Image? Create(
         MediaWithCrops? mediaWithCrops,
         ImageCropMode imageCropMode = ImageCropMode.Crop,
