@@ -32,7 +32,7 @@ public class HomepageHero : IHero
             Image = Image.Create(homepageHero.Image, cssClasses: "homepage-hero__image"),
 
             MainButton = Button
-                .Create(homepageHero.MainButtonLink)
+                .Create(homepageHero.MainButtonLink, fallBackVariant: "primary")
                 .With(b =>
                 {
                     b.Class = "button--icon hero-home__cta";
@@ -40,7 +40,7 @@ public class HomepageHero : IHero
                 }),
 
             SecondaryButton = Button
-                .Create(homepageHero.SecondaryButtonLink)
+                .Create(homepageHero.SecondaryButtonLink, fallBackVariant: "secondary")
                 .With(b =>
                 {
                     b.Class = "button--icon hero-home__cta";

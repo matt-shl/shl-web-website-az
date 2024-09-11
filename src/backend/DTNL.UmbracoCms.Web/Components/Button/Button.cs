@@ -62,21 +62,25 @@ public class Button
         };
     }
 
-    public static Button? Create(BlockListModel? blockList)
+    public static Button? Create(
+        BlockListModel? blockList,
+        string? fallBackVariant = null,
+        string? fallBackIcon = null)
     {
-        return Create(blockList?.GetSingleContentOrNull<NestedBlockButtonLink>());
+        return Create(blockList?.GetSingleContentOrNull<NestedBlockButtonLink>(), fallBackVariant, fallBackIcon);
     }
 
     [return: NotNullIfNotNull(nameof(buttonLink))]
     public static Button? Create(
         NestedBlockButtonLink? buttonLink,
+        string? fallBackVariant = null,
         string? fallBackIcon = null)
     {
         return Create(buttonLink?.Link)
             .With(b =>
             {
                 b.Icon = buttonLink?.ButtonIcon?.LocalCrops.Src ?? fallBackIcon ?? SvgAliases.Icons.ArrowTopRight;
-                b.Variant = buttonLink?.Variant ?? "primary";
+                b.Variant = buttonLink?.Variant ?? fallBackVariant ?? "primary";
             });
     }
 

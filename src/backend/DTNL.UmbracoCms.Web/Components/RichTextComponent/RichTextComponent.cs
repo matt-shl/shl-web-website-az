@@ -30,19 +30,18 @@ public class RichTextComponent : LayoutSection
             Content = richTextBlock.Text?.ToHtmlString(),
             TextSize = !string.IsNullOrWhiteSpace(richTextBlock.TextSize) ? $"c-rich-text--size-{richTextBlock.TextSize}" : null,
             FirstButton = Button
-                .Create(richTextBlock.PrimaryLinkButton)
+                .Create(richTextBlock.PrimaryLinkButton, fallBackVariant: "primary")
                 .With(b =>
                 {
                     b.Class = "rich-text__cta1";
                     b.Hook = "js-hook-rich-text-button";
                 }),
             SecondButton = Button
-                .Create(richTextBlock.PrimaryLinkButton)
+                .Create(richTextBlock.SecondLinkButton, fallBackVariant: "secondary")
                 .With(b =>
                 {
                     b.Class = "rich-text__cta2";
                     b.Hook = "js-hook-rich-text-button";
-                    b.Variant ??= "secondary";
                 }),
             ReadMoreOption = richTextBlock.ShowReadMoreOption,
             ReadMoreButton = new Button

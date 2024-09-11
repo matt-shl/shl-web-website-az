@@ -45,7 +45,7 @@ public class HeroContent : IHero
             ShortDescription = contentHero.Text?.ToHtmlString(),
 
             PrimaryButton = Button
-                .Create(contentHero.PrimaryLink)
+                .Create(contentHero.PrimaryLink, fallBackVariant: "primary")
                 .With(b =>
                 {
                     b.Class = "hero-content__cta";
@@ -53,7 +53,7 @@ public class HeroContent : IHero
                 }),
 
             SecondaryButton = Button
-                .Create(contentHero.SecondaryLink)
+                .Create(contentHero.SecondaryLink, fallBackVariant: "secondary")
                 .With(b =>
                 {
                     b.Class = "hero-content__cta";
