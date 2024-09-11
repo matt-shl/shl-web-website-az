@@ -58,6 +58,14 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel Slogan => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionBasePage.GetSlogan(this, _publishedValueFallback);
 
 		///<summary>
+		/// Category
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("cardCategory")]
+		public virtual global::System.Collections.Generic.IEnumerable<string> CardCategory => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionCardDetails.GetCardCategory(this, _publishedValueFallback);
+
+		///<summary>
 		/// Description: Defaults to Hero Text, if not set.
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
@@ -72,14 +80,6 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("cardImage")]
 		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops CardImage => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionCardDetails.GetCardImage(this, _publishedValueFallback);
-
-		///<summary>
-		/// Category
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("category")]
-		public virtual global::System.Collections.Generic.IEnumerable<string> Category => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionCardDetails.GetCategory(this, _publishedValueFallback);
 
 		///<summary>
 		/// Page Theme

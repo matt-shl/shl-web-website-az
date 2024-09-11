@@ -11,7 +11,7 @@ public class HeroContent : IHero
 
     public string? Title { get; set; }
 
-    public string? Subtitle { get; set; }
+    public string? SubTitle { get; set; }
 
     public string? ShortDescription { get; set; }
 
@@ -34,15 +34,15 @@ public class HeroContent : IHero
 
             Title = contentHero.Title,
 
-            Subtitle = contentHero.Subtitle,
+            SubTitle = contentHero.SubTitle.FallBack((page as ICompositionContentDetails)?.Date.ToLongDateString()),
 
-            Tags = contentHero.Tags?.Take(2).Select(tag => new Tag
+            Tags = (page as ICompositionContentDetails)?.ContentTags?.Take(2).Select(tag => new Tag
             {
                 Label = tag,
                 CssClasses = "hero-content__tag",
             }) ?? [],
 
-            ShortDescription = contentHero.ShortDescription,
+            ShortDescription = contentHero.Text?.ToHtmlString(),
 
             PrimaryButton = Button
                 .Create(contentHero.PrimaryLink.GetSingleContentOrNull<NestedBlockButtonLink>())

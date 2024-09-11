@@ -103,7 +103,7 @@ public static class PublishedContentExtensions
     {
         if (content is ICompositionCardDetails cardDetails)
         {
-            return string.Join(',', cardDetails.Category.OrEmptyIfNull());
+            return string.Join(',', cardDetails.CardCategory.OrEmptyIfNull());
         }
 
         return null;

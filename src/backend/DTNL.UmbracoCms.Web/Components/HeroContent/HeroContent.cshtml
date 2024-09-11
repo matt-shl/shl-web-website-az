@@ -1,28 +1,26 @@
-@using DTNL.UmbracoCms.Web.Helpers.Aliases
+@using DTNL.UmbracoCms.Web.Components
+@using DTNL.UmbracoCms.Web.Helpers.Extensions
 @model DTNL.UmbracoCms.Web.Components.HeroContent
-@inject NodeProvider NodeProvider
-
 
 <section class="c-hero-content @Model.ThemeCssClasses">
     <div class="hero-content__container">
         <div class="hero-content__breadcrumbs">
-            <vc:breadcrumb page="@NodeProvider.GetCurrentNode()" />
+            <vc:breadcrumb />
         </div>
         <div class="hero-content__col-left">
             <h1>@Model.Title</h1>
-            @if (!string.IsNullOrEmpty(Model.Subtitle))
-            {
-                <p class="hero-content__subtitle">@Model.Subtitle</p>
-            }
+
+            <p class="hero-content__subtitle" asp-if="@Model.SubTitle">@Model.SubTitle</p>
+
             <div class="hero-content__tags">
-                @foreach (var tag in Model.Tags.EnsureNotNull())
+                @foreach (Tag tag in Model.Tags.EnsureNotNull())
                 {
                     <partial name="Tag" model="@tag" />
                 }
             </div>
         </div>
         <div class="hero-content__col-right">
-            <p class="hero-content__description">@Model.ShortDescription</p>
+            <div class="hero-content__description">@Html.Raw(Model.ShortDescription)</div>
             <div class="hero-content__ctas">
                 @if (Model.PrimaryButton is not null)
                 {
@@ -36,7 +34,5 @@
                 }
             </div>
         </div>
-
     </div>
-
 </section>

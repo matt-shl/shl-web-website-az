@@ -1,7 +1,7 @@
 @using DTNL.UmbracoCms.Web.Components
 @model DTNL.UmbracoCms.Web.Components.EmptySection
 
-<partial name="LayoutSection" model="@(new LayoutSection { CssClasses = "c-empty-section"})">
+<partial name="LayoutSection" model="@(new LayoutSection { CssClasses = "c-empty-section", Variant = Model.Variant })">
     <div class="empty-section__inner">
         <h2 class="empty-section__title">@Model.Title</h2>
 

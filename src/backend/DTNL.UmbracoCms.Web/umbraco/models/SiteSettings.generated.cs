@@ -20,7 +20,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 {
 	/// <summary>Site Settings</summary>
 	[PublishedModel("siteSettings")]
-	public partial class SiteSettings : PublishedContentModel, ICompositionAnalytics, ICompositionCookieBar, ICompositionErrorHandling, ICompositionFooter, ICompositionHeader, ICompositionRedirects, ICompositionSeoSettings, ICompositionSocialLinks, ICompositionStructuredData, ICompositionTagSettings
+	public partial class SiteSettings : PublishedContentModel, ICompositionAnalytics, ICompositionContentDetails, ICompositionCookieBar, ICompositionErrorHandling, ICompositionFooter, ICompositionHeader, ICompositionRedirects, ICompositionSeoSettings, ICompositionSocialLinks, ICompositionStructuredData, ICompositionTagSettings
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
@@ -80,6 +80,29 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("searchConsoleVerification")]
 		public virtual string SearchConsoleVerification => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionAnalytics.GetSearchConsoleVerification(this, _publishedValueFallback);
+
+		///<summary>
+		/// Content Tags
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("contentTags")]
+		public virtual global::System.Collections.Generic.IEnumerable<string> ContentTags => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionContentDetails.GetContentTags(this, _publishedValueFallback);
+
+		///<summary>
+		/// Date
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[ImplementPropertyType("date")]
+		public virtual global::System.DateTime Date => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionContentDetails.GetDate(this, _publishedValueFallback);
+
+		///<summary>
+		/// Page Type
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("pageType")]
+		public virtual global::System.Collections.Generic.IEnumerable<string> PageType => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionContentDetails.GetPageType(this, _publishedValueFallback);
 
 		///<summary>
 		/// Text
