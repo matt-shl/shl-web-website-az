@@ -168,7 +168,6 @@ public static class EnumerableExtensions
 
             matchingElement = singleElement;
             return true;
-
         }
 
         int count = 0;
@@ -189,7 +188,7 @@ public static class EnumerableExtensions
         return count == 1;
     }
 
-    public static IEnumerable<(T item, int index)> WithIndex<T>(this IEnumerable<T> source, int offset = 0)
+    public static IEnumerable<(T Item, int Index)> WithIndex<T>(this IEnumerable<T> source, int offset = 0)
     {
         return source?.Select((item, index) => (item, index + offset)) ?? [];
     }

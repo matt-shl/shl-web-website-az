@@ -50,12 +50,12 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		// properties
 
 		///<summary>
-		/// Primary Link Button
+		/// Primary Link
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("primaryLinkButton")]
-		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel PrimaryLinkButton => this.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockListModel>(_publishedValueFallback, "primaryLinkButton");
+		[ImplementPropertyType("primaryLink")]
+		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel PrimaryLink => this.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockListModel>(_publishedValueFallback, "primaryLink");
 
 		///<summary>
 		/// Reduce Margin: The ability to choose for less margin on the top & bottom of the component for better visual stacking of multiple Rich Text components.
@@ -66,12 +66,12 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual string ReduceMargin => this.Value<string>(_publishedValueFallback, "reduceMargin");
 
 		///<summary>
-		/// Secondary Link Button
+		/// Secondary Link
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("secondLinkButton")]
-		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel SecondLinkButton => this.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockListModel>(_publishedValueFallback, "secondLinkButton");
+		[ImplementPropertyType("secondLink")]
+		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel SecondLink => this.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockListModel>(_publishedValueFallback, "secondLink");
 
 		///<summary>
 		/// Show Read More Option

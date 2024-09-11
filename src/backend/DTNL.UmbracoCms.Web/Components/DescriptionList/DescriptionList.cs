@@ -12,6 +12,14 @@ public partial class DescriptionList
 
     public Button? DownloadLinkButton { get; set; }
 
+
+    public static DescriptionList? Create(PageProduct productPage)
+    {
+        return Create(
+            productPage.Specifications.GetSingleContentOrNull<NestedBlockProductSpecifications>(),
+            productPage);
+    }
+
     public static DescriptionList? Create(
         NestedBlockProductSpecifications? productSpecificationsBlock,
         PageProduct? productPage = null)

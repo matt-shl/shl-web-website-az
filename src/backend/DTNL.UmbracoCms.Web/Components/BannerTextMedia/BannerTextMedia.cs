@@ -40,7 +40,7 @@ public class BannerTextMedia
         {
             Title = textMediaBanner.Title,
             Description = textMediaBanner.Description,
-            MediaPosition = String.Equals(textMediaBanner.MediaPosition, "right") ? "end" : "start",
+            MediaPosition = string.Equals(textMediaBanner.MediaPosition, "right", StringComparison.OrdinalIgnoreCase) ? "end" : "start",
             PrimaryButton = Button
                 .Create(textMediaBanner.PrimaryButton).With(b =>
                 {
@@ -62,31 +62,34 @@ public class BannerTextMedia
                 v.TotalTime = videoContent?.TotalTime;
                 v.Variant = "modal";
             }),
-            ImageData = Image.Create(imageContent?.Image, style: "in-grid-banner-image")
-            .With(i =>
-            {
-                i.CardOverlay = videoContent != null ? new CardOverlay
+            ImageData = Image
+                .Create(imageContent?.Image, style: "in-grid-banner-image")
+                .With(i =>
                 {
-                    Video = new Video
+                    i.CardOverlay = videoContent is null
+                        ? null
+                        : new CardOverlay
+                        {
+                            Video = new Video
+                            {
+                                Id = videoContent.Title?.Trim().ToLowerInvariant().Replace(" ", "-"),
+                                InstanceId = videoContent.Title?.Trim().ToLowerInvariant().Replace(" ", "-") ?? "",
+                                Platform = "native",
+                                TotalTime = videoContent.TotalTime ?? "",
+                                Variant = "modal",
+                            },
+                            Position = "start",
+                            Visible = true,
+                        };
+                    i.ImageHolderButton = videoContent != null;
+                    i.ImageHolderAttributes = new Dictionary<string, string?>
                     {
-                        Id = videoContent.Title?.Trim().ToLowerInvariant().Replace(" ", "-"),
-                        InstanceId = videoContent.Title?.Trim().ToLowerInvariant().Replace(" ", "-") ?? "",
-                        Platform = "native",
-                        TotalTime = videoContent?.TotalTime ?? "",
-                        Variant = "modal",
-                    },
-                    Position = "start",
-                    Visible = true,
-                } : null;
-                i.ImageHolderButton = videoContent != null;
-                i.ImageHolderAttributes = new Dictionary<string, string?>
-                {
-                    ["aria-label"] = "Open video Modal",
-                    ["aria-controls"] = videoContent != null ? $"modal-video-{videoContent.Title?.Trim().ToLowerInvariant().Replace(" ", "-")}" : null,
-                };
-                i.ObjectFit = true;
-                i.Caption = videoContent is not null ? videoContent.Description : imageContent?.Caption;
-            }),
+                        ["aria-label"] = "Open video Modal",
+                        ["aria-controls"] = videoContent != null ? $"modal-video-{videoContent.Title?.Trim().ToLowerInvariant().Replace(" ", "-")}" : null,
+                    };
+                    i.ObjectFit = true;
+                    i.Caption = videoContent is not null ? videoContent.Description : imageContent?.Caption;
+                }),
         };
     }
 }

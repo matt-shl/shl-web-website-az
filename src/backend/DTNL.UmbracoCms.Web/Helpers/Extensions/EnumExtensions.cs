@@ -7,7 +7,8 @@ public static class EnumExtensions
     /// <summary>
     /// Returns the equivalent enum value for the specified type.
     /// </summary>
-    public static TEnum As<TEnum>(this Enum value, TEnum defaultValue = default) where TEnum : struct
+    public static TEnum As<TEnum>(this Enum value, TEnum defaultValue = default)
+        where TEnum : struct
     {
         return GetEnumOrDefault(value.ToString(), defaultValue);
     }
@@ -16,7 +17,8 @@ public static class EnumExtensions
     /// Tries parsing the specified enum specified as string into the specified type.
     /// Throws an exception if this fails.
     /// </summary>
-    public static TEnum GetEnum<TEnum>(this string? enumValueStr) where TEnum : struct
+    public static TEnum GetEnum<TEnum>(this string? enumValueStr)
+        where TEnum : struct
     {
         if (enumValueStr.TryGetEnum(out TEnum enumValue))
         {
@@ -31,7 +33,8 @@ public static class EnumExtensions
     /// </summary>
     public static TEnum GetEnumOrDefault<TEnum>(
         this string? enumValueStr,
-        TEnum defaultValue = default) where TEnum : struct
+        TEnum defaultValue = default)
+        where TEnum : struct
     {
         if (enumValueStr.TryGetEnum(out TEnum enumValue))
         {
@@ -45,7 +48,8 @@ public static class EnumExtensions
     /// Tries parsing the specified enum specified as string into the specified type.
     /// </summary>
     public static TEnum? GetEnumOrNull<TEnum>(
-        this string? enumValueStr) where TEnum : struct
+        this string? enumValueStr)
+        where TEnum : struct
     {
         if (enumValueStr.TryGetEnum(out TEnum enumValue))
         {
@@ -61,7 +65,8 @@ public static class EnumExtensions
     public static bool TryGetEnum<TEnum>(
         this string? enumValueStr,
         out TEnum enumValue,
-        TEnum defaultValue = default) where TEnum : struct
+        TEnum defaultValue = default)
+        where TEnum : struct
     {
         if (!typeof(TEnum).IsEnum)
         {
@@ -88,7 +93,7 @@ public static class EnumExtensions
     }
 
     /// <summary>
-    /// Tells if the enum <paramref name="value"/> has the same string value specified in <paramref name="enumValueStr"/>
+    /// Tells if the enum <paramref name="value"/> has the same string value specified in <paramref name="enumValueStr"/>.
     /// </summary>
     public static bool IsEquivalentTo(this Enum value, string enumValueStr)
     {

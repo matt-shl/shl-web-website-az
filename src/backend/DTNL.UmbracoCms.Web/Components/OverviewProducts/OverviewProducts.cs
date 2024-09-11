@@ -12,14 +12,14 @@ namespace DTNL.UmbracoCms.Web.Components;
 
 public class OverviewProducts : ViewComponentExtended
 {
+    public const int PageSize = 6;
+
     private readonly ICultureDictionary _cultureDictionary;
 
     public OverviewProducts(ICultureDictionary cultureDictionary)
     {
         _cultureDictionary = cultureDictionary;
     }
-
-    public const int PageSize = 6;
 
     public int TotalCount { get; set; }
 

@@ -5,10 +5,10 @@
 @(Model.HasUrl ? $"href={Model.Url}" : null)
 aria-label="@Model.Title">
     <div class="card-icon__container">
-        @if (!Model.IconAlias.IsNullOrWhiteSpace())
+        @if (!Model.IconSrc.IsNullOrWhiteSpace())
         {
             <div class="card-icon__icon">
-                <svg src="@Model.IconAlias" />
+                <svg src="@Model.IconSrc" />
             </div>
         }        
 

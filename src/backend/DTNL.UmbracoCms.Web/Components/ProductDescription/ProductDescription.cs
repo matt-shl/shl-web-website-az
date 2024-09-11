@@ -1,3 +1,4 @@
+using DTNL.UmbracoCms.Web.Helpers.Extensions;
 using Umbraco.Cms.Web.Common.PublishedModels;
 
 namespace DTNL.UmbracoCms.Web.Components;
@@ -11,6 +12,11 @@ public class ProductDescription
     public string? SubTitle { get; set; }
 
     public string? Text { get; set; }
+
+    public static ProductDescription? Create(PageProduct productPage)
+    {
+        return Create(productPage.Banner.GetSingleContentOrNull<NestedBlockProductBanner>());
+    }
 
     public static ProductDescription? Create(NestedBlockProductBanner? block)
     {
