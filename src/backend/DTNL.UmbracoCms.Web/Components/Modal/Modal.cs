@@ -27,4 +27,6 @@ public class Modal
     public bool NoClose { get; set; }
 
     public string? Hook { get; set; }
+
+    public Dictionary<string, string?> Attributes { get; set; } = new(StringComparer.OrdinalIgnoreCase);
 }

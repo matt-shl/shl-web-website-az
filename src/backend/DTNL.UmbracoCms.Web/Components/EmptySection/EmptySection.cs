@@ -17,12 +17,21 @@ public class EmptySection
 
     public static EmptySection Create(ICompositionNoResults noResults)
     {
+        NestedBlockButtonLink? primaryLinkButtonContent = noResults.NoResultsPrimaryLink.GetSingleContentOrNull<NestedBlockButtonLink>();
+        NestedBlockButtonLink? secondaryLinkButtonContent = noResults.NoResultsSecondaryLink.GetSingleContentOrNull<NestedBlockButtonLink>();
+
         return new EmptySection
         {
             Title = noResults.NoResultsTitle!,
             Text = noResults.NoResultsText!.ToHtmlString()!,
-            PrimaryLinkButton = Button.Create(noResults.NoResultsPrimaryLink.GetSingleContentOrNull<NestedBlockButtonLink>()),
-            SecondaryLinkButton = Button.Create(noResults.NoResultsSecondaryLink.GetSingleContentOrNull<NestedBlockButtonLink>()),
+            PrimaryLinkButton = Button.Create(primaryLinkButtonContent),
+            SecondaryLinkButton = Button.Create(secondaryLinkButtonContent)
+                .With(b =>
+                {
+                    b.Variant = secondaryLinkButtonContent?.Variant ?? "secondary";
+                }),
+            PrimaryLinkButton = Button.Create(primaryLinkButtonContent),
+            SecondaryLinkButton = Button.Create(secondaryLinkButtonContent),
         };
     }
 
@@ -32,8 +41,12 @@ public class EmptySection
         {
             Title = errorPage.ErrorMessage!,
             Text = errorPage.ErrorDescription!.ToHtmlString()!,
-            PrimaryLinkButton = Button.Create(errorPage.PrimaryLink.GetSingleContentOrNull<NestedBlockButtonLink>()),
-            SecondaryLinkButton = Button.Create(errorPage.SecondaryLink.GetSingleContentOrNull<NestedBlockButtonLink>()),
+            PrimaryLinkButton = Button.Create(primaryLinkButtonContent),
+            SecondaryLinkButton = Button.Create(secondaryLinkButtonContent)
+                .With(b =>
+                    {
+                        b.Variant = secondaryLinkButtonContent?.Variant ?? "secondary";
+                    }),
             Variant = "tight",
         };
     }

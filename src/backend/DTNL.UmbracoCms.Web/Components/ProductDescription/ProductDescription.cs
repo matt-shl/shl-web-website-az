@@ -12,14 +12,19 @@ public class ProductDescription
 
     public string? Text { get; set; }
 
-    public static ProductDescription Create(NestedBlockProductBanner productBannerBlock)
+    public static ProductDescription? Create(NestedBlockProductBanner? block)
     {
+        if (block is null)
+        {
+            return null;
+        }
+
         return new ProductDescription
         {
-            Title = productBannerBlock.Title,
-            Image = Image.Create(productBannerBlock.Image, cssClasses: "product-description__image"),
-            SubTitle = productBannerBlock.SubTitle,
-            Text = productBannerBlock.Text?.ToHtmlString(),
+            Title = block.Title,
+            Image = Image.Create(block.Image, cssClasses: "product-description__image"),
+            SubTitle = block.SubTitle,
+            Text = block.Text?.ToHtmlString(),
         };
     }
 }

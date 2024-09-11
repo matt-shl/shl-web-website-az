@@ -106,6 +106,14 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel Hero => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionHero.GetHero(this, _publishedValueFallback);
 
 		///<summary>
+		/// Banner
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("banner")]
+		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel Banner => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionProductDetails.GetBanner(this, _publishedValueFallback);
+
+		///<summary>
 		/// Connectivity Type: Allowed options can be managed in Settings } Tag Settings } Connectivity Type
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
@@ -130,36 +138,20 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual global::System.Collections.Generic.IEnumerable<string> DeviceType => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionProductDetails.GetDeviceType(this, _publishedValueFallback);
 
 		///<summary>
-		/// Product Description
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("productDescription")]
-		public virtual global::Umbraco.Cms.Core.Strings.IHtmlEncodedString ProductDescription => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionProductDetails.GetProductDescription(this, _publishedValueFallback);
-
-		///<summary>
-		/// Product Image
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("productImage")]
-		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops ProductImage => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionProductDetails.GetProductImage(this, _publishedValueFallback);
-
-		///<summary>
-		/// Product Name
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("productName")]
-		public virtual string ProductName => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionProductDetails.GetProductName(this, _publishedValueFallback);
-
-		///<summary>
 		/// Route Of Administration: Allowed options can be managed in Settings } Tag Settings } Route Of Administration
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("routeOfAdministration")]
 		public virtual global::System.Collections.Generic.IEnumerable<string> RouteOfAdministration => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionProductDetails.GetRouteOfAdministration(this, _publishedValueFallback);
+
+		///<summary>
+		/// Specifications
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("specifications")]
+		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel Specifications => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionProductDetails.GetSpecifications(this, _publishedValueFallback);
 
 		///<summary>
 		/// Specifications File

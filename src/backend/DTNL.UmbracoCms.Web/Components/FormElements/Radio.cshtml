@@ -18,7 +18,7 @@
             @(option.Checked ? Html.Attribute("checked", "checked") : null)
             @(!option.Validate.IsNullOrEmpty() ? Html.Attribute("data-validate", option.Validate) : null)
             @Html.Attribute(option.Hook?.EnsureStartsWith("js-hook-"))
-            @(Model.Attributes is not null ? Html.Attributes(Model.Attributes) : null)>
+            @(Model.Attributes is not null ? Html.Attributes(option.Attributes) : null)>
             <label class="radio__label" for="@option.Id" role="button">
                 @option.Label
                 <span class="radio__focus-helper"></span>
