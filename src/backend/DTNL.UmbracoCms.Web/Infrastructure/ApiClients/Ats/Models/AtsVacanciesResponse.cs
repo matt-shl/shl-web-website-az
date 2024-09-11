@@ -1,11 +1,12 @@
-using System.Runtime.Serialization;
+using System.Xml.Serialization;
 using DTNL.UmbracoCms.Web.Infrastructure.ApiClients.Ats.Models;
 
 namespace DTNL.UmbracoCms.Web.Infrastructure.ApiClients.Ats;
 
-[DataContract(Name = "source")]
+[XmlRoot("source")]
 public class AtsVacanciesResponse
 {
-    [DataMember(Name = "jobs")]
+    [XmlArray("jobs")]
+    [XmlArrayItem("job")]
     public required List<AtsVacancy> Vacancies { get; set; }
 }

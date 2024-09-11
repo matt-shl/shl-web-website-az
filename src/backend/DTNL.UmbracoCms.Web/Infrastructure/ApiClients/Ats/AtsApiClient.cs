@@ -1,5 +1,4 @@
-using System.Runtime.Serialization;
-using System.Xml;
+using System.Xml.Serialization;
 using DTNL.UmbracoCms.Web.Infrastructure.ApiClients.Ats.Models;
 using Flurl;
 using Flurl.Http;
@@ -23,6 +22,7 @@ public class AtsApiClient : IAtsApiClient
         _logger = logger;
     }
 
+#pragma warning disable CA5369 // Suppress XmlSerializer insecure deserialization warning
     public async Task<List<AtsVacancy>?> GetAllVacancies(CancellationToken cancellationToken)
     {
         try
@@ -31,12 +31,11 @@ public class AtsApiClient : IAtsApiClient
                 .AppendPathSegments(_apiClientOptions.Path)
                 .GetStringAsync(cancellationToken: cancellationToken);
 
-            DataContractSerializer serializer = new(typeof(AtsVacanciesResponse));
+            XmlSerializer serializer = new(typeof(AtsVacanciesResponse));
 
             using StringReader reader = new(atsVacanciesResponseResponseXml);
-            using XmlReader xmlReader = XmlReader.Create(reader);
 
-            AtsVacanciesResponse? atsVacanciesResponse = serializer.ReadObject(xmlReader) as AtsVacanciesResponse;
+            AtsVacanciesResponse? atsVacanciesResponse = serializer.Deserialize(reader) as AtsVacanciesResponse;
 
             return atsVacanciesResponse?.Vacancies;
         }
@@ -47,4 +46,5 @@ public class AtsApiClient : IAtsApiClient
             return null;
         }
     }
+#pragma warning restore CA5369
 }

@@ -1,67 +1,66 @@
-using System.Runtime.Serialization;
+using System.Xml.Serialization;
 
 namespace DTNL.UmbracoCms.Web.Infrastructure.ApiClients.Ats.Models;
 
-[DataContract(Name = "job")]
 public class AtsVacancy
 {
-    [DataMember(Name = "title")]
+    [XmlElement("title")]
     public string? Title { get; set; }
 
-    [DataMember(Name = "created")]
+    [XmlElement("created")]
     public string? CreatedAt { get; set; }
 
-    [DataMember(Name = "url")]
+    [XmlElement("url")]
     public string? Url { get; set; }
 
-    [DataMember(Name = "city")]
+    [XmlElement("city")]
     public string? City { get; set; }
 
-    [DataMember(Name = "state")]
+    [XmlElement("state")]
     public string? State { get; set; }
 
-    [DataMember(Name = "postalcode")]
+    [XmlElement("postalcode")]
     public string? PostalCode { get; set; }
 
-    [DataMember(Name = "country")]
+    [XmlElement("country")]
     public string? Country { get; set; }
 
-    [DataMember(Name = "jobtype")]
+    [XmlElement("jobtype")]
     public string? JobType { get; set; }
 
-    [DataMember(Name = "location")]
+    [XmlElement("location")]
     public string? Location { get; set; }
 
-    [DataMember(Name = "multilocation")]
+    [XmlElement("multilocation")]
     public string? MultiLocation { get; set; }
 
-    [DataMember(Name = "department")]
+    [XmlElement("department")]
     public string? Department { get; set; }
 
-    [DataMember(Name = "dept")]
+    [XmlElement("dept")]
     public string? Dept { get; set; }
 
-    [DataMember(Name = "facility")]
+    [XmlElement("facility")]
     public string? Facility { get; set; }
 
-    [DataMember(Name = "ID")]
+    [XmlElement("ID")]
     public string? Id { get; set; }
 
-    [DataMember(Name = "shifttype")]
+    [XmlElement("shifttype")]
     public string? ShiftType { get; set; }
 
-    [DataMember(Name = "recruiterid")]
+    [XmlElement("recruiterid")]
     public string? RecruiterId { get; set; }
 
-    [DataMember(Name = "joblocale")]
+    [XmlElement("joblocale")]
     public string? JobLocale { get; set; }
 
-    [DataMember(Name = "customfield1")]
+    [XmlElement("customfield1")]
     public string? CustomField1 { get; set; }
 
-    [DataMember(Name = "customfield2")]
+    [XmlElement("customfield2")]
     public string? CustomField2 { get; set; }
 
-    [DataMember(Name = "description")]
+    [XmlElement("description")]
     public string? Description { get; set; }
 }
