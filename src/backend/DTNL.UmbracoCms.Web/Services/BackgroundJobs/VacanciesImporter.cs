@@ -1,5 +1,7 @@
 using DTNL.UmbracoCms.Web.Helpers;
-using DTNL.UmbracoCms.Web.Infrastructure.ApiClients;
+using DTNL.UmbracoCms.Web.Helpers.Extensions;
+using DTNL.UmbracoCms.Web.Infrastructure.ApiClients.Ats;
+using DTNL.UmbracoCms.Web.Infrastructure.ApiClients.Ats.Models;
 using DTNL.UmbracoCms.Web.Modules.BackgroundJobs.Hangfire;
 using Hangfire;
 using Umbraco.Cms.Core;
@@ -9,6 +11,7 @@ using Umbraco.Cms.Core.PublishedCache;
 using Umbraco.Cms.Core.Services;
 using Umbraco.Cms.Core.Web;
 using Umbraco.Cms.Infrastructure.Scoping;
+using Umbraco.Cms.Web.Common.PublishedModels;
 
 namespace DTNL.UmbracoCms.Web.Services.BackgroundJobs;
 
@@ -54,70 +57,107 @@ public class VacanciesImporter : IBackgroundJob
         using IServiceScope serviceScope = _serviceProvider.CreateScope();
         IPublishedContentQuery publishedContentQuery = serviceScope.ServiceProvider.GetRequiredService<IPublishedContentQuery>();
 
-        //IntradoNewsFolder? intradoNewsFolder = publishedContentQuery
-        //    .ContentAtRoot()
-        //    .OfType<PageHome>()
-        //    .FirstOrDefault()?
-        //    .FirstChild<IntradoNewsFolder>();
+        PageVacancyOverview? vacancyOverviewPage = publishedContentQuery
+            .ContentAtRoot()
+            .OfType<PageHome>()
+            .FirstOrDefault()?
+            .FirstChild<PageVacancyOverview>();
 
-        //if (intradoNewsFolder == null)
-        //{
-        //    _logger.LogWarning("Importer finished - Vacancies Overview page could not be found.");
-        //    return;
-        //}
+        if (vacancyOverviewPage is null)
+        {
+            _logger.LogWarning("Importer finished - Vacancies Overview page could not be found.");
+            return;
+        }
 
-        //await ImportNews(intradoNewsFolder, cancellationToken.ShutdownToken);
+        List<AtsVacancy>? vacancies = await _atsApiClient.GetAllVacancies(cancellationToken.ShutdownToken);
+
+        if (vacancies is null)
+        {
+            _logger.LogWarning("Importer finished - Vacancies could not be retrieved.");
+            return;
+        }
+
+        RemoveVacancies(vacancyOverviewPage, vacancies, cancellationToken.ShutdownToken);
+
+        AddOrUpdateVacancies(vacancyOverviewPage, vacancies, cancellationToken.ShutdownToken);
 
         _logger.LogInformation("Vacancies importer finished");
     }
 
-    //private async Task ImportNews(
-    //    IntradoNewsFolder intradoNewsFolder, CancellationToken cancellationToken = default)
-    //{
-    //    NewsArticle[] newsArticles = await _intradoClient.GetAllNewsArticles(cancellationToken);
+    private void AddOrUpdateVacancies(
+        PageVacancyOverview vacancyOverviewPage,
+        List<AtsVacancy> vacancies,
+        CancellationToken cancellationToken = default)
+    {
+        string[] vacancyCultures = vacancyOverviewPage.Cultures.Keys.ToArray();
 
-    //    foreach (NewsArticle newsArticle in newsArticles)
-    //    {
-    //        try
-    //        {
-    //            PageNewsIntrado? existingPageNewsIntrado = intradoNewsFolder
-    //                .Children<PageNewsIntrado>()?
-    //                .FirstOrDefault(p => p.ExternalId == newsArticle.Identifier);
+        foreach (AtsVacancy vacancy in vacancies)
+        {
+            if (cancellationToken.IsCancellationRequested)
+            {
+                return;
+            }
 
-    //            if (newsArticle.ModifiedDate.TruncateTo(DateTruncate.Second) <= (existingPageNewsIntrado?.LastUpdatedAt ?? DateTime.MinValue))
-    //            {
-    //                continue;
-    //            }
+            try
+            {
+                PageVacancy? existingPageVacancy = vacancyOverviewPage
+                    .Children<PageVacancy>()?
+                    .FirstOrDefault(pageVacancy => pageVacancy.ExternalId == vacancy.Id);
 
-    //            string nodeName = $"{newsArticle.Title} ({newsArticle.Identifier})";
+                string nodeName = $"{vacancy.Title} ({vacancy.Id})";
 
-    //            IContent pageNewsIntrado = existingPageNewsIntrado != null
-    //                ? _contentService.GetById(existingPageNewsIntrado.Id) ??
-    //                  throw new InvalidOperationException("Intrado news page node couldn't be found")
-    //                : CreateIfNotExists(nodeName, intradoNewsFolder.Id, PageNewsIntrado.ModelTypeAlias);
+                IContent? pageVacancyContent = existingPageVacancy is null
+                    ? CreateIfNotExists(nodeName, vacancyOverviewPage.Id, PageVacancy.ModelTypeAlias)
+                    : _contentService.GetById(existingPageVacancy.Key);
 
-    //            pageNewsIntrado.Name = nodeName;
-    //            pageNewsIntrado.SetValue<PageNewsIntrado>(x => x.ExternalId, newsArticle.Identifier);
-    //            pageNewsIntrado.SetValue<PageNewsIntrado>(x => x.Title, newsArticle.Title);
-    //            pageNewsIntrado.SetValue<PageNewsIntrado>(x => x.Date, newsArticle.ReleaseDateTime);
-    //            pageNewsIntrado.SetValue<PageNewsIntrado>(x => x.LastUpdatedAt, DateTime.UtcNow);
-    //            pageNewsIntrado.SetValue<PageNewsIntrado>(x => x.CategoriesRaw, newsArticle.Category);
+                if (pageVacancyContent is null)
+                {
+                    _logger.LogWarning("Could not import content for vacancy {ID}", vacancy.Id);
+                    continue;
+                }
 
-    //            SaveOrPublish(pageNewsIntrado);
+                pageVacancyContent.Name = nodeName;
 
-    //            // Delay for 2 seconds to see if it solves the database timeout issue
-    //            await Task.Delay(2000, cancellationToken);
-    //        }
-    //        catch (Exception ex)
-    //        {
-    //            _logger.LogError(ex, "Unexpected error importing news article {NewsArticleIdentifier}, {ExMessage}", newsArticle.Identifier, ex.Message);
-    //        }
-    //    }
-    //}
+                VacanciesContentHelper.SetVacancyContent(pageVacancyContent, vacancy, vacancyCultures);
+
+                SaveOrPublish(pageVacancyContent);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Unexpected error importing vacancy {ID}, {ExceptionMessage}", vacancy.Id, ex.Message);
+            }
+        }
+    }
+
+    private void RemoveVacancies(
+        PageVacancyOverview vacancyOverviewPage,
+        List<AtsVacancy> vacancies,
+        CancellationToken cancellationToken = default)
+    {
+        HashSet<string?> vacancyIds = vacancies.Select(vacancy => vacancy.Id).ToHashSet();
+
+        List<PageVacancy> vacancyPagesToRemove = vacancyOverviewPage
+            .Children<PageVacancy>()
+            .OrEmptyIfNull()
+            .Where(pageVacancy => vacancyIds.Contains(pageVacancy.ExternalId))
+            .ToList();
+
+        foreach (PageVacancy vacancyPage in vacancyPagesToRemove)
+        {
+            if (cancellationToken.IsCancellationRequested)
+            {
+                return;
+            }
+
+            DeleteItem(vacancyPage.Key);
+        }
+    }
 
     private IContent CreateIfNotExists(string name, int parentId, string documentTypeAlias)
     {
-        IContent? existingItem = _contentService.GetPagedChildren(parentId, 0, 1, out _, _scopeProvider.SqlContext.Query<IContent>().Where(c => c.Name == name)).FirstOrDefault();
+        IContent? existingItem = _contentService
+            .GetPagedChildren(parentId, 0, 1, out _, _scopeProvider.SqlContext.Query<IContent>().Where(c => c.Name == name))
+            .FirstOrDefault();
 
         if (existingItem != null)
         {
@@ -146,6 +186,29 @@ public class VacanciesImporter : IBackgroundJob
         else
         {
             _ = _contentService.SaveAndPublish(content);
+        }
+    }
+
+    private void DeleteItem(Guid key)
+    {
+        if (_contentService.GetById(key) is not { } existingItem)
+        {
+            return;
+        }
+
+        OperationResult deleteResult = _contentService.Delete(existingItem);
+
+        if (deleteResult.Success)
+        {
+            _logger.LogInformation("Vacancy {Key} removed", key);
+        }
+        else
+        {
+            _logger
+                .LogWarning(
+                    "Vacancy {Key} could not be removed: {ErrorMessages}",
+                    key,
+                    string.Join(',', deleteResult.EventMessages?.GetAll().Select(m => m.Message) ?? []));
         }
     }
 }

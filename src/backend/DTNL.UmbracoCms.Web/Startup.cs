@@ -5,6 +5,7 @@ using DTNL.UmbracoCms.Web.Controllers;
 using DTNL.UmbracoCms.Web.Helpers;
 using DTNL.UmbracoCms.Web.Helpers.Extensions;
 using DTNL.UmbracoCms.Web.Infrastructure;
+using DTNL.UmbracoCms.Web.Infrastructure.ApiClients.Ats.Configuration;
 using DTNL.UmbracoCms.Web.Infrastructure.Configuration;
 using DTNL.UmbracoCms.Web.Infrastructure.Configuration.Options;
 using DTNL.UmbracoCms.Web.Infrastructure.ContentFinders;
@@ -116,6 +117,7 @@ public static class Startup
 
         // Other 3rd party services
         services.AddTransient<ISitemapProvider, SitemapProvider>();
+        services.ConfigureAtsApiClient(configuration);
 
         // Recurring jobs
         if (applicationOptions.BackgroundJobs.Enabled && applicationOptions.ServerRole != ServerRole.Subscriber)
@@ -276,7 +278,6 @@ public static class Startup
                 u.EndpointRouteBuilder.UseApiFallbackRoute();
 
                 u.UseWebsiteEndpoints();
-
 
                 if (applicationOptions.BackgroundJobs.Enabled && applicationOptions.ServerRole != ServerRole.Subscriber)
                 {

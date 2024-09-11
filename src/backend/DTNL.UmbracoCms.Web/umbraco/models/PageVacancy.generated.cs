@@ -20,7 +20,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 {
 	/// <summary>Page Vacancy</summary>
 	[PublishedModel("pageVacancy")]
-	public partial class PageVacancy : PublishedContentModel, ICompositionBasePage, ICompositionCardDetails, ICompositionColorOptions, ICompositionContentBlocks, ICompositionHero, ICompositionSeo, ICompositionSocialSharing, ICompositionSocialSharingOptions
+	public partial class PageVacancy : PublishedContentModel, ICompositionBasePage, ICompositionCardDetails, ICompositionColorOptions, ICompositionContentBlocks, ICompositionHero, ICompositionSeo, ICompositionSocialSharing, ICompositionSocialSharingOptions, ICompositionVacancyDetails
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
@@ -228,5 +228,107 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("disableSocialShare")]
 		public virtual global::System.Collections.Generic.IEnumerable<string> DisableSocialShare => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionSocialSharingOptions.GetDisableSocialShare(this, _publishedValueFallback);
+
+		///<summary>
+		/// City
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("city")]
+		public virtual string City => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionVacancyDetails.GetCity(this, _publishedValueFallback);
+
+		///<summary>
+		/// Company
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("company")]
+		public virtual string Company => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionVacancyDetails.GetCompany(this, _publishedValueFallback);
+
+		///<summary>
+		/// Contract Type
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("contractType")]
+		public virtual string ContractType => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionVacancyDetails.GetContractType(this, _publishedValueFallback);
+
+		///<summary>
+		/// Country
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("country")]
+		public virtual string Country => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionVacancyDetails.GetCountry(this, _publishedValueFallback);
+
+		///<summary>
+		/// Created At
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[ImplementPropertyType("createdAt")]
+		public virtual global::System.DateTime CreatedAt => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionVacancyDetails.GetCreatedAt(this, _publishedValueFallback);
+
+		///<summary>
+		/// External ID
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("externalId")]
+		public virtual string ExternalId => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionVacancyDetails.GetExternalId(this, _publishedValueFallback);
+
+		///<summary>
+		/// Function
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("function")]
+		public virtual string Function => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionVacancyDetails.GetFunction(this, _publishedValueFallback);
+
+		///<summary>
+		/// Job Description
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("jobDescription")]
+		public virtual global::Umbraco.Cms.Core.Strings.IHtmlEncodedString JobDescription => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionVacancyDetails.GetJobDescription(this, _publishedValueFallback);
+
+		///<summary>
+		/// Job Level
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("jobLevel")]
+		public virtual string JobLevel => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionVacancyDetails.GetJobLevel(this, _publishedValueFallback);
+
+		///<summary>
+		/// Last Updated At
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[ImplementPropertyType("lastUpdatedAt")]
+		public virtual global::System.DateTime LastUpdatedAt => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionVacancyDetails.GetLastUpdatedAt(this, _publishedValueFallback);
+
+		///<summary>
+		/// Postal Code
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("postalCode")]
+		public virtual string PostalCode => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionVacancyDetails.GetPostalCode(this, _publishedValueFallback);
+
+		///<summary>
+		/// State
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("state")]
+		public virtual string State => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionVacancyDetails.GetState(this, _publishedValueFallback);
+
+		///<summary>
+		/// Title
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("title")]
+		public virtual string Title => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionVacancyDetails.GetTitle(this, _publishedValueFallback);
 	}
 }
