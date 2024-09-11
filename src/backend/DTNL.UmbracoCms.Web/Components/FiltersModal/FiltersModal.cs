@@ -30,12 +30,12 @@ public class FiltersModal
     {
         List<Filter> filters = [];
 
-        Sort sort = Sort.Create("Sort", productFilters, cultureDictionary);
+        Sort sort = Sort.Create(cultureDictionary.GetTranslation(TranslationAliases.Common.Filters.Sort), productFilters, cultureDictionary);
 
         foreach ((string name, Func<PageProduct, IEnumerable<string>?> getValues)
                  in ProductFilters.FilterFields)
         {
-            filters.Add(Filter.Create(name, getValues, productFilters, productPages,));
+            filters.Add(Filter.Create(name, getValues, productFilters, productPages));
         }
 
         return new FiltersModal
@@ -104,7 +104,7 @@ public class FiltersModal
             ICultureDictionary cultureDictionary
         )
         {
-            bool hasSort = productFilters.CurrentUrl.Contains("Sort");
+            bool hasSort = productFilters.CurrentUrl.Contains(cultureDictionary.GetTranslation(TranslationAliases.Common.Filters.Sort));
 
             return new Sort
             {
