@@ -50,12 +50,14 @@ public class TextMediaList
             .With(i =>
             {
                 i.Caption = imageContent?.Caption;
-                i.CardOverlay = video != null ? new CardOverlay
-                {
-                    Video = video,
-                    Position = "start",
-                    Visible = true,
-                } : null;
+                i.CardOverlay = video is null
+                    ? null
+                    : new CardOverlay
+                    {
+                        Video = video,
+                        Position = "start",
+                        Visible = true,
+                    };
                 i.ImageHolderButton = video != null;
                 i.ImageHolderAttributes = new Dictionary<string, string?>
                 {
