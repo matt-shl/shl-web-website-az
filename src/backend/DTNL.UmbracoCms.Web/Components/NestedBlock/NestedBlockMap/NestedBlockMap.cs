@@ -11,6 +11,9 @@ public class NestedBlockMap : NestedBlockWithInner
             return null;
         }
 
+        LayoutSection.Variant = "no-padding";
+        LayoutSection.CssThemeClasses = "t-general";
+
         return Map.Create(mapBlock);
     }
 }

@@ -25,10 +25,10 @@ public abstract class NestedBlock : ViewComponentExtended
 
     protected virtual void ProcessSettings(IPublishedElement? settings)
     {
-        if (settings is DefaultComponentSettings defaultSettings)
+        if (settings is IBlockSettings blockSettings)
         {
-            Id = defaultSettings.Identifier ?? defaultSettings.NavigationTitle?.ToUrlString();
-            NavigationTitle = defaultSettings.NavigationTitle;
+            Id = blockSettings.Identifier ?? blockSettings.NavigationTitle?.ToUrlString();
+            NavigationTitle = blockSettings.NavigationTitle;
         }
 
         Id ??= settings?.Key.ToString();
