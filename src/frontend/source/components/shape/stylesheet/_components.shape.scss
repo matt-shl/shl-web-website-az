@@ -22,8 +22,14 @@
 
 .shape__end {
   width: 16px;
+  min-width: 16px;
   height: calc(var(--shape-height) + 16px);
   color: var(--bg-color);
+  margin-right: -1px; /* pixel perfect align with begin */
+
+  svg {
+    width: 100%;
+  }
 }
 
 .shape__scale {
