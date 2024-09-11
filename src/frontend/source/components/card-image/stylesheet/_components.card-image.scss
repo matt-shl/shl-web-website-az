@@ -16,6 +16,7 @@
   @include card-container-base;
   padding: 0;
   overflow: hidden;
+  background-color: transparent;
 
   @include screen-md-and-bigger {
     padding: 0;

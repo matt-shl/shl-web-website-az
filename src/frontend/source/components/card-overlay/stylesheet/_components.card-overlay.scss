@@ -8,14 +8,15 @@
 
 .c-card-overlay {
   bottom: 0;
-  inset-inline-end: 0;
+  inset-inline-end: -2px;
   pointer-events: none;
   position: absolute;
   z-index: 0;
+  padding: 1px;
 
   &--position-start {
     inset-inline-end: auto;
-    inset-inline-start: 0;
+    inset-inline-start: -2px;
     transform: scaleX(-1);
 
     .card-overlay__video,
@@ -64,8 +65,8 @@
 }
 
 .card-overlay__shape {
-  bottom: 0;
-  inset-inline-end: 0;
+  bottom: -1px;
+  inset-inline-end: -1px;
   position: absolute;
   transform: scale(0) translateY(8px);
   transform-origin: bottom right;
