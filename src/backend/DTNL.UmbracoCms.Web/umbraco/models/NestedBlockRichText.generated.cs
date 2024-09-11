@@ -18,14 +18,14 @@ using Umbraco.Extensions;
 
 namespace Umbraco.Cms.Web.Common.PublishedModels
 {
-	/// <summary>Rich Text Component</summary>
-	[PublishedModel("nestedBlockRichTextComponent")]
-	public partial class NestedBlockRichTextComponent : PublishedElementModel, ICompositionAnchors
+	/// <summary>Rich Text</summary>
+	[PublishedModel("nestedBlockRichText")]
+	public partial class NestedBlockRichText : PublishedElementModel
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		public new const string ModelTypeAlias = "nestedBlockRichTextComponent";
+		public new const string ModelTypeAlias = "nestedBlockRichText";
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
@@ -34,14 +34,14 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 			=> PublishedModelUtility.GetModelContentType(publishedSnapshotAccessor, ModelItemType, ModelTypeAlias);
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		public static IPublishedPropertyType GetModelPropertyType<TValue>(IPublishedSnapshotAccessor publishedSnapshotAccessor, Expression<Func<NestedBlockRichTextComponent, TValue>> selector)
+		public static IPublishedPropertyType GetModelPropertyType<TValue>(IPublishedSnapshotAccessor publishedSnapshotAccessor, Expression<Func<NestedBlockRichText, TValue>> selector)
 			=> PublishedModelUtility.GetModelPropertyType(GetModelContentType(publishedSnapshotAccessor), selector);
 #pragma warning restore 0109
 
 		private IPublishedValueFallback _publishedValueFallback;
 
 		// ctor
-		public NestedBlockRichTextComponent(IPublishedElement content, IPublishedValueFallback publishedValueFallback)
+		public NestedBlockRichText(IPublishedElement content, IPublishedValueFallback publishedValueFallback)
 			: base(content, publishedValueFallback)
 		{
 			_publishedValueFallback = publishedValueFallback;
@@ -50,19 +50,12 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		// properties
 
 		///<summary>
-		/// First Button
+		/// Primary Link Button
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("firstButton")]
-		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel FirstButton => this.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockListModel>(_publishedValueFallback, "firstButton");
-
-		///<summary>
-		/// Read more/less option
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[ImplementPropertyType("readMorelessOption")]
-		public virtual bool ReadMorelessOption => this.Value<bool>(_publishedValueFallback, "readMorelessOption");
+		[ImplementPropertyType("primaryLinkButton")]
+		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel PrimaryLinkButton => this.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockListModel>(_publishedValueFallback, "primaryLinkButton");
 
 		///<summary>
 		/// Reduce Margin: The ability to choose for less margin on the top & bottom of the component for better visual stacking of multiple Rich Text components.
@@ -73,20 +66,27 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual string ReduceMargin => this.Value<string>(_publishedValueFallback, "reduceMargin");
 
 		///<summary>
-		/// RTE Content
+		/// Secondary Link Button
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("rTEContent")]
-		public virtual global::Umbraco.Cms.Core.Strings.IHtmlEncodedString RTecontent => this.Value<global::Umbraco.Cms.Core.Strings.IHtmlEncodedString>(_publishedValueFallback, "rTEContent");
+		[ImplementPropertyType("secondLinkButton")]
+		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel SecondLinkButton => this.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockListModel>(_publishedValueFallback, "secondLinkButton");
 
 		///<summary>
-		/// Second Button
+		/// Show Read More Option
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[ImplementPropertyType("showReadMoreOption")]
+		public virtual bool ShowReadMoreOption => this.Value<bool>(_publishedValueFallback, "showReadMoreOption");
+
+		///<summary>
+		/// Text
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("secondButton")]
-		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel SecondButton => this.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockListModel>(_publishedValueFallback, "secondButton");
+		[ImplementPropertyType("text")]
+		public virtual global::Umbraco.Cms.Core.Strings.IHtmlEncodedString Text => this.Value<global::Umbraco.Cms.Core.Strings.IHtmlEncodedString>(_publishedValueFallback, "text");
 
 		///<summary>
 		/// Text Size
@@ -95,21 +95,5 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("textSize")]
 		public virtual string TextSize => this.Value<string>(_publishedValueFallback, "textSize");
-
-		///<summary>
-		/// Anchor Id
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("anchorId")]
-		public virtual string AnchorId => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionAnchors.GetAnchorId(this, _publishedValueFallback);
-
-		///<summary>
-		/// Anchor Title
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("anchorTitle")]
-		public virtual string AnchorTitle => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionAnchors.GetAnchorTitle(this, _publishedValueFallback);
 	}
 }
