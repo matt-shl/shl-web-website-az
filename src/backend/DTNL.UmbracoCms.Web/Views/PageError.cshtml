@@ -1,0 +1,5 @@
+@inherits UmbracoViewPage<PageError>
+
+<partial name="EmptySection" model="@Components.EmptySection.Create(Model)" />
+
+<partial name="_BlockList" model="Model.ContentBlocks" />

@@ -111,7 +111,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("noResultsPrimaryLink")]
-		public virtual global::Umbraco.Cms.Core.Models.Link NoResultsPrimaryLink => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionNoResults.GetNoResultsPrimaryLink(this, _publishedValueFallback);
+		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel NoResultsPrimaryLink => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionNoResults.GetNoResultsPrimaryLink(this, _publishedValueFallback);
 
 		///<summary>
 		/// No Results Secondary Link
@@ -119,7 +119,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("noResultsSecondaryLink")]
-		public virtual global::Umbraco.Cms.Core.Models.Link NoResultsSecondaryLink => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionNoResults.GetNoResultsSecondaryLink(this, _publishedValueFallback);
+		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel NoResultsSecondaryLink => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionNoResults.GetNoResultsSecondaryLink(this, _publishedValueFallback);
 
 		///<summary>
 		/// No Results Text

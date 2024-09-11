@@ -9,7 +9,7 @@
      data-modal-close-all-others="@(Model.CloseAllOthers ? "true" : "false")"
      data-modal-keep-scroll-position="@(Model.KeepScrollPosition ? "true" : "false")"
      data-modal-auto-close="@(Model.AutoClose ? "true" : "false")"
-     js-hook-modal>
+     js-hook-modal @Model.Hook>
 
     @if (Model?.Size == "video")
     {
@@ -18,7 +18,6 @@
         </button>
     }
     
-    {% endif %}
     <div class="modal__container">
         <div class="modal__content" role="dialog">
             @if (Model?.Size != "navigation-mobile")
@@ -59,7 +58,7 @@
                 </div>
             }
 
-            <div class="modal__body" js-hook-modal-body>
+            <div class="modal__body" js-hook-modal-body @Html.Attributes(Model.Attributes)>
                 @this.RenderPartialBody()
             </div>
         </div>
