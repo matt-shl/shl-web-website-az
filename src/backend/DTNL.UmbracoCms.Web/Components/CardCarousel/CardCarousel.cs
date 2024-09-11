@@ -1,4 +1,3 @@
-using DTNL.UmbracoCms.Web.Helpers.Aliases;
 using DTNL.UmbracoCms.Web.Helpers.Extensions;
 using Umbraco.Cms.Web.Common.PublishedModels;
 
@@ -6,10 +5,6 @@ namespace DTNL.UmbracoCms.Web.Components;
 
 public class CardCarousel
 {
-    public string? AnchorId { get; set; }
-
-    public string? AnchorTitle { get; set; }
-
     public string? Title { get; set; }
 
     public string? Text { get; set; }
@@ -21,6 +16,8 @@ public class CardCarousel
     public required List<ICard> Cards { get; set; }
 
     public bool ShowCarousel { get; set; }
+
+    public bool ShowThreeSideBySide { get; set; }
 
     public static CardCarousel? Create(ICompositionCards cardsBlock)
     {
@@ -48,22 +45,13 @@ public class CardCarousel
 
         return new CardCarousel
         {
-            AnchorId = (cardsBlock as ICompositionAnchors)?.AnchorId,
-            AnchorTitle = (cardsBlock as ICompositionAnchors)?.AnchorTitle,
             Title = cardsBlock.Title,
             Text = cardsBlock.Text?.ToHtmlString(),
-            PrimaryLinkButton = Button
-                .Create(cardsBlock.PrimaryLink)
-                .With(b => b.Icon = SvgAliases.Icons.ArrowTopRight),
-            SecondaryLinkButton = Button
-                .Create(cardsBlock.SecondaryLink)
-                .With(b =>
-                {
-                    b.Icon = SvgAliases.Icons.ArrowTopRight;
-                    b.Variant = "secondary";
-                }),
+            PrimaryLinkButton = Button.Create(cardsBlock.PrimaryLink, fallBackVariant: "primary"),
+            SecondaryLinkButton = Button.Create(cardsBlock.SecondaryLink, fallBackVariant: "secondary"),
             Cards = cards,
             ShowCarousel = cards.Count > 3 || (cardsBlock.ShowCarousel && cards.Count == 3),
+            ShowThreeSideBySide = !cardsBlock.ShowCarousel && cards.Count == 3,
         };
     }
 }

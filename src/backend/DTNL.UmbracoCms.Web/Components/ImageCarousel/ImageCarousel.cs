@@ -1,4 +1,3 @@
-using DTNL.UmbracoCms.Web.Helpers.Aliases;
 using DTNL.UmbracoCms.Web.Helpers.Extensions;
 using Umbraco.Cms.Web.Common.PublishedModels;
 
@@ -21,16 +20,8 @@ public class ImageCarousel : CardCarousel
         {
             Title = cardsBlock.Title,
             Text = cardsBlock.Text?.ToHtmlString(),
-            PrimaryLinkButton = Button
-                .Create(cardsBlock.PrimaryLink)
-                .With(b => b.Icon = SvgAliases.Icons.ArrowTopRight),
-            SecondaryLinkButton = Button
-                .Create(cardsBlock.SecondaryLink)
-                .With(b =>
-                {
-                    b.Icon = SvgAliases.Icons.ArrowTopRight;
-                    b.Variant = "secondary";
-                }),
+            PrimaryLinkButton = Button.Create(cardsBlock.PrimaryLink, fallBackVariant: "primary"),
+            SecondaryLinkButton = Button.Create(cardsBlock.PrimaryLink, fallBackVariant: "secondary"),
             Cards = cards,
             ShowCarousel = cards.Count > 3 || (cardsBlock.ShowCarousel && cards.Count == 3),
         };

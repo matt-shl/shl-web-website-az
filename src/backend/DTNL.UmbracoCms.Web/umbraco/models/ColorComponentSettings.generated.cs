@@ -18,29 +18,14 @@ using Umbraco.Extensions;
 
 namespace Umbraco.Cms.Web.Common.PublishedModels
 {
-	// Mixin Content Type with alias "compositionAnchors"
-	/// <summary>Composition Anchors</summary>
-	public partial interface ICompositionAnchors : IPublishedElement
-	{
-		/// <summary>Anchor Id</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		string AnchorId { get; }
-
-		/// <summary>Anchor Title</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		string AnchorTitle { get; }
-	}
-
-	/// <summary>Composition Anchors</summary>
-	[PublishedModel("compositionAnchors")]
-	public partial class CompositionAnchors : PublishedElementModel, ICompositionAnchors
+	/// <summary>Color Component Settings</summary>
+	[PublishedModel("colorComponentSettings")]
+	public partial class ColorComponentSettings : PublishedElementModel
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		public new const string ModelTypeAlias = "compositionAnchors";
+		public new const string ModelTypeAlias = "colorComponentSettings";
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
@@ -49,14 +34,14 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 			=> PublishedModelUtility.GetModelContentType(publishedSnapshotAccessor, ModelItemType, ModelTypeAlias);
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		public static IPublishedPropertyType GetModelPropertyType<TValue>(IPublishedSnapshotAccessor publishedSnapshotAccessor, Expression<Func<CompositionAnchors, TValue>> selector)
+		public static IPublishedPropertyType GetModelPropertyType<TValue>(IPublishedSnapshotAccessor publishedSnapshotAccessor, Expression<Func<ColorComponentSettings, TValue>> selector)
 			=> PublishedModelUtility.GetModelPropertyType(GetModelContentType(publishedSnapshotAccessor), selector);
 #pragma warning restore 0109
 
 		private IPublishedValueFallback _publishedValueFallback;
 
 		// ctor
-		public CompositionAnchors(IPublishedElement content, IPublishedValueFallback publishedValueFallback)
+		public ColorComponentSettings(IPublishedElement content, IPublishedValueFallback publishedValueFallback)
 			: base(content, publishedValueFallback)
 		{
 			_publishedValueFallback = publishedValueFallback;
@@ -65,29 +50,27 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		// properties
 
 		///<summary>
-		/// Anchor Id
+		/// Id
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("anchorId")]
-		public virtual string AnchorId => GetAnchorId(this, _publishedValueFallback);
-
-		/// <summary>Static getter for Anchor Id</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		public static string GetAnchorId(ICompositionAnchors that, IPublishedValueFallback publishedValueFallback) => that.Value<string>(publishedValueFallback, "anchorId");
+		[ImplementPropertyType("identifier")]
+		public virtual string Identifier => this.Value<string>(_publishedValueFallback, "identifier");
 
 		///<summary>
-		/// Anchor Title
+		/// Navigation Title
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("anchorTitle")]
-		public virtual string AnchorTitle => GetAnchorTitle(this, _publishedValueFallback);
+		[ImplementPropertyType("navigationTitle")]
+		public virtual string NavigationTitle => this.Value<string>(_publishedValueFallback, "navigationTitle");
 
-		/// <summary>Static getter for Anchor Title</summary>
+		///<summary>
+		/// Theme
+		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		public static string GetAnchorTitle(ICompositionAnchors that, IPublishedValueFallback publishedValueFallback) => that.Value<string>(publishedValueFallback, "anchorTitle");
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("theme")]
+		public virtual global::Umbraco.Cms.Core.PropertyEditors.ValueConverters.ColorPickerValueConverter.PickedColor Theme => this.Value<global::Umbraco.Cms.Core.PropertyEditors.ValueConverters.ColorPickerValueConverter.PickedColor>(_publishedValueFallback, "theme");
 	}
 }

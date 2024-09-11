@@ -1,9 +1,5 @@
 using DTNL.UmbracoCms.Web.Helpers;
 using DTNL.UmbracoCms.Web.Helpers.Extensions;
-using DTNL.UmbracoCms.Web.Models.Filters;
-using DTNL.UmbracoCms.Web.Models.Products;
-using DTNL.UmbracoCms.Web.Services;
-using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Umbraco.Cms.Web.Common.PublishedModels;
 
@@ -15,16 +11,15 @@ public class OverviewItems : ViewComponentExtended
 
     public required List<CardKnowledge> ResultCards { get; set; }
 
-    public IViewComponentResult Invoke(PageKnowledgeOverview overviewPage)
+    public IViewComponentResult Invoke(PageOverview overviewPage)
     {
         HttpContext.VaryByPageNumber();
+
         int pageNumber = Request.Query.GetPageNumber();
 
-        List<ICompositionKnowledgePage> knowledgePages = NodeProvider
-            .GetOverviewPages(overviewPage)
-            .ToList();
-
-        ResultCards = knowledgePages
+        ResultCards = overviewPage
+            .Children()
+            .OfType<ICompositionContentDetails>()
             .Using(p => CardKnowledge.CreateOverview(p))
             .Page(pageNumber, PageSize)
             .ToList();

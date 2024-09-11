@@ -24,7 +24,8 @@ public interface ICard : IPartialViewPath
                     imageCaptionCard.Image,
                     objectFit: false,
                     style: $"image{imageCaptionCard.SizeRatio.FallBack(ImageRatios.GetRandom())}",
-                    cssClasses: cssClasses),
+                    cssClasses: cssClasses)
+                .With(i => i.Caption = imageCaptionCard.Caption),
             _ => null,
         };
     }

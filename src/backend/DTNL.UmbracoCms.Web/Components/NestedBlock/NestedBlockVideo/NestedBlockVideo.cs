@@ -13,8 +13,7 @@ public class NestedBlockVideo : NestedBlock
             return null;
         }
 
-        Video? video = Video.Create(nestedBlockVideo);
-        if (video == null)
+        if (Video.Create(nestedBlockVideo) is not { } video)
         {
             return null;
         }

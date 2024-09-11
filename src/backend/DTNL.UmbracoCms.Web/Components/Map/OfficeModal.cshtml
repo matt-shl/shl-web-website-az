@@ -1,0 +1,38 @@
+@using DTNL.UmbracoCms.Web.Components
+@using DTNL.UmbracoCms.Web.Helpers.Aliases
+
+@model DTNL.UmbracoCms.Web.Components.Map.Region.Country.Office
+
+<partial name="Modal" model="@(new Modal { Id = $"map-office-{Model.Id}", Title = Model.Name, Size = "aside", KeepScrollPosition = true, CloseAllOthers = true })">
+    <div class="c-office-modal t-white">
+        <partial name="Image" model="@Model.Image" />
+
+        @if (!Model.Address.IsNullOrWhiteSpace())
+        {
+            <div class="office-modal__address">
+                <svg src="@SvgAliases.Icons.Location" />
+                <div>@Html.Raw(Model.Address)</div>
+            </div>
+        }
+
+        @if (!Model.Email.IsNullOrWhiteSpace())
+        {
+            <div class="office-modal__email">
+                <svg src="@SvgAliases.Icons.Email" />
+                <div>@Model.Email</div>
+            </div>
+        }
+
+        @if (!Model.Phone.IsNullOrWhiteSpace())
+        {
+            <div class="office-modal__phone">
+                <svg src="@SvgAliases.Icons.Phone" />
+                <div>@Model.Phone</div>
+            </div>
+        }
+
+        <p class="office-modal__description" asp-if="@Model.Description">@Model.Description</p>
+
+        <partial name="Button" model="@Model.LinkButton" />
+    </div>
+</partial>

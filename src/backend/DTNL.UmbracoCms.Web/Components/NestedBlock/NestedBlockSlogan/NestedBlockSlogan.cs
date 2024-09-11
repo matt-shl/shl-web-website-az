@@ -11,11 +11,6 @@ public class NestedBlockSlogan : NestedBlock
             return null;
         }
 
-        if (Slogan.Create(nestedBlockSlogan) is not { } slogan)
-        {
-            return null;
-        }
-
-        return slogan;
+        return Slogan.Create(nestedBlockSlogan);
     }
 }

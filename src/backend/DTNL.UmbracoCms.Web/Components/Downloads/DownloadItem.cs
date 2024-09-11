@@ -27,11 +27,12 @@ public class DownloadItem
             Title = downloadItem.DownloadItemTitle!,
             Description = downloadItem.DownloadItemDescription,
             Icon = downloadItem.DownloadIcon?.LocalCrops.Src,
-            DownloadLink = Button.Create(downloadItem.DownloadButtonLabel)
-        .With(b =>
-        {
-            b.Class = "download-item__link";
-        }),
+            DownloadLink = Button
+                .Create(downloadItem.DownloadButtonLabel)
+                .With(b =>
+                {
+                    b.Class = "download-item__link";
+                }),
         };
     }
 }
