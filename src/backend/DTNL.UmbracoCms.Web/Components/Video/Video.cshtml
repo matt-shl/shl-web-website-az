@@ -2,7 +2,7 @@
 @model DTNL.UmbracoCms.Web.Components.Video
 
 
-<div class="c-video @Model.Classes"
+<div class="c-video @Model.Classes @(!Model.Variant.IsNullOrWhiteSpace() ? $"c-video--{Model.Variant}" : null)"
      itemprop="video" itemscope itemtype="http://schema.org/VideoObject"
      id="video-@Model.InstanceId"
      data-video-platform="@Model.Platform"

@@ -49,7 +49,7 @@ public class BannerTextMedia
             AnchorTitle = textMediaBanner.AnchorTitle,
             Title = textMediaBanner.Title,
             Description = textMediaBanner.Description,
-            MediaPosition = textMediaBanner.MediaPosition,
+            MediaPosition = String.Equals(textMediaBanner.MediaPosition, "right") ? "end" : "start",
             PrimaryButton = Button
                 .Create(textMediaBanner.PrimaryButton).With(b =>
                 {
@@ -69,6 +69,7 @@ public class BannerTextMedia
                 v.Id = videoContent?.Title?.Trim().ToLower().Replace(" ", "-");
                 v.Description = videoContent?.Description;
                 v.TotalTime = videoContent?.TotalTime;
+                v.Variant = "modal";
             }),
             ImageData = Image.Create(imageContent?.Image)
             .With(i =>
@@ -82,6 +83,7 @@ public class BannerTextMedia
                         InstanceId = videoContent?.Title?.Trim().ToLower().Replace(" ", "-") ?? "",
                         Platform = "native",
                         TotalTime = videoContent?.TotalTime ?? "",
+                        Variant = "modal",
                     },
                     Position = "start",
                     Visible = true,
