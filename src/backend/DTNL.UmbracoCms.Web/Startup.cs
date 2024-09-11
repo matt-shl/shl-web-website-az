@@ -10,8 +10,12 @@ using DTNL.UmbracoCms.Web.Infrastructure.Configuration.Options;
 using DTNL.UmbracoCms.Web.Infrastructure.ContentFinders;
 using DTNL.UmbracoCms.Web.Infrastructure.Middlewares.CustomResponseCaching;
 using DTNL.UmbracoCms.Web.Infrastructure.NotificationHandlers;
+using DTNL.UmbracoCms.Web.Modules.BackgroundJobs.Hangfire;
+using DTNL.UmbracoCms.Web.Modules.BackgroundJobs.Section;
 using DTNL.UmbracoCms.Web.Services;
 using DTNL.UmbracoCms.Web.Services.Assets;
+using DTNL.UmbracoCms.Web.Services.BackgroundJobs;
+using Hangfire;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
 using Microsoft.AspNetCore.Rewrite;
 using Microsoft.Extensions.Options;
@@ -22,6 +26,8 @@ using Umbraco.Cms.Core.Notifications;
 using Umbraco.Cms.Core.Sync;
 using Umbraco.Cms.Infrastructure.DependencyInjection;
 using Umbraco.Cms.Web.Common.Routing;
+using ApplicationOptions = DTNL.UmbracoCms.Web.Infrastructure.Configuration.Options.ApplicationOptions;
+using CacheOptions = DTNL.UmbracoCms.Web.Infrastructure.Configuration.Options.CacheOptions;
 
 namespace DTNL.UmbracoCms.Web;
 
@@ -111,6 +117,12 @@ public static class Startup
         // Other 3rd party services
         services.AddTransient<ISitemapProvider, SitemapProvider>();
 
+        // Recurring jobs
+        if (applicationOptions.BackgroundJobs.Enabled && applicationOptions.ServerRole != ServerRole.Subscriber)
+        {
+            services.AddHangfire();
+        }
+
         // Umbraco Azure Configuration
         if (applicationOptions.HostingEnvironment == ApplicationOptions.HostingEnvironmentType.AzureWebApp)
         {
@@ -154,6 +166,7 @@ public static class Startup
             .SetServerRegistrar<ConfigurationServerRoleAccessor>()
             .SetContentLastChanceFinder<LastChanceContentFinder>()
             .SetDefaultRenderController<DefaultRenderController>()
+            .AddSection<BackgroundJobsSection>()
             .Build();
     }
 
@@ -263,6 +276,14 @@ public static class Startup
                 u.EndpointRouteBuilder.UseApiFallbackRoute();
 
                 u.UseWebsiteEndpoints();
+
+
+                if (applicationOptions.BackgroundJobs.Enabled && applicationOptions.ServerRole != ServerRole.Subscriber)
+                {
+                    u.ConfigureHangfireDashboard();
+
+                    app.ScheduleJob<VacanciesImporter>(applicationOptions.BackgroundJobs.Schedule.GetValueOrDefault("Importer", Cron.Never()));
+                }
             });
     }
 }
