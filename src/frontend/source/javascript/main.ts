@@ -40,6 +40,7 @@ moduleInit.async('[js-hook-rich-text]', () => import('@/components/rich-text'))
 moduleInit.async('[js-hook-banner-quote]', () => import('@components/banner-quote'))
 moduleInit.async('[js-hook-carousel-indicator]', () => import('@components/carousel-indicator'))
 moduleInit.async('[js-hook-form]', () => import('@/components/form'))
+moduleInit.async('[js-hook-pardot-form]', () => import('@/components/pardot-form'))
 moduleInit.async('[js-hook-map]', () => import('@/components/map'))
 moduleInit.async('[js-hook-language-selector]', () => import('@components/language-selector'))
 moduleInit.async(

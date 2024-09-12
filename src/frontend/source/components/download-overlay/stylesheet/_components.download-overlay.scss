@@ -1,0 +1,15 @@
+.c-download-overlay {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.download-overlay__form {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+
+  .pardot-form__submit {
+    margin-top: auto;
+  }
+}

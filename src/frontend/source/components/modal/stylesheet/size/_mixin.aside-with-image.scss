@@ -1,0 +1,70 @@
+@mixin modal--aside-with-image {
+  @include modal--aside;
+
+  .modal__content {
+    @include screen-md-and-bigger {
+      margin-inline-start: 0;
+      border-start-start-radius: 0;
+      border-end-start-radius: 0;
+    }
+  }
+
+  .modal__image-container-mobile {
+    display: none;
+
+    @include screen-sm-and-smaller {
+      display: block;
+      margin-bottom: $spacing-40;
+      margin-inline: calc(#{$spacing-40} * -1);
+    }
+
+    @include screen-base-and-smaller {
+      margin-inline: calc(#{$spacing-24} * -1);
+    }
+  }
+
+  .modal__image-container-desktop {
+    padding-block: $spacing-16;
+    padding-inline-start: $spacing-16;
+    background-color: $color-white;
+    border-start-start-radius: $radii-12;
+    border-end-start-radius: $radii-12;
+    margin-block: $spacing-16;
+    margin-inline-start: $spacing-16;
+    width: 52%;
+    flex-shrink: 0;
+    display: flex;
+
+    @include screen-md-and-smaller {
+      width: 44%;
+    }
+
+    @include screen-sm-and-smaller {
+      display: none;
+    }
+  }
+
+  .modal__image {
+    display: flex;
+    width: 100%;
+    border-radius: $radii-12;
+    justify-content: center;
+    align-items: center;
+    background-color: $color-light-grey;
+    padding: $spacing-32;
+
+    .image__default {
+      border-radius: $radii-12;
+    }
+
+    @include screen-sm-and-smaller {
+      .image__default {
+        max-width: 150px;
+      }
+    }
+  }
+
+  .modal__container {
+    max-width: 1040px;
+  }
+}

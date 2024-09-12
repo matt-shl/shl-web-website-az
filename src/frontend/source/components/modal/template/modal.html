@@ -17,6 +17,7 @@ Options:
     noClose {boolean}        - Hides the close button (esc. key is still bound)
     autoClose {integer}      - Amount of seconds after which the modal will close
 #}
+{% from 'image.html' import image %}
 
 {% macro modal(data) %}
 
@@ -38,6 +39,14 @@ Options:
     {% endif %}
 
     <div class="modal__container">
+      {% if data.size === "aside-with-image" and data.image %}
+        <div class="modal__image-container-desktop">
+          {{ image({
+            classes: 'modal__image',
+            imageStyle: 'modal'
+          }) }}
+        </div>
+      {% endif %}
 
       <div class="modal__content" role="dialog">
 
@@ -75,6 +84,15 @@ Options:
         {% endif %}
 
         <div class="modal__body" js-hook-modal-body js-hook-replace-content="{{ "modal-body-" + data.id }}">
+          {% if data.size === "aside-with-image" and data.image %}
+            <div class="modal__image-container-mobile">
+              {{ image({
+                classes: 'modal__image',
+                imageStyle: 'modal'
+              }) }}
+            </div>
+          {% endif %}
+
           {{ caller() }}
         </div>
 
