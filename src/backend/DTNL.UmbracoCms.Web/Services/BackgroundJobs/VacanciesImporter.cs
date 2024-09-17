@@ -24,6 +24,7 @@ public class VacanciesImporter : IBackgroundJob
     private readonly IServiceProvider _serviceProvider;
     private readonly IContentService _contentService;
     private readonly IAtsApiClient _atsApiClient;
+    private readonly VacanciesContentHelper _vacanciesContentHelper;
     private readonly ILogger<VacanciesImporter> _logger;
 
     public VacanciesImporter(
@@ -34,6 +35,7 @@ public class VacanciesImporter : IBackgroundJob
         IServiceProvider serviceProvider,
         IContentService contentService,
         IAtsApiClient atsApiClient,
+        VacanciesContentHelper vacanciesContentHelper,
         ILogger<VacanciesImporter> logger)
     {
         _scopeProvider = scopeProvider;
@@ -44,6 +46,7 @@ public class VacanciesImporter : IBackgroundJob
         _serviceProvider = serviceProvider;
         _contentService = contentService;
         _atsApiClient = atsApiClient;
+        _vacanciesContentHelper = vacanciesContentHelper;
         _logger = logger;
     }
 
@@ -116,9 +119,7 @@ public class VacanciesImporter : IBackgroundJob
                     continue;
                 }
 
-                pageVacancyContent.Name = nodeName;
-
-                VacanciesContentHelper.SetVacancyContent(pageVacancyContent, vacancy, vacancyCultures);
+                _vacanciesContentHelper.SetVacancyContent(pageVacancyContent, vacancy, vacancyCultures);
 
                 SaveOrPublish(pageVacancyContent);
             }
@@ -166,7 +167,7 @@ public class VacanciesImporter : IBackgroundJob
                 throw new InvalidOperationException($"Document with name '{name}' already exists with documentTypeAlias '{existingItem.ContentType.Alias}' instead of '{documentTypeAlias}'");
             }
 
-            _logger.LogWarning("Document {Name} already existed but couldn't be found in the cache", name);
+            _logger.LogWarning("Vacancy {Name} already existed but couldn't be found in the cache", name);
         }
 
         return existingItem ?? _contentService.Create(name, parentId, documentTypeAlias);
@@ -182,10 +183,14 @@ public class VacanciesImporter : IBackgroundJob
         if (content.Edited)
         {
             _ = _contentService.Save(content);
+
+            _logger.LogWarning("Vacancy {Name} saved", content.Name);
         }
         else
         {
             _ = _contentService.SaveAndPublish(content);
+
+            _logger.LogWarning("Vacancy {Name} published", content.Name);
         }
     }
 

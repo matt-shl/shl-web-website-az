@@ -277,6 +277,14 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual string ExternalId => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionVacancyDetails.GetExternalId(this, _publishedValueFallback);
 
 		///<summary>
+		/// External URL
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("externalUrl")]
+		public virtual string ExternalUrl => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionVacancyDetails.GetExternalUrl(this, _publishedValueFallback);
+
+		///<summary>
 		/// Function
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]

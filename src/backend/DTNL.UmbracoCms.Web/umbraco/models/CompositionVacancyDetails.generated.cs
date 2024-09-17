@@ -51,6 +51,11 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		string ExternalId { get; }
 
+		/// <summary>External URL</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		string ExternalUrl { get; }
+
 		/// <summary>Function</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
@@ -192,6 +197,19 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		public static string GetExternalId(ICompositionVacancyDetails that, IPublishedValueFallback publishedValueFallback) => that.Value<string>(publishedValueFallback, "externalId");
+
+		///<summary>
+		/// External URL
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("externalUrl")]
+		public virtual string ExternalUrl => GetExternalUrl(this, _publishedValueFallback);
+
+		/// <summary>Static getter for External URL</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		public static string GetExternalUrl(ICompositionVacancyDetails that, IPublishedValueFallback publishedValueFallback) => that.Value<string>(publishedValueFallback, "externalUrl");
 
 		///<summary>
 		/// Function
