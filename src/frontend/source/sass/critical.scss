@@ -83,6 +83,7 @@ $assets-path: '/assets/';
 @import '@/components/odometer/stylesheet/_components.odometer';
 @import '@/components/search/stylesheet/_components.search';
 @import '@/components/search-trigger/stylesheet/_components.search-trigger';
+@import '@/components/download-overlay/stylesheet/_components.download-overlay';
 /* endinject */
 
 @import '50_scopes/scopes.rich-text';

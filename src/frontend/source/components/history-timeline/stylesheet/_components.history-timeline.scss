@@ -149,6 +149,8 @@
   }
 
   &.is--active {
+    z-index: 1;
+    
     ~ .c-image {
       transform: scale(1.05);
     }

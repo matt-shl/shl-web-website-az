@@ -21,6 +21,8 @@ export type ToastProps = {
   status: string
 }
 
+const crossSvg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none"><path fill="currentColor" d="M15.65 14.767a.624.624 0 0 1-.202 1.02.626.626 0 0 1-.682-.136l-5.183-5.184-5.182 5.184a.625.625 0 1 1-.885-.884L8.7 9.584 3.516 4.4a.625.625 0 0 1 .885-.885L9.583 8.7l5.183-5.184a.625.625 0 1 1 .884.885l-5.183 5.183 5.183 5.183Z"></path></svg>'
+
 class ToastManager {
   element: HTMLElement
   store: ToastEntries = {}
@@ -116,7 +118,7 @@ class ToastManager {
     return `
       <span class="toast__item-title">${title}</span>
       ${body ? `<span class="toast__item-body">${body}</span>` : ''}
-      <button class="toast__item-close" aria-label="Close" js-hook-toast-close-btn>&times;</button>`
+      <button class="toast__item-close" aria-label="Close" js-hook-toast-close-btn>${crossSvg}</button>`
   }
 
   #setPosition() {
