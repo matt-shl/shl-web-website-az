@@ -58,7 +58,7 @@ public class OverviewVacancies : ViewComponentExtended
         if (!searchQuery.IsNullOrWhiteSpace())
         {
             List<PublishedSearchResult> matchingResults = _searchService
-                .Search(searchQuery, vacancyPages.Select(p => p.Id), 0, int.MaxValue, out _)
+                .Search(searchQuery, vacancyPages.Select(p => p.Id), 1, int.MaxValue, out _)
                 .ToList();
 
             vacancyPages.RemoveAll(p =>
