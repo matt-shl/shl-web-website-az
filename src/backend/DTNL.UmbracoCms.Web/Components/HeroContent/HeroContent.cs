@@ -21,6 +21,8 @@ public class HeroContent : IHero
 
     public Button? SecondaryButton { get; set; }
 
+    public bool ShowSearch { get; set; }
+
     public static HeroContent? Create(NestedBlockContentHero? contentHero, ICompositionBasePage page)
     {
         if (contentHero is null)
@@ -59,6 +61,7 @@ public class HeroContent : IHero
                     b.Class = "hero-content__cta";
                     b.Hook = "homepage-hero-button";
                 }),
+            ShowSearch = page is PageVacancyOverview,
         };
     }
 }

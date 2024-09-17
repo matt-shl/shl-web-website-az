@@ -1,22 +1,19 @@
 @using DTNL.UmbracoCms.Web.Components
-@model DTNL.UmbracoCms.Web.Components.OverviewProducts
-
+@model DTNL.UmbracoCms.Web.Components.OverviewVacancies
 
 <partial name="Filters" model="@Model.Filters"/>
 
 <div js-hook-replace-content="overview-content">
-    <partial name="LayoutSection"
-                model="@Model.LayoutSection">
-
+    <partial name="LayoutSection" model="@Model.LayoutSection">
         @if (Model.NoResultsSection is not null)
         {
             <partial name="EmptySection" model="@Model.NoResultsSection" />
         }
         else
         {       
-            @foreach (CardProduct resultCard in Model.Results)
+            @foreach (JobListingItem jobListingItem in Model.Results)
             {
-                <partial name="CardProduct" model="@resultCard"/>
+                <partial name="JobListingItem" model="@jobListingItem" />
             }
 
             <partial name="Pagination" model="@Model.Pagination"/>

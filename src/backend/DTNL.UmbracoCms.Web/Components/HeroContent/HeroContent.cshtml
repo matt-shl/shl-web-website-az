@@ -34,5 +34,12 @@
                 }
             </div>
         </div>
+
+        @if (Model.ShowSearch)
+        {
+            <div class="hero-content__col-search">
+                <vc:search/>
+            </div>
+        }
     </div>
 </section>

@@ -1,0 +1,54 @@
+@using DTNL.UmbracoCms.Web.Components
+@using DTNL.UmbracoCms.Web.Components.FormElements
+@using DTNL.UmbracoCms.Web.Helpers
+@using DTNL.UmbracoCms.Web.Helpers.Aliases
+@using DTNL.UmbracoCms.Web.Helpers.Extensions
+@using DTNL.UmbracoCms.Web.Models.Filters
+
+@model DTNL.UmbracoCms.Web.Components.Search
+
+<div class="c-search c-search--@Model.Variant" js-hook-search>
+    <form class="search__form" action="@Model.ActionUrl" method="get" js-hook-search-form>
+
+        <button type="submit" class="search__icon-submit">
+            <svg src="@SvgAliases.Icons.Search" />
+        </button>
+
+        <label for="searchinput" class="u-sr-only">
+            @Model.SearchLabel
+        </label>
+
+        <input js-hook-search-input
+               class="search__input"
+               type="text"
+               id="searchinput"
+               name="@QueryStringHelper.SearchQueryString"
+               value="@Model.SearchQuery"
+               placeholder="@Model.SearchPlaceholder">
+
+        <button class="search__input-reset @(Model.SearchQuery.IsNullOrWhiteSpace() ? "u-hidden" : null)" js-hook-search-input-reset>
+            <svg src="@SvgAliases.Icons.Cross" />
+        </button>
+
+        <hr class="search__hr" asp-if="@(Model.Variant is "in-hero")" />
+
+        @if (Model.Variant is not "in-flyout")
+        {
+            <div class="search__buttons-container">
+                @foreach (Filter filter in Model.Filters.OrEmptyIfNull())
+                {
+                    @(await Component.InvokeAsync(filter.Type, new
+                    {
+                        filter.Name,
+                        filter.Value,
+                        Options = filter.Options.OfType<SelectElement.SelectOption>(),
+                        SrOnly = true,
+                        Class = "search__select",
+                    }))
+                }
+
+                <partial name="Button" model="@(new Button { Label = Model.SearchLabel, Element = "button", Class = "search__cta-submit", Icon = SvgAliases.Icons.ArrowTopRight, Type = "submit"})" />
+            </div>
+        }
+    </form>
+</div>

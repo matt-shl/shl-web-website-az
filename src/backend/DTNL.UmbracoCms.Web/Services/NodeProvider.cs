@@ -35,6 +35,11 @@ public class NodeProvider
         return overviewPage.Children<PageProduct>() ?? [];
     }
 
+    public static IEnumerable<PageVacancy> GetVacancyPages(PageVacancyOverview overviewPage)
+    {
+        return overviewPage.Children<PageVacancy>() ?? [];
+    }
+
     internal void Reset()
     {
         _homePage = null;

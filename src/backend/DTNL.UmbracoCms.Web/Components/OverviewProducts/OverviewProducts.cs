@@ -5,7 +5,6 @@ using DTNL.UmbracoCms.Web.Models.Filters;
 using DTNL.UmbracoCms.Web.Models.Products;
 using DTNL.UmbracoCms.Web.Services;
 using Microsoft.AspNetCore.Mvc;
-using Umbraco.Cms.Core.Dictionary;
 using Umbraco.Cms.Web.Common.PublishedModels;
 
 namespace DTNL.UmbracoCms.Web.Components;
@@ -14,26 +13,17 @@ public class OverviewProducts : ViewComponentExtended
 {
     public const int PageSize = 6;
 
-    private readonly ICultureDictionary _cultureDictionary;
-
-    public OverviewProducts(ICultureDictionary cultureDictionary)
-    {
-        _cultureDictionary = cultureDictionary;
-    }
-
     public int TotalCount { get; set; }
 
     public EmptySection? NoResultsSection { get; set; }
 
     public required Filters Filters { get; set; }
 
-    public required List<CardProduct> ResultCards { get; set; }
+    public required List<CardProduct> Results { get; set; }
 
     public Pagination? Pagination { get; set; }
 
-    public LayoutSection LayoutSection
-    { get; set; }
-    = new()
+    public LayoutSection LayoutSection { get; set; } = new()
     {
         CssClasses = "t-white",
         Variant = "grid",
@@ -49,11 +39,11 @@ public class OverviewProducts : ViewComponentExtended
             .GetProductPages(productOverviewPage)
             .ToList();
 
-        ProductFilters productFilters = GetAndApplyFilters(productPages);
+        ProductFilters productFilters = GetAndApplyFilters(productOverviewPage, productPages);
 
-        Filters = Filters.Create(productFilters, productPages, _cultureDictionary);
+        Filters = Filters.Create(productFilters, productPages, CultureDictionary);
 
-        ResultCards = productPages
+        Results = productPages
             .Using(p => CardProduct.Create(p))
             .Page(pageNumber, PageSize)
             .ToList();
@@ -70,13 +60,11 @@ public class OverviewProducts : ViewComponentExtended
         return View("OverviewProducts", this);
     }
 
-    private ProductFilters GetAndApplyFilters(List<PageProduct> productPages)
+    private ProductFilters GetAndApplyFilters(
+        PageProductOverview productOverviewPage,
+        List<PageProduct> productPages)
     {
-        ProductFilters productFilters = new()
-        {
-            CurrentUrl = new Uri($"{Request.Scheme}://{Request.Host}{Request.Path}{Request.QueryString}").ToString(),
-            OverviewUrl = new Uri($"{Request.Scheme}://{Request.Host}{Request.Path}").ToString(),
-        };
+        ProductFilters productBaseFilters = new(productOverviewPage, Request.Query);
 
         foreach ((string name, Func<PageProduct, IEnumerable<string>?> getValues)
                  in ProductFilters.FilterFields)
@@ -90,17 +78,17 @@ public class OverviewProducts : ViewComponentExtended
                 .OrEmptyIfNull()
                 .ContainsAny(filters));
 
-            productFilters.Add(
+            productBaseFilters.Add(
                 name,
                 filters.Select(FilterOption.CreateForSearch).ToArray());
         }
 
         string? sort = GetFilters("Sort")?.FirstOrDefault();
-        bool hasSort = sort is not null && sort == _cultureDictionary.GetTranslation(TranslationAliases.Common.Filters.SortOldestFirst);
+        bool hasSort = sort == CultureDictionary.GetTranslation(TranslationAliases.Common.Filters.SortOldestFirst);
 
         productPages.Sort((x, y) => hasSort ? DateTime.Compare(y.CreateDate, x.CreateDate) : DateTime.Compare(x.CreateDate, y.CreateDate));
 
-        return productFilters;
+        return productBaseFilters;
     }
 
     private string[]? GetFilters(string filterKey)
