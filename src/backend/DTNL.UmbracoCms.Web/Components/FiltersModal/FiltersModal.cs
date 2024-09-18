@@ -28,10 +28,9 @@ public class FiltersModal
     {
         List<Filter> filters = [];
 
-        foreach ((string name, Func<PageProduct, IEnumerable<string>?> getValues)
-                 in ProductFilters.FilterFields)
+        foreach (string filterName in productFilters.Keys)
         {
-            filters.Add(Filter.CreateCheckboxOptions(name, getValues, productFilters, productPages));
+            filters.Add(Filter.CreateCheckboxOptions(filterName, TranslationAliases.Products, productFilters));
         }
 
         Sort sort = Sort.Create(cultureDictionary.GetTranslation(TranslationAliases.Common.Filters.Sort), productFilters, cultureDictionary);
@@ -52,10 +51,9 @@ public class FiltersModal
     {
         List<Filter> filters = [];
 
-        foreach ((string name, Func<PageVacancy, IEnumerable<string>?> getValues)
-                 in VacancyFilters.FilterFields)
+        foreach (string filterName in vacancyFilters.Keys)
         {
-            filters.Add(Filter.CreateCheckboxOptions(name, getValues, vacancyFilters, vacancyPages));
+            filters.Add(Filter.CreateCheckboxOptions(filterName, TranslationAliases.Vacancies, vacancyFilters));
         }
 
         Sort sort = Sort

@@ -38,7 +38,7 @@
 
             @foreach (Filter filter in Model.Filters)
             {
-                <partial name="Accordion/AccordionItem" model="@(new Accordion.Item { Id = filter.Name, Title = CultureDictionary.GetTranslation($"{TranslationAliases.Products}.{filter.Name}") })">
+                <partial name="Accordion/AccordionItem" model="@(new Accordion.Item { Id = filter.Name, Title = CultureDictionary.GetTranslation($"{filter.FilterNamePrefix}.{filter.Name}") })">
                     <fieldset class="filters__accordion-options @(filter.Options.Count > 4 ? "filters__accordion-options--hidden" : null)">
                         @(await Component.InvokeAsync(filter.Type, new
                         {

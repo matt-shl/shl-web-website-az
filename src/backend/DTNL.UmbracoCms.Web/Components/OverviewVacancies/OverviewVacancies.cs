@@ -90,37 +90,25 @@ public class OverviewVacancies : ViewComponentExtended
     {
         VacancyFilters vacancyFilters = new(vacancyOverviewPage, Request.Query);
 
+        vacancyFilters.AddFilterOptions(VacancyFilters.FilterFields, vacancyPages, HttpContext);
+
         foreach ((string name, Func<PageVacancy, IEnumerable<string>?> getValues)
                  in VacancyFilters.FilterFields)
         {
-            if (GetFilters(name) is not { Length: > 0 } filters)
+            if (!vacancyFilters.TryGetValue(name, out FilterOption[]? filterOptions) ||
+                !FilterOption.AnySelected(filterOptions))
             {
                 continue;
             }
 
-            vacancyPages.RemoveAll(p => !getValues(p)
-                .OrEmptyIfNull()
-                .ContainsAny(filters));
-
-            vacancyFilters.Add(
-                name,
-                filters.Select(FilterOption.CreateForSearch).ToArray());
+            vacancyPages.RemoveAll(page => !FilterOption.AnySelectedValueIn(filterOptions, getValues(page)));
         }
 
-        string? sort = GetFilters("Sort")?.FirstOrDefault();
+        string? sort = HttpContext.GetFilterOptions("Sort").FirstOrDefault()?.Label;
         bool hasSort = sort == CultureDictionary.GetTranslation(TranslationAliases.Common.Filters.SortOldestFirst);
 
         vacancyPages.Sort((x, y) => hasSort ? DateTime.Compare(y.CreateDate, x.CreateDate) : DateTime.Compare(x.CreateDate, y.CreateDate));
 
         return vacancyFilters;
-    }
-
-    private string[]? GetFilters(string filterKey)
-    {
-        HttpContext.VaryByQueryKeys(filterKey);
-
-        string? filterValue = Request.Query[filterKey];
-
-        return filterValue?.Split(',');
     }
 }

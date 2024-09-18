@@ -39,9 +39,9 @@ public class OverviewProducts : ViewComponentExtended
             .GetProductPages(productOverviewPage)
             .ToList();
 
-        ProductFilters productFilters = GetAndApplyFilters(productOverviewPage, productPages);
+        ProductFilters selectedProductFilters = GetAndApplySelectedFilters(productOverviewPage, productPages);
 
-        Filters = Filters.Create(productFilters, productPages, CultureDictionary);
+        Filters = Filters.Create(selectedProductFilters, productPages, CultureDictionary);
 
         Results = productPages
             .Using(p => CardProduct.Create(p))
@@ -60,43 +60,31 @@ public class OverviewProducts : ViewComponentExtended
         return View("OverviewProducts", this);
     }
 
-    private ProductFilters GetAndApplyFilters(
+    private ProductFilters GetAndApplySelectedFilters(
         PageProductOverview productOverviewPage,
         List<PageProduct> productPages)
     {
-        ProductFilters productBaseFilters = new(productOverviewPage, Request.Query);
+        ProductFilters productFilters = new(productOverviewPage, Request.Query);
+
+        productFilters.AddFilterOptions(ProductFilters.FilterFields, productPages, HttpContext);
 
         foreach ((string name, Func<PageProduct, IEnumerable<string>?> getValues)
                  in ProductFilters.FilterFields)
         {
-            if (GetFilters(name) is not { Length: > 0 } filters)
+            if (!productFilters.TryGetValue(name, out FilterOption[]? filterOptions) ||
+                !FilterOption.AnySelected(filterOptions))
             {
                 continue;
             }
 
-            productPages.RemoveAll(p => !getValues(p)
-                .OrEmptyIfNull()
-                .ContainsAny(filters));
-
-            productBaseFilters.Add(
-                name,
-                filters.Select(FilterOption.CreateForSearch).ToArray());
+            productPages.RemoveAll(page => !FilterOption.AnySelectedValueIn(filterOptions, getValues(page)));
         }
 
-        string? sort = GetFilters("Sort")?.FirstOrDefault();
+        string? sort = HttpContext.GetFilterOptions("Sort").FirstOrDefault()?.Label;
         bool hasSort = sort == CultureDictionary.GetTranslation(TranslationAliases.Common.Filters.SortOldestFirst);
 
         productPages.Sort((x, y) => hasSort ? DateTime.Compare(y.CreateDate, x.CreateDate) : DateTime.Compare(x.CreateDate, y.CreateDate));
 
-        return productBaseFilters;
-    }
-
-    private string[]? GetFilters(string filterKey)
-    {
-        HttpContext.VaryByQueryKeys(filterKey);
-
-        string? filterValue = Request.Query[filterKey];
-
-        return filterValue?.Split(',');
+        return productFilters;
     }
 }

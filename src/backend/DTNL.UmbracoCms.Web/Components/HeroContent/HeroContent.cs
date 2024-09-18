@@ -32,20 +32,15 @@ public class HeroContent : IHero
 
         return new HeroContent
         {
-            ThemeCssClasses = contentHero.Theme is not null ? $"t-{contentHero.Theme?.Label ?? "general"}" : ThemeHelper.GetCssClasses(page),
-
+            ThemeCssClasses = ThemeHelper.GetCssClasses(contentHero.Theme, fallBackTheme: ThemeHelper.GetCssClasses(page)),
             Title = contentHero.Title,
-
             SubTitle = contentHero.SubTitle.FallBack((page as ICompositionContentDetails)?.Date.ToLongDateString()),
-
             Tags = (page as ICompositionContentDetails)?.ContentTags?.Take(2).Select(tag => new Tag
             {
                 Label = tag,
                 CssClasses = "hero-content__tag",
             }) ?? [],
-
             ShortDescription = contentHero.Text?.ToHtmlString(),
-
             PrimaryButton = Button
                 .Create(contentHero.PrimaryLink, fallBackVariant: "primary")
                 .With(b =>
@@ -53,7 +48,6 @@ public class HeroContent : IHero
                     b.Class = "hero-content__cta";
                     b.Hook = "homepage-hero-button";
                 }),
-
             SecondaryButton = Button
                 .Create(contentHero.SecondaryLink, fallBackVariant: "secondary")
                 .With(b =>

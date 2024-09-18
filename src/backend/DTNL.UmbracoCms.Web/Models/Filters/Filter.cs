@@ -1,7 +1,6 @@
 using DTNL.UmbracoCms.Web.Components.FormElements;
 using DTNL.UmbracoCms.Web.Helpers.Extensions;
 using Flurl;
-using Umbraco.Cms.Core.Models.PublishedContent;
 using static DTNL.UmbracoCms.Web.Components.FormElements.Checkbox;
 using static DTNL.UmbracoCms.Web.Components.FormElements.SelectElement;
 
@@ -9,6 +8,8 @@ namespace DTNL.UmbracoCms.Web.Models.Filters;
 
 public class Filter
 {
+    public required string FilterNamePrefix { get; set; }
+
     public required string Name { get; set; }
 
     public required string Type { get; set; }
@@ -17,71 +18,70 @@ public class Filter
 
     public required List<IFormOption> Options { get; set; }
 
-    public static Filter CreateCheckboxOptions<TPage>(
-        string name,
-        Func<TPage, IEnumerable<string>?> getValues,
+    public static Filter CreateCheckboxOptions(
+        string filterName,
+        string filterNamePrefix,
         BaseFilters filters,
-        List<TPage> pages,
-        string? defaultOption = null)
-        where TPage : class, IPublishedContent
+        FilterOption? defaultOption = null)
     {
+        FilterOption[]? filterOptions = filters.GetValueOrDefault(filterName);
+
         return new Filter
         {
-            Name = name,
+            Name = filterName,
+            FilterNamePrefix = filterNamePrefix,
             Type = nameof(Checkbox),
             Options = defaultOption
                 .AsEnumerableOfOne()
-                .Concat(pages.SelectMany(p => getValues(p).OrEmptyIfNull()))
-                .Distinct()
                 .EnsureNotNull()
-                .Select(FilterOption.CreateForSearch)
+                .Concat(filterOptions.OrEmptyIfNull())
                 .Select(
                     filterOption => new CheckboxOption(
-                        filterOption.Id,
-                        filterOption.Title,
-                        filterOption.Title,
+                        filterOption.Value,
+                        filterOption.Label,
+                        filterOption.Label,
                         description: null,
                         hook: "js-hook-filters-input",
                         attr: new Dictionary<string, string?>
                         {
                             ["data-url-replacement"] = filters
                                 .CurrentUrl
-                                .AppendQueryParam(name, filterOption.Title),
+                                .AppendQueryParam(filterName, filterOption.Label),
                         },
-                        selected: filters.IsSelected(name, filterOption)))
+                        selected: filterOption.IsSelected))
                 .OfType<IFormOption>()
                 .ToList(),
         };
     }
 
-    public static Filter CreateDropdownOptions<TPage>(
-        string name,
-        Func<TPage, IEnumerable<string>?> getValues,
+    public static Filter CreateDropdownOptions(
+        string filterName,
+        string filterNamePrefix,
         BaseFilters filters,
-        List<TPage> pages,
-        string? defaultOption = null)
-        where TPage : class, IPublishedContent
+        FilterOption? defaultOption = null)
     {
+        FilterOption[]? filterOptions = filters.GetValueOrDefault(filterName);
+
         return new Filter
         {
-            Name = name,
+            Name = filterName,
+            FilterNamePrefix = filterNamePrefix,
             Type = nameof(SelectElement),
+            Value = filterOptions?.FirstOrDefault(option => option.IsSelected)?.Value,
             Options = defaultOption
                 .AsEnumerableOfOne()
-                .Concat(pages.SelectMany(p => getValues(p).OrEmptyIfNull()))
-                .Distinct()
                 .EnsureNotNull()
-                .Select(FilterOption.CreateForSearch)
+                .Concat(filterOptions.OrEmptyIfNull())
                 .Select(
                     filterOption => new SelectOption(
-                        filterOption.Id,
-                        filterOption.Title,
-                        filterOption.Title,
+                        filterOption.Value,
+                        filterOption.Label,
+                        filterOption.Label,
                         attr: new Dictionary<string, string?>
                         {
                             ["data-url-replacement"] = filters
                                 .CurrentUrl
-                                .AppendQueryParam(name, filterOption.Title),
+                                .AppendQueryParam(filterName, filterOption.Label),
                         }))
                 .OfType<IFormOption>()
                 .ToList(),

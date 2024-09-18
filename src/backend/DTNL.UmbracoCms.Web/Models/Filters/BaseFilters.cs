@@ -1,3 +1,5 @@
+using DTNL.UmbracoCms.Web.Helpers;
+using DTNL.UmbracoCms.Web.Helpers.Extensions;
 using Flurl;
 using Umbraco.Cms.Core.Models.PublishedContent;
 
@@ -15,8 +17,37 @@ public abstract class BaseFilters : Dictionary<string, FilterOption[]>
         OverviewUrl = overviewPage.Url(mode: UrlMode.Absolute);
     }
 
-    public bool IsSelected(string name, FilterOption option)
+    public void AddFilterOptions<TPage>(
+        (string Name, Func<TPage, IEnumerable<string>?> GetValues)[] filterFields,
+        List<TPage> pages,
+        HttpContext httpContext)
     {
-        return TryGetValue(name, out FilterOption[]? filterOptions) && filterOptions.Contains(option);
+        foreach ((string name, Func<TPage, IEnumerable<string>?> getValues) in filterFields)
+        {
+            AddFilterOptions(name, getValues, pages, httpContext);
+        }
+    }
+
+    public void AddFilterOptions<TPage>(
+        string fieldName,
+        Func<TPage, IEnumerable<string>?> getValues,
+        List<TPage> pages,
+        HttpContext httpContext)
+    {
+        FilterOption[] selectedFilterOptions = httpContext.GetFilterOptions(fieldName);
+
+        FilterOption[] allFilterOptions = pages
+            .SelectMany(p => getValues(p).OrEmptyIfNull())
+            .Distinct()
+            .EnsureNotNull()
+            .Select(FilterOption.Create)
+            .ToArray();
+
+        foreach (FilterOption option in allFilterOptions)
+        {
+            option.IsSelected = selectedFilterOptions.Any(o => o.Value == option.Value);
+        }
+
+        Add(fieldName, allFilterOptions);
     }
 }

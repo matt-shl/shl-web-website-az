@@ -37,23 +37,36 @@ public class Search : ViewComponentExtended
 
         SearchQuery = Request.Query.GetSearchQuery();
 
-        SearchLabel = CultureDictionary.GetTranslation(TranslationAliases.Common); // TODO
+        SearchLabel = CultureDictionary.GetTranslation(TranslationAliases.Vacancies.Search);
 
-        SearchPlaceholder = CultureDictionary.GetTranslation(TranslationAliases.Common); // TODO
+        SearchPlaceholder = CultureDictionary.GetTranslation(TranslationAliases.Vacancies.SearchPlaceholder);
 
         if (currentNode is PageVacancyOverview vacancyOverviewPage)
         {
-            VacancyFilters vacancyFilters = new(vacancyOverviewPage, Request.Query);
             List<PageVacancy> vacancyPages = Services.NodeProvider
                 .GetVacancyPages(vacancyOverviewPage)
                 .ToList();
 
+            VacancyFilters vacancyFilters = new(vacancyOverviewPage, Request.Query);
+
+            vacancyFilters.AddFilterOptions(VacancyFilters.QuickFilterFields, vacancyPages, HttpContext);
+
             Filters = [];
 
-            foreach ((string name, Func<PageVacancy, IEnumerable<string>?> getValues)
-                     in VacancyFilters.QuickFilterFields)
+            foreach (string filterName in vacancyFilters.Keys)
             {
-                Filter filter = Filter.CreateDropdownOptions(name, getValues, vacancyFilters, vacancyPages);
+                FilterOption defaultOption = new()
+                {
+                    Label = CultureDictionary.GetTranslation($"{TranslationAliases.Vacancies.AllFilterOptions}.{filterName}"),
+                    Value = string.Empty,
+                };
+
+                Filter filter = Filter
+                    .CreateDropdownOptions(
+                        filterName,
+                        TranslationAliases.Vacancies,
+                        vacancyFilters,
+                        defaultOption);
 
                 Filters.Add(filter);
             }
