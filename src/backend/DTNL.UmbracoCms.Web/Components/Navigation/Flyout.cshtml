@@ -10,7 +10,7 @@
                 <h2 class="flyout__title">@Model.Title</h2>
                 <p class="flyout__description" asp-if="@Model.Text">@Model.Text</p>
 
-                <a class="flyout__cta" href="@Model.Link.Url">@Model.Link.Label</a>
+                <a class="flyout__cta" href="@Model.Link.Url" js-hook-flyout-main-cta>@Model.Link.Label</a>
             </div>
 
             <ul class="flyout__main-item-list">
@@ -32,14 +32,14 @@
                                 @foreach (Link subLink in item.SubLinks)
                                 {
                                     <li class="flyout__subitem">
-                                        <a class="flyout__subitem-anchor" title="@subLink.Label" href="@subLink.Url">
+                                        <a class="flyout__subitem-anchor" title="@subLink.Label" href="@subLink.Url" js-hook-flyout-sub-item-anchor>
                                             @subLink.Label
                                         </a>
                                     </li>
                                 }
 
                                 <li>
-                                    <a class="flyout__subitem-all" href="@item.Link.Url">All @item.Link.Label</a>
+                                    <a class="flyout__subitem-all" href="@item.Link.Url" js-hook-flyout-sub-item-anchor>All @item.Link.Label</a>
                                 </li>
                             </ul>
                         }

@@ -15,6 +15,7 @@ import '@/components/image'
 import '@/utilities/focus-trap'
 import '@/utilities/scroll-to'
 import '@/components/loading-indicator'
+import '@/utilities/gtm'
 
 import Events from '@utilities/events'
 
