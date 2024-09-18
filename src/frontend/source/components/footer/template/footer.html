@@ -8,7 +8,7 @@
 {% set footerLabels = global.resource.footer %}
 {% set commonLabels = global.resource.common %}
 
-<footer class="c-footer" id="footer">
+<footer class="c-footer" id="footer" js-hook-footer>
 
   {% if footerScrollingText %}
     {{ slogan({
@@ -42,6 +42,7 @@
                       label: link.label,
                       url: link.url,
                       variant: 'link',
+                      hook: 'footer-navigation-link',
                       class: 'footer__navigation-link'
                     }) }}
                   {% endfor %}
@@ -58,8 +59,8 @@
       {% if footerContent.sitemap.length %}
         {% for item in footerContent.sitemap %}
           {% if item.links.length %}
-          <div class="footer__navigation-container">
-            <span class="footer__navigation-title">{{ item.title }}</span>
+          <div class="footer__navigation-container" js-hook-footer-navigation-container>
+            <span class="footer__navigation-title"js-hook-footer-navigation-container-title>{{ item.title }}</span>
             <nav class="footer__navigation" aria-label="{{ commonLabels.navigationFor }} {{ item.title }}">
               {% for link in item.links %}
                 {{ button({
@@ -68,6 +69,7 @@
                   url: link.url,
                   variant: 'link',
                   supLabel: link.supLabel,
+                  hook: 'footer-navigation-link',
                   class: 'footer__navigation-link'
                 }) }}
               {% endfor %}
@@ -98,6 +100,7 @@
                 label: social.label,
                 srOnly: true,
                 url: social.url,
+                hook: 'footer-social-link',
                 icon: 'social-' + social.icon,
                 attr: 'target="_blank" aria-label="' + social.label + '"' ,
                 class: 'button--icon-clear footer__sub-social-link'

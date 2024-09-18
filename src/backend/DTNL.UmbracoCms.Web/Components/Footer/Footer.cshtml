@@ -3,7 +3,7 @@
 @using DTNL.UmbracoCms.Web.Helpers.Extensions
 @model DTNL.UmbracoCms.Web.Components.Footer
 
-<footer class="c-footer" id="footer">
+<footer class="c-footer" id="footer" js-hook-footer>
     @if(Model.FooterScrollingText != null)
     {
         <partial name="Slogan" model="@(Model.FooterScrollingText)" />
@@ -38,8 +38,8 @@
         <nav class="footer__sitemap footer__sitemap--desktop" aria-label="@Model.LinkGroupsAriaLabel">
             @foreach ((Group<Button> linkGroup, _) in Model.LinkGroups)
             {
-                <div class="footer__navigation-container">
-                    <span class="footer__navigation-title">@linkGroup.Title</span>
+                <div class="footer__navigation-container" js-hook-footer-navigation-container>
+                    <span class="footer__navigation-title" js-hook-footer-navigation-container-title>@linkGroup.Title</span>
 
                     <nav class="footer__navigation" aria-label="@linkGroup.Title">
                         @foreach (Button item in linkGroup.Items)

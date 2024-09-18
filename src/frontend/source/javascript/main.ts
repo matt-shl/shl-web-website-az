@@ -44,6 +44,7 @@ moduleInit.async('[js-hook-form]', () => import('@/components/form'))
 moduleInit.async('[js-hook-pardot-form]', () => import('@/components/pardot-form'))
 moduleInit.async('[js-hook-map]', () => import('@/components/map'))
 moduleInit.async('[js-hook-language-selector]', () => import('@components/language-selector'))
+moduleInit.async('[js-hook-footer]', () => import('@/components/footer'))
 moduleInit.async(
   '[js-hook-mobile-floating-button]',
   () => import('@components/mobile-floating-button'),
