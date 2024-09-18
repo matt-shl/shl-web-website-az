@@ -2,7 +2,6 @@ import {html} from '@utilities/dom-elements'
 import Events from "@utilities/events";
 import RafThrottle from '@utilities/raf-throttle'
 import ScreenDimensions from '@utilities/screen-dimensions'
-import header from "@components/header";
 
 const JS_HOOK_HEADER_HAMBURGER = '[js-hook-header-hamburger]'
 const CLASS_MOBILE_NAVIGATION_IS_OPEN = 'is--mobile-navigation-open'
@@ -67,7 +66,7 @@ class Header {
         const headerCategory = document.querySelector(`#${modalId}`)?.querySelector(JS_HOOK_MOBILE_NAV_TITLE)?.textContent?.trim()
         const headerSubcategory = mobileNavSubItemAnchor.closest(JS_HOOK_MODAL_BODY)?.querySelector(JS_HOOK_MOBILE_NAV_TITLE)?.textContent?.trim()
         const headerSubcategory2 = mobileNavSubItemAnchor.textContent?.trim()
-        
+
         Events.$trigger('gtm::push', {
           data: {
             'event': 'header_menu',
