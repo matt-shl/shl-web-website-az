@@ -62,6 +62,7 @@ class Filters {
     // get new results when a filter is clicked
     this.inputs?.forEach(element =>
       element.addEventListener('click', () => {
+        this.#sendGtmData(element)
         this.#getNewResults(element)
       }),
     )
@@ -184,7 +185,7 @@ class Filters {
 
     html.classList[
       scrollCondition && ScreenDimensions.isTabletLandscapeAndBigger ? 'add' : 'remove'
-    ](CLASS_IS_FILTERS_LIST_STICKY)
+      ](CLASS_IS_FILTERS_LIST_STICKY)
   }
 
   #showMoreOptions(element: HTMLButtonElement) {
@@ -195,6 +196,17 @@ class Filters {
     if (options && options[4]) {
       options[4].focus()
     }
+  }
+
+  #sendGtmData(element: HTMLInputElement) {
+    const id = element.id
+    const optionClicked = this.element.querySelector(`label[for="${id}"]`)?.textContent?.trim()
+    Events.$trigger('gtm::push', {
+      data: {
+        'event': element.name === 'sort' ? 'sorting' : 'filtering',
+        'option_clicked': optionClicked
+      }
+    })
   }
 }
 
