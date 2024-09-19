@@ -19,6 +19,7 @@
   },
   "cards": [
     {
+      "type": "download",
       "tag": "Product datasheet",
       "title": "Molly",
       "ctaLabel": "Download datasheet",
