@@ -22,7 +22,6 @@ class Footer {
     this.navigationLinks.forEach(navigationLink => {
       navigationLink.addEventListener('click', () => {
         const footerCategory = navigationLink.closest(JS_HOOK_FOOTER_NAVIGATION_CONTAINER)?.querySelector(JS_HOOK_FOOTER_NAVIGATION_CONTAINER_TITLE)?.textContent?.trim()
-        console.log(navigationLink.closest('[js-hook-accordion-summary]'), navigationLink)
         const footerSubcategory = navigationLink.textContent?.trim()
 
         Events.$trigger('gtm::push', {
