@@ -49,6 +49,8 @@ moduleInit.async(
   '[js-hook-mobile-floating-button]',
   () => import('@components/mobile-floating-button'),
 )
+
+moduleInit.async('[js-hook-event-detail]', () => import('@components/event-detail'))
 moduleInit.async('[js-hook-odometer]', () => import('@components/odometer'))
 moduleInit.async('[js-hook-history-timeline]', () => import('@components/history-timeline'))
 moduleInit.async('[js-hook-search]', () => import('@components/search'))
