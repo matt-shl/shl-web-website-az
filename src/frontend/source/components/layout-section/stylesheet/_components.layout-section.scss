@@ -16,25 +16,23 @@
   @include theme;
   @include layout-section-border-style;
 
-  &:not(.t-white) {
-    margin-block: $spacing-80;
+  margin-block: $spacing-80;
 
-    &:first-child {
-      margin-top: 0;
-    }
-
-    &:last-of-type {
-      margin-block-end: 0;
-    }
+  &:not(.t-white):not(&--in-grid):first-of-type {
+    margin-top: 0;
   }
 
-  &--in-grid:not(.t-white) {
+  &:not(.t-white):not(&--in-grid):last-of-type {
+    margin-bottom: 0;
+  }
+
+  &--in-grid {
     @include container;
     background-color: transparent;
+  }
 
-    &:last-of-type {
-      margin-block-end: $spacing-80;
-    }
+  &--no-padding:first-of-type {
+    margin-top: 0;
   }
 }
 
@@ -48,6 +46,7 @@
     padding-block: $spacing-24;
   }
 
+  .c-layout-section.t-white &,
   .c-layout-section--no-padding & {
     padding-block: 0;
   }
@@ -81,7 +80,7 @@
   display: flex;
   flex-direction: column;
 
-  .c-layout-section--in-grid:not(.t-white) & {
+  .c-layout-section--in-grid & {
     --container-padding: #{$spacing-24};
   }
 
@@ -96,7 +95,7 @@
   }
 
   @include screen-lg-and-bigger {
-    .c-layout-section--in-grid:not(.t-white) & {
+    .c-layout-section--in-grid & {
       --container-padding: #{$spacing-80};
     }
   }
