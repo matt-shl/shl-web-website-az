@@ -1,0 +1,102 @@
+@using DTNL.UmbracoCms.Web.Components
+@using DTNL.UmbracoCms.Web.Helpers.Aliases
+@using DTNL.UmbracoCms.Web.Helpers.Extensions
+@using Umbraco.Cms.Core.Dictionary
+
+@model DTNL.UmbracoCms.Web.Components.Map
+
+@inject ICultureDictionary CultureDictionary
+
+<div class="c-map" js-hook-map>
+    <div class="map__content-container map__content-container--title-mobile">
+        <div class="map__content">
+            <h2 class="map__title" asp-if="@Model.Title">@Model.Title</h2>
+        </div>
+    </div>
+    <div class="map__content-container">
+        <div class="map__content">
+            <h2 class="map__title" asp-if="@Model.Title">@Model.Title</h2>
+
+            <div class="map__list">
+                <partial name="Accordion"
+                         model="@(new Accordion { AutoClose = true, Classes = "map__accordion" })">
+                    @foreach (Map.Region region in Model.Regions)
+                    {
+                        <partial name="Accordion/AccordionItem" model="@(new Accordion.Item { Id = region.Id, Title = CultureDictionary.GetTranslation(region.OfficeCountLabel, region.Name,  region.OfficeCount)})">
+                            @foreach (Map.Region.Country country in region.Countries)
+                            {
+                                @foreach (Map.Region.Country.Office office in country.Offices)
+                                {
+                                    <button js-hook-office-trigger
+                                            class="map__office-trigger"
+                                            data-office-id="@office.Id"
+                                            data-country-id="@country.Id"
+                                            data-country-zoom="@country.MapZoom"
+                                            data-country-x="@country.MapX"
+                                            data-country-y="@country.MapY">
+                                        @office.Name
+                                    </button>
+                                }
+                            }
+                        </partial>
+                    }
+                </partial>
+            </div>
+        </div>
+    </div>
+
+    <div class="map__svg" js-hook-map-svg>
+        <svg src="@SvgAliases.Brand.Map" />
+
+        @foreach (Map.Region region in Model.Regions)
+        {
+            <button js-hook-continent-trigger
+                    class="map__location-trigger map__location-trigger--continent map__location-trigger--@region.Id"
+                    data-zoom-level-visible="world"
+                    data-continent-id="@region.Id">
+                <span class="map__location-trigger-label-desktop">@region.Name</span><span class="map__location-trigger-label-amount">@region.OfficeCount</span>
+            </button>
+
+            @foreach (Map.Region.Country country in region.Countries)
+            {
+                <button js-hook-country-trigger
+                        data-zoom-level-visible="@region.Id"
+                        data-country-id="@country.Id"
+                        data-country-zoom="@country.MapZoom"
+                        data-country-x="@country.MapX"
+                        data-country-y="@country.MapY"
+                        style="inset-inline-start: @country.TriggerX%; top:' @country.TriggerY%;"
+                        class="is--hidden map__location-trigger map__location-trigger--country-@region.Id map__location-trigger--@country.Id">
+                    <span class="map__location-trigger-label-desktop">@country.Name</span> <span class="map__location-trigger-label-amount">@country.Offices.Count</span>
+                </button>
+
+                @foreach (Map.Region.Country.Office office in country.Offices)
+                {
+                    <button js-hook-office-trigger
+                            data-zoom-level-visible="@country.Id"
+                            data-office-id="@office.Id"
+                            data-country-id="@country.Id"
+                            data-country-zoom="@country.MapZoom"
+                            data-country-x="@country.MapX"
+                            data-country-y="@country.MapY"
+                            style="inset-inline-start: @office.TriggerX%; top:' @office.TriggerY%;"
+                            class="is--hidden map__location-trigger map__location-trigger--office map__location-trigger--office-@country.Id">
+                        <svg src="@SvgAliases.Icons.Plus" /> @office.Name
+                    </button>
+                }
+            }
+        }
+    </div>
+</div>
+
+
+@foreach (Map.Region region in Model.Regions)
+{
+    foreach (Map.Region.Country country in region.Countries)
+    {
+        foreach (Map.Region.Country.Office office in country.Offices)
+        {
+            <partial name="Map/OfficeModal" model="@office" />
+        }
+    }
+}

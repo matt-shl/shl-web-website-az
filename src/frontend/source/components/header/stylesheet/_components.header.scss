@@ -5,6 +5,7 @@ $header-desktop-custom-breakpoint: 1180px;
   --header-background-color: transparent;
   --header-font-color: var(--color-content);
   --header-height: 64px;
+  --header-content-height: 64px;
   --hamburger-hover-background-color: #{$color-white};
   --hamburger-hover-font-color: #{$color-dark-blue};
   --header-transition-ease: #{$ease-in-out-quad};
@@ -13,7 +14,8 @@ $header-desktop-custom-breakpoint: 1180px;
 
 @include screen-lg-and-bigger {
   :root {
-    --header-height: 82px;
+    --header-height: 83px;
+    --header-content-height: 82px;
   }
 }
 
@@ -130,17 +132,13 @@ $header-desktop-custom-breakpoint: 1180px;
   color: var(--header-font-color);
   display: flex;
   gap: $spacing-12;
-  height: 64px;
+  height: var(--header-content-height);
   padding-block: $spacing-20;
   transition: var(--header-transition-time) var(--header-transition-ease);
   transition-property: background-color, color;
 
   @include screen-custom-and-bigger($header-desktop-custom-breakpoint) {
     gap: $spacing-16;
-  }
-
-  @include screen-lg-and-bigger {
-    height: 82px;
   }
 }
 

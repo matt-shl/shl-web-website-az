@@ -27,6 +27,10 @@
 
   <title>{{ global.site.title }}</title>
 
+  {% if global.site.gtm and global.site.gtm != 'GTM-XXXX' %}
+    {% include "generic/gtm.html" %}
+  {% endif %}
+
   <!-- Style sheets -->
   {% if global.project.debug %}
     <link rel="stylesheet" href="/assets/css/dev.css"/>
@@ -91,18 +95,17 @@
 
 
 <body>
+
+{% if global.site.gtm and global.site.gtm != 'GTM-XXXX' %}
+  {% include "generic/gtm-body.html" %}
+{% endif %}
+
 {% if global.project.debug %}
   {{ gridOverlay() }}
 {% endif %}
 
 {% if showCarouselMouseIndicator %}
   {% include "carousel-indicator.html" %}
-{% endif %}
-
-{% if global.site.gtm and global.site.gtm != 'GTM-XXXX' %}
-
-  {% include "generic/gtm.html" %}
-
 {% endif %}
 
 {% include 'skiplinks.html' %}
@@ -126,6 +129,8 @@
 </main>
 
 {% include "footer.html" %}
+
+{% include 'toast.html' %}
 
 <script async src="/assets/js/main.js"></script>
 

@@ -1,4 +1,5 @@
 import {html} from "@utilities/dom-elements";
+import Events from "@utilities/events";
 
 const JS_HOOK_ITEM = '[js-hook-navigation-desktop-item]'
 const JS_HOOK_ITEM_ANCHOR = '[js-hook-navigation-desktop-anchor]'
@@ -47,7 +48,15 @@ class NavigationDesktop {
   handleAnchorClick(anchor: HTMLAnchorElement) {
     const item = anchor.closest(JS_HOOK_ITEM) as HTMLUListElement;
     const itemHasFlyout = item.querySelector(JS_HOOK_FLOUT)
-    if (!itemHasFlyout) return;
+    if (!itemHasFlyout) {
+      Events.$trigger('gtm::push', {
+        data: {
+          'event': 'header_menu',
+          'header_category': anchor.text.trim(),
+        }
+      })
+      return;
+    }
 
     this.toggleItem(item)
   }

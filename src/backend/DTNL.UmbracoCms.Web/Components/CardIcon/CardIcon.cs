@@ -1,3 +1,4 @@
+using DTNL.UmbracoCms.Web.Helpers.Aliases;
 using Umbraco.Cms.Web.Common.PublishedModels;
 
 namespace DTNL.UmbracoCms.Web.Components;
@@ -8,11 +9,7 @@ public class CardIcon : ICard
 
     public string? Text { get; set; }
 
-    public Image? Icon { get; set; }
-
-    public string? IconURL { get; set; }
-
-    public string? IconAlias { get; set; }
+    public string? IconSrc { get; set; }
 
     public string? Url { get; set; }
 
@@ -33,9 +30,9 @@ public class CardIcon : ICard
         {
             Title = iconCard.Title,
             Text = iconCard.Text?.ToHtmlString(),
-            Icon = Image.Create(iconCard.Icon),
             Url = iconCard.Link?.Url,
             CssClasses = cssClasses,
+            IconSrc = iconCard.Icon?.LocalCrops.Src ?? SvgAliases.Icons.ArrowTopRight,
         };
     }
 }

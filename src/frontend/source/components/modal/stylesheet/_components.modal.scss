@@ -1,4 +1,5 @@
 @import 'size/mixin.aside';
+@import 'size/mixin.aside-with-image';
 @import 'size/mixin.navigation-mobile';
 @import 'size/mixin.video';
 
@@ -205,6 +206,10 @@ $modal-min-width-media-query: ($modal-max-width + $modal-gutter-small * 2) - 0.5
 
 .c-modal--size-aside {
   @include modal--aside;
+}
+
+.c-modal--size-aside-with-image {
+  @include modal--aside-with-image;
 }
 
 .c-modal--size-navigation-mobile {

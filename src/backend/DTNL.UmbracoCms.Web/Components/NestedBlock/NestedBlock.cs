@@ -1,3 +1,4 @@
+using DTNL.UmbracoCms.Web.Helpers.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Umbraco.Cms.Core.Models.Blocks;
 using Umbraco.Cms.Core.Models.PublishedContent;
@@ -8,6 +9,8 @@ namespace DTNL.UmbracoCms.Web.Components.NestedBlock;
 public abstract class NestedBlock : ViewComponentExtended
 {
     public string? Id { get; set; }
+
+    public string? NavigationTitle { get; set; }
 
     protected virtual string ViewName => GetType().Name;
 
@@ -22,9 +25,10 @@ public abstract class NestedBlock : ViewComponentExtended
 
     protected virtual void ProcessSettings(IPublishedElement? settings)
     {
-        if (settings is DefaultComponentSettings defaultSettings)
+        if (settings is IBlockSettings blockSettings)
         {
-            Id = defaultSettings.Identifier;
+            Id = blockSettings.Identifier ?? blockSettings.NavigationTitle?.ToUrlString();
+            NavigationTitle = blockSettings.NavigationTitle;
         }
 
         Id ??= settings?.Key.ToString();

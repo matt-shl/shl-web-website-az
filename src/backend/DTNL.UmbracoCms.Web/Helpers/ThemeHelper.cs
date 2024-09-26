@@ -1,4 +1,5 @@
 using Umbraco.Cms.Core.Models.PublishedContent;
+using Umbraco.Cms.Core.PropertyEditors.ValueConverters;
 using Umbraco.Cms.Web.Common.PublishedModels;
 
 namespace DTNL.UmbracoCms.Web.Helpers;
@@ -7,13 +8,11 @@ public static class ThemeHelper
 {
     public static string GetCssClasses(IPublishedContent? page)
     {
-        if (page is IPageTheme pageTheme)
-        {
-            string theme = pageTheme.PageTheme?.Label ?? "general";
+        return GetCssClasses((page as IPageTheme)?.PageTheme, "general");
+    }
 
-            return $"t-{theme}";
-        }
-
-        return "t-general";
+    public static string GetCssClasses(ColorPickerValueConverter.PickedColor? theme, string fallBackTheme)
+    {
+        return (theme?.Label ?? fallBackTheme).EnsureStartsWith("t-");
     }
 }

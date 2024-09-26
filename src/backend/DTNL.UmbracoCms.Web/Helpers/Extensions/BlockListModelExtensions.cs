@@ -4,7 +4,8 @@ namespace DTNL.UmbracoCms.Web.Helpers.Extensions;
 
 public static class BlockListModelExtensions
 {
-    public static T? GetSingleContentOrNull<T>(this BlockListModel? blockList) where T : class
+    public static T? GetSingleContentOrNull<T>(this BlockListModel? blockList)
+        where T : class
     {
         if (blockList.Using(v => v.Content as T).TryGetSingle(out T? block))
         {

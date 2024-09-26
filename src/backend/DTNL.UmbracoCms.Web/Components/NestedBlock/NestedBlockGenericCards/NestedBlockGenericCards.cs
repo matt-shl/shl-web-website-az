@@ -16,7 +16,7 @@ public class NestedBlockGenericCards : NestedBlockWithInner
             return null;
         }
 
-        SetCarouselsLayout(cardCarousel, cardsBlock.Theme?.Label);
+        SetCarouselsLayout(cardCarousel);
 
         return cardCarousel;
     }

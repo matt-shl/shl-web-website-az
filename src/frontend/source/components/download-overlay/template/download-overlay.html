@@ -1,0 +1,18 @@
+{% from 'modal.html' import modal %}
+{% from 'pardot-form.html' import pardotForm %}
+
+{% macro downloadOverlay(data) %}
+  {% call modal({
+    size: 'aside-with-image',
+    id: data.id,
+    title: data.title,
+    subtitle: data.subtitle,
+    image: data.image,
+    keepScrollPosition: true,
+    classes: ''
+  }) %}
+    <div class="c-download-overlay t-white">
+      {{ pardotForm(data.form) }}
+    </div>
+  {% endcall %}
+{% endmacro %}

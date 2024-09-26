@@ -39,6 +39,7 @@ public class Video
 
     public bool CustomControls { get; set; } = true;
 
+    public string? Variant { get; set; }
 
     public bool Loop { get; set; } = true;
 
@@ -154,15 +155,13 @@ public class Video
             Platform = platform,
             Classes = css,
             Sources = GetSources(block),
-            ClosedCaptions = block?.ClosedCaptions?.Select(c => new VideoClosedCaptions
+            ClosedCaptions = block.ClosedCaptions?.Select(c => new VideoClosedCaptions
             {
                 Url = (block.ClosedCaptions?.FirstOrDefault()?.Content as ClosedCaptions)?.Url ?? "",
                 Kind = (block.ClosedCaptions?.FirstOrDefault()?.Content as ClosedCaptions)?.Kind,
                 Label = (block.ClosedCaptions?.FirstOrDefault()?.Content as ClosedCaptions)?.Label,
                 Lang = (block.ClosedCaptions?.FirstOrDefault()?.Content as ClosedCaptions)?.Lang,
-
-            }
-            ),
+            }),
         };
     }
 

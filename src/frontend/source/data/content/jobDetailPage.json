@@ -45,25 +45,61 @@
         "title": "Senior Software Engineer",
         "location": "Zurich, Switzerland",
         "url": "#",
-        "tags": ["Full Time", "Engineering"]
+        "tags": [
+          {
+            "label": "Senior",
+            "type": "seniority"
+          },
+          {
+            "label": "Full-time",
+            "type": "employment"
+          }
+        ]
       },
       {
         "title": "Product Manager",
         "location": "Taipei, Taiwan",
         "url": "#",
-        "tags": ["Full Time", "Product"]
+        "tags": [
+          {
+            "label": "Senior",
+            "type": "seniority"
+          },
+          {
+            "label": "Full-time",
+            "type": "employment"
+          }
+        ]
       },
       {
         "title": "UX Designer",
         "location": "Stockholm, Sweden",
         "url": "#",
-        "tags": ["Freelancer", "Design"]
+        "tags": [
+          {
+            "label": "Senior",
+            "type": "seniority"
+          },
+          {
+            "label": "Full-time",
+            "type": "employment"
+          }
+        ]
       },
       {
         "title": "Data Scientist",
         "location": "Taipei, Taiwan",
         "url": "#",
-        "tags": ["Full Time", "Data"]
+        "tags": [
+          {
+            "label": "Senior",
+            "type": "seniority"
+          },
+          {
+            "label": "Full-time",
+            "type": "employment"
+          }
+        ]
       }
     ]
   },

@@ -2,7 +2,7 @@
 
   <div class="c-navigation-mobile-list">
     {% if data.header %}
-      <button class="navigation-mobile-list__anchor navigation-mobile-list__anchor--parent" aria-controls="{{ data.header.id }}">
+      <button class="navigation-mobile-list__anchor navigation-mobile-list__anchor--parent" aria-controls="{{ data.header.id }}" js-hook-mobile-nav-title>
         {% svg 'icons/chevron-left' %}
         {{ data.header.title }}
       </button>
@@ -18,7 +18,7 @@
               {% svg 'icons/chevron-right' %}
             </button>
           {% else %}
-            <a title="{{ item.title }}" href="{{ item.url }}" class="{{ anchorClass }}">
+            <a title="{{ item.title }}" href="{{ item.url }}" class="{{ anchorClass }}" {{ 'js-hook-mobile-nav-sub-item-anchor' if data.parent else 'js-hook-mobile-nav-main-item-anchor' }}>
               {{ item.title }}
             </a>
           {% endif %}
@@ -27,7 +27,7 @@
 
       {% if data.all %}
         <li>
-          <a class="navigation-mobile-list__anchor navigation-mobile-list__anchor--all" href="{{ data.all.url }}">{{ data.all.title }}</a>
+          <a class="navigation-mobile-list__anchor navigation-mobile-list__anchor--all" href="{{ data.all.url }}" js-hook-mobile-nav-sub-item-anchor>{{ data.all.title }}</a>
         </li>
       {% endif %}
     </ul>

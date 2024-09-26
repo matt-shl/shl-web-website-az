@@ -5,18 +5,21 @@ const JS_HOOK_INPUT = '[js-hook-search-input]'
 const JS_HOOK_INPUT_RESET = '[js-hook-search-input-reset]'
 
 const HIDDEN_CLASS = 'u-hidden'
+const JOB_SEARCH_CLASS = 'c-search--job'
 
 class Search {
   element: HTMLElement
   private form: HTMLFormElement | null
   private input: HTMLInputElement | null
   private inputReset: HTMLButtonElement | null
+  private isJobSearch: boolean
 
   constructor(element: HTMLElement) {
     this.element = element
     this.form = this.element.querySelector(JS_HOOK_FORM)
     this.input = this.element.querySelector(JS_HOOK_INPUT)
     this.inputReset = this.element.querySelector(JS_HOOK_INPUT_RESET)
+    this.isJobSearch = this.element.classList.contains(JOB_SEARCH_CLASS)
 
     this.#bindEvents()
   }
@@ -27,6 +30,31 @@ class Search {
     this.inputReset?.addEventListener('click', event => this.resetInput(event))
 
     Events.$on('modal[navigation-mobile-search]::open', () => this.onOpenFlyout())
+
+    this.form?.addEventListener('submit', () => {
+      if (this.isJobSearch) {
+        const location = this.form?.querySelector<HTMLSelectElement>('select#location')?.value
+        const seniority = this.form?.querySelector<HTMLSelectElement>('select#seniority')?.value
+        const employment = this.form?.querySelector<HTMLSelectElement>('select#employment')?.value
+
+        Events.$trigger('gtm::push', {
+          data: {
+            'event': 'search_jobs',
+            'search_term': this.input?.value,
+            'location': location || 'not selected',
+            'seniority_level': seniority || 'not selected',
+            'employment_type': employment || 'not selected',
+          }
+        })
+      } else {
+        Events.$trigger('gtm::push', {
+          data: {
+            'event': 'general_search',
+            'search_term': this.input?.value
+          }
+        })
+      }
+    })
   }
 
   onTyping() {

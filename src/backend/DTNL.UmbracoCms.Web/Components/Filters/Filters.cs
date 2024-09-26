@@ -1,4 +1,5 @@
 using DTNL.UmbracoCms.Web.Models.Products;
+using Umbraco.Cms.Core.Dictionary;
 using Umbraco.Cms.Web.Common.PublishedModels;
 
 namespace DTNL.UmbracoCms.Web.Components;
@@ -11,12 +12,14 @@ public class Filters
 
     public static Filters Create(
         ProductFilters productFilters,
-        List<PageProduct> productPages)
+        List<PageProduct> productPages,
+        ICultureDictionary cultureDictionary
+        )
     {
         return new Filters
         {
             ResultsCount = productPages.Count,
-            FiltersModal = FiltersModal.Create(productFilters, productPages),
+            FiltersModal = FiltersModal.Create(productFilters, productPages, cultureDictionary),
         };
     }
 }

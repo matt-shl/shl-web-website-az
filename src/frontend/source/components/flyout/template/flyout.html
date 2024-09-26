@@ -8,7 +8,7 @@
         <div class="flyout__title-column">
           <h2 class="flyout__title">{{ data.title }}</h2>
           <p class="flyout__description">{{ data.content }}</p>
-          <a class="flyout__cta" href="{{ data.url }}">{{ data.title }}</a>
+          <a class="flyout__cta" href="{{ data.url }}" js-hook-flyout-main-cta>{{ data.title }}</a>
         </div>
 
         <ul class="flyout__main-item-list">
@@ -25,14 +25,14 @@
               <ul class="flyout__subitem-list" id="flyout-list-{{ data.id }}-{{ loop.index0 }}">
                 {% for subitem in item.subitems %}
                   <li class="flyout__subitem">
-                    <a class="flyout__subitem-anchor" title="{{ subitem.title }}" href="{{ subitem.url }}">
+                    <a class="flyout__subitem-anchor" title="{{ subitem.title }}" href="{{ subitem.url }}" js-hook-flyout-sub-item-anchor>
                       {{ subitem.title }}
                     </a>
                   </li>
                 {% endfor %}
                 {% if item.all %}
                   <li>
-                    <a class="flyout__subitem-all" href="{{ item.all.url }}">{{ item.all.title }}</a>
+                    <a class="flyout__subitem-all" href="{{ item.all.url }}" js-hook-flyout-sub-item-anchor>{{ item.all.title }}</a>
                   </li>
                 {% endif %}
               </ul>

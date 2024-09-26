@@ -1,6 +1,26 @@
-﻿@using DTNL.UmbracoCms.Web.Components
 @inherits UmbracoViewPage<PageProduct>
 
-<partial name="AnchorList" model="@AnchorList.Create(Model)" />
+<partial name="AnchorList" model="@Components.AnchorList.Create(Model)" />
+<partial name="LayoutSection"
+         model="@(new Components.LayoutSection {
+            CssClasses = "t-white",
+            Variant = "in-grid",
+            Id = "description",
+            NavigationTitle = "Description",
+        })"
+>
+    <partial name="ProductDescription" model="@Components.ProductDescription.Create(Model)" />
+</partial>
 
-<partial name="_BlockList" model="Model.ContentBlocks" />
+<partial name="LayoutSection"
+         model="@(new Components.LayoutSection {
+            CssClasses = "t-white",
+            Variant = "in-grid",
+            Id = "specifications",
+            NavigationTitle = "Specifications",
+        })"
+>
+    <partial name="DescriptionList" model="@Components.DescriptionList.Create(Model)" />
+</partial>
+
+<partial name="_BlockList" model="@Model.ContentBlocks" />

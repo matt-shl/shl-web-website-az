@@ -19,5 +19,6 @@
   "event": "Event",
   "productList": "Product List",
   "search": "Search",
-  "whatAreYouLookingFor": "What are you looking for?"
+  "whatAreYouLookingFor": "What are you looking for?",
+  "clearAll": "Clear all"
 }

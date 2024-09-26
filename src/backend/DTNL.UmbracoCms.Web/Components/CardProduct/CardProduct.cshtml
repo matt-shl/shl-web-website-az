@@ -20,7 +20,7 @@
         <div class="card-product__specifications">
             @foreach (CardProduct.ProductSpecification specification in Model.Specifications)
             {
-                <span class="card-product__specification-label" asp-translation="@($"{TranslationAliases.Products.ProductCount}.{specification.Name}")"></span>
+                <span class="card-product__specification-label" asp-translation="@($"{TranslationAliases.Products}.{specification.Name}")"></span>
                 <div class="card-product__specification-value">
                     @if (specification.Value.GetEnumOrNull<SpecificationLevel>() is { } level)
                     {

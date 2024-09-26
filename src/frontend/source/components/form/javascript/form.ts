@@ -380,6 +380,21 @@ class Form {
 
     this.bindChangeEvents()
   }
+
+  resetForm() {
+    this.inputs.forEach((input) => {
+      const formItem = input.closest<HTMLElement>(FORM_ITEM_CLASS)
+      if (!formItem) return
+      this.resetFormItem(formItem, input)
+
+      if (input.getAttribute('type') === 'checkbox' || input.getAttribute('type') === 'radio') {
+        // @ts-ignore
+        input.checked = false
+      } else {
+        input.value = ''
+      }
+    })
+  }
 }
 
 export default Form

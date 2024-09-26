@@ -25,7 +25,7 @@ public static class UmbracoTranslationsExtensions
     }
 
     /// <summary>
-    /// Retrieves the translation corresponding to the given <paramref name="key"/> from Umbraco or the specified <paramref name="defaultValue"/>
+    /// Retrieves the translation corresponding to the given <paramref name="key"/> from Umbraco or the specified <paramref name="defaultValue"/>.
     /// </summary>
     public static string GetTranslationOrDefault(this ICultureDictionary cultureDictionary, string key, string defaultValue)
     {

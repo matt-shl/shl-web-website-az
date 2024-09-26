@@ -1,0 +1,48 @@
+{% set theme = "general" %}
+{% set themeColor = "#082E55" %}
+{% set headerIsWhite = false %}
+{% set showFiltersModal = true %}
+
+{% extends 'layouts/default.html' %}
+
+{% from 'hero-content.html' import heroContent %}
+{% from 'pagination.html' import pagination %}
+{% from 'filters.html' import filters %}
+{% from 'card-knowledge.html' import cardKnowledge %}
+{% from 'layout-section.html' import layoutSection %}
+{% from 'download-overlay.html' import downloadOverlay %}
+
+{% set downloadsData = global.content.downloadOverviewPage %}
+
+{% block hero %}
+  {{ heroContent(downloadsData.hero) }}
+{% endblock %}
+
+{% block content %}
+
+  {{ filters(downloadsData.filter) }}
+
+  <div js-hook-replace-content="overview-content">
+    {% call layoutSection({
+      variant: "grid",
+      id: "content"
+    }) %}
+      {# this first for is just to show the same card multiple times #}
+      {% for _ in range(12) %}
+        {% for data in downloadsData.cards %}
+          {{ cardKnowledge(data) }}
+        {% endfor %}
+      {% endfor %}
+    {% endcall %}
+
+    {{ pagination (global.content.pagination) }}
+  </div>
+
+  {# Add download overlays #}
+  {% for data in downloadsData.cards %}
+    {{ downloadOverlay(data.modal | clone | merge({
+      id: data.modalId
+    })) }}
+  {% endfor %}
+
+{% endblock %}

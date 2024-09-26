@@ -39,7 +39,7 @@
       }
     ],
     "form": {
-      "action": "#pardot-url",
+      "action": "/pardot-url",
       "submit": {
         "label": "Submit question"
       },

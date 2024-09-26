@@ -140,9 +140,17 @@
   .c-image {
     transform: scale(1);
     transition: var(--ht-transition-duration) var(--ht-transition-easing) transform;
+
+    .image__default {
+      // Slightly overlap to prevent jittering line / gap when animating
+      width: calc(100% + 1px);
+      height: calc(100% + 1px);
+    }
   }
 
   &.is--active {
+    z-index: 1;
+
     ~ .c-image {
       transform: scale(1.05);
     }

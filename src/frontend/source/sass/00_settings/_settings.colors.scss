@@ -35,6 +35,8 @@ $color-lightest-yellow: var(--color-lightest-yellow);
 $color-lightest-yellow-rgb: var(--color-lightest-yellow-rgb);
 $color-darkest-yellow: var(--color-darkest-yellow);
 $color-darkest-yellow-rgb: var(--color-darkest-yellow-rgb);
+$color-red: var(--color-red);
+$color-green: var(--color-green);
 
 :root {
   --color-black-rgb: 0, 0, 0;
@@ -72,4 +74,6 @@ $color-darkest-yellow-rgb: var(--color-darkest-yellow-rgb);
   --color-lightest-yellow-rgb: 255, 249, 237;
   --color-lightest-yellow: rgb(var(--color-lightest-yellow-rgb));
   --color-error: #f12020;
+  --color-red: #f12020;
+  --color-green: #00b612;
 }

@@ -11,16 +11,6 @@ public class NestedBlockTextMediaBanner : NestedBlockWithInner
             return null;
         }
 
-        if (BannerTextMedia.Create(textMediaBannerBlock) is not { } textMediaBanner)
-        {
-            return null;
-        }
-
-        LayoutSection.CssClasses = textMediaBannerBlock.Theme != null ? $"t-{textMediaBannerBlock?.Theme?.Label}" : "t-white";
-        LayoutSection.Variant = "in-grid";
-        LayoutSection.Id = "banenr-id";
-        LayoutSection.NavigationTitle = "banner title";
-
-        return textMediaBanner;
+        return BannerTextMedia.Create(textMediaBannerBlock);
     }
 }

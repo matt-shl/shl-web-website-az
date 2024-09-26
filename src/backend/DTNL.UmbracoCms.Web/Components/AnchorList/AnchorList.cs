@@ -26,7 +26,7 @@ public class AnchorList
         {
             ShowLinks = hero is not null,
             LinkButton = Button
-                .Create(hero?.PrimaryLink.GetSingleContentOrNull<NestedBlockButtonLink>())
+                .Create(hero?.PrimaryLink)
                 .With(b => b.Class = "anchor-list__cta"),
             IsComponent = true,
             Links = [],
