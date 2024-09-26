@@ -65,6 +65,6 @@ public abstract class NestedBlockWithInner : NestedBlock
     {
         LayoutSection.CssClasses = cardCarousel.ShowCarousel
             ? "c-section-card-carousel c-section-card-carousel--show-carousel"
-            : "c-section-card-carousel c-section-card-carousel--no-carousel-three";
+            : cardCarousel.ShowThreeSideBySide ? "c-section-card-carousel c-section-card-carousel--no-carousel-three" : "c-section-card-carousel";
     }
 }
