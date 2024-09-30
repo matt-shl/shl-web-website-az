@@ -50,6 +50,13 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		// properties
 
 		///<summary>
+		/// Date
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[ImplementPropertyType("date")]
+		public virtual global::System.DateTime Date => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionBasePage.GetDate(this, _publishedValueFallback);
+
+		///<summary>
 		/// Slogan
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
@@ -104,13 +111,6 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("contentTags")]
 		public virtual global::System.Collections.Generic.IEnumerable<string> ContentTags => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionContentDetails.GetContentTags(this, _publishedValueFallback);
-
-		///<summary>
-		/// Date
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[ImplementPropertyType("date")]
-		public virtual global::System.DateTime Date => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionContentDetails.GetDate(this, _publishedValueFallback);
 
 		///<summary>
 		/// Page Type
@@ -197,14 +197,6 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual string UmbracoUrlName => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionSeo.GetUmbracoUrlName(this, _publishedValueFallback);
 
 		///<summary>
-		/// Categories: Define allowed categories.
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("categories")]
-		public virtual global::System.Collections.Generic.IEnumerable<string> Categories => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionTagSettings.GetCategories(this, _publishedValueFallback);
-
-		///<summary>
 		/// Connectivity Types: Define allowed connectivity types.
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
@@ -235,6 +227,22 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("locations")]
 		public virtual global::System.Collections.Generic.IEnumerable<string> Locations => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionTagSettings.GetLocations(this, _publishedValueFallback);
+
+		///<summary>
+		/// Categories
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("pageCategories")]
+		public virtual global::System.Collections.Generic.IEnumerable<string> PageCategories => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionTagSettings.GetPageCategories(this, _publishedValueFallback);
+
+		///<summary>
+		/// Types
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("pageTypes")]
+		public virtual global::System.Collections.Generic.IEnumerable<string> PageTypes => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionTagSettings.GetPageTypes(this, _publishedValueFallback);
 
 		///<summary>
 		/// Routes Of Administration: Define allowed routes of administration.

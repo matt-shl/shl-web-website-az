@@ -19,7 +19,7 @@ public class OverviewItems : ViewComponentExtended
 
         ResultCards = overviewPage
             .Children()
-            .OfType<ICompositionContentDetails>()
+            .OfType<ICompositionKnowledgeTags>()
             .Using(p => CardKnowledge.CreateOverview(p))
             .Page(pageNumber, PageSize)
             .ToList();
