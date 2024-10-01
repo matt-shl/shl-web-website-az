@@ -1,3 +1,5 @@
+using System.Globalization;
+using DTNL.UmbracoCms.Web.Helpers;
 using DTNL.UmbracoCms.Web.Models.Globalization;
 using DTNL.UmbracoCms.Web.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -30,6 +32,7 @@ public class LanguageSelector : ViewComponentExtended
             return Content("");
         }
 
+        CurrentLanguageName = LanguageHelper.GetLanguageName(CultureInfo.CurrentCulture);
         AlternateLanguageUrls = alternateUrls;
 
         return View("LanguageSelector", this);
