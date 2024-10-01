@@ -22,10 +22,6 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 	/// <summary>Composition Base Page</summary>
 	public partial interface ICompositionBasePage : IPublishedContent
 	{
-		/// <summary>Date</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		global::System.DateTime Date { get; }
-
 		/// <summary>Slogan</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
@@ -62,17 +58,6 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		}
 
 		// properties
-
-		///<summary>
-		/// Date
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[ImplementPropertyType("date")]
-		public virtual global::System.DateTime Date => GetDate(this, _publishedValueFallback);
-
-		/// <summary>Static getter for Date</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		public static global::System.DateTime GetDate(ICompositionBasePage that, IPublishedValueFallback publishedValueFallback) => that.Value<global::System.DateTime>(publishedValueFallback, "date");
 
 		///<summary>
 		/// Slogan

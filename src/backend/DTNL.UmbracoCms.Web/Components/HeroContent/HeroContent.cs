@@ -34,7 +34,7 @@ public class HeroContent : IHero
 
             Title = contentHero.Title,
 
-            SubTitle = contentHero.SubTitle.FallBack((page)?.Date.ToLongDateString()),
+            SubTitle = contentHero.SubTitle.FallBack((page as ICompositionContentDetails)?.Date.ToLongDateString()),
 
             Tags = (page as ICompositionContentDetails)?.ContentTags?.Take(2).Select(tag => new Tag
             {
