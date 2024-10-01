@@ -18,7 +18,7 @@ using Umbraco.Extensions;
 
 namespace Umbraco.Cms.Web.Common.PublishedModels
 {
-	/// <summary>Nested Block Video</summary>
+	/// <summary>Video</summary>
 	[PublishedModel("nestedBlockVideo")]
 	public partial class NestedBlockVideo : PublishedElementModel
 	{

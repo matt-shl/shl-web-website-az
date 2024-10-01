@@ -31,7 +31,7 @@ public class Search : ViewComponentExtended
             return Content("");
         }
 
-        Variant = currentNode is PageVacancyOverview ? "job" : "in-hero";
+        Variant = currentNode is PageVacancyOverview or PageCareerOverview ? "job" : "in-hero";
 
         ActionUrl = currentNode.Url();
 
@@ -41,7 +41,8 @@ public class Search : ViewComponentExtended
 
         SearchPlaceholder = CultureDictionary.GetTranslation(TranslationAliases.Vacancies.SearchPlaceholder);
 
-        if (currentNode is PageVacancyOverview vacancyOverviewPage)
+        if (currentNode is PageVacancyOverview or PageCareerOverview &&
+            NodeProvider.VacancyOverviewPage is { } vacancyOverviewPage)
         {
             List<PageVacancy> vacancyPages = Services.NodeProvider
                 .GetVacancyPages(vacancyOverviewPage)
