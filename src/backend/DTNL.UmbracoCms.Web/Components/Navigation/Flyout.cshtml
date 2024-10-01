@@ -19,12 +19,22 @@
                     NavigationSubItem item = Model.SubItems[i];
 
                     <li class="flyout__main-item @(i == 0 ? "is--open" : "")" js-hook-flyout-main-item>
-                        <button class="flyout__main-item-button" title="@item.Link.Label" js-hook-flyout-main-item-anchor aria-expanded="false" aria-controls="flyout-list-@item.Id-@i">
-                            @item.Link.Label
-                            <div class="flyout__main-item-button-icon">
-                                <svg src="@SvgAliases.Icons.ChevronRight" />
-                            </div>
-                        </button>
+                        @if(item.SubLinks.Count > 0)
+                        {
+                            <button class="flyout__main-item-button" title="@item.Link.Label" js-hook-flyout-main-item-anchor aria-expanded="false" aria-controls="flyout-list-@item.Id-@i">
+                                @item.Link.Label
+                                <div class="flyout__main-item-button-icon">
+                                    <svg src="@SvgAliases.Icons.ChevronRight" />
+                                </div>
+                            </button>
+                        }
+                        else
+                        {
+                            <a class="flyout__main-item-button" title="@item.Link.Label" js-hook-flyout-main-item-anchor aria-expanded="false" aria-controls="flyout-list-@item.Id-@i" href="@item.Link.Url">
+                                @item.Link.Label
+                            </a>
+                        }
+                        
 
                         @if (item.SubLinks.Count > 0)
                         {
