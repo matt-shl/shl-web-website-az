@@ -21,24 +21,17 @@
         </div>
         <div class="hero-content__col-right">
             <div class="hero-content__description">@Html.Raw(Model.ShortDescription)</div>
+
             <div class="hero-content__ctas">
-                @if (Model.PrimaryButton is not null)
-                {
-                    <partial name="Button" model="@Model.PrimaryButton"></partial>
-
-                }
-                @if (Model.SecondaryButton is not null)
-                {
-                    <partial name="Button" model="@Model.SecondaryButton"></partial>
-
-                }
+                <partial name="Button" model="@Model.PrimaryButton" />
+                <partial name="Button" model="@Model.SecondaryButton" />
             </div>
         </div>
 
         @if (Model.ShowSearch)
         {
             <div class="hero-content__col-search">
-                <vc:search/>
+                <vc:search />
             </div>
         }
     </div>
