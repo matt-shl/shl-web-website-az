@@ -18,6 +18,8 @@ public class ApplicationOptions : IValidatableObject
 
     public DevelopmentOptions Development { get; protected set; } = new();
 
+    public BackgroundJobsOptions BackgroundJobs { get; protected set; } = new();
+
     public HostingEnvironmentType HostingEnvironment { get; set; } = HostingEnvironmentType.Default;
 
     public ServerRole ServerRole { get; set; }

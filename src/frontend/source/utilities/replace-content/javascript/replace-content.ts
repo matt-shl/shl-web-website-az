@@ -24,8 +24,7 @@ class ReplaceContent {
         `[${JS_ATTRIBUTE_REPLACE_CONTENT}="${attributeId}"]`,
       )
       if (replacementElement) {
-        element.replaceWith(replacementElement)
-
+        element.innerHTML = replacementElement.innerHTML
         Events.$trigger(`replaceContent::${attributeId}`)
       }
     }

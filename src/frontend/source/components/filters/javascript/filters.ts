@@ -1,8 +1,8 @@
-import { html } from '@utilities/dom-elements'
+import {html} from '@utilities/dom-elements'
 import RafThrottle from '@utilities/raf-throttle'
 import ReplaceContent from '@utilities/replace-content'
 import ScreenDimensions from '@utilities/screen-dimensions'
-import { AxiosResponse } from 'axios'
+import {AxiosResponse} from 'axios'
 
 import API from '@/utilities/api'
 import Events from '@/utilities/events'
@@ -57,7 +57,13 @@ class Filters {
   }
 
   #bindEvents() {
-    Events.$on(`replaceContent::modal-body-modal-filters`, () => this.#init())
+    Events.$on(`replaceContent::modal-body-modal-filters`, () => {
+      setTimeout(() => {
+        Events.$trigger("lazyimage::update")
+        Events.$trigger("gtm::update")
+        this.#init()
+      }, 100)
+    })
 
     // get new results when a filter is clicked
     this.inputs?.forEach(element =>
@@ -70,7 +76,7 @@ class Filters {
     this.closeModelButton?.addEventListener('click', () => {
       const modalId = this.element.querySelector(JS_HOOK_FILTERS_MODAL)?.id
       if (!modalId) return
-      Events.$trigger(`modal[${modalId}]::close`, { data: { modalId } })
+      Events.$trigger(`modal[${modalId}]::close`, {data: {modalId}})
     })
 
     // get new results for reset button

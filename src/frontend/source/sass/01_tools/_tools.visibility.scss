@@ -30,7 +30,7 @@
 @mixin component-overlap-reverse($theme: true) {
   // To overlap with the rounded corners of the main content
   padding-top: var(--rounded-corner-main-content-overlap-size);
-  margin-top: calc(#{var(--rounded-corner-main-content-overlap-size)} * -1);
+  margin-top: calc((#{var(--rounded-corner-main-content-overlap-size)} * -1) - #{$spacing-80});
 
   @if ($theme) {
     @include theme;
