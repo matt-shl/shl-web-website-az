@@ -4,6 +4,9 @@
     <PackageVersion Include="Asp.Versioning.WebApi" Version="6.2.1" />
     <PackageVersion Include="DEPT.Umbraco.SourceGenerators" Version="1.0.2" />
     <PackageVersion Include="Flurl.Http" Version="4.0.2" />
+    <PackageVersion Include="Hangfire.AspNetCore" Version="1.8.14" />
+    <PackageVersion Include="Hangfire.Console" Version="1.4.3" />
+    <PackageVersion Include="Hangfire.SqlServer" Version="1.8.14" />
     <PackageVersion Include="MarcosLopezC.LightJson" Version="0.5.3" />
     <PackageVersion Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.22.0" />
     <PackageVersion Include="Microsoft.ApplicationInsights.SnapshotCollector" Version="1.4.6" />
