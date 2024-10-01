@@ -1,25 +1,27 @@
 @using DTNL.UmbracoCms.Web.Components
 @model DTNL.UmbracoCms.Web.Components.OverviewProducts
 
+@if (Model.NoResultsSection is not null)
+{
+    <partial name="EmptySection" model="@Model.NoResultsSection" />
+}
+else
+{
 
-<partial name="Filters" model="@Model.Filters"/>
+    <partial name="Filters" model="@Model.Filters" />
 
-<div js-hook-replace-content="overview-content">
-    <partial name="LayoutSection"
-                model="@Model.LayoutSection">
+    <div js-hook-replace-content="overview-content">
+        <partial name="LayoutSection"
+                 model="@Model.LayoutSection">
 
-        @if (Model.NoResultsSection is not null)
-        {
-            <partial name="EmptySection" model="@Model.NoResultsSection" />
-        }
-        else
-        {       
             @foreach (CardProduct resultCard in Model.Results)
             {
-                <partial name="CardProduct" model="@resultCard"/>
+                <partial name="CardProduct" model="@resultCard" />
             }
 
-            <partial name="Pagination" model="@Model.Pagination"/>
-        }
-    </partial>
-</div>
+            <partial name="Pagination" model="@Model.Pagination" />
+
+        </partial>
+    </div>
+}
+

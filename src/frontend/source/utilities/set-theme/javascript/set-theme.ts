@@ -62,7 +62,6 @@ class SetTheme {
   }
 
   switchTheme(target: HTMLElement) {
-    console.log('switchTheme')
     const currentTheme = this.getCurrentTheme(target)
     const currentIndex = themes.indexOf(currentTheme)
     const nextIndex = (currentIndex + 1) % themes.length
@@ -77,7 +76,6 @@ class SetTheme {
   }
 
   switchThemeSection() {
-    console.log(this.allThemedSections)
     this.allThemedSections.forEach(section => this.switchTheme(section))
   }
 

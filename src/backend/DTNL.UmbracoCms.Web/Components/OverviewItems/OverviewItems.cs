@@ -9,7 +9,24 @@ public class OverviewItems : ViewComponentExtended
 {
     public const int PageSize = 6;
 
+    public int TotalCount { get; set; }
+
+    public EmptySection? NoResultsSection { get; set; }
+
+    public required Filters Filters { get; set; }
+
     public required List<CardKnowledge> ResultCards { get; set; }
+
+    public Pagination? Pagination { get; set; }
+
+    public LayoutSection LayoutSection
+    { get; set; }
+    = new()
+    {
+        CssClasses = "t-white c-empty-section",
+        Id = "content",
+        ReduceMargin = "bottom",
+    };
 
     public IViewComponentResult Invoke(PageOverview overviewPage)
     {
@@ -23,6 +40,15 @@ public class OverviewItems : ViewComponentExtended
             .Using(p => CardKnowledge.CreateOverview(p))
             .Page(pageNumber, PageSize)
             .ToList();
+
+        TotalCount = ResultCards.Count;
+
+        if (TotalCount == 0)
+        {
+            NoResultsSection = EmptySection.Create(overviewPage);
+        }
+
+        Pagination = Pagination.Create(pageNumber, TotalCount, PageSize);
 
         return View("OverviewItems", this);
     }

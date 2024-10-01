@@ -65,22 +65,22 @@
     {
       "url": "/",
       "icon": "linkedin",
-      "label": "Go to LinkedIn"
+      "label": "LinkedIn"
     },
     {
       "url": "/",
       "icon": "facebook",
-      "label": "Go to Facebook"
+      "label": "Facebook"
     },
     {
       "url": "/",
       "icon": "x",
-      "label": "Go to X"
+      "label": "X"
     },
     {
       "url": "/",
       "icon": "instagram",
-      "label": "Go to instagram"
+      "label": "instagram"
     }
   ],
   "socialMediaPolicy": {

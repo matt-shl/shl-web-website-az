@@ -7,7 +7,7 @@
 <div class="c-navigation-mobile-list">
     @if (!Model.Id.IsNullOrWhiteSpace())
     {
-        <button class="navigation-mobile-list__anchor navigation-mobile-list__anchor--parent" aria-controls="@Model.Id">
+        <button class="navigation-mobile-list__anchor navigation-mobile-list__anchor--parent" aria-controls="@Model.Id" js-hook-mobile-nav-title>
             <svg src="@SvgAliases.Icons.ChevronLeft" />
             @Model.Name
         </button>
@@ -49,7 +49,7 @@
         @if (Model.Link is not null)
         {
             <li>
-                <a class="navigation-mobile-list__anchor navigation-mobile-list__anchor--all" href="@Model.Link.Url">All @Model.Link.Label</a>
+                <a class="navigation-mobile-list__anchor navigation-mobile-list__anchor--all" href="@Model.Link.Url" js-hook-mobile-nav-sub-item-anchor>All @Model.Link.Label</a>
             </li>
         }
     </ul>

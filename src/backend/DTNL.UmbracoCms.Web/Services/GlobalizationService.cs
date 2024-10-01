@@ -1,4 +1,3 @@
-using System.Globalization;
 using DTNL.UmbracoCms.Web.Helpers;
 using DTNL.UmbracoCms.Web.Infrastructure.Configuration.Options;
 using DTNL.UmbracoCms.Web.Infrastructure.DependencyInjection;
@@ -45,7 +44,7 @@ public class GlobalizationService : IGlobalizationService
             .Where(c => IsPublishedAndRoutable(node, c.Key))
             .Select(cultureAndInfo => new AlternateUrl
             {
-                LanguageName = new CultureInfo(cultureAndInfo.Value.Culture.Split("-").First()).NativeName,
+                LanguageName = LanguageHelper.GetLanguageName(cultureAndInfo.Value),
                 LanguageCode = cultureAndInfo.Key,
                 Url = node.Url(cultureAndInfo.Key, UrlMode.Absolute),
                 IsDefault = defaultCulture is not null && cultureAndInfo.Key.Equals(defaultCulture, StringComparison.OrdinalIgnoreCase),

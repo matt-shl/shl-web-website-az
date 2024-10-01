@@ -21,7 +21,9 @@ modalId: string
     {%- if data.classes %} {{ data.classes }}{% endif -%}"
     {%- if data.url %} href="{{ data.url }}"{% endif -%}
     aria-label="{{commonLabels.readMoreAbout}} {{ data.title }}"
-  {% if not data.url and data.modalId %} aria-controls="{{ data.modalId }}" aria-label="Open modalbox" {% endif %}>
+  {%- if data.type %} data-type="{{ data.type }}"{% endif -%}
+  {% if not data.url and data.modalId %} aria-controls="{{ data.modalId }}" aria-label="Open modalbox" {% endif %}
+  js-hook-card-knowledge>
 
   <div class="card-knowledge__image-container">
     {{ image({

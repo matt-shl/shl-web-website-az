@@ -2,13 +2,38 @@ import Events from '@/utilities/events'
 
 export type GTMEntry = Record<string, any>
 
+const BUTTON_SELECTOR = '*[class^="c-button"]:not(.button--icon-only)'
+const SECTION_SELECTOR = '[js-hook-section],*[class^="c-hero"],.c-event-detail'
+const HERO_SELECTOR = '*[class^="c-hero"]'
+const TITLE_ELEMENTS = 'h1,h2,h3,h4,h5,h6'
+
 class GTM {
+  private buttons: HTMLElement[]
+
   constructor() {
-    this._bindEvents()
+    this.buttons = [...document.querySelectorAll(BUTTON_SELECTOR)] as HTMLElement[]
+    this.bindEvents()
   }
 
-  _bindEvents() {
+  bindEvents() {
     Events.$on<GTMEntry>('gtm::push', (_, data) => this.push(data))
+
+    this.buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        const ctaName = button.textContent?.trim()
+        const ctaPosition = button.closest(SECTION_SELECTOR)?.querySelector(TITLE_ELEMENTS)?.textContent?.trim() || document.querySelector(HERO_SELECTOR)?.querySelector(TITLE_ELEMENTS)?.textContent?.trim()
+
+        if(!ctaPosition || !ctaName) return
+
+        Events.$trigger('gtm::push', {
+          data: {
+            'event': 'cta_click',
+            'cta_name': ctaName,
+            'cta_position': ctaPosition
+          }
+        })
+      })
+    })
   }
 
   push(data: GTMEntry) {

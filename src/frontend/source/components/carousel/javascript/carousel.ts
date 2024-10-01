@@ -18,6 +18,7 @@ class Carousel {
   initialized: boolean
   swipeIndicator: HTMLElement | null
   allowPointerDownEvent: boolean
+  isImageSlider: boolean
 
   constructor(element: HTMLElement) {
     this.element = element
@@ -25,6 +26,7 @@ class Carousel {
     this.id = this.element.id
     this.initialized = false
     this.swipeIndicator = document.querySelector(JS_HOOK_CAROUSEL_SWIPE_INDICATOR)
+    this.isImageSlider = this.element.classList.contains('section-image-carousel__carousel')
     // Check if the carousel has links inside the slides
     this.allowPointerDownEvent =
       [...this.element.querySelectorAll('.swiper-slide > a')].length === 0
@@ -126,8 +128,16 @@ class Carousel {
   }
 
   onSlideChange() {
-    const currentIndex = this.swiper.realIndex
+    if(this.isImageSlider) {
+      Events.$trigger('gtm::push', {
+        data: {
+          'event': 'image_carousel'
+        }
+      })
+    }
+
     // Add any additional logic you want to execute when the slide changes
+    const currentIndex = this.swiper.realIndex
     Events.$trigger(`swiper[${this.id}]::slideChange`, {
       data: {
         index: currentIndex,
