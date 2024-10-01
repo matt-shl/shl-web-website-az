@@ -13,6 +13,8 @@ public class Button
 
     public required string Label { get; set; }
 
+    public string? LabelSup { get; set; }
+
     public string? AriaLabel { get; set; }
 
     public bool LabelSrOnly { get; set; }

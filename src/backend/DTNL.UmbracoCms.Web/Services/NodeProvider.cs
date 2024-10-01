@@ -1,4 +1,5 @@
 using DTNL.UmbracoCms.Web.Infrastructure.DependencyInjection;
+using Umbraco.Cms.Core;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Core.Web;
 using Umbraco.Cms.Web.Common.PublishedModels;
@@ -60,5 +61,10 @@ public class NodeProvider
     public IPublishedContent? GetCurrentNode()
     {
         return _umbracoContextAccessor.GetRequiredUmbracoContext().PublishedRequest?.PublishedContent;
+    }
+
+    public IPublishedContent? GetById(Udi id)
+    {
+        return _umbracoContextAccessor.GetRequiredUmbracoContext().Content?.GetById(id);
     }
 }
