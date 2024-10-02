@@ -113,12 +113,12 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual global::System.DateTime Date => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionContentDetails.GetDate(this, _publishedValueFallback);
 
 		///<summary>
-		/// Page Type
+		/// Type
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("pageType")]
-		public virtual global::System.Collections.Generic.IEnumerable<string> PageType => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionContentDetails.GetPageType(this, _publishedValueFallback);
+		[ImplementPropertyType("type")]
+		public virtual global::System.Collections.Generic.IEnumerable<string> Type => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionContentDetails.GetType(this, _publishedValueFallback);
 
 		///<summary>
 		/// Hero

@@ -23,9 +23,9 @@ public class OverviewItems : ViewComponentExtended
     { get; set; }
     = new()
     {
-        CssClasses = "t-white c-empty-section",
+        CssClasses = $"t-white",
+        Variant = "grid",
         Id = "content",
-        ReduceMargin = "bottom",
     };
 
     public IViewComponentResult Invoke(PageOverview overviewPage)
@@ -36,7 +36,7 @@ public class OverviewItems : ViewComponentExtended
 
         ResultCards = overviewPage
             .Children()
-            .OfType<ICompositionKnowledgeTags>()
+            .OfType<ICompositionCardDetails>()
             .Using(p => CardKnowledge.CreateOverview(p))
             .Page(pageNumber, PageSize)
             .ToList();
@@ -46,6 +46,8 @@ public class OverviewItems : ViewComponentExtended
         if (TotalCount == 0)
         {
             NoResultsSection = EmptySection.Create(overviewPage);
+            LayoutSection.CssClasses = "t-white c-empty-section";
+            LayoutSection.ReduceMargin = "bottom";
         }
 
         Pagination = Pagination.Create(pageNumber, TotalCount, PageSize);

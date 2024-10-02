@@ -20,7 +20,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 {
 	/// <summary>Page News</summary>
 	[PublishedModel("pageNews")]
-	public partial class PageNews : PublishedContentModel, ICompositionBasePage, ICompositionCardDetails, ICompositionColorOptions, ICompositionContentBlocks, ICompositionContentDetails, ICompositionHero, ICompositionKnowledgeTags, ICompositionSeo
+	public partial class PageNews : PublishedContentModel, ICompositionBasePage, ICompositionCardDetails, ICompositionColorOptions, ICompositionContentBlocks, ICompositionContentDetails, ICompositionHero, ICompositionSeo
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
@@ -113,12 +113,12 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual global::System.DateTime Date => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionContentDetails.GetDate(this, _publishedValueFallback);
 
 		///<summary>
-		/// Page Type
+		/// Type
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("pageType")]
-		public virtual global::System.Collections.Generic.IEnumerable<string> PageType => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionContentDetails.GetPageType(this, _publishedValueFallback);
+		[ImplementPropertyType("type")]
+		public virtual global::System.Collections.Generic.IEnumerable<string> Type => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionContentDetails.GetType(this, _publishedValueFallback);
 
 		///<summary>
 		/// Hero
@@ -127,22 +127,6 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("hero")]
 		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel Hero => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionHero.GetHero(this, _publishedValueFallback);
-
-		///<summary>
-		/// Categories
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("categories")]
-		public virtual global::System.Collections.Generic.IEnumerable<string> Categories => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionKnowledgeTags.GetCategories(this, _publishedValueFallback);
-
-		///<summary>
-		/// Types
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("type")]
-		public virtual global::System.Collections.Generic.IEnumerable<string> Type => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionKnowledgeTags.GetType(this, _publishedValueFallback);
 
 		///<summary>
 		/// Do Not Follow: Setting to true will prevent search engines from following the links on the page, so it will not index the pages it finds (only) on this page.

@@ -50,14 +50,6 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		// properties
 
 		///<summary>
-		/// Types
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("types")]
-		public virtual global::System.Collections.Generic.IEnumerable<string> Types => this.Value<global::System.Collections.Generic.IEnumerable<string>>(_publishedValueFallback, "types");
-
-		///<summary>
 		/// Body Scripts: Insert here your Hotjar/Google Analytics scripts to be inserted at body of the page.
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
@@ -210,6 +202,14 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual string CompanyName => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionStructuredData.GetCompanyName(this, _publishedValueFallback);
 
 		///<summary>
+		/// Categories: Define allowed categories.
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("categories")]
+		public virtual global::System.Collections.Generic.IEnumerable<string> Categories => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionTagSettings.GetCategories(this, _publishedValueFallback);
+
+		///<summary>
 		/// Connectivity Types: Define allowed connectivity types.
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
@@ -242,28 +242,20 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual global::System.Collections.Generic.IEnumerable<string> Locations => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionTagSettings.GetLocations(this, _publishedValueFallback);
 
 		///<summary>
-		/// Categories
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("pageCategories")]
-		public virtual global::System.Collections.Generic.IEnumerable<string> PageCategories => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionTagSettings.GetPageCategories(this, _publishedValueFallback);
-
-		///<summary>
-		/// Types
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("pageTypes")]
-		public virtual global::System.Collections.Generic.IEnumerable<string> PageTypes => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionTagSettings.GetPageTypes(this, _publishedValueFallback);
-
-		///<summary>
 		/// Routes Of Administration: Define allowed routes of administration.
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("routesOfAdministration")]
 		public virtual global::System.Collections.Generic.IEnumerable<string> RoutesOfAdministration => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionTagSettings.GetRoutesOfAdministration(this, _publishedValueFallback);
+
+		///<summary>
+		/// Types
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("types")]
+		public virtual global::System.Collections.Generic.IEnumerable<string> Types => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionTagSettings.GetTypes(this, _publishedValueFallback);
 
 		///<summary>
 		/// Volume Ranges: Define allowed volume ranges.

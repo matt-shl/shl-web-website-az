@@ -63,6 +63,8 @@ public class OverviewProducts : ViewComponentExtended
         if (TotalCount == 0)
         {
             NoResultsSection = EmptySection.Create(productOverviewPage);
+            LayoutSection.CssClasses = "t-white c-empty-section";
+            LayoutSection.ReduceMargin = "bottom";
         }
 
         Pagination = Pagination.Create(pageNumber, TotalCount, PageSize);
