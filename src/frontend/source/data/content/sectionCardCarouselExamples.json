@@ -145,6 +145,22 @@
         "name": "Dr. John Doe",
         "role": "CEO",
         "description": "<h4>Topic</h4><p>Development of silicone-based test model for autoinjector functional performance analysis</p></br><h4>When</h4><p>June 25 2024</p><p>10:00 (CEST)</p>"
+      },
+      {
+        "name": "Dr. John Doe",
+        "role": "CEO",
+        "email": "john.doe@shl-medical.com",
+        "phoneNumber": "+41 123 456 789"
+      },{
+        "name": "Dr. John Doe",
+        "role": "Senior Testing Engineer",
+        "tag": "Zurich",
+        "email": "john.doe@shl-medical.com",
+        "phoneNumber": "+41 123 456 789"
+      },{
+        "name": "Dr. John Doe",
+        "role": "CEO",
+        "description": "<h4>Topic</h4><p>Development of silicone-based test model for autoinjector functional performance analysis</p></br><h4>When</h4><p>June 25 2024</p><p>10:00 (CEST)</p>"
       }
     ]
   },
