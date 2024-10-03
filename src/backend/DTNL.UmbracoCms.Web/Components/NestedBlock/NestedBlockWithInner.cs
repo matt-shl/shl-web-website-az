@@ -25,11 +25,6 @@ public abstract class NestedBlockWithInner : NestedBlock
 
         if (settings is ColorComponentSettings colorComponentSettings)
         {
-            if (string.Equals(ViewName, "NestedBlockQuoteBanner") || string.Equals(ViewName, "NestedBlockTextMediaBanner"))
-            {
-                LayoutSection.Variant = colorComponentSettings.Theme is not null ? "in-grid" : null;
-            }
-
             LayoutSection.CssThemeClasses = ThemeHelper.GetCssClasses(colorComponentSettings.Theme, "white");
         }
         else
