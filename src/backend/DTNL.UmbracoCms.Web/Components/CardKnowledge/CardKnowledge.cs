@@ -39,7 +39,7 @@ public class CardKnowledge : ICard
         };
     }
 
-    public static CardKnowledge? CreateOverview(ICompositionContentDetails content, string? cssClasses = null)
+    public static CardKnowledge? CreateOverview(ICompositionCardDetails content, string? cssClasses = null)
     {
         if (content is not ICompositionBasePage page)
         {
@@ -49,7 +49,7 @@ public class CardKnowledge : ICard
         return new CardKnowledge
         {
             Title = page.GetTitle(),
-            Tag = content.PageType?.FirstOrDefault(),
+            Tag = content?.CardCategory?.FirstOrDefault(),
             Text = page.GetCardDescription(),
             Image = Image.Create(page.GetCardImage(), cssClasses: "card-knowledge__image", style: "card-knowledge"),
             Url = page.Url(),
