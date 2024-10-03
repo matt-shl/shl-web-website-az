@@ -25,8 +25,6 @@ public abstract class NestedBlockWithInner : NestedBlock
 
         if (settings is ColorComponentSettings colorComponentSettings)
         {
-            LayoutSection.Variant = colorComponentSettings.Theme is not null ? "in-grid" : null;
-
             LayoutSection.CssThemeClasses = ThemeHelper.GetCssClasses(colorComponentSettings.Theme, "white");
         }
         else
