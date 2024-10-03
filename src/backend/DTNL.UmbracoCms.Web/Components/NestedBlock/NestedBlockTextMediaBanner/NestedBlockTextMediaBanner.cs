@@ -1,7 +1,4 @@
-using DTNL.UmbracoCms.Web.Helpers.Extensions;
-using Umbraco.Cms.Core.Models.Blocks;
 using Umbraco.Cms.Core.Models.PublishedContent;
-using Umbraco.Cms.Web.Common.PublishedModels;
 
 namespace DTNL.UmbracoCms.Web.Components.NestedBlock.TextMediaBanner;
 
