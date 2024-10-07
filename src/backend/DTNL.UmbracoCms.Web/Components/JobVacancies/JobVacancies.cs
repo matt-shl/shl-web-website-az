@@ -7,6 +7,8 @@ namespace DTNL.UmbracoCms.Web.Components;
 
 public class JobVacancies : ViewComponentExtended
 {
+    public const int NumberOfVacancies = 3;
+
     public required string Title { get; set; }
 
     public required List<JobListingItem> Vacancies { get; set; }
@@ -27,7 +29,7 @@ public class JobVacancies : ViewComponentExtended
             vacancyPages.AddRange(Services.NodeProvider
                 .GetVacancyPages(vacancyOverviewPage)
                 .OrderByDescending(vacancyPage => vacancyPage.CreatedAt)
-                .Take(3));
+                .Take(NumberOfVacancies));
         }
 
         return new()
@@ -49,6 +51,7 @@ public class JobVacancies : ViewComponentExtended
             .Siblings<PageVacancy>()
             .OrEmptyIfNull()
             .Where(vacancyPage => vacancyPage.Function == page.Function)
+            .Take(NumberOfVacancies)
             .Using(JobListingItem.Create)
             .ToList();
 

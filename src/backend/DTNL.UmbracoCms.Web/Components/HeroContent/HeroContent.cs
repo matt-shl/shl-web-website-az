@@ -9,7 +9,7 @@ public class HeroContent : IHero
 {
     public string? ThemeCssClasses { get; set; }
 
-    public string? Title { get; set; }
+    public required string Title { get; set; }
 
     public string? SubTitle { get; set; }
 
@@ -33,10 +33,8 @@ public class HeroContent : IHero
         return new HeroContent
         {
             ThemeCssClasses = ThemeHelper.GetCssClasses(contentHero.Theme, fallBackTheme: ThemeHelper.GetCssClasses(page)),
-            Title = contentHero.Title,
-
+            Title = contentHero.Title!,
             SubTitle = contentHero.SubTitle.FallBack((page as ICompositionContentDetails)?.Date.ToString("MMMM dd yyyy")),
-
             Tags = (page as ICompositionContentDetails)?.ContentTags?.Take(2).Select(tag => new Tag
             {
                 Label = tag,

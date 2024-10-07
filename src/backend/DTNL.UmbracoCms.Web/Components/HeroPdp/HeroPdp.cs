@@ -10,7 +10,7 @@ public class HeroPdp : IHero
 {
     public string? ThemeCssClasses { get; set; }
 
-    public string? Title { get; set; }
+    public required string Title { get; set; }
 
     public string? Text { get; set; }
 
@@ -32,21 +32,15 @@ public class HeroPdp : IHero
         return new HeroPdp
         {
             ThemeCssClasses = productHero.Theme is not null ? $"t-{productHero.Theme?.Label ?? "general"}" : ThemeHelper.GetCssClasses(page),
-
-            Title = productHero.Title,
-
+            Title = productHero.Title!,
             Text = productHero.Text?.ToHtmlString(),
-
             PrimaryLinkButton = Button
                 .Create(productHero.PrimaryLink, fallBackVariant: "primary")
                 .With(b => b.Class = "hero-pdp__cta1"),
-
             Image = Image.Create(productHero.Image, imageCropMode: ImageCropMode.Max, cssClasses: "hero-pdp__image", style: "heroPdp"),
-
             SecondaryLinkButton = Button
                 .Create(productHero.SecondaryLink, fallBackVariant: "secondary")
                 .With(b => b.Class = "hero-pdp__cta2"),
-
             AnchorLinks = AnchorList.Create(productHero),
         };
     }
