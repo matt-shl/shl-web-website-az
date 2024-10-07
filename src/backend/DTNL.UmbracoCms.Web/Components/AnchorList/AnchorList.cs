@@ -28,6 +28,7 @@ public class AnchorList
             LinkButton = Button
                 .Create(hero?.PrimaryLink)
                 .With(b => b.Class = "anchor-list__cta"),
+            Alignment = "horizontal",
             IsComponent = true,
             Links = [],
         };

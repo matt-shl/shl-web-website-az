@@ -15,9 +15,34 @@ public partial class DescriptionList
 
     public static DescriptionList? Create(PageProduct productPage)
     {
-        return Create(
-            productPage.Specifications.GetSingleContentOrNull<NestedBlockProductSpecifications>(),
-            productPage);
+        NestedBlockProductSpecifications? productSpecificationsBlock =
+            productPage.Specifications.GetSingleContentOrNull<NestedBlockProductSpecifications>();
+
+        List<DescriptionListItem> items =
+            DescriptionListItem.CreateFor(productPage)
+            .Concat(productSpecificationsBlock is not null ? productSpecificationsBlock.Specifications
+                .Using(s => s.Content as NestedBlockProductSpecification)
+                .Using(DescriptionListItem.Create) : [])
+            .ToList();
+
+        if (items.Count == 0)
+        {
+            return null;
+        }
+
+        return new DescriptionList
+        {
+            Title = productSpecificationsBlock?.Title,
+            Items = items,
+            DownloadLinkButton = Button.Create(Link.Create(productPage?.SpecificationsFile))
+                .With(b =>
+                {
+                    b.Class = "description-list__cta";
+                    b.IconPosition = "start";
+                    b.Icon = SvgAliases.Icons.ArrowTopRight;
+                }),
+        };
+
     }
 
     public static DescriptionList? Create(
