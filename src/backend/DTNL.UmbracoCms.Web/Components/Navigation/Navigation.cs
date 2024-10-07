@@ -7,22 +7,18 @@ public class Navigation
 {
     public required List<NavigationItem> Items { get; set; }
 
+    public required FlyoutSearch SearchFlyout { get; set; }
+
     public static Navigation Create(ICompositionHeader? navigation)
     {
-        if (navigation is not { MainNavigationItems.Count: > 0 })
-        {
-            return new Navigation
-            {
-                Items = [],
-            };
-        }
-
         return new Navigation
         {
-            Items = navigation.MainNavigationItems
+            Items = (navigation?.MainNavigationItems)
+                    .OrEmptyIfNull()
                     .Select(blockListItem => blockListItem.Content)
                     .Using(NavigationItem.Create)
                     .ToList(),
+            SearchFlyout = FlyoutSearch.Create("search"),
         };
     }
 }

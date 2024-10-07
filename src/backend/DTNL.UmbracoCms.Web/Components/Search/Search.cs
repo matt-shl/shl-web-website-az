@@ -37,42 +37,53 @@ public class Search : ViewComponentExtended
 
         SearchQuery = Request.Query.GetSearchQuery();
 
-        SearchLabel = CultureDictionary.GetTranslation(TranslationAliases.Vacancies.Search);
-
-        SearchPlaceholder = CultureDictionary.GetTranslation(TranslationAliases.Vacancies.SearchPlaceholder);
-
         if (currentNode is PageVacancyOverview or PageCareerOverview &&
             NodeProvider.VacancyOverviewPage is { } vacancyOverviewPage)
         {
-            List<PageVacancy> vacancyPages = Services.NodeProvider
-                .GetVacancyPages(vacancyOverviewPage)
-                .ToList();
+            SearchLabel = CultureDictionary.GetTranslation(TranslationAliases.Vacancies.SearchLabel);
 
-            VacancyFilters vacancyFilters = new(vacancyOverviewPage, Request.Query);
+            SearchPlaceholder = CultureDictionary.GetTranslation(TranslationAliases.Vacancies.SearchPlaceholder);
 
-            vacancyFilters.AddFilterOptions(VacancyFilters.QuickFilterFields, vacancyPages, HttpContext);
+            SetVacancyFilters(vacancyOverviewPage);
+        }
+        else
+        {
+            SearchLabel = CultureDictionary.GetTranslation(TranslationAliases.Common.Search.SearchLabel);
 
-            Filters = [];
-
-            foreach (string filterName in vacancyFilters.Keys)
-            {
-                FilterOption defaultOption = new()
-                {
-                    Label = CultureDictionary.GetTranslation($"{TranslationAliases.Vacancies.AllFilterOptions}.{filterName}"),
-                    Value = string.Empty,
-                };
-
-                Filter filter = Filter
-                    .CreateDropdownOptions(
-                        filterName,
-                        TranslationAliases.Vacancies,
-                        vacancyFilters,
-                        defaultOption);
-
-                Filters.Add(filter);
-            }
+            SearchPlaceholder = CultureDictionary.GetTranslation(TranslationAliases.Common.Search.SearchPlaceholder);
         }
 
         return View("Search", this);
+    }
+
+    private void SetVacancyFilters(PageVacancyOverview vacancyOverviewPage)
+    {
+        List<PageVacancy> vacancyPages = Services.NodeProvider
+            .GetVacancyPages(vacancyOverviewPage)
+            .ToList();
+
+        VacancyFilters vacancyFilters = new(vacancyOverviewPage, Request.Query);
+
+        vacancyFilters.AddFilterOptions(VacancyFilters.QuickFilterFields, vacancyPages, HttpContext);
+
+        Filters = [];
+
+        foreach (string filterName in vacancyFilters.Keys)
+        {
+            FilterOption defaultOption = new()
+            {
+                Label = CultureDictionary.GetTranslation($"{TranslationAliases.Vacancies.AllFilterOptions}.{filterName}"),
+                Value = string.Empty,
+            };
+
+            Filter filter = Filter
+                .CreateDropdownOptions(
+                    filterName,
+                    TranslationAliases.Vacancies,
+                    vacancyFilters,
+                    defaultOption);
+
+            Filters.Add(filter);
+        }
     }
 }
