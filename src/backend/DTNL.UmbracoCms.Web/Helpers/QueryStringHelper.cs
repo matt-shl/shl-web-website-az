@@ -46,7 +46,7 @@ public static class QueryStringHelper
     }
 
     /// <summary>
-    /// Returns the selected filter options for the specified <paramref name="filterKey"/>
+    /// Returns the selected filter options for the specified <paramref name="filterKey"/>.
     /// </summary>
     public static FilterOption[] GetFilterOptions(this HttpContext httpContext, string filterKey)
     {
