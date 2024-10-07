@@ -14,8 +14,7 @@ else
         <partial name="LayoutSection"
                  model="@Model.LayoutSection">
 
-
-            @foreach (CardProduct resultCard in Model.ResultCards)
+            @foreach (CardProduct resultCard in Model.Results)
             {
                 <partial name="CardProduct" model="@resultCard" />
             }

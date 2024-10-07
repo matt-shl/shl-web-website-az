@@ -1,3 +1,5 @@
+using DTNL.UmbracoCms.Web.Helpers.Extensions;
+using DTNL.UmbracoCms.Web.Models.Filters;
 using Microsoft.AspNetCore.ResponseCaching;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Primitives;
@@ -41,6 +43,22 @@ public static class QueryStringHelper
     public static string? GetSearchQuery(this IQueryCollection? query)
     {
         return query?[SearchQueryString];
+    }
+
+    /// <summary>
+    /// Returns the selected filter options for the specified <paramref name="filterKey"/>
+    /// </summary>
+    public static FilterOption[] GetFilterOptions(this HttpContext httpContext, string filterKey)
+    {
+        httpContext.VaryByQueryKeys(filterKey);
+
+        string? filterValue = httpContext.Request.Query[filterKey];
+
+        return (filterValue?.Split(','))
+            .OrEmptyIfNull()
+            .NotNullOrWhiteSpace()
+            .Select(value => FilterOption.Create(value, isSelected: true))
+            .ToArray();
     }
 
     /// <summary>

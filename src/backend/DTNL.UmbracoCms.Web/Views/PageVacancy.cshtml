@@ -1,3 +1,13 @@
 @inherits UmbracoViewPage<PageVacancy>
 
+<partial name="LayoutSection"
+         model="@(new Components.LayoutSection { CssThemeClasses = "t-white", })">
+    <partial name="RichTextComponent" model="@(Components.RichTextComponent.Create(Model))" />
+</partial>
+
 <partial name="_BlockList" model="Model.ContentBlocks" />
+
+<partial name="LayoutSection"
+         model="@(new Components.LayoutSection { Variant = "c-section-job-vacancies", })">
+    <vc:job-vacancies page="@Model" />
+</partial>

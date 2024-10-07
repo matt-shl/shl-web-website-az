@@ -21,6 +21,8 @@ public class HeroContent : IHero
 
     public Button? SecondaryButton { get; set; }
 
+    public bool ShowSearch { get; set; }
+
     public static HeroContent? Create(NestedBlockContentHero? contentHero, ICompositionBasePage page)
     {
         if (contentHero is null)
@@ -30,8 +32,7 @@ public class HeroContent : IHero
 
         return new HeroContent
         {
-            ThemeCssClasses = contentHero.Theme is not null ? $"t-{contentHero.Theme?.Label ?? "general"}" : ThemeHelper.GetCssClasses(page),
-
+            ThemeCssClasses = ThemeHelper.GetCssClasses(contentHero.Theme, fallBackTheme: ThemeHelper.GetCssClasses(page)),
             Title = contentHero.Title,
 
             SubTitle = contentHero.SubTitle.FallBack((page as ICompositionContentDetails)?.Date.ToString("MMMM dd yyyy")),
@@ -41,9 +42,7 @@ public class HeroContent : IHero
                 Label = tag,
                 CssClasses = "hero-content__tag",
             }) ?? [],
-
             ShortDescription = contentHero.Text?.ToHtmlString(),
-
             PrimaryButton = Button
                 .Create(contentHero.PrimaryLink, fallBackVariant: "primary")
                 .With(b =>
@@ -51,7 +50,6 @@ public class HeroContent : IHero
                     b.Class = "hero-content__cta";
                     b.Hook = "homepage-hero-button";
                 }),
-
             SecondaryButton = Button
                 .Create(contentHero.SecondaryLink, fallBackVariant: "secondary")
                 .With(b =>
@@ -59,6 +57,7 @@ public class HeroContent : IHero
                     b.Class = "hero-content__cta";
                     b.Hook = "homepage-hero-button";
                 }),
+            ShowSearch = page is PageVacancyOverview,
         };
     }
 }

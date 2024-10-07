@@ -29,7 +29,14 @@
     @Html.Attributes(Model.Attributes)
 >
 
-    <span class="button__label @(Model.LabelSrOnly ? "u-sr-only" : null)">@Model.Label</span>
+    <span class="button__label @(Model.LabelSrOnly ? "u-sr-only" : null)">
+        @Model.Label
+        
+        @if (!Model.LabelSup.IsNullOrEmpty())
+        {
+            <sup class="button__label-sup">@Model.LabelSup</sup>
+        }
+    </span>
 
 	@if (!Model.Icon.IsNullOrEmpty())
 	{

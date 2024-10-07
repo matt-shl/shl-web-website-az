@@ -5,7 +5,7 @@ using Umbraco.Cms.Web.Common.PublishedModels;
 
 namespace DTNL.UmbracoCms.Web.Components;
 
-public class RichTextComponent : LayoutSection
+public class RichTextComponent
 {
     public string? Content { get; set; }
 
@@ -19,9 +19,15 @@ public class RichTextComponent : LayoutSection
 
     public string? TextSize { get; set; }
 
-    public string? ReadMoreOptionClass { get; set; }
-
     public bool ReadMoreOption { get; set; }
+
+    public static RichTextComponent Create(PageVacancy pageVacancy)
+    {
+        return new RichTextComponent
+        {
+            Content = pageVacancy.JobDescription?.ToHtmlString(),
+        };
+    }
 
     public static RichTextComponent Create(NestedBlockRichText richTextBlock, ICultureDictionary cultureDictionary)
     {
