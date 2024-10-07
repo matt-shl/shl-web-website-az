@@ -31,10 +31,10 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		global::System.DateTime Date { get; }
 
-		/// <summary>Page Type</summary>
+		/// <summary>Type</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		global::System.Collections.Generic.IEnumerable<string> PageType { get; }
+		global::System.Collections.Generic.IEnumerable<string> Type { get; }
 	}
 
 	/// <summary>Composition Content Details</summary>
@@ -93,16 +93,16 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public static global::System.DateTime GetDate(ICompositionContentDetails that, IPublishedValueFallback publishedValueFallback) => that.Value<global::System.DateTime>(publishedValueFallback, "date");
 
 		///<summary>
-		/// Page Type
+		/// Type
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("pageType")]
-		public virtual global::System.Collections.Generic.IEnumerable<string> PageType => GetPageType(this, _publishedValueFallback);
+		[ImplementPropertyType("type")]
+		public virtual global::System.Collections.Generic.IEnumerable<string> Type => GetType(this, _publishedValueFallback);
 
-		/// <summary>Static getter for Page Type</summary>
+		/// <summary>Static getter for Type</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		public static global::System.Collections.Generic.IEnumerable<string> GetPageType(ICompositionContentDetails that, IPublishedValueFallback publishedValueFallback) => that.Value<global::System.Collections.Generic.IEnumerable<string>>(publishedValueFallback, "pageType");
+		public static global::System.Collections.Generic.IEnumerable<string> GetType(ICompositionContentDetails that, IPublishedValueFallback publishedValueFallback) => that.Value<global::System.Collections.Generic.IEnumerable<string>>(publishedValueFallback, "type");
 	}
 }

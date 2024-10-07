@@ -111,6 +111,8 @@ class AnchorList {
 
   setActiveAnchor(section: HTMLElement) {
     const id = section.getAttribute('id');
+    if(!id || id === '#') return;
+
     const activeAnchor = this.element.querySelector(`[href="#${id}"]`);
     if (!activeAnchor || !this.anchors) return;
 
