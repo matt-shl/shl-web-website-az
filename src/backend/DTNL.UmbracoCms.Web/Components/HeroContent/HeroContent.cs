@@ -34,7 +34,7 @@ public class HeroContent : IHero
         {
             ThemeCssClasses = ThemeHelper.GetCssClasses(contentHero.Theme, fallBackTheme: ThemeHelper.GetCssClasses(page)),
             Title = contentHero.Title!,
-            SubTitle = contentHero.SubTitle.FallBack((page as ICompositionContentDetails)?.Date.ToString("MMMM dd yyyy")),
+            SubTitle = contentHero.SubTitle.FallBack((page as ICompositionContentDetails)?.GetDate()?.ToString("MMMM dd yyyy")),
             Tags = (page as ICompositionContentDetails)?.ContentTags?.Take(2).Select(tag => new Tag
             {
                 Label = tag,
