@@ -1,6 +1,8 @@
 @using DTNL.UmbracoCms.Web.Components
+@using DTNL.UmbracoCms.Web.Components.FormElements
 @using DTNL.UmbracoCms.Web.Helpers.Aliases
 @using DTNL.UmbracoCms.Web.Helpers.Extensions
+@using DTNL.UmbracoCms.Web.Models.Filters
 @using Umbraco.Cms.Core.Dictionary
 @model DTNL.UmbracoCms.Web.Components.FiltersModal
 
@@ -34,14 +36,14 @@
                 </fieldset>
             </partial>
 
-            @foreach (FiltersModal.Filter filter in Model.Filters)
+            @foreach (Filter filter in Model.Filters)
             {
-                <partial name="Accordion/AccordionItem" model="@(new Accordion.Item { Id = filter.Name, Title = CultureDictionary.GetTranslation($"{TranslationAliases.Products}.{filter.Name}") })">
+                <partial name="Accordion/AccordionItem" model="@(new Accordion.Item { Id = filter.Name, Title = CultureDictionary.GetTranslation($"{filter.FilterNamePrefix}.{filter.Name}") })">
                     <fieldset class="filters__accordion-options @(filter.Options.Count > 4 ? "filters__accordion-options--hidden" : null)">
                         @(await Component.InvokeAsync(filter.Type, new
                         {
                             filter.Name,
-                            filter.Options,
+                            Options = filter.Options.OfType<Checkbox.CheckboxOption>(),
                             Classes = "filters__accordion-options-item",
                          }))
                     </fieldset>
@@ -77,7 +79,7 @@
                                       Class = "filters__sticky-button",
                                       Element = "button",
                                       Hook = "filters-sticky-button js-hook-filters-reset-button",
-                                      Attributes = new Dictionary<string, string?> { ["data-url-replacement"] = Model.OverviewPageUrl, ["data-endpoint"] = Model.OverviewPageUrl, },
+                                      Attributes = new Dictionary<string, string?> { ["data-url-replacement"] = Model.ResultsOverviewPageUrl },
                                   })" />
     </div>
 </partial>

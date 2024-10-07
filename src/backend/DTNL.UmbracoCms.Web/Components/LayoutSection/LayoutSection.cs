@@ -4,6 +4,8 @@ public class LayoutSection
 {
     public string? Id { get; set; }
 
+    public string? ListLabel { get; set; }
+
     public string? NavigationTitle { get; set; }
 
     public string? CssThemeClasses { get; set; }

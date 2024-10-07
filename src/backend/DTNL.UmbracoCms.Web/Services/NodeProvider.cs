@@ -1,4 +1,5 @@
 using DTNL.UmbracoCms.Web.Infrastructure.DependencyInjection;
+using Umbraco.Cms.Core;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Core.Web;
 using Umbraco.Cms.Web.Common.PublishedModels;
@@ -11,6 +12,7 @@ public class NodeProvider
     private readonly IUmbracoContextAccessor _umbracoContextAccessor;
 
     private PageHome? _homePage;
+    private PageVacancyOverview? _vcancyOverviewPage;
     private SiteSettings? _siteSettings;
     private IPublishedContent? _currentNode;
 
@@ -26,6 +28,8 @@ public class NodeProvider
 
     public PageHome? HomePage => _homePage ??= GetHomepage(GetCurrentNode());
 
+    public PageVacancyOverview? VacancyOverviewPage => _vcancyOverviewPage ??= GetVacancyOverviewPage(HomePage);
+
     public SiteSettings? SiteSettings => _siteSettings ??= GetSiteSettings(HomePage);
 
     public IPublishedContent? CurrentNode => _currentNode ??= GetCurrentNode();
@@ -35,9 +39,15 @@ public class NodeProvider
         return overviewPage.Children<PageProduct>() ?? [];
     }
 
+    public static IEnumerable<PageVacancy> GetVacancyPages(PageVacancyOverview overviewPage)
+    {
+        return overviewPage.Children<PageVacancy>() ?? [];
+    }
+
     internal void Reset()
     {
         _homePage = null;
+        _vcancyOverviewPage = null;
         _siteSettings = null;
         _currentNode = null;
     }
@@ -45,6 +55,12 @@ public class NodeProvider
     private static PageHome? GetHomepage(IPublishedContent? content)
     {
         return content?.AncestorOrSelf<PageHome>();
+    }
+
+
+    private static PageVacancyOverview? GetVacancyOverviewPage(PageHome? homePage)
+    {
+        return homePage?.FirstChild<PageVacancyOverview>();
     }
 
     private static SiteSettings? GetSiteSettings(PageHome? homePage)
@@ -55,5 +71,10 @@ public class NodeProvider
     public IPublishedContent? GetCurrentNode()
     {
         return _umbracoContextAccessor.GetRequiredUmbracoContext().PublishedRequest?.PublishedContent;
+    }
+
+    public IPublishedContent? GetById(Udi id)
+    {
+        return _umbracoContextAccessor.GetRequiredUmbracoContext().Content?.GetById(id);
     }
 }

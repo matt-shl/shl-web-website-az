@@ -2,6 +2,7 @@ using System.Globalization;
 using DTNL.UmbracoCms.Web.Helpers.Extensions;
 using DTNL.UmbracoCms.Web.Infrastructure.ApiClients.Ats.Models;
 using DTNL.UmbracoCms.Web.Infrastructure.DependencyInjection;
+using Nager.Country.Translation;
 using Umbraco.Cms.Core.Models;
 using Umbraco.Cms.Core.Services;
 using Umbraco.Cms.Web.Common.PublishedModels;
@@ -53,7 +54,7 @@ public class VacanciesContentHelper
         pageVacancyContent.SetValue<PageVacancy>(x => x.City, vacancy.City, culture);
         pageVacancyContent.SetValue<PageVacancy>(x => x.State, vacancy.State, culture);
         pageVacancyContent.SetValue<PageVacancy>(x => x.PostalCode, vacancy.PostalCode, culture);
-        pageVacancyContent.SetValue<PageVacancy>(x => x.Country, vacancy.Country, culture);
+        pageVacancyContent.SetValue<PageVacancy>(x => x.Country, GetCountryName(vacancy.Country, culture), culture);
 
         SetHeroContent(pageVacancyContent, vacancy, culture);
     }
@@ -84,5 +85,19 @@ public class VacanciesContentHelper
         }
 
         return null;
+    }
+
+    public static string? GetCountryName(string? countryCode, string culture)
+    {
+        if (countryCode.IsNullOrWhiteSpace())
+        {
+            return null;
+        }
+
+        TranslationProvider translationProvider = new();
+
+        string? countryName = translationProvider.GetCountryTranslatedName(countryCode, culture.Split("-").First());
+
+        return countryName ?? countryCode;
     }
 }

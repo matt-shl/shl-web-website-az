@@ -3,13 +3,13 @@
 
 <section class="c-layout-section @(!string.IsNullOrEmpty(Model.Variant) ? "c-layout-section--" + Model.Variant : null) @Model.CssClasses @Model.CssThemeClasses"
 @(!string.IsNullOrEmpty(Model.ReduceMargin) ? "c-layout-section--reduce-margin-" + Model.ReduceMargin : null)
-@(!string.IsNullOrEmpty(Model.NavigationTitle) ? $"data-title={Model.NavigationTitle}" : null) 
-@(!string.IsNullOrEmpty(Model.Id) ? $"id={Model.Id}" : null) 
-@(string.IsNullOrEmpty(Model.JsHook) ? "" : "js-hook-" + Model.JsHook) 
-js-hook-section 
-js-hook-inview 
-data-inview-threshold="0.5" 
-data-inview-persistent="true" 
+@(!string.IsNullOrEmpty(Model.NavigationTitle) ? $"data-title={Model.NavigationTitle}" : null)
+@(!string.IsNullOrEmpty(Model.Id) ? $"id={Model.Id}" : null)
+@(string.IsNullOrEmpty(Model.JsHook) ? "" : "js-hook-" + Model.JsHook)
+js-hook-section
+js-hook-inview
+data-inview-threshold="0.5"
+data-inview-persistent="true"
 data-inview-trigger="anchor-list::update"
 >
 
@@ -17,16 +17,34 @@ data-inview-trigger="anchor-list::update"
         @if (!Model.FullWidth)
         {
             <div class="layout-section__container @Model.CssContainerClasses">
-                <div class="layout-section__wrapper">
-                    @this.RenderPartialBody()
-                </div>
+                @if (!Model.ListLabel.IsNullOrWhiteSpace())
+                {
+                    <ul class="layout-section__wrapper layout-section__wrapper--list" aria-label="@Model.ListLabel">
+                        @this.RenderPartialBody()
+                    </ul>
+                }
+                else
+                {
+                    <div class="layout-section__wrapper">
+                        @this.RenderPartialBody()
+                    </div>
+                }
             </div>
         }
         else
         {
-            <div class="layout-section__wrapper">
-                @this.RenderPartialBody()
-            </div>
+            if (!Model.ListLabel.IsNullOrWhiteSpace())
+            {
+                <ul class="layout-section__wrapper layout-section__wrapper--list" aria-label="@Model.ListLabel">
+                    @this.RenderPartialBody()
+                </ul>
+            }
+            else
+            {
+                <div class="layout-section__wrapper">
+                    @this.RenderPartialBody()
+                </div>
+            }
         }
     </div>
 </section>

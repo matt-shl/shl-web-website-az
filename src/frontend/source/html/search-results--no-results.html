@@ -15,8 +15,10 @@
 
 {% block hero %}
   {{ heroContent(plpData.hero | clone | merge({
-    searchType: 'generic',
-    searchTerm: 'aldjsfasfdklj'
+    search: {
+      searchType: 'generic',
+      searchTerm: 'aldjsfasfdklj'
+    }
   })) }}
 {% endblock %}
 
