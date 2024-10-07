@@ -12,7 +12,8 @@ public class NodeProvider
     private readonly IUmbracoContextAccessor _umbracoContextAccessor;
 
     private PageHome? _homePage;
-    private PageVacancyOverview? _vcancyOverviewPage;
+    private PageVacancyOverview? _vacancyOverviewPage;
+    private PageSearch? _searchPage;
     private SiteSettings? _siteSettings;
     private IPublishedContent? _currentNode;
 
@@ -28,7 +29,9 @@ public class NodeProvider
 
     public PageHome? HomePage => _homePage ??= GetHomepage(GetCurrentNode());
 
-    public PageVacancyOverview? VacancyOverviewPage => _vcancyOverviewPage ??= GetVacancyOverviewPage(HomePage);
+    public PageVacancyOverview? VacancyOverviewPage => _vacancyOverviewPage ??= GetVacancyOverviewPage(HomePage);
+
+    public PageSearch? SearchPage => _searchPage ??= GetSearchPage(HomePage);
 
     public SiteSettings? SiteSettings => _siteSettings ??= GetSiteSettings(HomePage);
 
@@ -47,7 +50,8 @@ public class NodeProvider
     internal void Reset()
     {
         _homePage = null;
-        _vcancyOverviewPage = null;
+        _vacancyOverviewPage = null;
+        _searchPage = null;
         _siteSettings = null;
         _currentNode = null;
     }
@@ -61,6 +65,11 @@ public class NodeProvider
     private static PageVacancyOverview? GetVacancyOverviewPage(PageHome? homePage)
     {
         return homePage?.FirstChild<PageVacancyOverview>();
+    }
+
+    private static PageSearch? GetSearchPage(PageHome? homePage)
+    {
+        return homePage?.FirstChild<PageSearch>();
     }
 
     private static SiteSettings? GetSiteSettings(PageHome? homePage)

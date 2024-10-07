@@ -26,25 +26,24 @@ public class Search : ViewComponentExtended
 
     public IViewComponentResult Invoke()
     {
-        if (NodeProvider.CurrentNode is not { } currentNode)
+        if (GetSearchResultsPage(out bool isVacancySearch) is not { } searchResultsPage)
         {
             return Content("");
         }
 
-        Variant = currentNode is PageVacancyOverview or PageCareerOverview ? "job" : "in-hero";
+        Variant = isVacancySearch ? "job" : "in-hero";
 
-        ActionUrl = currentNode.Url();
+        ActionUrl = searchResultsPage.Url();
 
         SearchQuery = Request.Query.GetSearchQuery();
 
-        if (currentNode is PageVacancyOverview or PageCareerOverview &&
-            NodeProvider.VacancyOverviewPage is { } vacancyOverviewPage)
+        if (isVacancySearch)
         {
             SearchLabel = CultureDictionary.GetTranslation(TranslationAliases.Vacancies.SearchLabel);
 
             SearchPlaceholder = CultureDictionary.GetTranslation(TranslationAliases.Vacancies.SearchPlaceholder);
 
-            SetVacancyFilters(vacancyOverviewPage);
+            SetVacancyFilters(NodeProvider.VacancyOverviewPage!);
         }
         else
         {
@@ -54,6 +53,23 @@ public class Search : ViewComponentExtended
         }
 
         return View("Search", this);
+    }
+
+    private ICompositionBasePage? GetSearchResultsPage(out bool isVacancySearch)
+    {
+        isVacancySearch = NodeProvider.CurrentNode is PageVacancyOverview or PageCareerOverview;
+
+        if (NodeProvider.CurrentNode is null)
+        {
+            return null;
+        }
+
+        if (isVacancySearch)
+        {
+            return NodeProvider.VacancyOverviewPage;
+        }
+
+        return NodeProvider.SearchPage;
     }
 
     private void SetVacancyFilters(PageVacancyOverview vacancyOverviewPage)
