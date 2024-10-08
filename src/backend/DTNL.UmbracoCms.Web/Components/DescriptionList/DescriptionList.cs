@@ -47,19 +47,37 @@ public partial class DescriptionList
 
     public static DescriptionList? Create(
         NestedBlockProductSpecifications? productSpecificationsBlock,
-        PageProduct? productPage = null)
+        PageProduct? productPage)
     {
-        if (productSpecificationsBlock is null)
+        if (productSpecificationsBlock is null || productPage is null)
         {
             return null;
         }
 
-        List<DescriptionListItem> items =
-            DescriptionListItem.CreateFor(productPage)
+        List<DescriptionListItem> items = new List<DescriptionListItem>();
+        string title = "";
+
+        if (productSpecificationsBlock is not null)
+        {
+            items = DescriptionListItem.CreateFor(productPage)
             .Concat(productSpecificationsBlock.Specifications
                 .Using(s => s.Content as NestedBlockProductSpecification)
                 .Using(DescriptionListItem.Create))
             .ToList();
+            title = productSpecificationsBlock.Title!;
+        }
+        else
+        {
+            NestedBlockProductSpecifications? productSpecifications =
+            productPage.Specifications.GetSingleContentOrNull<NestedBlockProductSpecifications>();
+
+            items = DescriptionListItem.CreateFor(productPage)
+                .Concat(productSpecifications is not null ? productSpecifications.Specifications
+                    .Using(s => s.Content as NestedBlockProductSpecification)
+                    .Using(DescriptionListItem.Create) : [])
+                .ToList();
+            title = productSpecifications?.Title ?? "";
+        }
 
         if (items.Count == 0)
         {
@@ -68,7 +86,7 @@ public partial class DescriptionList
 
         return new DescriptionList
         {
-            Title = productSpecificationsBlock.Title,
+            Title = title,
             Items = items,
             DownloadLinkButton = Button.Create(Link.Create(productPage?.SpecificationsFile))
                 .With(b =>
