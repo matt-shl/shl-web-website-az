@@ -1,6 +1,10 @@
 @model DTNL.UmbracoCms.Web.Components.EventDetails
 
-<partial name="Media" model="@Model.Media" />
+<partial name="LayoutSection"
+         model="@(new Components.LayoutSection { CssClasses = "c-layout-section--no-padding c-media-section-container t-white"})">
+    <partial name="Media" model="@Model.Media" />
+</partial>
+
 
 <div class="c-event-detail t-light-grey" js-hook-event-detail>
     <div class="event-detail__container">
