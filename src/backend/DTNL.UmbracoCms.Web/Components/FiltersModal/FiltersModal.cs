@@ -19,7 +19,7 @@ public class FiltersModal
 
     public required List<Filter> Filters { get; set; }
 
-    public required Sort Sorter { get; set; }
+    public Sort? Sorter { get; set; }
 
     public static FiltersModal Create(
         ProductFilters productFilters,
@@ -65,6 +65,25 @@ public class FiltersModal
             ResultsOverviewPageUrl = vacancyFilters.OverviewUrl,
             Filters = filters,
             Sorter = sort,
+        };
+    }
+
+    public static FiltersModal Create(
+        GeneralFilters generalFilters,
+        List<ICompositionBasePage> pages)
+    {
+        List<Filter> filters = [];
+
+        foreach (string filterName in generalFilters.Keys)
+        {
+            filters.Add(Filter.CreateCheckboxOptions(filterName, TranslationAliases.Search, generalFilters));
+        }
+
+        return new FiltersModal
+        {
+            ResultsCount = pages.Count,
+            ResultsOverviewPageUrl = generalFilters.OverviewUrl,
+            Filters = filters,
         };
     }
 

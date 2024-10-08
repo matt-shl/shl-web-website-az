@@ -54,7 +54,7 @@ public static class HangfireConfigurationExtensions
 
         services.AddHangfireServer();
 
-        services.AddAuthorization(opt =>
+        _ = services.AddAuthorization(opt =>
         {
             opt.AddPolicy(BackgroundJobsConstants.PolicyName, policy =>
             {
@@ -64,6 +64,7 @@ public static class HangfireConfigurationExtensions
             });
         });
     }
+
     public static void ConfigureHangfireDashboard(this IUmbracoEndpointBuilderContext configureUmbraco)
     {
         _ = configureUmbraco.EndpointRouteBuilder.MapHangfireDashboard(
@@ -82,7 +83,7 @@ public static class HangfireConfigurationExtensions
                         return user?.IsAdmin() != true && user?.Groups.Any(g => g.Alias == "admin") != true;
                     },
                     AppPath = null,
-                    Authorization = new List<IDashboardAuthorizationFilter>(),
+                    Authorization = [],
                 })
             .RequireAuthorization(BackgroundJobsConstants.PolicyName);
     }

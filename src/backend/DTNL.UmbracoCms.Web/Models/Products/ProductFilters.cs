@@ -16,6 +16,8 @@ public class ProductFilters : BaseFilters
         (nameof(PageProduct.ConnectivityType), p => p.ConnectivityType),
     ];
 
-    public ProductFilters(IPublishedContent overviewPage, IQueryCollection queryCollection) : base(overviewPage, queryCollection)
-    { }
+    public ProductFilters(IPublishedContent overviewPage, IQueryCollection queryCollection)
+        : base(overviewPage, queryCollection)
+    {
+    }
 }

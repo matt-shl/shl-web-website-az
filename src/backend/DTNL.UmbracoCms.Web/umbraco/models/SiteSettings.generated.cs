@@ -202,7 +202,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual string CompanyName => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionStructuredData.GetCompanyName(this, _publishedValueFallback);
 
 		///<summary>
-		/// Categories: Define allowed categories.
+		/// Categories: Define allowed page categories.
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
@@ -250,7 +250,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual global::System.Collections.Generic.IEnumerable<string> RoutesOfAdministration => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionTagSettings.GetRoutesOfAdministration(this, _publishedValueFallback);
 
 		///<summary>
-		/// Types
+		/// Types: Define allowed page types.
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]

@@ -12,7 +12,6 @@ public partial class DescriptionList
 
     public Button? DownloadLinkButton { get; set; }
 
-
     public static DescriptionList? Create(PageProduct productPage)
     {
         return Create(

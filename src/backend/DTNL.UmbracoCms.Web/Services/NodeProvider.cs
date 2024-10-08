@@ -61,7 +61,6 @@ public class NodeProvider
         return content?.AncestorOrSelf<PageHome>();
     }
 
-
     private static PageVacancyOverview? GetVacancyOverviewPage(PageHome? homePage)
     {
         return homePage?.FirstChild<PageVacancyOverview>();

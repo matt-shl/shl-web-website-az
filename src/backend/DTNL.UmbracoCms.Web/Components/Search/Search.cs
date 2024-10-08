@@ -47,9 +47,9 @@ public class Search : ViewComponentExtended
         }
         else
         {
-            SearchLabel = CultureDictionary.GetTranslation(TranslationAliases.Common.Search.SearchLabel);
+            SearchLabel = CultureDictionary.GetTranslation(TranslationAliases.Search.SearchLabel);
 
-            SearchPlaceholder = CultureDictionary.GetTranslation(TranslationAliases.Common.Search.SearchPlaceholder);
+            SearchPlaceholder = CultureDictionary.GetTranslation(TranslationAliases.Search.SearchPlaceholder);
         }
 
         return View("Search", this);

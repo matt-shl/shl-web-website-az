@@ -17,5 +17,6 @@ public class VacancyFilters : BaseFilters
 
     public VacancyFilters(PageVacancyOverview overviewPage, IQueryCollection queryCollection)
         : base(overviewPage, queryCollection)
-    { }
+    {
+    }
 }

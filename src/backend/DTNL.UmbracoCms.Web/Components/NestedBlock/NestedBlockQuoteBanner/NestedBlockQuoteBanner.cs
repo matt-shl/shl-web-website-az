@@ -13,7 +13,7 @@ public class NestedBlockQuoteBanner : NestedBlockWithInner
 
         if (LayoutSection.CssThemeClasses is not null)
         {
-            LayoutSection.Variant = !string.Equals(LayoutSection.CssThemeClasses, "t-white") ? "in-grid" : null;
+            LayoutSection.Variant = LayoutSection.CssThemeClasses is "t-white" ? "in-grid" : null;
         }
 
         return BannerQuote.Create(quoteBannerBlock);
