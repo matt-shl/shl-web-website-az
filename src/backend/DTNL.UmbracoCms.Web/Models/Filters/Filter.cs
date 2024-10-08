@@ -44,7 +44,11 @@ public class Filter
                         hook: "js-hook-filters-input",
                         attr: new Dictionary<string, string?>
                         {
-                            ["data-url-replacement"] = filters
+                            ["data-url-replacement"] = filters.CurrentUrl.Contains(filterName)
+                            ? filters
+                                .CurrentUrl
+                                .RemoveQueryParam(filterName)
+                            : filters
                                 .CurrentUrl
                                 .AppendQueryParam(filterName, filterOption.Label),
                         },
