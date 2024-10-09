@@ -17,15 +17,15 @@ namespace DTNL.UmbracoCms.Web.Modules.BackgroundJobs.Hangfire.Filters;
 public class SkipWhenPreviousJobIsRunningAttribute : JobFilterAttribute, IClientFilter, IApplyStateFilter, IElectStateFilter
 {
     /// <inheritdoc />
-    public void OnCreating(CreatingContext filterContext)
+    public void OnCreating(CreatingContext context)
     {
-        if (filterContext.Connection is not JobStorageConnection connection)
+        if (context.Connection is not JobStorageConnection connection)
         {
             return;
         }
 
         // We should run this filter only for background jobs based on recurring ones
-        if (!filterContext.Parameters.TryGetValue("RecurringJobId", out object? value) || value is not string { Length: > 0 } recurringJobId)
+        if (!context.Parameters.TryGetValue("RecurringJobId", out object? value) || value is not string { Length: > 0 } recurringJobId)
         {
             return;
         }
@@ -37,17 +37,17 @@ public class SkipWhenPreviousJobIsRunningAttribute : JobFilterAttribute, IClient
         }
 
         // The last server that was processing the job is no longer active
-        if (lastServerId != EnqueuedState.StateName && filterContext.Storage.GetMonitoringApi().Servers().All(s => s.Name != lastServerId))
+        if (lastServerId != EnqueuedState.StateName && context.Storage.GetMonitoringApi().Servers().All(s => s.Name != lastServerId))
         {
             return;
         }
 
         // The job must already be running
-        filterContext.Canceled = true;
+        context.Canceled = true;
     }
 
     /// <inheritdoc />
-    public void OnCreated(CreatedContext filterContext)
+    public void OnCreated(CreatedContext context)
     {
         // Nothing to do here.
     }
@@ -66,18 +66,18 @@ public class SkipWhenPreviousJobIsRunningAttribute : JobFilterAttribute, IClient
             case EnqueuedState:
                 transaction.SetRangeInHash(
                     $"recurring-job:{recurringJobId}",
-                    new[] { new KeyValuePair<string, string>("LastServerId", EnqueuedState.StateName) });
+                    [new KeyValuePair<string, string>("LastServerId", EnqueuedState.StateName)]);
                 break;
             case ProcessingState processingState:
                 transaction.SetRangeInHash(
                     $"recurring-job:{recurringJobId}",
-                    new[] { new KeyValuePair<string, string>("LastServerId", processingState.ServerId) });
+                    [new KeyValuePair<string, string>("LastServerId", processingState.ServerId)]);
                 break;
             case FailedState:
             case not null when context.NewState.IsFinal:
                 transaction.SetRangeInHash(
                     $"recurring-job:{recurringJobId}",
-                    new[] { new KeyValuePair<string, string>("LastServerId", "") });
+                    [new KeyValuePair<string, string>("LastServerId", "")]);
                 break;
             default:
                 break;

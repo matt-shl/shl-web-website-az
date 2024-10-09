@@ -15,7 +15,7 @@
             @foreach (DescriptionList.DescriptionListItem descriptionListItem in Model.Items)
             {
                 <div class="description-list__item">
-                    <dt class="description-list__term">@CultureDictionary.GetTranslation($"{TranslationAliases.Products}.{descriptionListItem.Title}").FallBack(descriptionListItem.Title)</dt>
+                    <dt class="description-list__term">@CultureDictionary.GetTranslationOrDefault($"{TranslationAliases.Products}.{descriptionListItem.Title}", descriptionListItem.Title)</dt>
                     <dd class="description-list__details">@descriptionListItem.Text</dd>
                 </div>
             }

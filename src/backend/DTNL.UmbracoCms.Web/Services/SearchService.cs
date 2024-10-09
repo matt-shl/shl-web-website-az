@@ -1,19 +1,21 @@
 using System.Globalization;
 using DTNL.UmbracoCms.Web.Infrastructure.DependencyInjection;
+using DTNL.UmbracoCms.Web.Models.Filters;
 using Examine;
 using Examine.Search;
 using Umbraco.Cms.Core;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Core.Web;
 using Umbraco.Cms.Infrastructure.Examine;
+using Umbraco.Cms.Web.Common.PublishedModels;
 
 namespace DTNL.UmbracoCms.Web.Services;
 
 public interface ISearchService
 {
     IEnumerable<PublishedSearchResult> Search(
-        string searchQuery,
-        IEnumerable<int>? ids,
+        string? searchQuery,
+        SearchFilters? filters,
         int page,
         int pageSize,
         out long totalRecords);
@@ -34,8 +36,19 @@ public class SearchService : ISearchService
         _umbracoContextAccessor = umbracoContextAccessor;
     }
 
-    public IEnumerable<PublishedSearchResult> Search(string searchQuery, IEnumerable<int>? ids, int page, int pageSize, out long totalRecords)
+    public IEnumerable<PublishedSearchResult> Search(
+        string? searchQuery,
+        SearchFilters? filters,
+        int page,
+        int pageSize,
+        out long totalRecords)
     {
+        if (searchQuery.IsNullOrWhiteSpace() || searchQuery.Length < 3)
+        {
+            totalRecords = 0;
+            return [];
+        }
+
         int skip = (page - 1) * pageSize;
         string culture = CultureInfo.CurrentCulture.Name;
         const string indexName = Constants.UmbracoIndexes.ExternalIndexName;
@@ -53,11 +66,18 @@ public class SearchService : ISearchService
         string[] fields = umbIndex.GetCultureAndInvariantFields(culture).ToArray();
         IBooleanOperation? queryBuilder = query.ManagedQuery(searchQuery, fields);
 
-        if (ids is not null)
+        if (filters?.Ids is not null)
         {
             queryBuilder = queryBuilder
                 .And()
-                .GroupedOr([ExamineFieldNames.ItemIdFieldName], ids.Select(id => $"{id}").ToArray());
+                .GroupedOr([ExamineFieldNames.ItemIdFieldName], filters.Ids.Select(id => $"{id}").ToArray());
+        }
+
+        if (filters?.PageTypes is not null)
+        {
+            queryBuilder = queryBuilder
+                .And()
+                .GroupedOr([$"{nameof(ICompositionContentDetails.Type)}_{culture}".ToLowerInvariant()], filters.PageTypes.ToArray());
         }
 
         // Filter selected fields because results are loaded from the published snapshot based on these
