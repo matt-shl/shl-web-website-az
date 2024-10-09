@@ -7,7 +7,7 @@ namespace DTNL.UmbracoCms.Web.Helpers;
 public static class BlockListCreatorService
 {
     /// <summary>
-    /// Creates the Block List JSON from the passed in collection of items. Each item needs to have the <see cref="JsonPropertyAttribute"/> that corresponds to the property alias of the element doc type it is based on
+    /// Creates the Block List JSON from the passed in collection of items. Each item needs to have the <see cref="JsonPropertyAttribute"/> that corresponds to the property alias of the element doc type it is based on.
     /// </summary>
     /// <typeparam name="T">The type of your item.</typeparam>
     /// <param name="items">The collection of items to create.</param>
@@ -91,7 +91,7 @@ public static class BlockListCreatorService
             {
                 if (prop.PropertyType.IsArray)
                 {
-                    List<object> propValueList = new();
+                    List<object> propValueList = [];
 
                     if (prop.GetValue(item) is Array propValueArray)
                     {
@@ -99,7 +99,7 @@ public static class BlockListCreatorService
                         {
                             if (value != null)
                             {
-                                string arrayItemJson = GetNestedBlockListJsonFor(new[] { value }, contentTypeKey, settingsData);
+                                string arrayItemJson = GetNestedBlockListJsonFor([value], contentTypeKey, settingsData);
                                 propValueList.Add(arrayItemJson);
                             }
                         }
@@ -133,7 +133,7 @@ public static class BlockListCreatorService
         {
             Layout = new BlockListUdi(dictionaryUdi),
             ContentData = contentList,
-            SettingsData = settingsData ?? new List<Dictionary<string, string>>(),
+            SettingsData = settingsData ?? [],
         };
 
         return JsonConvert.SerializeObject(blockListNew);

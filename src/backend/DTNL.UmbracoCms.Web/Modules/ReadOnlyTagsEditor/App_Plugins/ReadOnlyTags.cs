@@ -9,6 +9,8 @@ using Umbraco.Cms.Infrastructure.WebAssets;
 
 namespace DTNL.UmbracoCms.Web.Modules.ReadOnlyTagsEditor.App_Plugins;
 
+#pragma warning disable SA1402 // Suppress warning File may only contain a single type
+
 [TagsPropertyEditor]
 [DataEditor(EditorAlias, EditorType.PropertyValue, "Tags - Read Only", Folder + "ReadOnlyTagsEditor.html", Icon = "icon-tags", ValueType = ValueTypes.Json)]
 [PropertyEditorAsset(AssetType.Javascript, Folder + "ReadOnlyTagsEditor.controller.js")]

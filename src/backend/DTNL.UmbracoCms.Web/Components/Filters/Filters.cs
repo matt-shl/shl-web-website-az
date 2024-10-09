@@ -1,4 +1,5 @@
 using DTNL.UmbracoCms.Web.Helpers.Aliases;
+using DTNL.UmbracoCms.Web.Models.Filters;
 using DTNL.UmbracoCms.Web.Models.Products;
 using DTNL.UmbracoCms.Web.Models.Vacancies;
 using Umbraco.Cms.Core.Dictionary;
@@ -37,6 +38,18 @@ public class Filters
             ResultsCount = vacancyPages.Count,
             FilterNamePrefix = TranslationAliases.Vacancies,
             FiltersModal = FiltersModal.Create(vacancyFilters, vacancyPages, cultureDictionary),
+        };
+    }
+
+    public static Filters Create(
+        GeneralFilters generalFilters,
+        List<ICompositionBasePage> pages)
+    {
+        return new Filters
+        {
+            ResultsCount = pages.Count,
+            FilterNamePrefix = TranslationAliases.Search,
+            FiltersModal = FiltersModal.Create(generalFilters, pages),
         };
     }
 }

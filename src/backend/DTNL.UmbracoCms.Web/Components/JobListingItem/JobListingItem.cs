@@ -3,7 +3,7 @@ using Umbraco.Cms.Web.Common.PublishedModels;
 
 namespace DTNL.UmbracoCms.Web.Components;
 
-public class JobListingItem
+public class JobListingItem : IOverviewItem
 {
     public required string Url { get; set; }
 

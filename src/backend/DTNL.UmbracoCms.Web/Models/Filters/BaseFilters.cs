@@ -7,15 +7,15 @@ namespace DTNL.UmbracoCms.Web.Models.Filters;
 
 public abstract class BaseFilters : Dictionary<string, FilterOption[]>
 {
-    public string CurrentUrl { get; init; }
-
-    public string OverviewUrl { get; init; }
-
     protected BaseFilters(IPublishedContent overviewPage, IQueryCollection queryCollection)
     {
         CurrentUrl = overviewPage.Url(mode: UrlMode.Absolute).SetQueryParams(queryCollection);
         OverviewUrl = overviewPage.Url(mode: UrlMode.Absolute);
     }
+
+    public string CurrentUrl { get; private init; }
+
+    public string OverviewUrl { get; private init; }
 
     public void AddFilterOptions<TPage>(
         (string Name, Func<TPage, IEnumerable<string>?> GetValues)[] filterFields,
@@ -34,12 +34,20 @@ public abstract class BaseFilters : Dictionary<string, FilterOption[]>
         List<TPage> pages,
         HttpContext httpContext)
     {
+        AddFilterOptions(fieldName, pages.SelectMany(p => getValues(p).OrEmptyIfNull()), httpContext);
+    }
+
+    public void AddFilterOptions(
+        string fieldName,
+        IEnumerable<string>? values,
+        HttpContext httpContext)
+    {
         FilterOption[] selectedFilterOptions = httpContext.GetFilterOptions(fieldName);
 
-        FilterOption[] allFilterOptions = pages
-            .SelectMany(p => getValues(p).OrEmptyIfNull())
+        FilterOption[] allFilterOptions = values
+            .OrEmptyIfNull()
+            .NotNullOrWhiteSpace()
             .Distinct()
-            .EnsureNotNull()
             .Select(FilterOption.Create)
             .ToArray();
 
@@ -48,6 +56,6 @@ public abstract class BaseFilters : Dictionary<string, FilterOption[]>
             option.IsSelected = selectedFilterOptions.Any(o => o.Value == option.Value);
         }
 
-        Add(fieldName, allFilterOptions);
+        TryAdd(fieldName, allFilterOptions);
     }
 }
