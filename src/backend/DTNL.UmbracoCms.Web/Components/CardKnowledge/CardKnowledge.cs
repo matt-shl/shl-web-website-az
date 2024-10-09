@@ -3,7 +3,7 @@ using Umbraco.Cms.Web.Common.PublishedModels;
 
 namespace DTNL.UmbracoCms.Web.Components;
 
-public class CardKnowledge : ICard
+public class CardKnowledge : ICard, IOverviewItem
 {
     public required string Title { get; set; }
 
@@ -39,21 +39,15 @@ public class CardKnowledge : ICard
         };
     }
 
-    public static CardKnowledge? CreateOverview(ICompositionCardDetails content, string? cssClasses = null)
+    public static CardKnowledge Create(ICompositionBasePage page)
     {
-        if (content is not ICompositionBasePage page)
-        {
-            return null;
-        }
-
         return new CardKnowledge
         {
             Title = page.GetTitle(),
-            Tag = content?.CardCategory?.FirstOrDefault(),
+            Tag = (page as ICompositionCardDetails)?.CardCategory?.FirstOrDefault(),
             Text = page.GetCardDescription(),
             Image = Image.Create(page.GetCardImage(), cssClasses: "card-knowledge__image", style: "card-knowledge"),
             Url = page.Url(),
-            CssClasses = cssClasses,
         };
     }
 }

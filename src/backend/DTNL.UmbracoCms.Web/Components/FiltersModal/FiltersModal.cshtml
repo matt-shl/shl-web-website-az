@@ -24,17 +24,20 @@
                  model="@(new Accordion { Classes = "filters__accordion" })">
 
             <span></span>
-
-            <partial name="Accordion/AccordionItem" model="@(new Accordion.Item { Id = Model.Sorter.Name, Title = CultureDictionary.GetTranslation(TranslationAliases.Common.Filters.Sort) })">
-                <fieldset class="filters__accordion-options">
-                    @(await Component.InvokeAsync("Radio", new
-                    {
-                        Model.Sorter.Name,
-                        Model.Sorter.Options,
-                        Classes = "filters__accordion-options-item",
-                    }))
-                </fieldset>
-            </partial>
+            
+            @if (Model.Sorter is not null)
+            {
+                <partial name="Accordion/AccordionItem" model="@(new Accordion.Item { Id = Model.Sorter.Name, Title = CultureDictionary.GetTranslation(TranslationAliases.Common.Filters.Sort) })">
+                    <fieldset class="filters__accordion-options">
+                        @(await Component.InvokeAsync("Radio", new
+                        {
+                            Model.Sorter.Name,
+                            Model.Sorter.Options,
+                            Classes = "filters__accordion-options-item",
+                        }))
+                    </fieldset>
+                </partial>
+            }
 
             @foreach (Filter filter in Model.Filters)
             {

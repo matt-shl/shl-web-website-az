@@ -4,93 +4,41 @@ using DTNL.UmbracoCms.Web.Helpers.Extensions;
 using DTNL.UmbracoCms.Web.Models.Filters;
 using DTNL.UmbracoCms.Web.Models.Vacancies;
 using DTNL.UmbracoCms.Web.Services;
-using Microsoft.AspNetCore.Mvc;
-using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Web.Common.PublishedModels;
 
 namespace DTNL.UmbracoCms.Web.Components;
 
-public class OverviewVacancies : ViewComponentExtended
+public class OverviewVacancies : OverviewFor<PageVacancyOverview, PageVacancy, VacancyFilters, JobListingItem>
 {
-    public const int PageSize = 6;
-
-    private readonly ISearchService _searchService;
-
     public OverviewVacancies(ISearchService searchService)
+        : base(searchService)
     {
-        _searchService = searchService;
     }
 
-    public int TotalCount { get; set; }
-
-    public EmptySection? NoResultsSection { get; set; }
-
-    public required Filters Filters { get; set; }
-
-    public required List<JobListingItem> Results { get; set; }
-
-    public Pagination? Pagination { get; set; }
-
-    public LayoutSection LayoutSection { get; set; } = new()
+    public override LayoutSection LayoutSection => new()
     {
         CssClasses = "t-white",
         Variant = "grid-single-column",
         ReduceMargin = "top-bottom",
         Id = "content",
+        ListLabel = CultureDictionary.GetTranslation(TranslationAliases.Vacancies),
     };
 
-    public IViewComponentResult Invoke(PageVacancyOverview vacancyOverviewPage)
+    protected override PageVacancyOverview OverviewPage => NodeProvider.VacancyOverviewPage!;
+
+    protected override List<PageVacancy> GetPages()
     {
-        LayoutSection.ListLabel = CultureDictionary.GetTranslation(TranslationAliases.Vacancies);
-
-        HttpContext.VaryByPageNumber();
-        HttpContext.VaryBySearchQuery();
-        int pageNumber = Request.Query.GetPageNumber();
-        string? searchQuery = Request.Query.GetSearchQuery();
-
-        List<PageVacancy> vacancyPages = vacancyOverviewPage
+        return OverviewPage
             .Children<PageVacancy>()
             .OrEmptyIfNull()
             .ToList();
-
-        VacancyFilters vacancyFilters = GetAndApplyFilters(vacancyOverviewPage, vacancyPages);
-
-        if (!searchQuery.IsNullOrWhiteSpace())
-        {
-            List<PublishedSearchResult> matchingResults = _searchService
-                .Search(searchQuery, vacancyPages.Select(p => p.Id), 1, int.MaxValue, out _)
-                .ToList();
-
-            vacancyPages.RemoveAll(p =>
-                matchingResults.All(r => r.Content.Id != p.Id));
-        }
-
-        Filters = Filters.Create(vacancyFilters, vacancyPages, CultureDictionary);
-
-        Results = vacancyPages
-            .Using(JobListingItem.Create)
-            .Page(pageNumber, PageSize)
-            .ToList();
-
-        TotalCount = vacancyPages.Count;
-
-        if (TotalCount == 0)
-        {
-            NoResultsSection = EmptySection.Create(vacancyOverviewPage);
-        }
-
-        Pagination = Pagination.Create(pageNumber, TotalCount, PageSize);
-
-        return View("OverviewVacancies", this);
     }
 
-    private VacancyFilters GetAndApplyFilters(
-        PageVacancyOverview vacancyOverviewPage,
-        List<PageVacancy> vacancyPages)
+    protected override VacancyFilters ApplyFilters(List<PageVacancy> pages)
     {
-        VacancyFilters vacancyFilters = new(vacancyOverviewPage, Request.Query);
+        VacancyFilters vacancyFilters = new(OverviewPage, Request.Query);
 
-        vacancyFilters.AddFilterOptions(VacancyFilters.FilterFields, vacancyPages, HttpContext);
+        vacancyFilters.AddFilterOptions(VacancyFilters.FilterFields, pages, HttpContext);
 
         foreach ((string name, Func<PageVacancy, IEnumerable<string>?> getValues)
                  in VacancyFilters.FilterFields)
@@ -101,14 +49,24 @@ public class OverviewVacancies : ViewComponentExtended
                 continue;
             }
 
-            vacancyPages.RemoveAll(page => !FilterOption.AnySelectedValueIn(filterOptions, getValues(page)));
+            pages.RemoveAll(page => !FilterOption.AnySelectedValueIn(filterOptions, getValues(page)));
         }
 
         string? sort = HttpContext.GetFilterOptions("Sort").FirstOrDefault()?.Label;
         bool hasSort = sort == CultureDictionary.GetTranslation(TranslationAliases.Common.Filters.SortOldestFirst);
 
-        vacancyPages.Sort((x, y) => hasSort ? DateTime.Compare(y.CreateDate, x.CreateDate) : DateTime.Compare(x.CreateDate, y.CreateDate));
+        pages.Sort((x, y) => hasSort ? DateTime.Compare(y.CreateDate, x.CreateDate) : DateTime.Compare(x.CreateDate, y.CreateDate));
 
         return vacancyFilters;
+    }
+
+    protected override Filters? GetFilters(VacancyFilters? filters, List<PageVacancy> pages)
+    {
+        return filters is null ? null : Filters.Create(filters, pages, CultureDictionary);
+    }
+
+    protected override IEnumerable<JobListingItem> GetOverviewItems(List<PageVacancy> pages)
+    {
+        return pages.Using(JobListingItem.Create);
     }
 }

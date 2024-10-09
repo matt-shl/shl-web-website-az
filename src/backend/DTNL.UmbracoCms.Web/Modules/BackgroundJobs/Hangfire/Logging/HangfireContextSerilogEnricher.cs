@@ -39,13 +39,13 @@ public class HangfireContextSerilogEnricher : ILogEventEnricher
 
         internal PerformingContext PerformingContext { get; }
 
-        private static IEnumerable<LogEventProperty> CreateProperties(PerformingContext performingContext)
+        private static List<LogEventProperty> CreateProperties(PerformingContext performingContext)
         {
-            List<LogEventProperty> properties = new()
-            {
+            List<LogEventProperty> properties =
+            [
                 new("Id", new ScalarValue(performingContext.BackgroundJob.Id)),
                 new("CreatedAt", new ScalarValue(performingContext.BackgroundJob.CreatedAt)),
-            };
+            ];
 
             if (performingContext.BackgroundJob.Job != null)
             {

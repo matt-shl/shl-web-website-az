@@ -1,7 +1,7 @@
 @using DTNL.UmbracoCms.Web.Helpers.Extensions
 @model DTNL.UmbracoCms.Web.Components.LayoutSection
 
-<section class="c-layout-section @(!string.IsNullOrEmpty(Model.Variant) ? "c-layout-section--" + Model.Variant : null) @Model.CssClasses @Model.CssThemeClasses"
+<section class="c-layout-section @(!string.IsNullOrEmpty(Model.Variant) ? "c-layout-section--" + Model.Variant : null) @Model.CssClasses @(Model.CssThemeClasses ?? "t-white")"
 @(!string.IsNullOrEmpty(Model.ReduceMargin) ? "c-layout-section--reduce-margin-" + Model.ReduceMargin : null)
 @(!string.IsNullOrEmpty(Model.NavigationTitle) ? $"data-title={Model.NavigationTitle}" : null)
 @(!string.IsNullOrEmpty(Model.Id) ? $"id={Model.Id}" : null)

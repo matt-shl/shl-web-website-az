@@ -1,20 +1,24 @@
 @using DTNL.UmbracoCms.Web.Components
-@model DTNL.UmbracoCms.Web.Components.OverviewVacancies
+
+@model Overview
 
 @if (Model.NoResultsSection is not null)
 {
     <partial name="EmptySection" model="@Model.NoResultsSection" />
 }
-else
+else if(Model.Items.Count > 0)
 {
-    <partial name="Filters" model="@Model.Filters" />
+    @if (Model.Filters is not null)
+    {
+        <partial name="Filters" model="@Model.Filters" />
+    }
 
     <div js-hook-replace-content="overview-content">
         <partial name="LayoutSection" model="@Model.LayoutSection">
 
-            @foreach (JobListingItem jobListingItem in Model.Results)
+            @foreach (IOverviewItem overviewItem in Model.Items)
             {
-                <partial name="JobListingItem" model="@jobListingItem" />
+                <partial name="@overviewItem.ViewPath" model="@overviewItem" />
             }
 
             <partial name="Pagination" model="@Model.Pagination" />
