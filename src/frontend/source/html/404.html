@@ -1,13 +1,14 @@
 {% extends 'layouts/default.html' %}
+{% set theme = "light-blue" %}
+{% set themeColor = "#007cbe" %}
 
 {% from 'empty-section.html' import emptySection %}
 {% from 'text-media.html' import textMedia %}
-{% from 'slogan.html' import slogan %}
+{% from 'hero-content.html' import heroContent %}
 
 {% block hero %}
-  {{ slogan({
-    text: global.content.error404.hero.title,
-    variant: "in-hero"
+  {{ heroContent({
+    title: global.content.error404.hero.title
   }) }}
 {% endblock %}
 
