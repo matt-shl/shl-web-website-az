@@ -1,14 +1,13 @@
-import {html} from '@utilities/dom-elements'
+import { html } from '@utilities/dom-elements'
 import RafThrottle from '@utilities/raf-throttle'
 import ReplaceContent from '@utilities/replace-content'
 import ScreenDimensions from '@utilities/screen-dimensions'
-import {AxiosResponse} from 'axios'
+import { AxiosResponse } from 'axios'
 
 import API from '@/utilities/api'
 import Events from '@/utilities/events'
 
 const JS_HOOK_ACCORDION_DETAIL = '[js-hook-accordion-detail]'
-const JS_HOOK_FILTERS_MODAL = '[js-hook-filters-modal]'
 const JS_HOOK_FILTERS_INPUT = '[js-hook-filters-input]'
 const JS_HOOK_FILTERS_STICKY_BUTTON = '[js-hook-filters-sticky-button]'
 const JS_HOOK_FILTERS_RESET_BUTTON = '[js-hook-filters-reset-button]'
@@ -17,6 +16,7 @@ const JS_HOOK_FILTERS_MODAL_CLOSE_BTN = '[js-hook-filters-button-modal-close]'
 const JS_HOOK_FILTERS_SHOW_MORE_OPTIONS = '[js-hook-filters-show-more-options]'
 const JS_HOOK_FORM = '[js-hook-form]'
 
+const KEYBOARD_FOCUSED_CLASS = 'has--keyboard-focus'
 const CLASS_MODAL_SCROLLING = 'is--modal-scrolling'
 const CLASS_IS_FILTERS_LIST_STICKY = 'is--filters-sticky'
 const CLASS_FILTERS_ACCORDION_OPTIONS_HIDDEN = 'filters__accordion-options--hidden'
@@ -74,14 +74,14 @@ class Filters {
     )
 
     this.closeModelButton?.addEventListener('click', () => {
-      const modalId = this.element.querySelector(JS_HOOK_FILTERS_MODAL)?.id
-      if (!modalId) return
-      Events.$trigger(`modal[${modalId}]::close`, {data: {modalId}})
+      Events.$trigger("modal[modal-filters]::close", { data: { modalId: 'modal-filters' } })
     })
 
     // get new results for reset button
-    this.resetButton?.addEventListener('click', () =>
-      this.#getNewResults(this.resetButton || undefined),
+    this.resetButton?.addEventListener('click', () => {
+        this.#getNewResults(this.resetButton || undefined)
+        Events.$trigger("modal[modal-filters]::close", { data: { modalId: 'modal-filters' } })
+      }
     )
 
     // show more options
@@ -143,28 +143,28 @@ class Filters {
   ) {
     const doc = new DOMParser().parseFromString(response.data, 'text/html')
     const newHtml = doc.documentElement
-    // get the new element to focus on, this needs to happen before the content is replaced
-    const newSelectedElement = element?.id && newHtml.querySelector(`#${element.id}`)
+    const openAccordionIds = [...this.element.querySelectorAll(`${JS_HOOK_ACCORDION_DETAIL}[open]`)].map(
+      (el) => el.id,
+    ) as string[]
+    const selectedElementId = element?.id
+    const hasKeyboardFocus = document.body.classList.contains(KEYBOARD_FOCUSED_CLASS)
 
     if (!newHtml) throw new Error('No new content found')
+
+    if (openAccordionIds) {
+      openAccordionIds.forEach((id) => {
+        doc.getElementById(id)?.setAttribute('open', '')
+      })
+    }
 
     // replace the content
     ReplaceContent.replaceAllContent(newHtml)
 
-    // opens the accordion if the element is inside one + focus on the new element
-    if (newSelectedElement) {
-      const parentCarousel = newSelectedElement.closest(
-        JS_HOOK_ACCORDION_DETAIL,
-      ) as HTMLDetailsElement | null
-      if (parentCarousel) {
-        parentCarousel.open = true
-      }
-      ;(newSelectedElement as HTMLInputElement).focus()
-    }
+    if (selectedElementId) this.element.querySelector<HTMLInputElement | HTMLButtonElement>(`#${selectedElementId}`)?.focus()
 
-    if (element?.dataset.endpoint && shouldPushState) {
-      this.#updateUrlAndHistoryState()
-    }
+    if (hasKeyboardFocus) document.body.classList.add(KEYBOARD_FOCUSED_CLASS)
+
+    if (element?.dataset.endpoint && shouldPushState) this.#updateUrlAndHistoryState()
   }
 
   #newResultsFail(_error: AxiosResponse) {
