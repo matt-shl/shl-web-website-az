@@ -21,8 +21,6 @@
   --input-text-color: #{$color-dark-blue};
   --input-placeholder-color: #{$color-grey};
   --input-hint-color: #{$color-grey};
-  --input-error-color: var(--form-item-error-border-color);
-  --input-error-color-20: var(--form-item-error-border-color-20);
   --input-border-color-hover-focus: #{$color-dark-blue};
   --input-border-color-keyboard-focus: #{$color-dark-blue};
   --input-border-color-keyboard-focus-20: rgba(var(--color-dark-blue-rgb), 0.2);
@@ -107,26 +105,15 @@
     box-shadow: 0 0 0 var(--input-border-width) var(--input-border-color-hover-focus) inset;
   }
 
-  @include keyboard-focus {
-    @include focus-state-pulse(
-      var(--input-border-color-keyboard-focus),
-      var(--input-border-color-keyboard-focus-20)
-    );
-  }
-
   &::-ms-expand {
     display: none;
   }
 
   .form__item--error & {
-    box-shadow: 0 0 0 var(--input-border-width) var(--input-error-color) inset;
+    box-shadow: 0 0 0 var(--input-border-width) var(--color-error) inset;
 
     @include hover-focus {
-      box-shadow: 0 0 0 var(--input-border-width) var(--input-error-color) inset;
-    }
-
-    @include keyboard-focus {
-      @include focus-state-pulse(var(--input-error-color), var(--input-error-color-20));
+      box-shadow: 0 0 0 var(--input-border-width) var(--color-error) inset;
     }
   }
 
@@ -196,7 +183,7 @@
   &.form__item--lap-active {
     .input__label,
     .input__input {
-      color: var(--input-error-color);
+      color: var(--color-error);
     }
   }
 }

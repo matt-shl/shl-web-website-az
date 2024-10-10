@@ -1,4 +1,5 @@
 {% from 'button.html' import button %}
+{% from 'form-overlay.html' import formOverlay %}
 
 {% macro eventDetail(data) %}
 
@@ -20,7 +21,7 @@
               {% if data.column2.content %}{{ data.column2.content | safe }}{% endif %}
             </p>
           </div>
-          {% if data.cta %}
+          {% if data.cta.url %}
             <div class="event-detail__col event-detail__col--cta">
               {{ button({
                 class: 'event-detail__cta',
@@ -31,10 +32,27 @@
               }) }}
             </div>
           {% endif %}
+
+          {% if data.cta.label and data.modal %}
+            <div class="event-detail__col event-detail__col--cta">
+              {{ button({
+                element: 'button',
+                class: 'event-detail__cta',
+                label: data.cta.label,
+                variant: data.cta.variant,
+                icon: data.cta.icon or 'arrow-top-right',
+                controls: data.modal.id
+              }) }}
+            </div>
+          {% endif %}
         </div>
       </div>
     </div>
   </div>
+
+  {% if data.modal %}
+    {{ formOverlay(data.modal) }}
+  {% endif %}
 
 {% endmacro %}
 

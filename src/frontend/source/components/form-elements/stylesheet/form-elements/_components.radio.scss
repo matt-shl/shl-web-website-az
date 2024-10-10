@@ -5,7 +5,6 @@
   --radio-unchecked-color: var(--color-dark-blue);
   --radio-checked-color: var(--color-dark-blue);
   --radio-hover-focus-color: rgba(var(--color-dark-blue-rgb), 0.4);
-  --radio-error-color: var(--input-error-color);
   --radio-margin-right: var(--checkbox-margin-right);
   --radio-transition-time: var(--checkbox-transition-time);
   --radio-transition-ease: var(--checkbox-transition-ease);
@@ -127,7 +126,7 @@
 
     .form__item--error & {
       box-shadow:
-        0 0 0 var(--radio-border-width) var(--radio-error-color) inset,
+        0 0 0 var(--radio-border-width) var(--color-error) inset,
         0 0 0 calc(var(--radio-border-width) * 3) var(--color-white) inset;
     }
   }

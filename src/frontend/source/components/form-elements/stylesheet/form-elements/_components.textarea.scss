@@ -18,7 +18,6 @@
   --textarea-border-color-hover-focus: var(--input-border-color-hover-focus);
   --textarea-background-color-disabled: var(--input-background-color-disabled);
   --textarea-border-color: var(--input-border-color);
-  --textarea-error-color: var(--input-error-color);
   --textarea-fill-color: var(--input-background-color);
 }
 
@@ -75,22 +74,11 @@
     box-shadow: 0 0 0 var(--input-border-width) var(--input-border-color-hover-focus) inset;
   }
 
-  @include keyboard-focus {
-    @include focus-state-pulse(
-      var(--input-border-color-keyboard-focus),
-      var(--input-border-color-keyboard-focus-20)
-    );
-  }
-
   .form__item--error & {
-    box-shadow: 0 0 0 var(--textarea-border-width) var(--textarea-error-color) inset;
+    box-shadow: 0 0 0 var(--textarea-border-width) var(--color-error) inset;
 
     @include hover-focus {
-      box-shadow: 0 0 0 var(--input-border-width) var(--input-error-color) inset;
-    }
-
-    @include keyboard-focus {
-      @include focus-state-pulse(var(--input-error-color), var(--input-error-color-20));
+      box-shadow: 0 0 0 var(--input-border-width) var(--color-error) inset;
     }
   }
 

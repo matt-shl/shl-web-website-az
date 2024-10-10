@@ -2,7 +2,6 @@
   --select-border-width: 1px;
   --select-border-radius: var(--input-border-radius);
   --select-border-color: var(--input-border-color);
-  --select-error-color: var(--form-item-error-border-color);
   --select-fill-color: var(--color-white);
   --select-padding-top: var(--input-padding-top);
   --select-padding-bottom: var(--input-padding-bottom);
@@ -67,13 +66,6 @@
     box-shadow: 0 0 0 var(--select-border-width) var(--select-border-color-hover-focus) inset;
   }
 
-  @include keyboard-focus {
-    @include focus-state-pulse(
-      var(--input-border-color-keyboard-focus),
-      var(--input-border-color-keyboard-focus-20)
-    );
-  }
-
   &[disabled] {
     cursor: default;
     box-shadow: 0 0 0 var(--select-border-width) var(--select-border-color-disabled) inset;
@@ -88,14 +80,10 @@
   }
 
   .form__item--error & {
-    box-shadow: 0 0 0 var(--select-border-width) var(--select-error-color) inset;
+    box-shadow: 0 0 0 var(--select-border-width) var(--color-error) inset;
 
     @include hover-focus {
-      box-shadow: 0 0 0 var(--select-border-width) var(--select-error-color) inset;
-    }
-
-    @include keyboard-focus {
-      @include focus-state-pulse(var(--input-error-color), var(--input-error-color-20));
+      box-shadow: 0 0 0 var(--select-border-width) var(--color-error) inset;
     }
   }
 

@@ -4,7 +4,6 @@
   --error-border-color: transparent;
   --error-fill-color: transparent;
   --error-padding: 0;
-  --error-text-color: var(--color-error);
 }
 
 .form__item-error {
@@ -14,7 +13,7 @@
   background-color: var(--error-fill-color);
   border-radius: var(--error-border-radius);
   padding: var(--error-padding);
-  color: var(--error-text-color);
+  color: var(--color-error);
 
   .form__item--error & {
     display: inline-block;
