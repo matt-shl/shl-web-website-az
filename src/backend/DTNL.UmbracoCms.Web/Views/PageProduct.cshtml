@@ -4,7 +4,6 @@
 <partial name="LayoutSection"
          model="@(new Components.LayoutSection {
             CssClasses = "t-white",
-            Variant = "in-grid",
             Id = "description",
             NavigationTitle = "Description",
         })"
@@ -15,12 +14,11 @@
 <partial name="LayoutSection"
          model="@(new Components.LayoutSection {
             CssClasses = "t-white",
-            Variant = "in-grid",
             Id = "specifications",
             NavigationTitle = "Specifications",
         })"
 >
-    <partial name="DescriptionList" model="@Components.DescriptionList.Create(Model)" />
+    <partial name="DescriptionList" model="@Components.DescriptionList.Create(null, Model)" />
 </partial>
 
 <partial name="_BlockList" model="@Model.ContentBlocks" />

@@ -17,8 +17,10 @@
 
 {% block hero %}
   {{ heroContent(plpData.hero | clone | merge({
-    searchType: 'generic',
-    searchTerm: 'Autoinjectors'
+    search: {
+      searchType: 'generic',
+      searchTerm: 'Autoinjectors'
+    }
   })) }}
 {% endblock %}
 

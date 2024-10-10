@@ -32,5 +32,15 @@
                 }
             </li>
         }
+
+        <li class="navigation-desktop__list-item" js-hook-navigation-desktop-item>
+            <button class="navigation-desktop__item navigation-desktop__item--search"
+                    js-hook-navigation-desktop-anchor aria-expanded="false" aria-controls="flyout-search">
+                <svg src="@SvgAliases.Icons.Search" />
+                <span class="u-sr-only" asp-translation="@TranslationAliases.Search.OpenSearch"></span>
+            </button>
+
+            <partial name="FlyoutSearch" model="@Model.SearchFlyout" />
+        </li>
     </ul>
 </nav>

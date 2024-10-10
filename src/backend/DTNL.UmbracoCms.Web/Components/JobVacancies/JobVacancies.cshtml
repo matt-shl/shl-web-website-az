@@ -1,0 +1,25 @@
+@using DTNL.UmbracoCms.Web.Components
+@model DTNL.UmbracoCms.Web.Components.JobVacancies
+
+@if (Model.Vacancies.Count == 0)
+{
+    return;
+}
+
+<div class="section-job-vacacies__container">
+    <h2 class="section-job-vacancies__title" asp-if="@Model.Title">@Model.Title</h2>
+
+    <ul class="section-job-vacancies__list" aria-label="Job vacancies list">
+        @foreach (JobListingItem vacancy in Model.Vacancies)
+        {
+            <li class="section-job-vacancies__item">
+                <partial name="JobListingItem" model="@vacancy" />
+            </li>
+        }
+    </ul>
+
+    <div class="section-job-vacancies__button-container">
+        <partial name="Button" model="@Model.PrimaryButton" />
+        <partial name="Button" model="@Model.SecondaryButton" />
+    </div>
+</div>

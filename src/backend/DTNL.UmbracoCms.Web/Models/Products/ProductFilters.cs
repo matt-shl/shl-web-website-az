@@ -1,9 +1,10 @@
 using DTNL.UmbracoCms.Web.Models.Filters;
+using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Web.Common.PublishedModels;
 
 namespace DTNL.UmbracoCms.Web.Models.Products;
 
-public class ProductFilters : Dictionary<string, FilterOption[]>
+public class ProductFilters : BaseFilters
 {
     public static readonly (string Name, Func<PageProduct, IEnumerable<string>?> GetValues)[] FilterFields =
     [
@@ -15,12 +16,8 @@ public class ProductFilters : Dictionary<string, FilterOption[]>
         (nameof(PageProduct.ConnectivityType), p => p.ConnectivityType),
     ];
 
-    public required string CurrentUrl { get; set; }
-
-    public required string OverviewUrl { get; set; }
-
-    public bool IsSelected(string name, FilterOption option)
+    public ProductFilters(IPublishedContent overviewPage, IQueryCollection queryCollection)
+        : base(overviewPage, queryCollection)
     {
-        return TryGetValue(name, out FilterOption[]? filterOptions) && filterOptions.Contains(option);
     }
 }

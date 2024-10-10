@@ -18,7 +18,7 @@ using Umbraco.Extensions;
 
 namespace Umbraco.Cms.Web.Common.PublishedModels
 {
-	/// <summary>Nested Block Image</summary>
+	/// <summary>Image</summary>
 	[PublishedModel("nestedBlockImage")]
 	public partial class NestedBlockImage : PublishedElementModel
 	{

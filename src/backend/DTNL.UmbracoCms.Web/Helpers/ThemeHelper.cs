@@ -8,7 +8,7 @@ public static class ThemeHelper
 {
     public static string GetCssClasses(IPublishedContent? page)
     {
-        return GetCssClasses((page as IPageTheme)?.PageTheme, "general");
+        return GetCssClasses((page as IPageTheme)?.PageTheme, "light-blue");
     }
 
     public static string GetCssClasses(ColorPickerValueConverter.PickedColor? theme, string fallBackTheme)

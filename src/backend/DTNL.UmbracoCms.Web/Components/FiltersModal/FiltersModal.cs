@@ -1,13 +1,13 @@
 using DTNL.UmbracoCms.Web.Components.FormElements;
 using DTNL.UmbracoCms.Web.Helpers.Aliases;
 using DTNL.UmbracoCms.Web.Helpers.Extensions;
+using DTNL.UmbracoCms.Web.Models.Filters;
 using DTNL.UmbracoCms.Web.Models.Products;
+using DTNL.UmbracoCms.Web.Models.Vacancies;
 using Flurl;
 using Umbraco.Cms.Core.Dictionary;
 using Umbraco.Cms.Web.Common.PublishedModels;
-using static DTNL.UmbracoCms.Web.Components.FormElements.Checkbox;
 using static DTNL.UmbracoCms.Web.Components.FormElements.Radio;
-using FilterOption = DTNL.UmbracoCms.Web.Models.Filters.FilterOption;
 
 namespace DTNL.UmbracoCms.Web.Components;
 
@@ -17,11 +17,9 @@ public class FiltersModal
 
     public required string ResultsOverviewPageUrl { get; set; }
 
-    public required string OverviewPageUrl { get; set; }
-
     public required List<Filter> Filters { get; set; }
 
-    public required Sort Sorter { get; set; }
+    public Sort? Sorter { get; set; }
 
     public static FiltersModal Create(
         ProductFilters productFilters,
@@ -30,64 +28,63 @@ public class FiltersModal
     {
         List<Filter> filters = [];
 
-        Sort sort = Sort.Create(cultureDictionary.GetTranslation(TranslationAliases.Common.Filters.Sort), productFilters, cultureDictionary);
-
-        foreach ((string name, Func<PageProduct, IEnumerable<string>?> getValues)
-                 in ProductFilters.FilterFields)
+        foreach (string filterName in productFilters.Keys)
         {
-            filters.Add(Filter.Create(name, getValues, productFilters, productPages));
+            filters.Add(Filter.CreateCheckboxOptions(filterName, TranslationAliases.Products, productFilters));
         }
+
+        Sort sort = Sort.Create(cultureDictionary.GetTranslation(TranslationAliases.Common.Filters.Sort), productFilters, cultureDictionary);
 
         return new FiltersModal
         {
             ResultsCount = productPages.Count,
-            ResultsOverviewPageUrl = productFilters.CurrentUrl.SetQueryParams(null),
-            OverviewPageUrl = productFilters.OverviewUrl,
+            ResultsOverviewPageUrl = productFilters.OverviewUrl,
             Filters = filters,
             Sorter = sort,
         };
     }
 
-    public class Filter
+    public static FiltersModal Create(
+        VacancyFilters vacancyFilters,
+        List<PageVacancy> vacancyPages,
+        ICultureDictionary cultureDictionary)
     {
-        public required string Name { get; set; }
+        List<Filter> filters = [];
 
-        public required string Type { get; set; }
-
-        public required List<CheckboxOption> Options { get; set; }
-
-        public static Filter Create(
-            string name,
-            Func<PageProduct, IEnumerable<string>?> getValues,
-            ProductFilters productFilters,
-            List<PageProduct> productPages
-            )
+        foreach (string filterName in vacancyFilters.Keys)
         {
-            return new Filter
-            {
-                Name = name,
-                Type = nameof(Checkbox),
-                Options = productPages
-                    .SelectMany(p => getValues(p).OrEmptyIfNull())
-                    .Distinct()
-                    .Select(FilterOption.CreateForSearch)
-                    .Select(
-                        filterOption => new CheckboxOption(
-                            filterOption.Id,
-                            filterOption.Title,
-                            filterOption.Title,
-                            null,
-                            hook: "js-hook-filters-input",
-                            attr: new Dictionary<string, string?>
-                            {
-                                ["data-url-replacement"] = productFilters
-                                    .CurrentUrl
-                                    .AppendQueryParam(name, filterOption.Title),
-                            },
-                            selected: productFilters.IsSelected(name, filterOption)))
-                    .ToList(),
-            };
+            filters.Add(Filter.CreateCheckboxOptions(filterName, TranslationAliases.Vacancies, vacancyFilters));
         }
+
+        Sort sort = Sort
+            .Create(cultureDictionary.GetTranslation(TranslationAliases.Common.Filters.Sort), vacancyFilters, cultureDictionary);
+
+        return new FiltersModal
+        {
+            ResultsCount = vacancyPages.Count,
+            ResultsOverviewPageUrl = vacancyFilters.OverviewUrl,
+            Filters = filters,
+            Sorter = sort,
+        };
+    }
+
+    public static FiltersModal Create(
+        GeneralFilters generalFilters,
+        List<ICompositionBasePage> pages)
+    {
+        List<Filter> filters = [];
+
+        foreach (string filterName in generalFilters.Keys)
+        {
+            filters.Add(Filter.CreateCheckboxOptions(filterName, TranslationAliases.Search, generalFilters));
+        }
+
+        return new FiltersModal
+        {
+            ResultsCount = pages.Count,
+            ResultsOverviewPageUrl = generalFilters.OverviewUrl,
+            Filters = filters,
+        };
     }
 
     public class Sort
@@ -100,11 +97,10 @@ public class FiltersModal
 
         public static Sort Create(
             string name,
-            ProductFilters productFilters,
-            ICultureDictionary cultureDictionary
-        )
+            BaseFilters filters,
+            ICultureDictionary cultureDictionary)
         {
-            bool hasSort = productFilters.CurrentUrl.Contains(cultureDictionary.GetTranslation(TranslationAliases.Common.Filters.Sort));
+            bool hasSort = filters.CurrentUrl.Contains(cultureDictionary.GetTranslation(TranslationAliases.Common.Filters.Sort));
 
             return new Sort
             {
@@ -118,8 +114,7 @@ public class FiltersModal
                         hook: "js-hook-filters-input",
                         attr: new Dictionary<string, string?>
                         {
-                            ["data-url-replacement"] = productFilters
-                            .OverviewUrl,
+                            ["data-url-replacement"] = filters.OverviewUrl,
                         },
                         null,
                         !hasSort
@@ -131,8 +126,7 @@ public class FiltersModal
                         hook: "js-hook-filters-input",
                         attr: new Dictionary<string, string?>
                         {
-                            ["data-url-replacement"] = productFilters
-                            .CurrentUrl
+                            ["data-url-replacement"] = filters.CurrentUrl
                                 .AppendQueryParam(name, cultureDictionary.GetTranslation(TranslationAliases.Common.Filters.SortOldestFirst)),
                         },
                         null,

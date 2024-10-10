@@ -4,6 +4,9 @@
     <PackageVersion Include="Asp.Versioning.WebApi" Version="6.2.1" />
     <PackageVersion Include="DEPT.Umbraco.SourceGenerators" Version="1.0.2" />
     <PackageVersion Include="Flurl.Http" Version="4.0.2" />
+    <PackageVersion Include="Hangfire.AspNetCore" Version="1.8.14" />
+    <PackageVersion Include="Hangfire.Console" Version="1.4.3" />
+    <PackageVersion Include="Hangfire.SqlServer" Version="1.8.14" />
     <PackageVersion Include="MarcosLopezC.LightJson" Version="0.5.3" />
     <PackageVersion Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.22.0" />
     <PackageVersion Include="Microsoft.ApplicationInsights.SnapshotCollector" Version="1.4.6" />
@@ -11,6 +14,7 @@
     <PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="4.9.2" />
     <PackageVersion Include="Microsoft.Extensions.Caching.SqlServer" Version="8.0.3" />
     <PackageVersion Include="Microsoft.ICU.ICU4C.Runtime" Version="72.1.0.3" />
+    <PackageVersion Include="Nager.Country.Translation" Version="3.1.0" />
     <PackageVersion Include="NetEscapades.AspNetCore.SecurityHeaders" Version="0.21.0" />
     <PackageVersion Include="Roslynator.Analyzers" Version="4.11.0" />
     <PackageVersion Include="Scrutor" Version="4.2.2" />
@@ -19,6 +23,8 @@
     <PackageVersion Include="Serilog.Exceptions.SqlServer" Version="8.4.0" />
     <PackageVersion Include="Serilog.Sinks.ApplicationInsights" Version="4.0.0" />
     <PackageVersion Include="SimpleMvcSitemap.Core" Version="4.3.0" />
+    <PackageVersion Include="Skybrud.Umbraco.Redirects" Version="13.0.4" />
+    <PackageVersion Include="Skybrud.Umbraco.Redirects.Import" Version="13.0.0" />
     <PackageVersion Include="SmartAnalyzers.CSharpExtensions.Annotations" Version="4.2.9" />
     <PackageVersion Include="StyleCop.Analyzers.Unstable" Version="1.2.0.556" />
     <PackageVersion Include="System.Text.Json" Version="6.0.6" />

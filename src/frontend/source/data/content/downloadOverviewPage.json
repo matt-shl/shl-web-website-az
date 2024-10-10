@@ -35,21 +35,11 @@
           },
           "fields": [
             {
-              "name": "cf_email_address",
-              "id": "cf_email_address",
-              "label": "Your Email",
-              "type": "email",
-              "maxlength": "255",
-              "validate": "required,email",
-              "patternError": "Please enter a valid email address",
-              "requiredError": "Please enter your email address"
-            },
-            {
               "name": "cf_First_Name",
               "id": "cf_First_Name",
               "label": "First Name",
               "type": "text",
-              "maxlength": "40",
+              "maxlength": "255",
               "validate": "required",
               "requiredError": "Please enter your first name"
             },
@@ -58,17 +48,19 @@
               "id": "cf_Last_Name",
               "label": "Last Name",
               "type": "text",
-              "maxlength": "40",
+              "maxlength": "255",
               "validate": "required",
               "requiredError": "Please enter your last name"
             },
             {
-              "name": "cf_Message",
-              "id": "cf_Message",
-              "label": "Comments",
-              "type": "textarea",
-              "validate": "required",
-              "requiredError": "Please enter your message"
+              "name": "cf_email_address",
+              "id": "cf_email_address",
+              "label": "Email",
+              "type": "email",
+              "maxlength": "255",
+              "validate": "required,email",
+              "patternError": "Please enter a valid email address",
+              "requiredError": "Please enter your email address"
             },
             {
               "name": "cf_Company",
@@ -78,6 +70,36 @@
               "maxlength": "40",
               "validate": "required",
               "requiredError": "Please enter your company name"
+            },
+            {
+              "name": "cf_Country",
+              "id": "cf_Country",
+              "label": "Country",
+              "type": "select",
+              "validate": "required",
+              "requiredError": "Please enter your country",
+              "options": [
+                {
+                  "label": "Select country",
+                  "default": true
+                },
+                {
+                  "label": "United States",
+                  "value": "United States"
+                },
+                {
+                  "label": "Canada",
+                  "value": "Canada"
+                },
+                {
+                  "label": "Mexico",
+                  "value": "Mexico"
+                },
+                {
+                  "label": "Netherlands",
+                  "value": "Netherlands"
+                }
+              ]
             },
             {
               "name": "cf_Consent_Given[]",

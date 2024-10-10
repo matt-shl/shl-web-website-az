@@ -11,10 +11,14 @@
     <PackageReference Include="Asp.Versioning.Mvc" />
     <PackageReference Include="DEPT.Umbraco.SourceGenerators" />
     <PackageReference Include="Flurl.Http" />
+    <PackageReference Include="Hangfire.AspNetCore" />
+    <PackageReference Include="Hangfire.Console" />
+    <PackageReference Include="Hangfire.SqlServer" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" />
     <PackageReference Include="Microsoft.ApplicationInsights.SnapshotCollector" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" />
     <PackageReference Include="Microsoft.Extensions.Caching.SqlServer" />
+    <PackageReference Include="Nager.Country.Translation" />
     <PackageReference Include="NetEscapades.AspNetCore.SecurityHeaders" />
     <PackageReference Include="Scrutor" />
     <PackageReference Include="Serilog.Exceptions" />
@@ -22,6 +26,8 @@
     <PackageReference Include="Serilog.Exceptions.SqlServer" />
     <PackageReference Include="Serilog.Sinks.ApplicationInsights" />
     <PackageReference Include="SimpleMvcSitemap.Core" />
+    <PackageReference Include="Skybrud.Umbraco.Redirects" />
+    <PackageReference Include="Skybrud.Umbraco.Redirects.Import" />
     <PackageReference Include="Umbraco.Cms" />
     <PackageReference Include="Umbraco.Community.MediaColourFinder" />
     <PackageReference Include="Umbraco.StorageProviders.AzureBlob" />

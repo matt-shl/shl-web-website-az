@@ -29,7 +29,7 @@ class Carousel {
     this.isImageSlider = this.element.classList.contains('section-image-carousel__carousel')
     // Check if the carousel has links inside the slides
     this.allowPointerDownEvent =
-      [...this.element.querySelectorAll('.swiper-slide > a')].length === 0
+      [...this.element.querySelectorAll('.swiper-slide a')].length === 0
 
     this.bindEvents()
     this.initCarousel()

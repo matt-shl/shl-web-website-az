@@ -4,111 +4,67 @@ using DTNL.UmbracoCms.Web.Helpers.Extensions;
 using DTNL.UmbracoCms.Web.Models.Filters;
 using DTNL.UmbracoCms.Web.Models.Products;
 using DTNL.UmbracoCms.Web.Services;
-using Microsoft.AspNetCore.Mvc;
-using Umbraco.Cms.Core.Dictionary;
 using Umbraco.Cms.Web.Common.PublishedModels;
 
 namespace DTNL.UmbracoCms.Web.Components;
 
-public class OverviewProducts : ViewComponentExtended
+public class OverviewProducts : OverviewFor<PageProductOverview, PageProduct, ProductFilters, CardProduct>
 {
-    public const int PageSize = 6;
-
-    private readonly ICultureDictionary _cultureDictionary;
-
-    public OverviewProducts(ICultureDictionary cultureDictionary)
+    public OverviewProducts(ISearchService searchService)
+        : base(searchService)
     {
-        _cultureDictionary = cultureDictionary;
     }
 
-    public int TotalCount { get; set; }
-
-    public EmptySection? NoResultsSection { get; set; }
-
-    public required Filters Filters { get; set; }
-
-    public required List<CardProduct> ResultCards { get; set; }
-
-    public Pagination? Pagination { get; set; }
-
-    public LayoutSection LayoutSection
-    { get; set; }
-    = new()
+    public override LayoutSection LayoutSection => new()
     {
         CssClasses = "t-white",
         Variant = "grid",
         Id = "content",
+        ListLabel = CultureDictionary.GetTranslation(TranslationAliases.Products.ProductsList),
     };
 
-    public IViewComponentResult Invoke(PageProductOverview productOverviewPage)
+    protected override PageProductOverview OverviewPage => (NodeProvider.CurrentNode as PageProductOverview)!;
+
+    protected override List<PageProduct> GetPages()
     {
-        HttpContext.VaryByPageNumber();
-        int pageNumber = Request.Query.GetPageNumber();
-
-        List<PageProduct> productPages = NodeProvider
-            .GetProductPages(productOverviewPage)
+        return NodeProvider
+            .GetProductPages(OverviewPage)
             .ToList();
-
-        ProductFilters productFilters = GetAndApplyFilters(productPages);
-
-        Filters = Filters.Create(productFilters, productPages, _cultureDictionary);
-
-        ResultCards = productPages
-            .Using(p => CardProduct.Create(p))
-            .Page(pageNumber, PageSize)
-            .ToList();
-
-        TotalCount = productPages.Count;
-
-        if (TotalCount == 0)
-        {
-            NoResultsSection = EmptySection.Create(productOverviewPage);
-        }
-
-        Pagination = Pagination.Create(pageNumber, TotalCount, PageSize);
-
-        return View("OverviewProducts", this);
     }
 
-    private ProductFilters GetAndApplyFilters(List<PageProduct> productPages)
+    protected override ProductFilters ApplyFilters(List<PageProduct> pages)
     {
-        ProductFilters productFilters = new()
-        {
-            CurrentUrl = new Uri($"{Request.Scheme}://{Request.Host}{Request.Path}{Request.QueryString}").ToString(),
-            OverviewUrl = new Uri($"{Request.Scheme}://{Request.Host}{Request.Path}").ToString(),
-        };
+        ProductFilters productFilters = new(OverviewPage, Request.Query);
+
+        productFilters.AddFilterOptions(ProductFilters.FilterFields, pages, HttpContext);
 
         foreach ((string name, Func<PageProduct, IEnumerable<string>?> getValues)
                  in ProductFilters.FilterFields)
         {
-            if (GetFilters(name) is not { Length: > 0 } filters)
+            if (!productFilters.TryGetValue(name, out FilterOption[]? filterOptions) ||
+                !FilterOption.AnySelected(filterOptions))
             {
                 continue;
             }
 
-            productPages.RemoveAll(p => !getValues(p)
-                .OrEmptyIfNull()
-                .ContainsAny(filters));
-
-            productFilters.Add(
-                name,
-                filters.Select(FilterOption.CreateForSearch).ToArray());
+            pages.RemoveAll(page => !FilterOption.AnySelectedValueIn(filterOptions, getValues(page)));
         }
 
-        string? sort = GetFilters("Sort")?.FirstOrDefault();
-        bool hasSort = sort is not null && sort == _cultureDictionary.GetTranslation(TranslationAliases.Common.Filters.SortOldestFirst);
+        string? sort = HttpContext.GetFilterOptions("Sort").FirstOrDefault()?.Label;
+        bool hasSort = sort == CultureDictionary.GetTranslation(TranslationAliases.Common.Filters.SortOldestFirst);
 
-        productPages.Sort((x, y) => hasSort ? DateTime.Compare(y.CreateDate, x.CreateDate) : DateTime.Compare(x.CreateDate, y.CreateDate));
+        pages.Sort((x, y) => hasSort ? DateTime.Compare(y.CreateDate, x.CreateDate) : DateTime.Compare(x.CreateDate, y.CreateDate));
 
         return productFilters;
     }
 
-    private string[]? GetFilters(string filterKey)
+    protected override Filters? GetFilters(ProductFilters? filters, List<PageProduct> pages)
     {
-        HttpContext.VaryByQueryKeys(filterKey);
+        return filters is null ? null : Filters.Create(filters, pages, CultureDictionary);
+    }
 
-        string? filterValue = Request.Query[filterKey];
-
-        return filterValue?.Split(',');
+    protected override IEnumerable<CardProduct> GetOverviewItems(List<PageProduct> pages)
+    {
+        return pages.Using(p => CardProduct.Create(p));
     }
 }

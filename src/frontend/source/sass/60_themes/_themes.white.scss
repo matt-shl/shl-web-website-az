@@ -2,6 +2,7 @@
   --color-background: #{$color-white};
   --color-content: #{$color-dark-blue};
   --focus-theme-color: #{$color-light-blue};
+  --color-error: #{$color-red};
 
   // Buttons
   --button-primary-font-color: #{$color-white};
@@ -32,6 +33,7 @@
   --job-listing-item-color-hover: #{$color-white};
   --job-listing-item-bg-color-hover: #{$color-dark-blue};
   --job-listing-item-tag-bg-color: #{$color-white};
+  --job-listing-item-tag-bg-color-hover: #{$color-pale-blue};
 }
 
 html.t-white {

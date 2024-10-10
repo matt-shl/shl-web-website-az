@@ -43,8 +43,158 @@
       "content": "<p>June 25-26 2024<br/>10:00 – 18:00 (CEST)</p>"
     },
     "cta": {
-      "label": "Register",
-      "url": "/"
+      "label": "Register"
+    },
+    "modal": {
+      "id": "register-form-modal-event-123",
+      "title": "Register",
+      "form": {
+        "action": "/pardot-url",
+        "submit": {
+          "label": "Register"
+        },
+        "fields": [
+          {
+            "name": "cf_email_address",
+            "id": "cf_email_address",
+            "label": "Email",
+            "type": "email",
+            "maxlength": "255",
+            "validate": "required,email",
+            "patternError": "Please enter a valid email address",
+            "requiredError": "Please enter your email address"
+          },
+          {
+            "name": "cf_First_Name",
+            "id": "cf_First_Name",
+            "label": "First Name",
+            "type": "text",
+            "maxlength": "255",
+            "validate": "required",
+            "requiredError": "Please enter your first name"
+          },
+          {
+            "name": "cf_Last_Name",
+            "id": "cf_Last_Name",
+            "label": "Last Name",
+            "type": "text",
+            "maxlength": "255",
+            "validate": "required",
+            "requiredError": "Please enter your last name"
+          },
+          {
+            "name": "cf_Company",
+            "id": "cf_Company",
+            "label": "Company",
+            "type": "text",
+            "maxlength": "255",
+            "validate": "required",
+            "requiredError": "Please enter your company name"
+          },
+          {
+            "name": "cf_Country",
+            "id": "cf_Country",
+            "label": "Country",
+            "type": "select",
+            "validate": "required",
+            "requiredError": "Please enter your country",
+            "options": [
+              {
+                "label": "Select country",
+                "default": true
+              },
+              {
+                "label": "United States",
+                "value": "United States"
+              },
+              {
+                "label": "Canada",
+                "value": "Canada"
+              },
+              {
+                "label": "Mexico",
+                "value": "Mexico"
+              },
+              {
+                "label": "Netherlands",
+                "value": "Netherlands"
+              }
+            ]
+          },
+          {
+            "name": "cf_What_are_you_interested_in",
+            "id": "cf_What_are_you_interested_in",
+            "label": "What are you interested in?",
+            "type": "select",
+            "options": [
+              {
+                "label": "Select answer",
+                "default": true
+              },
+              {
+                "label": "Elexy TM",
+                "id": "Elexy-TM"
+              },
+              {
+                "label": "Molly (R)",
+                "id": "Molly-R"
+              },
+              {
+                "label": "Maggie (R)",
+                "id": "Maggie-R"
+              },
+              {
+                "label": "Services",
+                "id": "Services"
+              },
+              {
+                "label": "Digital Solutions",
+                "id": "Digital-Solutions"
+              },
+              {
+                "label": "Partnerships",
+                "id": "Partnerships"
+              },
+              {
+                "label": "Others",
+                "id": "Others"
+              }
+            ]
+          },
+          {
+            "name": "cf_Message",
+            "id": "cf_Message",
+            "label": "Message",
+            "type": "textarea",
+            "maxlength": "255"
+          },
+          {
+            "name": "cf_Consent_Given[]",
+            "type": "checkbox",
+            "options": [
+              {
+                "id": "cf_Consent_Given[]",
+                "label": "I agree when entering my data, SHL will collect this data to provide the services you request and keep you up to date on our latest events and news. You are not required to supply any of the information that we may request. However, failure to do so may result in our being unable to provide the documents you desire to download. <a href='#'>Find out more</a> about how SHL protects your personal data.",
+                "value": "Yes",
+                "validate": "required",
+                "requiredError": "Please agree to our privacy policy"
+              }
+            ]
+          },
+          {
+            "name": "source_page_title",
+            "id": "source_page_title",
+            "type": "hidden",
+            "value": "Contact"
+          },
+          {
+            "name": "source_URL",
+            "id": "source_URL",
+            "type": "hidden",
+            "value": "/contact.html"
+          }
+        ]
+      }
     }
   },
   "richText": {
@@ -56,7 +206,7 @@
     "title": "Meet our speakers",
     "cta": {
       "label": "Register for the event",
-      "url": "#"
+      "controls": "register-form-modal-event-123"
     },
     "cards": [
       {

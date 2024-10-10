@@ -1,0 +1,29 @@
+@using DTNL.UmbracoCms.Web.Components
+
+@model Overview
+
+@if (Model.NoResultsSection is not null)
+{
+    <partial name="EmptySection" model="@Model.NoResultsSection" />
+}
+else if(Model.Items.Count > 0)
+{
+    @if (Model.Filters is not null)
+    {
+        <partial name="Filters" model="@Model.Filters" />
+    }
+
+    <div js-hook-replace-content="overview-content">
+        <partial name="LayoutSection" model="@Model.LayoutSection">
+
+            @foreach (IOverviewItem overviewItem in Model.Items)
+            {
+                <li>
+                    <partial name="@overviewItem.ViewPath" model="@overviewItem" />
+                </li>
+            }
+        </partial>
+
+        <partial name="Pagination" model="@Model.Pagination" />
+    </div>
+}

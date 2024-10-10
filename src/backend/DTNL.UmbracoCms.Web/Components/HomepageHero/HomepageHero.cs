@@ -6,7 +6,7 @@ namespace DTNL.UmbracoCms.Web.Components;
 
 public class HomepageHero : IHero
 {
-    public string? Title { get; set; }
+    public required string Title { get; set; }
 
     public Image? Image { get; set; }
 
@@ -27,10 +27,8 @@ public class HomepageHero : IHero
 
         return new HomepageHero
         {
-            Title = homepageHero.Title,
-
+            Title = homepageHero.Title!,
             Image = Image.Create(homepageHero.Image, cssClasses: "homepage-hero__image"),
-
             MainButton = Button
                 .Create(homepageHero.MainButtonLink, fallBackVariant: "primary")
                 .With(b =>
@@ -38,7 +36,6 @@ public class HomepageHero : IHero
                     b.Class = "button--icon hero-home__cta";
                     b.Hook = "homepage-hero-button";
                 }),
-
             SecondaryButton = Button
                 .Create(homepageHero.SecondaryButtonLink, fallBackVariant: "secondary")
                 .With(b =>
@@ -46,7 +43,6 @@ public class HomepageHero : IHero
                     b.Class = "button--icon hero-home__cta";
                     b.Hook = "homepage-hero-button";
                 }),
-
             ShortDescription = homepageHero.Text?.ToHtmlString(),
 
             VideoUrl = Video.Create((NestedBlockVideoNativeUrl?) homepageHero.Video?.FirstOrDefault()?.Content, css: "c-video--background")

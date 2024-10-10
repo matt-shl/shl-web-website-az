@@ -1,0 +1,18 @@
+@model DTNL.UmbracoCms.Web.Components.Media?
+
+@if (Model is null)
+{
+    return;
+}
+
+@if (Model.Image is not null)
+{
+    <div class="c-media-section">
+        <partial name="Image" model="@Model.Image" />
+    </div>
+}
+
+@if (Model.Video is not null)
+{
+    <partial name="Video" model="Model.Video" />
+}

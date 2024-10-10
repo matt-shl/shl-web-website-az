@@ -36,6 +36,7 @@
 
 .hero-home__title {
   @include page-load-animation(appear-from-bottom);
+  @include h2;
   margin-top: 0;
 
   @include screen-lg-and-bigger {

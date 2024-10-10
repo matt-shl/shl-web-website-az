@@ -1,12 +1,9 @@
-using DTNL.UmbracoCms.Web.Helpers.Extensions;
 using Umbraco.Cms.Web.Common.PublishedModels;
 
 namespace DTNL.UmbracoCms.Web.Components;
 
 public class EventDetails
 {
-    public string? ThemeCssClasses { get; set; }
-
     public string? Title { get; set; }
 
     public string? Location { get; set; }
@@ -15,7 +12,7 @@ public class EventDetails
 
     public Button? Link { get; set; }
 
-    public Image? Image { get; set; }
+    public Media? Media { get; set; }
 
     public static EventDetails? Create(NestedBlockEventDetails? eventDetails)
     {
@@ -30,9 +27,7 @@ public class EventDetails
             Location = eventDetails.EventLocationInfo?.ToHtmlString(),
             Time = eventDetails.EventTime?.ToHtmlString(),
             Link = Button.Create(eventDetails.EventUrl),
-            Image = Image
-                .Create(eventDetails.EventImage)
-                .With(i => i.Classes = "media-section__image"),
+            Media = Media.Create(eventDetails.EventImage),
         };
     }
 }

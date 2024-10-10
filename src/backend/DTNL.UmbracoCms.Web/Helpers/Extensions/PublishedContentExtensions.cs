@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
+using DTNL.UmbracoCms.Web.Components.Hero;
 using Umbraco.Cms.Core.Models;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Web.Common.PublishedModels;
@@ -35,11 +36,7 @@ public static class PublishedContentExtensions
         if (content is ICompositionHero compositionHero &&
             compositionHero.Hero?.FirstOrDefault()?.Content is { } hero)
         {
-            title = hero switch
-            {
-                NestedBlockProductHero productHero => productHero.Title,
-                _ => null,
-            };
+            title = hero.Value<string>(nameof(IHero.Title).ToFirstLowerInvariant());
         }
 
         return title.FallBack(content.Name);

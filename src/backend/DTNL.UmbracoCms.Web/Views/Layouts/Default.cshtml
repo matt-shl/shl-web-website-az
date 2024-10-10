@@ -17,7 +17,9 @@
 <body>
     <partial name="CarouselIndicator" />
 
-    <vc:header current-page="@Model" />
+    <vc:header />
+
+    <vc:mobile-floating-button page="@Model"/>
 
     <main id="content" role="main">
         
@@ -28,7 +30,7 @@
             </div>
         </div>
     </main>
-    <vc:cookie-bar site-settings="@NodeProvider.SiteSettings" />
+    @* <vc:cookie-bar site-settings="@NodeProvider.SiteSettings" /> *@
 
     <vc:footer site-settings="@NodeProvider.SiteSettings" page="@Model" />
 

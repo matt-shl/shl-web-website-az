@@ -1,0 +1,57 @@
+@using DTNL.UmbracoCms.Web.Components.FormElements
+@using DTNL.UmbracoCms.Web.Helpers.Aliases
+@using DTNL.UmbracoCms.Web.Helpers.Extensions
+@model DTNL.UmbracoCms.Web.Components.FormElements.SelectElement
+
+<div class="c-select form__item
+        @(Model.Class ?? "")
+        @(Model.Disabled ? "form__item--disabled" : "")
+        @(Model.LabelAsPlaceholder ? "form__item--lap" : "")"
+@(Model.LabelAsPlaceholder ? "js-hook-lap" : "")>
+    <div class="select__wrapper">
+        <label class="select__label @(Model.SrOnly ? "u-sr-only" : "")" for="@Model.Id">
+            @Model.Label
+        </label>
+
+        <div class="select__input-wrapper">
+            <select class="select__input"
+                    id="@Model.Id"
+                    name="@Model.Name"
+                    @(Model.Required ? Html.Attribute("required", "required") : "")
+                    @(Model.Disabled ? Html.Attribute("disabled", "disabled") : "")
+                    @(!Model.Validate.IsNullOrEmpty() ? Html.Attribute("data-validate", Model.Validate) : "")
+                    @Html.Attribute(Model.Hook?.EnsureStartsWith("js-hook-"))
+                    @(Model.Attributes is not null ? Html.Attributes(Model.Attributes) : "")>
+
+                @foreach (SelectElement.SelectOption? option in Model.Options.OrEmptyIfNull())
+                {
+                    <!option
+                        value="@option.Value"
+                        @(option.IsDefault || option.Value == Model.Value ? " selected " : "")
+                        @(option.Disabled ? " disabled " : "")
+                        @(option.Hidden ? " hidden " : "")
+                        @(!option.Lang.IsNullOrWhiteSpace() ? $" lang={option.Lang}" : "")>
+                        @(!(option.IsDefault && Model.LabelAsPlaceholder) ? option.Label : "")
+                    </!option>
+                }
+
+                @foreach (SelectElement.SelectOptGroup optgroup in Model.OptGroups.OrEmptyIfNull())
+                {
+                    <optgroup label="@optgroup.Label">
+                        @foreach (SelectElement.SelectOption? option in optgroup.Options)
+                        {
+                            <!option
+                                value="@option.Value"
+                                @(option.IsDefault || option.Value == Model.Value ? " selected " : "")
+                                @(!option.Lang.IsNullOrWhiteSpace() ? $" lang={option.Lang}" : "")>
+                                @(!(option.IsDefault && Model.LabelAsPlaceholder) ? option.Label : "")
+                            </!option>
+                        }
+                    </optgroup>
+                }
+            </select>
+            <span class="select__icon"><svg src="@SvgAliases.Icons.ChevronDown"/></span>
+        </div>
+    </div>
+    <div id="@(Model.Name)_error" class="form__item-error @(Model.Error is not null ? "" : "u-hidden")">@Model.Error</div>
+</div>

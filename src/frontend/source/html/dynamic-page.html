@@ -7,6 +7,7 @@
 {% from 'layout-section.html' import layoutSection %}
 {% from 'media-section.html' import mediaSection %}
 {% from 'text-media.html' import textMedia %}
+{% from 'stacking-cards.html' import stackingCards %}
 
 {% block hero %}
   <!-- Todo finish hero-content with content data -->
@@ -92,6 +93,8 @@
   }) }}
 
   {{ mediaSection(global.content.dynamicPage.mediaSection2) }}
+
+  {{ stackingCards(global.content.dynamicPage.stackingCards) }}
 
   </div>
 {% endblock %}

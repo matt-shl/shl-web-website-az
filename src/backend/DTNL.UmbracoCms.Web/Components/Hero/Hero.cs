@@ -5,7 +5,10 @@ using Umbraco.Cms.Web.Common.PublishedModels;
 
 namespace DTNL.UmbracoCms.Web.Components.Hero;
 
-public interface IHero : IPartialViewPath;
+public interface IHero : IPartialViewPath
+{
+    public string Title { get; }
+}
 
 public class Hero : ViewComponentExtended
 {

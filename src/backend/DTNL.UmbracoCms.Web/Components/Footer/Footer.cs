@@ -2,6 +2,7 @@ using DTNL.UmbracoCms.Web.Components.BasePage;
 using DTNL.UmbracoCms.Web.Helpers.Aliases;
 using DTNL.UmbracoCms.Web.Helpers.Extensions;
 using Microsoft.AspNetCore.Mvc;
+using Umbraco.Cms.Core.Models;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Web.Common.PublishedModels;
 
@@ -45,12 +46,7 @@ public class Footer : ViewComponentExtended
             .Using(linksBlock => Group<Button>
                 .Create(
                     linksBlock,
-                    link => Button.Create(link)
-                        .With(b =>
-                        {
-                            b.Variant = "link";
-                            b.Class = "footer__navigation-link";
-                        })))
+                    GetLinkButton))
             .Where(linkGroup => linkGroup.Items.Count > 0)
             .Select(linkGroup => (linkGroup, new Accordion.Item { Id = linkGroup.Id, Title = linkGroup.Title }))
             .ToList();
@@ -81,5 +77,25 @@ public class Footer : ViewComponentExtended
         CopyrightLabel = CultureDictionary.GetTranslation(TranslationAliases.Common.Footer.CopyrightLabel, TimeProvider.System.GetLocalNow().Date.Year);
 
         return View("Footer", this);
+    }
+
+    public Button GetLinkButton(Umbraco.Cms.Core.Models.Link link)
+    {
+        string? labelSup = null;
+
+        if (link.Type is LinkType.Content &&
+            link.Udi is not null &&
+            NodeProvider.GetById(link.Udi) is PageVacancyOverview pageVacancyOverview)
+        {
+            labelSup = $"{pageVacancyOverview.Children<PageVacancy>()?.Count()}";
+        }
+
+        return Button.Create(link)
+            .With(b =>
+            {
+                b.Variant = "link";
+                b.Class = "footer__navigation-link";
+                b.LabelSup = labelSup;
+            });
     }
 }

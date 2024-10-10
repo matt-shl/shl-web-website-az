@@ -1,0 +1,35 @@
+.t-lightest-blue {
+  --color-background: #{$color-lightest-blue};
+  --color-card-background: #{$color-dark-blue};
+  --color-card-content: #{$color-white};
+
+  // Buttons
+  --theme-color-content-20: #{rgba($color-dark-blue-rgb, 0.2)};
+  --theme-color-content-60: #{rgba($color-dark-blue-rgb, 0.6)};
+  --color-content: #{$color-dark-blue};
+  --button-primary-background-color: var(--color-content);
+  --button-primary-border-color: var(--color-content);
+
+  // Links
+  --button-primary-font-color: #{$color-white};
+  --button-secondary-border-color: var(--color-content);
+
+  // Cards
+  --button-secondary-font-color: var(--color-content);
+  --color-spec-value-level-default: var(--theme-color-content-20);
+
+  // Product card
+  --focus-theme-color: #{$color-light-blue};
+
+  // Job listing item
+  --job-listing-item-color: #{$color-dark-blue};
+  --job-listing-item-bg-color: #{$color-white};
+  --job-listing-item-color-hover: #{$color-white};
+  --job-listing-item-bg-color-hover: #{$color-dark-blue};
+  --job-listing-item-tag-bg-color: #{$color-lightest-blue};
+  --job-listing-item-tag-bg-color-hover: #{$color-white};
+}
+
+html.t-lightest-blue {
+  background-color: var(--color-background);
+}

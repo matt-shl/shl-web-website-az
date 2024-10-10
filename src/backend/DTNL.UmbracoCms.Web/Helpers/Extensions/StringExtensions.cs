@@ -74,7 +74,7 @@ public static partial class StringExtensions
 
         foreach (char c in str)
         {
-            if (c is >= '0' and <= '9' or >= 'A' and <= 'Z' or >= 'a' and <= 'z' or ' ')
+            if (c is (>= '0' and <= '9') or (>= 'A' and <= 'Z') or (>= 'a' and <= 'z') or ' ' or '-')
             {
                 sb.Append(c);
             }
