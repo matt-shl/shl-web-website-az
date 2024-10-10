@@ -18,10 +18,12 @@ else if(Model.Items.Count > 0)
 
             @foreach (IOverviewItem overviewItem in Model.Items)
             {
-                <partial name="@overviewItem.ViewPath" model="@overviewItem" />
+                <li>
+                    <partial name="@overviewItem.ViewPath" model="@overviewItem" />
+                </li>
             }
-
-            <partial name="Pagination" model="@Model.Pagination" />
         </partial>
+
+        <partial name="Pagination" model="@Model.Pagination" />
     </div>
 }

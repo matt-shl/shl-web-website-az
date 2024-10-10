@@ -36,7 +36,7 @@ public abstract class OverviewFor<TOverviewPage, TPage, TFilters, TOverviewItem>
     where TFilters : BaseFilters
     where TOverviewItem : IOverviewItem
 {
-    protected const int PageSize = 6;
+    protected const int PageSize = 12;
 
     protected OverviewFor(ISearchService searchService)
     {

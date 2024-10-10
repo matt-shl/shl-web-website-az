@@ -20,6 +20,7 @@ public class OverviewProducts : OverviewFor<PageProductOverview, PageProduct, Pr
         CssClasses = "t-white",
         Variant = "grid",
         Id = "content",
+        ListLabel = CultureDictionary.GetTranslation(TranslationAliases.Products.ProductsList),
     };
 
     protected override PageProductOverview OverviewPage => (NodeProvider.CurrentNode as PageProductOverview)!;

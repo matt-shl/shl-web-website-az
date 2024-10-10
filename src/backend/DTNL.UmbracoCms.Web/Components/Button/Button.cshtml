@@ -21,9 +21,9 @@
     class="
         @(!Model.Variant.IsNullOrEmpty() ? $"c-button--{Model.Variant}" : "c-button")
         @(!Model.Size.IsNullOrEmpty() ? $" button--{Model.Size}" : "")
-        @(!Model.Icon.IsNullOrEmpty() ? " button--icon" : "")
-        @(Model.LabelSrOnly ? " button--icon-only" : "")
-        button--icon-position-@Model.IconPosition
+        @(!Model.Icon.IsNullOrEmpty() ? " button--icon" : null)
+        @(Model.LabelSrOnly ? " button--icon-only" : null)
+        @(!Model.IconPosition.IsNullOrEmpty() ? $"button--icon-position-{@Model.IconPosition}" : null)
         @Model.Class"
     @Html.Attribute(Model.Hook?.EnsureStartsWith("js-hook-"))
     @Html.Attributes(Model.Attributes)
