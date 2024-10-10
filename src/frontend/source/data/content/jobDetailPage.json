@@ -29,7 +29,7 @@
   },
   "jobVacancies": {
     "title": "Other Jobs You May Be Interested In",
-    "theme": "t-pale-green",
+    "theme": "t-white-pink",
     "id": "jobs",
     "sectionTitle": "jobs",
     "cta1": {

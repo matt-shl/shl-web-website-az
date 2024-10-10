@@ -56,6 +56,7 @@ moduleInit.async('[js-hook-history-timeline]', () => import('@components/history
 moduleInit.async('[js-hook-search]', () => import('@components/search'))
 moduleInit.async('[js-hook-job-listing-item]', () => import('@/components/job-listing-item'))
 moduleInit.async('[js-hook-card-knowledge]', () => import('@/components/card-knowledge'))
+moduleInit.async('[js-hook-stacking-cards]', () => import('@/components/stacking-cards'))
 
 if (document.querySelector('[js-hook-video]')) {
   videoLoader(['native'])

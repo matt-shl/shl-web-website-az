@@ -1,0 +1,73 @@
+{% from 'layout-section.html' import layoutSection %}
+{% from 'image.html' import image %}
+
+{% macro stackingCards(data) %}
+
+  {% set themeMapping = {
+    "t-dark-green": "t-pastel-green",
+    "t-dark-pink": "t-lightest-pink",
+    "t-general": "t-lightest-blue",
+    "t-light-blue": "t-lightest-blue",
+    "t-light-grey": "t-general",
+    "t-lightest-blue": "t-general",
+    "t-lightest-pink": "t-dark-pink",
+    "t-lightest-yellow": "t-pale-yellow",
+    "t-pale-blue": "t-general",
+    "t-pale-green": "t-dark-green",
+    "t-pale-pink": "t-dark-pink",
+    "t-pale-yellow": "t-lightest-yellow",
+    "t-pastel-blue": "t-general",
+    "t-pastel-green": "t-dark-green",
+    "t-white": "t-general",
+    "t-white-pink": "t-dark-pink"
+  } %}
+
+  {% set themeOdd = data.theme or "t-lightest-blue" %}
+  {% set themeEven = themeMapping[themeOdd] or "t-general" %}
+
+  {% call layoutSection({
+    theme: 't-white',
+    id: data.id,
+    sectionTitle: data.sectionTitle,
+    variant: variant,
+    classes: 'u-overflow-visible'
+  }) %}
+
+    <div class="c-stacking-cards" js-hook-stacking-cards>
+
+      <div class="stacking-cards__container">
+        <div class="stacking-cards__content" js-hook-stacking-cards-content>
+          <h2 class="stacking-cards__title" js-hook-stacking-cards-title>{{ data.title }}</h2>
+          {% if data.description %}
+            <p class="stacking-cards__description" js-hook-stacking-cards-description>{{ data.description }}</p>
+          {% endif %}
+        </div>
+
+        <div class="stacking-cards__cards">
+          {% for card in data.items %}
+            {% set themeClass = themeEven if loop.index % 2 == 0 else themeOdd %}
+            <div class="stacking-cards__card" js-hook-stacking-cards-card>
+              <div class="stacking-cards__card-container {{ themeClass }}">
+                <div class="stacking-cards__card-content">
+                  <h3 class="stacking-cards__card-title">{{ card.title }}</h3>
+                  <p class="stacking-cards__card-description">{{ card.description }}</p>
+                </div>
+                <div class="stacking-cards__card-image">
+                  {% if card.image %}
+                    {{ image(card.image | clone | merge({
+                      imageStyle: "stacking-card",
+                      objectFit: true
+                    })) }}
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+
+    </div>
+  {% endcall %}
+
+{% endmacro %}

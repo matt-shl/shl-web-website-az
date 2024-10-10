@@ -2,23 +2,26 @@ import Environment from '@utilities/environment'
 
 const themes = [
   'general',
-  'lightest-pink',
-  'pale-pink',
-  'pale-green',
-  'pale-yellow',
-  'lightest-yellow',
   'pale-blue',
+  'lightest-blue',
   'pastel-blue',
   'light-blue',
-  'white',
+  'lightest-pink',
+  'white-pink',
+  'pale-pink',
   'dark-pink',
+  'pale-green',
   'light-grey',
   'dark-green',
-  'pastel-green'
+  'pastel-green',
+  'pale-yellow',
+  'lightest-yellow',
+  'white',
 ] as const
 
 type Theme = (typeof themes)[number]
 
+const JS_HOOK_THEME_LABEL = '[js-hook-current-theme]'
 const THEME_PREFIX = 't-'
 const SWITCH_THEME_DELAY_IN_MS = 300
 
@@ -27,6 +30,7 @@ class SetTheme {
   currentTheme: Theme
   isSwitching: boolean
   allThemedSections: HTMLElement[]
+  themeLabel: HTMLSpanElement | null
 
   constructor() {
     if (!Environment.isLocal && !Environment.isTest) return
@@ -34,6 +38,8 @@ class SetTheme {
     this.html = document.documentElement
     this.allThemedSections = Array.from(document.querySelectorAll('.c-layout-section'))
     this.currentTheme = this.getCurrentTheme(this.html)
+
+    this.themeLabel = document.querySelector(JS_HOOK_THEME_LABEL)
 
     this.bindEvents()
   }
@@ -69,6 +75,8 @@ class SetTheme {
 
     target.classList.remove(`${THEME_PREFIX}${currentTheme}`)
     target.classList.add(newThemeClass)
+
+    if(this.themeLabel) this.themeLabel.innerHTML = themes[nextIndex]
 
     if (target === this.html) {
       this.currentTheme = themes[nextIndex]

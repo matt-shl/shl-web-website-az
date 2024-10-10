@@ -1,5 +1,5 @@
-.t-lightest-pink {
-  --color-background: #{$color-lightest-pink};
+.t-white-pink {
+  --color-background: #{$color-white};
   --color-card-background: #{$color-dark-pink};
   --color-card-content: #{$color-white};
 
@@ -23,10 +23,10 @@
 
   // Job listing item
   --job-listing-item-color: #{$color-dark-pink};
-  --job-listing-item-bg-color: #{$color-white};
+  --job-listing-item-bg-color: #{$color-lightest-pink};
   --job-listing-item-color-hover: #{$color-white};
   --job-listing-item-bg-color-hover: #{$color-dark-pink};
-  --job-listing-item-tag-bg-color: #{$color-lightest-pink};
+  --job-listing-item-tag-bg-color: #{$color-white};
   --job-listing-item-tag-bg-color-hover: #{$color-white};
 }
 

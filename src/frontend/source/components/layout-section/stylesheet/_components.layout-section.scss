@@ -40,6 +40,10 @@
   padding-block: $spacing-40;
   overflow: hidden;
 
+  .c-layout-section.u-overflow-visible & {
+    overflow: visible;
+  }
+
   .c-layout-section--in-grid & {
     @include theme;
     @include layout-section-border-style;
