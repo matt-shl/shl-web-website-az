@@ -1,0 +1,37 @@
+@using DTNL.UmbracoCms.Web.Components.FormElements
+@using DTNL.UmbracoCms.Web.Helpers.Extensions
+
+@model Input
+
+<div class="c-input form__item
+        @(Model.Class ?? "")
+        @(!Model.Type.IsNullOrEmpty() ? $"input--{Model.Type}" : "")
+        @(!Model.Size.IsNullOrEmpty() ? $"input--{Model.Size}" : "")
+        @(Model.Disabled ? "form__item--disabled" : "")
+        @(Model.LabelAsPlaceholder ? "form__item--lap" : "")"
+@(Model.LabelAsPlaceholder ? "js-hook-lap" : "")>
+
+    <div class="input__wrapper" title="@Model.Label">
+        <label class="input__label @(Model.SrOnly ? "u-sr-only" : "")" for="@(Model.Id ?? Model.Name)">
+            @Html.Raw(Model.Label)
+        </label>
+        <input class="input__input"
+               type="@(Model.Type ?? "text")"
+               name="@Model.Name"
+               value="@Model.Value"
+               id="@(Model.Id ?? Model.Name)"
+        @(Model.Required ? Html.Attribute("required", "required") : "")
+        @(Model.RequiredError is not null ? Html.Attribute("data-required-error", Model.RequiredError))
+        @(Model.Disabled ? Html.Attribute("disabled", "disabled") : "")
+        @(!Model.Placeholder.IsNullOrEmpty() && !Model.LabelAsPlaceholder ? Html.Attribute("placeholder", @Model.Placeholder) : "")
+        @(Model.Hook is not null ? $"js-hook-{Model.Hook}" : "")
+        @(!Model.Pattern.IsNullOrEmpty() ? Html.Attribute("pattern", Model.Pattern) : null)
+        @(Model.RequiredError is not null ? Html.Attribute("data-patter-error", Model.RequiredError))
+        @(!Model.Validate.IsNullOrEmpty() ? Html.Attribute("data-validate", Model.Validate) : null)
+        @(Model.MaxLength is not null ? Html.Attribute("max-length", Model.MaxLength.Value) : null)
+
+        @Html.Attributes(Model.Attributes)>
+        <span class="focus-helper"></span>
+    </div>
+    <div id="@(Model.Name)_error" class="form__item-error @(Model.Error.IsNullOrEmpty() ? "u-hidden" : "")">@Model.Error</div>
+</div>

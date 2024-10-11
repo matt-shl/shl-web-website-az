@@ -15,13 +15,14 @@
         <p class="download-item__description">@Model.Description</p>
     </div>
     <div class="download-item__link-container">
-        <a href="#" class="download-item__link" aria-label="@CultureDictionary.GetTranslation(TranslationAliases.Common.Downloads.DownloadPDF, Model.Title)">
+        <a aria-controls="@Model.DownloadOverlay.Modal.Id"
+           class="download-item__link"
+           aria-label="@CultureDictionary.GetTranslation(TranslationAliases.Common.Downloads.DownloadPDF, Model.Title)">
             <span class="download-item__link-icon">
                 <svg src="@SvgAliases.Icons.Download"/>
             </span>
 
-             @* TODO: this will be changed for the implementation of SM-290 Download overlay. *@
-            <span> @CultureDictionary.GetTranslation(TranslationAliases.Common.Downloads) (1.2MB)</span>
+            <span> @CultureDictionary.GetTranslation(TranslationAliases.Common.Downloads)</span>
         </a>
     </div>
 </div>

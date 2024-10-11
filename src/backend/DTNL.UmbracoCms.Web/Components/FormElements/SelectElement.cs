@@ -37,9 +37,9 @@ public class SelectElement : ViewComponentExtended
     public IViewComponentResult Invoke(
         string id,
         string name,
-        IEnumerable<SelectOption> options,
-        IEnumerable<SelectOptGroup> optGroups,
         string label,
+        IEnumerable<SelectOption>? options = null,
+        IEnumerable<SelectOptGroup>? optGroups = null,
         string? classes = default,
         Dictionary<string, string?>? attr = default,
         bool disabled = default,

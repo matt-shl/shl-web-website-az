@@ -1,0 +1,63 @@
+@using DocumentFormat.OpenXml.Bibliography
+@using DTNL.UmbracoCms.Web.Components.FormElements
+@using DTNL.UmbracoCms.Web.Helpers.Aliases
+@using DTNL.UmbracoCms.Web.Helpers.Extensions
+@using Umbraco.Cms.Core.Dictionary
+
+@model DTNL.UmbracoCms.Web.Components.PardotForm
+
+@inject ICultureDictionary CultureDictionary
+
+<partial name="FormElements/Input" model="@(new Input { Name = "cf_First_Name", Label = CultureDictionary.GetTranslation($"TODO{TranslationAliases.Common} First Name"), MaxLength = 255, Validate = "required", Required = true, RequiredError = CultureDictionary.GetTranslation($"TODO{TranslationAliases.Common} First Name") })" />
+
+<partial name="FormElements/Input" model="@(new Input { Name = "cf_Last_Name", Label = CultureDictionary.GetTranslation($"TODO{TranslationAliases.Common} Last Name"), MaxLength = 255, Validate = "required", Required = true, RequiredError =  CultureDictionary.GetTranslation($"TODO{TranslationAliases.Common} Last Name") })" />
+
+<partial name="FormElements/Input" model="@(new Input { Name = "cf_Email", Label = CultureDictionary.GetTranslation($"TODO{TranslationAliases.Common} Email"), MaxLength = 255, Validate = "required,email", Required = true, RequiredError =  CultureDictionary.GetTranslation($"TODO{TranslationAliases.Common} Email") })" />
+
+<partial name="FormElements/Input" model="@(new Input { Name = "cf_Company", Label = CultureDictionary.GetTranslation($"TODO{TranslationAliases.Common} Company"), MaxLength = 255, Validate = "required", Required = true, RequiredError =  CultureDictionary.GetTranslation($"TODO{TranslationAliases.Common} Company") })" />
+
+<vc:select-element  />
+
+<div class="c-select form__item">
+
+    <div class="select__wrapper">
+        <label class="select__label" for="cf_country">
+            Map.Region.Country
+            <sup>*</sup>
+        </label>
+        <div class="select__input-wrapper">
+            <select class="select__input" name="cf_country" id="cf_country" data-validate="required" data-required-error="Please enter your country" tabindex="0">
+
+
+                <option hidden="" selected="" value="">
+                    Select country
+                </option>
+
+                <option value="United States">
+                    United States
+                </option>
+
+                <option value="Canada">
+                    CalendarHelper.Canada
+                </option>
+
+                <option value="Mexico">
+                    Mexico
+                </option>
+
+                <option value="Netherlands">
+                    Netherlands
+                </option>
+
+
+            </select>
+            <span class="select__icon">
+                <!--  icons/chevron-down.svg  -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path fill="currentColor" d="m12.219 15.781-7.5-7.5A.75.75 0 1 1 5.78 7.22l6.97 6.97 6.969-6.97A.75.75 0 1 1 20.78 8.28l-7.5 7.5a.748.748 0 0 1-1.061 0Z"></path></svg>
+
+            </span>
+        </div>
+    </div>
+    <div id="cf_Country_error" class="form__item-error u-hidden"></div>
+
+</div>
