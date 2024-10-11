@@ -55,7 +55,7 @@ public class HeroContent : IHero
                     b.Class = "hero-content__cta";
                     b.Hook = "homepage-hero-button";
                 }),
-            ShowSearch = page is PageVacancyOverview or PageSearch,
+            ShowSearch = page is PageVacancyOverview or PageCareerOverview or PageSearch,
         };
     }
 }
