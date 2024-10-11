@@ -1,0 +1,30 @@
+@model DTNL.UmbracoCms.Web.Components.ContactForm
+
+<div class="c-contact-block">
+    <div class="contact-block__col contact-block__col--content">
+        <h2 class="contact-block__title" asp-if="@Model.Title">@Model.Title</h2>
+
+        <div class="contact-block__content">
+            <p class="contact-block__description" asp-if="@Model.Text">@Model.Text</p>
+
+            <div class="contact-block__items">
+                {% for item in data.items %}
+                <div class="contact-block__item">
+                    {% svg 'icons/' + item.icon %}
+                    <div class="contact-block__item-text">
+                        <p><strong>{{ item.title }}</strong></p>
+                        <p>{{ item.description }}</p>
+                        <div class="contact-block__item-content">
+                            <strong>@Html.Raw("TODO"){{ item.content | safe }}</strong>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div class="contact-block__col contact-block__col--form t-light-grey">
+        <partial name="PardotForm" model="@Model.PardotContactForm" />
+    </div>
+</div>

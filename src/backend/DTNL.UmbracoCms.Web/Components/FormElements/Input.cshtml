@@ -21,12 +21,12 @@
                value="@Model.Value"
                id="@(Model.Id ?? Model.Name)"
         @(Model.Required ? Html.Attribute("required", "required") : "")
-        @(Model.RequiredError is not null ? Html.Attribute("data-required-error", Model.RequiredError))
+        @(Model.RequiredError is not null ? Html.Attribute("data-required-error", Model.RequiredError) : null)
         @(Model.Disabled ? Html.Attribute("disabled", "disabled") : "")
         @(!Model.Placeholder.IsNullOrEmpty() && !Model.LabelAsPlaceholder ? Html.Attribute("placeholder", @Model.Placeholder) : "")
         @(Model.Hook is not null ? $"js-hook-{Model.Hook}" : "")
         @(!Model.Pattern.IsNullOrEmpty() ? Html.Attribute("pattern", Model.Pattern) : null)
-        @(Model.RequiredError is not null ? Html.Attribute("data-patter-error", Model.RequiredError))
+        @(Model.RequiredError is not null ? Html.Attribute("data-patter-error", Model.RequiredError) : null)
         @(!Model.Validate.IsNullOrEmpty() ? Html.Attribute("data-validate", Model.Validate) : null)
         @(Model.MaxLength is not null ? Html.Attribute("max-length", Model.MaxLength.Value) : null)
 

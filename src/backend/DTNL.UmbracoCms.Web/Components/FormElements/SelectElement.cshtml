@@ -18,6 +18,7 @@
                     id="@Model.Id"
                     name="@Model.Name"
                     @(Model.Required ? Html.Attribute("required", "required") : "")
+                    @(Model.RequiredError is not null ? Html.Attribute("data-required-error", Model.RequiredError) : null)
                     @(Model.Disabled ? Html.Attribute("disabled", "disabled") : "")
                     @(!Model.Validate.IsNullOrEmpty() ? Html.Attribute("data-validate", Model.Validate) : "")
                     @Html.Attribute(Model.Hook?.EnsureStartsWith("js-hook-"))

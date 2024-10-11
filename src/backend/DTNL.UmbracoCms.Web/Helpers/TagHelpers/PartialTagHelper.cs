@@ -19,7 +19,7 @@ public class PartialTagHelper : Microsoft.AspNetCore.Mvc.TagHelpers.PartialTagHe
     }
 
     /// <summary>
-    /// HTML wrapper element
+    /// HTML wrapper element.
     /// </summary>
     public string? WrapperElement { get; set; }
 

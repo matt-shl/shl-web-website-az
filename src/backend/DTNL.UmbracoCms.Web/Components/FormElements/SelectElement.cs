@@ -20,6 +20,8 @@ public class SelectElement : ViewComponentExtended
 
     public bool Required { get; set; }
 
+    public string? RequiredError { get; set; }
+
     public string? Validate { get; set; }
 
     public string? Error { get; set; }
@@ -44,6 +46,7 @@ public class SelectElement : ViewComponentExtended
         Dictionary<string, string?>? attr = default,
         bool disabled = default,
         bool required = default,
+        string? requiredError = default,
         string? validate = default,
         string? value = default,
         string? error = default,
@@ -63,6 +66,7 @@ public class SelectElement : ViewComponentExtended
         Validate = validate;
         Value = value;
         Error = error;
+        RequiredError = requiredError;
         Hook = hook.IfNullOrWhiteSpace(null);
         SrOnly = sronly;
         LabelAsPlaceholder = labelAsPlaceholder;
@@ -90,7 +94,7 @@ public class SelectElement : ViewComponentExtended
         Dictionary<string, string?>? attr = default,
         string? validate = null) : IFormOption
     {
-        public string? Label { get; set; } = label;
+        public string? Label { get; set; } = label ?? value;
 
         public string? Id { get; set; } = id;
 

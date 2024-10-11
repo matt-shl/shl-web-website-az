@@ -16,7 +16,7 @@ public class DownloadOverlay
                 Size = "aside-with-image",
                 Title = downloadItem.DownloadItemTitle,
                 SubTitle = downloadItem.DownloadItemDescription,
-                Image = null,// TODO?
+                Image = null, // TODO?
                 KeepScrollPosition = true,
             },
         };

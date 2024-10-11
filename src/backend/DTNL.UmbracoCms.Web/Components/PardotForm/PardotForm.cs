@@ -4,9 +4,9 @@ public abstract class PardotForm
 {
     public required string ActionUrl { get; set; }
 
-    public required string ActionSubmitLabelKey { get; set; }
+    public abstract string ActionSubmitLabelKey { get; }
 
-    public required string ActionSuccessLabelKey { get; set; }
+    public abstract string ActionSuccessLabelKey { get; }
 
-    public required string ActionErrorLabelKey { get; set; }
+    public abstract string ActionErrorLabelKey { get; }
 }
