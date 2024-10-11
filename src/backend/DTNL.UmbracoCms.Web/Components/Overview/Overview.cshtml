@@ -2,28 +2,27 @@
 
 @model Overview
 
-@if (Model.NoResultsSection is not null)
+@if (Model.Filters is not null)
 {
-    <partial name="EmptySection" model="@Model.NoResultsSection" />
+    <partial name="Filters" model="@Model.Filters" />
 }
-else if(Model.Items.Count > 0)
-{
-    @if (Model.Filters is not null)
+
+<div js-hook-replace-content="overview-content">
+    @if (Model.NoResultsSection is not null)
     {
-        <partial name="Filters" model="@Model.Filters" />
+        <partial name="EmptySection" model="@Model.NoResultsSection" />
     }
-
-    <div js-hook-replace-content="overview-content">
+    else
+    {
         <partial name="LayoutSection" model="@Model.LayoutSection">
-
             @foreach (IOverviewItem overviewItem in Model.Items)
             {
-                <li>
-                    <partial name="@overviewItem.ViewPath" model="@overviewItem" />
-                </li>
+                <partial name="@overviewItem.ViewPath"
+                         model="@overviewItem"
+                         wrapper-element="@(Model.LayoutSection.ListLabel is null ? null : "li")" />
             }
         </partial>
+    }
 
-        <partial name="Pagination" model="@Model.Pagination" />
-    </div>
-}
+    <partial name="Pagination" model="@Model.Pagination" />
+</div>
