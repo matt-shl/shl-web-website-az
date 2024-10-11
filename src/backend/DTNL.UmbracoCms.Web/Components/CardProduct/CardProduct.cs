@@ -3,7 +3,7 @@ using Umbraco.Cms.Web.Common.PublishedModels;
 
 namespace DTNL.UmbracoCms.Web.Components;
 
-public class CardProduct : ICard
+public class CardProduct : ICard, IOverviewItem
 {
     public required string Title { get; set; }
 

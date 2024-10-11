@@ -20,7 +20,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 {
 	/// <summary>Site Settings</summary>
 	[PublishedModel("siteSettings")]
-	public partial class SiteSettings : PublishedContentModel, ICompositionAnalytics, ICompositionCookieBar, ICompositionErrorHandling, ICompositionFooter, ICompositionHeader, ICompositionRedirects, ICompositionSeoSettings, ICompositionSocialLinks, ICompositionStructuredData, ICompositionTagSettings
+	public partial class SiteSettings : PublishedContentModel, ICompositionAnalytics, ICompositionCookieBar, ICompositionErrorHandling, ICompositionFooter, ICompositionHeader, ICompositionSeoSettings, ICompositionSocialLinks, ICompositionStructuredData, ICompositionTagSettings
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
@@ -154,14 +154,6 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel MainNavigationItems => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionHeader.GetMainNavigationItems(this, _publishedValueFallback);
 
 		///<summary>
-		/// Redirects File: Upload an Excel file here with the first column with Old urls, and second column with the new urls to redirect to.
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("redirectsFile")]
-		public virtual string RedirectsFile => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionRedirects.GetRedirectsFile(this, _publishedValueFallback);
-
-		///<summary>
 		/// Website Name: If filled in, the website name will be added to the end of the page title
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
@@ -202,7 +194,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual string CompanyName => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionStructuredData.GetCompanyName(this, _publishedValueFallback);
 
 		///<summary>
-		/// Categories: Define allowed categories.
+		/// Categories: Define allowed page categories.
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
@@ -250,7 +242,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual global::System.Collections.Generic.IEnumerable<string> RoutesOfAdministration => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionTagSettings.GetRoutesOfAdministration(this, _publishedValueFallback);
 
 		///<summary>
-		/// Types
+		/// Types: Define allowed page types.
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]

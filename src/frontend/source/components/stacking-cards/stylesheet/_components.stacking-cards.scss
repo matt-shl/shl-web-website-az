@@ -1,0 +1,128 @@
+.stacking-cards__title {
+  margin-bottom: $spacing-24;
+
+  @include screen-lg-and-bigger {
+    margin-bottom: $spacing-64;
+    position: absolute;
+    bottom: 100%;
+    width: calc(100vw - 140px);
+    max-width: 1440px;
+  }
+}
+
+.stacking-cards__container {
+  @include screen-lg-and-bigger {
+    display: flex;
+    align-items: flex-start;
+    gap: $spacing-16;
+  }
+}
+
+.stacking-cards__content {
+  margin-bottom: $spacing-32;
+
+  @include screen-lg-and-bigger {
+    margin-bottom: 0;
+    width: 32.5%;
+    min-width: 32.5%;
+    position: sticky;
+    // top set in JS
+  }
+}
+
+.stacking-cards__cards {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-16;
+  position: relative;
+}
+
+.stacking-cards__description {
+  @include body-l;
+
+  @include screen-lg-and-bigger {
+    margin-inline: $spacing-40;
+  }
+}
+
+.stacking-cards__card {
+  @include screen-lg-and-bigger {
+    position: sticky;
+    // top set in JS
+  }
+}
+
+.stacking-cards__card-container {
+  @include grid(2);
+  @include theme;
+  grid-gap: $spacing-24;
+  border-radius: $radii-12;
+  padding: $spacing-24;
+
+  @include screen-lg-and-bigger {
+    grid-gap: $spacing-40;
+    padding: $spacing-40;
+    transition: 500ms ease-in-out;
+    transition-property: transform, opacity;
+    transform: scale(1);
+    opacity: 1;
+    pointer-events: auto;
+
+    .stacking-cards__card.is--hidden & {
+      transform: scale(0.95);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .stacking-cards__card.is--last-hidden & {
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
+    .stacking-cards__card.is--forcibly-hidden & {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .stacking-cards__card.is--hidden.is--last-hidden:last-child & {
+      transform: scale(1);
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+}
+
+.stacking-cards__card-content {
+  @include col-span(2);
+
+  @include screen-md-and-bigger {
+    @include col-span(1);
+  }
+}
+
+.stacking-cards__card-image {
+  @include col-span(2);
+  aspect-ratio: 1;
+
+  .c-image {
+    height: 100%;
+  }
+
+  img {
+    border-radius: $radii-12;
+  }
+
+  @include screen-md-and-bigger {
+    @include col-span(1);
+    aspect-ratio: 1.333;
+  }
+}
+
+.stacking-cards__card-title {
+  @include h4;
+  margin-bottom: $spacing-16;
+
+  @include screen-lg-and-bigger {
+    margin-bottom: $spacing-24;
+  }
+}

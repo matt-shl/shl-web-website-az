@@ -4,5 +4,5 @@ public class BackgroundJobsOptions
 {
     public bool Enabled { get; set; } = true;
 
-    public Dictionary<string, string> Schedule { get; set; } = new();
+    public Dictionary<string, string> Schedule { get; set; } = [];
 }

@@ -26,53 +26,80 @@ public class Search : ViewComponentExtended
 
     public IViewComponentResult Invoke()
     {
-        if (NodeProvider.CurrentNode is not { } currentNode)
+        if (GetSearchResultsPage(out bool isVacancySearch) is not { } searchResultsPage)
         {
             return Content("");
         }
 
-        Variant = currentNode is PageVacancyOverview or PageCareerOverview ? "job" : "in-hero";
+        Variant = isVacancySearch ? "job" : "in-hero";
 
-        ActionUrl = currentNode.Url();
+        ActionUrl = searchResultsPage.Url();
 
         SearchQuery = Request.Query.GetSearchQuery();
 
-        SearchLabel = CultureDictionary.GetTranslation(TranslationAliases.Vacancies.Search);
-
-        SearchPlaceholder = CultureDictionary.GetTranslation(TranslationAliases.Vacancies.SearchPlaceholder);
-
-        if (currentNode is PageVacancyOverview or PageCareerOverview &&
-            NodeProvider.VacancyOverviewPage is { } vacancyOverviewPage)
+        if (isVacancySearch)
         {
-            List<PageVacancy> vacancyPages = Services.NodeProvider
-                .GetVacancyPages(vacancyOverviewPage)
-                .ToList();
+            SearchLabel = CultureDictionary.GetTranslation(TranslationAliases.Vacancies.SearchLabel);
 
-            VacancyFilters vacancyFilters = new(vacancyOverviewPage, Request.Query);
+            SearchPlaceholder = CultureDictionary.GetTranslation(TranslationAliases.Vacancies.SearchPlaceholder);
 
-            vacancyFilters.AddFilterOptions(VacancyFilters.QuickFilterFields, vacancyPages, HttpContext);
+            SetVacancyFilters(NodeProvider.VacancyOverviewPage!);
+        }
+        else
+        {
+            SearchLabel = CultureDictionary.GetTranslation(TranslationAliases.Search.SearchLabel);
 
-            Filters = [];
-
-            foreach (string filterName in vacancyFilters.Keys)
-            {
-                FilterOption defaultOption = new()
-                {
-                    Label = CultureDictionary.GetTranslation($"{TranslationAliases.Vacancies.AllFilterOptions}.{filterName}"),
-                    Value = string.Empty,
-                };
-
-                Filter filter = Filter
-                    .CreateDropdownOptions(
-                        filterName,
-                        TranslationAliases.Vacancies,
-                        vacancyFilters,
-                        defaultOption);
-
-                Filters.Add(filter);
-            }
+            SearchPlaceholder = CultureDictionary.GetTranslation(TranslationAliases.Search.SearchPlaceholder);
         }
 
         return View("Search", this);
+    }
+
+    private ICompositionBasePage? GetSearchResultsPage(out bool isVacancySearch)
+    {
+        isVacancySearch = NodeProvider.CurrentNode is PageVacancyOverview or PageCareerOverview;
+
+        if (NodeProvider.CurrentNode is null)
+        {
+            return null;
+        }
+
+        if (isVacancySearch)
+        {
+            return NodeProvider.VacancyOverviewPage;
+        }
+
+        return NodeProvider.SearchPage;
+    }
+
+    private void SetVacancyFilters(PageVacancyOverview vacancyOverviewPage)
+    {
+        List<PageVacancy> vacancyPages = Services.NodeProvider
+            .GetVacancyPages(vacancyOverviewPage)
+            .ToList();
+
+        VacancyFilters vacancyFilters = new(vacancyOverviewPage, Request.Query);
+
+        vacancyFilters.AddFilterOptions(VacancyFilters.QuickFilterFields, vacancyPages, HttpContext);
+
+        Filters = [];
+
+        foreach (string filterName in vacancyFilters.Keys)
+        {
+            FilterOption defaultOption = new()
+            {
+                Label = CultureDictionary.GetTranslation($"{TranslationAliases.Vacancies.AllFilterOptions}.{filterName}"),
+                Value = string.Empty,
+            };
+
+            Filter filter = Filter
+                .CreateDropdownOptions(
+                    filterName,
+                    TranslationAliases.Vacancies,
+                    vacancyFilters,
+                    defaultOption);
+
+            Filters.Add(filter);
+        }
     }
 }

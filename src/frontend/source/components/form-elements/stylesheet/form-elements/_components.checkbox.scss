@@ -5,7 +5,6 @@
   --checkbox-checked-color: var(--color-dark-blue);
   --checkbox-hover-focus-color: currentcolor;
   --checkbox-unchecked-color: var(--color-dark-blue);
-  --checkbox-error-color: var(--input-error-color);
   --checkbox-margin-right: #{$global-spacing * 2};
   --checkbox-transition-time: 200ms;
   --checkbox-transition-ease: #{$ease-in-out-quad};
@@ -124,7 +123,7 @@
 
     .form__item--error & {
       box-shadow:
-        0 0 0 var(--checkbox-border-width) var(--checkbox-error-color) inset,
+        0 0 0 var(--checkbox-border-width) var(--color-error) inset,
         0 0 0 calc(var(--checkbox-border-width) * 3) var(--color-white) inset;
     }
   }

@@ -26,6 +26,8 @@
     <PackageReference Include="Serilog.Exceptions.SqlServer" />
     <PackageReference Include="Serilog.Sinks.ApplicationInsights" />
     <PackageReference Include="SimpleMvcSitemap.Core" />
+    <PackageReference Include="Skybrud.Umbraco.Redirects" />
+    <PackageReference Include="Skybrud.Umbraco.Redirects.Import" />
     <PackageReference Include="Umbraco.Cms" />
     <PackageReference Include="Umbraco.Community.MediaColourFinder" />
     <PackageReference Include="Umbraco.StorageProviders.AzureBlob" />

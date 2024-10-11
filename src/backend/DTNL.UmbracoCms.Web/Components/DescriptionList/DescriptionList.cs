@@ -12,29 +12,34 @@ public partial class DescriptionList
 
     public Button? DownloadLinkButton { get; set; }
 
-
-    public static DescriptionList? Create(PageProduct productPage)
-    {
-        return Create(
-            productPage.Specifications.GetSingleContentOrNull<NestedBlockProductSpecifications>(),
-            productPage);
-    }
-
     public static DescriptionList? Create(
         NestedBlockProductSpecifications? productSpecificationsBlock,
-        PageProduct? productPage = null)
+        PageProduct? productPage)
     {
-        if (productSpecificationsBlock is null)
-        {
-            return null;
-        }
+        List<DescriptionListItem> items = new List<DescriptionListItem>();
+        string title = "";
 
-        List<DescriptionListItem> items =
-            DescriptionListItem.CreateFor(productPage)
+        if (productSpecificationsBlock is not null)
+        {
+            items = DescriptionListItem.CreateFor(productPage)
             .Concat(productSpecificationsBlock.Specifications
                 .Using(s => s.Content as NestedBlockProductSpecification)
                 .Using(DescriptionListItem.Create))
             .ToList();
+            title = productSpecificationsBlock.Title!;
+        }
+        else
+        {
+            NestedBlockProductSpecifications? productSpecifications =
+            productPage?.Specifications.GetSingleContentOrNull<NestedBlockProductSpecifications>();
+
+            items = DescriptionListItem.CreateFor(productPage)
+                .Concat(productSpecifications is not null ? productSpecifications.Specifications
+                    .Using(s => s.Content as NestedBlockProductSpecification)
+                    .Using(DescriptionListItem.Create) : [])
+                .ToList();
+            title = productSpecifications?.Title ?? "";
+        }
 
         if (items.Count == 0)
         {
@@ -43,7 +48,7 @@ public partial class DescriptionList
 
         return new DescriptionList
         {
-            Title = productSpecificationsBlock.Title,
+            Title = title,
             Items = items,
             DownloadLinkButton = Button.Create(Link.Create(productPage?.SpecificationsFile))
                 .With(b =>

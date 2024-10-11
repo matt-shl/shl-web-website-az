@@ -1,6 +1,6 @@
 using Umbraco.Cms.Core.Models.PublishedContent;
 
-namespace DTNL.UmbracoCms.Web.Components.NestedBlock.TextMediaBanner;
+namespace DTNL.UmbracoCms.Web.Components.NestedBlock;
 
 public class NestedBlockTextMediaBanner : NestedBlockWithInner
 {
@@ -13,7 +13,7 @@ public class NestedBlockTextMediaBanner : NestedBlockWithInner
 
         if (LayoutSection.CssThemeClasses is not null)
         {
-            LayoutSection.Variant = !string.Equals(LayoutSection.CssThemeClasses, "t-white") ? "in-grid" : null;
+            LayoutSection.Variant = LayoutSection.CssThemeClasses is "t-white" ? "in-grid" : null;
         }
 
         return BannerTextMedia.Create(textMediaBannerBlock);

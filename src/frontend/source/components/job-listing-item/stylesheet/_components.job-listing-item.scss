@@ -21,7 +21,7 @@
       color: var(--job-listing-item-color-hover, $color-white);
 
       .job-listing-item__tag {
-        background-color: var(--job-listing-item-bg-color, $color-light-blue);
+        background-color: var(--job-listing-item-tag-bg-color-hover, $color-light-blue);
       }
 
       .job-listing-item__tag--icon {

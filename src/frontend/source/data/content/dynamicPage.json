@@ -200,5 +200,42 @@
         }
       ]
     }
+  },
+  "stackingCards": {
+    "theme": "t-dark-green",
+    "title": "Why should you join SHL?",
+    "description": "At SHL Medical, we are redefining careers. We provide the right tools for our employees to flourish in their careers. Join us and together we’ll shape the platform for your success.",
+    "items": [
+      {
+        "image": true,
+        "title": "Ownership & Impact",
+        "description": "Experience a culture that encourages ownership and control over your outcomes, making you a key player in SHL’s success. Your work contributes to the development of products that significantly impact people’s lives."
+      },
+      {
+        "image": true,
+        "title": "Comfortable Atmosphere",
+        "description": "At SHL, we prioritize a comfortable atmosphere for our employees. Our office spaces are designed with ergonomic furniture and ample natural lighting to ensure a pleasant working environment. Additionally, our supportive and inclusive culture promotes employee well-being and personal growth."
+      },
+      {
+        "image": true,
+        "title": "Proactive & engaged people",
+        "description": "We encourage you to be proactive, engaged, and contribute your ideas. Shape your career and influence the success of the company. Join a team that thrives on collaboration and values every individual’s input."
+      },
+      {
+        "image": true,
+        "title": "Innovative",
+        "description": "At SHL, innovation is at the heart of everything we do. We are constantly pushing the boundaries to develop cutting-edge products that meet the evolving needs of our customers. Our dedicated team of experts is committed to staying ahead of the curve, ensuring that our products are always at the forefront of innovation in the industry."
+      },
+      {
+        "image": true,
+        "title": "Caring & Inclusive",
+        "description": "At SHL, we foster a caring and inclusive culture that values the well-being and diversity of our employees. We prioritize creating a supportive environment where everyone feels respected, heard, and included. Our commitment to inclusivity extends to all aspects of our organization, promoting collaboration, innovation, and personal growth."
+      },
+      {
+        "image": true,
+        "title": "Sustainability",
+        "description": "At SHL, sustainability is a core value that guides our actions and decisions. We are dedicated to minimizing our environmental impact and promoting sustainable practices throughout our operations. Our goal is to be fully sustainable around the globe by 2030."
+      }
+    ]
   }
 }

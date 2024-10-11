@@ -44,5 +44,4 @@ public static class PublishedElementExtensions
 
         return attribute.Alias;
     }
-
 }

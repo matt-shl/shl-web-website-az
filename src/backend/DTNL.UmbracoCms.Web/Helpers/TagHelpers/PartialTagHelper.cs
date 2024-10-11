@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewEngines;
 using Microsoft.AspNetCore.Mvc.ViewFeatures.Buffers;
 using Microsoft.AspNetCore.Razor.TagHelpers;
@@ -17,6 +18,11 @@ public class PartialTagHelper : Microsoft.AspNetCore.Mvc.TagHelpers.PartialTagHe
     {
     }
 
+    /// <summary>
+    /// HTML wrapper element
+    /// </summary>
+    public string? WrapperElement { get; set; }
+
     /// <inheritdoc />
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
@@ -25,7 +31,17 @@ public class PartialTagHelper : Microsoft.AspNetCore.Mvc.TagHelpers.PartialTagHe
         try
         {
             ViewContext.ViewData[ViewDataPartialBody] = await output.GetChildContentAsync();
+
             await base.ProcessAsync(context, output);
+
+            if (!WrapperElement.IsNullOrWhiteSpace())
+            {
+                TagBuilder wrappedContent = new(WrapperElement);
+
+                wrappedContent.InnerHtml.AppendHtml(output.Content.GetContent());
+
+                output.Content.SetHtmlContent(wrappedContent);
+            }
         }
         finally
         {

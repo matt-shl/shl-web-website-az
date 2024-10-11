@@ -1,0 +1,17 @@
+{% from 'modal.html' import modal %}
+{% from 'pardot-form.html' import pardotForm %}
+
+{% macro formOverlay(data) %}
+  {% call modal({
+    size: 'aside',
+    id: data.id,
+    title: data.title,
+    subtitle: data.subtitle,
+    keepScrollPosition: true,
+    classes: ''
+  }) %}
+    <div class="c-form-overlay t-white">
+      {{ pardotForm(data.form) }}
+    </div>
+  {% endcall %}
+{% endmacro %}

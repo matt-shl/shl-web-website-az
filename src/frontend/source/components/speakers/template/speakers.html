@@ -23,7 +23,7 @@
           {% endfor %}
         </div>
 
-        {% if data.cta %}
+        {% if data.cta.url %}
           <div class="speakers__ctas">
             {{ button({
               class: 'speakers__cta',
@@ -32,7 +32,18 @@
               variant: data.cta.variant,
               icon: data.cta.icon or 'arrow-top-right'
             }) }}
-        </div>
+          </div>
+        {% elseif data.cta.controls %}
+          <div class="speakers__ctas">
+            {{ button({
+              element: 'button',
+              class: 'speakers__cta',
+              label: data.cta.label,
+              controls: data.cta.controls,
+              variant: data.cta.variant,
+              icon: data.cta.icon or 'arrow-top-right'
+            }) }}
+          </div>
         {% endif %}
       </div>
     </div>
