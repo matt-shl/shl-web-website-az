@@ -2,9 +2,9 @@ using Umbraco.Cms.Core.Models.PublishedContent;
 
 namespace DTNL.UmbracoCms.Web.Components.NestedBlock;
 
-public class NestedBlockRichTextComponent : NestedBlockWithInner
+public class NestedBlockRichText : NestedBlockWithInner
 {
-    protected override RichTextComponent? GetInnerComponent(IPublishedElement block)
+    protected override RichText? GetInnerComponent(IPublishedElement block)
     {
         if (block is not Umbraco.Cms.Web.Common.PublishedModels.NestedBlockRichText blockRichText)
         {
@@ -13,6 +13,6 @@ public class NestedBlockRichTextComponent : NestedBlockWithInner
 
         LayoutSection.ReduceMargin = blockRichText.ReduceMargin;
 
-        return RichTextComponent.Create(blockRichText, CultureDictionary);
+        return RichText.Create(blockRichText, CultureDictionary);
     }
 }
