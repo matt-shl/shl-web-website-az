@@ -13,32 +13,23 @@ public partial class DescriptionList
     public Button? DownloadLinkButton { get; set; }
 
     public static DescriptionList? Create(
-        NestedBlockProductSpecifications? productSpecificationsBlock,
-        PageProduct? productPage)
+        PageProduct? productPage,
+        NestedBlockProductSpecifications? productSpecificationsBlock = null)
     {
-        List<DescriptionListItem> items = new List<DescriptionListItem>();
+        productSpecificationsBlock ??= productPage?.Specifications.GetSingleContentOrNull<NestedBlockProductSpecifications>();
+
+        List<DescriptionListItem> items = [];
         string title = "";
 
         if (productSpecificationsBlock is not null)
         {
             items = DescriptionListItem.CreateFor(productPage)
-            .Concat(productSpecificationsBlock.Specifications
+                .Concat(productSpecificationsBlock.Specifications
                 .Using(s => s.Content as NestedBlockProductSpecification)
                 .Using(DescriptionListItem.Create))
-            .ToList();
-            title = productSpecificationsBlock.Title!;
-        }
-        else
-        {
-            NestedBlockProductSpecifications? productSpecifications =
-            productPage?.Specifications.GetSingleContentOrNull<NestedBlockProductSpecifications>();
-
-            items = DescriptionListItem.CreateFor(productPage)
-                .Concat(productSpecifications is not null ? productSpecifications.Specifications
-                    .Using(s => s.Content as NestedBlockProductSpecification)
-                    .Using(DescriptionListItem.Create) : [])
                 .ToList();
-            title = productSpecifications?.Title ?? "";
+
+            title = productSpecificationsBlock.Title!;
         }
 
         if (items.Count == 0)

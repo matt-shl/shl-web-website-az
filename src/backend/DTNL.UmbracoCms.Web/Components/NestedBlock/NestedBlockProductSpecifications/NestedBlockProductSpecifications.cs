@@ -12,6 +12,6 @@ public class NestedBlockProductSpecifications : NestedBlockWithInner
             return null;
         }
 
-        return DescriptionList.Create(productSpecificationsBlock, NodeProvider.CurrentNode as PageProduct);
+        return DescriptionList.Create(NodeProvider.CurrentNode as PageProduct, productSpecificationsBlock);
     }
 }
