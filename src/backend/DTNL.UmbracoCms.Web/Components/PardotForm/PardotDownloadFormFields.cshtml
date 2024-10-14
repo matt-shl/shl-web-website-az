@@ -1,11 +1,33 @@
-@using DocumentFormat.OpenXml.Bibliography
 @using DTNL.UmbracoCms.Web.Components.FormElements
 @using DTNL.UmbracoCms.Web.Helpers.Aliases
 @using DTNL.UmbracoCms.Web.Helpers.Extensions
+@using DTNL.UmbracoCms.Web.Services
 @using Umbraco.Cms.Core.Dictionary
 
 @model DTNL.UmbracoCms.Web.Components.PardotForm
 
 @inject ICultureDictionary CultureDictionary
 
-TODO
+@inject NodeProvider NodeProvider
+
+<partial name="FormElements/Input" model="@(new Input { Name = "cf_email_address", Label = CultureDictionary.GetTranslation($"{TranslationAliases.Forms.Fields}.Email"), MaxLength = 255, Validate = "required,email", RequiredError =  CultureDictionary.GetTranslation($"{TranslationAliases.Forms.Fields}.Email.Error Message") })" />
+
+<partial name="FormElements/Input" model="@(new Input { Name = "cf_First_Name", Label = CultureDictionary.GetTranslation($"{TranslationAliases.Forms.Fields}.First Name"), MaxLength = 255, Validate = "required", RequiredError = CultureDictionary.GetTranslation($"{TranslationAliases.Forms.Fields}.First Name.Error Message") })" />
+
+<partial name="FormElements/Input" model="@(new Input { Name = "cf_Last_Name", Label = CultureDictionary.GetTranslation($"{TranslationAliases.Forms.Fields}.Last Name"), MaxLength = 255, Validate = "required", RequiredError =  CultureDictionary.GetTranslation($"{TranslationAliases.Forms.Fields}.Last Name.Error Message") })" />
+
+<partial name="FormElements/Input" model="@(new Input { Name = "cf_Company", Label = CultureDictionary.GetTranslation($"{TranslationAliases.Forms.Fields}.Company"), MaxLength = 255, Validate = "required", RequiredError =  CultureDictionary.GetTranslation($"{TranslationAliases.Forms.Fields}.Company.Error Message") })" />
+
+<vc:select-element id="cf_Country"
+                   name="cf_Country"
+                   label="@CultureDictionary.GetTranslation($"{TranslationAliases.Forms.Fields}.Country")"
+                   options="@((NodeProvider.SiteSettings?.Locations).Using(location => new SelectElement.SelectOption(location)))"
+                   validate="required"
+                   required-error="@CultureDictionary.GetTranslation($"{TranslationAliases.Forms.Fields}.Country.Error Message") })" />
+
+<vc:text-area id="cf_Message"
+              name="cf_Message"
+              label="@CultureDictionary.GetTranslation($"{TranslationAliases.Forms.Fields}.Message")"
+              max-length="255"
+              validate="required"
+              required-error="@CultureDictionary.GetTranslation($"{TranslationAliases.Forms.Fields}.Message.Error Message")" />

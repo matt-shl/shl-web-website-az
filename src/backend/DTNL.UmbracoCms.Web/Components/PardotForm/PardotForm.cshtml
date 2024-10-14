@@ -32,14 +32,14 @@
         <div class="checkbox__wrapper">
             <input class="checkbox__input"
                    type="checkbox"
-                   name="cf_Consent_Given"
+                   name="@Model.ConsentFieldName"
                    value="yes"
                    id="cf_consent_given"
                    data-validate="required"
-                   data-required-error="Please agree to our privacy policy" tabindex="0">
+                   data-required-error="@CultureDictionary.GetTranslation(TranslationAliases.Forms.Fields.PrivacyPolicy.ErrorMessage)" tabindex="0">
             <label class="checkbox__label" for="cf_consent_given" role="button">
                 <span>
-                    @CultureDictionary.GetTranslation(TranslationAliases.Common) TODO
+                    @CultureDictionary.GetTranslation(TranslationAliases.Forms.Fields.PrivacyPolicy)
                     <sup>*</sup>
                 </span>
             </label>
@@ -47,9 +47,9 @@
         <div id="cf_Consent_Given_error" class="form__item-error u-hidden"></div>
     </div>
 
-    <input type="hidden" name="source_page_title" value="@currentNode.GetTitle()" tabindex="0">
+    <input type="hidden" name="@Model.SourcePageTitleFieldName" value="@currentNode.GetTitle()" tabindex="0">
 
-    <input type="hidden" name="source_URL" value="@currentNode.Url(mode: UrlMode.Absolute)" tabindex="0">
+    <input type="hidden" name="@Model.SourceUrlFieldName" value="@currentNode.Url(mode: UrlMode.Absolute)" tabindex="0">
 
     <partial name="Button" model="@(new Button { Element = "button", Label = CultureDictionary.GetTranslation(Model.ActionSubmitLabelKey), Class = "pardot-form__submit", Icon = SvgAliases.Icons.ArrowTopRight, Type = "submit"})" />
 </form>

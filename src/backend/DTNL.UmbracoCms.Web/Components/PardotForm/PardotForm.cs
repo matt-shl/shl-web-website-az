@@ -9,4 +9,10 @@ public abstract class PardotForm
     public abstract string ActionSuccessLabelKey { get; }
 
     public abstract string ActionErrorLabelKey { get; }
+
+    public virtual string ConsentFieldName => "cf_Consent Given";
+
+    public virtual string SourcePageTitleFieldName => "source_page_title";
+
+    public virtual string SourceUrlFieldName => "source_URL";
 }

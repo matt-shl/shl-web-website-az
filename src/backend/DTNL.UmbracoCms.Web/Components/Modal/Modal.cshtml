@@ -1,9 +1,10 @@
 @using DTNL.UmbracoCms.Web.Helpers.Aliases
 @using DTNL.UmbracoCms.Web.Helpers.Extensions
 @using Umbraco.Cms.Core.Dictionary
-@model DTNL.UmbracoCms.Web.Components.Modal;
 
-@inject ICultureDictionary CultureDictionary;
+@model DTNL.UmbracoCms.Web.Components.Modal
+
+@inject ICultureDictionary CultureDictionary
 
 <div class="c-modal @Model.Class @(Model.Size != null ? $"c-modal--size-{Model.Size}" : null)"
      id="@Model.Id"
@@ -35,9 +36,12 @@
             {
                 <div class="modal__header">
                     <div>
-                        <h2 class="modal__title">@Model.Title</h2>
+                        @if (!Model.Title.IsNullOrWhiteSpace())
+                        {
+                            <h2 class="modal__title">@CultureDictionary.GetTranslationOrDefault(Model.Title, Model.Title)</h2>
+                        }
 
-                        @if (Model.SubTitle != null)
+                        @if (!Model.SubTitle.IsNullOrWhiteSpace())
                         {
                             <h3 class="modal__subtitle">@Model.SubTitle</h3>
                         }

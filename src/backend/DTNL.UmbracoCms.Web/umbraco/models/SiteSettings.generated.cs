@@ -50,6 +50,22 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		// properties
 
 		///<summary>
+		/// Download Form Image
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("downloadFormImage")]
+		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops DownloadFormImage => this.Value<global::Umbraco.Cms.Core.Models.MediaWithCrops>(_publishedValueFallback, "downloadFormImage");
+
+		///<summary>
+		/// Event Form Image
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("eventFormImage")]
+		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops EventFormImage => this.Value<global::Umbraco.Cms.Core.Models.MediaWithCrops>(_publishedValueFallback, "eventFormImage");
+
+		///<summary>
 		/// Body Scripts: Insert here your Hotjar/Google Analytics scripts to be inserted at body of the page.
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
@@ -192,6 +208,14 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("deviceTypes")]
 		public virtual global::System.Collections.Generic.IEnumerable<string> DeviceTypes => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionTagSettings.GetDeviceTypes(this, _publishedValueFallback);
+
+		///<summary>
+		/// Interested In: Defined allowed interests.
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("interestedIn")]
+		public virtual global::System.Collections.Generic.IEnumerable<string> InterestedIn => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionTagSettings.GetInterestedIn(this, _publishedValueFallback);
 
 		///<summary>
 		/// Locations: Define allowed locations.

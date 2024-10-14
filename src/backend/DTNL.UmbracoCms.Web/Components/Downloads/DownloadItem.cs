@@ -13,19 +13,20 @@ public class DownloadItem
 
     public required DownloadOverlay DownloadOverlay { get; set; }
 
-    public static DownloadItem? Create(IPublishedElement item)
+    public static DownloadItem? Create(IPublishedElement item, SiteSettings? settings)
     {
-        if (item is not NestedBlockDownloadItem downloadItem)
+        if (item is not NestedBlockDownloadItem downloadItem ||
+            DownloadOverlay.Create(downloadItem, settings) is not { } downloadOverlay)
         {
             return null;
         }
 
         return new DownloadItem
         {
-            Title = downloadItem.DownloadItemTitle!,
-            Description = downloadItem.DownloadItemDescription,
-            Icon = downloadItem.DownloadIcon?.LocalCrops.Src,
-            DownloadOverlay = DownloadOverlay.Create(downloadItem),
+            Title = downloadItem.Title!,
+            Description = downloadItem.Description,
+            Icon = downloadItem.Icon?.LocalCrops.Src,
+            DownloadOverlay = downloadOverlay,
         };
     }
 }
