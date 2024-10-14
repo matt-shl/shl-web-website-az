@@ -20,7 +20,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 {
 	/// <summary>Page Cookies</summary>
 	[PublishedModel("pageCookies")]
-	public partial class PageCookies : PublishedContentModel, ICompositionBasePage, ICompositionColorOptions, ICompositionContentBlocks, ICompositionCookiesOptions, ICompositionSeo
+	public partial class PageCookies : PublishedContentModel, ICompositionBasePage, ICompositionCardDetails, ICompositionColorOptions, ICompositionContentBlocks, ICompositionContentDetails, ICompositionHero, ICompositionSeo, ICompositionSocialSharing, ICompositionSocialSharingOptions
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
@@ -58,6 +58,30 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel Slogan => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionBasePage.GetSlogan(this, _publishedValueFallback);
 
 		///<summary>
+		/// Category
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("cardCategory")]
+		public virtual global::System.Collections.Generic.IEnumerable<string> CardCategory => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionCardDetails.GetCardCategory(this, _publishedValueFallback);
+
+		///<summary>
+		/// Description: Defaults to Hero Text, if not set.
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("cardDescription")]
+		public virtual global::Umbraco.Cms.Core.Strings.IHtmlEncodedString CardDescription => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionCardDetails.GetCardDescription(this, _publishedValueFallback);
+
+		///<summary>
+		/// Image: Defaults to Hero Image, if not set.
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("cardImage")]
+		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops CardImage => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionCardDetails.GetCardImage(this, _publishedValueFallback);
+
+		///<summary>
 		/// Page Theme
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
@@ -74,20 +98,35 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel ContentBlocks => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionContentBlocks.GetContentBlocks(this, _publishedValueFallback);
 
 		///<summary>
-		/// Cookie options
+		/// Content Tags
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("cookiesOptions")]
-		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel CookiesOptions => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionCookiesOptions.GetCookiesOptions(this, _publishedValueFallback);
+		[ImplementPropertyType("contentTags")]
+		public virtual global::System.Collections.Generic.IEnumerable<string> ContentTags => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionContentDetails.GetContentTags(this, _publishedValueFallback);
 
 		///<summary>
-		/// Text
+		/// Date
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[ImplementPropertyType("date")]
+		public virtual global::System.DateTime Date => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionContentDetails.GetDate(this, _publishedValueFallback);
+
+		///<summary>
+		/// Type
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("cookiesText")]
-		public virtual global::Umbraco.Cms.Core.Strings.IHtmlEncodedString CookiesText => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionCookiesOptions.GetCookiesText(this, _publishedValueFallback);
+		[ImplementPropertyType("type")]
+		public virtual global::System.Collections.Generic.IEnumerable<string> Type => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionContentDetails.GetType(this, _publishedValueFallback);
+
+		///<summary>
+		/// Hero
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("hero")]
+		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel Hero => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionHero.GetHero(this, _publishedValueFallback);
 
 		///<summary>
 		/// Do Not Follow: Setting to true will prevent search engines from following the links on the page, so it will not index the pages it finds (only) on this page.
@@ -156,5 +195,61 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("umbracoUrlName")]
 		public virtual string UmbracoUrlName => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionSeo.GetUmbracoUrlName(this, _publishedValueFallback);
+
+		///<summary>
+		/// Description: To overrule the description property for social sharing
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("ogDescription")]
+		public virtual string OgDescription => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionSocialSharing.GetOgDescription(this, _publishedValueFallback);
+
+		///<summary>
+		/// Image: The image for sharing on social media. Facebook recommends 1200 x 630px
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("ogImage")]
+		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops OgImage => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionSocialSharing.GetOgImage(this, _publishedValueFallback);
+
+		///<summary>
+		/// Title: To overrule the title property for social sharing
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("ogTitle")]
+		public virtual string OgTitle => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionSocialSharing.GetOgTitle(this, _publishedValueFallback);
+
+		///<summary>
+		/// Twitter Description: Optional override for twitter card description. If you do not fill in this field, Twitter will use the Open Graph tag.
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("twitterDescription")]
+		public virtual string TwitterDescription => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionSocialSharing.GetTwitterDescription(this, _publishedValueFallback);
+
+		///<summary>
+		/// Twitter Image: Optional override for image card title. If you do not fill in this field, Twitter will use the Open Graph tag.
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("twitterImage")]
+		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops TwitterImage => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionSocialSharing.GetTwitterImage(this, _publishedValueFallback);
+
+		///<summary>
+		/// Twitter title: Optional override for twitter card title. If you do not fill in this field, Twitter will use the Open Graph tag.
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("twitterTitle")]
+		public virtual string TwitterTitle => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionSocialSharing.GetTwitterTitle(this, _publishedValueFallback);
+
+		///<summary>
+		/// Disable socials: Select the social options that you want to hide from the page
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("disableSocialShare")]
+		public virtual global::System.Collections.Generic.IEnumerable<string> DisableSocialShare => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionSocialSharingOptions.GetDisableSocialShare(this, _publishedValueFallback);
 	}
 }

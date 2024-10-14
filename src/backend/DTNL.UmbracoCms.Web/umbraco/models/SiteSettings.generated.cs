@@ -20,7 +20,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 {
 	/// <summary>Site Settings</summary>
 	[PublishedModel("siteSettings")]
-	public partial class SiteSettings : PublishedContentModel, ICompositionAnalytics, ICompositionCookieBar, ICompositionErrorHandling, ICompositionFooter, ICompositionHeader, ICompositionSeoSettings, ICompositionSocialLinks, ICompositionStructuredData, ICompositionTagSettings
+	public partial class SiteSettings : PublishedContentModel, ICompositionAnalytics, ICompositionErrorHandling, ICompositionFooter, ICompositionHeader, ICompositionSeoSettings, ICompositionSocialLinks, ICompositionStructuredData, ICompositionTagSettings
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
@@ -72,38 +72,6 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("searchConsoleVerification")]
 		public virtual string SearchConsoleVerification => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionAnalytics.GetSearchConsoleVerification(this, _publishedValueFallback);
-
-		///<summary>
-		/// Text
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("cookieMediaWallText")]
-		public virtual global::Umbraco.Cms.Core.Strings.IHtmlEncodedString CookieMediaWallText => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionCookieBar.GetCookieMediaWallText(this, _publishedValueFallback);
-
-		///<summary>
-		/// Cookie Page: Select the cookies page to change preferences
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("cookiePage")]
-		public virtual global::Umbraco.Cms.Core.Models.Link CookiePage => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionCookieBar.GetCookiePage(this, _publishedValueFallback);
-
-		///<summary>
-		/// Text
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("cookieText")]
-		public virtual string CookieText => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionCookieBar.GetCookieText(this, _publishedValueFallback);
-
-		///<summary>
-		/// Cookie Version
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("cookieVersion")]
-		public virtual string CookieVersion => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionCookieBar.GetCookieVersion(this, _publishedValueFallback);
 
 		///<summary>
 		/// 404 Page not found: Set page to be shown on 404 errors
