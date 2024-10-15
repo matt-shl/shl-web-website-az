@@ -6,6 +6,7 @@
 @(!string.IsNullOrEmpty(Model.NavigationTitle) ? $"data-title={Model.NavigationTitle}" : null)
 @(!string.IsNullOrEmpty(Model.Id) ? $"id={Model.Id}" : null)
 @(string.IsNullOrEmpty(Model.JsHook) ? "" : "js-hook-" + Model.JsHook)
+@(string.IsNullOrEmpty(Model.GtmHook) ? "" : "js-hook-gtm-" + Model.GtmHook)
 js-hook-section
 js-hook-inview
 data-inview-threshold="0.5"

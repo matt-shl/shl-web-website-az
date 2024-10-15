@@ -28,6 +28,10 @@ public abstract class Overview : ViewComponentExtended
     public Pagination? Pagination { get; set; }
 
     public abstract LayoutSection LayoutSection { get; }
+
+    public string? OverviewType { get; set; }
+
+    public string? SearchTerm { get; set; }
 }
 
 public abstract class OverviewFor<TOverviewPage, TPage, TFilters, TOverviewItem> : Overview
@@ -95,6 +99,16 @@ public abstract class OverviewFor<TOverviewPage, TPage, TFilters, TOverviewItem>
             .OfType<IOverviewItem>()
             .Page(PageNumber, PageSize)
             .ToList();
+
+        OverviewType = pages.FirstOrDefault()?.GetTemplateAlias() switch
+        {
+        "PagePublication" => "publication",
+        "PageEvent" => "event",
+        "PageNews" => "news",
+        _ => null,
+        };
+
+        SearchTerm = Request.Query.GetSearchQuery();
 
         if (TotalCount == 0 && ShowNoResultsSection)
         {

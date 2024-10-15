@@ -12,9 +12,20 @@
     <partial name="Favicons" />
 
     <vc:cookie-version site-settings="@NodeProvider.SiteSettings" />
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+            event: "init",
+            page: {
+                type: @Model.ContentType.Alias
+            },
+            language: @System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName
+        })
+    </script>
     @Html.Raw(NodeProvider.SiteSettings?.HeaderScripts)
 </head>
 <body>
+    @Html.Raw(NodeProvider.SiteSettings?.BodyScripts)
     <partial name="CarouselIndicator" />
 
     <vc:header />
@@ -35,6 +46,5 @@
     <vc:footer site-settings="@NodeProvider.SiteSettings" page="@Model" />
 
     <script async src="/assets/js/main.js" asp-append-version="true"></script>
-    @Html.Raw(NodeProvider.SiteSettings?.BodyScripts)
 </body>
 </html>
