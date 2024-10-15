@@ -18,7 +18,7 @@ public static class ImageExtensions
         UrlMode urlMode = UrlMode.Default,
         ImageCropMode imageCropMode = ImageCropMode.Crop)
     {
-        Image.ImageCropDimensions dimensions = GetImageCropDimensions(image, width, height);
+        Image.ImageCropDimensions dimensions = image.GetImageCropDimensions(width, height);
 
         return image.GetCropUrl(dimensions.Width, dimensions.Height, quality: quality, imageCropMode: imageCropMode, urlMode: urlMode);
     }
@@ -37,7 +37,8 @@ public static class ImageExtensions
             return "";
         }
 
-        Image.ImageCropDimensions? dimensions = GetImageCropDimensions(image.Content, crop.Width, crop.Height);
+        Image.ImageCropDimensions dimensions = image.Content.GetImageCropDimensions(crop.Width, crop.Height);
+
         string? cropUrl = image.GetCropUrl(dimensions.Width, dimensions.Height, cropAlias: cropAlias, quality: quality, imageCropMode: ImageCropMode.Crop, urlMode: urlMode);
 
         // If we are dealing with a crop that has coordinates set, we don't need to worry about cropping.
@@ -58,7 +59,7 @@ public static class ImageExtensions
         return string.Join(",", entries.Select(x => x.ToString(image)));
     }
 
-    private static Image.ImageCropDimensions GetImageCropDimensions(IPublishedContent node, int? width, int? height)
+    private static Image.ImageCropDimensions GetImageCropDimensions(this IPublishedContent node, int? width, int? height)
     {
         int currentWidth = width ?? 0;
         int currentHeight = height ?? 0;
