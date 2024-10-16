@@ -100,11 +100,12 @@ public abstract class OverviewFor<TOverviewPage, TPage, TFilters, TOverviewItem>
             .Page(PageNumber, PageSize)
             .ToList();
 
-        OverviewType = pages.FirstOrDefault()?.GetTemplateAlias() switch
+        OverviewType = pages.FirstOrDefault()?.ContentType.Alias switch
         {
-        "PagePublication" => "publication",
-        "PageEvent" => "event",
-        "PageNews" => "news",
+        "pagePublication" => "publication",
+        "pageEvent" => "event",
+        "pageNews" => "news",
+        "pageProduct" => "product",
         _ => null,
         };
 

@@ -71,6 +71,7 @@ public class JobVacancies : ViewComponentExtended
                 Url = page.ExternalUrl,
                 Variant = "secondary",
                 Icon = SvgAliases.Icons.ArrowTopRight,
+                Hook = "apply",
             };
         }
 
