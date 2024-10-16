@@ -199,7 +199,7 @@ public static class Startup
                 builder.AddFrameAncestors().Self();
                 builder.AddScriptSrc()
                     .From("https://*.shl-medical.com")
-                    .From("https://go.shl-medical.com")
+                    .From("https://*.cookiebot.com")
                     .UnsafeInline()
                     .UnsafeEval()
                     .Self();
