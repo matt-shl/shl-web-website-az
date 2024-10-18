@@ -2,7 +2,7 @@ using Umbraco.Cms.Core.Models.PublishedContent;
 
 namespace DTNL.UmbracoCms.Web.Components.NestedBlock;
 
-public class NestedBlockQuoteBanner : NestedBlockWithInner
+public class NestedBlockQuotesBanner : NestedBlockWithInner
 {
     protected override BannerQuote? GetInnerComponent(IPublishedElement block)
     {
