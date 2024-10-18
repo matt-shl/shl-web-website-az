@@ -22,10 +22,7 @@
                             <p class="stacking-cards__card-description">@card.Description</p>
                         </div>
                         <div class="stacking-cards__card-image">
-                            @if (card.Image != null)
-                            {
-                                <partial name="Image" model="@(card.Image)" />
-                            }
+                            <partial name="Image" model="@(card.Image)" />
                         </div>
                     </div>
                 </div>
