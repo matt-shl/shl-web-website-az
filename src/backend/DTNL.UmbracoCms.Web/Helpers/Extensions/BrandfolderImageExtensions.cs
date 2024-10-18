@@ -15,7 +15,7 @@ public static class BrandfolderImageExtensions
         int? height = null,
         ImageCropMode imageCropMode = ImageCropMode.Crop)
     {
-        return image.UmbracoFile
+        return image.BrandfolderUrl
             .SetQueryParam("height", width is 0 ? null : width)
             .SetQueryParam("width", height is 0 ? null : height)
             .SetQueryParam("fit", "bounds");
