@@ -95,6 +95,7 @@ public class Footer : ViewComponentExtended
             {
                 b.Variant = "link";
                 b.Class = "footer__navigation-link";
+                b.Hook = "footer-navigation-link";
                 b.LabelSup = labelSup;
             });
     }

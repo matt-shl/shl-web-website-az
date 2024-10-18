@@ -26,7 +26,7 @@
           {{ button(data.cta1 | clone | merge({icon: 'arrow-top-right'})) }}
         {% endif %}
         {% if data.cta2 %}
-          {{ button(data.cta2| clone | merge({variant: "secondary", icon: 'arrow-top-right'})) }}
+          {{ button(data.cta2| clone | merge({variant: "secondary", icon: 'arrow-top-right', hook: 'apply' if data.cta2.apply else '' })) }}
         {% endif %}
       </div>
     </div>

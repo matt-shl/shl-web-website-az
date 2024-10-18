@@ -75,7 +75,7 @@
                             @foreach (Link socialLink in Model.SocialLinks.Links)
                             {
                                 <partial name="Button"
-                                         model="@Button.Create(socialLink).With(b => { b.LabelSrOnly = true; b.Class = "button--icon-clear footer__sub-social-link"; b.Variant = "icon"; })"/>
+                                         model="@Button.Create(socialLink).With(b => { b.LabelSrOnly = true; b.Class = "button--icon-clear footer__sub-social-link"; b.Variant = "icon"; b.Hook = "footer-social-link"; })" />
                             }
                         </div>
 

@@ -21,10 +21,11 @@
         {% if data.tags %}
           <div class="hero-content__tags">
             {% for tagContent in data.tags %}
-              {{ tag({
-                classes: "hero-content__tag",
-                label: tagContent.label
-              }) }}
+              <span {% if tagContent.type %} js-hook-job-listing-{{ tagContent.type }}{% endif %}>
+                {{ tag({
+                  classes: "hero-content__tag",
+                  label: tagContent.label}) }}
+              </span>
             {% endfor %}
           </div>
         {% endif %}

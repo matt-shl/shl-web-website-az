@@ -17,6 +17,7 @@ public class NestedBlockKnowledgeCards : NestedBlockWithInner
         }
 
         SetCarouselsLayout(cardCarousel);
+        LayoutSection.GtmHook = "knowledge-overview-sections";
 
         return cardCarousel;
     }
