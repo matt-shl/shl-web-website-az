@@ -2,6 +2,17 @@
   "footerScrollingText": "Stronger. Smarter. Better.",
   "hero": {
     "title": "Quality Engineer Design & Development",
+    "subtitle": "Zug, Switzerland",
+    "tags": [
+      {
+        "label": "Senior",
+        "type": "seniority"
+      },
+      {
+        "label": "Full-time",
+        "type": "employment"
+      }
+    ],
     "breadcrumbs": [
       {
         "url": "/home.html",
@@ -37,6 +48,7 @@
       "url": "#"
     },
     "cta2": {
+      "apply": true,
       "label": "Apply Now",
       "url": "#"
     },

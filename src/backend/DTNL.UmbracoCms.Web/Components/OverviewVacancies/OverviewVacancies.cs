@@ -24,7 +24,7 @@ public class OverviewVacancies : OverviewFor<PageVacancyOverview, PageVacancy, V
         ListLabel = CultureDictionary.GetTranslation(TranslationAliases.Vacancies),
     };
 
-    protected override PageVacancyOverview OverviewPage => NodeProvider.VacancyOverviewPage!;
+protected override PageVacancyOverview OverviewPage => NodeProvider.VacancyOverviewPage!;
 
     protected override List<PageVacancy> GetPages()
     {
