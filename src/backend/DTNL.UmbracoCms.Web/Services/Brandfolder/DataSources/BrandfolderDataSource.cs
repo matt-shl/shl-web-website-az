@@ -1,72 +1,42 @@
-using DTNL.UmbracoCms.Web.Helpers.Extensions;
 using DTNL.UmbracoCms.Web.Services.Brandfolder.Models;
-using Umbraco.Cms.Core.Models;
 using Umbraco.Cms.Core.PropertyEditors;
+using Umbraco.Cms.Core.Web;
 using Umbraco.Community.Contentment.DataEditors;
+using Umbraco.Community.Contentment.Services;
 
 namespace DTNL.UmbracoCms.Web.Services.Brandfolder.DataSources;
 
-public class BrandfolderDataSource : IDataPickerSource
+public class BrandfolderDataSource : BrandfolderBaseDataSource
 {
-    private readonly BrandfolderApiClient _brandfolderApiClient;
-
-    public BrandfolderDataSource(BrandfolderApiClient brandfolderApiClient)
+    public BrandfolderDataSource(
+        BrandfolderApiClient brandfolderApiClient,
+        IContentmentContentContext contentmentContentContext,
+        IUmbracoContextAccessor umbracoContextAccessor)
+        : base(brandfolderApiClient, contentmentContentContext, umbracoContextAccessor)
     {
-        _brandfolderApiClient = brandfolderApiClient;
     }
 
-    public string Name => "Brandfolders";
+    public override string Name => "Brandfolders";
 
-    public string Description => "List of Brandfolders";
+    public override string Description => "List of Brandfolders";
 
-    public string Icon => "icon-folder";
+    public override string Icon => "icon-folder";
 
-    public Dictionary<string, object>? DefaultValues => default;
+    public override Dictionary<string, object>? DefaultValues => default;
 
-    public IEnumerable<ConfigurationField> Fields => [];
+    public override IEnumerable<ConfigurationField> Fields => [];
 
-    public string Group => "Custom";
+    public override string Group => "Custom";
 
-    public OverlaySize OverlaySize => OverlaySize.Small;
+    public override OverlaySize OverlaySize => OverlaySize.Small;
 
-    public async Task<IEnumerable<DataListItem>> GetItemsAsync(Dictionary<string, object> config, IEnumerable<string> values)
+    protected override async Task<BrandfolderEntityResponse> GetItem(string value)
     {
-        List<BrandfolderEntity?> entities = [];
-
-        foreach (string value in values)
-        {
-            BrandfolderEntityResponse brandfolder = await _brandfolderApiClient.GetBrandfolder(value);
-
-            entities.Add(brandfolder.Data);
-        }
-
-        return entities.Using(ToDataListItem);
+        return await BrandfolderApiClient.GetBrandfolder(value);
     }
 
-    public async Task<PagedResult<DataListItem>> SearchAsync(
-        Dictionary<string, object> config,
-        int pageNumber = 1,
-        int pageSize = 12,
-        string query = "")
+    protected override async Task<BrandfolderEntitiesResponse?> SearchItems(int pageNumber = 1, int pageSize = 12, string query = "")
     {
-        BrandfolderEntitiesResponse brandfolders = await _brandfolderApiClient.FindBrandfolders(pageNumber, pageSize, query);
-
-        int totalCount = brandfolders.Meta.TotalCount;
-
-        return new PagedResult<DataListItem>(totalCount, pageNumber, pageSize)
-        {
-            Items = brandfolders.Data.Using(ToDataListItem),
-        };
-    }
-
-    private DataListItem ToDataListItem(BrandfolderEntity content)
-    {
-        return new DataListItem
-        {
-            Name = content.Attributes.Name,
-            Description = content.Attributes.TagLine?.RemoveHtml(),
-            Icon = Icon,
-            Value = content.Id,
-        };
+        return await BrandfolderApiClient.FindBrandfolders(pageNumber, pageSize, query);
     }
 }

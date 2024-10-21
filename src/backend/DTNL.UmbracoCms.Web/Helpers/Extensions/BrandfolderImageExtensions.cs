@@ -16,9 +16,9 @@ public static class BrandfolderImageExtensions
         ImageCropMode imageCropMode = ImageCropMode.Crop)
     {
         return image.BrandfolderUrl
-            .SetQueryParam("height", width is 0 ? null : width)
-            .SetQueryParam("width", height is 0 ? null : height)
-            .SetQueryParam("fit", "bounds");
+            .SetQueryParam("width", width is 0 ? null : width)
+            .SetQueryParam("height", height is 0 ? null : height)
+            .SetQueryParam("fit", GetFitParameter(imageCropMode));
     }
 
     /// <summary>
@@ -27,5 +27,15 @@ public static class BrandfolderImageExtensions
     public static string BuildSrcSetString(this Umbraco.Cms.Web.Common.PublishedModels.BrandfolderImage image, IEnumerable<Image.SrcSetEntry> entries)
     {
         return string.Join(",", entries.Select(x => x.ToString(image)));
+    }
+
+    private static string GetFitParameter(ImageCropMode cropMode)
+    {
+        return cropMode switch
+        {
+            ImageCropMode.Min => "bounds",
+            ImageCropMode.Max => "cover",
+            _ => "crop",
+        };
     }
 }

@@ -17,6 +17,8 @@ using DTNL.UmbracoCms.Web.Modules.BrandfolderPicker;
 using DTNL.UmbracoCms.Web.Services;
 using DTNL.UmbracoCms.Web.Services.Assets;
 using DTNL.UmbracoCms.Web.Services.BackgroundJobs;
+using DTNL.UmbracoCms.Web.Services.Brandfolder;
+using DTNL.UmbracoCms.Web.Services.Brandfolder.Models;
 using Hangfire;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
 using Microsoft.AspNetCore.Rewrite;
@@ -76,6 +78,12 @@ public static class Startup
         /*
          * Extra configuration sources can be added here
          */
+        configuration.AddAzureKeyVault(environment);
+        if (environment.IsDevelopment())
+        {
+            // Specifically add UserSecrets again to allow overriding KeyVault
+            configuration.AddUserSecrets<Program>();
+        }
     }
 
     /// <summary>
@@ -119,6 +127,9 @@ public static class Startup
         // Other 3rd party services
         services.AddTransient<ISitemapProvider, SitemapProvider>();
         services.ConfigureAtsApiClient(configuration);
+
+        services.AddOptions<BrandfolderOptions>(configuration);
+        services.AddSingleton<BrandfolderApiClient>();
 
         // Recurring jobs
         if (applicationOptions.BackgroundJobs.Enabled && applicationOptions.ServerRole != ServerRole.Subscriber)

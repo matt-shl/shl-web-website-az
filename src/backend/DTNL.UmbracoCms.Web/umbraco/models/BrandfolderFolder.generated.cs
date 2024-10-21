@@ -50,11 +50,19 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		// properties
 
 		///<summary>
-		/// Brandfolder Folder
+		/// Brandfolder Folder: Select the folder which will be used to search assets
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("folderId")]
 		public virtual string FolderId => this.Value<string>(_publishedValueFallback, "folderId");
+
+		///<summary>
+		/// Brandfolder Section: Optional. Select the section which will be used to search assets
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("sectionId")]
+		public virtual string SectionId => this.Value<string>(_publishedValueFallback, "sectionId");
 	}
 }

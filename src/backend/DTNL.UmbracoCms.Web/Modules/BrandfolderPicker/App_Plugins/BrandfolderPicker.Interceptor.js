@@ -7,21 +7,19 @@
 
   'use strict';
 
-  angular.module("umbraco").run(function (mediaHelper, $http, $rootScope, $timeout) {
-
-    var defaultResolveFileFromEntity = mediaHelper.resolveFileFromEntity
-
-    mediaHelper.resolveFileFromEntity = function (mediaEntity, isThumbnail) {
-
+  angular.module("umbraco").run(function (mediaHelper, $log) {
+    mediaHelper.resolveFileFromEntity = function (mediaEntity, thumbnail) {
       if (mediaEntity.metaData.ContentTypeAlias === "brandfolderImage") {
-        if (isThumbnail) {
+        if (thumbnail) {
           return mediaEntity.metaData.MediaPath;
         }
 
         return mediaEntity.metaData.MediaPath.split("?")[0];
       }
 
-      return defaultResolveFileFromEntity(mediaEntity, isThumbnail);
+      var mediaPath = Utilities.isObject(mediaEntity.metaData) ? mediaEntity.metaData.MediaPath : null;
+      return mediaPath ? thumbnail ? mediaHelper.detectIfImageByExtension(mediaPath) ? mediaHelper.getThumbnailFromPath(mediaPath) : "svg" === mediaHelper.getFileExtension(mediaPath) ? mediaHelper.getThumbnailFromPath(mediaPath) : null : mediaPath : ($log.warn("Cannot resolve the file url from the mediaEntity, it does not contain the required metaData"),
+       null)
     };
 
   });
