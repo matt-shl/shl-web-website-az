@@ -1,10 +1,8 @@
 using DTNL.UmbracoCms.Web.Helpers.Extensions;
 using DTNL.UmbracoCms.Web.Services.Brandfolder.Models;
 using Umbraco.Cms.Core.Models;
-using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Core.PropertyEditors;
 using Umbraco.Cms.Core.Web;
-using Umbraco.Cms.Web.Common.PublishedModels;
 using Umbraco.Community.Contentment.DataEditors;
 using Umbraco.Community.Contentment.Services;
 
@@ -74,23 +72,6 @@ public abstract class BrandfolderBaseDataSource : IDataPickerSource
     protected abstract Task<BrandfolderEntityResponse> GetItem(string value);
 
     protected abstract Task<BrandfolderEntitiesResponse?> SearchItems(int pageNumber = 1, int pageSize = 12, string query = "");
-
-    protected string? GetBrandfolderId()
-    {
-        if (!UmbracoContextAccessor.TryGetUmbracoContext(out IUmbracoContext? umbracoContext))
-        {
-            return null;
-        }
-
-        if (ContentmentContentContext.GetCurrentContentId() is not { } mediaId)
-        {
-            return null;
-        }
-
-        IPublishedContent? content = umbracoContext.Media?.GetById(true, mediaId);
-
-        return (content as BrandfolderFolder)?.FolderId;
-    }
 
     protected virtual DataListItem ToDataListItem(BrandfolderEntity content)
     {

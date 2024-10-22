@@ -6,4 +6,7 @@ public class BrandfolderOptions
 {
     [Required]
     public required string ApiKey { get; set; }
+
+    [Required]
+    public required string CollectionId { get; set; }
 }

@@ -37,11 +37,6 @@ public class BrandfolderSectionDataSource : BrandfolderBaseDataSource
 
     protected override async Task<BrandfolderEntitiesResponse?> SearchItems(int pageNumber = 1, int pageSize = 12, string query = "")
     {
-        if (GetBrandfolderId() is not { } brandfolderId)
-        {
-            return null;
-        }
-
-        return await BrandfolderApiClient.FindBrandfolderSections(brandfolderId, pageNumber, pageSize, query);
+        return await BrandfolderApiClient.FindBrandfolderSections(pageNumber, pageSize, query);
     }
 }

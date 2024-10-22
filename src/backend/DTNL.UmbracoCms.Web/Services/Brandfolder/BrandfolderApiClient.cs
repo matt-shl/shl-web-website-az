@@ -14,23 +14,6 @@ public class BrandfolderApiClient
         _brandfolderOptions = brandfolderOptions.Value;
     }
 
-    public async Task<BrandfolderEntityResponse> GetBrandfolder(string brandfolderId)
-    {
-        return await $"https://brandfolder.com/api/v4/brandfolders/{brandfolderId}"
-            .WithOAuthBearerToken(_brandfolderOptions.ApiKey)
-            .GetJsonAsync<BrandfolderEntityResponse>();
-    }
-
-    public async Task<BrandfolderEntitiesResponse> FindBrandfolders(int page, int pageSize, string? searchQuery)
-    {
-        return await "https://brandfolder.com/api/v4/brandfolders"
-            .SetQueryParam("search", searchQuery)
-            .SetQueryParam("page", page)
-            .SetQueryParam("per", pageSize)
-            .WithOAuthBearerToken(_brandfolderOptions.ApiKey)
-            .GetJsonAsync<BrandfolderEntitiesResponse>();
-    }
-
     public async Task<BrandfolderEntityResponse> GetBrandfolderSection(string brandfolderSectionId)
     {
         return await $"https://brandfolder.com/api/v4/sections/{brandfolderSectionId}"
@@ -38,9 +21,9 @@ public class BrandfolderApiClient
             .GetJsonAsync<BrandfolderEntityResponse>();
     }
 
-    public async Task<BrandfolderEntitiesResponse> FindBrandfolderSections(string brandfolderId, int page, int pageSize, string? searchQuery)
+    public async Task<BrandfolderEntitiesResponse> FindBrandfolderSections(int page, int pageSize, string? searchQuery)
     {
-        return await $"https://brandfolder.com/api/v4/brandfolders/{brandfolderId}/sections"
+        return await $"https://brandfolder.com/api/v4/collections/{_brandfolderOptions.CollectionId}/sections"
             .SetQueryParam("search", searchQuery)
             .SetQueryParam("page", page)
             .SetQueryParam("per", pageSize)
@@ -63,8 +46,6 @@ public class BrandfolderApiClient
         searchQuery =
             $"{searchQuery} ({string.Join("OR ", fileTypes.Select(fileType => $"filetype.strict:\"{fileType}\""))})";
 
-        string ir;
-
         return await $"https://brandfolder.com/api/v4/sections/{sectionId}/assets"
             .SetQueryParam("search", searchQuery)
             .SetQueryParam("page", page)
@@ -81,7 +62,6 @@ public class BrandfolderApiClient
     }
 
     public async Task<BrandfolderEntitiesResponse> FindAssets(
-        string brandfolderId,
         int page,
         int pageSize,
         string? searchQuery,
@@ -95,7 +75,7 @@ public class BrandfolderApiClient
         searchQuery =
             $"{searchQuery} ({string.Join("OR ", fileTypes.Select(fileType => $"filetype.strict:\"{fileType}\""))})";
 
-        return await $"https://brandfolder.com/api/v4/brandfolders/{brandfolderId}/assets"
+        return await $"https://brandfolder.com/api/v4/collections/{_brandfolderOptions.CollectionId}/assets"
             .SetQueryParam("search", searchQuery)
             .SetQueryParam("page", page)
             .SetQueryParam("per", pageSize)

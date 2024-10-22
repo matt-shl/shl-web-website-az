@@ -40,13 +40,8 @@ public abstract class BrandfolderAssetDataSource : BrandfolderBaseDataSource
                 .FindSectionAssets(brandfolderSectionId, pageNumber, pageSize, query, SupportedFileTypes);
         }
 
-        if (GetBrandfolderId() is { } brandfolderId)
-        {
-            return await BrandfolderApiClient
-                .FindAssets(brandfolderId, pageNumber, pageSize, query, SupportedFileTypes);
-        }
-
-        return null;
+        return await BrandfolderApiClient
+            .FindAssets(pageNumber, pageSize, query, SupportedFileTypes);
     }
 
     protected string? GetBrandfolderSectionId()
