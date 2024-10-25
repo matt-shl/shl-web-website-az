@@ -1,5 +1,8 @@
+using DTNL.UmbracoCms.Web.Components.NestedBlock;
 using DTNL.UmbracoCms.Web.Helpers.Extensions;
 using Umbraco.Cms.Core.Models;
+using Umbraco.Cms.Web.Common.PublishedModels;
+using NestedBlockVideo = Umbraco.Cms.Web.Common.PublishedModels.NestedBlockVideo;
 
 namespace DTNL.UmbracoCms.Web.Components;
 
@@ -9,19 +12,70 @@ public class Media
 
     public Video? Video { get; set; }
 
-    public static Media? Create(MediaWithCrops? mediaWithCrops)
+    public static Media? Create(MediaWithCrops? mediaBlock)
     {
-        if (Image.Create(mediaWithCrops) is not { } image)
+        if (Image.Create(mediaBlock) is not { } image)
         {
             return null;
         }
 
         return new Media
         {
-            Image = image.With(i =>
+            Image = Image.Create(mediaBlock).With(i =>
             {
                 i.Classes = "media-section__image";
-                i.Caption = image.Caption;
+                i.Caption = image?.Caption;
+            }),
+        };
+    }
+
+    public static Media? Create(NestedBlockVideo? videoBlock)
+    {
+        if (videoBlock is null)
+        {
+            return null;
+        }
+
+        VideoMedia? videoContent = (VideoMedia?) videoBlock.Video?.FirstOrDefault()?.Content;
+
+        return new Media
+        {
+            Image = Image
+                .Create(videoBlock.Preview, style: "default")
+                .With(i =>
+                {
+                    i.Classes = "media-section__image";
+                    i.CardOverlay = videoContent is null
+                        ? null
+                        : new CardOverlay
+                        {
+                            Video = new Video
+                            {
+                                Id = videoContent.Title?.Trim().ToLowerInvariant().Replace(" ", "-"),
+                                InstanceId = videoContent.Title?.Trim().ToLowerInvariant().Replace(" ", "-") ?? "",
+                                Platform = "native",
+                                TotalTime = videoContent.TotalTime ?? "",
+                                Variant = "modal",
+                            },
+                            Position = "start",
+                            Visible = true,
+                        };
+                    i.ImageHolderButton = videoContent != null;
+                    i.ImageHolderAttributes = new Dictionary<string, string?>
+                    {
+                        ["aria-label"] = "Open video Modal",
+                        ["aria-controls"] = videoContent != null ? $"modal-video-{videoContent.Title?.Trim().ToLowerInvariant().Replace(" ", "-")}" : null,
+                    };
+                    i.ObjectFit = true;
+                    i.Caption = videoContent?.Description;
+                }),
+            Video = Video.Create(videoContent)
+            .With(v =>
+            {
+                v.Id = videoContent?.Title?.Trim().ToLowerInvariant().Replace(" ", "-");
+                v.Description = videoContent?.Description;
+                v.TotalTime = videoContent?.TotalTime;
+                v.Variant = "modal";
             }),
         };
     }

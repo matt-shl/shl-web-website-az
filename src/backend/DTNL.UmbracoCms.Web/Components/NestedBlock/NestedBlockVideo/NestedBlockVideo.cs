@@ -2,24 +2,21 @@ using Umbraco.Cms.Core.Models.PublishedContent;
 
 namespace DTNL.UmbracoCms.Web.Components.NestedBlock;
 
-public class NestedBlockVideo : NestedBlock
+public class NestedBlockVideo : NestedBlockWithInner
 {
-    public required Video Video { get; set; }
+    public required Media Video { get; set; }
 
-    protected override object? ProcessBlock(IPublishedElement block)
+    protected override object? GetInnerComponent(IPublishedElement block)
     {
         if (block is not Umbraco.Cms.Web.Common.PublishedModels.NestedBlockVideo nestedBlockVideo)
         {
             return null;
         }
 
-        if (Video.Create(nestedBlockVideo) is not { } video)
-        {
-            return null;
-        }
+        LayoutSection.CssClasses = "c-media-section-container";
+        LayoutSection.CssThemeClasses = "t-white";
+        LayoutSection.Variant = nestedBlockVideo.FullWidth ? "no-padding" : "no-padding-inline-mobile";
 
-        Video = video;
-
-        return this;
+        return Media.Create(nestedBlockVideo);
     }
 }
