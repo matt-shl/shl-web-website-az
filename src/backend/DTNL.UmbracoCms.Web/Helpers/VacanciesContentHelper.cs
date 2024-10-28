@@ -39,10 +39,10 @@ public class VacanciesContentHelper
     {
         pageVacancyContent.SetCultureName(pageVacancyContent.Name, culture);
 
-        pageVacancyContent.SetValue<PageVacancy>(p => p.ExternalId, vacancy.Id, culture);
+        pageVacancyContent.SetValue<PageVacancy>(p => p.ExternalId, vacancy.Id);
         pageVacancyContent.SetValue<PageVacancy>(p => p.ExternalUrl, vacancy.Url, culture);
-        pageVacancyContent.SetValue<PageVacancy>(p => p.CreatedAt, GetDateOrNull(vacancy.CreatedAt), culture);
-        pageVacancyContent.SetValue<PageVacancy>(p => p.LastUpdatedAt, DateTime.UtcNow, culture);
+        pageVacancyContent.SetValue<PageVacancy>(p => p.CreatedAt, GetDateOrNull(vacancy.CreatedAt));
+        pageVacancyContent.SetValue<PageVacancy>(p => p.LastUpdatedAt, DateTime.UtcNow);
 
         pageVacancyContent.SetValue<PageVacancy>(x => x.Title, vacancy.Title, culture);
         pageVacancyContent.SetValue<PageVacancy>(x => x.Company, vacancy.Facility, culture);

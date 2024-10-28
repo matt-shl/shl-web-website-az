@@ -17,4 +17,10 @@ public static class ContentExtensions
     {
         content.SetValue(PublishedElementExtensions.GetAlias(property), value, culture);
     }
+
+    public static TValue? GetValue<TModel, TValue>(this IContent content, Expression<Func<TModel, TValue>> property, string? culture = null)
+        where TModel : IPublishedElement
+    {
+        return content.GetValue<TValue>(PublishedElementExtensions.GetAlias(property));
+    }
 }

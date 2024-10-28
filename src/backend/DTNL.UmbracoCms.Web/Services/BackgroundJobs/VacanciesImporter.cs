@@ -137,29 +137,29 @@ public class VacanciesImporter : IBackgroundJob
     {
         HashSet<string?> vacancyIds = vacancies.Select(vacancy => vacancy.Id).ToHashSet();
 
-        List<PageVacancy> vacancyPagesToRemove = vacancyOverviewPage
-            .Children<PageVacancy>()
-            .OrEmptyIfNull()
-            .Where(pageVacancy => vacancyIds.Contains(pageVacancy.ExternalId))
+        List<IContent> vacancyPagesToRemove = _contentService
+            .GetPagedChildren(vacancyOverviewPage.Id, 0, int.MaxValue, out _)
+            .Where(child => child.ContentType.Alias == PageVacancy.ModelTypeAlias)
+            .Where(pageVacancy => !vacancyIds.Contains(pageVacancy.GetValue<PageVacancy, string?>(p => p.ExternalId)))
             .ToList();
 
-        foreach (PageVacancy vacancyPage in vacancyPagesToRemove)
+        foreach (IContent vacancyPage in vacancyPagesToRemove)
         {
             if (cancellationToken.IsCancellationRequested)
             {
                 return;
             }
 
-            if (!vacancyPage.IsPublished())
+            if (!vacancyPage.Published)
             {
-                if ((DateTime.UtcNow - vacancyPage.LastUpdatedAt).Days > 30)
+                if ((DateTime.UtcNow - vacancyPage.GetValue<PageVacancy, DateTime>(p => p.LastUpdatedAt)).Days > 30)
                 {
-                    DeleteItem(vacancyPage.Key);
+                    DeleteItem(vacancyPage);
                 }
             }
             else
             {
-                UnpublishItem(vacancyPage.Key);
+                UnpublishItem(vacancyPage);
             }
         }
     }
@@ -204,48 +204,38 @@ public class VacanciesImporter : IBackgroundJob
         }
     }
 
-    private void DeleteItem(Guid key)
+    private void DeleteItem(IContent existingItem)
     {
-        if (_contentService.GetById(key) is not { } existingItem)
-        {
-            return;
-        }
-
         OperationResult deleteResult = _contentService.Delete(existingItem);
 
         if (deleteResult.Success)
         {
-            _logger.LogInformation("Vacancy {Key} removed", key);
+            _logger.LogInformation("Vacancy {Key} removed", existingItem.Key);
         }
         else
         {
             _logger
                 .LogWarning(
                     "Vacancy {Key} could not be removed: {ErrorMessages}",
-                    key,
+                    existingItem.Key,
                     string.Join(',', deleteResult.EventMessages?.GetAll().Select(m => m.Message) ?? []));
         }
     }
 
-    private void UnpublishItem(Guid key)
+    private void UnpublishItem(IContent existingItem)
     {
-        if (_contentService.GetById(key) is not { } existingItem)
-        {
-            return;
-        }
-
         PublishResult publishResult = _contentService.Unpublish(existingItem);
 
         if (publishResult.Success)
         {
-            _logger.LogInformation("Vacancy {Key} unpublished", key);
+            _logger.LogInformation("Vacancy {Key} unpublished", existingItem.Key);
         }
         else
         {
             _logger
                 .LogWarning(
                     "Vacancy {Key} could not be unpublished: {ErrorMessages}",
-                    key,
+                    existingItem.Key,
                     string.Join(',', publishResult.EventMessages?.GetAll().Select(m => m.Message) ?? []));
         }
     }
