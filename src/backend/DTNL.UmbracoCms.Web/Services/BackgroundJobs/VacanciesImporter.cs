@@ -150,7 +150,17 @@ public class VacanciesImporter : IBackgroundJob
                 return;
             }
 
-            DeleteItem(vacancyPage.Key);
+            if (!vacancyPage.IsPublished())
+            {
+                if ((DateTime.UtcNow - vacancyPage.LastUpdatedAt).Days > 30)
+                {
+                    DeleteItem(vacancyPage.Key);
+                }
+            }
+            else
+            {
+                UnpublishItem(vacancyPage.Key);
+            }
         }
     }
 
@@ -214,6 +224,29 @@ public class VacanciesImporter : IBackgroundJob
                     "Vacancy {Key} could not be removed: {ErrorMessages}",
                     key,
                     string.Join(',', deleteResult.EventMessages?.GetAll().Select(m => m.Message) ?? []));
+        }
+    }
+
+    private void UnpublishItem(Guid key)
+    {
+        if (_contentService.GetById(key) is not { } existingItem)
+        {
+            return;
+        }
+
+        PublishResult publishResult = _contentService.Unpublish(existingItem);
+
+        if (publishResult.Success)
+        {
+            _logger.LogInformation("Vacancy {Key} unpublished", key);
+        }
+        else
+        {
+            _logger
+                .LogWarning(
+                    "Vacancy {Key} could not be unpublished: {ErrorMessages}",
+                    key,
+                    string.Join(',', publishResult.EventMessages?.GetAll().Select(m => m.Message) ?? []));
         }
     }
 }
