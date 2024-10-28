@@ -61,7 +61,11 @@ public class VacanciesContentHelper
 
     private void SetHeroContent(IContent pageVacancyContent, AtsVacancy vacancy, string culture)
     {
-        var blockContentHero = new { title = vacancy.Title };
+        var blockContentHero = new
+        {
+            title = vacancy.Title,
+            subTitle = $"{vacancy.City}, {GetCountryName(vacancy.Country, culture)}".TrimStart(", "),
+        };
 
         string heroJson = BlockListCreatorService
             .GetBlockListJsonFor([blockContentHero], _vacanciesContentTypes.First(c => c.Alias == NestedBlockContentHero.ModelTypeAlias).Key);
