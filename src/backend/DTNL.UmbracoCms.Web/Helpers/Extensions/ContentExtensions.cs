@@ -21,6 +21,6 @@ public static class ContentExtensions
     public static TValue? GetValue<TModel, TValue>(this IContent content, Expression<Func<TModel, TValue>> property, string? culture = null)
         where TModel : IPublishedElement
     {
-        return content.GetValue<TValue>(PublishedElementExtensions.GetAlias(property));
+        return content.GetValue<TValue>(PublishedElementExtensions.GetAlias(property), culture);
     }
 }
