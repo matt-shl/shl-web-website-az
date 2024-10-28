@@ -1,3 +1,4 @@
+using System.Globalization;
 using DTNL.UmbracoCms.Web.Helpers;
 using DTNL.UmbracoCms.Web.Helpers.Extensions;
 using DTNL.UmbracoCms.Web.Infrastructure.ApiClients.Ats;
@@ -53,6 +54,10 @@ public class VacanciesImporter : IBackgroundJob
     public async Task Run(IJobCancellationToken cancellationToken)
     {
         _logger.LogInformation("Vacancies importer started");
+
+        CultureInfo defaultCulture = new(_defaultCultureAccessor.DefaultCulture);
+        Thread.CurrentThread.CurrentCulture = defaultCulture;
+        Thread.CurrentThread.CurrentUICulture = defaultCulture;
 
         using UmbracoContextReference umbracoContextReference = _umbracoContextFactory.EnsureUmbracoContext();
         using VariationContextHelper variationContextHelper = new(_variationContextAccessor, _defaultCultureAccessor.DefaultCulture);
