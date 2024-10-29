@@ -26,7 +26,7 @@
                     </div>
                 }
 
-                <div class="banner-quote__pagination-container">
+                <div class="banner-quote__pagination-container" js-hook-banner-quote-pagination>
                     <partial name="Button" model="@(new Button {
                                 Label = $"{CultureDictionary.GetTranslation(TranslationAliases.Common.Pagination.Previous)} {CultureDictionary.GetTranslation(TranslationAliases.Common.Quote)}",
                                 LabelSrOnly = true,
