@@ -5,6 +5,7 @@ const JS_HOOK_BANNER_TEXT_CONTAINER = '[js-hook-banner-quote-text-container]'
 const JS_HOOK_BANNER_PAGINATION_CURRENT_INDEX = '[js-hook-banner-quote-pagination-current-index]'
 const JS_HOOK_BANNER_PAGINATION_PREV_BUTTON = '[js-hook-banner-quote-pagination-prev-button]'
 const JS_HOOK_BANNER_PAGINATION_NEXT_BUTTON = '[js-hook-banner-quote-pagination-next-button]'
+const JS_HOOK_BANNER_PAGINATION = '[js-hook-banner-quote-pagination]'
 
 class BannerQuote {
   element: HTMLElement
@@ -14,6 +15,7 @@ class BannerQuote {
   textContainerElements: HTMLElement[] | null
   prevButton: HTMLButtonElement | null
   nextButton: HTMLButtonElement | null
+  pagination: HTMLElement | null
   totalImages: number
   currentIndex: number
 
@@ -26,9 +28,15 @@ class BannerQuote {
     this.textContainerElements = Array.from(
       this.element.querySelectorAll(JS_HOOK_BANNER_TEXT_CONTAINER),
     )
+    this.pagination = this.element.querySelector(JS_HOOK_BANNER_PAGINATION)
     this.prevButton = this.element.querySelector(JS_HOOK_BANNER_PAGINATION_PREV_BUTTON)
     this.nextButton = this.element.querySelector(JS_HOOK_BANNER_PAGINATION_NEXT_BUTTON)
     this.currentIndex = 0
+
+    if(this.totalImages === 0) {
+      this.pagination?.remove()
+      return
+    }
 
     this.#bindEvents()
   }
