@@ -28,7 +28,7 @@ public class HomepageHero : IHero
         return new HomepageHero
         {
             Title = homepageHero.Title!,
-            Image = Image.Create(homepageHero.Image, cssClasses: "homepage-hero__image"),
+            Image = Image.Create(homepageHero.Image, cssClasses: "hero-home__image"),
             MainButton = Button
                 .Create(homepageHero.MainButtonLink, fallBackVariant: "primary")
                 .With(b =>
