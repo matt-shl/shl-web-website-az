@@ -17,6 +17,7 @@
         return mediaEntity.metaData.MediaPath.split("?")[0];
       }
 
+      // default Umbraco implementation for resolveFileFromEntity
       var mediaPath = Utilities.isObject(mediaEntity.metaData) ? mediaEntity.metaData.MediaPath : null;
       return mediaPath ? thumbnail ? mediaHelper.detectIfImageByExtension(mediaPath) ? mediaHelper.getThumbnailFromPath(mediaPath) : "svg" === mediaHelper.getFileExtension(mediaPath) ? mediaHelper.getThumbnailFromPath(mediaPath) : null : mediaPath : ($log.warn("Cannot resolve the file url from the mediaEntity, it does not contain the required metaData"),
        null)
