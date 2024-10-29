@@ -1,10 +1,24 @@
 .c-event-detail {
   @include container;
-  @include component-overlap-reverse;
+  @include theme;
+
+  border-start-start-radius: $radii-40;
+  border-start-end-radius: $radii-40;
+
+  .c-media-section-container + & {
+    @include component-overlap-reverse;
+    border-start-start-radius: 0;
+    border-start-end-radius: 0;
+  }
 
   @include screen-max-width-and-bigger {
     border-end-end-radius: $radii-40;
     border-end-start-radius: $radii-40;
+
+    // If the first contentblock of the page is the event-detail add margin to the top
+    &:first-child {
+      margin-top: $spacing-80;
+    }
   }
 }
 
