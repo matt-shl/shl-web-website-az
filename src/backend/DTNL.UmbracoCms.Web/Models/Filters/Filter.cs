@@ -1,6 +1,8 @@
+using System.Web;
 using DTNL.UmbracoCms.Web.Components.FormElements;
 using DTNL.UmbracoCms.Web.Helpers.Extensions;
 using Flurl;
+using Umbraco.Cms.Core.DeliveryApi;
 using static DTNL.UmbracoCms.Web.Components.FormElements.Checkbox;
 using static DTNL.UmbracoCms.Web.Components.FormElements.SelectElement;
 
@@ -44,10 +46,10 @@ public class Filter
                         hook: "js-hook-filters-input",
                         attr: new Dictionary<string, string?>
                         {
-                            ["data-url-replacement"] = filters.CurrentUrl.Contains(filterOption.Label)
+                            ["data-url-replacement"] = filters.CurrentUrl.Contains(Uri.EscapeDataString(filterOption.Label))
                             ? filters
                                 .CurrentUrl
-                                .Replace($"{filterName}={filterOption.Label}", "")
+                                .Replace($"{filterName}={Uri.EscapeDataString(filterOption.Label)}", "")
                             : filters
                                 .CurrentUrl
                                 .AppendQueryParam(filterName, filterOption.Label),
