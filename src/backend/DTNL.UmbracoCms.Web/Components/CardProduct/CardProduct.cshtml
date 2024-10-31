@@ -17,7 +17,7 @@
 
     <div class="card-product__content-container">
         <h3 class="card-product__title">@Model.Title</h3>
-        <div class="card-product__specifications">
+        <div class="card-product__specifications" asp-if="@Model.ShowSpecs">
             @foreach (CardProduct.ProductSpecification specification in Model.Specifications)
             {
                 <span class="card-product__specification-label" asp-translation="@($"{TranslationAliases.Products}.{specification.Name}")"></span>

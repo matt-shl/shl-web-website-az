@@ -65,6 +65,6 @@ public class OverviewProducts : OverviewFor<PageProductOverview, PageProduct, Pr
 
     protected override IEnumerable<CardProduct> GetOverviewItems(List<PageProduct> pages)
     {
-        return pages.Using(p => CardProduct.Create(p));
+        return pages.Using(p => CardProduct.Create(p).With(card => card.ShowSpecs = false ));
     }
 }
