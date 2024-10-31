@@ -23,7 +23,7 @@ public class HeroContent : IHero
 
     public bool ShowSearch { get; set; }
 
-    public static HeroContent? Create(NestedBlockContentHero? contentHero, ICompositionBasePage page)
+    public static HeroContent? Create(NestedBlockContentHero? contentHero, ICompositionHero page)
     {
         if (contentHero is null)
         {
