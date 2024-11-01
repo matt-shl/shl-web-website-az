@@ -18,7 +18,7 @@ public class Hero : ViewComponentExtended
         {
             NestedBlockProductHero heroPdp => HeroPdp.Create(heroPdp, (ICompositionContentBlocks) page),
             NestedBlockHomepageHero heroHomepage => HomepageHero.Create(heroHomepage),
-            NestedBlockContentHero heroContent => HeroContent.Create(heroContent, (ICompositionHero) page),
+            NestedBlockContentHero heroContent => HeroContent.Create(heroContent, (ICompositionBasePage) page),
             _ => null,
         };
 
