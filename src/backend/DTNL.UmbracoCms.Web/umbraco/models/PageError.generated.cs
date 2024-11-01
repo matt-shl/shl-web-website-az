@@ -20,7 +20,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 {
 	/// <summary>Page Error</summary>
 	[PublishedModel("pageError")]
-	public partial class PageError : PublishedContentModel, ICompositionContentBlocks, ICompositionHero, ICompositionSeo
+	public partial class PageError : PublishedContentModel, ICompositionBasePage, ICompositionContentBlocks, ICompositionHero, ICompositionSeo
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
@@ -80,6 +80,14 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("secondaryLink")]
 		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel SecondaryLink => this.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockListModel>(_publishedValueFallback, "secondaryLink");
+
+		///<summary>
+		/// Slogan
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("slogan")]
+		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel Slogan => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionBasePage.GetSlogan(this, _publishedValueFallback);
 
 		///<summary>
 		/// Content Blocks
