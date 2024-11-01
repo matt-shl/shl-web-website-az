@@ -20,4 +20,15 @@ public static class OptionsExtensions
     {
         return configuration.GetSection(typeof(TOptions).Name.TrimEnd("Options"));
     }
+
+    /// <summary>
+    ///     Gets options from the default section based on the type.
+    /// </summary>
+    public static TOptions? GetFromDefaultSection<TOptions>(this IConfiguration configuration)
+        where TOptions : class
+    {
+        return configuration
+            .GetSection<TOptions>()
+            .Get<TOptions>();
+    }
 }

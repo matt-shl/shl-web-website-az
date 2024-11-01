@@ -1,24 +1,21 @@
 @inherits UmbracoViewPage<PageProduct>
 
 <partial name="AnchorList" model="@Components.AnchorList.Create(Model)" />
-<partial name="LayoutSection"
-         model="@(new Components.LayoutSection {
-            CssClasses = "t-white",
-            Id = "description",
-            NavigationTitle = "Description",
-        })"
->
-    <partial name="ProductDescription" model="@Components.ProductDescription.Create(Model)" />
-</partial>
 
-<partial name="LayoutSection"
-         model="@(new Components.LayoutSection {
-            CssClasses = "t-white",
-            Id = "specifications",
-            NavigationTitle = "Specifications",
-        })"
->
-    <partial name="DescriptionList" model="@Components.DescriptionList.Create(Model)" />
-</partial>
+@if (Components.ProductDescription.Create(Model) is { } productDescription)
+{
+    <partial name="LayoutSection"
+             model="@(new Components.LayoutSection { CssClasses = "t-white", Id = "description", NavigationTitle = "Description", })">
+        <partial name="ProductDescription" model="@productDescription" />
+    </partial>
+}
+
+@if (Components.DescriptionList.Create(Model) is { } productDescriptionList)
+{
+    <partial name="LayoutSection"
+             model="@(new Components.LayoutSection { CssClasses = "t-white", Id = "specifications", NavigationTitle = "Specifications", })">
+        <partial name="DescriptionList" model="@productDescriptionList" />
+    </partial>
+}
 
 <partial name="_BlockList" model="@Model.ContentBlocks" />
