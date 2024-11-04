@@ -217,6 +217,7 @@ public static class Startup
                 builder.AddScriptSrc()
                     .From("https://*.shl-medical.com")
                     .From("https://*.cookiebot.com")
+                    .From("https://*.googletagmanager.com")
                     .UnsafeInline()
                     .UnsafeEval()
                     .Self();
