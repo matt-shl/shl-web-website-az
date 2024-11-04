@@ -100,7 +100,7 @@
 .c-rich-text--read-more-disabled {
   .rich-text__content {
     max-height: unset;
-    overflow: auto;
+    overflow: unset;
   }
 
   .rich-text__button-wrapper,

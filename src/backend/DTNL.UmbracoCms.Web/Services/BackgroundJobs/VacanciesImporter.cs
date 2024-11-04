@@ -1,3 +1,4 @@
+using System.Globalization;
 using DTNL.UmbracoCms.Web.Helpers;
 using DTNL.UmbracoCms.Web.Helpers.Extensions;
 using DTNL.UmbracoCms.Web.Infrastructure.ApiClients.Ats;
@@ -53,6 +54,10 @@ public class VacanciesImporter : IBackgroundJob
     public async Task Run(IJobCancellationToken cancellationToken)
     {
         _logger.LogInformation("Vacancies importer started");
+
+        CultureInfo defaultCulture = new(_defaultCultureAccessor.DefaultCulture);
+        Thread.CurrentThread.CurrentCulture = defaultCulture;
+        Thread.CurrentThread.CurrentUICulture = defaultCulture;
 
         using UmbracoContextReference umbracoContextReference = _umbracoContextFactory.EnsureUmbracoContext();
         using VariationContextHelper variationContextHelper = new(_variationContextAccessor, _defaultCultureAccessor.DefaultCulture);
@@ -137,20 +142,30 @@ public class VacanciesImporter : IBackgroundJob
     {
         HashSet<string?> vacancyIds = vacancies.Select(vacancy => vacancy.Id).ToHashSet();
 
-        List<PageVacancy> vacancyPagesToRemove = vacancyOverviewPage
-            .Children<PageVacancy>()
-            .OrEmptyIfNull()
-            .Where(pageVacancy => vacancyIds.Contains(pageVacancy.ExternalId))
+        List<IContent> vacancyPagesToRemove = _contentService
+            .GetPagedChildren(vacancyOverviewPage.Id, 0, int.MaxValue, out _)
+            .Where(child => child.ContentType.Alias == PageVacancy.ModelTypeAlias)
+            .Where(pageVacancy => !vacancyIds.Contains(pageVacancy.GetValue<PageVacancy, string?>(p => p.ExternalId)))
             .ToList();
 
-        foreach (PageVacancy vacancyPage in vacancyPagesToRemove)
+        foreach (IContent vacancyPage in vacancyPagesToRemove)
         {
             if (cancellationToken.IsCancellationRequested)
             {
                 return;
             }
 
-            DeleteItem(vacancyPage.Key);
+            if (!vacancyPage.Published)
+            {
+                if ((DateTime.UtcNow - vacancyPage.GetValue<PageVacancy, DateTime>(p => p.LastUpdatedAt)).Days > 30)
+                {
+                    DeleteItem(vacancyPage);
+                }
+            }
+            else
+            {
+                UnpublishItem(vacancyPage);
+            }
         }
     }
 
@@ -194,26 +209,39 @@ public class VacanciesImporter : IBackgroundJob
         }
     }
 
-    private void DeleteItem(Guid key)
+    private void DeleteItem(IContent existingItem)
     {
-        if (_contentService.GetById(key) is not { } existingItem)
-        {
-            return;
-        }
-
         OperationResult deleteResult = _contentService.Delete(existingItem);
 
         if (deleteResult.Success)
         {
-            _logger.LogInformation("Vacancy {Key} removed", key);
+            _logger.LogInformation("Vacancy {Key} removed", existingItem.Key);
         }
         else
         {
             _logger
                 .LogWarning(
                     "Vacancy {Key} could not be removed: {ErrorMessages}",
-                    key,
+                    existingItem.Key,
                     string.Join(',', deleteResult.EventMessages?.GetAll().Select(m => m.Message) ?? []));
+        }
+    }
+
+    private void UnpublishItem(IContent existingItem)
+    {
+        PublishResult publishResult = _contentService.Unpublish(existingItem);
+
+        if (publishResult.Success)
+        {
+            _logger.LogInformation("Vacancy {Key} unpublished", existingItem.Key);
+        }
+        else
+        {
+            _logger
+                .LogWarning(
+                    "Vacancy {Key} could not be unpublished: {ErrorMessages}",
+                    existingItem.Key,
+                    string.Join(',', publishResult.EventMessages?.GetAll().Select(m => m.Message) ?? []));
         }
     }
 }

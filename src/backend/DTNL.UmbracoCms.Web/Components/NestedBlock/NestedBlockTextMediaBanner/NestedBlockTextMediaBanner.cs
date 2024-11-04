@@ -11,10 +11,7 @@ public class NestedBlockTextMediaBanner : NestedBlockWithInner
             return null;
         }
 
-        if (LayoutSection.CssThemeClasses is not null)
-        {
-            LayoutSection.Variant = LayoutSection.CssThemeClasses is "t-white" ? "in-grid" : null;
-        }
+        LayoutSection.Variant = LayoutSection.CssThemeClasses is not null ? "in-grid" : null;
 
         return BannerTextMedia.Create(textMediaBannerBlock);
     }

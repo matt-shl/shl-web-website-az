@@ -117,6 +117,7 @@
 
   @include screen-lg-and-bigger {
     @include col-span(6);
+    min-height: 10.6rem;
   }
 }
 

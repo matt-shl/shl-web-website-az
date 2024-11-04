@@ -83,8 +83,56 @@ public partial class Image : ICard
         {
             Umbraco.Cms.Web.Common.PublishedModels.Image image => Create(image, imageCropMode, width, height, cssClasses, objectFit, customSrcSet, localCrops, style),
             Umbraco.Cms.Web.Common.PublishedModels.UmbracoMediaVectorGraphics svg => Create(svg, width, height, cssClasses, objectFit, localCrops, style),
+            Umbraco.Cms.Web.Common.PublishedModels.BrandfolderImage brandfolderImage => Create(brandfolderImage, imageCropMode, width, height, cssClasses, objectFit, customSrcSet, localCrops, style),
             _ => null,
         };
+    }
+
+    private static Image? Create(
+        Umbraco.Cms.Web.Common.PublishedModels.BrandfolderImage brandfolderImage,
+        ImageCropMode imageCropMode = ImageCropMode.Crop,
+        int width = 0,
+        int height = 0,
+        string? cssClasses = "",
+        bool objectFit = true,
+        IEnumerable<SrcSetEntry>? customSrcSet = null,
+        IEnumerable<ImageCrop>? localCrops = null,
+        string? style = null)
+    {
+        string? url = brandfolderImage.GetDefaultCropUrl(width, height, imageCropMode: imageCropMode);
+        if (string.IsNullOrEmpty(url))
+        {
+            return null;
+        }
+
+        try
+        {
+            Image img = new()
+            {
+                Url = url,
+                Alt = brandfolderImage.ValueOrDefault(img => img.Alt, brandfolderImage.Name),
+                SrcSet = customSrcSet switch
+                {
+                    { } srcSet when srcSet.Any() => brandfolderImage.BuildSrcSetString(customSrcSet),
+                    _ => default,
+                },
+                Classes = cssClasses,
+                ObjectFit = objectFit,
+                Crops = GenerateCrops(localCrops, style),
+                AspectRatio = width != default && height != default ? (width, height) : (16, 9),
+            };
+
+            img.AspectRatio = GetAspectRatio(img.Crops);
+
+            return img;
+        }
+        catch
+        {
+            // Do nothing: sometimes the crop might fail because the
+            // image media item was deleted and the page property was not updated to a new media
+        }
+
+        return null;
     }
 
     private static Image? Create(
@@ -106,7 +154,7 @@ public partial class Image : ICard
 
         try
         {
-            Image? img = new()
+            Image img = new()
             {
                 Url = url,
                 Alt = image.ValueOrDefault(img => img.Alt, image.Name),
@@ -150,7 +198,7 @@ public partial class Image : ICard
             return null;
         }
 
-        List<(ImageCrop ImageCrop, CssBreakpoint Breakpoint)>? crops = GenerateCrops(localCrops, style);
+        List<(ImageCrop ImageCrop, CssBreakpoint Breakpoint)> crops = GenerateCrops(localCrops, style);
         return new Image
         {
             Url = url,

@@ -12,7 +12,7 @@ public class BannerTextMedia
 
     public required string Title { get; set; }
 
-    public required string Description { get; set; }
+    public string? Description { get; set; }
 
     public string? MediaPosition { get; set; }
 
@@ -39,7 +39,7 @@ public class BannerTextMedia
         return new BannerTextMedia
         {
             Title = textMediaBanner.Title,
-            Description = textMediaBanner.Description,
+            Description = textMediaBanner.Description?.ToHtmlString(),
             MediaPosition = string.Equals(textMediaBanner.MediaPosition, "right", StringComparison.OrdinalIgnoreCase) ? "end" : "start",
             PrimaryButton = Button
                 .Create(textMediaBanner.PrimaryButton).With(b =>
