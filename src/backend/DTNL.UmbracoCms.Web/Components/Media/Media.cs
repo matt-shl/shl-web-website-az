@@ -37,6 +37,14 @@ public class Media
         }
 
         VideoMedia? videoContent = (VideoMedia?) videoBlock.Video?.FirstOrDefault()?.Content;
+        Video? video = new Video
+        {
+            Id = videoContent?.Title?.Trim().ToLowerInvariant().Replace(" ", "-"),
+            InstanceId = videoContent?.Title?.Trim().ToLowerInvariant().Replace(" ", "-") ?? "",
+            Platform = "native",
+            TotalTime = videoContent?.TotalTime ?? "",
+            Variant = "modal",
+        };
 
         return new Media
         {
@@ -49,14 +57,7 @@ public class Media
                         ? null
                         : new CardOverlay
                         {
-                            Video = new Video
-                            {
-                                Id = videoContent.Title?.Trim().ToLowerInvariant().Replace(" ", "-"),
-                                InstanceId = videoContent.Title?.Trim().ToLowerInvariant().Replace(" ", "-") ?? "",
-                                Platform = "native",
-                                TotalTime = videoContent.TotalTime ?? "",
-                                Variant = "modal",
-                            },
+                            Video = video,
                             Position = "start",
                             Visible = true,
                         };
@@ -64,7 +65,7 @@ public class Media
                     i.ImageHolderAttributes = new Dictionary<string, string?>
                     {
                         ["aria-label"] = "Open video Modal",
-                        ["aria-controls"] = videoContent != null ? $"modal-video-{videoContent.Title?.Trim().ToLowerInvariant().Replace(" ", "-")}" : null,
+                        ["aria-controls"] = video != null ? $"{video.InstanceId}" : null,
                     };
                     i.ObjectFit = true;
                     i.Caption = videoContent?.Description;
