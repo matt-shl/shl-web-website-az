@@ -37,4 +37,5 @@
   height: var(--shape-height);
   background: var(--bg-color);
   margin-right: -3px; /* pixel perfect align with end */
+  margin-left: -1px; /* pixel perfect align */
 }

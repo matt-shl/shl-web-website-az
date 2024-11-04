@@ -53,6 +53,9 @@ class AnchorList {
     this.sections.forEach((section) => {
       const title = section.getAttribute('data-title');
       const id = section.getAttribute('id');
+
+      if(title === "" || !title || id === "" || !id) return;
+
       html += `<li class="anchor-list__item">
                   <a href="#${id}" class="anchor-list__anchor" js-hook-anchor-list-anchor>
                       ${SVG_ARROW_RIGHT}

@@ -18,9 +18,9 @@
         dataLayer.push({
             event: "init",
             page: {
-                type: @Model.ContentType.Alias
+                type: "@Model.ContentType.Alias"
             },
-            language: @System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName
+            language: "@System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName"
         })
     </script>
     @Html.Raw(NodeProvider.SiteSettings?.HeaderScripts)

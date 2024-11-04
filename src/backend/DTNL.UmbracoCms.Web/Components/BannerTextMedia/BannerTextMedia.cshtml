@@ -1,5 +1,4 @@
 @using DTNL.UmbracoCms.Web.Components
-@using Umbraco.Cms.Core.Models
 @model DTNL.UmbracoCms.Web.Components.BannerTextMedia;
 
 <div class="c-text-media
@@ -9,11 +8,8 @@
         <div class="text-media__col text-media__col--text">
             <h2 class="text-media__title">@Model.Title</h2>
             <div class="text-media__content">
-                @if (Model.Description != null)
-                {
-                    <p class="text-media__description">@Model.Description</p>
-                }
-                
+                <div class="text-media__description" asp-if="@Model.Description">@Html.Raw(Model.Description)</div>
+
                 @if (Model.PrimaryButton != null || Model.SecondaryButton != null)
                 {
                     <div class="text-media__ctas">
@@ -32,11 +28,7 @@
         </div>
         <div class="text-media__col text-media__col--media">
             <div class="text-media__image">
-                @if (Model.ImageData != null)
-                {
-                    <partial name="Image" model="@(Model.ImageData)"
-                    />
-                }
+                <partial name="Image" model="@Model.ImageData" />
             </div>
         </div>
     </div>
