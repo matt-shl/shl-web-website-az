@@ -7,9 +7,14 @@
 {% macro bannerQuote(data) %}
    {%-if data.theme %}
     {% set theme = data.theme %}
-    {% set variant = "in-grid" %}
   {% else %}
     {% set theme = "t-white" %}
+  {% endif -%}
+
+  {%-if theme === "t-white" %}
+    {% set variant = "" %}
+  {% else %}
+    {% set variant = "in-grid" %}
   {% endif -%}
 
   <div class="c-banner-quote" js-hook-banner-quote>
