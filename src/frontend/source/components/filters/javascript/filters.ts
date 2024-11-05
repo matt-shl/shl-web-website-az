@@ -205,11 +205,14 @@ class Filters {
   }
 
   #sendGtmData(element: HTMLInputElement) {
+    // Only send event when the element is getting selected
+    if(element.getAttribute('checked') !== null) return
+
     const id = element.id
     const optionClicked = this.element.querySelector(`label[for="${id}"]`)?.textContent?.trim()
     Events.$trigger('gtm::push', {
       data: {
-        'event': element.name === 'sort' ? 'sorting' : 'filtering',
+        'event': element.name.toLowerCase() === 'sort' ? 'sorting' : 'filtering',
         'option_clicked': optionClicked
       }
     })

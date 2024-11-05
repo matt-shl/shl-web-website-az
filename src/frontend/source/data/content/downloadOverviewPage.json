@@ -145,7 +145,6 @@
             "id": "filter-sorting-newest",
             "checked": false,
             "attr": "data-url-replacement='replacement-url.html?customExampleValue=wowowow' data-endpoint='__api-response--filters.html'",
-            "sortItem": true,
             "hook": "filters-input"
           },
           {
@@ -154,7 +153,6 @@
             "id": "filter-sorting-popular",
             "checked": true,
             "attr": "data-url-replacement='replacement-url.html?customExampleValue=wowowow' data-endpoint='__api-response--filters.html'",
-            "sortItem": true,
             "hook": "filters-input"
           }
         ]
