@@ -3,7 +3,7 @@
 
 {% macro search(data) %}
   <div class="c-search{%- if data.variant %} c-search--{{ data.variant }}{% endif -%}" js-hook-search>
-    <form class="search__form" action="search-results.html" method="get" js-hook-search-form>
+    <form class="search__form" action="/job-overview.html" method="get" js-hook-search-form>
 
       <button type="submit" class="search__icon-submit">
         {% svg 'icons/search' %}
