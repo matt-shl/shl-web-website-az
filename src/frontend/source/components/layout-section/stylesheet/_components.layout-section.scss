@@ -58,15 +58,6 @@
   @include screen-md-and-bigger {
     padding-block: $spacing-80;
 
-    .c-layout-section--reduce-margin-top & {
-      padding-top: $spacing-40;
-    }
-
-    .c-layout-section--reduce-margin-bottom & {
-      padding-bottom: $spacing-40;
-    }
-
-    .c-layout-section--reduce-margin-top-bottom &,
     .c-layout-section--grid & {
       padding-block: $spacing-40;
     }
@@ -130,4 +121,17 @@
       grid-template-columns: repeat(3, 1fr);
     }
   }
+}
+
+// Reduce margins
+.c-layout-section--reduce-margin-top {
+  margin-top: $spacing-40;
+}
+
+.c-layout-section--reduce-margin-bottom {
+  margin-bottom: $spacing-40;
+}
+
+.c-layout-section--reduce-margin-top-bottom {
+  margin-block: $spacing-40;
 }
