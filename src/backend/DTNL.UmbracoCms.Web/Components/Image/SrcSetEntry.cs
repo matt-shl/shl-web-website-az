@@ -51,5 +51,14 @@ public partial class Image
 
             return $"{imageUrl} {Breakpoint}w";
         }
+
+        public string ToString(Umbraco.Cms.Web.Common.PublishedModels.BrandfolderImage image)
+        {
+            int imageWidth = Width ?? Breakpoint;
+
+            string imageUrl = $"{image.GetDefaultCropUrl(imageWidth, Height)}";
+
+            return $"{imageUrl} {Breakpoint}w";
+        }
     }
 }

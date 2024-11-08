@@ -3,8 +3,9 @@
 @model DTNL.UmbracoCms.Web.Components.CardKnowledge
 
 <@(Model.Element) class="c-card-knowledge @Model.CssClasses" 
-@(Model.HasUrl ? $"href={Model.Url}" : null) 
-aria-label="@Model.Title">
+@(Model.HasUrl ? $"href={Model.Url}" : null)
+data-type=@(!Model.Type.IsNullOrWhiteSpace() ? Model.Type : null)
+aria-label="@Model.Title" js-hook-card-knowledge>
 
     <div class="card-knowledge__image-container">
         <partial name="Image" model="@Model.Image" />

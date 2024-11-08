@@ -69,8 +69,10 @@ public class JobVacancies : ViewComponentExtended
             {
                 Label = CultureDictionary.GetTranslation(TranslationAliases.Vacancies.Apply),
                 Url = page.ExternalUrl,
+                Target = "_blank",
                 Variant = "secondary",
                 Icon = SvgAliases.Icons.ArrowTopRight,
+                Hook = "apply",
             };
         }
 

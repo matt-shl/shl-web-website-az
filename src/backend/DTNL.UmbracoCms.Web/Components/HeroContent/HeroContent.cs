@@ -1,5 +1,4 @@
 using DTNL.UmbracoCms.Web.Components.Hero;
-using DTNL.UmbracoCms.Web.Helpers;
 using DTNL.UmbracoCms.Web.Helpers.Extensions;
 using Umbraco.Cms.Web.Common.PublishedModels;
 
@@ -15,7 +14,7 @@ public class HeroContent : IHero
 
     public string? ShortDescription { get; set; }
 
-    public IEnumerable<Tag>? Tags { get; set; }
+    public required List<Tag> Tags { get; set; }
 
     public Button? PrimaryButton { get; set; }
 
@@ -32,14 +31,12 @@ public class HeroContent : IHero
 
         return new HeroContent
         {
-            ThemeCssClasses = ThemeHelper.GetCssClasses(contentHero.Theme, fallBackTheme: ThemeHelper.GetCssClasses(page)),
             Title = contentHero.Title!,
             SubTitle = contentHero.SubTitle.FallBack((page as ICompositionContentDetails)?.GetDate()?.ToString("MMMM dd yyyy")),
-            Tags = (page as ICompositionContentDetails)?.ContentTags?.Take(2).Select(tag => new Tag
-            {
-                Label = tag,
-                CssClasses = "hero-content__tag",
-            }) ?? [],
+            Tags = GetTagValues(page)
+                .Using(tag => Tag.Create(tag, "hero-content__tag"))
+                .Take(2)
+                .ToList(),
             ShortDescription = contentHero.Text?.ToHtmlString(),
             PrimaryButton = Button
                 .Create(contentHero.PrimaryLink, fallBackVariant: "primary")
@@ -55,7 +52,17 @@ public class HeroContent : IHero
                     b.Class = "hero-content__cta";
                     b.Hook = "homepage-hero-button";
                 }),
-            ShowSearch = page is PageVacancyOverview or PageSearch,
+            ShowSearch = page is PageVacancyOverview or PageCareerOverview or PageSearch,
+        };
+    }
+
+    public static IEnumerable<string?>? GetTagValues(ICompositionBasePage page)
+    {
+        return page switch
+        {
+            ICompositionContentDetails contentDetails => contentDetails.ContentTags,
+            PageVacancy vacancyPage => [vacancyPage.ContractType, vacancyPage.JobLevel],
+            _ => [],
         };
     }
 }

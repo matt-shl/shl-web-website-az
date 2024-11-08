@@ -2,15 +2,16 @@
 @model DTNL.UmbracoCms.Web.Components.JobListingItem
 
 <a class="c-job-listing-item" href="@Model.Url" aria-label="@Model.Title">
-    <span class="job-listing-item__title">@Model.Title</span>
+    <span class="job-listing-item__title" js-hook-job-listing-title>@Model.Title</span>
 
     <div class="job-listing-item__right-container">
-        <span class="job-listing-item__location" asp-if="@Model.Country">@Model.Country</span>
+        <span class="job-listing-item__location" asp-if="@Model.Country" js-hook-job-listing-location>@Model.Country</span>
 
         <div class="job-listing-item__tags-container">
-            @foreach (string tag in Model.Tags)
+            @for (int i = 0; i< Model.Tags.Count(); i++)
             {
-                <span class="job-listing-item__tag job-listing-item__tag--text">@tag</span>
+                string tag = Model.Tags[i];
+                <span class="job-listing-item__tag job-listing-item__tag--text" @(i == 0 ? "js-hook-job-listing-seniority" : "js-hook-job-listing-employment")>@tag</span>
             }
             <span class="job-listing-item__tag job-listing-item__tag--icon">
                 <svg src="@SvgAliases.Icons.ArrowTopRight" />

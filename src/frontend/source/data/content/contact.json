@@ -68,31 +68,31 @@
             },
             {
               "label": "Elexy TM",
-              "id": "Elexy-TM"
+              "value": "Elexy-TM"
             },
             {
               "label": "Molly (R)",
-              "id": "Molly-R"
+              "value": "Molly-R"
             },
             {
               "label": "Maggie (R)",
-              "id": "Maggie-R"
+              "value": "Maggie-R"
             },
             {
               "label": "Services",
-              "id": "Services"
+              "value": "Services"
             },
             {
               "label": "Digital Solutions",
-              "id": "Digital-Solutions"
+              "value": "Digital-Solutions"
             },
             {
               "label": "Partnerships",
-              "id": "Partnerships"
+              "value": "Partnerships"
             },
             {
               "label": "Others",
-              "id": "Others"
+              "value": "Others"
             }
           ]
         },

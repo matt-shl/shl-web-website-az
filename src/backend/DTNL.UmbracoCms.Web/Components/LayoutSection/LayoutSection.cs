@@ -21,4 +21,6 @@ public class LayoutSection
     public bool FullWidth { get; set; }
 
     public string? ReduceMargin { get; set; }
+
+    public string? GtmHook { get; set; }
 }

@@ -1,6 +1,6 @@
 import Events from "@utilities/events";
 
-const BUTTON_SELECTOR = '*[class^="c-button"]:not(.button--icon-only)'
+const BUTTON_SELECTOR = '*[class*="c-button"]:not(.button--icon-only)'
 
 class EventDetail {
   private element: HTMLElement

@@ -1,4 +1,5 @@
 {% set footerScrollingText = global.content.dynamicPage.footerScrollingText %}
+{% set careerOverviewPageData = global.content.careerOverviewPage %}
 
 {% extends 'layouts/default.html' %}
 
@@ -8,6 +9,7 @@
 {% from 'media-section.html' import mediaSection %}
 {% from 'text-media.html' import textMedia %}
 {% from 'stacking-cards.html' import stackingCards %}
+{% from 'banner-quote.html' import bannerQuote %}
 
 {% block hero %}
   <!-- Todo finish hero-content with content data -->
@@ -35,6 +37,9 @@
       rhoncus id scelerisque et, viverra sit amet nisl. In quis felis pharetra, sodales massa vel, hendrerit turpis.
       Suspendisse consectetur purus justo, sed ornare dolor blandit id."
   }) }}
+
+  {{ bannerQuote(careerOverviewPageData.quoteBanner1) }}
+  {{ bannerQuote(careerOverviewPageData.quoteBanner1 | clone | merge({ theme: "t-white" })) }}
 
   {{ textMedia({
     theme: 't-pale-blue',

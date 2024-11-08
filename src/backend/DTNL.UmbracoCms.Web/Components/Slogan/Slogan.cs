@@ -26,9 +26,4 @@ public class Slogan : IHero
     {
         return Create(slogan?.Text, cssClasses);
     }
-
-    public static Slogan? Create(NestedBlockSloganHero? slogan, string? cssClasses = null)
-    {
-        return Create(slogan?.Title, cssClasses).With(s => s.Variant = "in-hero");
-    }
 }

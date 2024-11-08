@@ -17,6 +17,8 @@ public class CardProduct : ICard, IOverviewItem
 
     public string? CssClasses { get; set; }
 
+    public bool? ShowSpecs { get; set; }
+
     public static CardProduct Create(PageProduct productPage, string? cssClasses = null)
     {
         NestedBlockProductBanner? banner = productPage.Banner?.GetSingleContentOrNull<NestedBlockProductBanner>();

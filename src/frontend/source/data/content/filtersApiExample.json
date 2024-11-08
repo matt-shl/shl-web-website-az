@@ -12,7 +12,6 @@
           "id": "filter-sorting-newest",
           "checked": true,
           "attr": "data-url-replacement='__api-response--filters.html' data-endpoint='__api-response--filters.html'",
-          "sortItem": true,
           "hook": "filters-input"
         },
         {
@@ -20,7 +19,6 @@
           "value": "sorting-popular",
           "id": "filter-sorting-popular",
           "attr": "data-url-replacement='__api-response--filters.html' data-endpoint='__api-response--filters.html'",
-          "sortItem": true,
           "hook": "filters-input"
         }
       ]
@@ -248,7 +246,6 @@
           "id": "filter-other-sorting-newest",
           "checked": true,
           "attr": "data-url-replacement='__api-response--filters.html' data-endpoint='__api-response--filters.html'",
-          "sortItem": true,
           "hook": "filters-input"
         },
         {
@@ -256,7 +253,6 @@
           "value": "other-sorting-popular",
           "id": "filter-other-sorting-popular",
           "attr": "data-url-replacement='__api-response--filters.html' data-endpoint='__api-response--filters.html'",
-          "sortItem": true,
           "hook": "filters-input"
         }
       ]
