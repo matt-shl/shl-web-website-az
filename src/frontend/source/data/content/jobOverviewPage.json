@@ -7,8 +7,8 @@
       "searchOptions": [
         {
           "label": "Location",
-          "id": "location",
-          "name": "location",
+          "id": "Country",
+          "name": "Country",
           "options": [
             {
               "label": "All locations",
@@ -30,8 +30,8 @@
         },
         {
           "label": "Seniority level",
-          "id": "seniority",
-          "name": "seniority",
+          "id": "JobLevel",
+          "name": "JobLevel",
           "options": [
             {
               "label": "All seniority levels",
@@ -49,8 +49,8 @@
         },
         {
           "label": "Employment type",
-          "id": "employment",
-          "name": "employment",
+          "id": "ContractType",
+          "name": "ContractType",
           "options": [
             {
               "label": "All employment types",

@@ -145,6 +145,10 @@ $accordion-transition-ease: ease-out;
 .accordion__item-content {
   @include accordion-content-style;
 
+  .accordion__detail:not([open]) & {
+    visibility: hidden;
+  }
+
   @include screen-md-and-bigger {
     .accordion--tabs-on-dekstop & {
       padding: 0 0 0 2rem;

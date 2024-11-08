@@ -29,7 +29,7 @@
         {%- if data.labelAsPlaceholder %} js-hook-lap{% endif -%}>
 
         <div class="select__wrapper">
-            <label class="select__label {%- if data.sronly %} u-sr-only{% endif -%}" for="{{ data.id | lower }}">
+            <label class="select__label {%- if data.sronly %} u-sr-only{% endif -%}" for="{{ data.id }}">
                 {{ data.label|safe }}
 
                 {% set validate = data.validate | string if data.validate else '' %}
@@ -37,8 +37,8 @@
             </label>
             <div class="select__input-wrapper">
                 <select class="select__input"
-                    name="{{ data.name | lower }}"
-                    id="{{ data.id | lower }}"
+                    name="{{ data.name }}"
+                    id="{{ data.id }}"
                     {%- if data.validate %} data-validate="{{ data.validate }}"{% endif -%}
                     {%- if data.requiredError %} data-required-error="{{ data.requiredError }}"{% endif -%}
                     {%- if data.hook %} js-hook-{{ data.hook }}{% endif -%}
