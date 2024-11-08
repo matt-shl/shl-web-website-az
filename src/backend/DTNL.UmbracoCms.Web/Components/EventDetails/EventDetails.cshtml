@@ -1,7 +1,8 @@
+@using DTNL.UmbracoCms.Web.Components
 @model DTNL.UmbracoCms.Web.Components.EventDetails
 
 <partial name="LayoutSection"
-         model="@(new Components.LayoutSection { CssClasses = "c-layout-section--no-padding c-media-section-container t-white"})">
+         model="@(new LayoutSection { CssClasses = "c-layout-section--no-padding c-media-section-container t-white"})">
     <partial name="Media" model="@Model.Media" />
 </partial>
 
@@ -19,9 +20,14 @@
                     @Html.Raw(Model.Time)
                 </div>
                 <div class="event-detail__col event-detail__col--cta">
-                    <partial name="Button" model="@Model.Link" />
+                    <partial name="Button" model="@Model.LinkButton" />
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+@if (Model.FormOverlay is not null)
+{
+    <partial name="FormOverlay" model="@Model.FormOverlay"/>
+}

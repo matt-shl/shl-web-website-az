@@ -83,13 +83,13 @@ public partial class Image : ICard
         {
             Umbraco.Cms.Web.Common.PublishedModels.Image image => Create(image, imageCropMode, width, height, cssClasses, objectFit, customSrcSet, localCrops, style),
             Umbraco.Cms.Web.Common.PublishedModels.UmbracoMediaVectorGraphics svg => Create(svg, width, height, cssClasses, objectFit, localCrops, style),
-            Umbraco.Cms.Web.Common.PublishedModels.BrandfolderImage brandfolderImage => Create(brandfolderImage, imageCropMode, width, height, cssClasses, objectFit, customSrcSet, localCrops, style),
+            Umbraco.Cms.Web.Common.PublishedModels.IBrandfolderAsset brandfolderAsset => Create(brandfolderAsset, imageCropMode, width, height, cssClasses, objectFit, customSrcSet, localCrops, style),
             _ => null,
         };
     }
 
     private static Image? Create(
-        Umbraco.Cms.Web.Common.PublishedModels.BrandfolderImage brandfolderImage,
+        Umbraco.Cms.Web.Common.PublishedModels.IBrandfolderAsset brandfolderAsset,
         ImageCropMode imageCropMode = ImageCropMode.Crop,
         int width = 0,
         int height = 0,
@@ -99,7 +99,7 @@ public partial class Image : ICard
         IEnumerable<ImageCrop>? localCrops = null,
         string? style = null)
     {
-        string? url = brandfolderImage.GetDefaultCropUrl(width, height, imageCropMode: imageCropMode);
+        string? url = brandfolderAsset.GetDefaultCropUrl(width, height, imageCropMode: imageCropMode);
         if (string.IsNullOrEmpty(url))
         {
             return null;
@@ -110,10 +110,10 @@ public partial class Image : ICard
             Image img = new()
             {
                 Url = url,
-                Alt = brandfolderImage.ValueOrDefault(img => img.Alt, brandfolderImage.Name),
+                Alt = brandfolderAsset.Alt.FallBack(brandfolderAsset.Name),
                 SrcSet = customSrcSet switch
                 {
-                    { } srcSet when srcSet.Any() => brandfolderImage.BuildSrcSetString(customSrcSet),
+                    { } srcSet when srcSet.Any() => brandfolderAsset.BuildSrcSetString(customSrcSet),
                     _ => default,
                 },
                 Classes = cssClasses,

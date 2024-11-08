@@ -1,4 +1,3 @@
-using DTNL.UmbracoCms.Web.Helpers.Extensions;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Web.Common.PublishedModels;
 
@@ -10,29 +9,24 @@ public class DownloadItem
 
     public string? Description { get; set; }
 
-    // TODO: this will be changed for the implementation of SM-290 Download overlay.
-    public Button? DownloadLink { get; set; }
-
     public string? Icon { get; set; }
 
-    public static DownloadItem? Create(IPublishedElement item)
+    public required DownloadOverlay DownloadOverlay { get; set; }
+
+    public static DownloadItem? Create(IPublishedElement item, SiteSettings? settings)
     {
-        if (item is not NestedBlockDownloadItem downloadItem)
+        if (item is not NestedBlockDownloadItem downloadItem ||
+            DownloadOverlay.Create(downloadItem, settings) is not { } downloadOverlay)
         {
             return null;
         }
 
         return new DownloadItem
         {
-            Title = downloadItem.DownloadItemTitle!,
-            Description = downloadItem.DownloadItemDescription,
-            Icon = downloadItem.DownloadIcon?.LocalCrops.Src,
-            DownloadLink = Button
-                .Create(downloadItem.DownloadButtonLabel)
-                .With(b =>
-                {
-                    b.Class = "download-item__link";
-                }),
+            Title = downloadItem.Title!,
+            Description = downloadItem.Description,
+            Icon = downloadItem.Icon?.LocalCrops.Src,
+            DownloadOverlay = downloadOverlay,
         };
     }
 }

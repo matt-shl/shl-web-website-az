@@ -7,11 +7,17 @@ using Umbraco.Cms.Web.Common.PublishedModels;
 
 namespace DTNL.UmbracoCms.Web.Modules.BrandfolderPicker;
 
-public class AddMediaPathToBrandfolderImageFilter : IAsyncActionFilter
+public class AddMediaPathToBrandfolderAssetsFilter : IAsyncActionFilter
 {
+    private static readonly string[] BrandfolderAssetModelTypeAliases =
+    [
+        BrandfolderImage.ModelTypeAlias,
+        BrandfolderFile.ModelTypeAlias,
+    ];
+
     private readonly IMediaService _mediaService;
 
-    public AddMediaPathToBrandfolderImageFilter(IMediaService mediaService)
+    public AddMediaPathToBrandfolderAssetsFilter(IMediaService mediaService)
     {
         _mediaService = mediaService;
     }
@@ -63,7 +69,7 @@ public class AddMediaPathToBrandfolderImageFilter : IAsyncActionFilter
     private void SetBrandfolerImageUrl(EntityBasic mediaItem)
     {
         if (!mediaItem.AdditionalData.TryGetValue("ContentTypeAlias", out object? modelTypeAlias) ||
-            modelTypeAlias as string != BrandfolderImage.ModelTypeAlias)
+            !BrandfolderAssetModelTypeAliases.Contains(modelTypeAlias as string))
         {
             return;
         }
@@ -71,7 +77,7 @@ public class AddMediaPathToBrandfolderImageFilter : IAsyncActionFilter
         IMedia? media = _mediaService.GetById(mediaItem.Key);
 
         IProperty? mediaFileUrlProperty = media?.Properties.FirstOrDefault(property =>
-            property.Alias == nameof(BrandfolderImage.BrandfolderUrl).ToFirstLowerInvariant());
+            property.Alias == nameof(IBrandfolderAsset.BrandfolderUrl).ToFirstLowerInvariant());
 
         string? thumbnailUrl = mediaFileUrlProperty?.GetValue()?.ToString()?
             .Replace("[\"", "")

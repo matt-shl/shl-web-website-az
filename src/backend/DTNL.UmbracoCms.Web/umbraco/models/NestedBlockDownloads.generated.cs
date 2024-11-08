@@ -50,12 +50,12 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		// properties
 
 		///<summary>
-		/// Downloads
+		/// Items
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("downloadsList")]
-		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel DownloadsList => this.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockListModel>(_publishedValueFallback, "downloadsList");
+		[ImplementPropertyType("items")]
+		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel Items => this.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockListModel>(_publishedValueFallback, "items");
 
 		///<summary>
 		/// Sub-Title

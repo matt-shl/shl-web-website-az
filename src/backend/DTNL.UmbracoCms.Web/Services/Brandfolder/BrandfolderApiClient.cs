@@ -36,15 +36,18 @@ public class BrandfolderApiClient
         int page,
         int pageSize,
         string? searchQuery,
-        string[] fileTypes)
+        string[]? fileTypes)
     {
         if (!searchQuery.IsNullOrWhiteSpace())
         {
-            searchQuery = $"{searchQuery} AND ";
+            searchQuery = $"{searchQuery}";
         }
 
-        searchQuery =
-            $"{searchQuery} ({string.Join("OR ", fileTypes.Select(fileType => $"filetype.strict:\"{fileType}\""))})";
+        if (fileTypes is not null)
+        {
+            searchQuery =
+                $"{searchQuery} AND ({string.Join("OR ", fileTypes.Select(fileType => $"filetype.strict:\"{fileType}\""))})";
+        }
 
         return await $"https://brandfolder.com/api/v4/sections/{sectionId}/assets"
             .SetQueryParam("search", searchQuery)
@@ -65,15 +68,18 @@ public class BrandfolderApiClient
         int page,
         int pageSize,
         string? searchQuery,
-        string[] fileTypes)
+        string[]? fileTypes)
     {
         if (!searchQuery.IsNullOrWhiteSpace())
         {
-            searchQuery = $"{searchQuery} AND ";
+            searchQuery = $"{searchQuery}";
         }
 
-        searchQuery =
-            $"{searchQuery} ({string.Join("OR ", fileTypes.Select(fileType => $"filetype.strict:\"{fileType}\""))})";
+        if (fileTypes is not null)
+        {
+            searchQuery =
+                $"{searchQuery} AND ({string.Join("OR ", fileTypes.Select(fileType => $"filetype.strict:\"{fileType}\""))})";
+        }
 
         return await $"https://brandfolder.com/api/v4/collections/{_brandfolderOptions.CollectionId}/assets"
             .SetQueryParam("search", searchQuery)

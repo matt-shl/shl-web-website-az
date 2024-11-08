@@ -1,19 +1,10 @@
 using Umbraco.Cms.Web.Common.PublishedModels;
-using uSync.Core;
 
 namespace DTNL.UmbracoCms.Web.Components;
 
-
-
 public class StackingCards
 {
-    public required string Title { get; set; }
-
-    public required string Description { get; set; }
-
-    public List<StackingCardItem> Cards { get; set; } = new();
-
-    private static Dictionary<string, string> ThemeMapping = new Dictionary<string, string>()
+    private static readonly Dictionary<string, string> ThemeMapping = new()
     {
         {"t-dark-green", "t-pastel-green"},
         {"t-dark-pink", "t-lightest-pink"},
@@ -33,8 +24,16 @@ public class StackingCards
         {"t-white-pink", "t-dark-pink"}
     };
 
+    public required string Title { get; set; }
+
+    public required string Description { get; set; }
+
+    public required List<StackingCardItem> Cards { get; set; }
+
     public required string ThemeOdd { get; set; }
+
     public required string ThemeEven { get; set; }
+
     public static StackingCards? Create(NestedBlockStackingCards stackingCardsBlock)
     {
         List<StackingCardItem> cards = stackingCardsBlock?.Cards?
@@ -51,7 +50,6 @@ public class StackingCards
         string themeOdd = stackingCardsBlock?.FirstCardColor is not null ? $"t-{stackingCardsBlock?.FirstCardColor?.Label}" : "t-lightest-blue";
         string themeEven = ThemeMapping[themeOdd];
 
-
         return new StackingCards
         {
             Title = stackingCardsBlock?.Title!,
@@ -59,7 +57,6 @@ public class StackingCards
             Cards = cards,
             ThemeOdd = themeOdd,
             ThemeEven = themeEven,
-
         };
     }
 }

@@ -18,11 +18,12 @@
                    value="@option.Value"
                    id="@option.Id"
             @(Model.Required ? Html.Attribute("required", "required") : null)
+            @(Model.RequiredError is not null ? Html.Attribute("data-required-error", Model.RequiredError) : null)
             @(Model.Disabled ? Html.Attribute("disabled", "disabled") : null)
             @(option.Selected ? Html.Attribute("checked", "true") : null)
             @(!option.Validate.IsNullOrEmpty() ? Html.Attribute("data-validate", option.Validate) : null)
             @Html.Attribute(option.Hook?.EnsureStartsWith("js-hook-"))
-            @(option.Attributes is not null ? Html.Attributes(option.Attributes) : null)>
+            @Html.Attributes(option.Attributes)>
             <label class="checkbox__label" for="@option.Id" role="button">
                 <span>@option.Label</span>
             </label>

@@ -11,11 +11,6 @@ public class NestedBlockEventDetails : NestedBlock
             return null;
         }
 
-        if (EventDetails.Create(nestedBlockEventDetails) is not { } eventDetails)
-        {
-            return null;
-        }
-
-        return eventDetails;
+        return EventDetails.Create(nestedBlockEventDetails, NodeProvider.SiteSettings);
     }
 }

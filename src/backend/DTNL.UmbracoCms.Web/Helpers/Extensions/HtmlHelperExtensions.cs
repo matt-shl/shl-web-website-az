@@ -9,7 +9,7 @@ public static class HtmlHelperExtensions
     /// <summary>
     ///     Returns an HTML tag attribute.
     /// </summary>
-    public static IHtmlContent Attribute(this IHtmlHelper? _, string? name, string? value = null)
+    public static IHtmlContent Attribute(this IHtmlHelper? _, string? name, object? value = null)
     {
         if (name.IsNullOrEmpty())
         {

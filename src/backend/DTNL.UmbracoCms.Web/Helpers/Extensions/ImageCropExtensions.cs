@@ -24,9 +24,9 @@ public static class ImageCropExtensions
         Image.ImageCropDimensions dimensions = image.Content.GetImageCropDimensions(crop.Width, crop.Height);
 
         string? cropUrl;
-        if (image.Content is Umbraco.Cms.Web.Common.PublishedModels.BrandfolderImage brandfolderImage)
+        if (image.Content is Umbraco.Cms.Web.Common.PublishedModels.IBrandfolderAsset brandfolderAsset)
         {
-            cropUrl = brandfolderImage.GetDefaultCropUrl(dimensions.Width, dimensions.Height, imageCropMode: ImageCropMode.Crop);
+            cropUrl = brandfolderAsset.GetDefaultCropUrl(dimensions.Width, dimensions.Height, imageCropMode: ImageCropMode.Crop);
         }
         else
         {
@@ -51,7 +51,7 @@ public static class ImageCropExtensions
         return node switch
         {
             Umbraco.Cms.Web.Common.PublishedModels.Image image => GetImageCropDimensions(image, currentWidth, currentHeight),
-            Umbraco.Cms.Web.Common.PublishedModels.BrandfolderImage brandfolderImage => GetImageCropDimensions(brandfolderImage, currentWidth, currentHeight),
+            Umbraco.Cms.Web.Common.PublishedModels.IBrandfolderAsset brandfolderAsset => GetImageCropDimensions(brandfolderAsset, currentWidth, currentHeight),
             _ => new Image.ImageCropDimensions { Width = currentWidth, Height = currentHeight, },
         };
     }
@@ -98,7 +98,7 @@ public static class ImageCropExtensions
         };
     }
 
-    public static Image.ImageCropDimensions GetImageCropDimensions(this Umbraco.Cms.Web.Common.PublishedModels.BrandfolderImage brandfolderImage, int currentWidth, int currentHeight)
+    public static Image.ImageCropDimensions GetImageCropDimensions(this Umbraco.Cms.Web.Common.PublishedModels.IBrandfolderAsset brandfolderAsset, int currentWidth, int currentHeight)
     {
         return new Image.ImageCropDimensions
         {
