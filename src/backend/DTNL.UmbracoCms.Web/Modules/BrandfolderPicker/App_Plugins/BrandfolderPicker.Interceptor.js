@@ -9,7 +9,7 @@
 
   angular.module("umbraco").run(function (mediaHelper, $log) {
     mediaHelper.resolveFileFromEntity = function (mediaEntity, thumbnail) {
-      if (mediaEntity.metaData.ContentTypeAlias === "brandfolderImage") {
+      if (mediaEntity.metaData.ContentTypeAlias === "brandfolderImage" || mediaEntity.metaData.ContentTypeAlias === "brandfolderFile") {
         if (thumbnail) {
           return mediaEntity.metaData.MediaPath;
         }

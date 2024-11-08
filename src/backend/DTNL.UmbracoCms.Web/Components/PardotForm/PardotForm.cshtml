@@ -26,26 +26,29 @@
       data-loader="true"
       js-hook-pardot-form>
 
-    <partial name="@(Model.GetType().Name)Fiels" model="@Model" />
-
-    <div class="c-checkbox form__item">
-        <div class="checkbox__wrapper">
-            <input class="checkbox__input"
-                   type="checkbox"
-                   name="@Model.ConsentFieldName"
-                   value="yes"
-                   id="cf_consent_given"
-                   data-validate="required"
-                   data-required-error="@CultureDictionary.GetTranslation(TranslationAliases.Forms.Fields.PrivacyPolicy.ErrorMessage)" tabindex="0">
-            <label class="checkbox__label" for="cf_consent_given" role="button">
-                <span>
-                    @CultureDictionary.GetTranslation(TranslationAliases.Forms.Fields.PrivacyPolicy)
-                    <sup>*</sup>
-                </span>
-            </label>
+    <partial name="./@(Model.GetType().Name)Fields.cshtml" model="@Model" />
+    
+    @if (Model.ConsentFieldName is not null)
+    {
+        <div class="c-checkbox form__item">
+            <div class="checkbox__wrapper">
+                <input class="checkbox__input"
+                       type="checkbox"
+                       name="@Model.ConsentFieldName"
+                       value="yes"
+                       id="@Model.Id-cf_consent_given"
+                       data-validate="required"
+                       data-required-error="@CultureDictionary.GetTranslation(TranslationAliases.Forms.Fields.PrivacyPolicy.ErrorMessage)" tabindex="0">
+                <label class="checkbox__label" for="@Model.Id-cf_consent_given" role="button">
+                    <span>
+                        @CultureDictionary.GetTranslation(TranslationAliases.Forms.Fields.PrivacyPolicy)
+                        <sup>*</sup>
+                    </span>
+                </label>
+            </div>
+            <div id="cf_Consent_Given_error" class="form__item-error u-hidden"></div>
         </div>
-        <div id="cf_Consent_Given_error" class="form__item-error u-hidden"></div>
-    </div>
+    }
 
     <input type="hidden" name="@Model.SourcePageTitleFieldName" value="@currentNode.GetTitle()" tabindex="0">
 

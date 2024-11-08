@@ -9,12 +9,13 @@
 
     <div class="textarea__wrapper" title="@(Model.Label)">
         <label class="textarea__label @(Model.SrOnly ? "u-sr-only" : "")" for="@Model.Id">
-            @Model.Label
+            @Model.Label @Html.Raw(Model.Required ? "<sup>*</sup>" : "")
         </label>
         <textarea class="textarea__input"
                   name="@Model.Name"
                   value="@(Model.Value)"
                   id="@(Model.Id)"
+        @(Model.Required ? Html.Attribute("required", "required") : "")
         @(Model.Disabled ? Html.Attribute("disabled", "disabled") : "")
         @(!Model.Placeholder.IsNullOrEmpty() && !Model.LabelAsPlaceholder ? Html.Attribute("placeholder", Model.Placeholder) : "")
         @(Model.MaxLength is not null ? Html.Attribute("max-length", Model.MaxLength.Value) : null)

@@ -26,6 +26,8 @@ public class TextArea : ViewComponentExtended
 
     public string? Validate { get; set; }
 
+    public bool Required { get; set; }
+
     public string? RequiredError { get; set; }
 
     public string? Hook { get; set; }
@@ -46,6 +48,7 @@ public class TextArea : ViewComponentExtended
         string? validate = default,
         string? requiredError = default,
         string? hook = default,
+        bool required = false,
         string? error = default,
         bool srOnly = default,
         Dictionary<string, string?>? attr = default,
@@ -61,6 +64,7 @@ public class TextArea : ViewComponentExtended
         Validate = validate;
         Hook = hook;
         Error = error;
+        Required = required;
         RequiredError = requiredError;
         MaxLength = maxLength;
         SrOnly = srOnly;

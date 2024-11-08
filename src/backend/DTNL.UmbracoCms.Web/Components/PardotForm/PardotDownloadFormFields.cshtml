@@ -4,30 +4,34 @@
 @using DTNL.UmbracoCms.Web.Services
 @using Umbraco.Cms.Core.Dictionary
 
-@model DTNL.UmbracoCms.Web.Components.PardotForm
+@model DTNL.UmbracoCms.Web.Components.PardotDownloadForm
 
 @inject ICultureDictionary CultureDictionary
 
 @inject NodeProvider NodeProvider
 
-<partial name="FormElements/Input" model="@(new Input { Name = "cf_email_address", Label = CultureDictionary.GetTranslation($"{TranslationAliases.Forms.Fields}.Email"), MaxLength = 255, Validate = "required,email", RequiredError =  CultureDictionary.GetTranslation($"{TranslationAliases.Forms.Fields}.Email.Error Message") })" />
+<partial name="FormElements/Input" model="@(new Input { Id = $"{Model.Id}-cf_email_address", Name = "cf_email_address", Label = CultureDictionary.GetTranslation($"{TranslationAliases.Forms.Fields}.Email"), MaxLength = 255, Validate = "required,email", Required = true, RequiredError =  CultureDictionary.GetTranslation($"{TranslationAliases.Forms.Fields}.Email.Error Message") })" />
 
-<partial name="FormElements/Input" model="@(new Input { Name = "cf_First_Name", Label = CultureDictionary.GetTranslation($"{TranslationAliases.Forms.Fields}.First Name"), MaxLength = 255, Validate = "required", RequiredError = CultureDictionary.GetTranslation($"{TranslationAliases.Forms.Fields}.First Name.Error Message") })" />
+<partial name="FormElements/Input" model="@(new Input { Id = $"{Model.Id}-cf_First_Name", Name = "cf_First_Name", Label = CultureDictionary.GetTranslation($"{TranslationAliases.Forms.Fields}.First Name"), MaxLength = 255, Validate = "required", Required = true, RequiredError = CultureDictionary.GetTranslation($"{TranslationAliases.Forms.Fields}.First Name.Error Message") })" />
 
-<partial name="FormElements/Input" model="@(new Input { Name = "cf_Last_Name", Label = CultureDictionary.GetTranslation($"{TranslationAliases.Forms.Fields}.Last Name"), MaxLength = 255, Validate = "required", RequiredError =  CultureDictionary.GetTranslation($"{TranslationAliases.Forms.Fields}.Last Name.Error Message") })" />
+<partial name="FormElements/Input" model="@(new Input { Id = $"{Model.Id}-cf_Last_Name", Name = "cf_Last_Name", Label = CultureDictionary.GetTranslation($"{TranslationAliases.Forms.Fields}.Last Name"), MaxLength = 255, Validate = "required", Required = true, RequiredError =  CultureDictionary.GetTranslation($"{TranslationAliases.Forms.Fields}.Last Name.Error Message") })" />
 
-<partial name="FormElements/Input" model="@(new Input { Name = "cf_Company", Label = CultureDictionary.GetTranslation($"{TranslationAliases.Forms.Fields}.Company"), MaxLength = 255, Validate = "required", RequiredError =  CultureDictionary.GetTranslation($"{TranslationAliases.Forms.Fields}.Company.Error Message") })" />
+<partial name="FormElements/Input" model="@(new Input { Id = $"{Model.Id}-cf_Company", Name = "cf_Company", Label = CultureDictionary.GetTranslation($"{TranslationAliases.Forms.Fields}.Company"), MaxLength = 255, Validate = "required", Required = true, RequiredError =  CultureDictionary.GetTranslation($"{TranslationAliases.Forms.Fields}.Company.Error Message") })" />
 
-<vc:select-element id="cf_Country"
+<vc:select-element id="@Model.Id-cf_Country"
                    name="cf_Country"
                    label="@CultureDictionary.GetTranslation($"{TranslationAliases.Forms.Fields}.Country")"
                    options="@((NodeProvider.SiteSettings?.Locations).Using(location => new SelectElement.SelectOption(location)))"
                    validate="required"
-                   required-error="@CultureDictionary.GetTranslation($"{TranslationAliases.Forms.Fields}.Country.Error Message") })" />
+                   required="true"
+                   required-error="@CultureDictionary.GetTranslation($"{TranslationAliases.Forms.Fields}.Country.Error Message")" />
 
-<vc:text-area id="cf_Message"
+<vc:text-area id="@Model.Id-cf_Message"
               name="cf_Message"
               label="@CultureDictionary.GetTranslation($"{TranslationAliases.Forms.Fields}.Message")"
               max-length="255"
               validate="required"
+              required="true"
               required-error="@CultureDictionary.GetTranslation($"{TranslationAliases.Forms.Fields}.Message.Error Message")" />
+              
+<input type="hidden" name="Document URL" value="@Model.FileUrl" tabindex="0">

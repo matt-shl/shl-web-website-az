@@ -10,7 +10,7 @@ public class ContactFormItem
 
     public string? Text { get; set; }
 
-    public string? Icon { get; set; }
+    public string? IconPath { get; set; }
 
     public static ContactFormItem Create(NestedBlockContactFormItem contactFormBlockItem)
     {
@@ -18,7 +18,7 @@ public class ContactFormItem
         {
             Title = contactFormBlockItem.Title,
             Text = contactFormBlockItem.Text?.ToHtmlString(),
-            Icon = contactFormBlockItem.Icon,
+            IconPath = contactFormBlockItem.Icon?.LocalCrops.Src,
         };
     }
 }

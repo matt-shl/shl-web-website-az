@@ -16,7 +16,8 @@ public class DownloadOverlay
             return null;
         }
 
-        Image? image = Image.Create(settings?.DownloadFormImage);
+        Image? image = Image
+            .Create(settings?.DownloadFormImage ?? downloadItem.File);
 
         return new DownloadOverlay
         {

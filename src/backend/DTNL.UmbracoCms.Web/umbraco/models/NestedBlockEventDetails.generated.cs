@@ -74,14 +74,6 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual global::Umbraco.Cms.Core.Strings.IHtmlEncodedString EventLocationInfo => this.Value<global::Umbraco.Cms.Core.Strings.IHtmlEncodedString>(_publishedValueFallback, "eventLocationInfo");
 
 		///<summary>
-		/// Pardot Form Handler URL
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("eventPardotFormHandlerUrl")]
-		public virtual string EventPardotFormHandlerUrl => this.Value<string>(_publishedValueFallback, "eventPardotFormHandlerUrl");
-
-		///<summary>
 		/// Event Time
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]

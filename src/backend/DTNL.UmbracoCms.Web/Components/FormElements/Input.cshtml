@@ -13,7 +13,7 @@
 
     <div class="input__wrapper" title="@Model.Label">
         <label class="input__label @(Model.SrOnly ? "u-sr-only" : "")" for="@(Model.Id ?? Model.Name)">
-            @Html.Raw(Model.Label)
+            @Html.Raw(Model.Label) @Html.Raw(Model.Required ? "<sup>*</sup>" : "")
         </label>
         <input class="input__input"
                type="@(Model.Type ?? "text")"

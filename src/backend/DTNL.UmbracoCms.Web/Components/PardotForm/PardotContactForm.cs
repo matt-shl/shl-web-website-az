@@ -11,16 +11,14 @@ public class PardotContactForm : PardotForm
 
     public override string ActionErrorLabelKey => TranslationAliases.Forms.ContactForm.SubmissionErrorMessage;
 
-    public static PardotContactForm? Create(NestedBlockContactForm contactForm)
-    {
-        if (contactForm.PardotFormHandlerUrl.IsNullOrWhiteSpace())
-        {
-            return null;
-        }
+    public override string? ConsentFieldName => "cf_Consent Given";
 
+    public static PardotContactForm Create(NestedBlockContactForm contactForm)
+    {
         return new()
         {
-            ActionUrl = contactForm.PardotFormHandlerUrl,
+            Id = Guid.NewGuid().ToString(),
+            ActionUrl = "https://go.shl-medical.com/l/1046193/2024-02-07/3kcc",
         };
     }
 }

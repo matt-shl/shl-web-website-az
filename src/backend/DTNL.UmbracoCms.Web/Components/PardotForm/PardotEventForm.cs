@@ -11,16 +11,12 @@ public class PardotEventForm : PardotForm
 
     public override string ActionErrorLabelKey => TranslationAliases.Forms.EventForm.SubmissionErrorMessage;
 
-    public static PardotEventForm? Create(NestedBlockEventDetails eventDetails)
+    public static PardotEventForm Create(NestedBlockEventDetails eventDetails)
     {
-        if (eventDetails.EventPardotFormHandlerUrl.IsNullOrWhiteSpace())
-        {
-            return null;
-        }
-
         return new()
         {
-            ActionUrl = eventDetails.EventPardotFormHandlerUrl,
+            Id = Guid.NewGuid().ToString(),
+            ActionUrl = "https://go.shl-medical.com/l/1046193/2024-10-30/my2k",
         };
     }
 }

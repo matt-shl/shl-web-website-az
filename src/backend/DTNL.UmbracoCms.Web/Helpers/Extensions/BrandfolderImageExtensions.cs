@@ -7,15 +7,15 @@ namespace DTNL.UmbracoCms.Web.Helpers.Extensions;
 public static class BrandfolderImageExtensions
 {
     /// <summary>
-    /// Retrieves the default crop url for an image.
+    /// Retrieves the default crop url for an asset. If the asset is not a file, Brandfolder generates a relevant thumbnail.
     /// </summary>
     public static string? GetDefaultCropUrl(
-        this Umbraco.Cms.Web.Common.PublishedModels.BrandfolderImage image,
+        this Umbraco.Cms.Web.Common.PublishedModels.IBrandfolderAsset brandfolderAsset,
         int? width = null,
         int? height = null,
         ImageCropMode imageCropMode = ImageCropMode.Crop)
     {
-        return image.BrandfolderUrl
+        return brandfolderAsset.BrandfolderUrl
             .SetQueryParam("width", width is 0 ? null : width)
             .SetQueryParam("height", height is 0 ? null : height)
             .SetQueryParam("fit", GetFitParameter(imageCropMode));
@@ -24,9 +24,9 @@ public static class BrandfolderImageExtensions
     /// <summary>
     /// Creates a data src set string based on custom breakpoints.
     /// </summary>
-    public static string BuildSrcSetString(this Umbraco.Cms.Web.Common.PublishedModels.BrandfolderImage image, IEnumerable<Image.SrcSetEntry> entries)
+    public static string BuildSrcSetString(this Umbraco.Cms.Web.Common.PublishedModels.IBrandfolderAsset brandfolderAsset, IEnumerable<Image.SrcSetEntry> entries)
     {
-        return string.Join(",", entries.Select(x => x.ToString(image)));
+        return string.Join(",", entries.Select(x => x.ToString(brandfolderAsset)));
     }
 
     private static string GetFitParameter(ImageCropMode cropMode)
