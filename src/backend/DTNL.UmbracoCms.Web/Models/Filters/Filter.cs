@@ -1,8 +1,6 @@
 using System.Web;
 using DTNL.UmbracoCms.Web.Components.FormElements;
 using DTNL.UmbracoCms.Web.Helpers.Extensions;
-using Flurl;
-using Umbraco.Cms.Core.DeliveryApi;
 using static DTNL.UmbracoCms.Web.Components.FormElements.Checkbox;
 using static DTNL.UmbracoCms.Web.Components.FormElements.SelectElement;
 
@@ -44,16 +42,6 @@ public class Filter
                         filterOption.Label,
                         description: null,
                         hook: "js-hook-filters-input",
-                        attr: new Dictionary<string, string?>
-                        {
-                            ["data-url-replacement"] = filters.CurrentUrl.Contains(Uri.EscapeDataString(filterOption.Label))
-                            ? filters
-                                .CurrentUrl
-                                .Replace($"{filterName}={Uri.EscapeDataString(filterOption.Label)}", "")
-                            : filters
-                                .CurrentUrl
-                                .AppendQueryParam(filterName, filterOption.Label),
-                        },
                         selected: filterOption.IsSelected))
                 .OfType<IFormOption>()
                 .ToList(),
@@ -82,13 +70,7 @@ public class Filter
                     filterOption => new SelectOption(
                         filterOption.Value,
                         filterOption.Label,
-                        filterOption.Label,
-                        attr: new Dictionary<string, string?>
-                        {
-                            ["data-url-replacement"] = filters
-                                .CurrentUrl
-                                .AppendQueryParam(filterName, filterOption.Label),
-                        }))
+                        filterOption.Label))
                 .OfType<IFormOption>()
                 .ToList(),
         };

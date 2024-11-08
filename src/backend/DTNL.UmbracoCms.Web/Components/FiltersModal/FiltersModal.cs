@@ -4,7 +4,6 @@ using DTNL.UmbracoCms.Web.Helpers.Extensions;
 using DTNL.UmbracoCms.Web.Models.Filters;
 using DTNL.UmbracoCms.Web.Models.Products;
 using DTNL.UmbracoCms.Web.Models.Vacancies;
-using Flurl;
 using Umbraco.Cms.Core.Dictionary;
 using Umbraco.Cms.Web.Common.PublishedModels;
 using static DTNL.UmbracoCms.Web.Components.FormElements.Radio;
@@ -112,26 +111,14 @@ public class FiltersModal
                         cultureDictionary.GetTranslation(TranslationAliases.Common.Filters.SortNewestFirst),
                         cultureDictionary.GetTranslation(TranslationAliases.Common.Filters.SortNewestFirst),
                         hook: "js-hook-filters-input",
-                        attr: new Dictionary<string, string?>
-                        {
-                            ["data-url-replacement"] = filters.OverviewUrl,
-                        },
-                        null,
-                        !hasSort
+                        isChecked: !hasSort
                     ),
                     new RadioOption(
                         "filter-sorting-oldest",
                         cultureDictionary.GetTranslation(TranslationAliases.Common.Filters.SortOldestFirst),
                         cultureDictionary.GetTranslation(TranslationAliases.Common.Filters.SortOldestFirst),
                         hook: "js-hook-filters-input",
-                        attr: new Dictionary<string, string?>
-                        {
-                            ["data-url-replacement"] = filters.CurrentUrl
-                                .AppendQueryParam(name, cultureDictionary.GetTranslation(TranslationAliases.Common.Filters.SortOldestFirst)),
-                        },
-                        null,
-                        hasSort
-                    )
+                        isChecked: hasSort),
                     ],
             };
         }
