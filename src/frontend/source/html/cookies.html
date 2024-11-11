@@ -1,0 +1,27 @@
+{% set footerScrollingText = global.content.cookiePage.footerScrollingText %}
+
+{% extends 'layouts/default.html' %}
+
+{% from 'hero-content.html' import heroContent %}
+{% from 'layout-section.html' import layoutSection %}
+
+{% block hero %}
+  {{ heroContent({
+    breadcrumbs: global.content.cookiePage.breadcrumbs.items,
+    title: global.content.cookiePage.hero.title
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  {% call layoutSection({
+    theme: "t-white"
+  }) %}
+    <div class="c-rich-text">
+      <div class="rich-text__container">
+        <script id="CookieDeclaration" src="https://consent.cookiebot.com/68dc4c46-0126-4997-bfc2-26506ce1ee13/cd.js" type="text/javascript" async></script>
+      </div>
+    </div>
+  {% endcall %}
+
+{% endblock %}

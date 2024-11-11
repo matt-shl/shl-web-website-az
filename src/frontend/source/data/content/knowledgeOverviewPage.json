@@ -1,0 +1,93 @@
+{
+  "footerScrollingText": "Caring. Inclusive. Driven.",
+  "hero": {
+    "title": "Knowledge & insights",
+    "description": "Explore a wealth of knowledge with our curated resources. Access articles, guides, and tools designed to expand your expertise and ignite your curiosity. Start your journey to greater understanding today!",
+    "breadcrumbs": [
+      {
+        "url": "/home.html",
+        "label": "Home"
+      },
+      {
+        "url": "/current-item.html",
+        "label": "Knowledge & insights"
+      }
+    ]
+  },
+  "icon": {
+    "carouselcarouselCardType": "icon",
+    "showThreeCardsSideBySide": false,
+    "cards": [
+      {
+        "url": "#",
+        "icon": "rocket",
+        "title": "Publication",
+        "content": "Hardcoded pale pink theme. Hardcoded pale pink theme."
+      },
+      {
+        "url": "#",
+        "icon": "rocket",
+        "title": "Webinars",
+        "content": "Hardcoded pale pink theme. Hardcoded pale pink theme."
+      },
+      {
+        "url": "#",
+        "icon": "rocket",
+        "title": "Download",
+        "content": "Hardcoded pale pink theme. Hardcoded pale pink theme."
+      },
+      {
+        "url": "#",
+        "icon": "rocket",
+        "title": "Events",
+        "content": "Hardcoded pale pink theme. Hardcoded pale pink theme."
+      }
+    ]
+  },
+  "textMedia": {
+    "id": "dive-deep-into-the-world-of-device-platforms",
+    "sectionTitle": "New",
+    "theme": "t-pastel-green",
+    "title": "Dive deep into the world of device platforms",
+    "description": "We know it's hard. That's why we created resources for you to learn about the ins & outs of our tools.",
+    "image": {
+      "caption": "image caption example"
+    },
+    "cta1": {
+      "label": "Visit our Device Academy",
+      "url": "#"
+    }
+  },
+  "related": {
+    "carouselCardType": "knowledge",
+    "showThreeCardsSideBySide": true,
+    "title": "Latest insights",
+    "cta1": {
+      "url": "#",
+      "label": "All publications"
+    },
+    "cards": [
+      {
+        "tag": "News",
+        "title": "SHL Medical expert to speak at Novartis Campus in Basel",
+        "content": "SHL Medical will be in Basel for the Drug-Device Combination Products for Parenteral Use workshop.",
+        "url": "#",
+        "ctaLabel": "Read more"
+      },
+      {
+        "tag": "News",
+        "title": "Strengthening a global manufacturing network through advanced simulation technologies",
+        "content": "In the Pre-filled Syringes and Injection Devices Issue of ONdrug Delivery Magazine, published ahead of the 2023 PDA Universe.",
+        "url": "#",
+        "ctaLabel": "Read more"
+      },
+      {
+        "tag": "News",
+        "title": "SHL to attend 2022 NSTC Science Train Program",
+        "content": "SHL Medical is excited to announce our first-time participation in the NSTC Science Train Program, 2022.",
+        "url": "#",
+        "ctaLabel": "Read more"
+      }
+    ]
+  }
+}

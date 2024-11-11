@@ -1,0 +1,61 @@
+{% from 'button.html' import button %}
+{% from 'form-overlay.html' import formOverlay %}
+
+{% macro eventDetail(data) %}
+
+  <div class="c-event-detail t-light-grey" js-hook-event-detail>
+    <div class="event-detail__container">
+      <div class="event-detail__content">
+        <h2 class="event-detail__title">{{ data.title }}</h2>
+
+        <div class="event-detail__details">
+          <div class="event-detail__col event-detail__col--col1">
+            <p>
+              {% if data.column1.title %}<strong>{{ data.column1.title }}</strong><br/>{% endif %}
+              {% if data.column1.content %}{{ data.column1.content | safe }}{% endif %}
+            </p>
+          </div>
+          <div class="event-detail__col event-detail__col--col2">
+            <p>
+              {% if data.column2.title %}<strong>{{ data.column2.title }}</strong><br/>{% endif %}
+              {% if data.column2.content %}{{ data.column2.content | safe }}{% endif %}
+            </p>
+          </div>
+          {% if data.cta.url %}
+            <div class="event-detail__col event-detail__col--cta">
+              {{ button({
+                class: 'event-detail__cta',
+                label: data.cta.label,
+                url: data.cta.url,
+                variant: data.cta.variant,
+                icon: data.cta.icon or 'arrow-top-right'
+              }) }}
+            </div>
+          {% endif %}
+
+          {% if data.cta.label and data.modal %}
+            <div class="event-detail__col event-detail__col--cta">
+              {{ button({
+                element: 'button',
+                class: 'event-detail__cta',
+                label: data.cta.label,
+                variant: data.cta.variant,
+                icon: data.cta.icon or 'arrow-top-right',
+                controls: data.modal.id
+              }) }}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% if data.modal %}
+    {{ formOverlay(data.modal) }}
+  {% endif %}
+
+{% endmacro %}
+
+
+
+

@@ -1,0 +1,24 @@
+@inherits UmbracoViewPage<PageVacancy>
+
+<partial name="LayoutSection"
+         model="@(new Components.LayoutSection { CssThemeClasses = "t-white", })">
+    <partial name="RichText" model="@(Components.RichText.Create(Model))" />
+</partial>
+
+<partial name="_BlockList" model="Model.ContentBlocks" />
+
+<partial name="LayoutSection"
+         model="@(new Components.LayoutSection { Variant = "c-section-job-vacancies", })">
+    <vc:job-vacancies page="@Model" />
+</partial>
+
+<script type="text/javascript">
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+        event: 'view_job',
+        job_name: @Model.Name,
+        location: @Model.Country,
+        seniority_level: @Model.JobLevel,
+        employment_type: @Model.ContractType
+    });
+</script>

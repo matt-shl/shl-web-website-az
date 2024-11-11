@@ -1,0 +1,51 @@
+.c-product-description {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-40;
+
+  @include screen-lg-and-bigger {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+.product-description__title-container {
+  @include grid;
+}
+
+.product-description__title {
+  @include col-span(12);
+
+  @include screen-lg-and-bigger {
+    @include col-span(8);
+  }
+}
+
+.product-description__image-container {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.product-description__content-container {
+  @include grid;
+}
+
+.product-description__content {
+  @include col-span(12);
+
+  @include screen-lg-and-bigger {
+    grid-column: 5 / span 6;
+  }
+}
+
+.product-description__content-title {
+  @include body-xl;
+  margin-bottom: $spacing-16;
+}
+
+.product-description__content-rich-text {
+  @include body-xl;
+  @include rich-text;
+}

@@ -1,0 +1,30 @@
+@using DTNL.UmbracoCms.Web.Components
+@using DTNL.UmbracoCms.Web.Helpers.Aliases
+@model DTNL.UmbracoCms.Web.Components.AnchorList
+
+<section class="c-anchor-list t-white
+      c-anchor-list--@Model.Alignment
+      @(Model.IsComponent ? "c-anchor-list--is-component" : null)
+      @Model.CssClasses"
+         js-hook-anchor-list>
+
+    @if (Model.ShowLinks)
+    {
+        <div class="anchor-list__container">
+            <ul class="anchor-list__list" js-hook-anchor-list-list>
+                @foreach (Link link in Model.Links)
+                {
+                    <li class="anchor-list__item">
+                        <a href="@link.Url" class="anchor-list__anchor" js-hook-anchor-list-anchor>
+                            <svg src="@SvgAliases.Icons.ArrowRight"/>
+
+                            @link.Label
+                        </a>
+                    </li>
+                }
+            </ul>
+
+            <partial name="Button" model="@Model.LinkButton"/>
+        </div>
+    }
+</section>

@@ -1,0 +1,21 @@
+{% extends 'layouts/default.html' %}
+{% set theme = "light-blue" %}
+{% set themeColor = "#007cbe" %}
+
+{% from 'empty-section.html' import emptySection %}
+{% from 'text-media.html' import textMedia %}
+{% from 'hero-content.html' import heroContent %}
+
+{% block hero %}
+  {{ heroContent({
+    title: global.content.error404.hero.title
+  }) }}
+{% endblock %}
+
+{% block content %}
+  {{ emptySection(global.content.error404.content | clone | merge({
+    variant: "tight"
+  })) }}
+
+  {{ textMedia(global.content.error404.textMedia) }}
+{% endblock %}

@@ -1,0 +1,105 @@
+{% set footerScrollingText = global.content.dynamicPage.footerScrollingText %}
+{% set careerOverviewPageData = global.content.careerOverviewPage %}
+
+{% extends 'layouts/default.html' %}
+
+{% from 'slogan.html' import slogan %}
+{% from 'hero-content.html' import heroContent %}
+{% from 'layout-section.html' import layoutSection %}
+{% from 'media-section.html' import mediaSection %}
+{% from 'text-media.html' import textMedia %}
+{% from 'stacking-cards.html' import stackingCards %}
+{% from 'banner-quote.html' import bannerQuote %}
+
+{% block hero %}
+  <!-- Todo finish hero-content with content data -->
+  {{ heroContent({
+    breadcrumbs: global.content.dynamicPage.breadcrumbs.items,
+    title: global.content.dynamicPage.hero.title,
+    subtitle: global.content.dynamicPage.hero.subtitle,
+    tags: global.content.dynamicPage.hero.tags,
+    description: global.content.dynamicPage.hero.description,
+    ctas: global.content.dynamicPage.hero.ctas
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  {{ textMedia({
+    theme: 't-pale-yellow',
+    title: "Text Media without image",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sagittis sollicitudin leo, eu aliquet nisi
+      posuere ut. In eu mollis lectus, ac lacinia tellus. Nulla vel eros molestie, sagittis neque quis, fringilla
+      diam. Nam est enim, semper in ligula et, hendrerit feugiat leo. Lorem ipsum dolor sit amet, consectetur
+      adipiscing elit. Nam a venenatis quam. Maecenas a eros vitae diam gravida pharetra. Integer bibendum nulla vitae
+      pellentesque posuere. Sed scelerisque tellus eu porttitor ultricies. Donec ullamcorper ornare tortor, id euismod
+      dolor porttitor ac. Phasellus fringilla vehicula elit, sit amet pharetra mi fringilla a. Morbi sapien orci,
+      rhoncus id scelerisque et, viverra sit amet nisl. In quis felis pharetra, sodales massa vel, hendrerit turpis.
+      Suspendisse consectetur purus justo, sed ornare dolor blandit id."
+  }) }}
+
+  {{ bannerQuote(careerOverviewPageData.quoteBanner1) }}
+  {{ bannerQuote(careerOverviewPageData.quoteBanner1 | clone | merge({ theme: "t-white" })) }}
+
+  {{ textMedia({
+    theme: 't-pale-blue',
+    title: "Text Media without image",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sagittis sollicitudin leo, eu aliquet nisi
+      posuere ut. In eu mollis lectus, ac lacinia tellus. Nulla vel eros molestie, sagittis neque quis, fringilla
+      diam. Nam est enim, semper in ligula et, hendrerit feugiat leo. Lorem ipsum dolor sit amet, consectetur
+      adipiscing elit. Nam a venenatis quam. Maecenas a eros vitae diam gravida pharetra. Integer bibendum nulla vitae
+      pellentesque posuere. Sed scelerisque tellus eu porttitor ultricies. Donec ullamcorper ornare tortor, id euismod
+      dolor porttitor ac. Phasellus fringilla vehicula elit, sit amet pharetra mi fringilla a. Morbi sapien orci,
+      rhoncus id scelerisque et, viverra sit amet nisl. In quis felis pharetra, sodales massa vel, hendrerit turpis.
+      Suspendisse consectetur purus justo, sed ornare dolor blandit id."
+  }) }}
+
+  {{ textMedia({
+    title: "Text Media without image",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sagittis sollicitudin leo, eu aliquet nisi
+      posuere ut. In eu mollis lectus, ac lacinia tellus. Nulla vel eros molestie, sagittis neque quis, fringilla
+      diam. Nam est enim, semper in ligula et, hendrerit feugiat leo. Lorem ipsum dolor sit amet, consectetur
+      adipiscing elit. Nam a venenatis quam. Maecenas a eros vitae diam gravida pharetra. Integer bibendum nulla vitae
+      pellentesque posuere. Sed scelerisque tellus eu porttitor ultricies. Donec ullamcorper ornare tortor, id euismod
+      dolor porttitor ac. Phasellus fringilla vehicula elit, sit amet pharetra mi fringilla a. Morbi sapien orci,
+      rhoncus id scelerisque et, viverra sit amet nisl. In quis felis pharetra, sodales massa vel, hendrerit turpis.
+      Suspendisse consectetur purus justo, sed ornare dolor blandit id."
+  }) }}
+
+  {{ textMedia({
+    theme: 't-pale-pink',
+    title: "Text Media without image",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sagittis sollicitudin leo, eu aliquet nisi
+      posuere ut. In eu mollis lectus, ac lacinia tellus. Nulla vel eros molestie, sagittis neque quis, fringilla
+      diam. Nam est enim, semper in ligula et, hendrerit feugiat leo. Lorem ipsum dolor sit amet, consectetur
+      adipiscing elit. Nam a venenatis quam. Maecenas a eros vitae diam gravida pharetra. Integer bibendum nulla vitae
+      pellentesque posuere. Sed scelerisque tellus eu porttitor ultricies. Donec ullamcorper ornare tortor, id euismod
+      dolor porttitor ac. Phasellus fringilla vehicula elit, sit amet pharetra mi fringilla a. Morbi sapien orci,
+      rhoncus id scelerisque et, viverra sit amet nisl. In quis felis pharetra, sodales massa vel, hendrerit turpis.
+      Suspendisse consectetur purus justo, sed ornare dolor blandit id."
+  }) }}
+
+  {{ mediaSection(global.content.dynamicPage.mediaSection1 | clone | merge({ variant: "no-padding" })) }}
+
+  {{ slogan({
+    text: global.content.dynamicPage.footerScrollingText
+  }) }}
+
+  {{ textMedia({
+    title: "Text Media without image",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sagittis sollicitudin leo, eu aliquet nisi
+      posuere ut. In eu mollis lectus, ac lacinia tellus. Nulla vel eros molestie, sagittis neque quis, fringilla
+      diam. Nam est enim, semper in ligula et, hendrerit feugiat leo. Lorem ipsum dolor sit amet, consectetur
+      adipiscing elit. Nam a venenatis quam. Maecenas a eros vitae diam gravida pharetra. Integer bibendum nulla vitae
+      pellentesque posuere. Sed scelerisque tellus eu porttitor ultricies. Donec ullamcorper ornare tortor, id euismod
+      dolor porttitor ac. Phasellus fringilla vehicula elit, sit amet pharetra mi fringilla a. Morbi sapien orci,
+      rhoncus id scelerisque et, viverra sit amet nisl. In quis felis pharetra, sodales massa vel, hendrerit turpis.
+      Suspendisse consectetur purus justo, sed ornare dolor blandit id."
+  }) }}
+
+  {{ mediaSection(global.content.dynamicPage.mediaSection2) }}
+
+  {{ stackingCards(global.content.dynamicPage.stackingCards) }}
+
+  </div>
+{% endblock %}

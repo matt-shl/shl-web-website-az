@@ -1,0 +1,77 @@
+{% from 'button.html' import button %}
+{% from 'layout-section.html' import layoutSection %}
+{% from 'image.html' import image %}
+{% from 'video-modal.html' import videoModal %}
+
+{% macro textMedia(data) %}
+  {%-if data.theme %}
+    {% set theme = data.theme %}
+  {% else %}
+    {% set theme = "t-white" %}
+  {% endif -%}
+
+  {%-if theme === "t-white" %}
+    {% set variant = "" %}
+  {% else %}
+    {% set variant = "in-grid" %}
+  {% endif -%}
+
+  {% call layoutSection({
+    theme: theme,
+    id: data.id,
+    sectionTitle: data.sectionTitle,
+    variant: variant
+  }) %}
+    <div class="c-text-media
+          {%- if data.mediaPosition %} c-text-media--media-position-{{ data.mediaPosition }}{% endif %}">
+      <div class="text-media__container">
+        <div class="text-media__col text-media__col--text">
+          <h2 class="text-media__title">{{ data.title }}</h2>
+          <div class="text-media__content">
+            {% if data.description %}
+              <p class="text-media__description">{{ data.description }}</p>
+            {% endif %}
+            {% if data.cta1 or data.cta2 %}
+              <div class="text-media__ctas">
+                {% if data.cta1 %}
+                  {{ button({
+                    class: 'text-media__cta1',
+                    label: data.cta1.label,
+                    url: data.cta1.url,
+                    variant: data.cta1.variant,
+                    icon: data.cta1.icon or 'arrow-top-right'
+                  }) }}
+                {% endif %}
+                {% if data.cta2 %}
+                  {{ button({
+                    class: 'text-media__cta2',
+                    label: data.cta2.label,
+                    url: data.cta2.url,
+                    variant: data.cta2.variant or 'secondary',
+                    icon: data.cta2.icon or 'arrow-top-right'
+                  }) }}
+                {% endif %}
+              </div>
+            {% endif %}
+          </div>
+        </div>
+        <div class="text-media__col text-media__col--media">
+          <div class="text-media__image">
+            {% if data.image %}
+              {{ image(data.image | clone | merge({
+                imageStyle: "in-grid-banner-image",
+                objectFit: true,
+                video: data.video
+              })) }}
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endcall %}
+
+  {% if data.video %}
+    {{ videoModal(data.video) }}
+  {% endif %}
+
+{% endmacro %}

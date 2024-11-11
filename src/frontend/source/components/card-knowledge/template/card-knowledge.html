@@ -1,0 +1,58 @@
+{#
+Options:
+title: string (required)
+image: object (required)
+tag: string (required)
+url: string
+date: string
+description: string
+cta: string
+modalId: string
+#}
+
+{% from 'card-overlay.html' import cardOverlay %}
+{% from 'image.html' import image %}
+{% from 'button.html' import button %}
+
+{% set commonLabels = global.resource.common %}
+
+{% macro cardKnowledge(data) %}
+  <{{ data.url and 'a' or 'button' }} class="c-card-knowledge
+    {%- if data.classes %} {{ data.classes }}{% endif -%}"
+    {%- if data.url %} href="{{ data.url }}"{% endif -%}
+    aria-label="{{commonLabels.readMoreAbout}} {{ data.title }}"
+  {%- if data.type %} data-type="{{ data.type }}"{% endif -%}
+  {% if not data.url and data.modalId %} aria-controls="{{ data.modalId }}" aria-label="Open modalbox" {% endif %}
+  js-hook-card-knowledge>
+
+  <div class="card-knowledge__image-container">
+    {{ image({
+      objectFit: true,
+      classes: 'card-knowledge__image',
+      imageStyle: 'card-knowledge'
+    }) }}
+
+    {{ cardOverlay({
+      classes: 'card-knowledge__card-overlay',
+      tag: data.tag,
+      position: 'start',
+      visible: true
+    }) }}
+  </div>
+
+  {% if data.date %}
+    <p class="card-knowledge__date">{{ data.date }}</p>
+  {% endif %}
+
+  <h3 class="card-knowledge__title">{{ data.title }}</h3>
+
+  {% if data.content %}
+    <p class="card-knowledge__content">{{ data.content }}</p>
+  {% endif %}
+
+  {% if data.ctaLabel %}
+    <p class="card-knowledge__cta">{{ data.ctaLabel }}</p>
+  {% endif %}
+
+  </{{ data.url and 'a' or 'button' }}>
+{% endmacro %}

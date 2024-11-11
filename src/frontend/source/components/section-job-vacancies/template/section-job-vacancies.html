@@ -1,0 +1,34 @@
+{% from 'button.html' import button %}
+{% from 'layout-section.html' import layoutSection %}
+{% from 'job-listing-item.html' import jobListingItem %}
+
+{% macro sectionJobVacancies(data) %}
+  {% call layoutSection({
+    title: data.title,
+    id: data.id,
+    sectionTitle: data.sectionTitle,
+    classes: "c-section-job-vacancies" ~ (" {{data.classes}}" if data.classes else ""),
+    theme: data.theme
+  }) %}
+    <div class="section-job-vacacies__container">
+      {% if data.title %}
+      <h2 class="section-job-vacancies__title">{{ data.title }}</h2>
+    {% endif %}
+      <ul class="section-job-vacancies__list" aria-label="Job vacancies list">
+        {% for job in data.jobs %}
+          <li class="section-job-vacancies__item">
+            {{ jobListingItem(job)}}
+          </li>
+        {% endfor %}
+      </ul>
+      <div class="section-job-vacancies__button-container">
+        {% if data.cta1 %}
+          {{ button(data.cta1 | clone | merge({icon: 'arrow-top-right'})) }}
+        {% endif %}
+        {% if data.cta2 %}
+          {{ button(data.cta2| clone | merge({variant: "secondary", icon: 'arrow-top-right', hook: 'apply' if data.cta2.apply else '' })) }}
+        {% endif %}
+      </div>
+    </div>
+  {% endcall %}
+{% endmacro %}

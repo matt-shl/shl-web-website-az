@@ -1,0 +1,109 @@
+// stylelint-disable declaration-no-important
+:root {
+  --anchor-list-height: 8.8rem;
+}
+
+.c-anchor-list {
+  @include body-m;
+
+  &--is-component {
+    background-color: $color-white;
+    box-shadow: $box-shadow-sticky-under-header;
+    opacity: 0;
+    padding-block: $spacing-16;
+    height: var(--anchor-list-height);
+    pointer-events: none;
+    position: sticky;
+    top: -1px; // to pixelperfect overlap with the sticky header
+    transform: translateY(-100%);
+    transition: var(--header-transition-time) var(--header-transition-ease);
+    transition-property: transform, opacity;
+    margin-bottom: calc(var(--header-height) * -1);
+    width: 100%;
+    z-index: 9;
+
+    .header--is-going-up & {
+      transform: translateY(82px) !important;
+    }
+
+    .is--anchor-list-sticky & {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+  }
+
+  @include screen-md-and-smaller {
+    &--is-component {
+      display: none;
+    }
+  }
+}
+
+.anchor-list__container {
+  .c-anchor-list--is-component & {
+    @include container;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.anchor-list__cta {
+  margin-inline-start: $spacing-16;
+  white-space: nowrap;
+  padding-block: 0;
+  display: flex;
+  align-items: center;
+}
+
+.anchor-list__list {
+  @include list--reset;
+  align-items: flex-start;
+  display: flex;
+  gap: $spacing-10;
+
+  .c-anchor-list--vertical & {
+    flex-direction: column;
+  }
+
+  .c-anchor-list--is-component & {
+    overflow: auto;
+    padding-block: $spacing-16;
+  }
+}
+
+.anchor-list__anchor {
+  align-items: center;
+  color: currentcolor;
+  display: flex;
+  gap: $spacing-8;
+  transition: 200ms ease-in-out;
+  transition-property: color;
+
+  svg {
+    height: 2rem;
+    transform: rotate(90deg);
+    transition: 200ms ease-in-out;
+    transition-property: transform;
+    width: 2rem;
+    min-width: 2rem;
+  }
+
+  &.is--active {
+    color: $color-light-blue;
+
+    svg {
+      transform: rotate(0deg);
+    }
+  }
+
+  @include hover-focus {
+    color: $color-light-blue;
+  }
+}
+
+.anchor-list__item {
+  .c-anchor-list--is-component & {
+    white-space: nowrap;
+  }
+}

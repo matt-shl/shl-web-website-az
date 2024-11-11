@@ -1,0 +1,21 @@
+@using DTNL.UmbracoCms.Web.Components
+@model DTNL.UmbracoCms.Web.Components.Media?
+
+@if (Model is null)
+{
+    return;
+}
+
+@if (Model.Image is not null)
+{
+    <div class="c-media-section">
+        <partial name="Image" model="@Model.Image" />
+    </div>
+}
+
+@if (Model.Video != null)
+{
+    <partial name="Modal" model="@(new Modal {Id =  $"{Model.Video?.Id}", Size = "video", KeepScrollPosition = true, CloseAllOthers = true })">
+        <partial name="Video" model="Model.Video" />
+    </partial>
+}

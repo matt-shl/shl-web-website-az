@@ -1,0 +1,83 @@
+using DTNL.UmbracoCms.Web.Components.NestedBlock;
+using DTNL.UmbracoCms.Web.Helpers.Extensions;
+using Umbraco.Cms.Core.Models;
+using Umbraco.Cms.Web.Common.PublishedModels;
+using NestedBlockVideo = Umbraco.Cms.Web.Common.PublishedModels.NestedBlockVideo;
+
+namespace DTNL.UmbracoCms.Web.Components;
+
+public class Media
+{
+    public Image? Image { get; set; }
+
+    public Video? Video { get; set; }
+
+    public static Media? Create(MediaWithCrops? mediaBlock)
+    {
+        if (Image.Create(mediaBlock) is not { } image)
+        {
+            return null;
+        }
+
+        return new Media
+        {
+            Image = Image.Create(mediaBlock).With(i =>
+            {
+                i.Classes = "media-section__image";
+                i.Caption = image?.Caption;
+            }),
+        };
+    }
+
+    public static Media? Create(NestedBlockVideo? videoBlock)
+    {
+        if (videoBlock is null)
+        {
+            return null;
+        }
+
+        VideoMedia? videoContent = (VideoMedia?) videoBlock.Video?.FirstOrDefault()?.Content;
+        Video? video = new Video
+        {
+            Id = videoContent?.Title?.Trim().ToLowerInvariant().Replace(" ", "-"),
+            InstanceId = videoContent?.Title?.Trim().ToLowerInvariant().Replace(" ", "-") ?? "",
+            Platform = "native",
+            TotalTime = videoContent?.TotalTime ?? "",
+            Variant = "modal",
+        };
+
+        return new Media
+        {
+            Image = Image
+                .Create(videoBlock.Preview, style: "default")
+                .With(i =>
+                {
+                    i.Classes = "media-section__image";
+                    i.CardOverlay = videoContent is null
+                        ? null
+                        : new CardOverlay
+                        {
+                            Video = video,
+                            Position = "start",
+                            Visible = true,
+                        };
+                    i.ImageHolderButton = videoContent != null;
+                    i.ImageHolderAttributes = new Dictionary<string, string?>
+                    {
+                        ["aria-label"] = "Open video Modal",
+                        ["aria-controls"] = video != null ? $"{video.InstanceId}" : null,
+                    };
+                    i.ObjectFit = true;
+                    i.Caption = videoContent?.Description;
+                }),
+            Video = Video.Create(videoContent)
+            .With(v =>
+            {
+                v.Id = videoContent?.Title?.Trim().ToLowerInvariant().Replace(" ", "-");
+                v.Description = videoContent?.Description;
+                v.TotalTime = videoContent?.TotalTime;
+                v.Variant = "modal";
+            }),
+        };
+    }
+}

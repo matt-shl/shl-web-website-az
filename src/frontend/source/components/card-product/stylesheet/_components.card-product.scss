@@ -1,0 +1,70 @@
+.c-card-product {
+  @include card-base;
+
+  @include hover-focus {
+    .card-product-container {
+      border-end-end-radius: 0;
+    }
+  }
+}
+
+.card-product__image-container {
+  @include theme-card;
+  @include card-image-container-base;
+}
+
+.card-product__image {
+  @include card-image-base;
+
+  .c-card-product:hover & {
+    transform: scale(1.1);
+  }
+}
+
+.card-product__content-container {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-8;
+}
+
+.card-product__title {
+  @include h5;
+  transition: color var(--card-animation-duration) var(--card-animation-ease);
+
+  .c-card-product:hover & {
+    color: var(--color-card-tertiary, var(--theme-color-content-60));
+  }
+}
+
+.card-product__content-container {
+  padding-inline-end: $spacing-24;
+}
+
+.card-product__specifications {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: $spacing-8 $spacing-12;
+  padding-block: $spacing-8;
+}
+
+.card-product__specification-value {
+  display: flex;
+  gap: $spacing-8;
+  align-items: center;
+  color: var(--color-card-background);
+}
+
+.card-product__specification-value-level {
+  width: 40px;
+  height: 4px;
+  background-color: var(--color-spec-value-level-default, $color-light-grey);
+  border-radius: $radii-24;
+
+  &--activated {
+    background-color: var(--color-card-background);
+  }
+}
+
+.card-product__content {
+  @include card-outside-content-base;
+}

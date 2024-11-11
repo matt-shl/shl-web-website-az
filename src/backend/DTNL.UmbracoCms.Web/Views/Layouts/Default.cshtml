@@ -1,0 +1,50 @@
+@inherits UmbracoViewPage
+@inject NodeProvider NodeProvider
+
+<!DOCTYPE html>
+
+<html lang="@System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName" dir="ltr" class="o-html u-lang-default @ViewBag.HtmlClass @HeaderColorHelper.GetColor(Model) @ThemeHelper.GetCssClasses(Model)">
+<head>
+    <vc:meta-tags page="@Model" site-settings="@NodeProvider.SiteSettings" />
+    <vc:structured-data home-page="@NodeProvider.HomePage" site-settings="@NodeProvider.SiteSettings" />
+    <partial name="Stylesheets" />
+    <partial name="Environment" />
+    <partial name="Favicons" />
+
+    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="68dc4c46-0126-4997-bfc2-26506ce1ee13" data-blockingmode="auto" type="text/javascript"></script>
+
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+            event: "init",
+            page: {
+                type: "@Model.ContentType.Alias"
+            },
+            language: "@System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName"
+        })
+    </script>
+    @Html.Raw(NodeProvider.SiteSettings?.HeaderScripts)
+</head>
+<body>
+    @Html.Raw(NodeProvider.SiteSettings?.BodyScripts)
+    <partial name="CarouselIndicator" />
+
+    <vc:header />
+
+    <vc:mobile-floating-button page="@Model"/>
+
+    <main id="content" role="main">
+
+        <vc:hero page="@Model" />
+        <div class="page__content" id="main-content" js-hook-inview>
+            <div class="page__content-items">
+                @RenderBody()
+            </div>
+        </div>
+    </main>
+
+    <vc:footer site-settings="@NodeProvider.SiteSettings" page="@Model" />
+
+    <script async src="/assets/js/main.js" asp-append-version="true"></script>
+</body>
+</html>

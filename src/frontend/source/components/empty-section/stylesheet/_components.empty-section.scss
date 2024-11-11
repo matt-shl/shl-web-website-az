@@ -1,0 +1,43 @@
+.c-empty-section {
+  .layout-section__wrapper {
+    @include grid;
+  }
+}
+
+.empty-section__inner {
+  @include col-span(12);
+  display: flex;
+  gap: $spacing-24;
+  flex-direction: column;
+  padding-bottom: $spacing-24;
+
+  .c-empty-section--tight & {
+    padding-bottom: 0;
+  }
+
+  @include screen-md-and-bigger {
+    grid-column: 2 / span 10;
+    padding-block: $spacing-20;
+  }
+
+  @include screen-lg-and-bigger {
+    grid-column: 3 / span 8;
+    padding-block: $spacing-40;
+  }
+}
+
+.empty-section__title {
+  @include h5;
+}
+
+.empty-section__content {
+  @include body-l;
+  @include rich-text;
+}
+
+.empty-section__buttons-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-16;
+  margin-top: $spacing-24;
+}

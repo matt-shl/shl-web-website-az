@@ -1,0 +1,148 @@
+:root {
+  --radio-size: 16px;
+  --radio-border-width: var(--checkbox-border-width);
+  --radio-border-radius: 50%;
+  --radio-unchecked-color: var(--color-dark-blue);
+  --radio-checked-color: var(--color-dark-blue);
+  --radio-hover-focus-color: rgba(var(--color-dark-blue-rgb), 0.4);
+  --radio-margin-right: var(--checkbox-margin-right);
+  --radio-transition-time: var(--checkbox-transition-time);
+  --radio-transition-ease: var(--checkbox-transition-ease);
+  --radio-font-size: $font-size-m;
+  --radio-font-weight: $font-weight-regular;
+  --radio-label-color: $color-dark-blue;
+  --radio-label-margin-bottom: #{$spacing-16};
+
+  --radio-label-color-disabled: var(--color-dark-blue);
+  --radio-color-disabled: rgba(var(--color-dark-blue-rgb), 0, 2);
+}
+
+.c-radio {
+  // fixes a issue on filters flyout
+  position: relative;
+}
+
+.radio__title {
+  font-weight: $font-weight-regular;
+  display: block;
+  margin-bottom: $global-spacing * 2;
+}
+
+.radio__input {
+  @include sr-only;
+
+  &:checked {
+    & + label {
+      &::before {
+        transform: translateY(-50%) scale(1);
+      }
+
+      &::after {
+        box-shadow:
+          0 0 0 var(--radio-border-width) var(--radio-checked-color) inset,
+          0 0 0 calc(var(--radio-border-width) * 2) var(--color-white) inset;
+      }
+
+      color: var(--color-dark-blue);
+    }
+  }
+
+  &:hover {
+    + label {
+      color: var(--radio-hover-focus-color);
+
+      &::after {
+        box-shadow: 0 0 0 var(--radio-border-width) var(--radio-hover-focus-color) inset;
+      }
+    }
+  }
+
+  @include keyboard-focus {
+    + label {
+      outline: 1px solid #{$color-light-blue};
+    }
+  }
+
+  &[disabled] {
+    & + label {
+      cursor: default;
+      color: var(--radio-label-color-disabled);
+
+      &::before {
+        box-shadow:
+          0 0 0 calc(var(--radio-border-width) * 3) var(--color-white) inset,
+          0 0 0 var(--radio-size) var(--radio-color-disabled) inset;
+        cursor: default;
+      }
+
+      &::after {
+        box-shadow:
+          0 0 0 var(--radio-border-width) var(--radio-label-color-disabled) inset,
+          0 0 0 calc(var(--radio-border-width) * 3) var(--color-white) inset;
+        cursor: default;
+      }
+    }
+  }
+}
+
+.radio__label {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  margin-bottom: var(--radio-label-margin-bottom);
+  padding-left: calc(var(--radio-size) + 10px);
+  font-size: var(--radio-font-size);
+  font-weight: var(--radio-font-weight);
+  color: var(--radio-label-color);
+
+  &::before,
+  &::after {
+    position: absolute;
+    content: '';
+    border-radius: var(--radio-border-radius);
+    top: 50%;
+    left: 0;
+    width: var(--radio-size);
+    height: var(--radio-size);
+    cursor: pointer;
+  }
+
+  &::before {
+    box-shadow:
+      0 0 0 calc(var(--radio-border-width) * 2) var(--color-white) inset,
+      0 0 0 var(--radio-size) var(--radio-unchecked-color) inset;
+    transform: translateY(-50%) scale(0);
+    transition: var(--radio-transition-time) var(--radio-transition-ease);
+    transition-property: transform;
+  }
+
+  &::after {
+    transform: translateY(-50%);
+    transition: var(--checkbox-transition-time) var(--checkbox-transition-ease);
+    transition-property: box-shadow;
+    box-shadow:
+      0 0 0 var(--radio-border-width) var(--radio-unchecked-color) inset,
+      0 0 0 calc(var(--radio-border-width) * 3) var(--color-white) inset;
+
+    .form__item--error & {
+      box-shadow:
+        0 0 0 var(--radio-border-width) var(--color-error) inset,
+        0 0 0 calc(var(--radio-border-width) * 3) var(--color-white) inset;
+    }
+  }
+}
+
+/**
+ * Horizontal
+ */
+
+.radio--horizontal {
+  .radio__wrapper {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .radio__label {
+    margin-right: var(--checkbox-margin-right);
+  }
+}

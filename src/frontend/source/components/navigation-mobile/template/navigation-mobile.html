@@ -1,0 +1,100 @@
+{% from 'modal.html' import modal %}
+{% from 'navigation-mobile-list.html' import navigationMobileList %}
+{% from 'language-selector.html' import languageSelector %}
+{% from 'search-trigger.html' import searchTrigger %}
+{% from 'search.html' import search %}
+
+{# Modal to show level 1 items #}
+{% call modal({
+  size: 'navigation-mobile',
+  id : 'navigation-mobile',
+  keepScrollPosition: true,
+  closeAllOthers: true
+}) %}
+  <div class="c-navigation-mobile">
+    <nav title="{{ global.resource.navigation.mainNavigation }}">
+      {{ searchTrigger() }}
+      {{ navigationMobileList({
+        items: global.content.navigation.items
+      }) }}
+      <div class="navigation-mobile__line"></div>
+      <div class="navigation-mobile__language-selector">
+        {{ languageSelector({mobile: true}) }}
+      </div>
+    </nav>
+  </div>
+{% endcall %}
+
+{# Modals to show level 2 #}
+{% for item in global.content.navigation.items %}
+  {% if item.subitems %}
+    {% call modal({
+      size: 'navigation-mobile',
+      id : 'navigation-mobile-' + item.id,
+      keepScrollPosition: true,
+      closeAllOthers: true
+    }) %}
+      <div class="c-navigation-mobile">
+        {{ navigationMobileList({
+          header: {
+            title: item.title,
+            id: 'navigation-mobile'
+          },
+          parent: {
+            title: item.title,
+            id : item.id
+          },
+          items: item.subitems
+        }) }}
+      </div>
+    {% endcall %}
+  {% endif %}
+{% endfor %}
+
+
+{# Modal to show level 3 items #}
+{% for item in global.content.navigation.items %}
+  {% if item.subitems %}
+    {% for subitem in item.subitems %}
+      {% call modal({
+        size: 'navigation-mobile',
+        id : 'navigation-mobile-' + item.id + '-' + subitem.id,
+        keepScrollPosition: true,
+        closeAllOthers: true
+      }) %}
+        <div class="c-navigation-mobile">
+          {{ navigationMobileList({
+            header: {
+              title: subitem.title,
+              id : 'navigation-mobile-' + item.id
+            },
+            parent: {
+              title: subitem.title,
+              id : item.id + '-' + subitem.id
+            },
+            all: {
+              title: subitem.all.title,
+              id : subitem.all.id
+            },
+            items: subitem.subitems
+          }) }}
+        </div>
+      {% endcall %}
+    {% endfor %}
+  {% endif %}
+{% endfor %}
+
+
+{# Modal to show search bar #}
+{% call modal({
+  size: 'navigation-mobile',
+  id : 'navigation-mobile-search',
+  keepScrollPosition: true,
+  closeAllOthers: true
+}) %}
+  <div class="c-navigation-mobile">
+    {{ search({
+      variant: "in-flyout"
+    }) }}
+  </div>
+{% endcall %}

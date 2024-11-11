@@ -1,0 +1,40 @@
+:root {
+  --fieldset-spacing: #{$global-spacing * 5};
+  --fieldset-legend-margin: #{$global-spacing * 3};
+  --fieldset-legend-large-margin: #{$global-spacing * 3};
+  --fieldset-legend-small-margin: #{$global-spacing};
+
+  @include screen-md-and-bigger {
+    --fieldset-legend-large-margin: #{$global-spacing * 6};
+  }
+}
+
+.c-fieldset {
+  & + & {
+    margin-top: var(--fieldset-spacing);
+  }
+
+  &[disabled] {
+    display: none;
+  }
+}
+
+.fieldset__legend {
+  @include h4;
+  margin-bottom: var(--fieldset-legend-margin);
+}
+
+.c-fieldset + .c-fieldset {
+  margin-top: $global-spacing * 5;
+}
+
+.fieldset__legend--large {
+  @include h3;
+  margin-bottom: var(--fieldset-legend-large-margin);
+}
+
+.fieldset__legend--small {
+  font-size: $font-size-body-m;
+  font-family: var(--font-stack-body);
+  margin-bottom: var(--fieldset-legend-small-margin);
+}

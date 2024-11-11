@@ -1,0 +1,15 @@
+@inherits UmbracoViewPage<PageCookies>
+
+<partial name="LayoutSection"
+         model="@(new Components.LayoutSection {
+                    CssClasses = "t-white",
+                })"
+>
+    <div class="c-rich-text">
+        <div class="rich-text__container">
+            <script id="CookieDeclaration" src="https://consent.cookiebot.com/68dc4c46-0126-4997-bfc2-26506ce1ee13/cd.js" type="text/javascript" async></script>
+        </div>
+    </div>
+</partial>
+
+<partial name="_BlockList" model="Model.ContentBlocks" />

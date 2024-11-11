@@ -1,0 +1,97 @@
+:root {
+  --select-border-width: 1px;
+  --select-border-radius: var(--input-border-radius);
+  --select-border-color: var(--input-border-color);
+  --select-fill-color: var(--color-white);
+  --select-padding-top: var(--input-padding-top);
+  --select-padding-bottom: var(--input-padding-bottom);
+  --select-padding-left: var(--input-padding-left);
+  --select-padding-right: #{$spacing-48};
+  --select-transition-time: var(--input-transition-time);
+  --select-transition-ease: var(--input-transition-ease);
+  --select-font-size: var(--input-font-size);
+  --select-border-color-hover-focus: var(--input-border-color-hover-focus);
+  --select-border-color-disabled: var(--input-background-color-disabled);
+}
+
+.select__label {
+  cursor: pointer;
+  display: block;
+  font-weight: var(--input-label-font-weight);
+  font-size: var(--input-label-font-size);
+  margin-bottom: $spacing-8;
+}
+
+.select__input-wrapper {
+  position: relative;
+}
+
+.select__icon {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  top: 0;
+  bottom: 0;
+  right: $spacing-16;
+  pointer-events: none;
+
+  .form__item--disabled & {
+    opacity: 0.5;
+  }
+}
+
+.select__input {
+  cursor: pointer;
+  appearance: none;
+  width: 100%;
+  padding-top: var(--select-padding-top);
+  padding-bottom: var(--select-padding-bottom);
+  padding-left: var(--select-padding-left);
+  padding-right: var(--select-padding-right);
+  border-radius: var(--select-border-radius);
+  color: var(--input-text-color);
+  border: 0;
+  box-shadow: 0 0 0 var(--select-border-width) var(--select-border-color) inset;
+  background-color: var(--select-fill-color);
+  line-height: var(--font-line-height-regular);
+  font-size: var(--select-font-size);
+  transition: opacity var(--input-transition-time) var(--input-transition-ease);
+  transition-property: box-shadow, color;
+
+  @include hover-focus(false) {
+    box-shadow: 0 0 0 var(--select-border-width) var(--select-border-color-hover-focus) inset;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 var(--select-border-width) var(--select-border-color-hover-focus) inset;
+  }
+
+  &[disabled] {
+    cursor: default;
+    box-shadow: 0 0 0 var(--select-border-width) var(--select-border-color-disabled) inset;
+
+    @include hover-focus {
+      box-shadow: 0 0 0 var(--select-border-width) var(--select-border-color-disabled) inset;
+    }
+  }
+
+  &::-ms-expand {
+    display: none;
+  }
+
+  .form__item--error & {
+    box-shadow: 0 0 0 var(--select-border-width) var(--color-error) inset;
+
+    @include hover-focus {
+      box-shadow: 0 0 0 var(--select-border-width) var(--color-error) inset;
+    }
+  }
+
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus {
+    box-shadow:
+      0 0 0 var(--select-border-width) var(--select-border-color) inset,
+      0 0 0 1000px var(--color-white) inset !important; /* stylelint-disable-line declaration-no-important */
+  }
+}

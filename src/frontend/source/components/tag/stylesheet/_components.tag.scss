@@ -1,0 +1,8 @@
+.c-tag {
+  background-color: var(--tag-bg-color, var(--bg-color, $color-pale-blue));
+  color: var(--tag-color, var(--color, $color-dark-blue));
+  font-weight: $font-weight-bold;
+  display: inline-block;
+  padding: $spacing-6 $spacing-12;
+  border-radius: $radii-16;
+}

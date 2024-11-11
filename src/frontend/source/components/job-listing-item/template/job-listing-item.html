@@ -1,0 +1,19 @@
+{% set commonLabels = global.resource.common %}
+
+{% macro jobListingItem(data) %}
+  <a class="c-job-listing-item" href="{{ data.url }}" aria-label="{{commonLabels.vacancy ~ ": " ~ data.title}}" js-hook-job-listing-item>
+    <span class="job-listing-item__title" js-hook-job-listing-title>{{ data.title }}</span>
+
+    <div class="job-listing-item__right-container">
+    <span class="job-listing-item__location" js-hook-job-listing-location>{{ data.location }}</span>
+    <div class="job-listing-item__tags-container">
+      {% for tag in data.tags %}
+        <span class="job-listing-item__tag job-listing-item__tag--text"{% if tag.type %} js-hook-job-listing-{{ tag.type }}{% endif %}>{{ tag.label }}</span>
+      {% endfor %}
+      <span class="job-listing-item__tag job-listing-item__tag--icon">
+        {% svg 'icons/arrow-top-right' %}
+      </span>
+    </div>
+    </div>
+  </a>
+{% endmacro %}

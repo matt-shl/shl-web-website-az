@@ -1,0 +1,30 @@
+{% set theme = "light-blue" %}
+{% set themeColor = "#007cbe" %}
+{% set headerIsWhite = true %}
+
+{% extends 'layouts/default.html' %}
+
+{% from 'hero-home.html' import heroHome %}
+{% from 'section-card-carousel.html' import sectionCardCarousel %}
+
+{% block hero %}
+  {{ heroHome({
+    title: global.content.home.hero.title,
+    description: global.content.home.hero.description,
+    ctas: global.content.home.hero.ctas,
+    video: global.content.home.hero.video
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  {{ sectionCardCarousel(global.content.sectionCardCarouselExamples.icon) }}
+  {{ sectionCardCarousel(global.content.sectionCardCarouselExamples.number) }}
+  {{ sectionCardCarousel(global.content.sectionCardCarouselExamples.image) }}
+  {{ sectionCardCarousel(global.content.sectionCardCarouselExamples.image | clone | merge({showThreeCardsSideBySide: true})) }}
+  {{ sectionCardCarousel(global.content.sectionCardCarouselExamples.knowledge | clone | merge({showThreeCardsSideBySide: true})) }}
+  {{ sectionCardCarousel(global.content.sectionCardCarouselExamples.contact) }}
+  {{ sectionCardCarousel(global.content.sectionCardCarouselExamples.product) }}
+
+{% endblock %}
+

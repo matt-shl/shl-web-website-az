@@ -1,0 +1,32 @@
+@mixin body-xl {
+  font-size: $font-size-body-xl;
+  line-height: $font-line-height-body-xl;
+}
+
+@mixin body-l {
+  font-size: $font-size-body-l;
+  line-height: $font-line-height-body-l;
+}
+
+@mixin body-m {
+  font-size: $font-size-body-m;
+  line-height: $font-line-height-body-m;
+}
+
+@mixin body-s {
+  font-size: $font-size-body-s;
+}
+
+@mixin body-xs {
+  font-size: $font-size-body-xs;
+}
+
+@mixin rich-text {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-24;
+
+  a {
+    font-weight: $font-weight-regular;
+  }
+}

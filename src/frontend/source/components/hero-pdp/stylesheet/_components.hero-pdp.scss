@@ -1,0 +1,200 @@
+$hero-pdp-content-offset: 14.5%; // 1 col
+
+.c-hero-pdp {
+  @include theme;
+  @include component-overlap;
+  --hero-pdp-shape-height: 100px;
+  z-index: 0;
+
+  @include screen-lg-and-bigger {
+    --hero-pdp-shape-height: 180px;
+  }
+
+  @include screen-xl-and-bigger {
+    --hero-pdp-shape-height: 280px;
+  }
+}
+
+.hero-pdp__container {
+  @include container-with-grid;
+  padding-block: $spacing-40;
+
+  @include screen-lg-and-bigger {
+    padding-block: $spacing-60 $spacing-80;
+  }
+}
+
+.hero-pdp__breadcrumbs {
+  margin-bottom: $spacing-16;
+
+  @include screen-lg-and-bigger {
+    margin-bottom: $spacing-24;
+    margin-inline-end: calc(#{$hero-pdp-content-offset} * -1);
+  }
+}
+
+.hero-pdp__col-left {
+  @include col-span(12);
+
+  @include screen-lg-and-bigger {
+    @include col-span(7);
+    padding-right: $hero-pdp-content-offset;
+  }
+}
+
+.hero-pdp__col-right {
+  @include col-span(12);
+
+  @include screen-lg-and-bigger {
+    @include col-span(5);
+    align-items: flex-end;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-16;
+  }
+}
+
+.hero-pdp__description {
+  @include body-l;
+  @include truncate-text(3);
+  margin-top: $spacing-24;
+  max-width: 430px;
+}
+
+.hero-pdp__image-container {
+  width: 100%;
+  margin-top: $spacing-24;
+
+  @include screen-lg-and-bigger {
+    margin-top: 0;
+  }
+}
+
+.hero-pdp__image {
+  width: 100%;
+  height: 375px; // Prevent block fom jumping while loading
+  margin-inline: auto;
+  max-width: 320px;
+  border-radius: $radii-4;
+  overflow: hidden;
+
+  &[js-hook-objectfit] img {
+    object-fit: contain;
+  }
+
+  @include screen-lg-and-bigger {
+    max-width: none;
+    margin-inline-end: 0;
+    height: auto;
+    aspect-ratio: 0.85; // Prevent block fom jumping while loading
+  }
+}
+
+.hero-pdp__ctas {
+  @include cta-container;
+}
+
+.hero-pdp__cta1 {
+  .hero-pdp__col-right & {
+    display: none;
+  }
+
+  @include screen-lg-and-bigger {
+    .hero-pdp__ctas & {
+      display: none;
+    }
+
+    .hero-pdp__col-right & {
+      display: block;
+    }
+  }
+}
+
+.hero-pdp__shape-container {
+  position: relative;
+  pointer-events: none;
+  min-height: var(--hero-pdp-shape-height);
+
+  @include screen-lg-and-bigger {
+    margin-top: calc(var(--hero-pdp-shape-height) * -1);
+  }
+}
+
+.hero-pdp__anchor-links-container {
+  @include component-overlap(false, false);
+  min-height: var(--hero-pdp-shape-height);
+  color: $color-dark-blue;
+}
+
+.hero-pdp__anchor-links {
+  @include container;
+  margin-top: calc(var(--hero-pdp-shape-height) * -1 + 30px);
+  min-height: var(--hero-pdp-shape-height);
+  margin-bottom: $spacing-32;
+
+  .anchor-list__container {
+    max-width: 60%;
+  }
+
+  .anchor-list__anchor {
+    pointer-events: auto;
+  }
+
+  @include screen-lg-and-bigger {
+    .anchor-list__container {
+      max-width: 40%;
+    }
+  }
+}
+
+.hero-pdp__shape {
+  color: $color-white;
+  display: grid;
+  grid-template-columns: repeat(10, minmax(0, 1fr));
+  height: var(--hero-pdp-shape-height);
+  width: 100%;
+
+  // To fill up the bottom part of the shape when content is long
+  &::before {
+    content: '';
+    display: block;
+    height: calc(100% - var(--hero-pdp-shape-height));
+    width: 100%;
+    position: absolute;
+    top: var(--hero-pdp-shape-height);
+    left: 0;
+    background: $color-white;
+    z-index: -1;
+  }
+}
+
+.hero-pdp__shape-left {
+  @include col-span(4);
+  background: currentcolor;
+
+  @include screen-lg-and-bigger {
+    @include col-span(3);
+  }
+}
+
+.hero-pdp__shape-scale {
+  @include col-span(5);
+
+  svg {
+    height: var(--hero-pdp-shape-height);
+    width: calc(100% + 1px); // to pixelperfect overlap
+    margin-left: -1px;
+  }
+
+  @include screen-lg-and-bigger {
+    @include col-span(4);
+  }
+}
+
+.hero-pdp__shape-right {
+  @include col-span(1);
+
+  @include screen-lg-and-bigger {
+    @include col-span(3);
+  }
+}

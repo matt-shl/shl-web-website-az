@@ -1,0 +1,58 @@
+.c-language-selector {
+  position: relative;
+  display: inline-flex;
+  height: 40px;
+  min-width: 40px;
+  padding: $spacing-10;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-16;
+  flex-shrink: 0;
+  border-radius: $radii-4;
+  background-color: rgba(var(--color-black-rgb), 0.05);
+  cursor: pointer;
+
+  // create outline for when invisible select element is focused
+  &:has(.language-selector__select:focus) {
+    .has--keyboard-focus & {
+      outline: 2px solid var(--color-light-blue);
+      outline-offset: 2px;
+    }
+  }
+
+  &--mobile {
+    padding-inline: $spacing-16;
+  }
+}
+
+.language-selector__icon-container {
+  display: grid;
+  place-items: center;
+
+  svg {
+    height: 18px;
+    width: 18px;
+  }
+}
+
+.language-selector__container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.language-selector__select {
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+  color: $color-dark-blue;
+}
+
+.language-selector__language-label {
+  white-space: nowrap;
+
+  @include body-l;
+}

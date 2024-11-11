@@ -1,0 +1,65 @@
+{% set theme = "light-blue" %}
+{% set themeColor = "#007cbe" %}
+{% set headerIsWhite = true %}
+{% set showFiltersModal = true %}
+
+{% extends 'layouts/default.html' %}
+
+{% from 'hero-content.html' import heroContent %}
+{% from 'pagination.html' import pagination %}
+{% from 'filters.html' import filters %}
+{% from 'card-product.html' import cardProduct %}
+{% from 'layout-section.html' import layoutSection %}
+{% from 'text-media.html' import textMedia %}
+{% from 'section-card-carousel.html' import sectionCardCarousel %}
+
+{% set plpData = global.content.productOverviewPage %}
+{% set plpCards = global.content.productOverviewPage.productCards %}
+{% set commonLabels = global.resource.common %}
+
+{% block hero %}
+  {{ heroContent(plpData.hero) }}
+{% endblock %}
+
+{% block content %}
+
+  {{ filters(global.content.filters) }}
+
+  <div js-hook-replace-content="overview-content">
+    {% call layoutSection({
+      variant: "grid",
+      id: "content",
+      listLabel: commonLabels.productList
+    }) %}
+      {% for data in plpCards.slice(0, 6) %}
+      <li>
+      {{ cardProduct(data) }}
+      </li>
+      {% endfor %}
+    {% endcall %}
+
+    {% if plpCards.length > 6 %}
+    {{ textMedia(global.content.productOverviewPage.textMedia1) }}
+    {% endif %}
+
+    {% call layoutSection({
+      variant: "grid",
+      id: "content",
+      listLabel: commonLabels.productList
+    }) %}
+      {% for data in plpCards.slice(6) %}
+        <li>
+          {{ cardProduct(data) }}
+        </li>
+      {% endfor %}
+    {% endcall %}
+
+    {{ pagination (global.content.pagination) }}
+  </div>
+
+  {{ sectionCardCarousel(global.content.productOverviewPage.cardsSection) }}
+
+  {{ textMedia(global.content.productOverviewPage.textMedia1) }}
+
+
+{% endblock %}

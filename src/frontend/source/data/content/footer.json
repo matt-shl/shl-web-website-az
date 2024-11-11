@@ -1,0 +1,105 @@
+{
+  "description": "We create medical devices that help people with chronic conditions take back the reins of their live since 1985.",
+  "sitemap": [
+    {
+      "id": "footer-nav-products",
+      "title": "Explore our products",
+      "links": [
+        {
+          "label": "Autoinjectors",
+          "url": "#"
+        },
+        {
+          "label": "Pen & multidose injectors",
+          "url": "#"
+        },
+        {
+          "label": "Device platforms",
+          "url": "#"
+        }
+      ]
+    },
+    {
+      "id": "footer-nav-services",
+      "title": "Discover our services",
+      "links": [
+        {
+          "label": "Technical services",
+          "url": "#"
+        },
+        {
+          "label": "Regulatory & quality",
+          "url": "#"
+        },
+        {
+          "label": "Device assembly & packaging",
+          "url": "#"
+        },
+        {
+          "label": "All services",
+          "url": "#"
+        }
+      ]
+    },
+    {
+      "id": "footer-nav-about",
+      "title": "Company",
+      "links": [
+        {
+          "label": "About us",
+          "url": "#"
+        },
+        {
+          "label": "Careers",
+          "url": "#"
+        },
+        {
+          "label": "All jobs",
+          "supLabel": 37,
+          "url": "#"
+        }
+      ]
+    }
+  ],
+  "socials": [
+    {
+      "url": "/",
+      "icon": "linkedin",
+      "label": "LinkedIn"
+    },
+    {
+      "url": "/",
+      "icon": "facebook",
+      "label": "Facebook"
+    },
+    {
+      "url": "/",
+      "icon": "x",
+      "label": "X"
+    },
+    {
+      "url": "/",
+      "icon": "instagram",
+      "label": "instagram"
+    }
+  ],
+  "socialMediaPolicy": {
+    "label": "Social media policy",
+    "url": "#"
+  },
+  "bottomLinks": [
+    {
+      "url": "/",
+      "label": "Terms & conditions"
+    },
+    {
+      "url": "/",
+      "label": "Privacy policy"
+    },
+    {
+      "url": "/",
+      "label": "Cookie Settings"
+    }
+  ],
+  "copyrightLabel": "Copyright © 2023 SHL Medical AG. All rights reserved."
+}

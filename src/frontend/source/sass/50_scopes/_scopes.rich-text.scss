@@ -1,0 +1,8 @@
+/*------------------------------------*\
+  #RICH TEXT
+\*------------------------------------*/
+
+// Custom scope for RTE styles.
+.s-rich-text {
+  @include rich-text;
+}

@@ -1,0 +1,16 @@
+{% extends 'layouts/default.html' %}
+{% set theme = "light-blue" %}
+{% set themeColor = "#007cbe" %}
+
+{% from 'hero-content.html' import heroContent %}
+{% from 'empty-section.html' import emptySection %}
+
+{% block hero %}
+  {{ heroContent({
+    title: global.content.error500.hero.title
+  }) }}
+{% endblock %}
+
+{% block content %}
+  {{ emptySection(global.content.error500.content) }}
+{% endblock %}

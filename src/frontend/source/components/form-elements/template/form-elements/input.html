@@ -1,0 +1,103 @@
+{#
+    Input
+
+    Options:
+        class {string}           (optional) - Adds custom classes
+        type {string}            (optional) - Adds a label to the input
+        label {string}                      - Adds a label to the input
+        id {string|int}                     - Adds an id to the input (needed for label to be clickable)
+        value {string                       - Adds a value to the input
+        name {string}                       - Adds a name to the input
+        hook {string}            (optional) - Adds a hook to the input
+        attr {string}                       - Adds attributes to the input
+        pattern {string}         (optional) - Adds attributes to the input
+        disabled {boolean}       (optional) - Add disabled property to the input
+        required {boolean}       (optional) - Add required property to the input
+        validate {string}        (optional) - Add form validation rules to input (validate: 'required,email')
+        error {string}           (optional) - Add error state and message
+        maxLengthLabel {string}  (optional) - Adds a description to the input about max length of the input field
+        description {string}     (optional) - Adds a description to the bottom of the input
+        autoComplete {boolean}   (optional) - remove autocomplete property to the input on false or 'off'
+
+#}
+{% macro input(data) %}
+
+    <div class="c-input form__item
+        {%- if data.class %} {{ data.class }}{% endif -%}
+        {%- if data.type %} input--{{ data.type }}{% endif -%}
+        {%- if data.disabled %} form__item--disabled{% endif -%}
+        {%- if data.labelAsPlaceholder %} form__item--lap{% endif -%}"
+        {%- if data.labelAsPlaceholder %} js-hook-lap{% endif -%}
+        {% if data.type == 'password' %} js-hook-password-field{% endif %}>
+
+        <div class="input__wrapper" title="{{ data.label }}">
+            <label class="input__label {%- if data.sronly %} u-sr-only{% endif -%}" for="{{ data.id | lower }}">
+              {{ data.label | safe }}
+
+              {% set validate = data.validate | string if data.validate else '' %}
+              {% if 'required' in validate or data.required %}<sup>*</sup>{% endif %}
+            </label>
+            <div class="input__field-wrapper">
+                <input class="input__input
+                    {% if data.iconRight%} input__input--has-icon-right{% endif %}
+                    {% if data.iconLeft%} input__input--has-icon-left{% endif %}"
+                    type="{%- if data.type %}{{ data.type }}{% else %}text{% endif -%}"
+                    name="{{ data.name | lower }}"
+                    value="{{ data.value }}"
+                    id="{{ data.id | lower }}"
+                    {%- if data.title %} title="{{ data.title }}"{% endif -%}
+                    {%- if data.placeholder and not data.labelAsPlaceholder %} placeholder="{{ data.placeholder }}"{% endif -%}
+                    {%- if data.hook %} js-hook-{{ data.hook }}{% endif -%}
+                    {%- if data.pattern %} pattern="{{ data.pattern }}"{% endif -%}
+                    {%- if data.validate %} data-validate="{{ data.validate }}"{% endif -%}
+                    {%- if data.requiredError %} data-required-error="{{ data.requiredError }}"{% endif -%}
+                    {%- if data.patternError %} data-pattern-error="{{ data.patternError }}"{% endif -%}
+                    {%- if data.autoComplete == false or data.autoComplete == 'off' %} autocomplete="off"{% endif -%}
+                    {%- if data.disabled %} disabled{% endif -%}
+                    {%- if data.required %} required{% endif -%}
+                    {%- if data.readonly %} readonly{% endif -%}
+                    {%- if data.min %} min="{{data.min}}" {% endif -%}
+                    {%- if data.max %} max="{{data.max}}" {% endif -%}
+                    {%- if data.maxlength %} maxlength='{{ data.maxlength }}'{% endif -%}
+                    {%- if data.attr %} {{ data.attr|safe }}{% endif -%}
+                    {% if data.type == 'password' %} js-hook-password-input{% endif %}>
+
+                {% if data.iconLeft %}
+                    <span class="form__item-icon form__item-icon--is-left">{% svg 'icons/' + data.iconLeft %}</span>
+                {% endif %}
+
+                {% if data.iconRight %}
+                    <span class="form__item-icon form__item-icon--is-right">{% svg 'icons/' + data.iconRight %}</span>
+                {% endif %}
+
+                {% if data.maxLengthLabel %}
+                    <span class="input__max-length-label">{{ data.maxLengthLabel }}</span>
+                {% endif %}
+
+                {% if data.iconSubmit %}
+                   <button class="input__icon-submit-btn" type="submit" js-hook-input-submit-btn>
+                        {% svg 'icons/' + data.iconSubmit %}
+                    </button>
+                {% endif %}
+
+                {% if data.type == 'password' %}
+                    <button class="input__password-toggle-btn" type="button" js-hook-password-toggle-btn disabled>
+                    {% svg 'icons/visibility' %}
+                    </button>
+                {% endif %}
+            </div>
+        </div>
+
+        {% if data.description %}
+            <span class="input__description">{{ data.description }}</span>
+        {% endif %}
+
+        {% if data.hint and not data.error %}
+            <span class="form__item-hint">{{ data.hint }}</span>
+        {% endif %}
+
+        <div id="{{ data.name }}_error" class="form__item-error{%- if not data.error %} u-hidden{% endif -%}">{{ data.error }}</div>
+
+    </div>
+
+{% endmacro %}

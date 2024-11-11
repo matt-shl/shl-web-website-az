@@ -1,0 +1,18 @@
+{
+  "footerScrollingText": "Caring. Inclusive. Driven.",
+  "breadcrumbs": {
+    "items": [
+      {
+        "url": "/home.html",
+        "label": "Home"
+      },
+      {
+        "url": "/current-item.html",
+        "label": "Current item"
+      }
+    ]
+  },
+  "hero": {
+    "title": "Cookie Policy"
+  }
+}

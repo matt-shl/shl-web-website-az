@@ -1,0 +1,14 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+. "$(dirname "$0")/common.sh"
+
+# Make sure we are in the correct directory
+cd $(dirname "$0")/..
+
+# Only lint files if the frontend actually changed
+if git diff --cached --name-only | grep --quiet "^$(git rev-parse --show-prefix)"
+then
+  yarn lint-staged
+else
+  echo "Skipped linting as no frontend files were staged"
+fi

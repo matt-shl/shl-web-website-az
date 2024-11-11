@@ -1,0 +1,55 @@
+{#
+    File
+
+    Options:
+        class {string}           (optional) - Adds custom classes
+        label {string}                      - Adds a label to the input
+        id {string|int}                     - Adds an id to the input (needed for label to be clickable)
+        name {string}                       - Adds a name to the input
+        hook {string}            (optional) - Adds a hook to the input
+        attr {string}                       - Adds attributes to the input
+        multiple                 (optional) - Adds multiple option and translation label when multiple files
+        accept                   (optional) - Limit file extension selection
+        disabled {boolean}       (optional) - Add disabled property to the input
+        required {boolean}       (optional) - Add required property to the input
+        validate {string}        (optional) - Add form validation rules to input (validate: 'required,email')
+        error {string}           (optional) - Add error state and message
+
+#}
+{% macro file(data) %}
+
+    <div class="c-input form__item input--file
+        {%- if data.class %} {{ data.class }}{% endif -%}
+        {%- if data.disabled %} form__item--disabled{% endif -%}
+        {%- if data.labelAsPlaceholder %} form__item--lap{% endif -%}"
+        {%- if data.labelAsPlaceholder %} js-hook-lap{% endif -%}>
+
+        <div class="input__wrapper" title="{{ data.label }}">
+            <span class="input__label{%- if data.sronly %} u-sr-only{% endif -%}">
+                {{ data.label|safe }}
+                
+                {% set validate = data.validate | string if data.validate else '' %}
+                {% if 'required' in validate or data.required %}<sup>*</sup>{% endif %}
+            </span>
+            <div class="input__file-wrapper">
+                <label class="input__input" for="{{ data.id | lower }}" js-hook-file-label>
+                    {%- if not data.labelAsPlaceholder %}Choose file(s){%- else %}&nbsp;{% endif %}
+                </label>
+                <input class="u-sr-only"
+                    type="file"
+                    name="{{ data.name | lower }}"
+                    id="{{ data.id | lower }}"
+                    {%- if data.hook %} js-hook-{{ data.hook }}{% endif -%}
+                    js-hook-input-file
+                    {%- if data.disabled %} disabled{% endif -%}
+                    {%- if data.required %} required{% endif -%}
+                    {%- if data.validate %} data-validate="{{ data.validate }}"{% endif -%}
+                    {%- if data.accept %} accept="{{ data.accept }}"{% endif -%}
+                    {%- if data.multiple %} multiple data-multiple-label="{count} files selected"{% endif -%}
+                    {%- if data.attr %} {{ data.attr|safe }}{% endif -%}>
+            </div>
+        </div>
+        <div id="{{ data.name }}_error" class="form__item-error{%- if not data.error %} u-hidden{% endif -%}">{{ data.error }}</div>
+    </div>
+
+{% endmacro %}

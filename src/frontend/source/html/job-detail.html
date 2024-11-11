@@ -1,0 +1,32 @@
+{% set theme = "dark-green" %}
+{% set themeColor = "#0a5f5a" %}
+
+{% set headerIsWhite = false %}
+{% set showFiltersModal = true %}
+
+{% set footerScrollingText = global.content.jobDetailPage.footerScrollingText %}
+
+{% extends 'layouts/default.html' %}
+
+{% from 'hero-content.html' import heroContent %}
+{% from 'job-listing-item.html' import jobListingItem %}
+{% from 'layout-section.html' import layoutSection %}
+{% from 'section-image-carousel.html' import sectionImageCarousel %}
+{% from 'rich-text.html' import richText %}
+{% from 'section-job-vacancies.html' import sectionJobVacancies %}
+{% from 'mobile-floating-button.html' import mobileFloatingButton %}
+
+{% set jobDetailData = global.content.jobDetailPage %}
+
+{% block hero %}
+  {{ heroContent(jobDetailData.hero) }}
+  {{ mobileFloatingButton({buttonData: jobDetailData.mobileFloatingButton}) }}
+{% endblock %}
+
+{% block content %}
+
+  {{ richText(global.content.eventDetail.richText | clone | merge({readMoreDisabled: true})) }}
+  {{ sectionImageCarousel(jobDetailData.imageCarousel) }}
+  {{ sectionJobVacancies(jobDetailData.jobVacancies) }}
+
+{% endblock %}

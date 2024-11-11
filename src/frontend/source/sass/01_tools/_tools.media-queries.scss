@@ -1,0 +1,163 @@
+// =========================================================================
+// Media query mixins.
+// =========================================================================
+
+// Device named breakpoints, used for the mixins.
+$base-start: $breakpoint-base;
+$base-end: $breakpoint-sm - 0.5;
+
+$sm-start: $breakpoint-sm;
+$sm-end: $breakpoint-md - 0.5;
+
+$md-start: $breakpoint-md;
+$md-end: $breakpoint-lg - 0.5;
+
+$lg-start: $breakpoint-lg;
+$lg-end: $breakpoint-xl - 0.5;
+
+$xl-start: $breakpoint-xl;
+$xl-end: $breakpoint-xxl - 0.5;
+
+$xxl-start: $breakpoint-xxl;
+$xxl-end: $breakpoint-xxl - 0.5;
+
+/**
+ * Media queries targeting a device and smaller
+ **/
+/**
+ * Media queries targeting a device and smaller
+ **/
+
+@mixin screen-base-and-smaller {
+  @media only screen and (max-width: em($base-end)) {
+    @content;
+  }
+}
+
+@mixin screen-sm-and-smaller {
+  @media only screen and (max-width: em($sm-end)) {
+    @content;
+  }
+}
+
+@mixin screen-md-and-smaller {
+  @media only screen and (max-width: em($md-end)) {
+    @content;
+  }
+}
+
+@mixin screen-lg-and-smaller {
+  @media only screen and (max-width: em($lg-end)) {
+    @content;
+  }
+}
+
+@mixin screen-xl-and-smaller {
+  @media only screen and (max-width: em($xl-end)) {
+    @content;
+  }
+}
+
+@mixin screen-xxl-and-smaller {
+  @media only screen and (max-width: em($xxl-end)) {
+    @content;
+  }
+}
+
+/**
+ * Media queries targeting a device and bigger
+ **/
+
+@mixin screen-sm-and-bigger {
+  @media only screen and (min-width: em($sm-start)) {
+    @content;
+  }
+}
+
+@mixin screen-md-and-bigger {
+  @media only screen and (min-width: em($md-start)) {
+    @content;
+  }
+}
+
+@mixin screen-lg-and-bigger {
+  @media only screen and (min-width: em($lg-start)) {
+    @content;
+  }
+}
+
+@mixin screen-xl-and-bigger {
+  @media only screen and (min-width: em($xl-start)) {
+    @content;
+  }
+}
+
+@mixin screen-xxl-and-bigger {
+  @media only screen and (min-width: em($xxl-start)) {
+    @content;
+  }
+}
+
+@mixin screen-max-width-and-bigger {
+  @media only screen and (min-width: em($max-width-breakpoint)) {
+    @content;
+  }
+}
+
+@mixin screen-custom-and-bigger($screensize) {
+  @media only screen and (min-width: em($screensize)) {
+    @content;
+  }
+}
+
+/**
+ * Media queries targeting a device and bigger
+ * - - screen-mobile-only? > use screen-base-and-smaller
+ * - - screen-desktop-only? > use screen-xl-and-bigger
+ **/
+
+@mixin screen-sm-only {
+  @media only screen and (min-width: em($sm-start)) and (max-width: em($sm-end)) {
+    @content;
+  }
+}
+
+@mixin screen-md-only {
+  @media only screen and (min-width: em($md-start)) and (max-width: em($md-end)) {
+    @content;
+  }
+}
+
+@mixin screen-lg-only {
+  @media only screen and (min-width: em($lg-start)) and (max-width: em($lg-end)) {
+    @content;
+  }
+}
+
+@mixin screen-xl-only {
+  @media only screen and (min-width: em($xl-start)) and (max-width: em($xl-end)) {
+    @content;
+  }
+}
+
+@mixin screen-xxl-only {
+  @media only screen and (min-width: em($xxl-start)) and (max-width: em($xxl-end)) {
+    @content;
+  }
+}
+
+/**
+ * Custom Media queries
+ **/
+
+@mixin screen-min-width($size) {
+  @media only screen and (min-width: em($size)) {
+    @content;
+  }
+}
+
+@mixin screen-max-width($size) {
+  @media only screen and (max-width: em($size)) {
+    @content;
+  }
+}

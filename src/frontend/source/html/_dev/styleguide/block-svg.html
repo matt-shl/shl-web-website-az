@@ -1,0 +1,12 @@
+{% set title='SVG Shapes' %} {% extends './block.html' %} {% block content %}
+
+  <div class="c-styleguide__svg-collection">
+    {% for svg in global.project.svgs %}
+      <div class="c-svg-collection__tile" title="{{ svg }}">
+        <div class="c-svg-collection__container">{% svg svg %}</div>
+        <h4>{{ svg }}</h4>
+      </div>
+    {% endfor %}
+  </div>
+
+{% endblock %}

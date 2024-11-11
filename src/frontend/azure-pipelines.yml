@@ -1,0 +1,28 @@
+trigger:
+  batch: true
+  branches:
+    include:
+      - main
+      - master
+      - release/*
+      - acceptance
+      - develop
+      - support
+
+parameters:
+  - name: bypassCache
+    displayName: Bypass package Cache
+    type: boolean
+    default: false
+
+name: $(Build.DefinitionName)-$(SourceBranchName)-$(Date:yyyyMMdd)$(Rev:.r)
+pool:
+  vmImage: 'ubuntu-latest'
+
+stages:
+  - stage: Build
+    jobs:
+      - template: 'pipeline-template.yml'
+        parameters:
+          workingDirectory: '.'
+          bypassCache: ${{ parameters.bypassCache }}

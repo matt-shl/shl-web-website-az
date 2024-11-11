@@ -1,0 +1,18 @@
+{% set theme = "light-blue" %}
+{% set themeColor = "#007cbe" %}
+
+{% set headerIsWhite = false %}
+
+{% extends 'layouts/default.html' %}
+
+{% from 'hero-content.html' import heroContent %}
+{% from 'history-timeline.html' import historyTimeline %}
+{% set historyData = global.content.historyPage %}
+
+{% block hero %}
+  {{ heroContent(historyData.hero) }}
+{% endblock %}
+
+{% block content %}
+  {{ historyTimeline(historyData.historyTimeline) }}
+{% endblock %}

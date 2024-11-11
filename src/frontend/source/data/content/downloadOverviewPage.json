@@ -1,0 +1,294 @@
+{
+  "footerScrollingText": "Caring. Inclusive. Driven.",
+  "hero": {
+    "title": "Downloads",
+    "breadcrumbs": [
+      {
+        "url": "/home.html",
+        "label": "Home"
+      },
+      {
+        "url": "/parent-1.html",
+        "label": "Knowledge and insights"
+      },
+      {
+        "url": "/current-item.html",
+        "label": "Downloads"
+      }
+    ]
+  },
+  "cards": [
+    {
+      "type": "download",
+      "tag": "Product datasheet",
+      "title": "Molly",
+      "ctaLabel": "Download datasheet",
+      "modalId": "downloadModal1",
+      "modal": {
+        "title": "Download Molly Connect cap",
+        "subtitle": "Product datasheet 2024 v1.4",
+        "image": true,
+        "form": {
+          "action": "/pardot-url",
+          "submit": {
+            "label": "Receive download"
+          },
+          "fields": [
+            {
+              "name": "cf_First_Name",
+              "id": "cf_First_Name",
+              "label": "First Name",
+              "type": "text",
+              "maxlength": "255",
+              "validate": "required",
+              "requiredError": "Please enter your first name"
+            },
+            {
+              "name": "cf_Last_Name",
+              "id": "cf_Last_Name",
+              "label": "Last Name",
+              "type": "text",
+              "maxlength": "255",
+              "validate": "required",
+              "requiredError": "Please enter your last name"
+            },
+            {
+              "name": "cf_email_address",
+              "id": "cf_email_address",
+              "label": "Email",
+              "type": "email",
+              "maxlength": "255",
+              "validate": "required,email",
+              "patternError": "Please enter a valid email address",
+              "requiredError": "Please enter your email address"
+            },
+            {
+              "name": "cf_Company",
+              "id": "cf_Company",
+              "label": "Company",
+              "type": "text",
+              "maxlength": "40",
+              "validate": "required",
+              "requiredError": "Please enter your company name"
+            },
+            {
+              "name": "cf_Country",
+              "id": "cf_Country",
+              "label": "Country",
+              "type": "select",
+              "validate": "required",
+              "requiredError": "Please enter your country",
+              "options": [
+                {
+                  "label": "Select country",
+                  "default": true
+                },
+                {
+                  "label": "United States",
+                  "value": "United States"
+                },
+                {
+                  "label": "Canada",
+                  "value": "Canada"
+                },
+                {
+                  "label": "Mexico",
+                  "value": "Mexico"
+                },
+                {
+                  "label": "Netherlands",
+                  "value": "Netherlands"
+                }
+              ]
+            },
+            {
+              "name": "cf_Consent_Given[]",
+              "type": "checkbox",
+              "options": [
+                {
+                  "id": "cf_Consent_Given[]",
+                  "label": "I agree when entering my data, SHL will collect this data to provide the services you request and keep you up to date on our latest events and news. You are not required to supply any of the information that we may request. However, failure to do so may result in our being unable to provide the documents you desire to download. <a href='#'>Find out more</a> about how SHL protects your personal data.",
+                  "value": "Yes",
+                  "validate": "required",
+                  "requiredError": "Please agree to our privacy policy"
+                }
+              ]
+            },
+            {
+              "name": "source_page_title",
+              "id": "source_page_title",
+              "type": "hidden",
+              "value": "Contact"
+            },
+            {
+              "name": "source_URL",
+              "id": "source_URL",
+              "type": "hidden",
+              "value": "/contact.html"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "filter": {
+    "totalAmountLabel": "16 Results",
+    "totalAmount": 16,
+    "filters": [
+      {
+        "label": "Sort",
+        "inputType": "radio",
+        "options": [
+          {
+            "label": "Newest first",
+            "value": "sorting-newest",
+            "id": "filter-sorting-newest",
+            "checked": false,
+            "attr": "data-url-replacement='replacement-url.html?customExampleValue=wowowow' data-endpoint='__api-response--filters.html'",
+            "sortItem": true,
+            "hook": "filters-input"
+          },
+          {
+            "label": "Oldest first",
+            "value": "sorting-popular",
+            "id": "filter-sorting-popular",
+            "checked": true,
+            "attr": "data-url-replacement='replacement-url.html?customExampleValue=wowowow' data-endpoint='__api-response--filters.html'",
+            "sortItem": true,
+            "hook": "filters-input"
+          }
+        ]
+      },
+      {
+        "label": "Type",
+        "inputType": "checkbox",
+        "options": [
+          {
+            "label": "Business",
+            "value": "business",
+            "id": "filter-business",
+            "checked": false,
+            "attr": "data-url-replacement='replacement-url.html?customExampleValue=wowowow' data-endpoint='__api-response--filters-no-results.html'",
+            "hook": "filters-input"
+          },
+          {
+            "label": "Innovation",
+            "value": "innovation",
+            "id": "filter-innovation",
+            "checked": false,
+            "attr": "data-url-replacement='replacement-url.html?customExampleValue=wowowow' data-endpoint='__api-response--filters-no-results.html'",
+            "hook": "filters-input"
+          },
+          {
+            "label": "Donations",
+            "value": "donations",
+            "id": "filter-donations",
+            "checked": false,
+            "attr": "data-url-replacement='replacement-url.html?customExampleValue=wowowow' data-endpoint='__api-response--filters-no-results.html'",
+            "hook": "filters-input"
+          },
+          {
+            "label": "Support",
+            "value": "support",
+            "id": "filter-support",
+            "checked": false,
+            "attr": "data-url-replacement='replacement-url.html?customExampleValue=wowowow' data-endpoint='__api-response--filters-no-results.html'",
+            "hook": "filters-input"
+          },
+          {
+            "label": "Vision",
+            "value": "vision",
+            "id": "filter-vision",
+            "checked": false,
+            "attr": "data-url-replacement='replacement-url.html?customExampleValue=wowowow' data-endpoint='__api-response--filters-no-results.html'",
+            "hook": "filters-input"
+          }
+        ]
+      },
+      {
+        "label": "Reading time",
+        "inputType": "checkbox",
+        "options": [
+          {
+            "label": "0 - 5 minutes",
+            "value": "0-5-minutes",
+            "id": "filter-0-5-minutes",
+            "checked": false,
+            "attr": "data-url-replacement='replacement-url.html?customExampleValue=wowowow' data-endpoint='__api-response--filters.html'",
+            "hook": "filters-input"
+          },
+          {
+            "label": "5 - 10 minutes",
+            "value": "5-10-minutes",
+            "id": "filter-5-10-minutes",
+            "checked": false,
+            "attr": "data-url-replacement='replacement-url.html?customExampleValue=wowowow' data-endpoint='__api-response--filters.html'",
+            "hook": "filters-input"
+          },
+          {
+            "label": "10 - 15 minutes",
+            "value": "10-15-minutes",
+            "id": "filter-10-15-minutes",
+            "checked": false,
+            "attr": "data-url-replacement='replacement-url.html?customExampleValue=wowowow' data-endpoint='__api-response--filters.html'",
+            "hook": "filters-input"
+          },
+          {
+            "label": "15 - 20 minutes",
+            "value": "15-20-minutes",
+            "id": "filter-15-20-minutes",
+            "checked": false,
+            "attr": "data-url-replacement='replacement-url.html?customExampleValue=wowowow' data-endpoint='__api-response--filters.html'",
+            "hook": "filters-input"
+          },
+          {
+            "label": "20+ minutes",
+            "value": "20+-minutes",
+            "id": "filter-20+-minutes",
+            "checked": false,
+            "attr": "data-url-replacement='replacement-url.html?customExampleValue=wowowow' data-endpoint='__api-response--filters.html'",
+            "hook": "filters-input"
+          }
+        ]
+      },
+      {
+        "label": "Location",
+        "inputType": "checkbox",
+        "options": [
+          {
+            "label": "Switzerland",
+            "value": "switzerland",
+            "id": "filter-switzerland",
+            "checked": false,
+            "attr": "data-url-replacement='replacement-url.html?customExampleValue=wowowow' data-endpoint='__api-response--filters.html'",
+            "hook": "filters-input"
+          },
+          {
+            "label": "Germany",
+            "value": "germany",
+            "id": "filter-germany",
+            "checked": false,
+            "attr": "data-url-replacement='replacement-url.html?customExampleValue=wowowow' data-endpoint='__api-response--filters.html'",
+            "hook": "filters-input"
+          },
+          {
+            "label": "Taiwan",
+            "value": "taiwan",
+            "id": "filter-taiwan",
+            "checked": false,
+            "attr": "data-url-replacement='replacement-url.html?customExampleValue=wowowow' data-endpoint='__api-response--filters.html'",
+            "hook": "filters-input"
+          },
+          {
+            "label": "Sweden",
+            "value": "sweden",
+            "id": "filter-sweden",
+            "checked": false,
+            "attr": "data-url-replacement='replacement-url.html?customExampleValue=wowowow' data-endpoint='__api-response--filters.html'",
+            "hook": "filters-input"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,8 @@
+@using DTNL.UmbracoCms.Web.Helpers.Extensions
+@model DTNL.UmbracoCms.Web.Components.NestedBlock.NestedBlockWithInner
+
+<partial name="LayoutSection"
+         model="@Model.LayoutSection.With(l => {l.Id = Model.LayoutSection.Id; l.NavigationTitle = Model.LayoutSection.NavigationTitle; })">
+
+    <partial name="@Model.InnerPartial" model="@Model.InnerComponent" />
+</partial>

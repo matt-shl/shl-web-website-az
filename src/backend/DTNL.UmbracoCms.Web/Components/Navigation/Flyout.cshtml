@@ -1,0 +1,68 @@
+@using DTNL.UmbracoCms.Web.Components
+@using DTNL.UmbracoCms.Web.Helpers.Aliases
+
+@model DTNL.UmbracoCms.Web.Components.NavigationItem
+
+<div class="c-flyout" js-hook-flyout aria-hidden="true" id="flyout-@Model.Id">
+    <div class="flyout__container">
+        <div class="flyout__content">
+            <div class="flyout__title-column">
+                <h2 class="flyout__title">@Model.Title</h2>
+                <p class="flyout__description" asp-if="@Model.Text">@Model.Text</p>
+
+                <a class="flyout__cta" href="@Model.Link.Url" js-hook-flyout-main-cta>@Model.Link.Label</a>
+            </div>
+
+            <ul class="flyout__main-item-list">
+                @for (int i = 0; i < Model.SubItems.Count; i++)
+                {
+                    NavigationSubItem item = Model.SubItems[i];
+
+                    <li class="flyout__main-item @(i == 0 ? "is--open" : "")" js-hook-flyout-main-item>
+                        @if(item.SubLinks.Count > 0)
+                        {
+                            <button class="flyout__main-item-button" title="@item.Link.Label" js-hook-flyout-main-item-anchor aria-expanded="false" aria-controls="flyout-list-@item.Id-@i">
+                                @item.Link.Label
+                                <div class="flyout__main-item-button-icon">
+                                    <svg src="@SvgAliases.Icons.ChevronRight" />
+                                </div>
+                            </button>
+                        }
+                        else
+                        {
+                            <a class="flyout__main-item-button" title="@item.Link.Label" js-hook-flyout-main-item-anchor aria-expanded="false" aria-controls="flyout-list-@item.Id-@i" href="@item.Link.Url">
+                                @item.Link.Label
+                            </a>
+                        }
+                        
+
+                        @if (item.SubLinks.Count > 0)
+                        {
+                            <ul class="flyout__subitem-list" id="flyout-list-@item.Id-@i">
+                                @foreach (Link subLink in item.SubLinks)
+                                {
+                                    <li class="flyout__subitem">
+                                        <a class="flyout__subitem-anchor" title="@subLink.Label" href="@subLink.Url" js-hook-flyout-sub-item-anchor>
+                                            @subLink.Label
+                                        </a>
+                                    </li>
+                                }
+
+                                <li>
+                                    <a class="flyout__subitem-all" href="@item.Link.Url" js-hook-flyout-sub-item-anchor>All @item.Link.Label</a>
+                                </li>
+                            </ul>
+                        }
+                    </li>
+                }
+            </ul>
+
+            @if (Model.HighlightedCard is not null)
+            {
+                <div class="flyout__feature-column">
+                    <partial name="CardImage" model="@Model.HighlightedCard" />
+                </div>
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,78 @@
+@using DTNL.UmbracoCms.Web.Components
+@using DTNL.UmbracoCms.Web.Helpers.Aliases
+@using DTNL.UmbracoCms.Web.Helpers.Extensions
+
+@model DTNL.UmbracoCms.Web.Components.NavigationMobileList
+
+<div class="c-navigation-mobile-list">
+    @if (!Model.Id.IsNullOrWhiteSpace())
+    {
+        <button class="navigation-mobile-list__anchor navigation-mobile-list__anchor--parent" aria-controls="@Model.Id" js-hook-mobile-nav-title>
+            <svg src="@SvgAliases.Icons.ChevronLeft" />
+            @Model.Name
+        </button>
+    }
+
+    <ul class="navigation-mobile-list__list">
+        @foreach (NavigationItem item in Model.NavigationItems.OrEmptyIfNull())
+        {
+            <li class="navigation-mobile-list__item">
+                @if(item.SubItems.Count > 0)
+                {
+                    <button class="navigation-mobile-list__anchor @(Model.ParentId != null ? "navigation-mobile-list__anchor--small" : "navigation-mobile-list__anchor--main")"
+                            aria-controls="navigation-mobile-@(Model.ParentId != null ? $"{Model.ParentId}-{item.Id}" : $"{item.Id}")">
+                        @item.Title
+
+                        <svg src="@(SvgAliases.Icons.ChevronRight)" />
+                    </button>
+                }
+                else
+                {
+                    <a class="navigation-mobile-list__anchor @(Model.ParentId != null ? "navigation-mobile-list__anchor--small" : "navigation-mobile-list__anchor--main")" href="@item.Link.Url"
+                        @(Model.ParentId != null ? "js-hook-mobile-nav-sub-item-anchor" : "js-hook-mobile-nav-main-item-anchor")>
+                        @item.Title
+                    </a>
+                }
+                
+            </li>
+        }
+
+        @foreach (NavigationSubItem? item in Model.NavigationSubItems.OrEmptyIfNull())
+        {
+            <li class="navigation-mobile-list__item">
+                @if (item.SubLinks.Count > 0)
+                {
+                    <button class="navigation-mobile-list__anchor @(Model.ParentId != null ? "navigation-mobile-list__anchor--small" : "navigation-mobile-list__anchor--main")"
+                            aria-controls="navigation-mobile-@(Model.ParentId != null ? $"{Model.ParentId}-{item.Id}" : $"{item.Id}")">
+                        @item.Title
+
+                        <svg src="@(SvgAliases.Icons.ChevronRight)" />
+                    </button>
+                }
+                else
+                {
+                    <a class="navigation-mobile-list__anchor @(Model.ParentId != null ? "navigation-mobile-list__anchor--small" : "navigation-mobile-list__anchor--main")" href="@item.Link.Url"
+                    @(Model.ParentId != null ? "js-hook-mobile-nav-sub-item-anchor" : "js-hook-mobile-nav-main-item-anchor")>
+                        @item.Title
+                    </a>
+                }
+                
+            </li>
+        }
+
+        @foreach (Link item in Model.NavigationSubItemLinks.OrEmptyIfNull())
+        {
+            <a title="@item.Label" href="@item.Url"
+               class="navigation-mobile-list__anchor @(Model.ParentId != null ? "navigation-mobile-list__anchor--small" : "navigation-mobile-list__anchor--main")" @(Model.ParentId != null ? "js-hook-mobile-nav-sub-item-anchor" : "js-hook-mobile-nav-main-item-anchor")>
+                @item.Label
+            </a>
+        }
+
+        @if (Model.Link is not null)
+        {
+            <li>
+                <a class="navigation-mobile-list__anchor navigation-mobile-list__anchor--all" href="@Model.Link.Url" js-hook-mobile-nav-sub-item-anchor>All @Model.Link.Label</a>
+            </li>
+        }
+    </ul>
+</div>

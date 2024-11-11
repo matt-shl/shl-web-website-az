@@ -1,0 +1,20 @@
+{% set languageSelectorData = global.resource.languageSelector %}
+
+{% macro languageSelector(data) %}
+  <div class="c-language-selector {% if data.mobile %} c-language-selector--mobile{% endif %}">
+    <div class="language-selector__icon-container">
+    {% svg "icons/translate" %}
+    </div>
+    {% if data.mobile %}
+      <span class="language-selector__language-label">{{ languageSelectorData.currentLanguage }}</span>
+    {% endif %}
+    <div class="language-selector__container">
+    <label for="language" class="u-sr-only">{{languageSelectorData.selectLanguage}}</label>
+      <select name="language" id="language" class="language-selector__select" js-hook-language-selector>
+        {% for language in languageSelectorData.languages %}
+          <option value="{{ language.value }}" {% if language.code == global.language %}selected{% endif %}>{{ language.label }}</option>
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+{% endmacro %}

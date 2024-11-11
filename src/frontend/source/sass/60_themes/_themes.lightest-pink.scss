@@ -1,0 +1,35 @@
+.t-lightest-pink {
+  --color-background: #{$color-lightest-pink};
+  --color-card-background: #{$color-dark-pink};
+  --color-card-content: #{$color-white};
+
+  // Buttons
+  --theme-color-content-20: #{rgba($color-dark-pink-rgb, 0.2)};
+  --theme-color-content-60: #{rgba($color-dark-pink-rgb, 0.6)};
+  --color-content: #{$color-dark-pink};
+  --button-primary-background-color: var(--color-content);
+  --button-primary-border-color: var(--color-content);
+
+  // Links
+  --button-primary-font-color: #{$color-white};
+  --button-secondary-border-color: var(--color-content);
+
+  // Cards
+  --button-secondary-font-color: var(--color-content);
+  --color-spec-value-level-default: var(--theme-color-content-20);
+
+  // Product card
+  --focus-theme-color: #{$color-light-blue};
+
+  // Job listing item
+  --job-listing-item-color: #{$color-dark-pink};
+  --job-listing-item-bg-color: #{$color-white};
+  --job-listing-item-color-hover: #{$color-white};
+  --job-listing-item-bg-color-hover: #{$color-dark-pink};
+  --job-listing-item-tag-bg-color: #{$color-lightest-pink};
+  --job-listing-item-tag-bg-color-hover: #{$color-white};
+}
+
+html.t-lightest-pink {
+  background-color: var(--color-background);
+}

@@ -1,0 +1,37 @@
+{% set theme = "general" %}
+{% set themeColor = "#082E55" %}
+{% set footerScrollingText = global.content.contact.footerScrollingText %}
+{% set showFiltersModal = true %}
+
+{% extends 'layouts/default.html' %}
+
+{% from 'hero-content.html' import heroContent %}
+{% from 'filters.html' import filters %}
+{% from 'rich-text.html' import richText %}
+
+{% set plpData = global.content.searchResultsPage %}
+{% set publicationsData = global.content.publicationsOverviewPage %}
+{% set commonLabels = global.resource.common %}
+
+{% block hero %}
+  {{ heroContent(plpData.hero | clone | merge({
+    search: {
+      searchType: 'generic',
+      searchTerm: 'aldjsfasfdklj'
+    }
+  })) }}
+{% endblock %}
+
+{% block content %}
+
+  {{ filters(publicationsData.filter) }}
+
+  <div js-hook-replace-content="overview-content">
+    {{ richText(plpData.empty | clone | merge({
+      title: plpData.empty.title + '‘aldjsfasfdklj’',
+      variant: 'no-results',
+      readMoreDisabled: true
+    })) }}
+  </div>
+
+{% endblock %}

@@ -1,0 +1,129 @@
+@mixin cardOverlayVisible {
+  html.is-touch &, // for touch devices
+  .c-card-overlay--is-visible &,
+  .c-card-overlay-parent:hover & {
+    @content;
+  }
+}
+
+.c-card-overlay {
+  bottom: 0;
+  inset-inline-end: -2px;
+  pointer-events: none;
+  position: absolute;
+  z-index: 0;
+  padding: 1px;
+
+  &--position-start {
+    inset-inline-end: auto;
+    inset-inline-start: -2px;
+    transform: scaleX(-1);
+
+    .card-overlay__video,
+    .c-tag {
+      transform: scaleX(-1);
+    }
+  }
+}
+
+.card-overlay__content {
+  --button-primary-background-color: var(--color-background);
+  --button-primary-font-color: var(--color-content);
+  --button-primary-border-color: transparent;
+
+  transform: translateY(100%);
+  transition: var(--card-animation-duration) var(--card-animation-ease);
+  transition-property: transform, opacity;
+  opacity: 0;
+  padding-inline-end: $spacing-8;
+
+  .c-card-overlay--position-start & {
+    padding-inline-end: 1px;
+  }
+
+  @include cardOverlayVisible {
+    transform: translateY(0);
+    transition-delay: 50ms;
+    opacity: 1;
+  }
+}
+
+.card-overlay__video {
+  display: flex;
+  align-items: center;
+  gap: $spacing-8;
+
+  .button--icon-only {
+    width: 3.2rem;
+    height: 3.2rem;
+
+    svg {
+      width: 1.4rem;
+      height: 1.4rem;
+    }
+  }
+}
+
+.card-overlay__shape {
+  bottom: -1px;
+  inset-inline-end: -1px;
+  position: absolute;
+  transform: scale(0) translateY(8px);
+  transform-origin: bottom right;
+  transition: transform var(--card-animation-duration) var(--card-animation-ease);
+  transition-delay: var(--card-animation-delay);
+  width: calc(100% + 105px);
+  z-index: -1;
+
+  @include cardOverlayVisible {
+    transform: scale(1) translateY(1px);
+    transition-delay: 0ms;
+  }
+
+  .c-card-overlay--has-video & {
+    --shape-height: 45px;
+  }
+
+  &--end {
+    @container card (width < #{$card-container-size-lg}) {
+      @include cardOverlayVisible {
+        transform: scale(0.8) translateX(-7px);
+      }
+    }
+
+    @container card (width < #{$card-container-size-sm}) {
+      @include cardOverlayVisible {
+        transform: scale(0.6) translateX(-15px);
+      }
+    }
+
+    @supports not (container-type: inline-size) {
+      @include screen-sm-and-smaller {
+        @include cardOverlayVisible {
+          transform: scale(0.8) translateX(-5px);
+        }
+      }
+    }
+  }
+}
+
+.card-overlay__button {
+  @container card (width < #{$card-container-size-lg}) {
+    height: 3.2rem;
+    width: 3.2rem;
+  }
+
+  @container card (width < #{$card-container-size-sm}) {
+    height: 2.4rem;
+    width: 2.4rem;
+  }
+
+  @supports not (container-type: inline-size) {
+    @include screen-sm-and-smaller {
+      .c-button {
+        height: 3.2rem;
+        width: 3.2rem;
+      }
+    }
+  }
+}

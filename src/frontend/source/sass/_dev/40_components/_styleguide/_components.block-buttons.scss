@@ -1,0 +1,16 @@
+.styleguide__buttons {
+  @include grid;
+}
+
+.styleguide__button-col {
+  @include col-span(12);
+
+  &--theme {
+    @include theme;
+    padding: $spacing-24;
+  }
+
+  @include screen-md-and-bigger {
+    @include col-span(6);
+  }
+}

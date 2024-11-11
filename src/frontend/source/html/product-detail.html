@@ -1,0 +1,56 @@
+{% set theme = "light-blue" %}
+{% set themeColor = "#007cbe" %}
+{% set headerIsWhite = true %}
+{% set footerScrollingText = global.content.productDetail.footerScrollingText %}
+
+{% extends 'layouts/default.html' %}
+
+{% from 'hero-pdp.html' import heroPdp %}
+{% from 'anchor-list.html' import anchorList %}
+{% from 'section-card-carousel.html' import sectionCardCarousel %}
+{% from 'product-description.html' import productDescription %}
+{% from 'description-list.html' import descriptionList %}
+{% from 'text-media.html' import textMedia %}
+{% from 'banner-quote.html' import bannerQuote %}
+
+{% block hero %}
+  {{ heroPdp({
+    breadcrumbs: global.content.productDetail.breadcrumbs.items,
+    theme: global.content.productDetail.hero.theme or 't-light-grey',
+    image: global.content.productDetail.hero.image,
+    title: global.content.productDetail.hero.title,
+    description: global.content.productDetail.hero.description,
+    cta1: global.content.productDetail.hero.cta1,
+    cta2: global.content.productDetail.hero.cta2,
+    showAnchorLinks: global.content.productDetail.hero.showAnchorLinks
+  }) }}
+{% endblock %}
+
+{% block content %}
+  {{ anchorList({
+    isComponent: true,
+    cta: global.content.productDetail.hero.cta1
+  }) }}
+
+  {{ productDescription(global.content.productDetail.description) }}
+
+  {{ descriptionList(global.content.productDetail.specifications) }}
+
+  <!-- Todo "Product slider" -->
+
+  <!-- Todo "Text, Image, Links or Accordions" -->
+
+  {{ sectionCardCarousel(global.content.productDetail.numbers) }}
+
+  {{ textMedia(global.content.productDetail.textMedia1) }}
+
+  <!-- Todo "Text, Image, Links or Accordions" -->
+
+  <!-- Todo "Banner Quotes" -->
+  {{ bannerQuote(global.content.productDetail.quoteBanner) }}
+
+  <!-- Todo "People carousel" -->
+
+  <!-- Todo "Product slider" -->
+
+{% endblock %}

@@ -1,0 +1,12 @@
+// stylelint-disable declaration-no-important
+.u-sr-only {
+  @include sr-only;
+}
+
+.u-hidden {
+  display: none !important;
+}
+
+.u-overflow-visible {
+  overflow: visible !important;
+}

@@ -1,0 +1,32 @@
+{% set title='Paragraphs' %} {% extends './block.html' %} {% block content %}
+
+{% set richTextHtml = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.' %}
+<div class="styleguide__paragraph">
+  <p class="styleguide__paragraph-body-xl">XL: {{ richTextHtml | safe }}</p>
+  <p class="styleguide__paragraph-body-l">L: {{ richTextHtml | safe }}</p>
+  <p class="styleguide__paragraph-body-m">M: {{ richTextHtml | safe }}</p>
+  <p class="styleguide__paragraph-body-s">S: {{ richTextHtml | safe }}</p>
+  <p class="styleguide__paragraph-body-xs">XS: {{ richTextHtml | safe }}</p>
+
+  <h5>Rich text</h5>
+  <p>This is a <b>rich text</b> example that demonstrates the use of various HTML elements.</p>
+  <p>You can also use <i>italic text</i> or <u>underline text</u>  to emphasize certain words.</p>
+
+  <p>Here's an <b>ordered list</b> of items:</p>
+  <ol>
+    <li>First item</li>
+    <li>Second item with <b>bold</b> text</li>
+    <li>Third item with <i>italic</i> text</li>
+    <li>Fourth item</li>
+  </ol>
+
+  <p>Here's an <b>unordered list</b> of items:</p>
+  <ul>
+    <li>First item</li>
+    <li>Second item with <b>bold</b> text</li>
+    <li>Third item with <i>italic</i> text</li>
+    <li>Fourth item</li>
+  </ul>
+</div>
+
+{% endblock %}

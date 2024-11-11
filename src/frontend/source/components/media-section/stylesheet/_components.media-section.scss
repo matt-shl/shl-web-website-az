@@ -1,0 +1,95 @@
+.c-media-section-container {
+  background-color: transparent;
+}
+
+.c-media-section {
+  @include screen-max-width-and-bigger {
+    // If the first contentblock of the page is the layout-section without padding,
+    // add padding to the top of the media-section
+    .c-layout-section--no-padding:first-child & {
+      padding-top: $spacing-80;
+    }
+  }
+}
+
+.media-section__image {
+  .image__default {
+    @include layout-section-border-style;
+  }
+
+  .image__caption {
+    margin-left: var(--container-padding);
+  }
+
+  .c-card-overlay {
+    inset-inline-start: var(--container-padding);
+
+    .c-button {
+      --button-primary-background-color: var(--color-content);
+      --button-primary-font-color: var(--color-card-content);
+    }
+  }
+
+  .card-overlay__shape {
+    &::before {
+      bottom: calc(100% - 2px); // to pixel perfect overlap
+      content: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M18.2109 18.0205C8.60592 17.1546 0.967525 9.59529 0 0V18.1818V20H20V18.1818L18.2109 18.0205Z" fill="white"/></svg>');
+      height: 20px;
+      inset-inline-end: calc(#{var(--container-padding)} * -1 - 2px); // to pixel perfect overlap
+      position: absolute;
+      transform: scaleX(-1);
+      width: 20px;
+    }
+
+    &::after {
+      background-color: $color-white;
+      bottom: 0;
+      content: '';
+      height: var(--shape-height);
+      inset-inline-end: -100%;
+      position: absolute;
+      width: 100%;
+    }
+  }
+
+  .shape__end {
+    display: none;
+  }
+
+  @include screen-md-and-bigger {
+    .image__caption {
+      margin-left: 0;
+    }
+
+    .card-overlay__shape::before {
+      bottom: calc(100% - 4px); // to pixel perfect overlap
+      content: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M40.064 39.6451C18.933 37.74 2.12856 21.1096 0 0V40V44H44V40L40.064 39.6451Z" fill="white"/></svg>');
+      height: 44px;
+      width: 44px;
+    }
+
+    .c-layout-section--no-padding & {
+      .image__caption {
+        margin-left: var(--container-padding);
+      }
+    }
+
+    .c-layout-section--no-padding-inline-mobile & {
+      .image__default {
+        border-radius: $radii-12;
+      }
+
+      .c-card-overlay {
+        inset-inline-start: 0;
+      }
+
+      .card-overlay__shape::before {
+        display: none;
+      }
+
+      .shape__end {
+        display: block;
+      }
+    }
+  }
+}

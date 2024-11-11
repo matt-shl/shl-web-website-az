@@ -1,0 +1,40 @@
+@using DTNL.UmbracoCms.Web.Components
+@using DTNL.UmbracoCms.Web.Helpers.Aliases
+@using DTNL.UmbracoCms.Web.Helpers.Extensions
+@using Umbraco.Cms.Core.Dictionary
+@model DTNL.UmbracoCms.Web.Components.Filters
+
+@inject ICultureDictionary CultureDictionary
+
+@{
+    string amountLabel = CultureDictionary
+        .GetTranslation(Model.ResultsCount == 1 ? $"{Model.FilterNamePrefix}.ResultCount" : $"{Model.FilterNamePrefix}.ResultsCount", Model.ResultsCount);
+}
+
+<div class="c-filters t-white" js-hook-filters>
+    <div class="filters__outer">
+        <div class="filters__inner">
+            <span class="filters__amount-label"
+                  js-hook-replace-content="filters-amount-label"
+                  aria-live="polite"
+                  aria-atomic="true"
+                  aria-label="@amountLabel">
+                @amountLabel
+            </span>
+
+            <div class="filters__drawer-button-wrapper">
+                <partial name="Button" model="@(new Button {
+                                                  Label = CultureDictionary.GetTranslation(TranslationAliases.Common.Filters),
+                                                  Variant = "secondary",
+                                                  Class = "filters__drawer-button",
+                                                  Element = "button",
+                                                  IconPosition = "start",
+                                                  Controls = "modal-filters",
+                                                  Icon = SvgAliases.Icons.Filters,
+                                              })"/>
+            </div>
+        </div>
+    </div>
+
+    <partial name="FiltersModal" model="@Model.FiltersModal" />
+</div>

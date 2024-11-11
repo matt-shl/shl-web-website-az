@@ -1,0 +1,57 @@
+@using DTNL.UmbracoCms.Web.Components;
+@using DTNL.UmbracoCms.Web.Helpers.Aliases
+@using DTNL.UmbracoCms.Web.Helpers.Extensions
+@using Umbraco.Cms.Core.Dictionary
+
+@model DTNL.UmbracoCms.Web.Components.Navigation
+
+@inject ICultureDictionary CultureDictionary
+
+<partial name="Modal" model="@(new Modal { Id = "navigation-mobile", Title="navigation-mobile", Size = "navigation-mobile", KeepScrollPosition = true, CloseAllOthers = true })">
+    <div class="c-navigation-mobile">
+        <nav title=@CultureDictionary.GetTranslation(TranslationAliases.Navigation.MainNavigation)>
+
+            <partial name="./NavigationMobileList.cshtml" model="@(new NavigationMobileList { NavigationItems = Model.Items })" />
+
+            <div class="navigation-mobile__line"></div>
+            <div class="navigation-mobile__language-selector">
+                <vc:language-selector mobile="true" />
+            </div>
+        </nav>
+    </div>
+</partial>
+
+
+@foreach (NavigationItem item in Model.Items)
+{
+    <partial name="Modal" model="@(new Modal {Id = $"navigation-mobile-{item.Id}", Size = "navigation-mobile", KeepScrollPosition = true, CloseAllOthers = true })">
+        <div class="c-navigation-mobile">
+            <partial name="./NavigationMobileList.cshtml" model="@(new NavigationMobileList
+                    {
+                        Id = "navigation-mobile",
+                        Name = item.Title,
+                        ParentId = item.Id,
+                        NavigationSubItems = item.SubItems,
+                    })" />
+        </div>
+    </partial>
+}
+
+@foreach (NavigationItem item in Model.Items)
+{
+    @foreach (NavigationSubItem subItem in item.SubItems)
+    {
+        <partial name="Modal" model="@(new Modal { Id = $"navigation-mobile-{item.Id}-{subItem.Id}", Size = "navigation-mobile", KeepScrollPosition = true, CloseAllOthers = true })">
+            <div class="c-navigation-mobile">
+                <partial name="./NavigationMobileList.cshtml" model="@(new NavigationMobileList
+                                {
+                                    Id = $"navigation-mobile-{item.Id}",
+                                    Name = item.Title,
+                                    ParentId = subItem.Id,
+                                    NavigationSubItemLinks = subItem.SubLinks,
+                                    Link = subItem.Link,
+                                })" />
+            </div>
+        </partial>
+    }
+}

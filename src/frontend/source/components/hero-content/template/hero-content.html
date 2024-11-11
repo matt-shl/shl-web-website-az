@@ -1,0 +1,67 @@
+{% from 'button.html' import button %}
+{% from 'video.html' import video %}
+{% from 'tag.html' import tag %}
+{% from 'breadcrumb.html' import breadcrumb %}
+{% from 'search.html' import search %}
+
+{% macro heroContent(data) %}
+
+  <section class="c-hero-content">
+    <div class="hero-content__container">
+      <div class="hero-content__breadcrumbs">
+        {{ breadcrumb({
+          items: data.breadcrumbs
+        }) }}
+      </div>
+      <div class="hero-content__col-left">
+        <h1>{{ data.title }}</h1>
+        {% if data.subtitle %}
+          <p class="hero-content__subtitle">{{ data.subtitle }}</p>
+        {% endif %}
+        {% if data.tags %}
+          <div class="hero-content__tags">
+            {% for tagContent in data.tags %}
+              <span {% if tagContent.type %} js-hook-job-listing-{{ tagContent.type }}{% endif %}>
+                {{ tag({
+                  classes: "hero-content__tag",
+                  label: tagContent.label}) }}
+              </span>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+
+      {% if data.description or data.ctas %}
+        <div class="hero-content__col-right">
+          {% if data.description %}
+            <p class="hero-content__description">{{ data.description }}</p>
+          {% endif %}
+          {% if data.ctas %}
+            <div class="hero-content__ctas">
+              {% for cta in data.ctas %}
+                {{ button({
+                  class: 'hero-content__cta',
+                  label: cta.label,
+                  url: ctal.url,
+                  variant: cta.variant,
+                  icon: cta.icon or 'arrow-top-right'
+                }) }}
+              {% endfor %}
+            </div>
+          {% endif %}
+        </div>
+      {% endif %}
+
+      {% if data.search.searchType %}
+        <div class="hero-content__col-search">
+            {{ search(data.search | clone | merge({
+              variant: 'in-hero' if data.search.searchType == 'generic' else 'job',
+              value: data.searchTerm
+            })) }}
+        </div>
+      {% endif %}
+
+    </div>
+  </section>
+
+{% endmacro %}

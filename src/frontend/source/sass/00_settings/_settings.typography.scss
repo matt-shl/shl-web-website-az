@@ -1,0 +1,82 @@
+/*----------------------------------*\
+  #TYPOGRAPHY
+\*----------------------------------*/
+
+// Font stacks
+$font-stack-primary: 'Poppins', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$font-stack-zh-hans: 'Noto Sans SC', $font-stack-primary;
+$font-stack-zh-hant: 'Noto Sans TC', $font-stack-primary;
+$font-stack-jp: 'Noto Sans JP', $font-stack-primary;
+$font-stack-kr: 'Noto Sans KR', $font-stack-primary;
+$font-stack-old: 'tenorite', $font-stack-primary; // Please don't use this font outside of testing
+
+// Font sizes
+$font-size-root: 10px; // The font size set on the root html element.
+$font-size-body: 1.6rem; // Regular font size
+
+$font-size-body-xl: 2rem;
+$font-size-body-l: 1.8rem;
+$font-size-body-m: 1.6rem;
+$font-size-body-s: 1.4rem;
+$font-size-body-xs: 1.2rem;
+
+$font-size-d1: 14rem;
+$font-size-d1-mobile: 8rem;
+$font-size-h1: 8rem;
+$font-size-h1-mobile: 4.8rem;
+$font-size-h2: 6.4rem;
+$font-size-h2-mobile: 4rem;
+$font-size-h3: 4.8rem;
+$font-size-h3-mobile: 3.2rem;
+$font-size-h4: 4rem;
+$font-size-h4-mobile: 2.8rem;
+$font-size-h5: 3.2rem;
+$font-size-h5-mobile: 2.4rem;
+$font-size-h6: 2.4rem;
+$font-size-h6-mobile: 2rem;
+
+// Letter spacings
+$font-letter-spacing-d1: -0.028rem;
+$font-letter-spacing-d1-mobile: -0.016rem;
+$font-letter-spacing-h1: -0.016rem;
+$font-letter-spacing-h1-mobile: -0.096rem;
+$font-letter-spacing-h2: -0.0128rem;
+$font-letter-spacing-h2-mobile: -0.008rem;
+$font-letter-spacing-h3: -0.0096rem;
+$font-letter-spacing-h3-mobile: -0.0064rem;
+$font-letter-spacing-h4: -0.008rem;
+$font-letter-spacing-h4-mobile: -0.0056rem;
+$font-letter-spacing-h5: -0.0064rem;
+$font-letter-spacing-h5-mobile: -0.0048rem;
+$font-letter-spacing-h6: -0.0048rem;
+$font-letter-spacing-h6-mobile: -0.004rem;
+
+// Font line heights
+// Divide the the given line height by the font size to give an unitless line height
+// @example {design line height} / {font size} = {unitless lineheight}
+//
+// NOTE: Never use px as line-height value!!!
+
+$font-line-height-body: 1.4;
+$font-line-height-body-xl: 1.6;
+$font-line-height-body-l: 1.6;
+$font-line-height-body-m: 1.6;
+
+$font-line-height-d1: 1;
+$font-line-height-h1: 0.95;
+$font-line-height-h2: 1;
+$font-line-height-h3: 1.1;
+$font-line-height-h3-mobile: 1;
+$font-line-height-h4: 1.1;
+$font-line-height-h5: 1.1;
+$font-line-height-h6: 1.1;
+
+// Font weights
+$font-weight-ultralight: 100;
+$font-weight-light: 200;
+$font-weight-book: 300;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 600;
+$font-weight-extrabold: 700;
+$font-weight-black: 800;

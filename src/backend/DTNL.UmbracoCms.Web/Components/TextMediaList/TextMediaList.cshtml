@@ -1,0 +1,68 @@
+@using DTNL.UmbracoCms.Web.Components
+@using Umbraco.Cms.Core.Models
+@model DTNL.UmbracoCms.Web.Components.TextMediaList
+
+<div class="c-text-media-list @(Model.Variant.IsNullOrWhiteSpace() ? null : $" c-text-media-list--{Model.Variant}") @(Model.MediaPosition.IsNullOrWhiteSpace() ? null : $"c-text-media-list--media-position-{Model.MediaPosition}") @(Model.Image is null ? "c-text-media-list--no-media" : null) @Model.CssClasses">
+    <div class="text-media-list__container">
+        <div class="text-media-list__col text-media-list__col--title">
+            <h2 class="text-media-list__title">@Model.Title</h2>
+
+            <div class="text-media-list__description"
+                 asp-if="@(!Model.Text.IsNullOrWhiteSpace() && Model.Image is null)">
+                @Html.Raw(Model.Text)
+            </div>
+        </div>
+
+        <div class="text-media-list__col text-media-list__col--text">
+            <div class="text-media-list__content">
+                <div class="text-media-list__description"
+                     asp-if="@(!Model.Text.IsNullOrWhiteSpace() && Model.Image is not null)">
+                    @Html.Raw(Model.Text)
+                </div>
+
+                @if (Model.LinkList is not null)
+                {
+                    <partial name="LinkList" model="@Model.LinkList"/>
+                }
+
+                @if (Model.AccordionItems.Count > 0)
+                {
+                    <partial name="Accordion"
+                             model="@(new Accordion { Classes = "text-media-list__accordions", AutoClose = true })">
+                        @foreach ((string text, Accordion.Item accordionItem) in Model.AccordionItems)
+                        {
+                            <partial name="Accordion/AccordionItem" model="@accordionItem">
+                                @Html.Raw(text)
+                            </partial>
+                        }
+                    </partial>
+                }
+
+                <p class="text-media-list__ctas-support" asp-if="@(!Model.CtaSupportText.IsNullOrWhiteSpace())">@Model.CtaSupportText</p>
+
+                <div class="text-media-list__ctas" asp-if="@((Model.PrimaryLinkButton ?? Model.SecondaryLinkButton) is not null)">
+                    <partial name="Button" model="@Model.PrimaryLinkButton" />
+
+                    <partial name="Button" model="@Model.SecondaryLinkButton" />
+                </div>
+            </div>
+        </div>
+
+        @if (Model.Image is not null)
+        {
+        <div class="text-media-list__col text-media-list__col--media">
+            <div class="text-media-list__image">
+                    <partial name="Image" model="@Model.Image" />
+            </div>
+        </div>
+        }
+    </div>
+</div>
+
+
+@if (Model?.Video != null)
+{
+    <partial name="Modal" model="@(new Modal {Id =  $"modal-video-{Model.Video?.Id}", Size = "video", KeepScrollPosition = true, CloseAllOthers = true })">
+        <partial name="Video" model="Model.Video" />
+    </partial>
+}

@@ -1,0 +1,62 @@
+.c-card-contact {
+  @include card-base;
+
+  text-align: start;
+}
+
+.card-contact__image-container {
+  @include theme-card;
+  @include card-image-container-base;
+
+  pointer-events: none;
+
+  &:has(.c-card-overlay) {
+    border-end-start-radius: 0;
+  }
+}
+
+.card-contact__image {
+  @include card-image-base;
+}
+
+.card-contact__name {
+  @include h4-containerised(card, $card-container-size-lg, $card-container-size-sm);
+  margin-bottom: $spacing-16;
+}
+
+.card-contact__role {
+  color: var(--contact-role-color, var(--content-color));
+  font-weight: $font-weight-bold;
+}
+
+.card-contact__label {
+  font-size: $font-size-body-m;
+}
+
+.card-contact__description {
+  margin-top: $spacing-24;
+
+  &.s-rich-text {
+    gap: 0;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    span {
+      font-size: $font-size-body-m;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-weight: $font-weight-bold;
+    }
+  }
+}

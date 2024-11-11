@@ -1,0 +1,93 @@
+$assets-path: '/assets/';
+
+/*------------------------------------*\
+  #MAIN
+\*------------------------------------*/
+
+@import '01_tools/tools.conversion';
+@import '00_settings/all';
+@import '01_tools/all';
+
+//  Vendor libs
+//      - styles from other sources (npm)
+//[INSERT VENDOR LIBS]
+
+@import '10_generic/generic.page';
+@import '10_generic/generic.font-face';
+@import '10_generic/generic.normalize';
+@import '10_generic/generic.html';
+@import '10_generic/generic.focus';
+@import '20_elements/all';
+
+/* components:scss */
+@import '@/components/button/stylesheet/_components.button';
+@import '@/components/slogan/stylesheet/_components.slogan';
+@import '@/components/footer/stylesheet/_components.footer';
+@import '@/components/header/stylesheet/_components.header';
+@import '@/components/image/stylesheet/_components.image';
+@import '@/components/skiplinks/stylesheet/_components.skiplinks';
+@import '@/components/grid-overlay/stylesheet/_components.grid-overlay';
+@import '@/components/tag/stylesheet/_components.tag';
+@import '@/components/shape/stylesheet/_components.shape';
+@import '@/components/modal/stylesheet/_components.modal';
+@import '@/components/accordion/stylesheet/_components.accordion';
+@import '@/components/toast/stylesheet/_components.toast';
+@import '@/components/navigation-desktop/stylesheet/_components.navigation-desktop';
+@import '@/components/flyout/stylesheet/_components.flyout';
+@import '@/components/hero-home/stylesheet/_components.hero-home';
+@import '@/components/card-icon/stylesheet/_components.card-icon';
+@import '@/components/card-number/stylesheet/_components.card-number';
+@import '@/components/card-image/stylesheet/_components.card-image';
+@import '@/components/navigation-mobile/stylesheet/_components.navigation-mobile';
+@import '@/components/navigation-mobile-list/stylesheet/_components.navigation-mobile-list';
+@import '@/components/pagination/stylesheet/_components.pagination';
+@import '@/components/video/stylesheet/_components.video';
+@import '@/components/hero-content/stylesheet/_components.hero-content';
+@import '@/components/hero-pdp/stylesheet/_components.hero-pdp';
+@import '@/components/anchor-list/stylesheet/_components.anchor-list';
+@import '@/components/card-overlay/stylesheet/_components.card-overlay';
+@import '@/components/carousel/stylesheet/_components.carousel';
+@import '@/components/layout-section/stylesheet/_components.layout-section';
+@import '@/components/section-card-carousel/stylesheet/_components.section-card-carousel';
+@import '@/components/card-knowledge/stylesheet/_components.card-knowledge';
+@import '@/components/card-contact/stylesheet/_components.card-contact';
+@import '@/components/text-media/stylesheet/_components.text-media';
+@import '@/components/breadcrumb/stylesheet/_components.breadcrumb';
+@import '@/components/product-description/stylesheet/_components.product-description';
+@import '@/components/description-list/stylesheet/_components.description-list';
+@import '@/components/card-product/stylesheet/_components.card-product';
+@import '@/components/text-media-list/stylesheet/_components.text-media-list';
+@import '@/components/link-list/stylesheet/_components.link-list';
+@import '@/components/filters/stylesheet/_components.filters';
+@import '@/components/form/stylesheet/_components.form';
+@import '@/components/form-elements/stylesheet/_components.form-elements';
+@import '@/components/loading-indicator/stylesheet/_components.loading-indicator';
+@import '@/components/empty-section/stylesheet/_components.empty-section';
+@import '@/components/media-section/stylesheet/_components.media-section';
+@import '@/components/rich-text/stylesheet/_components.rich-text';
+@import '@/components/event-detail/stylesheet/_components.event-detail';
+@import '@/components/speakers/stylesheet/_components.speakers';
+@import '@/components/text-download/stylesheet/_components.text-download';
+@import '@/components/banner-quote/stylesheet/_components.banner-quote';
+@import '@/components/carousel-indicator/stylesheet/_components.carousel-indicator';
+@import '@/components/contact-block/stylesheet/_components.contact-block';
+@import '@/components/pardot-form/stylesheet/_components.pardot-form';
+@import '@/components/job-listing-item/stylesheet/_components.job-listing-item';
+@import '@/components/section-image-carousel/stylesheet/_components.section-image-carousel';
+@import '@/components/map/stylesheet/_components.map';
+@import '@/components/office-modal/stylesheet/_components.office-modal';
+@import '@/components/section-job-vacancies/stylesheet/_components.section-job-vacancies';
+@import '@/components/mobile-floating-button/stylesheet/_components.mobile-floating-button';
+@import '@/components/language-selector/stylesheet/_components.language-selector';
+@import '@/components/history-timeline/stylesheet/_components.history-timeline';
+@import '@/components/odometer/stylesheet/_components.odometer';
+@import '@/components/search/stylesheet/_components.search';
+@import '@/components/search-trigger/stylesheet/_components.search-trigger';
+@import '@/components/download-overlay/stylesheet/_components.download-overlay';
+@import '@/components/stacking-cards/stylesheet/_components.stacking-cards';
+@import '@/components/form-overlay/stylesheet/_components.form-overlay';
+/* endinject */
+
+@import '50_scopes/scopes.rich-text';
+@import '60_themes/all';
+@import '70_utilities/all';

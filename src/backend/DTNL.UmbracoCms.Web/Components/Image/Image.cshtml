@@ -1,0 +1,37 @@
+@model DTNL.UmbracoCms.Web.Components.Image?
+
+@if(Model is null){ return; }
+
+<figure class="c-image @Model.Classes"
+        aria-hidden="@(Model.Hidden ? "true" : null)"
+        js-hook-objectfit="@(Model.ObjectFit ? "" : null)"
+        asp-extra-attribs="@Model.Attributes">
+
+    @if (Model.ImageHolderButton)
+    {
+        <button class="image__holder" asp-extra-attribs="@Model.ImageHolderAttributes">
+            <partial name="./ImageOrPicture.cshtml" model="@Model"/>
+            @if (Model.CardOverlay is not null)
+            {
+                <partial name="CardOverlay" model="@Model.CardOverlay" />
+            }
+        </button>
+    }
+    else
+    {
+        <div class="image__holder" asp-extra-attribs="@Model.ImageHolderAttributes">
+            <partial name="./ImageOrPicture.cshtml" model="@Model"/>
+            @if (Model.CardOverlay is not null)
+            {
+                <partial name="CardOverlay" model="@Model.CardOverlay" />
+            }
+        </div>
+    }
+
+    @if (!Model.Caption.IsNullOrEmpty())
+	{
+		<figcaption class="image__caption">
+			@Model.Caption
+		</figcaption>
+	}
+</figure>

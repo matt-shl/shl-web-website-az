@@ -1,0 +1,51 @@
+:root {
+  // Style
+  --button-icon-spacing: #{$spacing-48};
+
+  // Transitions
+  --button-icon-transition-time: var(--button-transition-time);
+  --button-icon-transition-ease: var(--button-transition-ease);
+}
+
+@mixin button--icon {
+  padding-inline-end: var(--button-icon-spacing);
+  position: relative;
+
+  .button__icon {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    inset-inline-end: var(--button-spacing-x);
+  }
+}
+
+@mixin button--icon-only {
+  padding: 0;
+  width: 4.8rem;
+  height: 4.8rem;
+  border-radius: $radii-full;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  .button__icon {
+    position: initial;
+  }
+
+  &.button--small {
+    width: 3.2rem;
+    height: 3.2rem;
+  }
+}
+
+@mixin button--icon-position-start {
+  padding-inline-start: var(--button-icon-spacing);
+  padding-inline-end: var(--button-spacing-x);
+
+  .button__icon {
+    inset-inline-start: var(--button-spacing-x);
+    inset-inline-end: initial;
+  }
+}

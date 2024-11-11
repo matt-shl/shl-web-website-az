@@ -1,0 +1,17 @@
+{
+  "hero": {
+    "title": "500"
+  },
+  "content": {
+    "title": "Sorry, something went wrong",
+    "content": "<ul><li>Check your internet connection</li><li>Refresh the page</li><li>Try again later</li></ul>",
+    "cta1": {
+      "label": "Homepage",
+      "href": "#"
+    },
+    "cta2": {
+      "label": "Product overview",
+      "href": "#"
+    }
+  }
+}

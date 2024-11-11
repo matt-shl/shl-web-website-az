@@ -1,0 +1,31 @@
+@mixin theme-card {
+  transition: 300ms ease-in-out;
+  transition-property: background-color, color, border-radius;
+
+  background-color: var(--color-card-background);
+  color: var(--color-card-content);
+
+  // Component overrides
+  --color-content-20: var(--theme-color-content-20);
+
+  .c-shape {
+    --bg-color: var(--color-background);
+  }
+
+  .c-tag {
+    --color: var(--color-card-content);
+    --bg-color: var(--color-card-background);
+  }
+
+  .c-layout-section & {
+    .c-button {
+      --button-font-color: var(--color-card-content);
+      --button-background-color: var(--color-card-background);
+    }
+
+    .c-button--secondary {
+      --button-font-color: var(--button-secondary-font-color);
+      --button-border-color: var(--button-secondary-border-color);
+    }
+  }
+}

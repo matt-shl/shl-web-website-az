@@ -1,0 +1,68 @@
+{% from 'button.html' import button %}
+{% from 'video.html' import video %}
+{% from 'image.html' import image %}
+
+{% macro heroHome(data) %}
+
+  <section class="c-hero-home" js-hook-page-load-animation-trigger>
+    <div class="hero-home__video-container">
+      {% if data.video %}
+        {{ video({
+          variant: 'background',
+          instance_id: data.video.id,
+          id: data.video.id,
+          platform: 'native',
+          title: data.video.title,
+          autoplay: true,
+          playsinline: true,
+          controls: false,
+          muted: true,
+          loop: true,
+          description: data.video.description,
+          sources: data.video.sources
+        }) }}
+      {% else %}
+        {{ image({
+          classes: "hero-home__image",
+          objectFit: true
+        }) }}
+      {% endif %}
+    </div>
+
+    <div class="hero-home__shape-container">
+      <div class="hero-home__shape">
+        <div class="hero-home__shape-left"></div>
+        <div class="hero-home__shape-scale">{% svg 'shape/hero' %}</div>
+        <div class="hero-home__shape-right"></div>
+      </div>
+
+      <div class="hero-home__container">
+        <div class="hero-home__col-left">
+          <h1 class="hero-home__title">{{ data.title }}</h1>
+          {% if data.description %}
+            <div class="hero-home__description">{{ data.description }}</div>
+          {% endif %}
+        </div>
+        <div class="hero-home__col-right">
+          {% if data.ctas %}
+            {% for cta in data.ctas %}
+              {{ button({
+                class: 'hero-home__cta',
+                label: cta.label,
+                url: cta.url,
+                variant: cta.variant,
+                icon: cta.icon or 'arrow-top-right'
+              }) }}
+            {% endfor %}
+          {% endif %}
+
+          <a class="hero-home__scroll-indicator" href="#main-content" aria-label="{{ global.resource.common.goToContent }}">
+            {% svg 'icons/long-arrow-down' %}
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+{% endmacro %}

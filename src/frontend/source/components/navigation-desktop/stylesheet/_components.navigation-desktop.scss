@@ -1,0 +1,79 @@
+.navigation-desktop__list {
+  @include list--reset;
+  display: flex;
+  align-items: center;
+
+  @include screen-custom-and-bigger($header-desktop-custom-breakpoint) {
+    gap: $spacing-12;
+  }
+
+  @include screen-xl-and-bigger {
+    gap: $spacing-16;
+  }
+}
+
+.navigation-desktop__list-item {
+  &.is--open {
+    z-index: 1;
+  }
+}
+
+.navigation-desktop__item {
+  color: currentcolor;
+  display: inline-block;
+  padding: $spacing-16 $spacing-10;
+  position: relative;
+  text-align: center;
+
+  @include screen-custom-and-bigger($header-desktop-custom-breakpoint) {
+    padding-inline: $spacing-16;
+  }
+
+  // Created bigger hover area when flyout is showing
+  &::after {
+    content: '';
+    display: none;
+    height: 200%;
+    left: 50%;
+    position: absolute;
+    top: 0;
+    transform: translateX(-50%);
+    width: calc(100% + #{$spacing-60});
+    z-index: -1;
+    background: transparent;
+  }
+
+  // Use before element to preset the width when font is bold
+  &::before {
+    content: attr(title);
+    display: block;
+    font-weight: $font-weight-bold;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+  }
+
+  &--search {
+    height: 40px;
+    min-width: 40px;
+    padding: $spacing-8;
+    border-radius: $radii-4;
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  .is--open & {
+    font-weight: $font-weight-bold;
+
+    &::after {
+      display: block;
+    }
+  }
+
+  @include hover-focus {
+    font-weight: $font-weight-bold;
+  }
+}

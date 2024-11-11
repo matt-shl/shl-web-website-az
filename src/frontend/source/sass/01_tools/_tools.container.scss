@@ -1,0 +1,33 @@
+@mixin container() {
+  width: 100%;
+  max-width: calc(#{$container-max-width} + #{$container-padding} * 2);
+  padding-inline-start: $container-padding;
+  padding-inline-end: $container-padding;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@mixin container-with-grid() {
+  @include container;
+  @include grid;
+}
+
+.o-container {
+  @include container;
+}
+
+.o-container--with-grid {
+  @include container-with-grid();
+}
+
+@mixin cta-container {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-16;
+  margin-top: $spacing-32;
+
+  @include screen-lg-and-bigger {
+    flex-direction: row;
+  }
+}

@@ -1,0 +1,7 @@
+{% from 'button.html' import button %}
+
+{% macro mobileFloatingButton(data) %}
+  <section class="c-mobile-floating-button{% if data.classes %} {{data.classes}}{% endif %} t-white" js-hook-mobile-floating-button>
+    {{ button(data.buttonData | clone | merge({variant: data.buttonData.variant or "primary ", icon: data.buttonData.icon or 'arrow-top-right', class: "mobile-floating-button__button" + (" " + data.buttonData.classes if data.buttonData.classes)})) }}
+  </section>
+{% endmacro %}

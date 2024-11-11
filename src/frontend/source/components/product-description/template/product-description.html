@@ -1,0 +1,33 @@
+{% from 'layout-section.html' import layoutSection %}
+{% from 'image.html' import image %}
+
+{% set commonLabels = global.resource.common %}
+
+{% macro productDescription(data) %}
+
+  {% call layoutSection({
+    id: "product-specifications",
+    sectionTitle: data.sectionTitle
+  }) %}
+    <div class="c-product-description">
+      <div class="product-description__title-container">
+        <h2 class="product-description__title">{{ data.title }}</h2>
+      </div>
+
+      <div class="product-description__image-container">
+        {{ image({
+          classes: 'product-description__image'
+        }) }}
+      </div>
+
+      {% if data.content.title and data.content.richText %}
+        <div class="product-description__content-container">
+          <div class="product-description__content">
+            <h3 class="product-description__content-title">{{ data.content.title }}</h3>
+            <div class="product-description__content-rich-text">{{ data.content.richText | safe }}</div>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  {% endcall %}
+{% endmacro %}

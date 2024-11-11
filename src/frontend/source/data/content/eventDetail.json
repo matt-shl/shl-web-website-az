@@ -1,0 +1,258 @@
+{
+  "footerScrollingText": "Caring. Inclusive. Driven.",
+  "breadcrumbs": {
+    "items": [
+      {
+        "url": "/home.html",
+        "label": "Home"
+      },
+      {
+        "url": "/parent-1.html",
+        "label": "Parent page 1"
+      },
+      {
+        "url": "/parent-2.html",
+        "label": "Parent page 2"
+      },
+      {
+        "url": "/current-item.html",
+        "label": "Current item"
+      }
+    ]
+  },
+  "hero": {
+    "title": "SHL Medical expert to speak at Novartis Campus in Basel",
+    "subtitle": "March 24 2024",
+    "tags": [
+      {
+        "label": "Event"
+      }
+    ]
+  },
+  "mainImage": {
+    "image": true
+  },
+  "eventDetail": {
+    "title": "Novartis Campus",
+    "column1": {
+      "title": "Where",
+      "content": "<p>Novartis Campus<br/>Fabrikstrasse 2<br/>4056 Basel, Switzerland</p>"
+    },
+    "column2": {
+      "title": "When",
+      "content": "<p>June 25-26 2024<br/>10:00 – 18:00 (CEST)</p>"
+    },
+    "cta": {
+      "label": "Register"
+    },
+    "modal": {
+      "id": "register-form-modal-event-123",
+      "title": "Register",
+      "form": {
+        "action": "/pardot-url",
+        "submit": {
+          "label": "Register"
+        },
+        "fields": [
+          {
+            "name": "cf_email_address",
+            "id": "cf_email_address",
+            "label": "Email",
+            "type": "email",
+            "maxlength": "255",
+            "validate": "required,email",
+            "patternError": "Please enter a valid email address",
+            "requiredError": "Please enter your email address"
+          },
+          {
+            "name": "cf_First_Name",
+            "id": "cf_First_Name",
+            "label": "First Name",
+            "type": "text",
+            "maxlength": "255",
+            "validate": "required",
+            "requiredError": "Please enter your first name"
+          },
+          {
+            "name": "cf_Last_Name",
+            "id": "cf_Last_Name",
+            "label": "Last Name",
+            "type": "text",
+            "maxlength": "255",
+            "validate": "required",
+            "requiredError": "Please enter your last name"
+          },
+          {
+            "name": "cf_Company",
+            "id": "cf_Company",
+            "label": "Company",
+            "type": "text",
+            "maxlength": "255",
+            "validate": "required",
+            "requiredError": "Please enter your company name"
+          },
+          {
+            "name": "cf_Country",
+            "id": "cf_Country",
+            "label": "Country",
+            "type": "select",
+            "validate": "required",
+            "requiredError": "Please enter your country",
+            "options": [
+              {
+                "label": "Select country",
+                "default": true
+              },
+              {
+                "label": "United States",
+                "value": "United States"
+              },
+              {
+                "label": "Canada",
+                "value": "Canada"
+              },
+              {
+                "label": "Mexico",
+                "value": "Mexico"
+              },
+              {
+                "label": "Netherlands",
+                "value": "Netherlands"
+              }
+            ]
+          },
+          {
+            "name": "cf_What_are_you_interested_in",
+            "id": "cf_What_are_you_interested_in",
+            "label": "What are you interested in?",
+            "type": "select",
+            "options": [
+              {
+                "label": "Select answer",
+                "default": true
+              },
+              {
+                "label": "Elexy TM",
+                "id": "Elexy-TM"
+              },
+              {
+                "label": "Molly (R)",
+                "id": "Molly-R"
+              },
+              {
+                "label": "Maggie (R)",
+                "id": "Maggie-R"
+              },
+              {
+                "label": "Services",
+                "id": "Services"
+              },
+              {
+                "label": "Digital Solutions",
+                "id": "Digital-Solutions"
+              },
+              {
+                "label": "Partnerships",
+                "id": "Partnerships"
+              },
+              {
+                "label": "Others",
+                "id": "Others"
+              }
+            ]
+          },
+          {
+            "name": "cf_Message",
+            "id": "cf_Message",
+            "label": "Message",
+            "type": "textarea",
+            "maxlength": "255"
+          },
+          {
+            "name": "cf_Consent_Given[]",
+            "type": "checkbox",
+            "options": [
+              {
+                "id": "cf_Consent_Given[]",
+                "label": "I agree when entering my data, SHL will collect this data to provide the services you request and keep you up to date on our latest events and news. You are not required to supply any of the information that we may request. However, failure to do so may result in our being unable to provide the documents you desire to download. <a href='#'>Find out more</a> about how SHL protects your personal data.",
+                "value": "Yes",
+                "validate": "required",
+                "requiredError": "Please agree to our privacy policy"
+              }
+            ]
+          },
+          {
+            "name": "source_page_title",
+            "id": "source_page_title",
+            "type": "hidden",
+            "value": "Contact"
+          },
+          {
+            "name": "source_URL",
+            "id": "source_URL",
+            "type": "hidden",
+            "value": "/contact.html"
+          }
+        ]
+      }
+    }
+  },
+  "richText": {
+    "reduceMargin": "bottom",
+    "size": "large",
+    "content": "<h5>We are pleased to announce our participation in the upcoming Drug-Device Combination Products for Parenteral Use workshop.</h5><p>Lorem ipsum dolor sit amet, <a href='home.html'>consectetur adipiscing elit</a>. Maecenas sagittis sollicitudin leo, eu aliquet nisiposuere ut. In eu mollis lectus, ac lacinia tellus. Nulla vel eros molestie, sagittis neque quis, fringilladiam. Nam est enim, semper in ligula et, hendrerit feugiat leo. Lorem ipsum dolor sit amet, consecteturadipiscing elit. Nam a venenatis quam. Maecenas a eros vitae diam gravida pharetra. Integer bibendum nulla vitaepellentesque posuere. Sed scelerisque tellus eu porttitor ultricies. Donec ullamcorper ornare tortor, id euismoddolor porttitor ac. Phasellus fringilla vehicula elit, sit amet pharetra mi fringilla a. Morbi sapien orci,rhoncus id scelerisque et, viverra sit amet nisl. In quis felis pharetra, sodales massa vel, hendrerit turpis. Suspendisse consectetur purus justo, sed ornare dolor blandit id.</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sagittis sollicitudin leo, eu aliquet nisiposuere ut. In eu mollis lectus, ac lacinia tellus. Nulla vel eros molestie, sagittis neque quis, fringilladiam. Nam est enim, semper in ligula et, hendrerit feugiat leo. Lorem ipsum dolor sit amet, consecteturadipiscing elit. Nam a venenatis quam. Maecenas a eros vitae diam gravida pharetra. Integer bibendum nulla vitaepellentesque posuere. Sed scelerisque tellus eu porttitor ultricies. Donec ullamcorper ornare tortor, id euismoddolor porttitor ac. Phasellus fringilla vehicula elit, sit amet pharetra mi fringilla a. Morbi sapien orci,rhoncus id scelerisque et, viverra sit amet nisl. In quis felis pharetra, sodales massa vel, hendrerit turpis. Suspendisse consectetur purus justo, sed ornare dolor blandit id.</p>"
+  },
+  "speakers": {
+    "title": "Meet our speakers",
+    "cta": {
+      "label": "Register for the event",
+      "controls": "register-form-modal-event-123"
+    },
+    "cards": [
+      {
+        "name": "Dr. John Doe",
+        "role": "CEO",
+        "description": "<h4>Topic</h4><p>Development of silicone-based test model for autoinjector functional performance analysis</p></br><h4>When</h4><p>June 25 2024</p><p>10:00 (CEST)</p>",
+        "image": true
+      },
+      {
+        "name": "Dr. Jane Doe",
+        "role": "Senior Testing Engineer",
+        "description": "<h4>Topic</h4><p>Development of silicone-based test model for autoinjector functional performance analysis</p></br><h4>When</h4><p>June 25 2024</p><p>10:00 (CEST)</p>",
+        "image": true
+      }
+    ]
+  },
+  "latest": {
+    "carouselCardType": "knowledge",
+    "showThreeCardsSideBySide": true,
+    "title": "Latest events",
+    "cta1": {
+      "url": "#",
+      "label": "All events"
+    },
+    "cards": [
+      {
+        "tag": "Event",
+        "title": "SHL Medical expert to speak at Novartis Campus in Basel",
+        "content": "SHL Medical will be in Basel for the Drug-Device Combination Products for Parenteral Use workshop.",
+        "url": "#",
+        "ctaLabel": "Read more"
+      },
+      {
+        "tag": "Event",
+        "title": "Strengthening a global manufacturing network through advanced simulation technologies",
+        "content": "In the Pre-filled Syringes and Injection Devices Issue of ONdrug Delivery Magazine, published ahead of the 2023 PDA Universe.",
+        "url": "#",
+        "ctaLabel": "Read more"
+      },
+      {
+        "tag": "Event",
+        "title": "SHL to attend 2022 NSTC Science Train Program",
+        "content": "SHL Medical is excited to announce our first-time participation in the NSTC Science Train Program, 2022.",
+        "url": "#",
+        "ctaLabel": "Read more"
+      }
+    ]
+  }
+}

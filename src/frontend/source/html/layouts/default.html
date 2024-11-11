@@ -1,0 +1,138 @@
+{% from 'grid-overlay.html' import gridOverlay %}
+
+{% set lang = 'default' %}
+
+<!DOCTYPE html>
+<html lang="{{ global.site.language }}" dir="{{ global.site.direction }}"
+      class="t-{{ theme if theme else 'general' }}{{ ' is--header-white' if headerIsWhite else '' }}
+             u-lang-{{lang if lang else 'default'}}">
+
+
+<head>
+  <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="68dc4c46-0126-4997-bfc2-26506ce1ee13" data-blockingmode="auto" type="text/javascript"></script>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+  <meta name="description" content="{{ global.site.description }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="disabled-adaptations" content="watch">
+
+
+  <meta property="og:url" content="{{ global.site.url }}"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content="{{ global.site.title }}"/>
+  <meta property="og:description" content="{{ global.site.description }}"/>
+  <meta property="og:image" content="{{ global.site.image }}"/>
+
+
+  <title>{{ global.site.title }}</title>
+
+  {% if global.site.gtm and global.site.gtm != 'GTM-XXXX' %}
+    {% include "generic/gtm.html" %}
+  {% endif %}
+
+  <!-- Style sheets -->
+  {% if global.project.debug %}
+    <link rel="stylesheet" href="/assets/css/dev.css"/>
+    <link rel="stylesheet" href="/assets/css/main.css"/>
+    {% elseif global.project.criticalCSS %}
+    <script>!function (n) {
+        "use strict";
+        n.loadCSS || (n.loadCSS = function () {
+        });
+        var o = loadCSS.relpreload = {};
+        if (o.support = function () {
+          var e;
+          try {
+            e = n.document.createElement("link").relList.supports("preload")
+          } catch (t) {
+            e = !1
+          }
+          return function () {
+            return e
+          }
+        }(), o.bindMediaToggle = function (t) {
+          var e = t.media || "all";
+
+          function a() {
+            t.media = e
+          }
+
+          t.addEventListener ? t.addEventListener("load", a) : t.attachEvent && t.attachEvent("onload", a), setTimeout(function () {
+            t.rel = "stylesheet", t.media = "only x"
+          }), setTimeout(a, 3e3)
+        }, o.poly = function () {
+          if (!o.support()) for (var t = n.document.getElementsByTagName("link"), e = 0; e < t.length; e++) {
+            var a = t[e];
+            "preload" !== a.rel || "style" !== a.getAttribute("as") || a.getAttribute("data-loadcss") || (a.setAttribute("data-loadcss", !0), o.bindMediaToggle(a))
+          }
+        }, !o.support()) {
+          o.poly();
+          var t = n.setInterval(o.poly, 500);
+          n.addEventListener ? n.addEventListener("load", function () {
+            o.poly(), n.clearInterval(t)
+          }) : n.attachEvent && n.attachEvent("onload", function () {
+            o.poly(), n.clearInterval(t)
+          })
+        }
+        "undefined" != typeof exports ? exports.loadCSS = loadCSS : n.loadCSS = loadCSS
+      }("undefined" != typeof global ? global : this);</script>
+    <style>{{ global.project.criticalCSS|safe }}</style>
+    <noscript>
+      <link rel="stylesheet" href="/assets/css/main.css"/>
+    </noscript>
+  {% else %}
+  <link rel="stylesheet" href="/assets/css/main.css"/>
+  {% endif %}
+
+  {% include "generic/preloads.html" %}
+
+  {% include "generic/environment.html" %}
+
+  {% include "generic/favicons.html" %}
+
+</head>
+
+
+<body>
+
+{% if global.site.gtm and global.site.gtm != 'GTM-XXXX' %}
+  {% include "generic/gtm-body.html" %}
+{% endif %}
+
+{% if global.project.debug %}
+  {{ gridOverlay() }}
+{% endif %}
+
+{% include "carousel-indicator.html" %}
+
+{% include 'skiplinks.html' %}
+
+{% include "header.html" %}
+
+<main id="content" role="main">
+
+  {% block hero %}
+    <!-- hero will be injected in this block -->
+  {% endblock %}
+
+  <div class="page__content" id="main-content" js-hook-inview>
+    <div class="page__content-items">
+      {% block content %}
+        <!-- content will be injected in this block -->
+      {% endblock %}
+    </div>
+  </div>
+
+</main>
+
+{% include "footer.html" %}
+
+{% include 'toast.html' %}
+
+<script async src="/assets/js/main.js"></script>
+
+</body>
+
+<!-- name: {{ global.project.name }}, version: {{ global.project.version }} -->
+</html>

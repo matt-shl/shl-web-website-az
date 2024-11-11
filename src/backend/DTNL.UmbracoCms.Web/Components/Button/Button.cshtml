@@ -1,0 +1,47 @@
+@using DTNL.UmbracoCms.Web.Helpers.Extensions
+
+@model DTNL.UmbracoCms.Web.Components.Button?
+
+@if (Model is null)
+{
+    return;
+}
+
+@if (!Model.Url.IsNullOrWhiteSpace())
+{
+    Model.Attributes.TryAdd("href", Model.Url);
+}
+
+<@(Model.Element)
+    target = "@Model.Target.NullOrEmptyAsNull()"
+    rel="@(Model.Target == "_blank" ? "noopener noreferrer" : null)"
+    type="@(!Model.Type.IsNullOrEmpty() ? Model.Type : Model.Element == "button" ? "button" : null)"
+    aria-controls="@Model.Controls.NullOrEmptyAsNull()"
+    aria-label="@(Model.AriaLabel ?? Model.Label)"
+    class="
+        @(!Model.Variant.IsNullOrEmpty() ? $"c-button--{Model.Variant}" : "c-button")
+        @(!Model.Size.IsNullOrEmpty() ? $" button--{Model.Size}" : "")
+        @(!Model.Icon.IsNullOrEmpty() ? " button--icon" : null)
+        @(Model.LabelSrOnly ? " button--icon-only" : null)
+        @(!Model.IconPosition.IsNullOrEmpty() ? $"button--icon-position-{@Model.IconPosition}" : null)
+        @Model.Class"
+    @Html.Attribute(Model.Hook?.EnsureStartsWith("js-hook-"))
+    @Html.Attributes(Model.Attributes)
+>
+
+    <span class="button__label @(Model.LabelSrOnly ? "u-sr-only" : null)">
+        @Model.Label
+        
+        @if (!Model.LabelSup.IsNullOrEmpty())
+        {
+            <sup class="button__label-sup">@Model.LabelSup</sup>
+        }
+    </span>
+
+	@if (!Model.Icon.IsNullOrEmpty())
+	{
+		<span class="button__icon"><svg src="@Model.Icon"/></span>
+	}
+
+</@(Model.Element)>
+ 

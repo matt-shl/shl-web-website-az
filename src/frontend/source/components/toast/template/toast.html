@@ -1,0 +1,14 @@
+{% from 'button.html' import button %}
+
+{% set commonLabels = global.resource.common %}
+
+<div class="c-toast t-general" aria-live="assertive" js-hook-toast>
+  {{ button({
+    variant: 'primary',
+    element: 'button',
+    icon: 'cross',
+    label: commonLabels.clearAll,
+    hook: 'toast-clear-all',
+    class: 'toast__clear-all'
+  }) }}
+</div>

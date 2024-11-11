@@ -1,0 +1,190 @@
+{
+  "hero": {
+    "title": "Electronic Motorized Autoinjector (EMAI)",
+    "theme": "t-general",
+    "description": "What's your molecule? With our device platforms, you don’t have to think about the self-service pen injector design. Because it's already there.",
+    "ctas": [
+      {
+        "label": "Get in touch",
+        "variant": "primary",
+        "url": "#"
+      },
+      {
+        "label": "Product specifications",
+        "variant": "secondary",
+        "url": "#"
+      }
+    ],
+    "breadcrumbs": [
+      {
+        "url": "/home.html",
+        "label": "Home"
+      },
+      {
+        "url": "/parent-1.html",
+        "label": "What we offer"
+      },
+      {
+        "url": "/current-item.html",
+        "label": "Products"
+      }
+    ]
+  },
+  "textDownload": {
+    "title": "Download our shared knowledge",
+    "description": "Explore technical specifications and expert analysis to enhance your knowledge and decision-making.",
+    "items": [
+      {
+        "title": "Molly® product specifications",
+        "description": "Molly® product specifications",
+        "size": "1.2 MB",
+        "link": "#"
+      },
+      {
+        "title": "Final assembly, labeling, and packaging",
+        "description": "Explore all possibilities of Molly® in our product specification.n our product brochure.",
+        "size": "1.2 MB",
+        "link": "#"
+      },
+      {
+        "title": "Molly® product specifications",
+        "description": "Molly® product specifications",
+        "size": "1.2 MB",
+        "link": "#"
+      }
+    ]
+  },
+  "contactBlock": {
+    "theme": "t-lightest-pink",
+    "title": "Got a question? We've got the answers, contact us today",
+    "description": "We usually respond within 24 hours.",
+    "items": [
+      {
+        "icon": "email",
+        "title": "Email us",
+        "description": "Our friendly team is here to help",
+        "content": "<p><a href='mailto:info@shl-medical.com'>info@shl-medical.com</a></p>"
+      },
+      {
+        "icon": "phone",
+        "title": "Call us",
+        "description": "Mon-Fri from 8am to 5pm",
+        "content": "<p><a href='tel:+41413680000'>+41 41 368 00 00</a></p>"
+      },
+      {
+        "icon": "location",
+        "title": "Visit us",
+        "description": "Come say hello at out office HQ",
+        "content": "<p>Gubelstrasse 22,<br/>6300 Zug,<br/>Switzerland</p>"
+      }
+    ],
+    "form": {
+      "action": "#pardot-url",
+      "submit": {
+        "label": "Submit question"
+      },
+      "fields": [
+        {
+          "name": "cf_email_address",
+          "id": "cf_email_address",
+          "label": "Your Email",
+          "type": "email",
+          "maxlength": "255",
+          "validate": "required,email",
+          "patternError": "Please enter a valid email address",
+          "requiredError": "Please enter your email address"
+        },
+        {
+          "name": "cf_First_Name",
+          "id": "cf_First_Name",
+          "label": "First Name",
+          "type": "text",
+          "maxlength": "40",
+          "validate": "required",
+          "requiredError": "Please enter your first name"
+        },
+        {
+          "name": "cf_Last_Name",
+          "id": "cf_Last_Name",
+          "label": "Last Name",
+          "type": "text",
+          "maxlength": "40",
+          "validate": "required",
+          "requiredError": "Please enter your last name"
+        },
+        {
+          "name": "cf_Company",
+          "id": "cf_Company",
+          "label": "Company",
+          "type": "text",
+          "maxlength": "40",
+          "validate": "required",
+          "requiredError": "Please enter your company name"
+        },
+        {
+          "name": "cf_Country",
+          "id": "cf_Country",
+          "label": "Country",
+          "type": "select",
+          "validate": "required",
+          "requiredError": "Please enter your country",
+          "options": [
+            {
+              "label": "Select country",
+              "default": true
+            },
+            {
+              "label": "United States",
+              "value": "United States"
+            },
+            {
+              "label": "Canada",
+              "value": "Canada"
+            },
+            {
+              "label": "Mexico",
+              "value": "Mexico"
+            },
+            {
+              "label": "Netherlands",
+              "value": "Netherlands"
+            }
+          ]
+        },
+        {
+          "name": "cf_Message",
+          "id": "cf_Message",
+          "label": "Message",
+          "type": "textarea",
+          "validate": "required",
+          "requiredError": "Please enter your message"
+        },
+        {
+          "name": "cf_Consent_Given[]",
+          "type": "checkbox",
+          "options": [
+            {
+              "id": "cf_Consent_Given[]",
+              "label": "I agree when entering my data, SHL will collect this data to provide the services you request and keep you up to date on our latest events and news. You are not required to supply any of the information that we may request. However, failure to do so may result in our being unable to provide the documents you desire to download. <a href='#'>Find out more</a> about how SHL protects your personal data.",
+              "value": "Yes",
+              "validate": "required",
+              "requiredError": "Please agree to our privacy policy"
+            }
+          ]
+        },
+        {
+          "name": "source_page_title",
+          "id": "source_page_title",
+          "type": "hidden",
+          "value": "Contact"
+        },
+        {
+          "name": "source_URL",
+          "id": "source_URL",
+          "type": "hidden",
+          "value": "/contact.html"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,91 @@
+{% from 'button.html' import button %}
+
+{# pagination: Uses two different logics to print pages list based on SHOW_ALL_PAGES_THRESHOLD  #}
+{% set SHOW_ALL_PAGES_THRESHOLD = 4 %}
+
+{% macro pagination(data) %}
+
+  <div class="c-pagination{% if data.classes %} {{ data.classes }}{% endif %}">
+
+    <{%- if data.currentPage <= 1 %}span {% else %}a{% endif%} class="pagination__link pagination__action pagination__action--prev
+      {%- if data.currentPage <= 1 %} pagination__action--disabled{% endif -%}"
+      aria-disabled="{{ data.currentPage <= 1 }}" {%- if not data.currentPage <= 1 %} href="#"{% endif %} rel="prev">
+      {% svg 'icons/arrow-left'%}
+      <span class="u-sr-only">{{ global.resource.pagination.previousPage }}</span>
+    </{%- if data.currentPage <= 1 %}span {% else %}a{% endif%}>
+
+    <nav class="pagination__list">
+      {# CASE 1 - Display Full list for small number of pages  #}
+      {% if data.totalPages <= SHOW_ALL_PAGES_THRESHOLD %}
+        {% for i in range(1, data.totalPages + 1) -%}
+            {{ paginationLink(i, data.currentPage) }}
+        {%- endfor %}
+      {% endif %}
+
+      {# CASE 2 - Display Dots for more pages #}
+      {% if data.totalPages > SHOW_ALL_PAGES_THRESHOLD  %}
+
+        {# First page always printed  #}
+        {% if (data.currentPage == data.totalPages or data.currentPage < 4) %}
+          {{ paginationLink(1, data.currentPage, data.currentPage + 1 > 3 if true else false) }}
+        {% endif %}
+
+        {# Dots  #}
+        {% if data.currentPage == data.totalPages %}
+          <span class="pagination__dots"></span>
+        {% endif %}
+
+        {# Third page if at the end  #}
+        {% if data.currentPage > 3 %}
+          {{ paginationLink(data.currentPage - 2, data.currentPage, data.currentPage != data.totalPages if true else false) }}
+        {% endif %}
+
+        {# Previous page  #}
+        {% if data.currentPage > 2 %}
+          {{ paginationLink(data.currentPage - 1, data.currentPage) }}
+        {% endif %}
+
+        {# Current page  #}
+        {% if data.currentPage > 1 %}
+            {{ paginationLink(data.currentPage, data.currentPage) }}
+        {% endif %}
+
+        {# Next page  #}
+        {% if data.currentPage < data.totalPages - 1 %}
+          {{ paginationLink(data.currentPage + 1, data.currentPage) }}
+        {% endif %}
+
+        {# Third page if at beginning  #}
+        {% if data.currentPage < 3 and data.currentPage < data.totalPages - 2 %}
+          {{ paginationLink(data.currentPage + 2, data.currentPage, data.currentPage != 1 if true else false ) }}
+        {% endif %}
+
+        {# Dots  #}
+        {% if data.currentPage == 1 %}
+          <span class="pagination__dots"></span>
+        {% endif %}
+
+        {# Last page  #}
+        {% if (data.totalPages - data.currentPage < 2 or data.currentPage == 1) and data.totalPages != data.currentPage %}
+          {{ paginationLink(data.totalPages, data.currentPage, data.currentPage != data.totalPages - 1 if true else false) }}
+        {% endif %}
+      {% endif %}
+    </nav>
+
+    <{%- if data.currentPage >= data.totalPages %}span {% else %}a{% endif%} class="pagination__link pagination__action pagination__action--next
+      {%- if data.currentPage >= data.totalPages %} pagination__action--disabled{% endif -%}"
+      aria-disabled="{{ data.currentPage >= data.totalPages }}" {%- if data.currentPage <= data.totalPages %} href="#"{% endif %} rel="next">
+      {% svg 'icons/arrow-right'%}
+      <span class="u-sr-only">{{ global.resource.pagination.nextPage }}</span>
+    </{%- if data.currentPage >= data.totalPages %}span {% else %}a{% endif%}>
+  </div>
+{% endmacro %}
+
+{# paginationLink: Prints the page number and adds active class if page is currentPage #}
+{% macro paginationLink(page, current, hideMobile) %}
+  <a aria-current="{{page == current}}" aria-label="{% if page == current %}{{ global.resource.pagination.currentPage }}{% else %}{{ global.resource.pagination.goToPagina }} {{ page }}{% endif %}" href="./?page={{ page }}" class="pagination__link pagination__page {%- if page == current %} pagination__page--active{% endif -%}{% if hideMobile %} pagination__page--hide-mobile{% endif %}">
+    <span>{{ page }}</span>
+  </a>
+{% endmacro %}
+
+{# "next" if page > current else "previous" if page < current else "current", #}

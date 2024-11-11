@@ -1,0 +1,30 @@
+@mixin fluid-type-container(
+  $container-name,
+  $max-value,
+  $min-value,
+  $max-width,
+  $min-width,
+  $properties: font-size
+) {
+  @each $property in $properties {
+    #{$property}: rem-to-px($min-value);
+  }
+
+  // Use the $container-name variable in the @container rule
+  @container #{$container-name} (width >= #{$min-width}) and (width < #{$max-width}) {
+    @each $property in $properties {
+      #{$property}: calc(
+        #{rem-to-px($min-value)} +
+          #{tenfold(strip-unit($max-value - $min-value))} *
+          (100cqw - #{$min-width}) /
+          #{strip-unit($max-width - $min-width)}
+      );
+    }
+  }
+
+  @container #{$container-name} (width >= #{$max-width}) {
+    @each $property in $properties {
+      #{$property}: rem-to-px($max-value);
+    }
+  }
+}

@@ -1,0 +1,77 @@
+@using DTNL.UmbracoCms.Web.Components
+@using DTNL.UmbracoCms.Web.Helpers.Aliases
+@using DTNL.UmbracoCms.Web.Helpers.Extensions
+@using Umbraco.Cms.Core.Dictionary
+
+@model DTNL.UmbracoCms.Web.Components.BannerQuote
+
+@inject ICultureDictionary CultureDictionary
+
+<div class="c-banner-quote" js-hook-banner-quote>
+    <div class="c-banner-quote">
+        <div class="banner-quote__container">
+            <div class="banner-quote__col banner-quote__col--text" aria-live="polite">
+                @for (var i = 0; i < @Model.Quotes.Count; i++)
+                {
+                    Quote quote = Model.Quotes[i];
+                    <div class="banner-quote__text-container @(i == 0 ? "is--active" : "")" js-hook-banner-quote-text-container>
+                        <blockquote class="banner-quote__title" tabIndex="0">@quote.QuoteText</blockquote>
+                        <div class="banner-quote__content">
+                            <span class="banner-quote__author">@quote.Name</span>
+                            @if (!quote.Role.IsNullOrEmpty())
+                            {
+                                <span class="banner-quote__role">@quote.Role@(quote.Company.IsNullOrEmpty() ? "" : ",") @quote.Company </span>
+                            }
+                        </div>
+                    </div>
+                }
+
+                <div class="banner-quote__pagination-container" js-hook-banner-quote-pagination>
+                    <partial name="Button" model="@(new Button {
+                                Label = $"{CultureDictionary.GetTranslation(TranslationAliases.Common.Pagination.Previous)} {CultureDictionary.GetTranslation(TranslationAliases.Common.Quote)}",
+                                LabelSrOnly = true,
+                                Size = "small",
+                                Element = "button",
+                                Variant = "secondary",
+                                Hook = "banner-quote-pagination-prev-button",
+                                Icon = SvgAliases.Icons.ArrowLeft,
+                                Class = "banner-quote__pagination-button",
+                                Attributes = new Dictionary<string, string?> { ["disabled"] = "true", },
+                            } )" />
+                    <span class="banner-quote-pagination-label" aria-live="polite" aria-atomic="true"><span js-hook-banner-quote-pagination-current-index>1</span> @CultureDictionary.GetTranslation(TranslationAliases.Common.Of) @Model.Quotes.Count</span>
+                    <partial name="Button" model="@(new Button {
+                                Label = $"{CultureDictionary.GetTranslation(TranslationAliases.Common.Pagination.Next)} {CultureDictionary.GetTranslation(TranslationAliases.Common.Quote)}",
+                                LabelSrOnly = true,
+                                Size = "small",
+                                Element = "button",
+                                Variant = "secondary",
+                                Hook = "banner-quote-pagination-next-button",
+                                Icon = SvgAliases.Icons.ArrowRight,
+                                Class = "banner-quote__pagination-button",
+                                Attributes = Model.Quotes.Count == 1 ? new Dictionary<string, string?> { ["disabled"] = "true", } : new Dictionary<string, string?>(),
+                            } )" />
+                </div>
+            </div>
+            <div class="banner-quote__col banner-quote__col--media">
+                @if (Model.Quotes is [{ Image: not null }])
+                {
+                    <div class="banner-quote__image">
+                        <partial name="Image" model="@Model.Quotes[0].Image" />
+                    </div>
+                }
+                else if (Model.Quotes.Count > 1)
+                {
+                    <div class="banner-quote__image-carousel" js-hook-banner-quote-image-carousel>
+                        @for (var i = 0; i < @Model.Quotes.Count; i++)
+                        {
+                            Quote quoteData = Model.Quotes[i];
+                            <div class="banner-quote__image-item @(i == 0 ? "is--active" : "")" js-hook-banner-quote-image data-index=@i>
+                                <partial name="Image" model="@Model.Quotes[i].Image" />
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

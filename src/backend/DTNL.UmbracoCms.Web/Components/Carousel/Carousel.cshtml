@@ -1,0 +1,49 @@
+@using DTNL.UmbracoCms.Web.Helpers.Extensions
+@model DTNL.UmbracoCms.Web.Components.Carousel
+
+<div class="c-carousel
+               @Model.Classes
+               @(Model.Navigation ? " carousel--has-navigation" : null)
+               @(Model.Overflow ? " carousel--has-overflow" : null)
+               @(Model.MobileOnly ? " carousel--mobile-only" : null)"
+     js-hook-carousel
+     id="@Model.Id.NullOrEmptyAsNull()"
+     data-slides-mobile="@Model.SlidesMobile?.ToStringInvariant()"
+     data-slides-mobile-plus="@Model.SlidesMobilePlus?.ToStringInvariant()"
+     data-slides-tablet-portrait="@(Model.SlidesTabletPortrait?.ToStringInvariant())"
+     data-slides-tablet-landscape="@(Model.SlidesTabletLandscape?.ToStringInvariant())"
+     data-slides-desktop="@(Model.SlidesDesktop?.ToStringInvariant())"
+     data-space-between-mobile="@(Model.SpaceBetweenMobile?.ToStringInvariant())"
+     data-space-between-tablet-portrait="@(Model.SpaceBetweenTabletPortrait?.ToStringInvariant())"
+     data-space-between-tablet-landscape="@(Model.SpaceBetweenTabletLandscape?.ToStringInvariant())"
+     data-space-between-desktop="@(Model.SpaceBetweenDesktop?.ToStringInvariant())"
+     data-slides-offset-before-mobile="@(Model.SlidesOffsetBeforeMobile?.ToStringInvariant())"
+     data-slides-offset-after-mobile="@(Model.SlidesOffsetAfterMobile?.ToStringInvariant())"
+     data-slides-offset-before-tablet-portrait="@(Model.SlidesOffsetBeforeTabletPortrait?.ToStringInvariant())"
+     data-slides-offset-after-tablet-portrait="@(Model.SlidesOffsetAfterTabletPortrait?.ToStringInvariant())"
+     data-slides-offset-before-tablet-landscape="@(Model.SlidesOffsetBeforeTabletLandscape?.ToStringInvariant())"
+     data-slides-offset-after-tablet-landscape="@(Model.SlidesOffsetAfterTabletLandscape?.ToStringInvariant())"
+     data-slides-offset-before-desktop="@(Model.SlidesOffsetBeforeDesktop?.ToStringInvariant())"
+     data-slides-offset-after-desktop="@(Model.SlidesOffsetAfterDesktop?.ToStringInvariant())"
+     data-pagination="@Model.Pagination"
+     data-navigation="@Model.Navigation"
+     data-loop="@Model.Loop"
+     data-disable-swiping-tablet-portrait-bigger="@Model.DisableSwipingTabletPortraitAndBigger"
+     data-mobile-only="@Model.MobileOnly">
+
+     <div class="carousel__wrapper swiper-wrapper @Model.CustomWrapperClass" js-hook-inview>
+        @this.RenderPartialBody()
+    </div>
+
+    <div class="carousel__footer">
+        @if (Model.Pagination)
+        {
+            <div class="carousel__pagination"></div>
+        }
+    </div>
+
+    @if (Model.Scrollbar)
+    {
+        <div class="carousel__scrollbar swiper-scrollbar"></div>
+    }
+</div>

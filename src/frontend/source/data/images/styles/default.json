@@ -1,0 +1,13 @@
+{
+  "aspect": [16, 9],
+  "breakpoints": {
+    "mobile": [480, 270],
+    "mobilePlus": [768, 432],
+    "tabletPortrait": [1024, 576],
+    "tabletLandscape": [1240, 698],
+    "laptop": [1600, 900],
+    "desktop": [1920, 1080],
+    "widescreen": [2560, 1440],
+    "4k": [3840, 2160]
+  }
+}

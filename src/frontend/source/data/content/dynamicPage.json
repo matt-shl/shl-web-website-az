@@ -1,0 +1,241 @@
+{
+  "footerScrollingText": "Caring. Inclusive. Driven.",
+  "breadcrumbs": {
+    "items": [
+      {
+        "url": "/home.html",
+        "label": "Home this is a very long label for the first item in the breadcrumb"
+      },
+      {
+        "url": "/parent-1.html",
+        "label": "Parent page 1 this is a very long label for the second item in the breadcrumb"
+      },
+      {
+        "url": "/parent-2.html",
+        "label": "Parent page 2 this is a very long label for the third item in the breadcrumb"
+      },
+      {
+        "url": "/current-item.html",
+        "label": "Current item this is a very long label for the last item in the breadcrumb"
+      }
+    ]
+  },
+  "hero": {
+    "title": "This is a large title for the hero section",
+    "subtitle": "Optional sub heading",
+    "tags": [
+      {
+        "label": "Label"
+      },
+      {
+        "label": "Label"
+      }
+    ],
+    "description": "Here is some supporting text for the hero component, keep it short and sweet, but have a nice bite to it.",
+    "ctas": [
+      {
+        "label": "Primary button",
+        "url": "/"
+      },
+      {
+        "variant": "secondary",
+        "label": "Secondary button",
+        "url": "/"
+      }
+    ],
+    "video": {
+      "id": "hero-video",
+      "title": "Homepage video",
+      "description": "Homepage video description",
+      "sources": [
+        {
+          "size": 1920,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        },
+        {
+          "size": 1280,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        },
+        {
+          "size": 1024,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        },
+        {
+          "size": 320,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "mediaSection1": {
+    "image": {
+      "caption": "image caption example"
+    },
+    "video": {
+      "id": "text-media-video1",
+      "totalTime": "01:30",
+      "title": "Text media video 2",
+      "description": "Text media video 2 description",
+      "closedcaptions": [
+        {
+          "url": "subtitles.vtt",
+          "label": "Nederlands",
+          "lang": "nl",
+          "kind": "subtitles"
+        }
+      ],
+      "sources": [
+        {
+          "size": 1920,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        },
+        {
+          "size": 1280,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        },
+        {
+          "size": 1024,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        },
+        {
+          "size": 320,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "mediaSection2": {
+    "image": {
+      "caption": "image caption example"
+    },
+    "video": {
+      "id": "text-media-video2",
+      "totalTime": "01:30",
+      "title": "Text media video 2",
+      "description": "Text media video 2 description",
+      "closedcaptions": [
+        {
+          "url": "subtitles.vtt",
+          "label": "Nederlands",
+          "lang": "nl",
+          "kind": "subtitles"
+        }
+      ],
+      "sources": [
+        {
+          "size": 1920,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        },
+        {
+          "size": 1280,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        },
+        {
+          "size": 1024,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        },
+        {
+          "size": 320,
+          "source": [
+            {
+              "url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              "type": "video/mp4"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "stackingCards": {
+    "theme": "t-dark-green",
+    "title": "Why should you join SHL?",
+    "description": "At SHL Medical, we are redefining careers. We provide the right tools for our employees to flourish in their careers. Join us and together we’ll shape the platform for your success.",
+    "items": [
+      {
+        "image": true,
+        "title": "Ownership & Impact",
+        "description": "Experience a culture that encourages ownership and control over your outcomes, making you a key player in SHL’s success. Your work contributes to the development of products that significantly impact people’s lives."
+      },
+      {
+        "image": true,
+        "title": "Comfortable Atmosphere",
+        "description": "At SHL, we prioritize a comfortable atmosphere for our employees. Our office spaces are designed with ergonomic furniture and ample natural lighting to ensure a pleasant working environment. Additionally, our supportive and inclusive culture promotes employee well-being and personal growth."
+      },
+      {
+        "image": true,
+        "title": "Proactive & engaged people",
+        "description": "We encourage you to be proactive, engaged, and contribute your ideas. Shape your career and influence the success of the company. Join a team that thrives on collaboration and values every individual’s input."
+      },
+      {
+        "image": true,
+        "title": "Innovative",
+        "description": "At SHL, innovation is at the heart of everything we do. We are constantly pushing the boundaries to develop cutting-edge products that meet the evolving needs of our customers. Our dedicated team of experts is committed to staying ahead of the curve, ensuring that our products are always at the forefront of innovation in the industry."
+      },
+      {
+        "image": true,
+        "title": "Caring & Inclusive",
+        "description": "At SHL, we foster a caring and inclusive culture that values the well-being and diversity of our employees. We prioritize creating a supportive environment where everyone feels respected, heard, and included. Our commitment to inclusivity extends to all aspects of our organization, promoting collaboration, innovation, and personal growth."
+      },
+      {
+        "image": true,
+        "title": "Sustainability",
+        "description": "At SHL, sustainability is a core value that guides our actions and decisions. We are dedicated to minimizing our environmental impact and promoting sustainable practices throughout our operations. Our goal is to be fully sustainable around the globe by 2030."
+      }
+    ]
+  }
+}

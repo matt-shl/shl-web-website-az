@@ -1,0 +1,78 @@
+{#
+Options:
+  size (optional, string) - 'extra-small', 'small', 'medium', 'large', 'extra-large'
+  reduceMargin (optional, string) - 'top', 'bottom', 'top-bottom'
+#}
+
+{% from 'layout-section.html' import layoutSection %}
+{% from 'button.html' import button %}
+
+{% set commonLabels = global.resource.common %}
+
+{% macro richText(data) %}
+
+  {% call layoutSection({
+    id: data.id,
+    sectionTitle: data.sectionTitle,
+    reduceMargin: data.reduceMargin,
+    theme: "t-white"
+  }) %}
+    <div class="c-rich-text rich-text--is-closed
+      {%- if data.variant %} c-rich-text--{{ data.variant }}{% endif -%}
+      {%- if data.size %} c-rich-text--size-{{ data.size }}{% endif %}
+      {%- if data.classes %} {{ data.classes }}{% endif %}"
+      {%-if data.readMoreDisabled %} read-more-disabled {% endif -%}
+      {%-if data.maxHeightPx %} data-max-height-px="{{data.maxHeightPx}}" {% endif -%}
+      js-hook-rich-text>
+      <div class="rich-text__container" js-hook-rich-text-container>
+        <div class="rich-text__content">
+          {% if data.title %}<h5>{{ data.title }}</h5>{% endif %}
+          {{ data.content | safe }}
+        </div>
+        {% if data.cta1 or data.cta2 %}
+          <div class="rich-text__ctas">
+            {% if data.cta1 %}
+              {{ button({
+                class: 'rich-text__cta1',
+                label: data.cta1.label,
+                url: data.cta1.url,
+                variant: data.cta1.variant,
+                icon: data.cta1.icon or 'arrow-top-right'
+              }) }}
+            {% endif %}
+            {% if data.cta2 %}
+              {{ button({
+                class: 'rich-text__cta2',
+                label: data.cta2.label,
+                url: data.cta2.url,
+                variant: data.cta2.variant or 'secondary',
+                icon: data.cta2.icon or 'arrow-top-right'
+              }) }}
+            {% endif %}
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="rich-text__button-wrapper">
+        {{ button({
+          class: "rich-text__button rich-text__button-more",
+          element: "button",
+          variant: "link-underlined",
+          label: commonLabels.readMore,
+          hook: 'rich-text-button',
+          attr: 'aria-hidden'
+        }) }}
+
+        {{ button({
+          class: "rich-text__button rich-text__button-less",
+          element: "button",
+          variant: "link-underlined",
+          label: commonLabels.readLess,
+          hook: 'rich-text-button',
+          attr: 'aria-hidden'
+        }) }}
+      </div>
+    </div>
+  {% endcall %}
+
+{% endmacro %}

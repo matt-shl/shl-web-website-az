@@ -1,0 +1,52 @@
+{% from 'layout-section.html' import layoutSection %}
+{% from 'button.html' import button %}
+{% from 'card-contact.html' import cardContact %}
+
+{% macro speakers(data) %}
+
+  {% call layoutSection({
+    id: data.id,
+    sectionTitle: data.sectionTitle,
+    reduceMargin: data.reduceMargin,
+    theme: "t-white"
+  }) %}
+    <div class="c-speakers
+      {%- if data.classes %} {{ data.classes }}{% endif -%}">
+      <div class="speakers__container">
+        <h2 class="speakers__title">{{ data.title }}</h2>
+
+        <div class="speakers__cards">
+          {% for card in data.cards %}
+            {{ cardContact(card | clone | merge({
+              classes: "speakers__card"
+            })) }}
+          {% endfor %}
+        </div>
+
+        {% if data.cta.url %}
+          <div class="speakers__ctas">
+            {{ button({
+              class: 'speakers__cta',
+              label: data.cta.label,
+              url: data.cta.url,
+              variant: data.cta.variant,
+              icon: data.cta.icon or 'arrow-top-right'
+            }) }}
+          </div>
+        {% elseif data.cta.controls %}
+          <div class="speakers__ctas">
+            {{ button({
+              element: 'button',
+              class: 'speakers__cta',
+              label: data.cta.label,
+              controls: data.cta.controls,
+              variant: data.cta.variant,
+              icon: data.cta.icon or 'arrow-top-right'
+            }) }}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  {% endcall %}
+
+{% endmacro %}

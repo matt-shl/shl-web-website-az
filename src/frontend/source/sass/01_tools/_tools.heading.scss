@@ -1,0 +1,200 @@
+@mixin common-heading-styles($line-height, $text-wrap: false) {
+  line-height: $line-height;
+  font-weight: $font-weight-bold;
+
+  @if $text-wrap {
+    text-wrap: balance;
+  }
+}
+
+@mixin d1 {
+  @include fluid-type($font-size-d1, $font-size-d1-mobile);
+  @include fluid-type($font-letter-spacing-d1, $font-letter-spacing-d1-mobile, letter-spacing);
+  @include common-heading-styles($font-line-height-d1, true);
+}
+
+@mixin h1 {
+  @include fluid-type($font-size-h1, $font-size-h1-mobile);
+  @include fluid-type($font-letter-spacing-h1, $font-letter-spacing-h1-mobile, letter-spacing);
+  @include common-heading-styles($font-line-height-h1, true);
+}
+
+@mixin h2 {
+  @include fluid-type($font-size-h2, $font-size-h2-mobile);
+  @include fluid-type($font-letter-spacing-h2, $font-letter-spacing-h2-mobile, letter-spacing);
+  @include common-heading-styles($font-line-height-h2);
+}
+
+@mixin h3 {
+  @include fluid-type($font-size-h3, $font-size-h3-mobile);
+  @include fluid-type($font-letter-spacing-h3, $font-letter-spacing-h3-mobile, letter-spacing);
+  @include common-heading-styles($font-line-height-h3);
+
+  @include screen-md-and-smaller {
+    line-height: $font-line-height-h3-mobile;
+  }
+}
+
+@mixin h4 {
+  @include fluid-type($font-size-h4, $font-size-h4-mobile);
+  @include fluid-type($font-letter-spacing-h4, $font-letter-spacing-h4-mobile, letter-spacing);
+  @include common-heading-styles($font-line-height-h4);
+}
+
+@mixin h5 {
+  @include fluid-type($font-size-h5, $font-size-h5-mobile);
+  @include fluid-type($font-letter-spacing-h5, $font-letter-spacing-h5-mobile, letter-spacing);
+  @include common-heading-styles($font-line-height-h5);
+}
+
+@mixin h6 {
+  @include fluid-type($font-size-h6, $font-size-h6-mobile);
+  @include fluid-type($font-letter-spacing-h6, $font-letter-spacing-h6-mobile, letter-spacing);
+  @include common-heading-styles($font-line-height-h6);
+}
+
+// =========================================================================
+
+@mixin h1-containerised($container-name, $largest-container-size, $smallest-container-size) {
+  @include fluid-type-container(
+    $container-name,
+    $font-size-h1,
+    $font-size-h1-mobile,
+    $largest-container-size,
+    $smallest-container-size,
+    font-size
+  );
+  @include fluid-type-container(
+    $container-name,
+    $font-letter-spacing-h1,
+    $font-letter-spacing-h1-mobile,
+    $largest-container-size,
+    $smallest-container-size,
+    letter-spacing
+  );
+  @include common-heading-styles($font-line-height-h1, true);
+
+  @supports not (container-type: inline-size) {
+    @include h1;
+  }
+}
+
+@mixin h2-containerised($container-name, $largest-container-size, $smallest-container-size) {
+  @include fluid-type-container(
+    $container-name,
+    $font-size-h2,
+    $font-size-h2-mobile,
+    $largest-container-size,
+    $smallest-container-size,
+    font-size
+  );
+  @include fluid-type-container(
+    $container-name,
+    $font-letter-spacing-h2,
+    $font-letter-spacing-h2-mobile,
+    $largest-container-size,
+    $smallest-container-size,
+    letter-spacing
+  );
+  @include common-heading-styles($font-line-height-h2);
+
+  @supports not (container-type: inline-size) {
+    @include h2;
+  }
+}
+
+@mixin h3-containerised($container-name, $largest-container-size, $smallest-container-size) {
+  @include fluid-type-container(
+    $container-name,
+    $font-size-h3,
+    $font-size-h3-mobile,
+    $largest-container-size,
+    $smallest-container-size,
+    font-size
+  );
+  @include fluid-type-container(
+    $container-name,
+    $font-letter-spacing-h3,
+    $font-letter-spacing-h3-mobile,
+    $largest-container-size,
+    $smallest-container-size,
+    letter-spacing
+  );
+  @include common-heading-styles($font-line-height-h3);
+
+  @supports not (container-type: inline-size) {
+    @include h3;
+  }
+}
+
+@mixin h4-containerised($container-name, $largest-container-size, $smallest-container-size) {
+  @include fluid-type-container(
+    $container-name,
+    $font-size-h4,
+    $font-size-h4-mobile,
+    $largest-container-size,
+    $smallest-container-size,
+    font-size
+  );
+  @include fluid-type-container(
+    $container-name,
+    $font-letter-spacing-h4,
+    $font-letter-spacing-h4-mobile,
+    $largest-container-size,
+    $smallest-container-size,
+    letter-spacing
+  );
+  @include common-heading-styles($font-line-height-h4);
+
+  @supports not (container-type: inline-size) {
+    @include h4;
+  }
+}
+
+@mixin h5-containerised($container-name, $largest-container-size, $smallest-container-size) {
+  @include fluid-type-container(
+    $container-name,
+    $font-size-h5,
+    $font-size-h5-mobile,
+    $largest-container-size,
+    $smallest-container-size,
+    font-size
+  );
+  @include fluid-type-container(
+    $container-name,
+    $font-letter-spacing-h5,
+    $font-letter-spacing-h5-mobile,
+    $largest-container-size,
+    $smallest-container-size,
+    letter-spacing
+  );
+  @include common-heading-styles($font-line-height-h5);
+
+  @supports not (container-type: inline-size) {
+    @include h5;
+  }
+}
+
+@mixin h6-containerised($container-name, $largest-container-size, $smallest-container-size) {
+  @include fluid-type-container(
+    $container-name,
+    $font-size-h6,
+    $font-size-h6-mobile,
+    $largest-container-size,
+    $smallest-container-size,
+    font-size
+  );
+  @include fluid-type-container(
+    $container-name,
+    $font-letter-spacing-h6,
+    $font-letter-spacing-h6-mobile,
+    $largest-container-size,
+    $smallest-container-size,
+    letter-spacing
+  );
+  @include common-heading-styles($font-line-height-h6);
+
+  @supports not (container-type: inline-size) {
+    @include h6;
+  }
+}

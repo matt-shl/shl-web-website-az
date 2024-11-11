@@ -1,0 +1,6 @@
+.has--keyboard-focus {
+  *:focus {
+    outline: 2px solid var(--focus-theme-color, $color-light-blue);
+    outline-offset: 2px;
+  }
+}

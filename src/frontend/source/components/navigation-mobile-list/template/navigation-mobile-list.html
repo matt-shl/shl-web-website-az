@@ -1,0 +1,36 @@
+{% macro navigationMobileList(data) %}
+
+  <div class="c-navigation-mobile-list">
+    {% if data.header %}
+      <button class="navigation-mobile-list__anchor navigation-mobile-list__anchor--parent" aria-controls="{{ data.header.id }}" js-hook-mobile-nav-title>
+        {% svg 'icons/chevron-left' %}
+        {{ data.header.title }}
+      </button>
+    {% endif %}
+    <ul class="navigation-mobile-list__list">
+      {% for item in data.items %}
+        <li class="navigation-mobile-list__item">
+          {% set anchorClass = 'navigation-mobile-list__anchor ' + ('navigation-mobile-list__anchor--small' if data.parent else 'navigation-mobile-list__anchor--main' ) %}
+          {% if item.subitems %}
+            {% set modalId = 'navigation-mobile-' + (data.parent.id + '-' if data.parent) + item.id %}
+            <button class="{{ anchorClass }}" aria-controls="{{ modalId }}">
+              {{ item.title }}
+              {% svg 'icons/chevron-right' %}
+            </button>
+          {% else %}
+            <a title="{{ item.title }}" href="{{ item.url }}" class="{{ anchorClass }}" {{ 'js-hook-mobile-nav-sub-item-anchor' if data.parent else 'js-hook-mobile-nav-main-item-anchor' }}>
+              {{ item.title }}
+            </a>
+          {% endif %}
+        </li>
+      {% endfor %}
+
+      {% if data.all %}
+        <li>
+          <a class="navigation-mobile-list__anchor navigation-mobile-list__anchor--all" href="{{ data.all.url }}" js-hook-mobile-nav-sub-item-anchor>{{ data.all.title }}</a>
+        </li>
+      {% endif %}
+    </ul>
+  </div>
+
+{% endmacro %}

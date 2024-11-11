@@ -1,0 +1,104 @@
+.c-card-icon {
+  @include card-base;
+}
+
+.c-card-icon--has-url {
+  //Remove annoying small colored corner on hover
+  @include hover-focus {
+    .card-icon__container {
+      border-end-end-radius: 0;
+    }
+  }
+}
+
+.card-icon__container {
+  @include card-container-base;
+  @include theme-card;
+
+  .c-card-icon & {
+  }
+}
+
+.card-icon__icon {
+  @include fluid-type-container(
+    card,
+    5.6rem,
+    2.4rem,
+    $card-container-size-lg,
+    $card-container-size-sm,
+    'height'
+  );
+  @include fluid-type-container(
+    card,
+    5.6rem,
+    2.4rem,
+    $card-container-size-lg,
+    $card-container-size-sm,
+    'width'
+  );
+
+  @supports not (container-type: inline-size) {
+    @include screen-md-and-bigger {
+      height: 5.6rem;
+      width: 5.6rem;
+    }
+  }
+
+  svg {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.card-icon__title {
+  @include h4-containerised(card, $card-container-size-lg, $card-container-size-sm);
+  margin-top: auto;
+  transition: color var(--card-animation-duration) var(--card-animation-ease);
+}
+
+.card-icon__content {
+  @include truncate-text(4);
+  padding-top: 16px;
+  // When the card has a URL, the font size is smaller; starts at 18px
+  .c-card-icon--has-url & {
+    @include screen-md-and-bigger {
+      max-height: 0;
+      opacity: 0;
+      transition: var(--card-animation-duration) var(--card-animation-ease);
+      transition-property: opacity, max-height, padding-top;
+      padding-top: 0;
+    }
+
+    @include fluid-type-container(
+      card,
+      $font-size-body-l,
+      $font-size-body-s,
+      $card-container-size-lg,
+      $card-container-size-sm,
+      font-size
+    );
+  }
+
+  // When the card does not have a URL, the font size is larger; starts at 20px
+  &:not(.c-card-icon--has-url &) {
+    @include fluid-type-container(
+      card,
+      $font-size-body-xl,
+      $font-size-body-s,
+      $card-container-size-lg,
+      $card-container-size-sm,
+      font-size
+    );
+  }
+
+  .c-card-icon--has-url:hover & {
+    // Shows max 4 lines
+    padding-top: 16px;
+    max-height: calc(1em * #{$font-line-height-body-m} * 4 + 16px);
+    opacity: 1;
+  }
+
+  @supports not (container-type: inline-size) {
+    @include body-m;
+  }
+}

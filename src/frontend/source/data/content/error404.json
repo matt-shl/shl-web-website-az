@@ -1,0 +1,30 @@
+{
+  "hero": {
+    "title": "404"
+  },
+  "content": {
+    "title": "We can't find the page you're looking for,<br/>here's what you can do",
+    "content": "<ul><li>Check the URL for typos</li><li>Go back to the previous page</li><li>Visit our homepage</li></ul>",
+    "cta1": {
+      "label": "Homepage",
+      "href": "#"
+    },
+    "cta2": {
+      "label": "Get in touch",
+      "icon": "",
+      "href": "#"
+    }
+  },
+  "textMedia": {
+    "theme": "t-pastel-green",
+    "title": "Introducing the Electronic Motorized Autoinjector",
+    "description": "It's new, it's revolutionary, and it's here. Our flagship product Molly® is now available as an Electronic Motorized Autoinjector (EMAI).",
+    "image": {
+      "caption": "image caption example"
+    },
+    "cta1": {
+      "label": "Discover the power of EMAI",
+      "url": "#"
+    }
+  }
+}

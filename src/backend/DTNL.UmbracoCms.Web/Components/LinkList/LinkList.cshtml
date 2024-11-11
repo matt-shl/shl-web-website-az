@@ -1,0 +1,21 @@
+@using DTNL.UmbracoCms.Web.Components
+@model DTNL.UmbracoCms.Web.Components.LinkList
+
+@if (Model.Links.Count == 0)
+{
+    return;
+}
+
+<div class="c-link-list @Model.CssClasses">
+    <ul class="link-list__list">
+        @foreach(Link link in Model.Links)
+        {
+            <li class="link-list__item">
+                <a class="link-list__anchor" href="@link.Url">
+                    @link.Label
+                    <svg src="@link.IconPath" />
+                </a>                
+            </li>
+        }
+    </ul>
+</div>

@@ -1,0 +1,46 @@
+@using DTNL.UmbracoCms.Web.Components
+@using DTNL.UmbracoCms.Web.Helpers.Aliases
+@using DTNL.UmbracoCms.Web.Helpers.Extensions
+@using Umbraco.Cms.Core.Dictionary
+
+@model DTNL.UmbracoCms.Web.Components.Navigation
+
+@inject ICultureDictionary CultureDictionary
+
+<nav class="c-navigation-desktop" js-hook-navigation-desktop title=" @CultureDictionary.GetTranslation(TranslationAliases.Navigation.MainNavigation)">
+
+    <ul class="navigation-desktop__list">
+        @foreach (NavigationItem item in Model.Items)
+        {
+            <li class="navigation-desktop__list-item" js-hook-navigation-desktop-item>
+                @if (item.SubItems.Count > 0)
+                {
+                    <button class="navigation-desktop__item" js-hook-navigation-desktop-anchor aria-expanded="false" aria-controls="flyout-@item.Id">
+                        @item.Link.Label
+                    </button>
+
+                    <partial name="Navigation/Flyout" model="@item" />
+                }
+                else
+                {
+                    <a href="@item.Link.Url"
+                       target="@item.Link.Target"
+                       class="navigation-desktop__item"
+                       js-hook-navigation-desktop-anchor>
+                        @item.Link.Label
+                    </a>
+                }
+            </li>
+        }
+
+        <li class="navigation-desktop__list-item" js-hook-navigation-desktop-item>
+            <button class="navigation-desktop__item navigation-desktop__item--search"
+                    js-hook-navigation-desktop-anchor aria-expanded="false" aria-controls="flyout-search">
+                <svg src="@SvgAliases.Icons.Search" />
+                <span class="u-sr-only" asp-translation="@TranslationAliases.Search.OpenSearch"></span>
+            </button>
+
+            <partial name="FlyoutSearch" model="@Model.SearchFlyout" />
+        </li>
+    </ul>
+</nav>

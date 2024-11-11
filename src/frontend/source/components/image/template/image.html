@@ -1,0 +1,102 @@
+{#
+Image macro
+
+data {
+  classes?: string
+  backgroundColor?: 'hexColor' | 'rgba()'
+  aspect?: number[]
+  hidden?: boolean
+  objectFit?: boolean
+  attr?: 'string
+  caption?: string
+  alt: string
+  fetchPriority?: 'high' | 'low' | 'auto'
+
+  // Using <picture> element
+  imageStyle?: string // Option in data/images/styles/${style}.json
+
+  // Using legacy <img /> element
+  preload?: string
+  image?: string
+  srcset?: string
+}
+#}
+
+{# !! Note: keep prefix 'modal-video-' the same as in video-modal.html #}
+
+{% from 'card-overlay.html' import cardOverlay %}
+
+{% macro image(data) %}
+  {% set fetchPriority = data.fetchPriority if (data.fetchPriority in ["high", "low", "auto"]) else undefined %}
+
+  <figure class="c-image
+    {{ data.classes if data.classes }} {{ 'image--is-loaded' if fetchPriority }}"
+    {%- if data.attr %} {{ data.attr|safe }}{% endif -%}
+    {%- if data.hidden %} aria-hidden="true"{% endif %}
+    {%- if data.objectFit %} js-hook-objectfit{% endif -%}>
+
+    {% set showPreload = data.showPreload if data.showPreload == false else true %}
+    {% set imageStyle = global.images.styles[(data.imageStyle or 'default')] %}
+    {% set breakpoints = imageStyle.breakpoints %}
+    {% set aspect = imageStyle.aspect or data.aspect or [16, 9] %}
+
+    {% set element = "button" if data.video else "div" %}
+    {% set attr = "aria-label='" + global.resource.common.openVideoModal + "' aria-controls='modal-video-" + data.video.id + "'" if data.video else "" %}
+
+    <{{ element }} class="image__holder" {{ attr | safe }}>
+      {% if data.srcset or data.image %}
+        <img class="image__default"
+          {%- if data.preload %} src="{{ data.preload }}" {% endif -%}
+          {%- if showPreload and not data.preload %} src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 {{ aspect[0] }} {{ aspect[1] }}'/%3E" {% endif -%}
+          {{ 'src' if fetchPriority else 'data-src' }}="{{ data.image }}"
+          {%- if data.srcset %} {{ 'srcset' if fetchPriority else 'data-srcset' }}="{{ data.srcset }}" {% endif -%}
+          {%- if fetchPriority %} fetchpriority="{{ fetchPriority }}" {% endif -%}
+          alt="{{ data.alt or 'Image' }}"
+        />
+      {% else %}
+        <picture>
+          {%- for size, breakpoint in breakpoints -%}
+            {%- set breakpointConfig = global.images.breakpoints[size] -%}
+            {%- set pixelDensity = breakpointConfig.pixelDensity or [1] -%}
+            {%- set mqStart = ('(min-width: ' + breakpointConfig.start + 'px)') if breakpointConfig.start %}
+            {%- set mqEnd = ('(max-width: ' + breakpointConfig.end + 'px)') if breakpointConfig.end and not loop.last %}
+            {%- set hasCustomSource = data.sources[size] -%}
+            {%- set placeholderUrl = [] %}
+            {% for density in pixelDensity %}
+              {%- set placeholderUrl = (placeholderUrl.push("https://satyr.dev/" + breakpoint[0]*density + "x" + (breakpoint[1]*density if breakpoint[1] else aspect|join(':')) + (('/' + data.backgroundColor|replace("#", "")) if data.backgroundColor) + " " + density + "x"), placeholderUrl) -%}
+            {% endfor  %}
+            <source {{ 'srcset' if fetchPriority else 'data-srcset' }}="{{- hasCustomSource or placeholderUrl|join(',') -}}"
+              media="{{- mqStart -}} {{- ' and ' if (mqEnd and mqStart and not loop.last) -}} {{- mqEnd -}}" type="image/jpeg"/>
+          {%- endfor %}
+          <img class="image__default" alt="{{ data.alt or 'Image' }}"
+            {%- if data.preload %} src="{{ data.preload }}" {% endif -%}
+            {%- if showPreload and not data.preload %} src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 {{ aspect[0] }} {{ aspect[1] }}'/%3E" {% endif -%}
+            {%- if fetchPriority %} fetchpriority="{{ fetchPriority }}" {% endif -%}
+          />
+        </picture>
+      {% endif %}
+
+      {% if data.video %}
+        {{ cardOverlay({
+          classes: "image__card-overlay",
+          video: {
+            id: data.video.id,
+            totalTime: data.video.totalTime
+          },
+          position: 'start',
+          visible: true
+        }) }}
+      {% endif %}
+    </{{ element }}>
+
+    {%- if data.caption %}
+    <figcaption class="image__caption">
+      {{ data.caption }}
+    </figcaption>
+    {% endif -%}
+
+  </figure>
+
+{% endmacro %}
+
+

@@ -1,0 +1,21 @@
+{% set knowledgeOverviewData = global.content.knowledgeOverviewPage %}
+{% set footerScrollingText = knowledgeOverviewData.footerScrollingText %}
+
+{% extends 'layouts/default.html' %}
+
+{% from 'hero-content.html' import heroContent %}
+{% from 'media-section.html' import mediaSection %}
+{% from 'section-card-carousel.html' import sectionCardCarousel %}
+{% from 'text-media.html' import textMedia %}
+{% from 'rich-text.html' import richText %}
+
+{% block hero %}
+  {{ heroContent(knowledgeOverviewData.hero) }}
+{% endblock %}
+
+{% block content %}
+
+  {{ sectionCardCarousel(knowledgeOverviewData.icon) }}
+  {{ textMedia(knowledgeOverviewData.textMedia) }}
+  {{ sectionCardCarousel(knowledgeOverviewData.related) }}
+{% endblock %}

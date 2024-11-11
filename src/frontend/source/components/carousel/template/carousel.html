@@ -1,0 +1,49 @@
+{% from 'button.html' import button %}
+{% from 'image.html' import image %}
+
+{% macro carousel(data) %}
+  <div class="c-carousel
+{%- if data.classes %} {{ data.classes }}{% endif %}
+{%- if data.mobileOnly %} carousel--mobile-only{% endif %}"
+{%- if data.extendHook %} js-hook-carousel-{{ data.extendHook }} {% else %} js-hook-carousel{% endif %}
+    {%- if data.id %} id="{{ data.id }}"{% endif %}
+    {%- if data.isRTL %} dir="rtl" {% endif %}
+    {%- if data.slidesMobile %} data-slides-mobile="{{ data.slidesMobile }}"{% endif %}
+    {%- if data.slidesMobilePlus %} data-slides-mobile-plus="{{ data.slidesMobilePlus }}"{% endif %}
+    {%- if data.slidesTabletPortrait %} data-slides-tablet-portrait="{{ data.slidesTabletPortrait }}"{% endif %}
+    {%- if data.slidesTabletLandscape %} data-slides-tablet-landscape="{{ data.slidesTabletLandscape }}"{% endif %}
+    {%- if data.slidesLaptop %} data-slides-laptop="{{ data.slidesLaptop }}"{% endif %}
+    {%- if data.slidesDesktop %} data-slides-desktop="{{ data.slidesDesktop }}"{% endif %}
+
+    {%- if data.spaceBetweenMobile %} data-space-between-mobile="{{ data.spaceBetweenMobile }}"{% endif %}
+    {%- if data.spaceBetweenMobilePlus %} data-space-between-mobile="{{ data.spaceBetweenMobilePlus }}"{% endif %}
+    {%- if data.spaceBetweenTabletPortrait %} data-space-between-tablet-portrait="{{ data.spaceBetweenTabletPortrait }}"{% endif %}
+    {%- if data.spaceBetweenTabletLandscape %} data-space-between-tablet-landscape="{{ data.spaceBetweenTabletLandscape }}"{% endif %}
+    {%- if data.spaceBetweenLaptop %} data-space-between-laptop="{{ data.spaceBetweenLaptop }}"{% endif %}
+    {%- if data.spaceBetweenDesktop %} data-space-between-desktop="{{ data.spaceBetweenDesktop }}"{% endif %}
+
+    {%- if data.autoHeight %} data-auto-height="{{ data.autoHeight }}"{% endif %}
+    {%- if data.disableSwipingTabletPortraitAndBigger %} data-disable-swiping-tablet-portrait-bigger="{{ data.disableSwipingTabletPortraitAndBigger }}"{% endif %}
+    {%- if data.mobileOnly %} data-mobile-only="{{ data.mobileOnly }}"{% endif %}>
+
+    <div
+      class="carousel__wrapper swiper-wrapper {%- if data.customWrapperClass %} {{ data.customWrapperClass }}{% endif %}"
+      js-hook-inview>
+      {{ caller() }}
+    </div>
+
+    <div
+      class="carousel__footer">
+
+      {% if data.pagination %}
+        <div class="carousel__pagination"></div>
+      {% endif %}
+
+    </div>
+
+    {% if data.scrollbar %}
+      <div class="carousel__scrollbar swiper-scrollbar"></div>
+    {% endif %}
+
+  </div>
+{% endmacro %}

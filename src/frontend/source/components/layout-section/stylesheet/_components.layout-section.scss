@@ -1,0 +1,133 @@
+:root {
+  --layout-section-gap-min-value: 24; // mobile gap value
+  --layout-section-gap: 24; // fallback value
+}
+
+@mixin layout-section-border-style {
+  border-radius: $radii-20;
+  overflow: hidden;
+
+  @include screen-md-and-bigger {
+    border-radius: $radii-40;
+  }
+}
+
+.c-layout-section {
+  @include theme;
+  @include layout-section-border-style;
+
+  margin-block: $spacing-80;
+
+  &:not(.t-white):not(&--in-grid):first-of-type {
+    margin-top: 0;
+  }
+
+  &:not(.t-white):not(&--in-grid):last-of-type {
+    margin-bottom: 0;
+  }
+
+  &--in-grid {
+    @include container;
+    background-color: transparent;
+  }
+
+  &--no-padding:first-of-type {
+    margin-top: 0;
+  }
+}
+
+.layout-section__inner {
+  padding-block: $spacing-40;
+  overflow: hidden;
+
+  .c-layout-section.u-overflow-visible & {
+    overflow: visible;
+  }
+
+  .c-layout-section--in-grid & {
+    @include theme;
+    @include layout-section-border-style;
+    padding-block: $spacing-24;
+  }
+
+  .c-layout-section.t-white &,
+  .c-layout-section--no-padding & {
+    padding-block: 0;
+  }
+
+  @include screen-md-and-bigger {
+    padding-block: $spacing-80;
+
+    .c-layout-section--reduce-margin-top & {
+      padding-top: $spacing-40;
+    }
+
+    .c-layout-section--reduce-margin-bottom & {
+      padding-bottom: $spacing-40;
+    }
+
+    .c-layout-section--reduce-margin-top-bottom &,
+    .c-layout-section--grid & {
+      padding-block: $spacing-40;
+    }
+  }
+
+  @include screen-lg-and-bigger {
+    .c-layout-section--in-grid & {
+      padding-block: $spacing-80;
+    }
+  }
+}
+
+.layout-section__container {
+  @include container;
+  display: flex;
+  flex-direction: column;
+
+  .c-layout-section--in-grid & {
+    --container-padding: #{$spacing-24};
+  }
+
+  .c-layout-section--no-padding & {
+    padding-inline: 0;
+  }
+
+  @include screen-sm-and-smaller {
+    .c-layout-section--no-padding-inline-mobile & {
+      padding-inline: 0;
+    }
+  }
+
+  @include screen-lg-and-bigger {
+    .c-layout-section--in-grid & {
+      --container-padding: #{$spacing-80};
+    }
+  }
+}
+
+.layout-section__wrapper {
+  width: 100%;
+
+  &--list {
+    all: unset;
+    list-style: none;
+  }
+
+  .c-layout-section--grid-single-column &,
+  .c-layout-section--grid & {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-16;
+  }
+
+  .c-layout-section--grid & {
+    @include screen-md-and-bigger {
+      grid-template-columns: repeat(2, 1fr);
+      gap: $spacing-80 $spacing-16;
+    }
+
+    @include screen-lg-and-bigger {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}

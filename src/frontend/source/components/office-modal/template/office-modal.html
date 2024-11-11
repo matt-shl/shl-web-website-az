@@ -1,0 +1,60 @@
+{% from 'modal.html' import modal %}
+{% from 'button.html' import button %}
+{% from 'image.html' import image %}
+
+{% macro officeModal(data) %}
+  {% call modal({
+    size: 'aside',
+    id : 'map-office-' + data.id,
+    title: data.city,
+    keepScrollPosition: true,
+    closeAllOthers: true
+  }) %}
+
+    <div class="c-office-modal t-white">
+      {% if data.image %}
+        {{ image({
+          classes: 'office-modal__image',
+          objectFit: true,
+          imageStyle: 'office-modal'
+        }) }}
+      {% endif %}
+
+      {% if data.address %}
+        <div class="office-modal__address">
+          {% svg 'icons/location' %}
+          <div>{{ data.address | safe }}</div>
+        </div>
+      {% endif %}
+
+      {% if data.email %}
+        <div class="office-modal__email">
+          {% svg 'icons/email' %}
+          <div>{{ data.email | safe }}</div>
+        </div>
+      {% endif %}
+
+      {% if data.phone %}
+        <div class="office-modal__phone">
+          {% svg 'icons/phone' %}
+          <div>{{ data.phone | safe }}</div>
+        </div>
+      {% endif %}
+
+      {% if data.description %}
+        <p class="office-modal__description">{{ data.description }}</p>
+      {% endif %}
+
+      {% if data.cta %}
+        {{ button({
+          class: 'office-modal__cta',
+          label: data.cta.label,
+          url: data.cta.url,
+          variant: data.cta.variant,
+          icon: data.cta.icon or 'arrow-top-right'
+        }) }}
+      {% endif %}
+    </div>
+
+  {% endcall %}
+{% endmacro %}

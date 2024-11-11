@@ -1,0 +1,13 @@
+{
+  "extends": "./node_modules/dept-builder/config/typescript/base.json",
+  "include": ["./source", "./types"],
+  "exclude": ["node_modules", "*/.spec.tsx", "*/.spec.ts"],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@utilities/*": ["./source/utilities/*"],
+      "@components/*": ["./source/components/*"],
+      "@/*": ["./source/*"]
+    }
+  }
+}

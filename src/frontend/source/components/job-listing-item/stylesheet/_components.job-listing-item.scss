@@ -1,0 +1,97 @@
+.c-job-listing-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: $spacing-16;
+  padding: $spacing-24;
+  background-color: var(--job-listing-item-bg-color, $color-pale-blue);
+  color: var(--job-listing-item-color, $color-dark-blue);
+  border-radius: $radii-4;
+  transition: 300ms ease-out;
+  transition-property: background-color, color, border-radius;
+
+  @include screen-lg-and-bigger {
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+
+    @include hover-focus(false) {
+      border-radius: $radii-12;
+      background-color: var(--job-listing-item-bg-color-hover, $color-light-blue);
+      color: var(--job-listing-item-color-hover, $color-white);
+
+      .job-listing-item__tag {
+        background-color: var(--job-listing-item-tag-bg-color-hover, $color-light-blue);
+      }
+
+      .job-listing-item__tag--icon {
+        display: inline-flex;
+        transform: scale3d(1, 1, 1);
+        opacity: 1;
+      }
+
+      .job-listing-item__right-container {
+        transform: translateX(0);
+      }
+    }
+  }
+}
+
+.job-listing-item__title {
+  @include h6;
+  margin-right: auto;
+}
+
+.job-listing-item__location {
+  font-weight: $font-weight-bold;
+}
+
+.job-listing-item__right-container {
+  transition: 300ms ease-out;
+  transition-property: transform;
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-16;
+
+  @include screen-lg-and-bigger {
+    transform: translateX(48px);
+  }
+}
+
+.job-listing-item__tags-container {
+  display: flex;
+  gap: $spacing-8;
+
+  @include screen-md-and-smaller {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+}
+
+.job-listing-item__tag {
+  display: inline-flex;
+  line-height: 1;
+  background-color: var(--job-listing-item-tag-bg-color, $color-white);
+  color: var(--job-listing-item-color, $color-dark-blue);
+  transition: 300ms ease-out;
+
+  &--text {
+    transition-property: background-color;
+    padding: $spacing-12 $spacing-16;
+    border-radius: $radii-40;
+  }
+
+  &--icon {
+    transition: 300ms ease-out;
+    transition-property: transform, opacity, background-color;
+    opacity: 0;
+    transform: scale3d(0.3, 0.3, 1);
+    padding: $spacing-12;
+    border-radius: $radii-full;
+
+    @include screen-md-and-smaller {
+      display: none;
+    }
+  }
+}

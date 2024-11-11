@@ -1,0 +1,30 @@
+@model DTNL.UmbracoCms.Web.Components.FormElements.Radio
+
+<div class="c-radio form__item
+        @(Model.Horizontal ? "radio--horizontal" : null)
+        @(!Model.Class.IsNullOrEmpty() ? Model.Class : null)
+        @(Model.Disabled ? "form__item--disabled" : null)">
+
+    <div class="radio__wrapper">
+        @foreach (var option in Model.Options)
+        {
+            <input class="radio__input u-sr-only"
+                   type="radio"
+                   name="@Model.Name"
+                   value="@option.Value"
+                   id="@option.Id"
+            @(Model.Required ? Html.Attribute("required", "required") : null)
+            @(Model.Disabled ? Html.Attribute("disabled", "disabled") : null)
+            @(option.Checked ? Html.Attribute("checked", "checked") : null)
+            @(!option.Validate.IsNullOrEmpty() ? Html.Attribute("data-validate", option.Validate) : null)
+            @Html.Attribute(option.Hook?.EnsureStartsWith("js-hook-"))
+            @(Model.Attributes is not null ? Html.Attributes(option.Attributes) : null)>
+            <label class="radio__label" for="@option.Id" role="button">
+                @option.Label
+                <span class="radio__focus-helper"></span>
+            </label>
+        }
+    </div>
+    <div id="@(Model.Name)_error" class="form__item-error @(Model.Error.IsNullOrEmpty() ? "u-hidden" : null)">@Model.Error</div>
+
+</div>

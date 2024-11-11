@@ -1,0 +1,12 @@
+{% macro slogan(data) %}
+<div class="c-slogan
+ {%- if data.variant %} c-slogan--{{ data.variant }}{% endif %}"
+ {%- if data.classes %} {{ data.classes }}{% endif %}"
+  {{ 'js-hook-slogan-on-scroll' if data.animateOnScroll else 'js-hook-slogan' }} role="presentation">
+  <div class="slogan__inner marquee-inner">
+    <div class="slogan__content marquee-content" js-hook-slogan-content>
+      <span class="slogan__text-fill">{{ data.text }}</span>
+    </div>
+  </div>
+</div>
+{% endmacro %}

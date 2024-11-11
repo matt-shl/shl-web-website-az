@@ -1,0 +1,79 @@
+/*----------------------------------------------------*\
+  #COLORS, use the scss variables in your stylesheets
+\*----------------------------------------------------*/
+
+$color-black: var(--color-black);
+$color-black-rgb: var(--color-black-rgb);
+$color-grey: var(--color-grey);
+$color-medium-grey: var(--color-medium-grey);
+$color-light-grey: var(--color-light-grey);
+$color-white: var(--color-white);
+$color-white-rgb: var(--color-white-rgb);
+$color-dark-blue: var(--color-dark-blue);
+$color-dark-blue-rgb: var(--color-dark-blue-rgb);
+$color-pale-blue: var(--color-pale-blue);
+$color-light-blue: var(--color-light-blue);
+$color-lightest-blue: var(--color-lightest-blue);
+$color-pastel-blue: var(--color-pastel-blue);
+$color-blue: var(--color-blue);
+$color-bright-blue: var(--color-bright-blue);
+$color-dark-pink: var(--color-dark-pink);
+$color-dark-pink-rgb: var(--color-dark-pink-rgb);
+$color-lightest-pink: var(--color-lightest-pink);
+$color-lightest-pink-rgb: var(--color-lightest-pink-rgb);
+$color-pale-pink: var(--color-pale-pink);
+$color-pale-pink-rgb: var(--color-pale-pink-rgb);
+$color-dark-green: var(--color-dark-green);
+$color-dark-green-rgb: var(--color-dark-green-rgb);
+$color-pale-green: var(--color-pale-green);
+$color-pale-green-rgb: var(--color-pale-green-rgb);
+$color-pastel-green: var(--color-pastel-green);
+$color-dark-yellow: var(--color-dark-yellow);
+$color-dark-yellow-rgb: var(--color-dark-yellow-rgb);
+$color-pale-yellow: var(--color-pale-yellow);
+$color-lightest-yellow: var(--color-lightest-yellow);
+$color-lightest-yellow-rgb: var(--color-lightest-yellow-rgb);
+$color-darkest-yellow: var(--color-darkest-yellow);
+$color-darkest-yellow-rgb: var(--color-darkest-yellow-rgb);
+$color-red: var(--color-red);
+$color-green: var(--color-green);
+
+:root {
+  --color-black-rgb: 0, 0, 0;
+  --color-black: rgb(var(--color-black-rgb));
+  --color-dark-grey: #6d6d6d;
+  --color-grey: #bbbdbf;
+  --color-medium-grey: #e6e7e8;
+  --color-light-grey: #f6f6f6;
+  --color-white-rgb: 255, 255, 255;
+  --color-white: rgb(var(--color-white-rgb));
+  --color-dark-blue-rgb: 6, 47, 84;
+  --color-dark-blue: rgb(var(--color-dark-blue-rgb));
+  --color-blue: #15628e;
+  --color-bright-blue: #42b4e5;
+  --color-pale-blue: #baedf3;
+  --color-light-blue: #007cbe;
+  --color-lightest-blue: #e3f8fa;
+  --color-pastel-blue: #f3f9f8;
+  --color-dark-pink-rgb: 102, 41, 73;
+  --color-dark-pink: rgb(var(--color-dark-pink-rgb));
+  --color-lightest-pink-rgb: 254, 232, 249;
+  --color-lightest-pink: rgb(var(--color-lightest-pink-rgb));
+  --color-pale-pink-rgb: 252, 197, 240;
+  --color-pale-pink: rgb(var(--color-pale-pink-rgb));
+  --color-dark-green-rgb: 10, 95, 90;
+  --color-dark-green: rgb(var(--color-dark-green-rgb));
+  --color-pale-green-rgb: 164, 234, 212;
+  --color-pale-green: rgb(var(--color-pale-green-rgb));
+  --color-pastel-green: #e5f9f7;
+  --color-dark-yellow-rgb: 129, 84, 26;
+  --color-dark-yellow: rgb(var(--color-dark-yellow-rgb));
+  --color-darkest-yellow-rgb: 113, 73, 20;
+  --color-darkest-yellow: rgb(var(--color-darkest-yellow-rgb));
+  --color-pale-yellow: #fef1d1;
+  --color-lightest-yellow-rgb: 255, 249, 237;
+  --color-lightest-yellow: rgb(var(--color-lightest-yellow-rgb));
+  --color-error: #f12020;
+  --color-red: #f12020;
+  --color-green: #00b612;
+}

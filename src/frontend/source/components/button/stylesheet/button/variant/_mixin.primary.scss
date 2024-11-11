@@ -1,0 +1,7 @@
+@mixin button--primary {
+  --button-font-color: var(--button-primary-font-color, #{$color-white});
+  --button-background-color: var(--button-primary-background-color, #{$color-dark-blue});
+  --button-border-color: var(--button-primary-border-color, #{$color-dark-blue});
+
+  @include button;
+}
