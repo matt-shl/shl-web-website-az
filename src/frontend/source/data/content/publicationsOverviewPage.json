@@ -85,7 +85,6 @@
               "value": "business",
               "id": "filter-business",
               "checked": false,
-              "attr": "data-url-replacement='replacement-url.html?customExampleValue=wowowow' data-endpoint='__api-response--filters-no-results.html'",
               "hook": "filters-input"
             },
             {
@@ -93,7 +92,6 @@
               "value": "innovation",
               "id": "filter-innovation",
               "checked": false,
-              "attr": "data-url-replacement='replacement-url.html?customExampleValue=wowowow' data-endpoint='__api-response--filters-no-results.html'",
               "hook": "filters-input"
             },
             {
@@ -101,7 +99,6 @@
               "value": "donations",
               "id": "filter-donations",
               "checked": false,
-              "attr": "data-url-replacement='replacement-url.html?customExampleValue=wowowow' data-endpoint='__api-response--filters-no-results.html'",
               "hook": "filters-input"
             },
             {
@@ -109,7 +106,6 @@
               "value": "support",
               "id": "filter-support",
               "checked": false,
-              "attr": "data-url-replacement='replacement-url.html?customExampleValue=wowowow' data-endpoint='__api-response--filters-no-results.html'",
               "hook": "filters-input"
             },
             {
@@ -117,7 +113,6 @@
               "value": "vision",
               "id": "filter-vision",
               "checked": false,
-              "attr": "data-url-replacement='replacement-url.html?customExampleValue=wowowow' data-endpoint='__api-response--filters-no-results.html'",
               "hook": "filters-input"
             }
           ]
@@ -131,7 +126,6 @@
               "value": "0-5-minutes",
               "id": "filter-0-5-minutes",
               "checked": false,
-              "attr": "data-url-replacement='replacement-url.html?customExampleValue=wowowow' data-endpoint='__api-response--filters.html'",
               "hook": "filters-input"
             },
            {
@@ -139,7 +133,6 @@
               "value": "5-10-minutes",
               "id": "filter-5-10-minutes",
               "checked": false,
-              "attr": "data-url-replacement='replacement-url.html?customExampleValue=wowowow' data-endpoint='__api-response--filters.html'",
               "hook": "filters-input"
             },
             {
@@ -147,7 +140,6 @@
               "value": "10-15-minutes",
               "id": "filter-10-15-minutes",
               "checked": false,
-              "attr": "data-url-replacement='replacement-url.html?customExampleValue=wowowow' data-endpoint='__api-response--filters.html'",
               "hook": "filters-input"
             },
             {
@@ -155,7 +147,6 @@
               "value": "15-20-minutes",
               "id": "filter-15-20-minutes",
               "checked": false,
-              "attr": "data-url-replacement='replacement-url.html?customExampleValue=wowowow' data-endpoint='__api-response--filters.html'",
               "hook": "filters-input"
             },
             {
@@ -163,7 +154,6 @@
               "value": "20+-minutes",
               "id": "filter-20+-minutes",
               "checked": false,
-              "attr": "data-url-replacement='replacement-url.html?customExampleValue=wowowow' data-endpoint='__api-response--filters.html'",
               "hook": "filters-input"
             }
           ]
@@ -177,7 +167,6 @@
             "value": "switzerland",
             "id": "filter-switzerland",
             "checked": false,
-            "attr": "data-url-replacement='replacement-url.html?customExampleValue=wowowow' data-endpoint='__api-response--filters.html'",
             "hook": "filters-input"
            },
            {
@@ -185,7 +174,6 @@
             "value": "germany",
             "id": "filter-germany",
             "checked": false,
-            "attr": "data-url-replacement='replacement-url.html?customExampleValue=wowowow' data-endpoint='__api-response--filters.html'",
             "hook": "filters-input"
            },
            {
@@ -193,7 +181,6 @@
             "value": "taiwan",
             "id": "filter-taiwan",
             "checked": false,
-            "attr": "data-url-replacement='replacement-url.html?customExampleValue=wowowow' data-endpoint='__api-response--filters.html'",
             "hook": "filters-input"
            },
            {
@@ -201,7 +188,6 @@
             "value": "sweden",
             "id": "filter-sweden",
             "checked": false,
-            "attr": "data-url-replacement='replacement-url.html?customExampleValue=wowowow' data-endpoint='__api-response--filters.html'",
             "hook": "filters-input"
            }
           ]

@@ -1,0 +1,36 @@
+@using DTNL.UmbracoCms.Web.Components
+@model DTNL.UmbracoCms.Web.Components.ContactForm
+
+<div class="c-contact-block">
+    <div class="contact-block__col contact-block__col--content">
+        <h2 class="contact-block__title" asp-if="@Model.Title">@Model.Title</h2>
+
+        <div class="contact-block__content">
+            <div class="contact-block__description" asp-if="@Model.Text">@Html.Raw(Model.Text)</div>
+
+            <div class="contact-block__items">
+                @foreach (ContactFormItem item in Model.Items)
+                {
+                    <div class="contact-block__item">
+                        <svg src="@item.IconPath" />
+
+                        <div class="contact-block__item-text">
+                            <p><strong>@item.Title</strong></p>
+                            <p>@item.SubTitle</p>
+                            <div class="contact-block__item-content">
+                                <strong>@Html.Raw(item.Text)</strong>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    @if (Model.PardotContactForm is not null)
+    {
+        <div class="contact-block__col contact-block__col--form t-light-grey">
+            <partial name="PardotForm" model="@Model.PardotContactForm" />
+        </div>
+    }
+</div>

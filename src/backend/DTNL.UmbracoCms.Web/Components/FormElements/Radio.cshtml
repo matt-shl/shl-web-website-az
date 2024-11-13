@@ -15,7 +15,7 @@
                    id="@option.Id"
             @(Model.Required ? Html.Attribute("required", "required") : null)
             @(Model.Disabled ? Html.Attribute("disabled", "disabled") : null)
-            @(option.Checked ? Html.Attribute("checked", "checked") : null)
+            @(option.IsChecked ? Html.Attribute("checked", "checked") : null)
             @(!option.Validate.IsNullOrEmpty() ? Html.Attribute("data-validate", option.Validate) : null)
             @Html.Attribute(option.Hook?.EnsureStartsWith("js-hook-"))
             @(Model.Attributes is not null ? Html.Attributes(option.Attributes) : null)>

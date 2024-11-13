@@ -11,10 +11,10 @@ public class Downloads
 
     public required List<DownloadItem> Items { get; set; }
 
-    public static Downloads? Create(NestedBlockDownloads downloads)
+    public static Downloads? Create(NestedBlockDownloads downloads, SiteSettings? settings)
     {
-        List<DownloadItem> downloadItems = downloads.DownloadsList
-            .Using(block => DownloadItem.Create(block.Content))
+        List<DownloadItem> downloadItems = downloads.Items
+            .Using(block => DownloadItem.Create(block.Content, settings))
             .ToList();
 
         if (downloadItems.Count == 0)

@@ -1,10 +1,11 @@
 import Events from '@/utilities/events'
+import Environment from "@utilities/environment";
 
 export type GTMEntry = Record<string, any>
 
-const BUTTON_SELECTOR = '*[class^="c-button"]:not(.button--icon-only)'
-const SECTION_SELECTOR = '[js-hook-section],*[class^="c-hero"],.c-event-detail'
-const HERO_SELECTOR = '*[class^="c-hero"]'
+const BUTTON_SELECTOR = '*[class*="c-button"]:not(.button--icon-only)'
+const SECTION_SELECTOR = '[js-hook-section],*[class*="c-hero"],.c-event-detail'
+const HERO_SELECTOR = '*[class*="c-hero"]'
 const TITLE_ELEMENTS = 'h1,h2,h3,h4,h5,h6'
 const APPLY_SELECTOR = '[js-hook-apply]'
 const JS_HOOK_SENIORITY = '[js-hook-job-listing-seniority]'
@@ -13,10 +14,13 @@ const JS_HOOK_EMPLOYMENT = '[js-hook-job-listing-employment]'
 class GTM {
   private buttons: HTMLElement[]
   private applyButtons: HTMLElement[]
+  private isDebug: boolean
 
   constructor() {
     this.buttons = [...document.querySelectorAll(BUTTON_SELECTOR)] as HTMLElement[]
     this.applyButtons = [...document.querySelectorAll(APPLY_SELECTOR)] as HTMLElement[]
+    this.isDebug = window.location.search.includes('debug')
+
     this.bindEvents()
   }
 
@@ -65,6 +69,8 @@ class GTM {
 
   push(data: GTMEntry) {
     let { dataLayer } = window
+
+    if(!Environment.isProduction && this.isDebug) console.log("Debug mode, send to GTM:", data)
 
     dataLayer = dataLayer || []
     dataLayer.push(data)

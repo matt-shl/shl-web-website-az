@@ -1,0 +1,58 @@
+@using DTNL.UmbracoCms.Web.Components
+@using DTNL.UmbracoCms.Web.Helpers.Aliases
+@using DTNL.UmbracoCms.Web.Helpers.Extensions
+@using DTNL.UmbracoCms.Web.Services
+@using Umbraco.Cms.Core.Dictionary
+@using Umbraco.Cms.Core.Models.PublishedContent
+
+@model DTNL.UmbracoCms.Web.Components.PardotForm
+
+@inject NodeProvider NodeProvider
+
+@inject ICultureDictionary CultureDictionary
+
+@if (NodeProvider.CurrentNode is not { } currentNode)
+{
+    return;
+}
+
+<form class="c-form c-pardot-form"
+      action="@Model.ActionUrl"
+      method="POST"
+      data-async="true"
+      novalidate
+      data-succes-text="@CultureDictionary.GetTranslation(Model.ActionSuccessLabelKey)"
+      data-error-text="@CultureDictionary.GetTranslation(Model.ActionErrorLabelKey)"
+      data-loader="true"
+      js-hook-pardot-form>
+
+    <partial name="./@(Model.GetType().Name)Fields.cshtml" model="@Model" />
+    
+    @if (Model.ConsentFieldName is not null)
+    {
+        <div class="c-checkbox form__item">
+            <div class="checkbox__wrapper">
+                <input class="checkbox__input"
+                       type="checkbox"
+                       name="@Model.ConsentFieldName"
+                       value="yes"
+                       id="@Model.Id-cf_consent_given"
+                       data-validate="required"
+                       data-required-error="@CultureDictionary.GetTranslation(TranslationAliases.Forms.Fields.PrivacyPolicy.ErrorMessage)" tabindex="0">
+                <label class="checkbox__label" for="@Model.Id-cf_consent_given" role="button">
+                    <span>
+                        @CultureDictionary.GetTranslation(TranslationAliases.Forms.Fields.PrivacyPolicy)
+                        <sup>*</sup>
+                    </span>
+                </label>
+            </div>
+            <div id="cf_Consent_Given_error" class="form__item-error u-hidden"></div>
+        </div>
+    }
+
+    <input type="hidden" name="@Model.SourcePageTitleFieldName" value="@currentNode.GetTitle()" tabindex="0">
+
+    <input type="hidden" name="@Model.SourceUrlFieldName" value="@currentNode.Url(mode: UrlMode.Absolute)" tabindex="0">
+
+    <partial name="Button" model="@(new Button { Element = "button", Label = CultureDictionary.GetTranslation(Model.ActionSubmitLabelKey), Class = "pardot-form__submit", Icon = SvgAliases.Icons.ArrowTopRight, Type = "submit"})" />
+</form>

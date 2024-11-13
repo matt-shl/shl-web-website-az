@@ -42,6 +42,11 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		global::System.Collections.Generic.IEnumerable<string> DeviceTypes { get; }
 
+		/// <summary>Interested In</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		global::System.Collections.Generic.IEnumerable<string> InterestedIn { get; }
+
 		/// <summary>Locations</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
@@ -145,6 +150,19 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		public static global::System.Collections.Generic.IEnumerable<string> GetDeviceTypes(ICompositionTagSettings that, IPublishedValueFallback publishedValueFallback) => that.Value<global::System.Collections.Generic.IEnumerable<string>>(publishedValueFallback, "deviceTypes");
+
+		///<summary>
+		/// Interested In: Defined allowed interests.
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("interestedIn")]
+		public virtual global::System.Collections.Generic.IEnumerable<string> InterestedIn => GetInterestedIn(this, _publishedValueFallback);
+
+		/// <summary>Static getter for Interested In</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		public static global::System.Collections.Generic.IEnumerable<string> GetInterestedIn(ICompositionTagSettings that, IPublishedValueFallback publishedValueFallback) => that.Value<global::System.Collections.Generic.IEnumerable<string>>(publishedValueFallback, "interestedIn");
 
 		///<summary>
 		/// Locations: Define allowed locations.

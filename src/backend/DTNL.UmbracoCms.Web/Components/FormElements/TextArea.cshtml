@@ -1,0 +1,30 @@
+@using DTNL.UmbracoCms.Web.Helpers.Extensions
+@model DTNL.UmbracoCms.Web.Components.FormElements.TextArea
+
+<div class="c-textarea form__item
+     @(Model.Class ?? "")
+     @(Model.Disabled ? "form__item--disabled" : "")
+     @(Model.LabelAsPlaceholder ? "form__item--lap" : "")"
+     @(Model.LabelAsPlaceholder ? "js-hook-lap" : "")>
+
+    <div class="textarea__wrapper" title="@(Model.Label)">
+        <label class="textarea__label @(Model.SrOnly ? "u-sr-only" : "")" for="@Model.Id">
+            @Model.Label @Html.Raw(Model.Required ? "<sup>*</sup>" : "")
+        </label>
+        <textarea class="textarea__input"
+                  name="@Model.Name"
+                  value="@(Model.Value)"
+                  id="@(Model.Id)"
+        @(Model.Required ? Html.Attribute("required", "required") : "")
+        @(Model.Disabled ? Html.Attribute("disabled", "disabled") : "")
+        @(!Model.Placeholder.IsNullOrEmpty() && !Model.LabelAsPlaceholder ? Html.Attribute("placeholder", Model.Placeholder) : "")
+        @(Model.MaxLength is not null ? Html.Attribute("max-length", Model.MaxLength.Value) : null)
+        @(!Model.Validate.IsNullOrEmpty() ? Html.Attribute("data-validate", Model.Validate) : "")
+        @(Model.RequiredError is not null ? Html.Attribute("data-required-error", Model.RequiredError) : null)
+        @Html.Attribute(Model.Hook?.EnsureStartsWith("js-hook-"))
+        @Html.Attributes(Model.Attributes)>
+        </textarea>
+        <span class="focus-helper"></span>
+    </div>
+    <div id="@(Model.Name)_error" class="form__item-error @(Model.Error is not null ? "" : "u-hidden")">@Model.Error</div>
+</div>
