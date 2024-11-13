@@ -42,7 +42,6 @@
                 {%- if option.checked %} checked{% endif -%}
                 {%- if option.validate %} data-validate="{{ option.validate }}"{% endif -%}
                 {%- if data.requiredError %} data-required-error="{{ data.requiredError }}"{% endif -%}
-                {%- if option.sortItem %} data-sort-item="true" {% endif -%}
                 {%- if option.hook %} js-hook-{{ option.hook }}{% endif -%}
                 {%- if option.attr %} {{ option.attr|safe }}{% endif -%}>
             <label class="radio__label" for="{{ option.id | lower }}" role="button">

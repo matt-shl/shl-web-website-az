@@ -22,6 +22,8 @@ public class Checkbox : ViewComponentExtended
 
     public bool Required { get; set; }
 
+    public string? RequiredError { get; set; }
+
     public string? Error { get; set; }
 
     public bool Sronly { get; set; }

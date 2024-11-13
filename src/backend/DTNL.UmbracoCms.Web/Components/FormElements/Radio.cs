@@ -63,7 +63,7 @@ public class Radio : ViewComponentExtended
             string? hook = null,
             Dictionary<string, string?>? attr = default,
             string? validate = null,
-            bool @checked = default)
+            bool isChecked = default)
         {
             Id = id;
             Label = label;
@@ -71,7 +71,7 @@ public class Radio : ViewComponentExtended
             Hook = hook;
             Attributes = attr ?? Attributes;
             Validate = validate;
-            Checked = @checked;
+            IsChecked = isChecked;
         }
 
         public string? Label { get; set; }
@@ -88,6 +88,6 @@ public class Radio : ViewComponentExtended
 
         public string? Validate { get; set; }
 
-        public bool Checked { get; set; }
+        public bool IsChecked { get; set; }
     }
 }

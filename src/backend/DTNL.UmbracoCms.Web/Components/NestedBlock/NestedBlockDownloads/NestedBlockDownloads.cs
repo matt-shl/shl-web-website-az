@@ -11,6 +11,6 @@ public class NestedBlockDownloads : NestedBlockWithInner
             return null;
         }
 
-        return Downloads.Create(downloadsBlock);
+        return Downloads.Create(downloadsBlock, NodeProvider.SiteSettings);
     }
 }

@@ -79,7 +79,7 @@ class Filters {
 
     // get new results for reset button
     this.resetButton?.addEventListener('click', () => {
-        this.#getNewResults(this.resetButton || undefined)
+        this.#getNewResults(undefined)
         Events.$trigger("modal[modal-filters]::close", { data: { modalId: 'modal-filters' } })
       }
     )
@@ -121,8 +121,9 @@ class Filters {
   }
 
   #getNewResults(element?: HTMLInputElement | HTMLButtonElement, shouldPushState?: boolean) {
-    this.urlReplacement = element?.dataset.urlReplacement || ''
-    this.endpoint = element?.dataset.endpoint || this.urlReplacement
+    this.urlReplacement = this.#getNewResultsUrl(element)
+
+    this.endpoint = this.urlReplacement
 
     if (this.endpoint) {
       Events.$trigger('loader::show')
@@ -134,6 +135,26 @@ class Filters {
           this.#newResultsFail(error.response)
         })
     }
+  }
+
+  #getNewResultsUrl(element?: HTMLInputElement | HTMLButtonElement) {
+    const currentUrl = new URL(this.filterFormElement.action);
+
+    if (!element) {
+      return currentUrl.toString()
+    }
+    
+    const queryParams = new URLSearchParams();
+
+    this.inputs.forEach(input => {
+      if (input && input.checked) {
+        queryParams.append(input.name, input.value);
+      }
+    });
+
+    currentUrl.search = queryParams.toString();    
+    
+    return currentUrl.toString()
   }
 
   #newResultsSuccess(
@@ -157,14 +178,13 @@ class Filters {
       })
     }
 
-    // replace the content
     ReplaceContent.replaceAllContent(newHtml)
 
     if (selectedElementId) this.element.querySelector<HTMLInputElement | HTMLButtonElement>(`#${selectedElementId}`)?.focus()
 
     if (hasKeyboardFocus) document.body.classList.add(KEYBOARD_FOCUSED_CLASS)
 
-    if (element?.dataset.endpoint && shouldPushState) this.#updateUrlAndHistoryState()
+    if (this.urlReplacement && shouldPushState) this.#updateUrlAndHistoryState()
   }
 
   #newResultsFail(_error: AxiosResponse) {
@@ -205,11 +225,14 @@ class Filters {
   }
 
   #sendGtmData(element: HTMLInputElement) {
+    // Only send event when the element is getting selected
+    if(element.getAttribute('checked') !== null) return
+
     const id = element.id
     const optionClicked = this.element.querySelector(`label[for="${id}"]`)?.textContent?.trim()
     Events.$trigger('gtm::push', {
       data: {
-        'event': element.name === 'sort' ? 'sorting' : 'filtering',
+        'event': element.name.toLowerCase() === 'sort' ? 'sorting' : 'filtering',
         'option_clicked': optionClicked
       }
     })

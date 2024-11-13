@@ -3,6 +3,7 @@ using Hangfire.States;
 using Hangfire.Storage;
 
 namespace DTNL.UmbracoCms.Web.Modules.BackgroundJobs.Hangfire.Filters;
+
 internal sealed class PreserveOriginalQueueAttribute : JobFilterAttribute, IApplyStateFilter
 {
     public void OnStateApplied(ApplyStateContext context, IWriteOnlyTransaction transaction)

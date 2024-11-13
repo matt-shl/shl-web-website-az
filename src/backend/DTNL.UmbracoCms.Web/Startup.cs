@@ -170,7 +170,7 @@ public static class Startup
 
                 builder.Services.AddControllersWithViews(options =>
                 {
-                    options.Filters.Add<AddMediaPathToBrandfolderImageFilter>();
+                    options.Filters.Add<AddMediaPathToBrandfolderAssetsFilter>();
                 });
 
                 builder.Services.AddCors(options => options.AddDefaultPolicy(applicationOptions.Cors));
@@ -212,12 +212,15 @@ public static class Startup
             .AddContentSecurityPolicy(builder =>
             {
                 builder.AddObjectSrc().None();
-                builder.AddFormAction().Self();
+                builder.AddFormAction()
+                    .From("https://*.shl-medical.com")
+                    .Self();
                 builder.AddFrameAncestors().Self();
                 builder.AddScriptSrc()
                     .From("https://*.shl-medical.com")
                     .From("https://*.cookiebot.com")
                     .From("https://*.googletagmanager.com")
+                    .From("https://*google-analytics.com")
                     .UnsafeInline()
                     .UnsafeEval()
                     .Self();

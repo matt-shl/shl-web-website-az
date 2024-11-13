@@ -11,7 +11,6 @@
           "value": "sorting-newest",
           "id": "filter-sorting-newest",
           "checked": true,
-          "attr": "data-url-replacement='__api-response--filters.html' data-endpoint='__api-response--filters.html'",
           "sortItem": true,
           "hook": "filters-input"
         },
@@ -19,7 +18,6 @@
           "label": "Oldest first",
           "value": "sorting-popular",
           "id": "filter-sorting-popular",
-          "attr": "data-url-replacement='__api-response--filters.html' data-endpoint='__api-response--filters.html'",
           "sortItem": true,
           "hook": "filters-input"
         }
@@ -34,7 +32,6 @@
           "value": "sales",
           "id": "filter-sales",
           "checked": true,
-          "attr": "data-url-replacement='__api-response--filters.html' data-endpoint='__api-response--filters.html'",
           "hook": "filters-input"
         },
         {
@@ -42,7 +39,6 @@
           "value": "engineering",
           "id": "filter-engineering",
           "checked": true,
-          "attr": "data-url-replacement='__api-response--filters.html' data-endpoint='__api-response--filters.html'",
           "hook": "filters-input"
         },
         {
@@ -50,7 +46,6 @@
           "value": "marketing",
           "id": "filter-marketing",
           "checked": true,
-          "attr": "data-url-replacement='__api-response--filters.html' data-endpoint='__api-response--filters.html'",
           "hook": "filters-input"
         },
         {
@@ -58,7 +53,6 @@
           "value": "support",
           "id": "filter-support",
           "checked": true,
-          "attr": "data-url-replacement='__api-response--filters.html' data-endpoint='__api-response--filters.html'",
           "hook": "filters-input"
         },
         {
@@ -66,7 +60,6 @@
           "value": "product",
           "id": "filter-product",
           "checked": true,
-          "attr": "data-url-replacement='__api-response--filters.html' data-endpoint='__api-response--filters.html'",
           "hook": "filters-input"
         },
         {
@@ -74,7 +67,6 @@
           "value": "human-resources",
           "id": "filter-human-resources",
           "checked": true,
-          "attr": "data-url-replacement='__api-response--filters.html' data-endpoint='__api-response--filters.html'",
           "hook": "filters-input"
         },
         {
@@ -82,7 +74,6 @@
           "value": "finance",
           "id": "filter-finance",
           "checked": true,
-          "attr": "data-url-replacement='__api-response--filters.html' data-endpoint='__api-response--filters.html'",
           "hook": "filters-input"
         }
       ]
@@ -96,7 +87,6 @@
           "value": "full-time",
           "id": "filter-full-time",
           "checked": true,
-          "attr": "data-url-replacement='__api-response--filters.html' data-endpoint='__api-response--filters.html'",
           "hook": "filters-input"
         },
         {
@@ -104,7 +94,6 @@
           "value": "part-time",
           "id": "filter-part-time",
           "checked": true,
-          "attr": "data-url-replacement='__api-response--filters.html' data-endpoint='__api-response--filters.html'",
           "hook": "filters-input"
         },
         {
@@ -112,7 +101,6 @@
           "value": "internship",
           "id": "filter-internship",
           "checked": true,
-          "attr": "data-url-replacement='__api-response--filters.html' data-endpoint='__api-response--filters.html'",
           "hook": "filters-input"
         },
         {
@@ -120,7 +108,6 @@
           "value": "temporary",
           "id": "filter-temporary",
           "checked": true,
-          "attr": "data-url-replacement='__api-response--filters.html' data-endpoint='__api-response--filters.html'",
           "hook": "filters-input"
         }
       ]
@@ -134,7 +121,6 @@
         "value": "switzerland",
         "id": "filter-switzerland",
         "checked": true,
-        "attr": "data-url-replacement='__api-response--filters.html' data-endpoint='__api-response--filters.html'",
         "hook": "filters-input"
        },
        {
@@ -142,7 +128,6 @@
         "value": "germany",
         "id": "filter-germany",
         "checked": true,
-        "attr": "data-url-replacement='__api-response--filters.html' data-endpoint='__api-response--filters.html'",
         "hook": "filters-input"
        },
        {
@@ -150,7 +135,6 @@
         "value": "taiwan",
         "id": "filter-taiwan",
         "checked": false,
-        "attr": "data-url-replacement='__api-response--filters.html' data-endpoint='__api-response--filters.html'",
         "hook": "filters-input"
        },
        {
@@ -158,7 +142,6 @@
         "value": "sweden",
         "id": "filter-sweden",
         "checked": false,
-        "attr": "data-url-replacement='__api-response--filters.html' data-endpoint='__api-response--filters.html'",
         "hook": "filters-input"
        }
       ]
@@ -172,7 +155,6 @@
           "value": "yes",
           "id": "filter-remote-yes",
           "checked": true,
-          "attr": "data-url-replacement='__api-response--filters.html' data-endpoint='__api-response--filters.html'",
           "hook": "filters-input"
         },
         {
@@ -180,7 +162,6 @@
           "value": "no",
           "id": "filter-remote-no",
           "checked": true,
-          "attr": "data-url-replacement='__api-response--filters.html' data-endpoint='__api-response--filters.html'",
           "hook": "filters-input"
         }
       ]
@@ -194,7 +175,6 @@
           "value": "0-1000",
           "id": "filter-salary-0-1000",
           "checked": true,
-          "attr": "data-url-replacement='__api-response--filters.html' data-endpoint='__api-response--filters.html'",
           "hook": "filters-input"
         },
         {
@@ -202,7 +182,6 @@
           "value": "1000-2000",
           "id": "filter-salary-1000-2000",
           "checked": true,
-          "attr": "data-url-replacement='__api-response--filters.html' data-endpoint='__api-response--filters.html'",
           "hook": "filters-input"
         },
         {
@@ -210,7 +189,6 @@
           "value": "2000-3000",
           "id": "filter-salary-2000-3000",
           "checked": true,
-          "attr": "data-url-replacement='__api-response--filters.html' data-endpoint='__api-response--filters.html'",
           "hook": "filters-input"
         },
         {
@@ -218,7 +196,6 @@
           "value": "3000-4000",
           "id": "filter-salary-3000-4000",
           "checked": true,
-          "attr": "data-url-replacement='__api-response--filters.html' data-endpoint='__api-response--filters.html'",
           "hook": "filters-input"
         },
         {
@@ -226,7 +203,6 @@
           "value": "4000-5000",
           "id": "filter-salary-4000-5000",
           "checked": true,
-          "attr": "data-url-replacement='__api-response--filters.html' data-endpoint='__api-response--filters.html'",
           "hook": "filters-input"
         },
         {
@@ -234,7 +210,6 @@
           "value": "5000-6000",
           "id": "filter-salary-5000-6000",
           "checked": true,
-          "attr": "data-url-replacement='__api-response--filters.html' data-endpoint='__api-response--filters.html'",
          "hook": "filters-input"
         }]
     },
@@ -247,7 +222,6 @@
           "value": "other-sorting-newest",
           "id": "filter-other-sorting-newest",
           "checked": true,
-          "attr": "data-url-replacement='__api-response--filters.html' data-endpoint='__api-response--filters.html'",
           "sortItem": true,
           "hook": "filters-input"
         },
@@ -255,7 +229,6 @@
           "label": "Oldest first",
           "value": "other-sorting-popular",
           "id": "filter-other-sorting-popular",
-          "attr": "data-url-replacement='__api-response--filters.html' data-endpoint='__api-response--filters.html'",
           "sortItem": true,
           "hook": "filters-input"
         }

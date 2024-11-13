@@ -10,15 +10,25 @@ public class EventDetails
 
     public string? Time { get; set; }
 
-    public Button? Link { get; set; }
+    public Button? LinkButton { get; set; }
 
     public Media? Media { get; set; }
 
-    public static EventDetails? Create(NestedBlockEventDetails? eventDetails)
+    public FormOverlay? FormOverlay { get; set; }
+
+    public static EventDetails? Create(NestedBlockEventDetails? eventDetails, SiteSettings? settings)
     {
         if (eventDetails is null)
         {
             return null;
+        }
+
+        Button? linkButton = Button.Create(eventDetails.EventLink);
+        FormOverlay? formOverlay = FormOverlay.Create(eventDetails, settings);
+
+        if (linkButton is not null)
+        {
+            linkButton.Controls = formOverlay?.Modal.Id;
         }
 
         return new EventDetails
@@ -26,8 +36,9 @@ public class EventDetails
             Title = eventDetails.EventTitle,
             Location = eventDetails.EventLocationInfo?.ToHtmlString(),
             Time = eventDetails.EventTime?.ToHtmlString(),
-            Link = Button.Create(eventDetails.EventUrl),
+            LinkButton = linkButton,
             Media = Media.Create(eventDetails.EventImage),
+            FormOverlay = formOverlay,
         };
     }
 }

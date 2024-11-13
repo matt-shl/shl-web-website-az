@@ -6,7 +6,9 @@ public class Modal
 
     public string? Title { get; set; }
 
-    public string? Subtitle { get; set; }
+    public string? SubTitle { get; set; }
+
+    public Image? Image { get; set; }
 
     public string? Class { get; set; }
 

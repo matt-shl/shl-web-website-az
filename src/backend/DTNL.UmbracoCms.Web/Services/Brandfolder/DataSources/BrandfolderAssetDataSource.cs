@@ -18,7 +18,7 @@ public abstract class BrandfolderAssetDataSource : BrandfolderBaseDataSource
     {
     }
 
-    protected abstract string[] SupportedFileTypes { get; }
+    protected abstract string[]? SupportedFileTypes { get; }
 
     public virtual string DefaultImageAlias => "image";
 
