@@ -34,7 +34,7 @@ public class RichText
         return new RichText
         {
             Content = richTextBlock.Text?.ToHtmlString(),
-            TextSize = !string.IsNullOrWhiteSpace(richTextBlock.TextSize) ? $"c-rich-text--size-{richTextBlock.TextSize}" : null,
+            TextSize = richTextBlock.TextSize,
             FirstButton = Button
                 .Create(richTextBlock.PrimaryLink, fallBackVariant: "primary")
                 .With(b =>

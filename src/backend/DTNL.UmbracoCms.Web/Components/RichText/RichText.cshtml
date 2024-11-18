@@ -1,6 +1,6 @@
 @model DTNL.UmbracoCms.Web.Components.RichText
 
-<div class="c-rich-text rich-text--is-closed @(Model.TextSize.IsNullOrWhiteSpace() ? $"c-rich-text--size-{Model.TextSize}" : null)"
+<div class="c-rich-text rich-text--is-closed c-rich-text--size-@(Model.TextSize)"
 @(!Model.ReadMoreOption ? "read-more-disabled" : null)
      js-hook-rich-text>
     <div class="rich-text__container" js-hook-rich-text-container >
