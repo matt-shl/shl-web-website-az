@@ -19,20 +19,20 @@
                     NavigationSubItem item = Model.SubItems[i];
 
                     <li class="flyout__main-item @(i == 0 ? "is--open" : "")" js-hook-flyout-main-item>
-                        @if(item.SubLinks.Count > 0)
+                        @if(item.Link is not null && item.SubLinks.Count == 0)
                         {
-                            <button class="flyout__main-item-button" title="@item.Link.Label" js-hook-flyout-main-item-anchor aria-expanded="false" aria-controls="flyout-list-@item.Id-@i">
-                                @item.Link.Label
+                            <a class="flyout__main-item-button" title="@item.Title" js-hook-flyout-main-item-anchor aria-expanded="false" aria-controls="flyout-list-@item.Id-@i" href="@item.Link.Url">
+                                @item.Title
+                            </a>
+                        }
+                        else
+                        {
+                            <button class="flyout__main-item-button" title="@item.Title" js-hook-flyout-main-item-anchor aria-expanded="false" aria-controls="flyout-list-@item.Id-@i">
+                                @item.Title
                                 <div class="flyout__main-item-button-icon">
                                     <svg src="@SvgAliases.Icons.ChevronRight" />
                                 </div>
                             </button>
-                        }
-                        else
-                        {
-                            <a class="flyout__main-item-button" title="@item.Link.Label" js-hook-flyout-main-item-anchor aria-expanded="false" aria-controls="flyout-list-@item.Id-@i" href="@item.Link.Url">
-                                @item.Link.Label
-                            </a>
                         }
                         
 
@@ -47,10 +47,13 @@
                                         </a>
                                     </li>
                                 }
-
-                                <li>
-                                    <a class="flyout__subitem-all" href="@item.Link.Url" js-hook-flyout-sub-item-anchor>All @item.Link.Label</a>
-                                </li>
+                                
+                                @if (item.Link is not null)
+                                {
+                                    <li>
+                                        <a class="flyout__subitem-all" href="@item.Link.Url" js-hook-flyout-sub-item-anchor>@item.Link.Label</a>
+                                    </li>
+                                }
                             </ul>
                         }
                     </li>

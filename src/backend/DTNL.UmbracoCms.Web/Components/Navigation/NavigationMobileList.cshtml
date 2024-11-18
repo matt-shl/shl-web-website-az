@@ -40,7 +40,14 @@
         @foreach (NavigationSubItem? item in Model.NavigationSubItems.OrEmptyIfNull())
         {
             <li class="navigation-mobile-list__item">
-                @if (item.SubLinks.Count > 0)
+                @if (item.Link is not null && item.SubLinks.Count == 0)
+                {
+                    <a class="navigation-mobile-list__anchor @(Model.ParentId != null ? "navigation-mobile-list__anchor--small" : "navigation-mobile-list__anchor--main")" href="@item.Link.Url"
+                       @(Model.ParentId != null ? "js-hook-mobile-nav-sub-item-anchor" : "js-hook-mobile-nav-main-item-anchor")>
+                        @item.Title
+                    </a>
+                }
+                else
                 {
                     <button class="navigation-mobile-list__anchor @(Model.ParentId != null ? "navigation-mobile-list__anchor--small" : "navigation-mobile-list__anchor--main")"
                             aria-controls="navigation-mobile-@(Model.ParentId != null ? $"{Model.ParentId}-{item.Id}" : $"{item.Id}")">
@@ -49,14 +56,6 @@
                         <svg src="@(SvgAliases.Icons.ChevronRight)" />
                     </button>
                 }
-                else
-                {
-                    <a class="navigation-mobile-list__anchor @(Model.ParentId != null ? "navigation-mobile-list__anchor--small" : "navigation-mobile-list__anchor--main")" href="@item.Link.Url"
-                    @(Model.ParentId != null ? "js-hook-mobile-nav-sub-item-anchor" : "js-hook-mobile-nav-main-item-anchor")>
-                        @item.Title
-                    </a>
-                }
-                
             </li>
         }
 

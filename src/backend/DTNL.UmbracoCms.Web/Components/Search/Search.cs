@@ -24,14 +24,17 @@ public class Search : ViewComponentExtended
 
     public string? CssClasses { get; set; }
 
-    public IViewComponentResult Invoke()
+    public IViewComponentResult Invoke(bool isFlyoutSearch = false)
     {
-        if (GetSearchResultsPage(out bool isVacancySearch) is not { } searchResultsPage)
+        if (GetSearchResultsPage(isFlyoutSearch, out bool isVacancySearch) is not { } searchResultsPage)
         {
             return Content("");
         }
 
-        Variant = isVacancySearch ? "job" : "in-hero";
+        if (!isFlyoutSearch)
+        {
+            Variant = isVacancySearch ? "job" : "in-hero";
+        }
 
         ActionUrl = searchResultsPage.Url();
 
@@ -55,21 +58,11 @@ public class Search : ViewComponentExtended
         return View("Search", this);
     }
 
-    private ICompositionBasePage? GetSearchResultsPage(out bool isVacancySearch)
+    private ICompositionBasePage? GetSearchResultsPage(bool isFlyoutSearch, out bool isVacancySearch)
     {
-        isVacancySearch = NodeProvider.CurrentNode is PageVacancyOverview or PageCareerOverview;
+        isVacancySearch = !isFlyoutSearch && NodeProvider.CurrentNode is PageVacancyOverview or PageCareerOverview;
 
-        if (NodeProvider.CurrentNode is null)
-        {
-            return null;
-        }
-
-        if (isVacancySearch)
-        {
-            return NodeProvider.VacancyOverviewPage;
-        }
-
-        return NodeProvider.SearchPage;
+        return isVacancySearch ? NodeProvider.VacancyOverviewPage : NodeProvider.SearchPage;
     }
 
     private void SetVacancyFilters(PageVacancyOverview vacancyOverviewPage)

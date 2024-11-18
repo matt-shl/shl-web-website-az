@@ -9,7 +9,7 @@ public class NavigationSubItem
 
     public required string Title { get; set; }
 
-    public required Link Link { get; set; }
+    public Link? Link { get; set; }
 
     public required List<Link> SubLinks { get; set; }
 
@@ -19,7 +19,7 @@ public class NavigationSubItem
         {
             Id = navigationSubItem.Key.ToString(),
             Title = navigationSubItem.Title!,
-            Link = Link.Create(navigationSubItem.MainLink!),
+            Link = Link.Create(navigationSubItem.MainLink),
             SubLinks = navigationSubItem.Sublinks
                 .Using(l => Link.Create(l))
                 .ToList(),

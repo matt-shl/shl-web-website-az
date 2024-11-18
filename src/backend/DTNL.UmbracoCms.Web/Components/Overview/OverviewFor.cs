@@ -100,14 +100,21 @@ public abstract class OverviewFor<TOverviewPage, TPage, TFilters, TOverviewItem>
             .Page(PageNumber, PageSize)
             .ToList();
 
-        OverviewType = pages.FirstOrDefault()?.ContentType.Alias switch
+        if (OverviewPage is PageSearch)
         {
-        "pagePublication" => "publication",
-        "pageEvent" => "event",
-        "pageNews" => "news",
-        "pageProduct" => "product",
-        _ => null,
-        };
+            OverviewType = "search";
+        }
+        else
+        {
+            OverviewType = pages.FirstOrDefault() switch
+            {
+                PagePublication => "publication",
+                PageEvent => "event",
+                PageNews => "news",
+                PageProduct => "product",
+                _ => null,
+            };
+        }
 
         SearchTerm = Request.Query.GetSearchQuery();
 
