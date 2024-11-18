@@ -10,11 +10,11 @@
         @foreach ((Link? item, int pos) in Model.Pages.Select((item, pos) => (item, pos + 1)))
         {
             bool isLastItem = (pos == Model.Pages.Count);
-            <li class="breadcrumb__list-item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <li class="breadcrumb__list-item @(isLastItem ? "breadcrumb__list-item--current" : null)" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
                 <span class="breadcrumb__icon-back">
                     <svg src="@SvgAliases.Icons.ArrowLeft" />
                 </span>
-                <a class="breadcrumb__list-item @(isLastItem ? "breadcrumb__list-item--current" : null)" itemprop="item" href="@(isLastItem ? "#" : item.Url)" title="@item.Label">
+                <a class="breadcrumb-item" itemprop="item" href="@(isLastItem ? "#" : item.Url)" title="@item.Label">
                     <span itemprop="name">
                         @item.Label
                     </span>
