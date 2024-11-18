@@ -4,7 +4,7 @@
 
 @if (!Model.Pages.Any()) { return; }
 
-<div class="c-breadcrumb">
+<div class="c-breadcrumb breadcrumb--full">
     <span id="breadcrumb-label" class="u-sr-only" asp-translation="@TranslationAliases.Common.Breadcrumb.Label"></span>
     <ol class="breadcrumb__list" id="breadcrumb" aria-labelledby="breadcrumb-label" itemscope itemtype="http://schema.org/BreadcrumbList">
         @foreach ((Link? item, int pos) in Model.Pages.Select((item, pos) => (item, pos + 1)))
