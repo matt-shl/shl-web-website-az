@@ -26,6 +26,14 @@ class PardotForm extends Form {
 
     this.resetForm()
   }
+
+  submitForm = (_data: any) => {
+    const inputsMapped = this.inputs.map(fe => ({ key: fe.name, value: fe.value }));
+    const queryParams = inputsMapped.map(({ key, value }) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
+      .join('&');
+    this.action = `${this.action}&${queryParams}`;
+    super.submitForm(_data)
+  }
 }
 
 export default PardotForm
