@@ -1,4 +1,5 @@
 using DTNL.UmbracoCms.Web.Helpers.Extensions;
+using Umbraco.Cms.Core.Models;
 using Umbraco.Cms.Web.Common.PublishedModels;
 
 namespace DTNL.UmbracoCms.Web.Components;
@@ -22,6 +23,32 @@ public class CardProduct : ICard, IOverviewItem
     public static CardProduct Create(PageProduct productPage, string? cssClasses = null)
     {
         NestedBlockProductBanner? banner = productPage.Banner?.GetSingleContentOrNull<NestedBlockProductBanner>();
+
+        Image? image = Image
+            .Create(
+                productPage.CardImage,
+                imageCropMode: ImageCropMode.Max,
+                cssClasses: "card-product__image");
+
+        if (image is null &&
+            productPage.Hero?.GetSingleContentOrNull<NestedBlockProductHero>() is { } hero)
+        {
+            image = Image
+                .Create(
+                    hero.Image,
+                    cssClasses: "card-product__image",
+                    style: "card-contact");
+        }
+
+        if (image is null && banner is not null)
+        {
+            image = Image
+                .Create(
+                    banner.Image,
+                    imageCropMode: ImageCropMode.Max,
+                    cssClasses: "card-product__image");
+        }
+
         return new CardProduct
         {
             Title = productPage.GetTitle(),
@@ -29,7 +56,7 @@ public class CardProduct : ICard, IOverviewItem
             Text = (productPage.CardDescription?.ToHtmlString())
                 .FallBack(banner?.Text?.ToHtmlString())
                 .FallBack(productPage.GetDescription()),
-            Image = Image.Create(productPage.CardImage ?? banner?.Image, cssClasses: "card-product__image"),
+            Image = image,
             Url = productPage.Url(),
             CssClasses = cssClasses,
         };
