@@ -1,3 +1,5 @@
+using DTNL.UmbracoCms.Web.Helpers.Extensions;
+using DTNL.UmbracoCms.Web.Models.BrandfolderAssets;
 using Microsoft.AspNetCore.Mvc;
 using Umbraco.Cms.Web.Common.PublishedModels;
 
@@ -14,7 +16,9 @@ public class StructuredData : ViewComponentExtended
     public IViewComponentResult Invoke(PageHome? homePage, SiteSettings? siteSettings)
     {
         CompanyName = siteSettings?.CompanyName;
-        CompanyLogo = siteSettings?.CompanyLogo?.GetCropUrl(1200, 630);
+        CompanyLogo = BrandfolderAsset
+            .Create(siteSettings?.CompanyLogo)?
+            .GetDefaultCropUrl(1200, 630);
         HomePageUrl = homePage?.Url();
 
         return View("~/Components/BasePage/StructuredData.cshtml", this);
