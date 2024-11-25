@@ -9,9 +9,9 @@ public class RichText
 {
     public string? Content { get; set; }
 
-    public Button? FirstButton { get; set; }
+    public Button? PrimaryLinkButton { get; set; }
 
-    public Button? SecondButton { get; set; }
+    public Button? SecondaryLinkButton { get; set; }
 
     public Button? ReadMoreButton { get; set; }
 
@@ -35,14 +35,14 @@ public class RichText
         {
             Content = richTextBlock.Text?.ToHtmlString(),
             TextSize = richTextBlock.TextSize,
-            FirstButton = Button
+            PrimaryLinkButton = Button
                 .Create(richTextBlock.PrimaryLink, fallBackVariant: "primary")
                 .With(b =>
                 {
                     b.Class = "rich-text__cta1";
                     b.Hook = "js-hook-rich-text-button";
                 }),
-            SecondButton = Button
+            SecondaryLinkButton = Button
                 .Create(richTextBlock.SecondLink, fallBackVariant: "secondary")
                 .With(b =>
                 {

@@ -8,14 +8,14 @@
             @Html.Raw(Model.Content)
         </div>
 
-        <div class="rich-text__ctas">
-            @if (Model.FirstButton is not null)
+        <div class="rich-text__ctas" asp-if="@((Model.PrimaryLinkButton ?? Model.SecondaryLinkButton) is not null)">
+            @if (Model.PrimaryLinkButton is not null)
             {
-                <partial name="Button" model="@Model.FirstButton" />
+                <partial name="Button" model="@Model.PrimaryLinkButton" />
             }
-            @if (Model.SecondButton is not null)
+            @if (Model.SecondaryLinkButton is not null)
             {
-                <partial name="Button" model="@Model.SecondButton" />
+                <partial name="Button" model="@Model.SecondaryLinkButton" />
             }
         </div>
     </div>
