@@ -3,20 +3,14 @@
 <div class="c-rich-text rich-text--is-closed c-rich-text--size-@(Model.TextSize)"
 @(!Model.ReadMoreOption ? "read-more-disabled" : null)
      js-hook-rich-text>
-    <div class="rich-text__container" js-hook-rich-text-container >
+    <div class="rich-text__container" js-hook-rich-text-container>
         <div class="rich-text__content">
             @Html.Raw(Model.Content)
         </div>
 
         <div class="rich-text__ctas" asp-if="@((Model.PrimaryLinkButton ?? Model.SecondaryLinkButton) is not null)">
-            @if (Model.PrimaryLinkButton is not null)
-            {
-                <partial name="Button" model="@Model.PrimaryLinkButton" />
-            }
-            @if (Model.SecondaryLinkButton is not null)
-            {
-                <partial name="Button" model="@Model.SecondaryLinkButton" />
-            }
+            <partial name="Button" model="@Model.PrimaryLinkButton" />
+            <partial name="Button" model="@Model.SecondaryLinkButton" />
         </div>
     </div>
 
