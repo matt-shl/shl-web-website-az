@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 namespace DTNL.UmbracoCms.Web.Infrastructure.Configuration.Options;
 
 /// <summary>
-///     The options used to setup Azure KeyVault client
+///     The options used to set up Azure KeyVault client.
 /// </summary>
 public class AzureKeyVaultOptions
 {

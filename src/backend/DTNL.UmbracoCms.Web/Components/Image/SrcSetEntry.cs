@@ -1,4 +1,5 @@
 using DTNL.UmbracoCms.Web.Helpers.Extensions;
+using DTNL.UmbracoCms.Web.Models.BrandfolderAssets;
 
 namespace DTNL.UmbracoCms.Web.Components;
 
@@ -40,19 +41,7 @@ public partial class Image
             return this;
         }
 
-        public string ToString(Umbraco.Cms.Web.Common.PublishedModels.Image image)
-        {
-            int imageWidth = Width ?? Breakpoint;
-            string imageUrl = $"{image.GetDefaultCropUrl(imageWidth, Height)}";
-            if (HeightRatio != null)
-            {
-                imageUrl += $"&heightratio={HeightRatio}".Replace(",", ".");
-            }
-
-            return $"{imageUrl} {Breakpoint}w";
-        }
-
-        public string ToString(Umbraco.Cms.Web.Common.PublishedModels.IBrandfolderAsset brandfolderAsset)
+        public string ToString(BrandfolderAsset brandfolderAsset)
         {
             int imageWidth = Width ?? Breakpoint;
 

@@ -46,6 +46,11 @@
     <RuntimeHostConfigurationOption Include="System.Globalization.AppLocalIcu" Value="72.1" Condition="$(RuntimeIdentifier.StartsWith('linux')) or $(RuntimeIdentifier.StartsWith('win')) or ('$(RuntimeIdentifier)' == '' and !$([MSBuild]::IsOSPlatform('osx')))" />
   </ItemGroup>
 
+  <!-- Source generator files (Custom) -->
+  <ItemGroup>
+    <ProjectReference Include="..\DTNL.UmbracoCms.SourceGenerators\DTNL.UmbracoCms.SourceGenerators.csproj" OutputItemType="Analyzer" />
+  </ItemGroup>
+
   <ItemGroup>
     <Content Update="Components\_ViewImports.cshtml" Visible="false" />
     <Folder Include="Api/Models/" />
@@ -84,11 +89,13 @@
       <Namespace>DTNL.UmbracoCms.Web.Helpers.Aliases</Namespace>
       <ClassName>TranslationAliases</ClassName>
     </AdditionalFiles>
+    <!-- Disable default image styles generation
     <AdditionalFiles Include="..\..\frontend\source\data\images\styles\**">
       <Generator>ImageStyles</Generator>
       <OutputDirectoryPath>umbraco\uSync\DataTypes</OutputDirectoryPath>
       <Visible>False</Visible>
     </AdditionalFiles>
+    -->
     <AdditionalFiles Include="..\..\frontend\source\data\images\breakpoints.json">
       <Generator>CssBreakpoints</Generator>
       <Namespace>DTNL.UmbracoCms.Web.Helpers</Namespace>

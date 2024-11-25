@@ -1,4 +1,3 @@
-using System.Web;
 using DTNL.UmbracoCms.Web.Components.FormElements;
 using DTNL.UmbracoCms.Web.Helpers.Extensions;
 using static DTNL.UmbracoCms.Web.Components.FormElements.Checkbox;

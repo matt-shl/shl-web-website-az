@@ -32,7 +32,7 @@ public class CardImage : ICard
             Title = imageCard.Title,
             SubTitle = imageCard.SubTitle,
             Text = imageCard.Text?.ToHtmlString(),
-            Image = Image.Create(imageCard.Image, cssClasses: "card-image__image"),
+            Image = Image.Create(imageCard.Image, cssClasses: "card-image__image", style: "card"),
             Url = imageCard.Link?.Url,
             CssClasses = cssClasses,
         };

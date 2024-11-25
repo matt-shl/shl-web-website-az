@@ -1,3 +1,5 @@
+using System.Text;
+using DTNL.UmbracoCms.Web.Helpers.Extensions;
 using DTNL.UmbracoCms.Web.Services.Brandfolder.Models;
 using Flurl;
 using Flurl.Http;
@@ -14,7 +16,7 @@ public class BrandfolderApiClient
         _brandfolderOptions = brandfolderOptions.Value;
     }
 
-    public async Task<BrandfolderEntityResponse> GetBrandfolderSection(string brandfolderSectionId)
+    public async Task<BrandfolderEntityResponse> GetBrandfolderSection(string? brandfolderSectionId)
     {
         return await $"https://brandfolder.com/api/v4/sections/{brandfolderSectionId}"
             .WithOAuthBearerToken(_brandfolderOptions.ApiKey)
@@ -70,19 +72,20 @@ public class BrandfolderApiClient
         string? searchQuery,
         string[]? fileTypes)
     {
-        if (!searchQuery.IsNullOrWhiteSpace())
-        {
-            searchQuery = $"{searchQuery}";
-        }
+        StringBuilder queryStringBuilder = new(searchQuery.FallBack(string.Empty));
 
         if (fileTypes is not null)
         {
-            searchQuery =
-                $"{searchQuery} AND ({string.Join("OR ", fileTypes.Select(fileType => $"filetype.strict:\"{fileType}\""))})";
+            if (queryStringBuilder.Length > 0)
+            {
+                queryStringBuilder.Append(" AND ");
+            }
+
+            queryStringBuilder.Append($"({string.Join("OR ", fileTypes.Select(fileType => $"filetype.strict:\"{fileType}\""))})");
         }
 
         return await $"https://brandfolder.com/api/v4/collections/{_brandfolderOptions.CollectionId}/assets"
-            .SetQueryParam("search", searchQuery)
+            .SetQueryParam("search", queryStringBuilder.ToString())
             .SetQueryParam("page", page)
             .SetQueryParam("per", pageSize)
             .WithOAuthBearerToken(_brandfolderOptions.ApiKey)

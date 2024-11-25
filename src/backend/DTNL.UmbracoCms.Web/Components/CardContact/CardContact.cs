@@ -36,7 +36,7 @@ public class CardContact : ICard
             Email = contactCard.Email,
             PhoneNumber = contactCard.PhoneNumber,
             Text = contactCard.Description?.ToHtmlString(),
-            Image = Image.Create(contactCard.Image, cssClasses: "card-contact__image"),
+            Image = Image.Create(contactCard.Image, cssClasses: "card-contact__image", style: "card-contact"),
             CssClasses = cssClasses,
         };
     }
