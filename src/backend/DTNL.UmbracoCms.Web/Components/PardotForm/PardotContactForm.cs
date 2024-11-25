@@ -1,5 +1,4 @@
 using DTNL.UmbracoCms.Web.Helpers.Aliases;
-using Umbraco.Cms.Web.Common.PublishedModels;
 
 namespace DTNL.UmbracoCms.Web.Components;
 
@@ -13,7 +12,7 @@ public class PardotContactForm : PardotForm
 
     public override string? ConsentFieldName => "cf_Consent Given";
 
-    public static PardotContactForm Create(NestedBlockContactForm contactForm)
+    public static PardotContactForm Create()
     {
         return new()
         {

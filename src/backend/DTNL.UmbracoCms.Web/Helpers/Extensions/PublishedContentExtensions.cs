@@ -1,7 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
 using DTNL.UmbracoCms.Web.Components.Hero;
-using Umbraco.Cms.Core.Models;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Web.Common.PublishedModels;
 
@@ -65,9 +64,9 @@ public static class PublishedContentExtensions
     /// <summary>
     /// Returns a card image for the page.
     /// </summary>
-    public static MediaWithCrops? GetCardImage(this ICompositionBasePage content)
+    public static string? GetCardImage(this ICompositionBasePage content)
     {
-        MediaWithCrops? cardImage = (content as ICompositionCardDetails)?.CardImage;
+        string? cardImage = (content as ICompositionCardDetails)?.CardImage;
 
         if (cardImage is null &&
             content is ICompositionHero compositionHero &&

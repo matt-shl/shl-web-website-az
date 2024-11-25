@@ -22,7 +22,7 @@ public class BannerTextMedia
 
     public Video? Video { get; set; }
 
-    public Image? ImageData { get; set; }
+    public Image? Image { get; set; }
 
     public string? Theme { get; set; }
 
@@ -62,7 +62,7 @@ public class BannerTextMedia
                 v.TotalTime = videoContent?.TotalTime;
                 v.Variant = "modal";
             }),
-            ImageData = Image
+            Image = Image
                 .Create(imageContent?.Image, style: "in-grid-banner-image")
                 .With(i =>
                 {

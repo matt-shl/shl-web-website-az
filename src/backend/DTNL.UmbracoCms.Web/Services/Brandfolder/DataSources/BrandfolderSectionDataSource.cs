@@ -30,7 +30,7 @@ public class BrandfolderSectionDataSource : BrandfolderBaseDataSource
 
     public override OverlaySize OverlaySize => OverlaySize.Small;
 
-    protected override async Task<BrandfolderEntityResponse> GetItem(string value)
+    protected override async Task<BrandfolderEntityResponse?> GetItem(string? value)
     {
         return await BrandfolderApiClient.GetBrandfolderSection(value);
     }

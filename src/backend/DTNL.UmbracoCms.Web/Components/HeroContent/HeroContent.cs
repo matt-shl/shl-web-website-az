@@ -1,3 +1,4 @@
+using System.Globalization;
 using DTNL.UmbracoCms.Web.Components.Hero;
 using DTNL.UmbracoCms.Web.Helpers.Extensions;
 using Umbraco.Cms.Web.Common.PublishedModels;
@@ -32,7 +33,9 @@ public class HeroContent : IHero
         return new HeroContent
         {
             Title = contentHero.Title!,
-            SubTitle = contentHero.SubTitle.FallBack((page as ICompositionContentDetails)?.GetDate()?.ToString("MMMM dd yyyy")),
+            SubTitle = contentHero.SubTitle
+                .FallBack((page as ICompositionContentDetails)?.GetDate()?
+                .ToString("MMMM dd yyyy", CultureInfo.InvariantCulture)),
             Tags = GetTagValues(page)
                 .Using(tag => Tag.Create(tag, "hero-content__tag"))
                 .Take(2)

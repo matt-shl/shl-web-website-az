@@ -35,7 +35,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		/// <summary>Image</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		global::Umbraco.Cms.Core.Models.MediaWithCrops CardImage { get; }
+		string CardImage { get; }
 	}
 
 	/// <summary>Composition Card Details</summary>
@@ -101,11 +101,11 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("cardImage")]
-		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops CardImage => GetCardImage(this, _publishedValueFallback);
+		public virtual string CardImage => GetCardImage(this, _publishedValueFallback);
 
 		/// <summary>Static getter for Image</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		public static global::Umbraco.Cms.Core.Models.MediaWithCrops GetCardImage(ICompositionCardDetails that, IPublishedValueFallback publishedValueFallback) => that.Value<global::Umbraco.Cms.Core.Models.MediaWithCrops>(publishedValueFallback, "cardImage");
+		public static string GetCardImage(ICompositionCardDetails that, IPublishedValueFallback publishedValueFallback) => that.Value<string>(publishedValueFallback, "cardImage");
 	}
 }

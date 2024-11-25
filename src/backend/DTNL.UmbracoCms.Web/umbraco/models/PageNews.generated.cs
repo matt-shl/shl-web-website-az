@@ -79,7 +79,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("cardImage")]
-		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops CardImage => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionCardDetails.GetCardImage(this, _publishedValueFallback);
+		public virtual string CardImage => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionCardDetails.GetCardImage(this, _publishedValueFallback);
 
 		///<summary>
 		/// Page Theme
