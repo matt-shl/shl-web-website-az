@@ -30,7 +30,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		/// <summary>Image</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		global::Umbraco.Cms.Core.Models.MediaWithCrops OgImage { get; }
+		string OgImage { get; }
 
 		/// <summary>Title</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
@@ -45,7 +45,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		/// <summary>Twitter Image</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		global::Umbraco.Cms.Core.Models.MediaWithCrops TwitterImage { get; }
+		string TwitterImage { get; }
 
 		/// <summary>Twitter title</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
@@ -103,12 +103,12 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("ogImage")]
-		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops OgImage => GetOgImage(this, _publishedValueFallback);
+		public virtual string OgImage => GetOgImage(this, _publishedValueFallback);
 
 		/// <summary>Static getter for Image</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		public static global::Umbraco.Cms.Core.Models.MediaWithCrops GetOgImage(ICompositionSocialSharing that, IPublishedValueFallback publishedValueFallback) => that.Value<global::Umbraco.Cms.Core.Models.MediaWithCrops>(publishedValueFallback, "ogImage");
+		public static string GetOgImage(ICompositionSocialSharing that, IPublishedValueFallback publishedValueFallback) => that.Value<string>(publishedValueFallback, "ogImage");
 
 		///<summary>
 		/// Title: To overrule the title property for social sharing
@@ -142,12 +142,12 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("twitterImage")]
-		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops TwitterImage => GetTwitterImage(this, _publishedValueFallback);
+		public virtual string TwitterImage => GetTwitterImage(this, _publishedValueFallback);
 
 		/// <summary>Static getter for Twitter Image</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		public static global::Umbraco.Cms.Core.Models.MediaWithCrops GetTwitterImage(ICompositionSocialSharing that, IPublishedValueFallback publishedValueFallback) => that.Value<global::Umbraco.Cms.Core.Models.MediaWithCrops>(publishedValueFallback, "twitterImage");
+		public static string GetTwitterImage(ICompositionSocialSharing that, IPublishedValueFallback publishedValueFallback) => that.Value<string>(publishedValueFallback, "twitterImage");
 
 		///<summary>
 		/// Twitter title: Optional override for twitter card title. If you do not fill in this field, Twitter will use the Open Graph tag.

@@ -10,10 +10,6 @@ namespace DTNL.UmbracoCms.Web.Services.Brandfolder.DataSources;
 
 public abstract class BrandfolderBaseDataSource : IDataPickerSource
 {
-    protected readonly BrandfolderApiClient BrandfolderApiClient;
-    protected readonly IContentmentContentContext ContentmentContentContext;
-    protected readonly IUmbracoContextAccessor UmbracoContextAccessor;
-
     protected BrandfolderBaseDataSource(
         BrandfolderApiClient brandfolderApiClient,
         IContentmentContentContext contentmentContentContext,
@@ -23,6 +19,12 @@ public abstract class BrandfolderBaseDataSource : IDataPickerSource
         UmbracoContextAccessor = umbracoContextAccessor;
         BrandfolderApiClient = brandfolderApiClient;
     }
+
+    protected BrandfolderApiClient BrandfolderApiClient { get; }
+
+    protected IContentmentContentContext ContentmentContentContext { get; }
+
+    protected IUmbracoContextAccessor UmbracoContextAccessor { get; }
 
     public abstract string? Name { get; }
 
@@ -42,11 +44,11 @@ public abstract class BrandfolderBaseDataSource : IDataPickerSource
     {
         List<BrandfolderEntity?> entities = [];
 
-        foreach (string value in values)
+        foreach (string? value in values.OrEmptyIfNull())
         {
-            BrandfolderEntityResponse brandfolderAsset = await GetItem(value);
+            BrandfolderEntityResponse? brandfolderAsset = await GetItem(value);
 
-            entities.Add(brandfolderAsset.Data);
+            entities.Add(brandfolderAsset?.Data);
         }
 
         return entities.Using(ToDataListItem);
@@ -69,18 +71,18 @@ public abstract class BrandfolderBaseDataSource : IDataPickerSource
         };
     }
 
-    protected abstract Task<BrandfolderEntityResponse> GetItem(string value);
+    protected abstract Task<BrandfolderEntityResponse?> GetItem(string? value);
 
     protected abstract Task<BrandfolderEntitiesResponse?> SearchItems(int pageNumber = 1, int pageSize = 12, string query = "");
 
-    protected virtual DataListItem ToDataListItem(BrandfolderEntity content)
+    protected virtual DataListItem ToDataListItem(BrandfolderEntity brandfolderEntity)
     {
         return new DataListItem
         {
-            Name = content.Attributes.Name,
-            Description = content.Attributes.Description ?? content.Attributes.TagLine?.RemoveHtml(),
+            Name = brandfolderEntity.Attributes.Name,
+            Description = brandfolderEntity.Attributes.Description ?? brandfolderEntity.Attributes.TagLine?.RemoveHtml(),
             Icon = Icon,
-            Value = content.Id,
+            Value = brandfolderEntity.Id,
         };
     }
 }

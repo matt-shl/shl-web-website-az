@@ -1,5 +1,4 @@
 using DTNL.UmbracoCms.Web.Components.Hero;
-using DTNL.UmbracoCms.Web.Helpers.Extensions;
 using Umbraco.Cms.Web.Common.PublishedModels;
 
 namespace DTNL.UmbracoCms.Web.Components;

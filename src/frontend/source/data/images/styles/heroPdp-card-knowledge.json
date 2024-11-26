@@ -15,6 +15,14 @@
     "laptop-card-knowledge": [432, 324],
     "desktop-card-knowledge": [432, 324],
     "widescreen-card-knowledge": [432, 324],
-    "4k-card-knowledge": [432, 324]
+    "4k-card-knowledge": [432, 324],
+    "mobile-card-contact": [254, 254],
+    "mobilePlus-card-contact": [343, 343],
+    "tabletPortrait-card-contact": [432, 432],
+    "tabletLandscape-card-contact": [432, 432],
+    "laptop-card-contact": [432, 432],
+    "desktop-card-contact": [432, 432],
+    "widescreen-card-contact": [432, 432],
+    "4k-card-contact": [432, 432]
   }
 }

@@ -100,7 +100,7 @@ public partial class Map
                         Address = office.Address?.ToHtmlString(),
                         Email = office.Email,
                         Phone = office.Phone,
-                        Image = Image.Create(office.Image, cssClasses: "office-modal__image"),
+                        Image = Image.Create(office.Image, cssClasses: "office-modal__image", style: "office-modal"),
                         Description = office.Description,
                         LinkButton = Button.Create(office.LinkButton).With(b => b.Class = "office-modal__cta"),
                         TriggerX = office.TriggerX,

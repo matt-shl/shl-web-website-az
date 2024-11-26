@@ -25,7 +25,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		/// <summary>Company Logo</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		global::Umbraco.Cms.Core.Models.MediaWithCrops CompanyLogo { get; }
+		string CompanyLogo { get; }
 
 		/// <summary>Company Name</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
@@ -70,12 +70,12 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("companyLogo")]
-		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops CompanyLogo => GetCompanyLogo(this, _publishedValueFallback);
+		public virtual string CompanyLogo => GetCompanyLogo(this, _publishedValueFallback);
 
 		/// <summary>Static getter for Company Logo</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		public static global::Umbraco.Cms.Core.Models.MediaWithCrops GetCompanyLogo(ICompositionStructuredData that, IPublishedValueFallback publishedValueFallback) => that.Value<global::Umbraco.Cms.Core.Models.MediaWithCrops>(publishedValueFallback, "companyLogo");
+		public static string GetCompanyLogo(ICompositionStructuredData that, IPublishedValueFallback publishedValueFallback) => that.Value<string>(publishedValueFallback, "companyLogo");
 
 		///<summary>
 		/// Company Name: For Google Structured Data tags

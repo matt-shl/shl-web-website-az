@@ -1,8 +1,7 @@
 using DEPT.Umbraco.SourceGenerators.CssBreakpoints;
-using DTNL.UmbracoCms.Web.Helpers;
 using DTNL.UmbracoCms.Web.Helpers.Extensions;
+using DTNL.UmbracoCms.Web.Models.BrandfolderAssets;
 using Umbraco.Cms.Core.Models;
-using Umbraco.Cms.Core.Models.PublishedContent;
 
 namespace DTNL.UmbracoCms.Web.Components;
 
@@ -41,65 +40,20 @@ public partial class Image : ICard
     public CardOverlay? CardOverlay { get; set; }
 
     public static Image? Create(
-        MediaWithCrops? mediaWithCrops,
+        string? value,
         ImageCropMode imageCropMode = ImageCropMode.Crop,
         int width = 0,
         int height = 0,
         string? cssClasses = "",
         bool objectFit = true,
-        IEnumerable<SrcSetEntry>? customSrcSet = null,
         string? style = null)
     {
-        if (mediaWithCrops?.Content == null)
+        if (BrandfolderAsset.Create(value) is not { } brandfolderAsset)
         {
             return null;
         }
 
-        return Create(
-            mediaWithCrops.Content,
-            imageCropMode,
-            width,
-            height,
-            cssClasses,
-            objectFit,
-            customSrcSet,
-            mediaWithCrops.LocalCrops.Crops?.Select(c => ImageCrop.Create(mediaWithCrops, c)).WhereNotNull(),
-            style
-        );
-    }
-
-    public static Image? Create(
-        IPublishedContent? imageContent,
-        ImageCropMode imageCropMode = ImageCropMode.Crop,
-        int width = 0,
-        int height = 0,
-        string? cssClasses = "",
-        bool objectFit = true,
-        IEnumerable<SrcSetEntry>? customSrcSet = null,
-        IEnumerable<ImageCrop>? localCrops = null,
-        string? style = null)
-    {
-        return imageContent switch
-        {
-            Umbraco.Cms.Web.Common.PublishedModels.Image image => Create(image, imageCropMode, width, height, cssClasses, objectFit, customSrcSet, localCrops, style),
-            Umbraco.Cms.Web.Common.PublishedModels.UmbracoMediaVectorGraphics svg => Create(svg, width, height, cssClasses, objectFit, localCrops, style),
-            Umbraco.Cms.Web.Common.PublishedModels.IBrandfolderAsset brandfolderAsset => Create(brandfolderAsset, imageCropMode, width, height, cssClasses, objectFit, customSrcSet, localCrops, style),
-            _ => null,
-        };
-    }
-
-    private static Image? Create(
-        Umbraco.Cms.Web.Common.PublishedModels.IBrandfolderAsset brandfolderAsset,
-        ImageCropMode imageCropMode = ImageCropMode.Crop,
-        int width = 0,
-        int height = 0,
-        string? cssClasses = "",
-        bool objectFit = true,
-        IEnumerable<SrcSetEntry>? customSrcSet = null,
-        IEnumerable<ImageCrop>? localCrops = null,
-        string? style = null)
-    {
-        string? url = brandfolderAsset.GetDefaultCropUrl(width, height, imageCropMode: imageCropMode);
+        string url = brandfolderAsset.GetDefaultCropUrl(width, height, imageCropMode);
         if (string.IsNullOrEmpty(url))
         {
             return null;
@@ -110,15 +64,11 @@ public partial class Image : ICard
             Image img = new()
             {
                 Url = url,
-                Alt = brandfolderAsset.Alt.FallBack(brandfolderAsset.Name),
-                SrcSet = customSrcSet switch
-                {
-                    { } srcSet when srcSet.Any() => brandfolderAsset.BuildSrcSetString(customSrcSet),
-                    _ => default,
-                },
+                Alt = brandfolderAsset.Name,
+                SrcSet = default,
                 Classes = cssClasses,
                 ObjectFit = objectFit,
-                Crops = GenerateCrops(localCrops, style),
+                Crops = brandfolderAsset.GetCrops(style ?? "default", imageCropMode),
                 AspectRatio = width != default && height != default ? (width, height) : (16, 9),
             };
 
@@ -133,134 +83,6 @@ public partial class Image : ICard
         }
 
         return null;
-    }
-
-    private static Image? Create(
-        Umbraco.Cms.Web.Common.PublishedModels.Image image,
-        ImageCropMode imageCropMode = ImageCropMode.Crop,
-        int width = 0,
-        int height = 0,
-        string? cssClasses = "",
-        bool objectFit = true,
-        IEnumerable<SrcSetEntry>? customSrcSet = null,
-        IEnumerable<ImageCrop>? localCrops = null,
-        string? style = null)
-    {
-        string? url = image.GetDefaultCropUrl(width, height, imageCropMode: imageCropMode);
-        if (string.IsNullOrEmpty(url))
-        {
-            return null;
-        }
-
-        try
-        {
-            Image img = new()
-            {
-                Url = url,
-                Alt = image.ValueOrDefault(img => img.Alt, image.Name),
-                SrcSet = customSrcSet switch
-                {
-                    { } srcSet when srcSet.Any() => image.BuildSrcSetString(customSrcSet),
-                    _ => default,
-                },
-                Classes = cssClasses,
-                ObjectFit = objectFit,
-                Crops = GenerateCrops(localCrops, style),
-                AspectRatio = width != default && height != default ? (width, height) : (16, 9),
-                BackgroundColor = image.DominantColor,
-            };
-
-            img.AspectRatio = GetAspectRatio(img.Crops);
-
-            return img;
-        }
-        catch
-        {
-            // Do nothing: sometimes the crop might fail because the
-            // image media item was deleted and the page property was not updated to a new media
-        }
-
-        return null;
-    }
-
-    private static Image? Create(
-        Umbraco.Cms.Web.Common.PublishedModels.UmbracoMediaVectorGraphics svg,
-        int width = 0,
-        int height = 0,
-        string? cssClasses = "",
-        bool objectFit = true,
-        IEnumerable<ImageCrop>? localCrops = null,
-        string? style = null)
-    {
-        string? url = svg.UmbracoFile;
-        if (string.IsNullOrEmpty(url))
-        {
-            return null;
-        }
-
-        List<(ImageCrop ImageCrop, CssBreakpoint Breakpoint)> crops = GenerateCrops(localCrops, style);
-        return new Image
-        {
-            Url = url,
-            Alt = svg.ValueOrDefault(img => img.Alt, svg.Name),
-            Classes = cssClasses,
-            ObjectFit = objectFit,
-            Crops = [],
-            AspectRatio = GetAspectRatio(crops, width, height),
-            BackgroundColor = svg.DominantColor,
-        };
-    }
-
-    private static List<(ImageCrop ImageCrop, CssBreakpoint Breakpoint)> GenerateCrops(
-        IEnumerable<ImageCrop>? localCrops,
-        string? style = null)
-    {
-        if (localCrops is null)
-        {
-            return [];
-        }
-
-        if (style is not null)
-        {
-            string styleSuffix = $"-{style}";
-
-            List<ImageCrop> styleCrops = [];
-
-            foreach (ImageCrop localCrop in localCrops.Where(c => c.Name.InvariantEndsWith(styleSuffix)))
-            {
-                localCrop.Name = localCrop.Name.TrimEnd(styleSuffix);
-
-                styleCrops.Add(localCrop);
-            }
-
-            localCrops = styleCrops;
-        }
-        else
-        {
-            localCrops = localCrops.Where(c => !c.Name.Contains('-'));
-        }
-
-        return localCrops
-            .Select(imageCrop => (imageCrop, breakpoint: CssBreakpoints.GetBreakpoint(imageCrop.Name)))
-            .Where(c => c.breakpoint != null)
-            .OrderBy(c => c.breakpoint!.Start ?? 0)
-            .Select(c => (c.imageCrop, c.breakpoint!))
-            .ToList();
-    }
-
-    private static (int Width, int Height) GetAspectRatio(IReadOnlyCollection<(ImageCrop ImageCrop, CssBreakpoint Breakpoint)> crops, int width, int height)
-    {
-        if (GetAspectRatio(crops) is var cropAspect && cropAspect != default)
-        {
-            return cropAspect;
-        }
-
-        if (width != default && height != default)
-        {
-            return (width, height);
-        }
-
-        return (16, 9);
     }
 
     private static (int Width, int Height) GetAspectRatio(IReadOnlyCollection<(ImageCrop ImageCrop, CssBreakpoint Breakpoint)> crops)

@@ -7,6 +7,7 @@ const JS_HOOK_CONTENT = '[js-hook-stacking-cards-content]'
 const JS_HOOK_DESCRIPTION = '[js-hook-stacking-cards-description]'
 
 const TITLE_MARGIN = 80
+const CLASS_IS_LOADED = 'is--loaded'
 
 class StackingCards {
   element: HTMLElement
@@ -23,6 +24,8 @@ class StackingCards {
     this.content = this.element.querySelector<HTMLDivElement>(JS_HOOK_CONTENT)
     this.description = this.element.querySelector<HTMLParagraphElement>(JS_HOOK_DESCRIPTION)
 
+    // Add class through JS so there is no content overlap while JS is being loaded (position absolute)
+    this.element.classList.add(CLASS_IS_LOADED)
     this.bindEvents()
   }
 

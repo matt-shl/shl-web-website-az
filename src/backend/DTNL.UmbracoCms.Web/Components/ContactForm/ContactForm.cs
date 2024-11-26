@@ -23,7 +23,7 @@ public class ContactForm
                 .Using(item => item.Content as NestedBlockContactFormItem)
                 .Using(ContactFormItem.Create)
                 .ToList(),
-            PardotContactForm = PardotContactForm.Create(contactFormBlock),
+            PardotContactForm = PardotContactForm.Create(),
         };
     }
 }

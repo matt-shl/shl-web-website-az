@@ -11,8 +11,6 @@ namespace DTNL.UmbracoCms.Web.Components;
 
 #pragma warning disable SA1402 // Suppress warning File may only contain a single type
 
-public interface IOverviewItem : IPartialViewPath;
-
 public abstract class Overview : ViewComponentExtended
 {
     public int PageNumber { get; set; }
@@ -100,14 +98,21 @@ public abstract class OverviewFor<TOverviewPage, TPage, TFilters, TOverviewItem>
             .Page(PageNumber, PageSize)
             .ToList();
 
-        OverviewType = pages.FirstOrDefault()?.ContentType.Alias switch
+        if (OverviewPage is PageSearch)
         {
-        "pagePublication" => "publication",
-        "pageEvent" => "event",
-        "pageNews" => "news",
-        "pageProduct" => "product",
-        _ => null,
-        };
+            OverviewType = "search";
+        }
+        else
+        {
+            OverviewType = pages.FirstOrDefault() switch
+            {
+                PagePublication => "publication",
+                PageEvent => "event",
+                PageNews => "news",
+                PageProduct => "product",
+                _ => null,
+            };
+        }
 
         SearchTerm = Request.Query.GetSearchQuery();
 
@@ -121,3 +126,5 @@ public abstract class OverviewFor<TOverviewPage, TPage, TFilters, TOverviewItem>
         return View("~/Components/Overview/Overview.cshtml", this);
     }
 }
+
+public interface IOverviewItem : IPartialViewPath;

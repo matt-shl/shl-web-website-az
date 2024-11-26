@@ -55,7 +55,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("downloadFormImage")]
-		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops DownloadFormImage => this.Value<global::Umbraco.Cms.Core.Models.MediaWithCrops>(_publishedValueFallback, "downloadFormImage");
+		public virtual string DownloadFormImage => this.Value<string>(_publishedValueFallback, "downloadFormImage");
 
 		///<summary>
 		/// Event Form Image
@@ -63,7 +63,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("eventFormImage")]
-		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops EventFormImage => this.Value<global::Umbraco.Cms.Core.Models.MediaWithCrops>(_publishedValueFallback, "eventFormImage");
+		public virtual string EventFormImage => this.Value<string>(_publishedValueFallback, "eventFormImage");
 
 		///<summary>
 		/// Body Scripts: Insert here your Hotjar/Google Analytics scripts to be inserted at body of the page.
@@ -167,7 +167,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("companyLogo")]
-		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops CompanyLogo => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionStructuredData.GetCompanyLogo(this, _publishedValueFallback);
+		public virtual string CompanyLogo => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionStructuredData.GetCompanyLogo(this, _publishedValueFallback);
 
 		///<summary>
 		/// Company Name: For Google Structured Data tags

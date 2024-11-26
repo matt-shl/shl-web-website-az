@@ -11,6 +11,10 @@
 .card-product__image-container {
   @include theme-card;
   @include card-image-container-base;
+
+  .c-image img {
+    object-fit: contain;
+  }
 }
 
 .card-product__image {

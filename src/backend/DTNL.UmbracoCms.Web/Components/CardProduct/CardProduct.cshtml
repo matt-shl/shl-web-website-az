@@ -26,7 +26,7 @@
                     {
                         for (int currentLevel = 1; currentLevel <= 3; currentLevel++)
                         {
-                            <span class="card-product__specification-value-level @(currentLevel < (int) level ? "card-product__specification-value-level--activated" : null)"></span>
+                            <span class="card-product__specification-value-level @(currentLevel <= (int) level ? "card-product__specification-value-level--activated" : null)"></span>
                         }
                     }
                     else

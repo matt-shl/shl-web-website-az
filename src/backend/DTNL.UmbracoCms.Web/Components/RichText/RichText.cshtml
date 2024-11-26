@@ -1,22 +1,16 @@
 @model DTNL.UmbracoCms.Web.Components.RichText
 
-<div class="c-rich-text rich-text--is-closed @(Model.TextSize.IsNullOrWhiteSpace() ? $"c-rich-text--size-{Model.TextSize}" : null)"
+<div class="c-rich-text rich-text--is-closed c-rich-text--size-@(Model.TextSize)"
 @(!Model.ReadMoreOption ? "read-more-disabled" : null)
      js-hook-rich-text>
-    <div class="rich-text__container" js-hook-rich-text-container >
+    <div class="rich-text__container" js-hook-rich-text-container>
         <div class="rich-text__content">
             @Html.Raw(Model.Content)
         </div>
 
-        <div class="rich-text__ctas">
-            @if (Model.FirstButton is not null)
-            {
-                <partial name="Button" model="@Model.FirstButton" />
-            }
-            @if (Model.SecondButton is not null)
-            {
-                <partial name="Button" model="@Model.SecondButton" />
-            }
+        <div class="rich-text__ctas" asp-if="@((Model.PrimaryLinkButton ?? Model.SecondaryLinkButton) is not null)">
+            <partial name="Button" model="@Model.PrimaryLinkButton" />
+            <partial name="Button" model="@Model.SecondaryLinkButton" />
         </div>
     </div>
 

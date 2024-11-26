@@ -13,7 +13,6 @@ using DTNL.UmbracoCms.Web.Infrastructure.Middlewares.CustomResponseCaching;
 using DTNL.UmbracoCms.Web.Infrastructure.NotificationHandlers;
 using DTNL.UmbracoCms.Web.Modules.BackgroundJobs.Hangfire;
 using DTNL.UmbracoCms.Web.Modules.BackgroundJobs.Section;
-using DTNL.UmbracoCms.Web.Modules.BrandfolderPicker;
 using DTNL.UmbracoCms.Web.Services;
 using DTNL.UmbracoCms.Web.Services.Assets;
 using DTNL.UmbracoCms.Web.Services.BackgroundJobs;
@@ -168,10 +167,7 @@ public static class Startup
                     options.AppendTrailingSlash = false;
                 });
 
-                builder.Services.AddControllersWithViews(options =>
-                {
-                    options.Filters.Add<AddMediaPathToBrandfolderAssetsFilter>();
-                });
+                builder.Services.AddControllersWithViews();
 
                 builder.Services.AddCors(options => options.AddDefaultPolicy(applicationOptions.Cors));
             })
