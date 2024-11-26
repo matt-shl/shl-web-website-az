@@ -7,9 +7,9 @@ public sealed class ContentmentComposer : IComposer
 {
     public void Compose(IUmbracoBuilder builder)
     {
-        builder
-            .ManifestFilters()
-            .Append<ContentmentManifestFilter>();
+        //builder
+        //    .ManifestFilters()
+        //    .Append<ContentmentManifestFilter>();
     }
 }
 
