@@ -20,8 +20,8 @@ public class NewsContentImporter : IBackgroundJob
 {
     private readonly (string ContentFilePath, string ContentCulture)[] _contentFilePathsAndCultures =
     [
-        (@"Files\english-posts-shlmedical.WordPress.2024-11-26.xml", "en-US"),
-        (@"Files\chinese-posts-shlmedical.WordPress.2024-11-26.xml", "zh-Hant-TW"),
+        ("Files/english-posts-shlmedical.WordPress.2024-11-26.xml", "en-US"),
+        ("Files/chinese-posts-shlmedical.WordPress.2024-11-26.xml", "zh-Hant-TW"),
     ];
 
     private readonly IScopeProvider _scopeProvider;
@@ -99,7 +99,7 @@ public class NewsContentImporter : IBackgroundJob
         IFileInfo fileInfo = _webHostEnvironment.ContentRootFileProvider.GetFileInfo(contentFilePath);
         if (!fileInfo.Exists)
         {
-            _logger.LogWarning("Could not find {FilePath}", contentFilePath);
+            _logger.LogWarning("Could not find {FilePath}", Path.Combine(_webHostEnvironment.ContentRootPath, contentFilePath));
             return;
         }
 
