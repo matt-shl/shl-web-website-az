@@ -216,7 +216,7 @@ public static class Startup
                     .From("https://*.shl-medical.com")
                     .From("https://*.cookiebot.com")
                     .From("https://*.googletagmanager.com")
-                    .From("https://*google-analytics.com")
+                    .From("https://*.google-analytics.com")
                     .UnsafeInline()
                     .UnsafeEval()
                     .Self();
