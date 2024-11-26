@@ -1,8 +1,8 @@
+using System.Text.Json;
+using DTNL.UmbracoCms.Web.Models.BrandfolderAssets;
 using DTNL.UmbracoCms.Web.Services.Brandfolder.Models;
 using Flurl;
-using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Core.Web;
-using Umbraco.Cms.Web.Common.PublishedModels;
 using Umbraco.Community.Contentment.DataEditors;
 using Umbraco.Community.Contentment.Services;
 
@@ -22,11 +22,21 @@ public abstract class BrandfolderAssetDataSource : BrandfolderBaseDataSource
 
     public virtual string DefaultImageAlias => "image";
 
-    protected override async Task<BrandfolderEntityResponse> GetItem(string value)
+    protected override async Task<BrandfolderEntityResponse?> GetItem(string? value)
     {
-        string assetId = new Url(value).PathSegments.Last();
+        try
+        {
+            if (BrandfolderAsset.Create(value) is not { } brandfolderAsset)
+            {
+                return null;
+            }
 
-        return await BrandfolderApiClient.GetAsset(assetId);
+            return await BrandfolderApiClient.GetAsset(brandfolderAsset.Id);
+        }
+        catch (Exception)
+        {
+            return null;
+        }
     }
 
     protected override async Task<BrandfolderEntitiesResponse?> SearchItems(
@@ -34,45 +44,28 @@ public abstract class BrandfolderAssetDataSource : BrandfolderBaseDataSource
         int pageSize = 12,
         string query = "")
     {
-        if (GetBrandfolderSectionId() is { } brandfolderSectionId)
-        {
-            return await BrandfolderApiClient
-                .FindSectionAssets(brandfolderSectionId, pageNumber, pageSize, query, SupportedFileTypes);
-        }
-
-        return await BrandfolderApiClient
-            .FindAssets(pageNumber, pageSize, query, SupportedFileTypes);
+        return await BrandfolderApiClient.FindAssets(pageNumber, pageSize, query, SupportedFileTypes);
     }
 
-    protected string? GetBrandfolderSectionId()
+    protected override DataListItem ToDataListItem(BrandfolderEntity brandfolderEntity)
     {
-        if (!UmbracoContextAccessor.TryGetUmbracoContext(out IUmbracoContext? umbracoContext))
+        BrandfolderAsset brandfolderAsset = new()
         {
-            return null;
-        }
-
-        if (ContentmentContentContext.GetCurrentContentId() is not { } mediaId)
-        {
-            return null;
-        }
-
-        IPublishedContent? content = umbracoContext.Media?.GetById(true, mediaId);
-
-        return (content as BrandfolderFolder)?.SectionId;
-    }
-
-    protected override DataListItem ToDataListItem(BrandfolderEntity content)
-    {
-        return new DataListItem
-        {
-            Name = content.Attributes.Name,
-            Description = content.Attributes.Description,
-            Icon = Icon,
-            Properties = new Dictionary<string, object> { { DefaultImageAlias, content.Attributes.ThumbnailUrl! }, },
-            Value = $"https://cdn.bfldr.com/DTG6CG68/as/{content.Id}/{content.Id}"
+            Id = brandfolderEntity.Id,
+            Url = $"https://cdn.bfldr.com/DTG6CG68/as/{brandfolderEntity.Id}/{brandfolderEntity.Id}"
                 .SetQueryParam("height", 250)
                 .SetQueryParam("width", 250)
                 .SetQueryParam("fit", "crop"),
+            Name = brandfolderEntity.Attributes.Name,
+        };
+
+        return new DataListItem
+        {
+            Name = brandfolderEntity.Attributes.Name,
+            Description = brandfolderEntity.Attributes.Description,
+            Icon = Icon,
+            Properties = new Dictionary<string, object> { { DefaultImageAlias, brandfolderEntity.Attributes.ThumbnailUrl! }, },
+            Value = JsonSerializer.Serialize(brandfolderAsset),
         };
     }
 }

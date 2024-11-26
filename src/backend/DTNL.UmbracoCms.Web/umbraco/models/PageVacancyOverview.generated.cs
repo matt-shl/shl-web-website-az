@@ -79,7 +79,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("cardImage")]
-		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops CardImage => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionCardDetails.GetCardImage(this, _publishedValueFallback);
+		public virtual string CardImage => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionCardDetails.GetCardImage(this, _publishedValueFallback);
 
 		///<summary>
 		/// Page Theme
@@ -219,7 +219,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("ogImage")]
-		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops OgImage => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionSocialSharing.GetOgImage(this, _publishedValueFallback);
+		public virtual string OgImage => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionSocialSharing.GetOgImage(this, _publishedValueFallback);
 
 		///<summary>
 		/// Title: To overrule the title property for social sharing
@@ -243,7 +243,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("twitterImage")]
-		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops TwitterImage => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionSocialSharing.GetTwitterImage(this, _publishedValueFallback);
+		public virtual string TwitterImage => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionSocialSharing.GetTwitterImage(this, _publishedValueFallback);
 
 		///<summary>
 		/// Twitter title: Optional override for twitter card title. If you do not fill in this field, Twitter will use the Open Graph tag.

@@ -55,7 +55,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("eventImage")]
-		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops EventImage => this.Value<global::Umbraco.Cms.Core.Models.MediaWithCrops>(_publishedValueFallback, "eventImage");
+		public virtual string EventImage => this.Value<string>(_publishedValueFallback, "eventImage");
 
 		///<summary>
 		/// Event Link

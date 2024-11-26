@@ -1,6 +1,8 @@
 using System.Diagnostics.CodeAnalysis;
 using DTNL.UmbracoCms.Web.Helpers.Aliases;
 using DTNL.UmbracoCms.Web.Helpers.Extensions;
+using DTNL.UmbracoCms.Web.Models.BrandfolderAssets;
+using Flurl;
 using Umbraco.Cms.Core.Dictionary;
 using Umbraco.Cms.Core.Models.Blocks;
 using Umbraco.Cms.Web.Common.PublishedModels;
@@ -51,6 +53,18 @@ public class Button
             Icon = link.IconPath,
             Target = link.Target,
         };
+    }
+
+    [return: NotNullIfNotNull(nameof(brandfolderAsset))]
+    public static Button? Create(BrandfolderAsset? brandfolderAsset)
+    {
+        return brandfolderAsset is null
+            ? null
+            : new Button
+            {
+                Url = brandfolderAsset.Url.RemoveQuery(),
+                Label = brandfolderAsset.Name ?? "",
+            };
     }
 
     [return: NotNullIfNotNull(nameof(link))]

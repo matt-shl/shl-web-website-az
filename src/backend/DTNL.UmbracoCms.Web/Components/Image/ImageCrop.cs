@@ -1,6 +1,7 @@
+using DTNL.UmbracoCms.Web.Helpers;
 using DTNL.UmbracoCms.Web.Helpers.Extensions;
+using DTNL.UmbracoCms.Web.Models.BrandfolderAssets;
 using Umbraco.Cms.Core.Models;
-using Umbraco.Cms.Core.PropertyEditors.ValueConverters;
 
 namespace DTNL.UmbracoCms.Web.Components;
 
@@ -14,18 +15,13 @@ public partial class Image
 
         public required string Url { get; set; }
 
-        public static ImageCrop? Create(MediaWithCrops image, ImageCropperValue.ImageCropperCrop c)
+        public static ImageCrop Create(BrandfolderAsset brandfolderAsset, ImageCropping crop, ImageCropMode imageCropMode)
         {
-            if (c.Alias == null)
-            {
-                return null;
-            }
-
             return new ImageCrop
             {
-                Name = c.Alias,
-                Dimensions = new ImageCropDimensions { Width = c.Width, Height = c.Height },
-                Url = image.GetDefaultCropUrl(c.Alias),
+                Name = crop.Name,
+                Dimensions = new ImageCropDimensions { Width = crop.Width, Height = crop.Height },
+                Url = brandfolderAsset.GetDefaultCropUrl(crop.Width, crop.Height, imageCropMode),
             };
         }
     }

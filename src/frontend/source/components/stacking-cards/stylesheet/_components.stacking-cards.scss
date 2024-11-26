@@ -3,10 +3,13 @@
 
   @include screen-lg-and-bigger {
     margin-bottom: $spacing-64;
-    position: absolute;
-    bottom: 100%;
-    width: calc(100vw - 140px);
     max-width: 1440px;
+
+    .c-stacking-cards.is--loaded & {
+      position: absolute;
+      bottom: 100%;
+      width: calc(100vw - 140px);
+    }
   }
 }
 

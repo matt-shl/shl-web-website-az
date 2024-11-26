@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "DTNL.UmbracoCms.SourceGenerators": {
+      "commandName": "DebugRoslynComponent",
+      "targetProject": "..\\DTNL.UmbracoCms.Web\\DTNL.UmbracoCms.Web.csproj"
+    }
+  }
+}

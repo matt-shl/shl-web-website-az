@@ -1,5 +1,6 @@
 using DTNL.UmbracoCms.Web.Helpers.Aliases;
 using DTNL.UmbracoCms.Web.Helpers.Extensions;
+using DTNL.UmbracoCms.Web.Models.BrandfolderAssets;
 using Umbraco.Cms.Web.Common.PublishedModels;
 
 namespace DTNL.UmbracoCms.Web.Components;
@@ -41,7 +42,8 @@ public partial class DescriptionList
         {
             Title = title,
             Items = items,
-            DownloadLinkButton = Button.Create(Link.Create(productPage?.SpecificationsFile))
+            DownloadLinkButton = Button
+                .Create(BrandfolderAsset.Create(productPage?.SpecificationsFile))
                 .With(b =>
                 {
                     b.Class = "description-list__cta";

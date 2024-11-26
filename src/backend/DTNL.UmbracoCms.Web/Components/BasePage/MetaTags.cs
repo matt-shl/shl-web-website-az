@@ -1,8 +1,8 @@
 using DTNL.UmbracoCms.Web.Helpers.Extensions;
+using DTNL.UmbracoCms.Web.Models.BrandfolderAssets;
 using DTNL.UmbracoCms.Web.Models.Globalization;
 using DTNL.UmbracoCms.Web.Services;
 using Microsoft.AspNetCore.Mvc;
-using Umbraco.Cms.Core.Models;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Web.Common.PublishedModels;
 
@@ -103,8 +103,9 @@ public class MetaTags : ViewComponentExtended
         string ogTitle = socialSharing?.OgTitle.NullOrEmptyAsNull() ?? GetTitle(page);
         string ogDescription = socialSharing?.OgDescription.NullOrEmptyAsNull() ?? GetMetaDescription(page);
 
-        MediaWithCrops? ogImage = socialSharing?.OgImage ?? GetHeroImage(page);
-        string? ogImageUrl = (ogImage?.Content as Umbraco.Cms.Web.Common.PublishedModels.Image)?.GetDefaultCropUrl(1200, 630, urlMode: UrlMode.Absolute);
+        string? ogImageUrl = BrandfolderAsset
+            .Create(socialSharing?.OgImage ?? GetHeroImage(page))?
+            .GetDefaultCropUrl(1200, 630);
 
         return new OpenGraphMetaTags
         {
@@ -121,8 +122,9 @@ public class MetaTags : ViewComponentExtended
         string twitterTitle = socialSharing?.TwitterTitle.NullOrEmptyAsNull() ?? socialSharing?.OgTitle.NullOrEmptyAsNull() ?? GetTitle(page);
         string twitterDescription = socialSharing?.TwitterDescription.NullOrEmptyAsNull() ?? socialSharing?.OgDescription.NullOrEmptyAsNull() ?? GetMetaDescription(page);
 
-        MediaWithCrops? twitterImage = socialSharing?.TwitterImage ?? socialSharing?.OgImage ?? GetHeroImage(page);
-        string? twitterImageUrl = (twitterImage?.Content as Umbraco.Cms.Web.Common.PublishedModels.Image)?.GetDefaultCropUrl(1200, 630, urlMode: UrlMode.Absolute);
+        string? twitterImageUrl = BrandfolderAsset
+            .Create(socialSharing?.TwitterImage ?? socialSharing?.OgImage ?? GetHeroImage(page))?
+            .GetDefaultCropUrl(1200, 630);
 
         return new TwitterMetaTags
         {
@@ -132,7 +134,7 @@ public class MetaTags : ViewComponentExtended
         };
     }
 
-    private static MediaWithCrops? GetHeroImage(IPublishedContent page)
+    private static string? GetHeroImage(IPublishedContent page)
     {
         if (page is not ICompositionHero heroPage)
         {

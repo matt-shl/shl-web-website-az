@@ -23,22 +23,13 @@ public class CardProduct : ICard, IOverviewItem
     public static CardProduct Create(PageProduct productPage, string? cssClasses = null)
     {
         NestedBlockProductBanner? banner = productPage.Banner?.GetSingleContentOrNull<NestedBlockProductBanner>();
+        NestedBlockProductHero? hero = productPage.Hero?.GetSingleContentOrNull<NestedBlockProductHero>();
 
         Image? image = Image
             .Create(
-                productPage.CardImage,
+                productPage.CardImage ?? hero?.Image,
                 imageCropMode: ImageCropMode.Max,
                 cssClasses: "card-product__image");
-
-        if (image is null &&
-            productPage.Hero?.GetSingleContentOrNull<NestedBlockProductHero>() is { } hero)
-        {
-            image = Image
-                .Create(
-                    hero.Image,
-                    cssClasses: "card-product__image",
-                    style: "card-contact");
-        }
 
         if (image is null && banner is not null)
         {

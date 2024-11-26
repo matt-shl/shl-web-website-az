@@ -16,7 +16,7 @@ public class FormOverlay
             return null;
         }
 
-        Image? image = Image.Create(settings?.EventFormImage);
+        Image? image = Image.Create(settings?.EventFormImage, style: "modal");
 
         return new FormOverlay
         {

@@ -17,7 +17,7 @@ public class DownloadOverlay
         }
 
         Image? image = Image
-            .Create(settings?.DownloadFormImage ?? downloadItem.File);
+            .Create(settings?.DownloadFormImage ?? downloadItem.File, style: "modal");
 
         return new DownloadOverlay
         {

@@ -1,6 +1,4 @@
-using DTNL.UmbracoCms.Web.Components.NestedBlock;
 using DTNL.UmbracoCms.Web.Helpers.Extensions;
-using Umbraco.Cms.Core.Models;
 using Umbraco.Cms.Web.Common.PublishedModels;
 using NestedBlockVideo = Umbraco.Cms.Web.Common.PublishedModels.NestedBlockVideo;
 
@@ -12,19 +10,19 @@ public class Media
 
     public Video? Video { get; set; }
 
-    public static Media? Create(MediaWithCrops? mediaBlock)
+    public static Media? Create(string? media)
     {
-        if (Image.Create(mediaBlock) is not { } image)
+        if (Image.Create(media) is not { } image)
         {
             return null;
         }
 
         return new Media
         {
-            Image = Image.Create(mediaBlock).With(i =>
+            Image = Image.Create(media).With(i =>
             {
                 i.Classes = "media-section__image";
-                i.Caption = image?.Caption;
+                i.Caption = image.Caption;
             }),
         };
     }
@@ -49,7 +47,7 @@ public class Media
         return new Media
         {
             Image = Image
-                .Create(videoBlock.Preview, style: "default")
+                .Create(videoBlock.Preview)
                 .With(i =>
                 {
                     i.Classes = "media-section__image";

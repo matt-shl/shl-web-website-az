@@ -63,7 +63,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("file")]
-		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops File => this.Value<global::Umbraco.Cms.Core.Models.MediaWithCrops>(_publishedValueFallback, "file");
+		public virtual string File => this.Value<string>(_publishedValueFallback, "file");
 
 		///<summary>
 		/// Icon

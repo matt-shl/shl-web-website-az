@@ -163,11 +163,11 @@
           "requiredError": "Please enter your message"
         },
         {
-          "name": "cf_Consent_Given[]",
+          "name": "cf_Consent_Given",
           "type": "checkbox",
           "options": [
             {
-              "id": "cf_Consent_Given[]",
+              "id": "cf_Consent_Given",
               "label": "I agree when entering my data, SHL will collect this data to provide the services you request and keep you up to date on our latest events and news. You are not required to supply any of the information that we may request. However, failure to do so may result in our being unable to provide the documents you desire to download. <a href='#'>Find out more</a> about how SHL protects your personal data.",
               "value": "Yes",
               "validate": "required",
