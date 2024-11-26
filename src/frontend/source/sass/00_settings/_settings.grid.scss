@@ -11,7 +11,7 @@ $grid-breakpoints: (
   'xxl': $breakpoint-xxl,
 );
 
-$max-width-breakpoint: 1440px + 60px + 60px + 20px;
+$max-width-breakpoint: 1440px + 60px + 60px + 16px;
 
 /*----------------------------------*\
   #GRID
@@ -22,6 +22,7 @@ $container-max-width: var(--container-max-width);
 $container-padding: var(--container-padding);
 $grid-gutter: var(--grid-gutter);
 $grid-columns: var(--grid-columns);
+$max-width-widescreen-component: calc(#{$container-max-width} + #{$container-padding} * 2 - 40px);
 
 // Define names to attach to the css variables
 $grid-columns-css-var: 12;
