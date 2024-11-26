@@ -17,10 +17,10 @@ namespace DTNL.UmbracoCms.Web.Services.BackgroundJobs;
 
 public class NewsContentImporter : IBackgroundJob
 {
-    private readonly (string ContentFilePath, string ContentCulture)[] ContentFilePathsAndCultures =
+    private readonly (string ContentFilePath, string ContentCulture)[] _contentFilePathsAndCultures =
     [
-        ("C:\\Users\\pedro\\Downloads\\english-posts-shlmedical.WordPress.2024-11-26.xml", "en-US"),
-        ("C:\\Users\\pedro\\Downloads\\chinese-posts-shlmedical.WordPress.2024-11-26.xml", "zh-Hant-TW"),
+        (@".\\Files\\english-posts-shlmedical.WordPress.2024-11-26.xml", "en-US"),
+        (@".\\Files\\chinese-posts-shlmedical.WordPress.2024-11-26.xml", "zh-Hant-TW"),
     ];
 
     private readonly IScopeProvider _scopeProvider;
@@ -56,7 +56,7 @@ public class NewsContentImporter : IBackgroundJob
     {
         _logger.LogInformation("Content importer started");
 
-        foreach ((string contentFilePath, string contentCulture) in ContentFilePathsAndCultures)
+        foreach ((string contentFilePath, string contentCulture) in _contentFilePathsAndCultures)
         {
             CultureInfo culture = new(contentCulture);
             Thread.CurrentThread.CurrentCulture = culture;
