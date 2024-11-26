@@ -35,7 +35,7 @@ public class HeroContent : IHero
             Title = contentHero.Title!,
             SubTitle = contentHero.SubTitle
                 .FallBack((page as ICompositionContentDetails)?.GetDate()?
-                .ToString("MMMM dd yyyy", CultureInfo.InvariantCulture)),
+                .ToString("MMMM dd yyyy", CultureInfo.CurrentCulture)),
             Tags = GetTagValues(page)
                 .Using(tag => Tag.Create(tag, "hero-content__tag"))
                 .Take(2)

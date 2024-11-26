@@ -300,7 +300,9 @@ public static class Startup
                 {
                     u.ConfigureHangfireDashboard();
 
-                    app.ScheduleJob<VacanciesImporter>(applicationOptions.BackgroundJobs.Schedule.GetValueOrDefault("Importer", Cron.Never()));
+                    app.ScheduleJob<VacanciesImporter>(applicationOptions.BackgroundJobs.Schedule.GetValueOrDefault("VacanciesImporter", Cron.Never()));
+
+                    app.ScheduleJob<NewsContentImporter>(applicationOptions.BackgroundJobs.Schedule.GetValueOrDefault("ContentImporter", Cron.Never()));
                 }
             });
     }
