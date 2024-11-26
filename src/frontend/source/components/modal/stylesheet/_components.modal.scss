@@ -170,6 +170,7 @@ $modal-min-width-media-query: ($modal-max-width + $modal-gutter-small * 2) - 0.5
   opacity: 0;
   border-radius: $radii-12;
   background-color: $color-white;
+  color: $color-dark-blue;
   transition: $modal-transition-time $modal-transition-ease;
   transition-property: transform, opacity;
 
