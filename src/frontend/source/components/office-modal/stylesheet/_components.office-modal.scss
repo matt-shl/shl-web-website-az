@@ -25,6 +25,7 @@
 
   div {
     @include rich-text;
+    gap: 0;
   }
 
   a {
