@@ -63,7 +63,8 @@ public class NodeProvider
 
     private static PageVacancyOverview? GetVacancyOverviewPage(PageHome? homePage)
     {
-        return homePage?.FirstChild<PageVacancyOverview>();
+        return homePage?.FirstChild<PageVacancyOverview>() ??
+               homePage?.FirstChild<PageCareerOverview>()?.FirstChild<PageVacancyOverview>();
     }
 
     private static PageSearch? GetSearchPage(PageHome? homePage)
