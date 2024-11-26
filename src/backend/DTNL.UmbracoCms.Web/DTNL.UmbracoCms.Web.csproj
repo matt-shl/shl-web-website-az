@@ -55,9 +55,9 @@
     <Content Update="Components\_ViewImports.cshtml" Visible="false" />
     <Folder Include="Api/Models/" />
 
-    <Content Include="Files/*">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <None Update="Files\**">
+      <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+    </None>
 
     <Folder Include="umbraco/Data/" />
 
