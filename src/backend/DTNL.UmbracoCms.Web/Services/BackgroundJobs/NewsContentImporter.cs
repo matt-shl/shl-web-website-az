@@ -4,6 +4,7 @@ using DTNL.UmbracoCms.Web.Helpers;
 using DTNL.UmbracoCms.Web.Helpers.Extensions;
 using DTNL.UmbracoCms.Web.Modules.BackgroundJobs.Hangfire;
 using Hangfire;
+using Microsoft.Extensions.FileProviders;
 using Umbraco.Cms.Core;
 using Umbraco.Cms.Core.Models;
 using Umbraco.Cms.Core.Models.PublishedContent;
@@ -19,8 +20,8 @@ public class NewsContentImporter : IBackgroundJob
 {
     private readonly (string ContentFilePath, string ContentCulture)[] _contentFilePathsAndCultures =
     [
-        (@".\\Files\\english-posts-shlmedical.WordPress.2024-11-26.xml", "en-US"),
-        (@".\\Files\\chinese-posts-shlmedical.WordPress.2024-11-26.xml", "zh-Hant-TW"),
+        (@"Files\english-posts-shlmedical.WordPress.2024-11-26.xml", "en-US"),
+        (@"Files\chinese-posts-shlmedical.WordPress.2024-11-26.xml", "zh-Hant-TW"),
     ];
 
     private readonly IScopeProvider _scopeProvider;
@@ -28,6 +29,7 @@ public class NewsContentImporter : IBackgroundJob
     private readonly IVariationContextAccessor _variationContextAccessor;
     private readonly IDefaultCultureAccessor _defaultCultureAccessor;
     private readonly IServiceProvider _serviceProvider;
+    private readonly IWebHostEnvironment _webHostEnvironment;
     private readonly IContentService _contentService;
     private readonly NewsContentHelper _newsContentHelper;
     private readonly ILogger<NewsContentImporter> _logger;
@@ -38,6 +40,7 @@ public class NewsContentImporter : IBackgroundJob
         IVariationContextAccessor variationContextAccessor,
         IDefaultCultureAccessor defaultCultureAccessor,
         IServiceProvider serviceProvider,
+        IWebHostEnvironment webHostEnvironment,
         IContentService contentService,
         NewsContentHelper newsContentHelper,
         ILogger<NewsContentImporter> logger)
@@ -47,6 +50,7 @@ public class NewsContentImporter : IBackgroundJob
         _variationContextAccessor = variationContextAccessor;
         _defaultCultureAccessor = defaultCultureAccessor;
         _serviceProvider = serviceProvider;
+        _webHostEnvironment = webHostEnvironment;
         _contentService = contentService;
         _newsContentHelper = newsContentHelper;
         _logger = logger;
@@ -80,19 +84,28 @@ public class NewsContentImporter : IBackgroundJob
                 return;
             }
 
-            AddOrUpdateContent(overviewPage, contentFilePath, [contentCulture], cancellationToken.ShutdownToken);
+            await AddOrUpdateContent(overviewPage, contentFilePath, [contentCulture], cancellationToken.ShutdownToken);
         }
 
         _logger.LogInformation("Vacancies importer finished");
     }
 
-    private void AddOrUpdateContent(
+    private async Task AddOrUpdateContent(
         PageOverview overviewPage,
         string contentFilePath,
         string[] cultures,
         CancellationToken cancellationToken = default)
     {
-        XDocument xmlDocument = XDocument.Load(contentFilePath);
+        IFileInfo fileInfo = _webHostEnvironment.ContentRootFileProvider.GetFileInfo(contentFilePath);
+        if (!fileInfo.Exists)
+        {
+            _logger.LogWarning("Could not find {FilePath}", contentFilePath);
+            return;
+        }
+
+        await using Stream stream = fileInfo.CreateReadStream();
+
+        XDocument xmlDocument = XDocument.Load(stream);
 
         foreach (XElement post in xmlDocument.Descendants("item"))
         {

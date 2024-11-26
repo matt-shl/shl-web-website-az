@@ -54,7 +54,11 @@
   <ItemGroup>
     <Content Update="Components\_ViewImports.cshtml" Visible="false" />
     <Folder Include="Api/Models/" />
-    <Folder Include="Files\" />
+
+    <Content Include="Files/*">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+
     <Folder Include="umbraco/Data/" />
 
     <None Include="umbraco/Data/*.mdf" />
