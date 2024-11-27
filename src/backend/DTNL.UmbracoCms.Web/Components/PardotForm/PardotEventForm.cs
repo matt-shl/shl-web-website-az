@@ -16,7 +16,7 @@ public class PardotEventForm : PardotForm
         return new()
         {
             Id = Guid.NewGuid().ToString(),
-            ActionUrl = "https://go.shl-medical.com/l/1046193/2024-10-30/my2k",
+            ActionUrl = "http://go.shl-medical.com/l/1046193/2024-10-30/my2k",
         };
     }
 }
