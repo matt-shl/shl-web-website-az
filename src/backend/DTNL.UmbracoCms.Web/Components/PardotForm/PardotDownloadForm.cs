@@ -26,7 +26,7 @@ public class PardotDownloadForm : PardotForm
         return new()
         {
             Id = Guid.NewGuid().ToString(),
-            ActionUrl = "https://go.shl-medical.com/l/1046193/2024-11-08/nrq8",
+            ActionUrl = "http://go.shl-medical.com/l/1046193/2024-11-08/nrq8",
             FileUrl = downloadItem.File.RemoveQuery(),
         };
     }
