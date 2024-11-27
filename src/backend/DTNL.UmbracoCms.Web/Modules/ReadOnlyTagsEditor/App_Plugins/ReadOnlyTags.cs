@@ -13,8 +13,6 @@ namespace DTNL.UmbracoCms.Web.Modules.ReadOnlyTagsEditor.App_Plugins;
 
 [TagsPropertyEditor]
 [DataEditor(EditorAlias, EditorType.PropertyValue, "Tags - Read Only", Folder + "ReadOnlyTagsEditor.html", Icon = "icon-tags", ValueType = ValueTypes.Json)]
-[PropertyEditorAsset(AssetType.Javascript, Folder + "ReadOnlyTagsEditor.controller.js")]
-[PropertyEditorAsset(AssetType.Javascript, Folder + "ReadOnlyTagsEditor.directives.js")]
 [PropertyEditorAsset(AssetType.Javascript, Folder + "read-only-tags.html")]
 public class ReadOnlyTags : TagsPropertyEditor
 {
