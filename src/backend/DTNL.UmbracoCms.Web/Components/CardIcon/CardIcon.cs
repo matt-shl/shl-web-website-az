@@ -1,4 +1,4 @@
-using DTNL.UmbracoCms.Web.Helpers.Aliases;
+using DTNL.UmbracoCms.Web.Models.BrandfolderAssets;
 using Umbraco.Cms.Web.Common.PublishedModels;
 
 namespace DTNL.UmbracoCms.Web.Components;
@@ -32,7 +32,7 @@ public class CardIcon : ICard
             Text = iconCard.Text?.ToHtmlString(),
             Url = iconCard.Link?.Url,
             CssClasses = cssClasses,
-            IconSrc = iconCard.Icon?.LocalCrops.Src ?? SvgAliases.Icons.ArrowTopRight,
+            IconSrc = BrandfolderAsset.GetAssetUrl(iconCard.Icon),
         };
     }
 }

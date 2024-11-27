@@ -1,5 +1,6 @@
 using DTNL.UmbracoCms.Web.Helpers.Aliases;
 using DTNL.UmbracoCms.Web.Helpers.Extensions;
+using DTNL.UmbracoCms.Web.Models.BrandfolderAssets;
 using Umbraco.Cms.Web.Common.PublishedModels;
 
 namespace DTNL.UmbracoCms.Web.Components;
@@ -17,10 +18,14 @@ public class LinkList
             : new LinkList
             {
                 Links = textMediaListLinks.Links
-                .Using(l => Link.Create(((NestedBlockTextMediaListItem) l.Content).Link, cssClasses: "link-list__anchor").With(link =>
-                {
-                    link.IconPath = ((NestedBlockTextMediaListItem) l.Content)?.Icon?.LocalCrops.Src ?? SvgAliases.Icons.ArrowTopRight;
-                }))
+                    .Using(l => l.Content as NestedBlockTextMediaListItem)
+                    .Using(l => Link
+                        .Create(l.Link, cssClasses: "link-list__anchor")
+                        .With(link =>
+                        {
+                            link.IconPath = BrandfolderAsset.GetAssetUrl(l.Icon);
+                            link.IconPath ??= SvgAliases.Icons.ArrowTopRight;
+                        }))
                 .ToList(),
                 CssClasses = "text-media-list__link-list",
             };

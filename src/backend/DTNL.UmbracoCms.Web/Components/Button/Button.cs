@@ -95,7 +95,7 @@ public class Button
         return Create(buttonLink?.Link)
             .With(b =>
             {
-                b.Icon = buttonLink?.ButtonIcon?.LocalCrops.Src ?? fallBackIcon ?? SvgAliases.Icons.ArrowTopRight;
+                b.Icon = BrandfolderAsset.GetAssetUrl(buttonLink?.ButtonIcon) ?? fallBackIcon ?? SvgAliases.Icons.ArrowTopRight;
                 b.Variant = buttonLink?.Variant ?? fallBackVariant ?? "primary";
             });
     }

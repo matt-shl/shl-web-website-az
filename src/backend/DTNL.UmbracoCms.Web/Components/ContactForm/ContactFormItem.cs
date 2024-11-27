@@ -1,3 +1,4 @@
+using DTNL.UmbracoCms.Web.Models.BrandfolderAssets;
 using Umbraco.Cms.Web.Common.PublishedModels;
 
 namespace DTNL.UmbracoCms.Web.Components;
@@ -18,7 +19,7 @@ public class ContactFormItem
         {
             Title = contactFormBlockItem.Title,
             Text = contactFormBlockItem.Text?.ToHtmlString(),
-            IconPath = contactFormBlockItem.Icon?.LocalCrops.Src,
+            IconPath = BrandfolderAsset.GetAssetUrl(contactFormBlockItem.Icon),
         };
     }
 }

@@ -1,3 +1,4 @@
+using DTNL.UmbracoCms.Web.Models.BrandfolderAssets;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Web.Common.PublishedModels;
 
@@ -25,7 +26,7 @@ public class DownloadItem
         {
             Title = downloadItem.Title!,
             Description = downloadItem.Description,
-            Icon = downloadItem.Icon?.LocalCrops.Src,
+            Icon = BrandfolderAsset.GetAssetUrl(downloadItem.Icon),
             DownloadOverlay = downloadOverlay,
         };
     }

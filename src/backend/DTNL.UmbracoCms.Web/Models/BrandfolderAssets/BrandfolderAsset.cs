@@ -1,4 +1,5 @@
 using System.Text.Json;
+using Flurl;
 
 namespace DTNL.UmbracoCms.Web.Models.BrandfolderAssets;
 
@@ -25,5 +26,10 @@ public class BrandfolderAsset
         {
             return null;
         }
+    }
+
+    public static string? GetAssetUrl(string? value)
+    {
+        return Create(value)?.Url.RemoveQuery();
     }
 }
