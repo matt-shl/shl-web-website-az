@@ -1,0 +1,7 @@
+{
+    "javascript": [
+        "~/App_Plugins/ReadOnlyTagsEditor/ReadOnlyTagsEditor.controller.js",
+        "~/App_Plugins/ReadOnlyTagsEditor/ReadOnlyTagsEditor.directives.js"
+    ],
+    "bundleOptions": "None"
+}
