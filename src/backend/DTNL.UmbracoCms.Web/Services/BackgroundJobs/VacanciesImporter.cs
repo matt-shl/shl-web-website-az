@@ -112,7 +112,7 @@ public class VacanciesImporter : IBackgroundJob
                     .Children<PageVacancy>()?
                     .FirstOrDefault(pageVacancy => pageVacancy.ExternalId == vacancy.Id);
 
-                string nodeName = $"{vacancy.Title} ({vacancy.Id})";
+                string nodeName = $"{vacancy.Title ?? vacancy.Id}";
 
                 IContent? pageVacancyContent = existingPageVacancy is null
                     ? CreateIfNotExists(nodeName, vacancyOverviewPage.Id, PageVacancy.ModelTypeAlias)
