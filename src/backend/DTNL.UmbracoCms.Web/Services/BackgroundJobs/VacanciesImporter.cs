@@ -65,11 +65,12 @@ public class VacanciesImporter : IBackgroundJob
         using IServiceScope serviceScope = _serviceProvider.CreateScope();
         IPublishedContentQuery publishedContentQuery = serviceScope.ServiceProvider.GetRequiredService<IPublishedContentQuery>();
 
-        PageVacancyOverview? vacancyOverviewPage = publishedContentQuery
+        PageHome? homePage = publishedContentQuery
             .ContentAtRoot()
             .OfType<PageHome>()
-            .FirstOrDefault()?
-            .FirstChild<PageVacancyOverview>();
+            .FirstOrDefault();
+
+        PageVacancyOverview? vacancyOverviewPage = NodeProvider.GetVacancyOverviewPage(homePage);
 
         if (vacancyOverviewPage is null)
         {
