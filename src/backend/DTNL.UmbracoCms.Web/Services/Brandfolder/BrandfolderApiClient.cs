@@ -52,6 +52,7 @@ public class BrandfolderApiClient
         }
 
         return await $"https://brandfolder.com/api/v4/sections/{sectionId}/assets"
+            .SetQueryParam("fields", "cdn_url")
             .SetQueryParam("search", searchQuery)
             .SetQueryParam("page", page)
             .SetQueryParam("per", pageSize)
@@ -62,6 +63,7 @@ public class BrandfolderApiClient
     public async Task<BrandfolderEntityResponse> GetAsset(string assetId)
     {
         return await $"https://brandfolder.com/api/v4/assets/{assetId}"
+            .SetQueryParam("fields", "cdn_url")
             .WithOAuthBearerToken(_brandfolderOptions.ApiKey)
             .GetJsonAsync<BrandfolderEntityResponse>();
     }
@@ -85,6 +87,7 @@ public class BrandfolderApiClient
         }
 
         return await $"https://brandfolder.com/api/v4/collections/{_brandfolderOptions.CollectionId}/assets"
+            .SetQueryParam("fields", "cdn_url")
             .SetQueryParam("search", queryStringBuilder.ToString())
             .SetQueryParam("page", page)
             .SetQueryParam("per", pageSize)

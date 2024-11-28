@@ -52,10 +52,7 @@ public abstract class BrandfolderAssetDataSource : BrandfolderBaseDataSource
         BrandfolderAsset brandfolderAsset = new()
         {
             Id = brandfolderEntity.Id,
-            Url = $"https://cdn.bfldr.com/DTG6CG68/as/{brandfolderEntity.Id}/{brandfolderEntity.Id}"
-                .SetQueryParam("height", 250)
-                .SetQueryParam("width", 250)
-                .SetQueryParam("fit", "crop"),
+            Url = brandfolderEntity.Attributes.CdnUrl.RemoveQuery(),
             Name = brandfolderEntity.Attributes.Name,
         };
 

@@ -18,7 +18,9 @@ public class BrandfolderEntityAttributes
     [JsonPropertyName("tagline")]
     public string? TagLine { get; set; }
 
-
     [JsonPropertyName("thumbnail_url")]
     public string? ThumbnailUrl { get; set; }
+
+    [JsonPropertyName("cdn_url")]
+    public required string CdnUrl { get; set; }
 }
