@@ -47,11 +47,6 @@
       "label": "View All Jobs",
       "url": "#"
     },
-    "cta2": {
-      "apply": true,
-      "label": "Apply Now",
-      "url": "#"
-    },
     "jobs": [
       {
         "title": "Senior Software Engineer",
