@@ -54,6 +54,7 @@ public abstract class BrandfolderAssetDataSource : BrandfolderBaseDataSource
             Id = brandfolderEntity.Id,
             Url = brandfolderEntity.Attributes.CdnUrl.RemoveQuery(),
             Name = brandfolderEntity.Attributes.Name,
+            Description = brandfolderEntity.Attributes.Description,
         };
 
         return new DataListItem
