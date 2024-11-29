@@ -76,7 +76,7 @@ public class NewsContentImporter : IBackgroundJob
                 .ContentAtRoot()
                 .OfType<PageHome>()
                 .FirstOrDefault()?
-                .FirstChild<PageOverview>();
+                .DescendantOrSelf<PageOverview>();
 
             if (overviewPage is null)
             {
