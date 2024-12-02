@@ -24,9 +24,13 @@
 .shape__end {
   width: 16px;
   min-width: 16px;
-  height: calc(var(--shape-height) + 16px);
+  height: calc(var(--shape-height) + 15px);
   color: var(--bg-color);
   margin-right: -1px; /* pixel perfect align with begin */
+
+  .c-card-overlay--has-video & {
+    height: calc(var(--shape-height) + 13px);
+  }
 
   svg {
     width: 100%;
@@ -41,5 +45,5 @@
   height: var(--shape-height);
   background: var(--bg-color);
   margin-right: -3px; /* pixel perfect align with end */
-  margin-left: -1px; /* pixel perfect align */
+  margin-left: -3px; /* pixel perfect align */
 }

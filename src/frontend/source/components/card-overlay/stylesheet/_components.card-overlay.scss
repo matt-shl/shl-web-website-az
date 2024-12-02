@@ -65,8 +65,10 @@
   display: flex;
   align-items: center;
   gap: $spacing-8;
+  padding-left: 1px; // pixel perfect align
 
   .button--icon-only {
+    position: relative;
     width: 3.2rem;
     height: 3.2rem;
 
