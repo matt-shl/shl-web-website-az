@@ -1,3 +1,4 @@
+using DTNL.UmbracoCms.Web.Helpers.Aliases;
 using Umbraco.Cms.Web.Common.PublishedModels;
 
 namespace DTNL.UmbracoCms.Web.Components;
@@ -10,7 +11,7 @@ public class EventDetails
 
     public string? Time { get; set; }
 
-    public Button? LinkButton { get; set; }
+    public Button? RegisterButton { get; set; }
 
     public Media? Media { get; set; }
 
@@ -23,12 +24,19 @@ public class EventDetails
             return null;
         }
 
-        Button? linkButton = Button.Create(eventDetails.EventLink);
+        Button? registerButton = new Button
+        {
+            Element = "button",
+            Class = "event-detail__col event-detail__col--cta",
+            Variant = "primary",
+            Label = TranslationAliases.Forms.EventForm.Title,
+            Icon = SvgAliases.Icons.ArrowTopRight,
+        };
         FormOverlay? formOverlay = FormOverlay.Create(eventDetails, settings);
 
-        if (linkButton is not null)
+        if (registerButton is not null)
         {
-            linkButton.Controls = formOverlay?.Modal.Id;
+            registerButton.Controls = formOverlay?.Modal.Id;
         }
 
         return new EventDetails
@@ -36,7 +44,7 @@ public class EventDetails
             Title = eventDetails.EventTitle,
             Location = eventDetails.EventLocationInfo?.ToHtmlString(),
             Time = eventDetails.EventTime?.ToHtmlString(),
-            LinkButton = linkButton,
+            RegisterButton = registerButton,
             Media = Media.Create(eventDetails.EventImage),
             FormOverlay = formOverlay,
         };
