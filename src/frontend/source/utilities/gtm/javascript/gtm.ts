@@ -5,6 +5,7 @@ export type GTMEntry = Record<string, any>
 
 const DATA_REGISTERED = 'data-gtm-registered'
 
+const HOOK_KNOWLEDGE_OVERVIEW_SECTIONS = '[js-hook-gtm-knowledge-overview-sections]'
 const BUTTON_SELECTOR = '*[class*="c-button"]:not(.button--icon-only)'
 const SECTION_SELECTOR = '[js-hook-section],*[class*="c-hero"],.c-event-detail'
 const HERO_SELECTOR = '*[class*="c-hero"]'
@@ -17,6 +18,7 @@ const JS_HOOK_OVERVIEW = '[js-hook-gtm-overview]'
 const CARD_SELECTOR = '*[class^="c-card"]:not(.c-card-overlay)'
 
 class GTM {
+  private knowledgeOverviewSections: HTMLElement[]
   private buttons: HTMLElement[]
   private cards: HTMLElement[]
   private overviewType: string
@@ -24,8 +26,6 @@ class GTM {
   private isDebug: boolean
 
   constructor() {
-    this.buttons = [...document.querySelectorAll(BUTTON_SELECTOR)] as HTMLElement[]
-    this.applyButtons = [...document.querySelectorAll(APPLY_SELECTOR)] as HTMLElement[]
     this.isDebug = window.location.search.includes('debug')
 
     this.init();
@@ -34,6 +34,8 @@ class GTM {
   }
 
   init() {
+    this.applyButtons = [...document.querySelectorAll(APPLY_SELECTOR)] as HTMLElement[]
+    this.knowledgeOverviewSections = [...document.querySelectorAll<HTMLElement>(`${HOOK_KNOWLEDGE_OVERVIEW_SECTIONS} ${CARD_SELECTOR}`)]
     this.buttons = [...document.querySelectorAll(BUTTON_SELECTOR)] as HTMLElement[]
     this.overviewType = document.querySelector(JS_HOOK_OVERVIEW)?.getAttribute('js-hook-gtm-overview') || ''
     this.cards = [...document.querySelectorAll(`${JS_HOOK_OVERVIEW} ${CARD_SELECTOR}`)] as HTMLElement[]
@@ -59,6 +61,19 @@ class GTM {
       if (card.getAttribute(DATA_REGISTERED) === 'true') return
       card.setAttribute(DATA_REGISTERED, 'true')
       this.initCardEvent(card)
+    })
+
+    this.knowledgeOverviewSections.forEach(section => {
+      section.addEventListener('click', () => {
+        const optionClicked = section.querySelector('h3')?.textContent?.trim()
+
+        Events.$trigger('gtm::push', {
+          data: {
+            'event': 'section_selected',
+            'option_clicked': optionClicked
+          }
+        })
+      })
     })
   }
 
