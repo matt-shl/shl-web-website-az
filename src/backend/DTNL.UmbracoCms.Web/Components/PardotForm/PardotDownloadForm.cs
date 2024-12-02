@@ -1,12 +1,13 @@
+using System.Text.Json;
 using DTNL.UmbracoCms.Web.Helpers.Aliases;
-using Flurl;
 using Umbraco.Cms.Web.Common.PublishedModels;
+
 
 namespace DTNL.UmbracoCms.Web.Components;
 
 public class PardotDownloadForm : PardotForm
 {
-    public override string ActionSubmitLabelKey => TranslationAliases.Forms.EventForm.SubmitFormLabel;
+    public override string ActionSubmitLabelKey => TranslationAliases.Forms.DownloadForm.Title;
 
     public override string ActionSuccessLabelKey => TranslationAliases.Forms.EventForm.SubmissionSuccessMessage;
 
@@ -16,6 +17,8 @@ public class PardotDownloadForm : PardotForm
 
     public required string FileUrl { get; set; }
 
+    public required string FileName { get; set; }
+
     public static PardotDownloadForm? Create(NestedBlockDownloadItem downloadItem)
     {
         if (string.IsNullOrWhiteSpace(downloadItem.File))
@@ -23,11 +26,22 @@ public class PardotDownloadForm : PardotForm
             return null;
         }
 
+        File? file = JsonSerializer.Deserialize<File>(json: downloadItem.File);
+
         return new()
         {
             Id = Guid.NewGuid().ToString(),
             ActionUrl = "http://go.shl-medical.com/l/1046193/2024-11-08/nrq8",
-            FileUrl = downloadItem.File.RemoveQuery(),
+            FileUrl = file is not null ? file.Url : "",
+            FileName = file is not null ? file.Name : "",
         };
+    }
+
+    public class File
+    {
+        public string? Id { get; set; }
+        public required string Name { get; set; }
+        public string? Description { get; set; }
+        public required string Url { get; set; }
     }
 }
