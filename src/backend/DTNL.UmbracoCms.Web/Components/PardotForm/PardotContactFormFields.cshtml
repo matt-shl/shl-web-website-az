@@ -21,9 +21,9 @@
 <vc:select-element id="@Model.Id-cf_Country"
                    name="cf_Country"
                    label="@CultureDictionary.GetTranslation($"{TranslationAliases.Forms.Fields}.Country")"
-                   options="@((NodeProvider.SiteSettings?.Locations).Using(location => new SelectElement.SelectOption(location)))"
+                   options="@(CountriesHelper.CountryList()).Using(location => new SelectElement.SelectOption(location))"
                    validate="required"
-                   required="true"
+                   required=true
                    required-error="@CultureDictionary.GetTranslation($"{TranslationAliases.Forms.Fields}.Country.Error Message") })" />
 
 <vc:text-area id="@Model.Id-cf_Message"

@@ -29,5 +29,5 @@ public class BrandfolderImageDataSource : BrandfolderAssetDataSource
 
     public override string Group => "Custom";
 
-    public override OverlaySize OverlaySize => OverlaySize.Small;
+    public override OverlaySize OverlaySize => OverlaySize.Large;
 }

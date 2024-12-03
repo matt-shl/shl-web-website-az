@@ -12,12 +12,12 @@ public static class BrandfolderAssetExtensions
     /// Retrieves the default crop url for an asset. If the asset is not a file, Brandfolder generates a relevant thumbnail.
     /// </summary>
     public static string GetDefaultCropUrl(
-        this BrandfolderAsset brandfolderAsset,
+        this BrandfolderAttachment brandfolderAttachment,
         int? width = null,
         int? height = null,
         ImageCropMode imageCropMode = ImageCropMode.Crop)
     {
-        return brandfolderAsset.Url
+        return brandfolderAttachment.Url
             .SetQueryParam("width", width is 0 ? null : width)
             .SetQueryParam("height", height is 0 ? null : height)
             .SetQueryParam("fit", GetFitParameter(imageCropMode));
@@ -27,7 +27,7 @@ public static class BrandfolderAssetExtensions
     /// Creates a data src set string based on custom breakpoints.
     /// </summary>
     public static List<(Image.ImageCrop ImageCrop, CssBreakpoint Breakpoint)> GetCrops(
-        this BrandfolderAsset brandfolderAsset,
+        this BrandfolderAttachment brandfolderAttachment,
         string style,
         ImageCropMode imageCropMode)
     {
@@ -40,7 +40,7 @@ public static class BrandfolderAssetExtensions
 
         return imageCroppings
             .Select(imageCropping =>
-                (imageCrop: Image.ImageCrop.Create(brandfolderAsset, imageCropping, imageCropMode),
+                (imageCrop: Image.ImageCrop.Create(brandfolderAttachment, imageCropping, imageCropMode),
                     breakpoint: CssBreakpoints.GetBreakpoint(imageCropping.Name)))
             .Where(c => c.breakpoint != null)
             .OrderBy(c => c.breakpoint!.Start ?? 0)

@@ -65,11 +65,12 @@ public class VacanciesImporter : IBackgroundJob
         using IServiceScope serviceScope = _serviceProvider.CreateScope();
         IPublishedContentQuery publishedContentQuery = serviceScope.ServiceProvider.GetRequiredService<IPublishedContentQuery>();
 
-        PageVacancyOverview? vacancyOverviewPage = publishedContentQuery
+        PageHome? homePage = publishedContentQuery
             .ContentAtRoot()
             .OfType<PageHome>()
-            .FirstOrDefault()?
-            .FirstChild<PageVacancyOverview>();
+            .FirstOrDefault();
+
+        PageVacancyOverview? vacancyOverviewPage = NodeProvider.GetVacancyOverviewPage(homePage);
 
         if (vacancyOverviewPage is null)
         {
@@ -112,7 +113,7 @@ public class VacanciesImporter : IBackgroundJob
                     .Children<PageVacancy>()?
                     .FirstOrDefault(pageVacancy => pageVacancy.ExternalId == vacancy.Id);
 
-                string nodeName = $"{vacancy.Title} ({vacancy.Id})";
+                string nodeName = $"{vacancy.Title ?? vacancy.Id}";
 
                 IContent? pageVacancyContent = existingPageVacancy is null
                     ? CreateIfNotExists(nodeName, vacancyOverviewPage.Id, PageVacancy.ModelTypeAlias)

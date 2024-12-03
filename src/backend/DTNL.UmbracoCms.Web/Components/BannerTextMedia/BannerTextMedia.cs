@@ -5,11 +5,6 @@ namespace DTNL.UmbracoCms.Web.Components;
 
 public class BannerTextMedia
 {
-    public enum Position
-    {
-        Start,
-    }
-
     public required string Title { get; set; }
 
     public string? Description { get; set; }

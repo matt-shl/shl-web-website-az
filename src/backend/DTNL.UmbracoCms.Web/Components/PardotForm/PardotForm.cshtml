@@ -55,6 +55,4 @@
     <input type="hidden" name="@Model.SourceUrlFieldName" value="@currentNode.Url(mode: UrlMode.Absolute)" tabindex="0">
 
     <partial name="Button" model="@(new Button { Element = "button", Label = CultureDictionary.GetTranslation(Model.ActionSubmitLabelKey), Class = "pardot-form__submit", Icon = SvgAliases.Icons.ArrowTopRight, Type = "submit"})" />
-
-    <iframe name="responseFrame" style="display: none;"></iframe>
 </form>

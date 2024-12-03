@@ -8,11 +8,14 @@ const JS_HOOK_FLYOUT_SUB_ITEM_ANCHOR = '[js-hook-flyout-sub-item-anchor]'
 const JS_HOOK_FLYOUT_MAIN_CTA = '[js-hook-flyout-main-cta]'
 const CLASS_IS_OPEN = 'is--open'
 
+const MOUSE_OVER_OPEN_DELAY = 170; // Allows moving mouse to submenu while going over other items
+
 class Flyout {
   private element: HTMLElement
   private items: HTMLUListElement[]
   private subItemAnchors: HTMLAnchorElement[]
   private mainCTAs: HTMLAnchorElement[]
+  private openTimer: NodeJS.Timeout | null;
 
   constructor(element: HTMLElement) {
     this.element = element;
@@ -25,7 +28,12 @@ class Flyout {
 
   bindEvents() {
     this.items.forEach(item => {
-      item.addEventListener('mouseover', () => this.openItem(item))
+      item.addEventListener('mouseover', () => {
+        if (this.openTimer) clearTimeout(this.openTimer);
+        this.openTimer = setTimeout(() => {
+          this.openItem(item)
+        }, MOUSE_OVER_OPEN_DELAY);
+      })
       item.addEventListener('keydown', event => this.handleItemKeydown(event, item))
     })
 

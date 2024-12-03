@@ -8,6 +8,7 @@
     {%- if data.sectionTitle %} data-title="{{data.sectionTitle}}"{% endif %}
     {%- if data.id %} id="{{data.id}}"{% endif %}
     {%- if data.hook %} js-hook-{{ data.hook}} {% endif %}
+    {%- if data.gtm %} js-hook-gtm-{{ data.gtm}} {% endif %}
     {%- if data.replaceContentId %} js-hook-replace-content="{{ data.replaceContentId }}" {% endif %}
     js-hook-section
     js-hook-inview

@@ -58,6 +58,11 @@
 .contact-block__item {
   display: flex;
   gap: $spacing-12;
+  align-items: flex-start;
+
+  svg {
+    width: 24px;
+  }
 }
 
 .contact-block__item-text {

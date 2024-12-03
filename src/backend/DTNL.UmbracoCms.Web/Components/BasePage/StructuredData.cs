@@ -16,7 +16,7 @@ public class StructuredData : ViewComponentExtended
     public IViewComponentResult Invoke(PageHome? homePage, SiteSettings? siteSettings)
     {
         CompanyName = siteSettings?.CompanyName;
-        CompanyLogo = BrandfolderAsset
+        CompanyLogo = BrandfolderAttachment
             .Create(siteSettings?.CompanyLogo)?
             .GetDefaultCropUrl(1200, 630);
         HomePageUrl = homePage?.Url();

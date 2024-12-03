@@ -17,7 +17,7 @@ public class PardotContactForm : PardotForm
         return new()
         {
             Id = Guid.NewGuid().ToString(),
-            ActionUrl = "https://go.shl-medical.com/l/1046193/2024-02-07/3kcc",
+            ActionUrl = "http://go.shl-medical.com/l/1046193/2024-08-20/h845",
         };
     }
 }

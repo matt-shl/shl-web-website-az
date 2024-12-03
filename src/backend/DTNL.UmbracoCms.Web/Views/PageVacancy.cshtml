@@ -2,7 +2,7 @@
 
 <partial name="LayoutSection"
          model="@(new Components.LayoutSection { CssThemeClasses = "t-white", })">
-    <partial name="RichText" model="@(Components.RichText.Create(Model))" />
+    <partial name="RichText" model="@(Components.RichText.Create(Model, CultureDictionary.GetTranslation(TranslationAliases.Vacancies.Apply)))" />
 </partial>
 
 <partial name="_BlockList" model="Model.ContentBlocks" />

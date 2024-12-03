@@ -22,10 +22,12 @@
 }
 
 .product-description__image-container {
-  width: 100vw;
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
+  @include screen-md-and-smaller {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }
 
 .product-description__content-container {
