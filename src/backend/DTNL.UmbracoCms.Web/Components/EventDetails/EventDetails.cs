@@ -1,5 +1,6 @@
 using DTNL.UmbracoCms.Web.Helpers.Aliases;
 using DTNL.UmbracoCms.Web.Helpers.Extensions;
+using Umbraco.Cms.Core.Dictionary;
 using Umbraco.Cms.Web.Common.PublishedModels;
 
 namespace DTNL.UmbracoCms.Web.Components;
@@ -20,7 +21,7 @@ public class EventDetails
 
     public FormOverlay? FormOverlay { get; set; }
 
-    public static EventDetails? Create(NestedBlockEventDetails? eventDetails, SiteSettings? settings)
+    public static EventDetails? Create(NestedBlockEventDetails? eventDetails, SiteSettings? settings, ICultureDictionary cultureDictionary)
     {
         if (eventDetails is null)
         {
@@ -33,7 +34,7 @@ public class EventDetails
             Element = "button",
             Class = "event-detail__cta",
             Variant = "primary",
-            Label = TranslationAliases.Forms.EventForm.Title,
+            Label = cultureDictionary.GetTranslation(TranslationAliases.Forms.EventForm.Title),
             Icon = SvgAliases.Icons.ArrowTopRight,
         };
         FormOverlay? formOverlay = FormOverlay.Create(eventDetails, settings);
