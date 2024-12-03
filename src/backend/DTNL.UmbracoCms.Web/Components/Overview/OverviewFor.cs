@@ -11,27 +11,6 @@ namespace DTNL.UmbracoCms.Web.Components;
 
 #pragma warning disable SA1402 // Suppress warning File may only contain a single type
 
-public abstract class Overview : ViewComponentExtended
-{
-    public int PageNumber { get; set; }
-
-    public long TotalCount { get; set; }
-
-    public EmptySection? NoResultsSection { get; set; }
-
-    public Filters? Filters { get; set; }
-
-    public required List<IOverviewItem> Items { get; set; }
-
-    public Pagination? Pagination { get; set; }
-
-    public abstract LayoutSection LayoutSection { get; }
-
-    public string? OverviewType { get; set; }
-
-    public string? SearchTerm { get; set; }
-}
-
 public abstract class OverviewFor<TOverviewPage, TPage, TFilters, TOverviewItem> : Overview
     where TOverviewPage : ICompositionBasePage, ICompositionNoResults
     where TPage : ICompositionBasePage
@@ -128,3 +107,24 @@ public abstract class OverviewFor<TOverviewPage, TPage, TFilters, TOverviewItem>
 }
 
 public interface IOverviewItem : IPartialViewPath;
+
+public abstract class Overview : ViewComponentExtended
+{
+    public int PageNumber { get; set; }
+
+    public long TotalCount { get; set; }
+
+    public EmptySection? NoResultsSection { get; set; }
+
+    public Filters? Filters { get; set; }
+
+    public required List<IOverviewItem> Items { get; set; }
+
+    public Pagination? Pagination { get; set; }
+
+    public abstract LayoutSection LayoutSection { get; }
+
+    public string? OverviewType { get; set; }
+
+    public string? SearchTerm { get; set; }
+}

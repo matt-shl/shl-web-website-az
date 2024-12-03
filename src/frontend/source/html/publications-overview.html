@@ -21,7 +21,7 @@
 
   {{ filters(publicationsData.filter) }}
 
-  <div js-hook-replace-content="overview-content">
+  <div js-hook-replace-content="overview-content" js-hook-gtm-overview="publication">
     {% call layoutSection({
       variant: "grid",
       id: "content"

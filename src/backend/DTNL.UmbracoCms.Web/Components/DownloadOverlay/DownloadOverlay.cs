@@ -25,8 +25,8 @@ public class DownloadOverlay
             {
                 Id = $"modal-download-{downloadItem.Key}",
                 Size = image is null ? "aside" : "aside-with-image",
-                Title = TranslationAliases.Forms.DownloadForm.Title,
-                SubTitle = downloadItem.Title,
+                Title = $"Download {downloadItem.Title}",
+                SubTitle = pardotDownloadForm.FileName,
                 Image = image,
                 KeepScrollPosition = true,
             },

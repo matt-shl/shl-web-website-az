@@ -10,10 +10,14 @@ namespace DTNL.UmbracoCms.Web.Services.Brandfolder;
 public class BrandfolderApiClient
 {
     private readonly BrandfolderOptions _brandfolderOptions;
+    private readonly ILogger<BrandfolderApiClient> _logger;
 
-    public BrandfolderApiClient(IOptions<BrandfolderOptions> brandfolderOptions)
+    public BrandfolderApiClient(
+        IOptions<BrandfolderOptions> brandfolderOptions,
+        ILogger<BrandfolderApiClient> logger)
     {
         _brandfolderOptions = brandfolderOptions.Value;
+        _logger = logger;
     }
 
     public async Task<BrandfolderEntityResponse> GetBrandfolderSection(string? brandfolderSectionId)
@@ -52,6 +56,7 @@ public class BrandfolderApiClient
         }
 
         return await $"https://brandfolder.com/api/v4/sections/{sectionId}/assets"
+            .SetQueryParam("fields", "cdn_url")
             .SetQueryParam("search", searchQuery)
             .SetQueryParam("page", page)
             .SetQueryParam("per", pageSize)
@@ -59,14 +64,41 @@ public class BrandfolderApiClient
             .GetJsonAsync<BrandfolderEntitiesResponse>();
     }
 
-    public async Task<BrandfolderEntityResponse> GetAsset(string assetId)
+    public async Task<BrandfolderEntityResponse?> GetAssetAttachment(string attachmentId)
     {
-        return await $"https://brandfolder.com/api/v4/assets/{assetId}"
-            .WithOAuthBearerToken(_brandfolderOptions.ApiKey)
-            .GetJsonAsync<BrandfolderEntityResponse>();
+        try
+        {
+            return await $"https://brandfolder.com/api/v4/attachments/{attachmentId}"
+                .SetQueryParam("fields", "cdn_url")
+                .SetQueryParam("include", "asset")
+                .WithOAuthBearerToken(_brandfolderOptions.ApiKey)
+                .GetJsonAsync<BrandfolderEntityResponse>();
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e, "Error finding asset attachment {Id}", attachmentId);
+            return null;
+        }
     }
 
-    public async Task<BrandfolderEntitiesResponse> FindAssets(
+    public async Task<BrandfolderEntityResponse?> GetAsset(string assetId)
+    {
+        try
+        {
+            return await $"https://brandfolder.com/api/v4/assets/{assetId}"
+                .SetQueryParam("fields", "cdn_url")
+                .WithOAuthBearerToken(_brandfolderOptions.ApiKey)
+                .GetJsonAsync<BrandfolderEntityResponse>();
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e, "Error finding asset {Id}", assetId);
+
+            return null;
+        }
+    }
+
+    public async Task<BrandfolderEntitiesResponse?> FindAssetAttachments(
         int page,
         int pageSize,
         string? searchQuery,
@@ -84,11 +116,21 @@ public class BrandfolderApiClient
             queryStringBuilder.Append($"({string.Join("OR ", fileTypes.Select(fileType => $"filetype.strict:\"{fileType}\""))})");
         }
 
-        return await $"https://brandfolder.com/api/v4/collections/{_brandfolderOptions.CollectionId}/assets"
-            .SetQueryParam("search", queryStringBuilder.ToString())
-            .SetQueryParam("page", page)
-            .SetQueryParam("per", pageSize)
-            .WithOAuthBearerToken(_brandfolderOptions.ApiKey)
-            .GetJsonAsync<BrandfolderEntitiesResponse>();
+        try
+        {
+            return await $"https://brandfolder.com/api/v4/collections/{_brandfolderOptions.CollectionId}/attachments"
+                .SetQueryParam("fields", "cdn_url")
+                .SetQueryParam("include", "asset")
+                .SetQueryParam("search", queryStringBuilder.ToString())
+                .SetQueryParam("page", page)
+                .SetQueryParam("per", pageSize)
+                .WithOAuthBearerToken(_brandfolderOptions.ApiKey)
+                .GetJsonAsync<BrandfolderEntitiesResponse>();
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e, "Error finding asset attachments");
+            return null;
+        }
     }
 }

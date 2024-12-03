@@ -31,6 +31,7 @@
   --button-primary-font-color: var(--color-content);
   --button-primary-border-color: transparent;
 
+  position: relative;
   transform: translateY(100%);
   transition: var(--card-animation-duration) var(--card-animation-ease);
   transition-property: transform, opacity;
@@ -41,10 +42,22 @@
     padding-inline-end: 1px;
   }
 
+  .c-button {
+    position: absolute;
+    bottom: 0;
+    transform: translateY(101%);
+    transition: transform var(--card-animation-duration) var(--card-animation-ease);
+    right: 1px;
+  }
+
   @include cardOverlayVisible {
     transform: translateY(0);
     transition-delay: 50ms;
     opacity: 1;
+
+    .c-button {
+      transform: translateY(0);
+    }
   }
 }
 
@@ -52,8 +65,10 @@
   display: flex;
   align-items: center;
   gap: $spacing-8;
+  padding-left: 1px; // pixel perfect align
 
   .button--icon-only {
+    position: relative;
     width: 3.2rem;
     height: 3.2rem;
 
@@ -87,7 +102,7 @@
   &--end {
     @container card (width < #{$card-container-size-lg}) {
       @include cardOverlayVisible {
-        transform: scale(0.8) translateX(-7px);
+        transform: scale(0.8) translateX(-3px);
       }
     }
 
@@ -108,6 +123,9 @@
 }
 
 .card-overlay__button {
+  height: 3.8rem;
+  width: 3.8rem;
+
   @container card (width < #{$card-container-size-lg}) {
     height: 3.2rem;
     width: 3.2rem;

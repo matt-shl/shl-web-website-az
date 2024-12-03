@@ -32,9 +32,9 @@
         {% for option in data.options %}
             <input class="checkbox__input"
                 type="checkbox"
-                name="{{ data.name | lower }}"
-                value="{{ option.value | lower }}"
-                id="{{ option.id | lower }}"
+                name="{{ data.name }}"
+                value="{{ option.value }}"
+                id="{{ option.id }}"
                 {%- if data.required %} required{% endif -%}
                 {%- if option.disabled %} disabled{% endif -%}
                 {%- if option.checked %} checked{% endif -%}
@@ -42,7 +42,7 @@
                 {%- if option.requiredError %} data-required-error="{{ option.requiredError }}"{% endif -%}
                 {%- if option.hook %} js-hook-{{ option.hook }}{% endif -%}
                 {%- if option.attr %} {{ option.attr|safe }}{% endif -%}>
-            <label class="checkbox__label" for="{{ option.id | lower }}" role="button">
+            <label class="checkbox__label" for="{{ option.id }}" role="button">
                 {% if option.link %}
                   <a href="{{ option.link }}" class="form__item-link">
                 {% endif %}

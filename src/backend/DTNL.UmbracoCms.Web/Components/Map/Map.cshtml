@@ -65,7 +65,7 @@
                         data-country-zoom="@country.MapZoom"
                         data-country-x="@country.MapX"
                         data-country-y="@country.MapY"
-                        style="inset-inline-start: @country.TriggerX%; top:' @country.TriggerY%;"
+                        style="inset-inline-start: @country.TriggerX%; top: @country.TriggerY%;"
                         class="is--hidden map__location-trigger map__location-trigger--country-@region.Id map__location-trigger--@country.Id">
                     <span class="map__location-trigger-label-desktop">@country.Name</span> <span class="map__location-trigger-label-amount">@country.Offices.Count</span>
                 </button>
@@ -79,7 +79,7 @@
                             data-country-zoom="@country.MapZoom"
                             data-country-x="@country.MapX"
                             data-country-y="@country.MapY"
-                            style="inset-inline-start: @office.TriggerX%; top:' @office.TriggerY%;"
+                            style="inset-inline-start: @office.TriggerX%; top: @office.TriggerY%;"
                             class="is--hidden map__location-trigger map__location-trigger--office map__location-trigger--office-@country.Id">
                         <svg src="@SvgAliases.Icons.Plus" /> @office.Name
                     </button>

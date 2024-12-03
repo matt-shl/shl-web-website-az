@@ -63,19 +63,6 @@ public class JobVacancies : ViewComponentExtended
             Icon = SvgAliases.Icons.ArrowTopRight,
         };
 
-        if (!page.ExternalUrl.IsNullOrEmpty())
-        {
-            SecondaryButton = new Button
-            {
-                Label = CultureDictionary.GetTranslation(TranslationAliases.Vacancies.Apply),
-                Url = page.ExternalUrl,
-                Target = "_blank",
-                Variant = "secondary",
-                Icon = SvgAliases.Icons.ArrowTopRight,
-                Hook = "apply",
-            };
-        }
-
         return View("JobVacancies", this);
     }
 }

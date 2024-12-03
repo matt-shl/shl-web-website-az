@@ -1,12 +1,12 @@
 using DTNL.UmbracoCms.Web.Helpers.Aliases;
-using Flurl;
+using DTNL.UmbracoCms.Web.Models.BrandfolderAssets;
 using Umbraco.Cms.Web.Common.PublishedModels;
 
 namespace DTNL.UmbracoCms.Web.Components;
 
 public class PardotDownloadForm : PardotForm
 {
-    public override string ActionSubmitLabelKey => TranslationAliases.Forms.EventForm.SubmitFormLabel;
+    public override string ActionSubmitLabelKey => TranslationAliases.Forms.DownloadForm.Title;
 
     public override string ActionSuccessLabelKey => TranslationAliases.Forms.EventForm.SubmissionSuccessMessage;
 
@@ -16,9 +16,11 @@ public class PardotDownloadForm : PardotForm
 
     public required string FileUrl { get; set; }
 
+    public required string FileName { get; set; }
+
     public static PardotDownloadForm? Create(NestedBlockDownloadItem downloadItem)
     {
-        if (string.IsNullOrWhiteSpace(downloadItem.File))
+        if (BrandfolderAttachment.Create(downloadItem.File) is not { } asset)
         {
             return null;
         }
@@ -26,8 +28,9 @@ public class PardotDownloadForm : PardotForm
         return new()
         {
             Id = Guid.NewGuid().ToString(),
-            ActionUrl = "https://go.shl-medical.com/l/1046193/2024-11-08/nrq8",
-            FileUrl = downloadItem.File.RemoveQuery(),
+            ActionUrl = "http://go.shl-medical.com/l/1046193/2024-11-08/nrq8",
+            FileUrl = asset.Url,
+            FileName = asset.FileName ?? "",
         };
     }
 }

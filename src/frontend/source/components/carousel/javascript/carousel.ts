@@ -19,6 +19,7 @@ class Carousel {
   swipeIndicator: HTMLElement | null
   allowPointerDownEvent: boolean
   isImageSlider: boolean
+  pagination: HTMLElement | null;
 
   constructor(element: HTMLElement) {
     this.element = element
@@ -49,6 +50,11 @@ class Carousel {
         delay: 250,
       },
     ])
+  }
+
+  setScrollBarVisibility() {
+    const dragElWidth = this.swiper.scrollbar.dragEl.clientWidth
+    this.pagination?.classList[dragElWidth === 0 ? 'add' : 'remove']('is--hidden')
   }
 
   initCarousel() {
@@ -106,6 +112,9 @@ class Carousel {
         this.initialized = false
       }
     }
+
+    this.pagination = this.element.querySelector(`.${CLASS_CAROUSEL_PAGINATION_ELEM}`)
+    this.setScrollBarVisibility();
   }
 
   #handleMouseIndicator() {

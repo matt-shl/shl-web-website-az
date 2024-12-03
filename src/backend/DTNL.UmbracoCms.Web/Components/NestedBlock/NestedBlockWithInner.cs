@@ -25,7 +25,7 @@ public abstract class NestedBlockWithInner : NestedBlock
 
         if (settings is ColorComponentSettings colorComponentSettings)
         {
-            LayoutSection.CssThemeClasses = ThemeHelper.GetCssClasses(colorComponentSettings.Theme, "white");
+            LayoutSection.CssThemeClasses = ThemeHelper.GetCssClasses(colorComponentSettings.Theme, "t-white");
         }
         else
         {

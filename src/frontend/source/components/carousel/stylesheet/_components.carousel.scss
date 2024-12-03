@@ -35,11 +35,17 @@
   &.swiper-pagination-lock {
     display: none;
   }
+
+  &.is--hidden {
+    opacity: 0;
+    pointer-events: none;
+    margin-top: 0;
+  }
 }
 
 .carousel__pagination-fill {
   width: 100%;
   height: 3px;
-  transform-origin: 0%;
+  transform-origin: 0;
   background-color: var(--color-content);
 }

@@ -4,12 +4,13 @@
 
 .c-media-section {
   @include screen-max-width-and-bigger {
+    max-width: $max-width-widescreen-component;
+    margin-inline: auto;
+
     // If the first contentblock of the page is the layout-section without padding,
     // add padding to the top of the media-section
     .c-layout-section--no-padding:first-child & {
       padding-top: $spacing-80;
-      margin-inline: auto;
-      max-width: $max-width-widescreen-component;
     }
   }
 }
