@@ -76,14 +76,14 @@ public class CardProduct : ICard, IOverviewItem
 
         public static IEnumerable<ProductSpecification> Create(ICompositionProductDetails productDetails)
         {
-            if (Create(productDetails, nameof(productDetails.VolumeLevel)) is { } volumeLevelSpecification)
-            {
-                yield return volumeLevelSpecification;
-            }
-
             if (Create(productDetails, nameof(productDetails.ViscosityLevel)) is { } viscosityLevelSpecification)
             {
                 yield return viscosityLevelSpecification;
+            }
+
+            if (Create(productDetails, nameof(productDetails.VolumeLevel)) is { } volumeLevelSpecification)
+            {
+                yield return volumeLevelSpecification;
             }
         }
     }

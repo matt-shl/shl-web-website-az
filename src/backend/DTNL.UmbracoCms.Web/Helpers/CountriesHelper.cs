@@ -6,23 +6,20 @@ public static class CountriesHelper
 {
     public static List<string> CountryList()
     {
-        List<string> CultureList = new List<string>();
+        List<string> cultureList = new();
 
-        CultureInfo[] getCultureInfo = CultureInfo.GetCultures(CultureTypes.SpecificCultures);
-
-        foreach (CultureInfo culture in getCultureInfo)
+        foreach (CultureInfo culture in CultureInfo.GetCultures(CultureTypes.SpecificCultures))
         {
-            RegionInfo regionInfo = new RegionInfo(culture.Name);
-            if (!CultureList.Contains(regionInfo.EnglishName))
+            RegionInfo regionInfo = new(culture.Name);
+            if (!cultureList.Contains(regionInfo.EnglishName))
             {
-                CultureList.Add(regionInfo.EnglishName);
+                cultureList.Add(regionInfo.EnglishName);
             }
         }
 
-        CultureList.Add("Select Country");
-        CultureList.Sort();
+        cultureList.Add("Select Country");
+        cultureList.Sort();
 
-
-        return CultureList;
+        return cultureList;
     }
 }

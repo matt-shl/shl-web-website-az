@@ -8,9 +8,9 @@ public class ProductFilters : BaseFilters
 {
     public static readonly (string Name, Func<PageProduct, IEnumerable<string>?> GetValues)[] FilterFields =
     [
-        (nameof(PageProduct.DeviceType), p => p.DeviceType),
         (nameof(PageProduct.ViscosityLevel), p => p.ViscosityLevel.IsNullOrWhiteSpace() ? null : [p.ViscosityLevel]),
         (nameof(PageProduct.VolumeRange), p => p.VolumeRange),
+        (nameof(PageProduct.DeviceType), p => p.DeviceType),
         (nameof(PageProduct.ContainerType), p => p.ContainerType),
         (nameof(PageProduct.RouteOfAdministration), p => p.RouteOfAdministration),
         (nameof(PageProduct.ConnectivityType), p => p.ConnectivityType),
