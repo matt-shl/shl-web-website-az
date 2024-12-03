@@ -31,7 +31,7 @@ public class CachedAssetsProvider : IAssetsProvider
 
         string? content;
 
-        if (Uri.TryCreate(path, UriKind.Absolute, out Uri? _))
+        if (Uri.TryCreate(path, UriKind.Absolute, out Uri? uri) && uri.IsAbsoluteUri)
         {
             content = await ExternalAssetsProvider.GetContent(path);
         }
