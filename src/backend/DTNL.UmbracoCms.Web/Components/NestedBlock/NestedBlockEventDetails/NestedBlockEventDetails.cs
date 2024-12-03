@@ -11,6 +11,6 @@ public class NestedBlockEventDetails : NestedBlock
             return null;
         }
 
-        return EventDetails.Create(nestedBlockEventDetails, NodeProvider.SiteSettings);
+        return EventDetails.Create(nestedBlockEventDetails, NodeProvider.SiteSettings, CultureDictionary);
     }
 }

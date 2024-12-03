@@ -23,7 +23,7 @@
                    label="@CultureDictionary.GetTranslation($"{TranslationAliases.Forms.Fields}.Country")"
                    options="@(CountriesHelper.CountryList()).Using(location => new SelectElement.SelectOption(location))"
                    validate="required"
-                   required="true"
+                   required=true
                    required-error="@CultureDictionary.GetTranslation($"{TranslationAliases.Forms.Fields}.Country.Error Message") })" />
 
 <vc:text-area id="@Model.Id-cf_Message"

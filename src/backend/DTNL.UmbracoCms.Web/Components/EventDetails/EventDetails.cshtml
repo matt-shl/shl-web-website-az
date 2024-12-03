@@ -20,11 +20,12 @@
                     @Html.Raw(Model.Time)
                 </div>
                 <div class="event-detail__col event-detail__col--cta">
-                    <partial name="Button" model="@Model.LinkButton" />
-                </div>
-                <div class="event-detail__col event-detail__col--cta">                    
                     <partial name="Button" model="@Model.RegisterButton" />
                 </div>
+                <div class="event-detail__col event-detail__col--cta">
+                    <partial name="Button" model="@Model.LinkButton" />
+                </div>
+                
             </div>
         </div>
     </div>
