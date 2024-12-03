@@ -16,7 +16,7 @@ public static class ExternalAssetsProvider
         {
             return string.Empty;
         }
-        catch (FlurlHttpException)
+        catch (Exception)
         {
             return null;
         }
