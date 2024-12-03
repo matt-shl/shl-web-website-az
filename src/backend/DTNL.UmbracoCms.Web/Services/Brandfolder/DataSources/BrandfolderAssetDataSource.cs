@@ -27,12 +27,12 @@ public abstract class BrandfolderAssetDataSource : BrandfolderBaseDataSource
     {
         try
         {
-            if (BrandfolderAsset.Create(value) is not { } brandfolderAsset)
+            if (BrandfolderAttachment.Create(value) is not { } brandfolderAsset)
             {
                 return null;
             }
 
-            return await BrandfolderApiClient.GetAsset(brandfolderAsset.Id);
+            return await BrandfolderApiClient.GetAssetAttachment(brandfolderAsset.Id);
         }
         catch (Exception)
         {
@@ -45,26 +45,33 @@ public abstract class BrandfolderAssetDataSource : BrandfolderBaseDataSource
         int pageSize = 12,
         string query = "")
     {
-        return await BrandfolderApiClient.FindAssets(pageNumber, pageSize, query, SupportedFileTypes);
+        return await BrandfolderApiClient.FindAssetAttachments(pageNumber, pageSize, query, SupportedFileTypes);
     }
 
-    protected override DataListItem ToDataListItem(BrandfolderEntity brandfolderEntity)
+    protected override async Task<DataListItem> ToDataListItem(BrandfolderEntity brandfolderEntity)
     {
-        BrandfolderAsset brandfolderAsset = new()
+        BrandfolderAttachment brandfolderAttachment = new()
         {
             Id = brandfolderEntity.Id,
             Url = brandfolderEntity.Attributes.CdnUrl.RemoveQuery(),
-            Name = brandfolderEntity.Attributes.Name,
-            Description = brandfolderEntity.Attributes.Description,
+            FileName = brandfolderEntity.Attributes.FileName,
         };
+
+        if (brandfolderEntity.Relationships?.Asset?.Data is not null &&
+            await BrandfolderApiClient.GetAsset(brandfolderEntity.Relationships.Asset.Data.Id) is { } brandfolderAsset)
+        {
+            brandfolderAttachment.AssetId = brandfolderAsset.Data?.Id;
+            brandfolderAttachment.AssetName = brandfolderAsset.Data?.Attributes.Name;
+            brandfolderAttachment.AssetDescription = brandfolderAsset.Data?.Attributes.Description;
+        }
 
         return new DataListItem
         {
-            Name = brandfolderEntity.Attributes.Name,
-            Description = brandfolderEntity.Attributes.Description.FallBack(brandfolderEntity.Attributes.Name),
+            Name = brandfolderAttachment.FileName,
+            Description = brandfolderAttachment.AssetDescription.FallBack(brandfolderAttachment.AssetName),
             Icon = Icon,
-            Properties = new Dictionary<string, object> { { DefaultImageAlias, brandfolderEntity.Attributes.ThumbnailUrl! }, },
-            Value = JsonSerializer.Serialize(brandfolderAsset),
+            Properties = new Dictionary<string, object> { { DefaultImageAlias, brandfolderAttachment.GetDefaultCropUrl(262, 162) }, },
+            Value = JsonSerializer.Serialize(brandfolderAttachment),
         };
     }
 }

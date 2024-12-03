@@ -48,7 +48,7 @@ public partial class Image : ICard
         bool objectFit = true,
         string? style = null)
     {
-        if (BrandfolderAsset.Create(value) is not { } brandfolderAsset)
+        if (BrandfolderAttachment.Create(value) is not { } brandfolderAsset)
         {
             return null;
         }
@@ -64,7 +64,7 @@ public partial class Image : ICard
             Image img = new()
             {
                 Url = url,
-                Alt = brandfolderAsset.Description.FallBack(brandfolderAsset.Name),
+                Alt = brandfolderAsset.AssetDescription.FallBack(brandfolderAsset.AssetName),
                 SrcSet = default,
                 Classes = cssClasses,
                 ObjectFit = objectFit,

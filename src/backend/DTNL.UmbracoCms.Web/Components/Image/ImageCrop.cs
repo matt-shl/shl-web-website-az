@@ -15,13 +15,13 @@ public partial class Image
 
         public required string Url { get; set; }
 
-        public static ImageCrop Create(BrandfolderAsset brandfolderAsset, ImageCropping crop, ImageCropMode imageCropMode)
+        public static ImageCrop Create(BrandfolderAttachment brandfolderAttachment, ImageCropping crop, ImageCropMode imageCropMode)
         {
             return new ImageCrop
             {
                 Name = crop.Name,
                 Dimensions = new ImageCropDimensions { Width = crop.Width, Height = crop.Height },
-                Url = brandfolderAsset.GetDefaultCropUrl(crop.Width, crop.Height, imageCropMode),
+                Url = brandfolderAttachment.GetDefaultCropUrl(crop.Width, crop.Height, imageCropMode),
             };
         }
     }

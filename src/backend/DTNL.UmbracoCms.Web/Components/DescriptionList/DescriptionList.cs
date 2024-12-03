@@ -43,7 +43,7 @@ public partial class DescriptionList
             Title = title,
             Items = items,
             DownloadLinkButton = Button
-                .Create(BrandfolderAsset.Create(productPage?.SpecificationsFile))
+                .Create(BrandfolderAttachment.Create(productPage?.SpecificationsFile))
                 .With(b =>
                 {
                     b.Class = "description-list__cta";
