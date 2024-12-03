@@ -1,4 +1,5 @@
 using DTNL.UmbracoCms.Web.Helpers.Extensions;
+using Flurl;
 using Microsoft.Extensions.Caching.Memory;
 
 namespace DTNL.UmbracoCms.Web.Services.Assets;
@@ -31,7 +32,7 @@ public class CachedAssetsProvider : IAssetsProvider
 
         string? content;
 
-        if (Uri.TryCreate(path, UriKind.Absolute, out Uri? uri) && uri.IsAbsoluteUri)
+        if (Url.IsValid(path))
         {
             content = await ExternalAssetsProvider.GetContent(path);
         }
