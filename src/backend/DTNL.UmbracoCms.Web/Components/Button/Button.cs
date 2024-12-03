@@ -56,14 +56,14 @@ public class Button
     }
 
     [return: NotNullIfNotNull(nameof(brandfolderAsset))]
-    public static Button? Create(BrandfolderAsset? brandfolderAsset)
+    public static Button? Create(BrandfolderAttachment? brandfolderAsset)
     {
         return brandfolderAsset is null
             ? null
             : new Button
             {
                 Url = brandfolderAsset.Url.RemoveQuery(),
-                Label = brandfolderAsset.Name ?? "",
+                Label = brandfolderAsset.FileName ?? "",
             };
     }
 
@@ -95,7 +95,7 @@ public class Button
         return Create(buttonLink?.Link)
             .With(b =>
             {
-                b.Icon = BrandfolderAsset.GetAssetUrl(buttonLink?.ButtonIcon) ?? fallBackIcon ?? SvgAliases.Icons.ArrowTopRight;
+                b.Icon = BrandfolderAttachment.GetAssetUrl(buttonLink?.ButtonIcon) ?? fallBackIcon ?? SvgAliases.Icons.ArrowTopRight;
                 b.Variant = buttonLink?.Variant ?? fallBackVariant ?? "primary";
             });
     }

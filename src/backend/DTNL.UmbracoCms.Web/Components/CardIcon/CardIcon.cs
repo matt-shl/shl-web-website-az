@@ -32,7 +32,7 @@ public class CardIcon : ICard
             Text = iconCard.Text?.ToHtmlString(),
             Url = iconCard.Link?.Url,
             CssClasses = cssClasses,
-            IconSrc = BrandfolderAsset.GetAssetUrl(iconCard.Icon),
+            IconSrc = BrandfolderAttachment.GetAssetUrl(iconCard.Icon),
         };
     }
 }

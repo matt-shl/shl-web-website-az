@@ -19,7 +19,7 @@ public class ContactFormItem
         {
             Title = contactFormBlockItem.Title,
             Text = contactFormBlockItem.Text?.ToHtmlString(),
-            IconPath = BrandfolderAsset.GetAssetUrl(contactFormBlockItem.Icon),
+            IconPath = BrandfolderAttachment.GetAssetUrl(contactFormBlockItem.Icon),
         };
     }
 }

@@ -26,7 +26,7 @@ public class DownloadItem
         {
             Title = downloadItem.Title!,
             Description = downloadItem.Description,
-            Icon = BrandfolderAsset.GetAssetUrl(downloadItem.Icon),
+            Icon = BrandfolderAttachment.GetAssetUrl(downloadItem.Icon),
             DownloadOverlay = downloadOverlay,
         };
     }

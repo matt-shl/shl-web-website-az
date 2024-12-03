@@ -3,17 +3,21 @@ using Flurl;
 
 namespace DTNL.UmbracoCms.Web.Models.BrandfolderAssets;
 
-public class BrandfolderAsset
+public class BrandfolderAttachment
 {
     public required string Id { get; init; }
 
+    public string? FileName { get; init; }
+
     public required string Url { get; init; }
 
-    public string? Name { get; init; }
+    public string? AssetId { get; set; }
 
-    public string? Description { get; init; }
+    public string? AssetName { get; set; }
 
-    public static BrandfolderAsset? Create(string? value)
+    public string? AssetDescription { get; set; }
+
+    public static BrandfolderAttachment? Create(string? value)
     {
         if (value.IsNullOrWhiteSpace())
         {
@@ -22,7 +26,7 @@ public class BrandfolderAsset
 
         try
         {
-            return JsonSerializer.Deserialize<BrandfolderAsset>(value);
+            return JsonSerializer.Deserialize<BrandfolderAttachment>(value);
         }
         catch (Exception)
         {

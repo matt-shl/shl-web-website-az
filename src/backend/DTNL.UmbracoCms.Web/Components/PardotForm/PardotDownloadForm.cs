@@ -20,7 +20,7 @@ public class PardotDownloadForm : PardotForm
 
     public static PardotDownloadForm? Create(NestedBlockDownloadItem downloadItem)
     {
-        if (BrandfolderAsset.Create(downloadItem.File) is not { } asset)
+        if (BrandfolderAttachment.Create(downloadItem.File) is not { } asset)
         {
             return null;
         }
@@ -30,7 +30,7 @@ public class PardotDownloadForm : PardotForm
             Id = Guid.NewGuid().ToString(),
             ActionUrl = "http://go.shl-medical.com/l/1046193/2024-11-08/nrq8",
             FileUrl = asset.Url,
-            FileName = asset.Name ?? "",
+            FileName = asset.FileName ?? "",
         };
     }
 }

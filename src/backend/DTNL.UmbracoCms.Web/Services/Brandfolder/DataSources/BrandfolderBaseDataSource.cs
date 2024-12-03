@@ -42,16 +42,19 @@ public abstract class BrandfolderBaseDataSource : IDataPickerSource
 
     public async Task<IEnumerable<DataListItem>> GetItemsAsync(Dictionary<string, object> config, IEnumerable<string> values)
     {
-        List<BrandfolderEntity?> entities = [];
+        List<BrandfolderEntity> entities = [];
 
         foreach (string? value in values.OrEmptyIfNull())
         {
             BrandfolderEntityResponse? brandfolderAsset = await GetItem(value);
 
-            entities.Add(brandfolderAsset?.Data);
+            if (brandfolderAsset?.Data is not null)
+            {
+                entities.Add(brandfolderAsset.Data);
+            }
         }
 
-        return entities.Using(ToDataListItem);
+        return await ToDataListItems(entities);
     }
 
     public async Task<PagedResult<DataListItem>> SearchAsync(Dictionary<string, object> config, int pageNumber = 1, int pageSize = 12, string query = "")
@@ -67,7 +70,7 @@ public abstract class BrandfolderBaseDataSource : IDataPickerSource
 
         return new PagedResult<DataListItem>(totalCount, pageNumber, pageSize)
         {
-            Items = brandfolderEntitiesResponse.Data.Using(ToDataListItem),
+            Items = await ToDataListItems(brandfolderEntitiesResponse.Data),
         };
     }
 
@@ -75,14 +78,21 @@ public abstract class BrandfolderBaseDataSource : IDataPickerSource
 
     protected abstract Task<BrandfolderEntitiesResponse?> SearchItems(int pageNumber = 1, int pageSize = 12, string query = "");
 
-    protected virtual DataListItem ToDataListItem(BrandfolderEntity brandfolderEntity)
+    protected virtual Task<DataListItem[]> ToDataListItems(List<BrandfolderEntity> brandfolderEntities)
     {
-        return new DataListItem
+        IEnumerable<Task<DataListItem>> toDataListItemTasks = brandfolderEntities.Select(ToDataListItem);
+
+        return Task.WhenAll(toDataListItemTasks);
+    }
+
+    protected virtual Task<DataListItem> ToDataListItem(BrandfolderEntity brandfolderEntity)
+    {
+        return Task.FromResult(new DataListItem
         {
             Name = brandfolderEntity.Attributes.Name,
             Description = brandfolderEntity.Attributes.Description ?? brandfolderEntity.Attributes.TagLine?.RemoveHtml(),
             Icon = Icon,
             Value = brandfolderEntity.Id,
-        };
+        });
     }
 }

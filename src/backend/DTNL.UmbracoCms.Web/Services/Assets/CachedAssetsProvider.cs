@@ -29,7 +29,17 @@ public class CachedAssetsProvider : IAssetsProvider
             return cachedValue;
         }
 
-        string? content = await _assetsProvider.GetContent(path);
+        string? content;
+
+        if (Uri.TryCreate(path, UriKind.Absolute, out Uri? _))
+        {
+            content = await ExternalAssetsProvider.GetContent(path);
+        }
+        else
+        {
+            content = await _assetsProvider.GetContent(path);
+        }
+
         if (content != null)
         {
             _ = _memoryCache.Set(key, content, DefaultCacheEntryOptions);

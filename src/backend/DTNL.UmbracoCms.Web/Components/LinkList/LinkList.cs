@@ -23,7 +23,7 @@ public class LinkList
                         .Create(l.Link, cssClasses: "link-list__anchor")
                         .With(link =>
                         {
-                            link.IconPath = BrandfolderAsset.GetAssetUrl(l.Icon);
+                            link.IconPath = BrandfolderAttachment.GetAssetUrl(l.Icon);
                             link.IconPath ??= SvgAliases.Icons.ArrowTopRight;
                         }))
                 .ToList(),
