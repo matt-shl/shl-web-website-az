@@ -6,7 +6,7 @@ namespace DTNL.UmbracoCms.Web.Components;
 
 public class PardotDownloadForm : PardotForm
 {
-    public override string ActionSubmitLabelKey => TranslationAliases.Forms.EventForm.SubmitFormLabel;
+    public override string ActionSubmitLabelKey => TranslationAliases.Forms.DownloadForm.Title;
 
     public override string ActionSuccessLabelKey => TranslationAliases.Forms.EventForm.SubmissionSuccessMessage;
 
@@ -16,9 +16,11 @@ public class PardotDownloadForm : PardotForm
 
     public required string FileUrl { get; set; }
 
+    public required string FileName { get; set; }
+
     public static PardotDownloadForm? Create(NestedBlockDownloadItem downloadItem)
     {
-        if (BrandfolderAsset.GetAssetUrl(downloadItem.File) is not { } assetUrl)
+        if (BrandfolderAsset.Create(downloadItem.File) is not { } asset)
         {
             return null;
         }
@@ -26,8 +28,9 @@ public class PardotDownloadForm : PardotForm
         return new()
         {
             Id = Guid.NewGuid().ToString(),
-            ActionUrl = "https://go.shl-medical.com/l/1046193/2024-11-08/nrq8",
-            FileUrl = assetUrl,
+            ActionUrl = "http://go.shl-medical.com/l/1046193/2024-11-08/nrq8",
+            FileUrl = asset.Url,
+            FileName = asset.Name ?? "",
         };
     }
 }

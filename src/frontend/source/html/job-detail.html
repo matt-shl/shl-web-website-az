@@ -25,7 +25,14 @@
 
 {% block content %}
 
-  {{ richText(global.content.eventDetail.richText | clone | merge({readMoreDisabled: true})) }}
+  {{ richText(global.content.eventDetail.richText | clone | merge({
+    readMoreDisabled: true,
+    cta1: {
+      apply: true,
+      label: "Apply Now",
+      url: "#"
+    }
+  })) }}
   {{ sectionImageCarousel(jobDetailData.imageCarousel) }}
   {{ sectionJobVacancies(jobDetailData.jobVacancies) }}
 

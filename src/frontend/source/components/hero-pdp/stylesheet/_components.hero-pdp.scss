@@ -3,15 +3,22 @@ $hero-pdp-content-offset: 14.5%; // 1 col
 .c-hero-pdp {
   @include theme;
   @include component-overlap;
-  --hero-pdp-shape-height: 100px;
+  --hero-pdp-shape-start: 36%;
+  --hero-pdp-shape-height: 105px;
+  --hero-pdp-shape-width: 212px;
+  --hero-pdp-shape-minus-margin-top-height: 0;
   z-index: 0;
 
   @include screen-lg-and-bigger {
-    --hero-pdp-shape-height: 180px;
+    --hero-pdp-shape-start: 32%;
+    --hero-pdp-shape-height: 280px;
+    --hero-pdp-shape-width: 540px;
+    --hero-pdp-shape-minus-margin-top-height: -140px;
   }
 
   @include screen-xl-and-bigger {
-    --hero-pdp-shape-height: 280px;
+    --hero-pdp-shape-start: 32%;
+    --hero-pdp-shape-minus-margin-top-height: -280px;
   }
 }
 
@@ -115,8 +122,12 @@ $hero-pdp-content-offset: 14.5%; // 1 col
   pointer-events: none;
   min-height: var(--hero-pdp-shape-height);
 
+  @include screen-md-and-bigger {
+    margin-top: calc(var(--hero-pdp-shape-minus-margin-top-height));
+  }
+
   @include screen-lg-and-bigger {
-    margin-top: calc(var(--hero-pdp-shape-height) * -1);
+    margin-top: calc(var(--hero-pdp-shape-minus-margin-top-height));
   }
 }
 
@@ -149,8 +160,7 @@ $hero-pdp-content-offset: 14.5%; // 1 col
 
 .hero-pdp__shape {
   color: $color-white;
-  display: grid;
-  grid-template-columns: repeat(10, minmax(0, 1fr));
+  display: flex;
   height: var(--hero-pdp-shape-height);
   width: 100%;
 
@@ -170,32 +180,20 @@ $hero-pdp-content-offset: 14.5%; // 1 col
 }
 
 .hero-pdp__shape-left {
-  @include col-span(4);
+  width: var(--hero-pdp-shape-start);
   background: currentcolor;
-
-  @include screen-lg-and-bigger {
-    @include col-span(3);
-  }
 }
 
 .hero-pdp__shape-scale {
-  @include col-span(5);
+  width: var(--hero-pdp-shape-width);
 
   svg {
     height: var(--hero-pdp-shape-height);
     width: calc(100% + 1px); // to pixelperfect overlap
     margin-left: -1px;
   }
-
-  @include screen-lg-and-bigger {
-    @include col-span(4);
-  }
 }
 
 .hero-pdp__shape-right {
-  @include col-span(1);
-
-  @include screen-lg-and-bigger {
-    @include col-span(3);
-  }
+  width: calc(100% - #{var(--hero-pdp-shape-start)} - #{var(--hero-pdp-shape-width)});
 }

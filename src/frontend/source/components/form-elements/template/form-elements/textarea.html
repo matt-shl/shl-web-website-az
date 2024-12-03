@@ -25,16 +25,16 @@
         {%- if data.labelAsPlaceholder %} js-hook-lap{% endif -%}>
 
         <div class="textarea__wrapper" title="{{ data.label }}">
-            <label class="textarea__label {%- if data.sronly %} u-sr-only{% endif -%}" for="{{ data.id | lower }}">
+            <label class="textarea__label {%- if data.sronly %} u-sr-only{% endif -%}" for="{{ data.id }}">
                 {{ data.label|safe }}
 
                 {% set validate = data.validate | string if data.validate else '' %}
                 {% if 'required' in validate or data.required %}<sup>*</sup>{% endif %}
             </label>
             <textarea class="textarea__input"
-                name="{{ data.name | lower }}"
-                value="{{ data.value | lower }}"
-                id="{{ data.id | lower }}"
+                name="{{ data.name }}"
+                value="{{ data.value }}"
+                id="{{ data.id }}"
                 {%- if data.placeholder and not data.labelAsPlaceholder %} placeholder="{{ data.placeholder }}"{% endif -%}
                 {%- if data.validate %} data-validate="{{ data.validate }}"{% endif -%}
                 {%- if data.requiredError %} data-required-error="{{ data.requiredError }}"{% endif -%}

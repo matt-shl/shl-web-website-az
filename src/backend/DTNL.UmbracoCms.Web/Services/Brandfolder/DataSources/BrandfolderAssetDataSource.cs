@@ -1,7 +1,7 @@
 using System.Text.Json;
+using DTNL.UmbracoCms.Web.Helpers.Extensions;
 using DTNL.UmbracoCms.Web.Models.BrandfolderAssets;
 using DTNL.UmbracoCms.Web.Services.Brandfolder.Models;
-using Flurl;
 using Umbraco.Cms.Core.Web;
 using Umbraco.Community.Contentment.DataEditors;
 using Umbraco.Community.Contentment.Services;
@@ -52,17 +52,15 @@ public abstract class BrandfolderAssetDataSource : BrandfolderBaseDataSource
         BrandfolderAsset brandfolderAsset = new()
         {
             Id = brandfolderEntity.Id,
-            Url = $"https://cdn.bfldr.com/DTG6CG68/as/{brandfolderEntity.Id}/{brandfolderEntity.Id}"
-                .SetQueryParam("height", 250)
-                .SetQueryParam("width", 250)
-                .SetQueryParam("fit", "crop"),
+            Url = brandfolderEntity.Attributes.CdnUrl,
             Name = brandfolderEntity.Attributes.Name,
+            Description = brandfolderEntity.Attributes.Description,
         };
 
         return new DataListItem
         {
             Name = brandfolderEntity.Attributes.Name,
-            Description = brandfolderEntity.Attributes.Description,
+            Description = brandfolderEntity.Attributes.Description.FallBack(brandfolderEntity.Attributes.Name),
             Icon = Icon,
             Properties = new Dictionary<string, object> { { DefaultImageAlias, brandfolderEntity.Attributes.ThumbnailUrl! }, },
             Value = JsonSerializer.Serialize(brandfolderAsset),

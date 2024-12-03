@@ -34,9 +34,9 @@
         {% for option in data.options %}
             <input class="radio__input u-sr-only"
                 type="radio"
-                name="{{ data.name | lower }}"
-                value="{{ option.value | lower }}"
-                id="{{ option.id | lower }}"
+                name="{{ data.name }}"
+                value="{{ option.value }}"
+                id="{{ option.id }}"
                 {%- if option.disabled %} disabled{% endif -%}
                 {%- if data.required %} required{% endif -%}
                 {%- if option.checked %} checked{% endif -%}
@@ -44,7 +44,7 @@
                 {%- if data.requiredError %} data-required-error="{{ data.requiredError }}"{% endif -%}
                 {%- if option.hook %} js-hook-{{ option.hook }}{% endif -%}
                 {%- if option.attr %} {{ option.attr|safe }}{% endif -%}>
-            <label class="radio__label" for="{{ option.id | lower }}" role="button">
+            <label class="radio__label" for="{{ option.id }}" role="button">
 
               {% if option.link %}
               <a href="{{ option.link }}" class="form__item-link">

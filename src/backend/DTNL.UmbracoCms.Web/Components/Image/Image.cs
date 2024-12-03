@@ -64,7 +64,7 @@ public partial class Image : ICard
             Image img = new()
             {
                 Url = url,
-                Alt = brandfolderAsset.Name,
+                Alt = brandfolderAsset.Description.FallBack(brandfolderAsset.Name),
                 SrcSet = default,
                 Classes = cssClasses,
                 ObjectFit = objectFit,

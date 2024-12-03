@@ -21,11 +21,20 @@ public class RichText
 
     public bool ReadMoreOption { get; set; }
 
-    public static RichText Create(PageVacancy pageVacancy)
+    public static RichText Create(PageVacancy pageVacancy, string applyLinkLabel)
     {
         return new RichText
         {
             Content = pageVacancy.JobDescription?.ToHtmlString(),
+            PrimaryLinkButton = new Button
+            {
+                Label = applyLinkLabel,
+                Url = pageVacancy.ExternalUrl,
+                Target = "_blank",
+                Variant = "secondary",
+                Icon = SvgAliases.Icons.ArrowTopRight,
+                Hook = "apply",
+            },
         };
     }
 

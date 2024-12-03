@@ -14,8 +14,9 @@
 {% endblock %}
 
 {% block content %}
-
-  {{ sectionCardCarousel(knowledgeOverviewData.icon) }}
+  {{ sectionCardCarousel( knowledgeOverviewData.icon | clone | merge({
+    gtm: 'knowledge-overview-sections'
+  })) }}
   {{ textMedia(knowledgeOverviewData.textMedia) }}
   {{ sectionCardCarousel(knowledgeOverviewData.related) }}
 {% endblock %}

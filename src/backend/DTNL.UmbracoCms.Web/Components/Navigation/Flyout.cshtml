@@ -21,20 +21,20 @@
                     <li class="flyout__main-item @(i == 0 ? "is--open" : "")" js-hook-flyout-main-item>
                         @if(item.Link is not null && item.SubLinks.Count == 0)
                         {
-                            <a class="flyout__main-item-button" title="@item.Title" js-hook-flyout-main-item-anchor aria-expanded="false" aria-controls="flyout-list-@item.Id-@i" href="@item.Link.Url">
+                            <a class="flyout__main-item-button" js-hook-flyout-main-item-anchor aria-expanded="false" aria-controls="flyout-list-@item.Id-@i" href="@item.Link.Url">
                                 @item.Title
                             </a>
                         }
                         else
                         {
-                            <button class="flyout__main-item-button" title="@item.Title" js-hook-flyout-main-item-anchor aria-expanded="false" aria-controls="flyout-list-@item.Id-@i">
+                            <button class="flyout__main-item-button" js-hook-flyout-main-item-anchor aria-expanded="false" aria-controls="flyout-list-@item.Id-@i">
                                 @item.Title
                                 <div class="flyout__main-item-button-icon">
                                     <svg src="@SvgAliases.Icons.ChevronRight" />
                                 </div>
                             </button>
                         }
-                        
+
 
                         @if (item.SubLinks.Count > 0)
                         {
@@ -42,12 +42,12 @@
                                 @foreach (Link subLink in item.SubLinks)
                                 {
                                     <li class="flyout__subitem">
-                                        <a class="flyout__subitem-anchor" title="@subLink.Label" href="@subLink.Url" js-hook-flyout-sub-item-anchor>
+                                        <a class="flyout__subitem-anchor" href="@subLink.Url" js-hook-flyout-sub-item-anchor>
                                             @subLink.Label
                                         </a>
                                     </li>
                                 }
-                                
+
                                 @if (item.Link is not null)
                                 {
                                     <li>
