@@ -28,27 +28,28 @@
     <partial name="Pagination" model="@Model.Pagination" />
 </div>
 
-@if (Model.OverviewType is "search")
-{
-    <script type="text/javascript">
-    window.dataLayer = window.dataLayer || [];
-    dataLayer.push({
-        event: 'search_results',
-        search_term: '@(Model.SearchTerm)',
-        action: '@(Model.NoResultsSection is not null ? "No results" : "Successful results")'
-    });
-    </script>
-}
-else if (Model.OverviewType is "product")
+@if (!string.IsNullOrWhiteSpace(Model.SearchTerm))
 {
     <script type="text/javascript">
         window.dataLayer = window.dataLayer || [];
         dataLayer.push({
-            event: 'jobs_list',
+            event: 'search_results',
             search_term: '@(Model.SearchTerm)',
-            jobs: JSON.parse('@Html.Raw(JsonConvert.SerializeObject(Model.Items))
-                    });
+            action: '@(Model.NoResultsSection is not null ? "No results" : "Successful results")',
+        });
     </script>
+
+    @if(Model.OverviewType is "jobs")
+    {
+        <script type="text/javascript">
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                event: 'jobs_list',
+                search_term: '@(Model.SearchTerm)',
+                jobs: JSON.parse('@Html.Raw(JsonConvert.SerializeObject(Model.Items))
+                                });
+        </script>
+    }
 }
 
 
