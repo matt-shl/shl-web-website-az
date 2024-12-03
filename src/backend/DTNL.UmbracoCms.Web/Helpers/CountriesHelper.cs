@@ -19,7 +19,9 @@ public static class CountriesHelper
             }
         }
 
+        CultureList.Add("Select Country");
         CultureList.Sort();
+
 
         return CultureList;
     }
