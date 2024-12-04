@@ -257,6 +257,9 @@ $map-default-country-opacity: 0.3;
     color 200ms ease-in-out;
   white-space: nowrap;
   z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 4px;
 
   // Active / Inactive is only added when the office overlay is shown
   &.is--active {
@@ -337,7 +340,5 @@ $map-default-country-opacity: 0.3;
   @include screen-lg-and-bigger {
     // Make it superscript
     font-size: 0.7em;
-    position: relative;
-    top: -2px;
   }
 }
