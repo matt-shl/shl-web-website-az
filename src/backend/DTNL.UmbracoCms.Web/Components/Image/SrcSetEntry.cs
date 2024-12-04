@@ -41,11 +41,11 @@ public partial class Image
             return this;
         }
 
-        public string ToString(BrandfolderAsset brandfolderAsset)
+        public string ToString(BrandfolderAttachment brandfolderAttachment)
         {
             int imageWidth = Width ?? Breakpoint;
 
-            string imageUrl = $"{brandfolderAsset.GetDefaultCropUrl(imageWidth, Height)}";
+            string imageUrl = $"{brandfolderAttachment.GetDefaultCropUrl(imageWidth, Height)}";
 
             return $"{imageUrl} {Breakpoint}w";
         }

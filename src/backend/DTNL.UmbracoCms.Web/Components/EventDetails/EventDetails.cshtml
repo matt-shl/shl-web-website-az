@@ -19,12 +19,17 @@
                 <div class="event-detail__col event-detail__col--col2">
                     @Html.Raw(Model.Time)
                 </div>
-                <div class="event-detail__col event-detail__col--cta">
-                    <partial name="Button" model="@Model.LinkButton" />
-                </div>
-                <div class="event-detail__col event-detail__col--cta">                    
-                    <partial name="Button" model="@Model.RegisterButton" />
-                </div>
+                @if (Model.LinkButton is not null)
+                {
+                    <div class="event-detail__col event-detail__col--cta">
+                        <partial name="Button" model="@Model.LinkButton" />
+                    </div>
+                } else
+                {
+                    <div class="event-detail__col event-detail__col--cta">
+                        <partial name="Button" model="@Model.RegisterButton" />
+                    </div>
+                }           
             </div>
         </div>
     </div>

@@ -5,9 +5,9 @@ using Umbraco.Community.Contentment.Services;
 
 namespace DTNL.UmbracoCms.Web.Services.Brandfolder.DataSources;
 
-public class BrandfolderImageDataSource : BrandfolderAssetDataSource
+public class BrandfolderSvgDataSource : BrandfolderAssetDataSource
 {
-    public BrandfolderImageDataSource(
+    public BrandfolderSvgDataSource(
         BrandfolderApiClient brandfolderApiClient,
         IContentmentContentContext contentmentContentContext,
         IUmbracoContextAccessor umbracoContextAccessor)
@@ -15,11 +15,11 @@ public class BrandfolderImageDataSource : BrandfolderAssetDataSource
     {
     }
 
-    protected override string[] SupportedFileTypes => ["jpg", "gif", "png", "tif"];
+    protected override string[]? SupportedFileTypes => ["svg"];
 
-    public override string Name => "Brandfolder Images";
+    public override string Name => "Brandfolder SVGs";
 
-    public override string Description => "List of Brandfolder Images";
+    public override string Description => "List of Brandfolder SVGs";
 
     public override string Icon => "icon-picture";
 
@@ -29,5 +29,5 @@ public class BrandfolderImageDataSource : BrandfolderAssetDataSource
 
     public override string Group => "Custom";
 
-    public override OverlaySize OverlaySize => OverlaySize.Large;
+    public override OverlaySize OverlaySize => OverlaySize.Small;
 }

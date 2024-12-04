@@ -55,7 +55,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("buttonIcon")]
-		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops ButtonIcon => this.Value<global::Umbraco.Cms.Core.Models.MediaWithCrops>(_publishedValueFallback, "buttonIcon");
+		public virtual string ButtonIcon => this.Value<string>(_publishedValueFallback, "buttonIcon");
 
 		///<summary>
 		/// Link

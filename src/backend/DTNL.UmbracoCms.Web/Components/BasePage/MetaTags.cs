@@ -103,7 +103,7 @@ public class MetaTags : ViewComponentExtended
         string ogTitle = socialSharing?.OgTitle.NullOrEmptyAsNull() ?? GetTitle(page);
         string ogDescription = socialSharing?.OgDescription.NullOrEmptyAsNull() ?? GetMetaDescription(page);
 
-        string? ogImageUrl = BrandfolderAsset
+        string? ogImageUrl = BrandfolderAttachment
             .Create(socialSharing?.OgImage ?? GetHeroImage(page))?
             .GetDefaultCropUrl(1200, 630);
 
@@ -122,7 +122,7 @@ public class MetaTags : ViewComponentExtended
         string twitterTitle = socialSharing?.TwitterTitle.NullOrEmptyAsNull() ?? socialSharing?.OgTitle.NullOrEmptyAsNull() ?? GetTitle(page);
         string twitterDescription = socialSharing?.TwitterDescription.NullOrEmptyAsNull() ?? socialSharing?.OgDescription.NullOrEmptyAsNull() ?? GetMetaDescription(page);
 
-        string? twitterImageUrl = BrandfolderAsset
+        string? twitterImageUrl = BrandfolderAttachment
             .Create(socialSharing?.TwitterImage ?? socialSharing?.OgImage ?? GetHeroImage(page))?
             .GetDefaultCropUrl(1200, 630);
 
