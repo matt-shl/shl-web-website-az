@@ -30,6 +30,9 @@ public abstract class Overview : ViewComponentExtended
     public string? OverviewType { get; set; }
 
     public string? SearchTerm { get; set; }
+
+    public bool IsJobsOverview { get; set; }
+
 }
 
 public abstract class OverviewFor<TOverviewPage, TPage, TFilters, TOverviewItem> : Overview
@@ -100,8 +103,17 @@ public abstract class OverviewFor<TOverviewPage, TPage, TFilters, TOverviewItem>
 
         if (OverviewPage is PageVacancyOverview)
         {
-            OverviewType = "jobs";
+            IsJobsOverview = true;
         }
+
+        OverviewType = pages.FirstOrDefault() switch
+        {
+            PagePublication => "publication",
+            PageEvent => "event",
+            PageNews => "news",
+            PageProduct => "product",
+            _ => null,
+        };
 
         SearchTerm = Request.Query.GetSearchQuery();
 

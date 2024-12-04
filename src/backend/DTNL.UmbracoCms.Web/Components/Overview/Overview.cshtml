@@ -38,18 +38,18 @@
             action: '@(Model.NoResultsSection is not null ? "No results" : "Successful results")',
         });
     </script>
+}
 
-    @if(Model.OverviewType is "jobs")
-    {
-        <script type="text/javascript">
-            window.dataLayer = window.dataLayer || [];
-            dataLayer.push({
-                event: 'jobs_list',
-                search_term: '@(Model.SearchTerm)',
-                jobs: JSON.parse('@Html.Raw(JsonConvert.SerializeObject(Model.Items))
-                                });
-        </script>
-    }
+@if (Model.IsJobsOverview)
+{
+    <script type="text/javascript">
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push({
+            event: 'jobs_list',
+            search_term: '@(Model.SearchTerm)',
+            jobs: JSON.parse('@Html.Raw(JsonConvert.SerializeObject(Model.Items))
+                                        });
+    </script>
 }
 
 
