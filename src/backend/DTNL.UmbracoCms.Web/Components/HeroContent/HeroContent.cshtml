@@ -12,9 +12,12 @@
             <p class="hero-content__subtitle" asp-if="@Model.SubTitle">@Model.SubTitle</p>
 
             <div class="hero-content__tags">
-                @foreach (Tag tag in Model.Tags)
+                @for (int i = 0; i< Model.Tags.Count(); i++)
                 {
-                    <partial name="Tag" model="@tag" />
+                Tag tag = Model.Tags[i];               
+                    <span @(i == 0 ? "js-hook-job-listing-seniority" : "js-hook-job-listing-employment")>
+                        <partial name="Tag" model="@tag" />
+                    </span>
                 }
             </div>
         </div>
