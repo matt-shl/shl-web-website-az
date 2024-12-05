@@ -1,7 +1,6 @@
 using System.Xml.Serialization;
-using DTNL.UmbracoCms.Web.Infrastructure.ApiClients.Ats.Models;
 
-namespace DTNL.UmbracoCms.Web.Infrastructure.ApiClients.Ats;
+namespace DTNL.UmbracoCms.Web.Infrastructure.ApiClients.Ats.Models;
 
 [XmlRoot("source")]
 public class AtsVacanciesResponse
