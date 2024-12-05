@@ -1,3 +1,3 @@
 <svg width="792" height="215" viewBox="0 0 792 215" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M632.26 216H791.27C632.26 216 489.553 173.349 399.854 108.25C310.154 43.15 167.452 0.5 8.44 0.5H0V216H632.26Z" fill="currentColor"/>
+  <path shape-rendering="geometricPrecision" d="M632.26 216H791.27C632.26 216 489.553 173.349 399.854 108.25C310.154 43.15 167.452 0.5 8.44 0.5H0V216H632.26Z" fill="currentColor"/>
 </svg>
