@@ -35,13 +35,23 @@ public class Media
         }
 
         VideoMedia? videoContent = (VideoMedia?) videoBlock.Video?.FirstOrDefault()?.Content;
-        Video? video = Video.Create(videoContent).With(v =>
+        //Video? video = Video.Create(videoContent).With(v =>
+        //{
+        //    v.InstanceId = videoContent?.Title?.Trim().ToLowerInvariant().Replace(" ", "-") ?? "";
+        //    v.Id = videoContent?.Title?.Trim().ToLowerInvariant().Replace(" ", "-");
+        //    v.Description = videoContent?.Description;
+        //    v.TotalTime = videoContent?.TotalTime;
+        //    v.Variant = "modal";
+        //});
+        Video? video = new Video
         {
-            v.Id = videoContent?.Title?.Trim().ToLowerInvariant().Replace(" ", "-");
-            v.Description = videoContent?.Description;
-            v.TotalTime = videoContent?.TotalTime;
-            v.Variant = "modal";
-        });
+            Id = videoContent?.Title?.Trim().ToLowerInvariant().Replace(" ", "-"),
+            InstanceId = videoContent?.Title?.Trim().ToLowerInvariant().Replace(" ", "-") ?? "",
+            Platform = "native",
+            TotalTime = videoContent?.TotalTime ?? "",
+            Variant = "modal",
+        };
+
 
         return new Media
         {
@@ -67,7 +77,14 @@ public class Media
                     i.ObjectFit = true;
                     i.Caption = videoBlock.Caption;
                 }),
-            Video = video,
+            Video = Video.Create(videoContent)
+            .With(v =>
+            {
+                v.Id = videoContent?.Title?.Trim().ToLowerInvariant().Replace(" ", "-");
+                v.Description = videoContent?.Description;
+                v.TotalTime = videoContent?.TotalTime;
+                v.Variant = "modal";
+            }),
         };
     }
 }
