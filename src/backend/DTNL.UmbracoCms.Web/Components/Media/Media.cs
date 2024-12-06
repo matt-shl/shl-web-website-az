@@ -66,7 +66,7 @@ public class Media
                         ["aria-controls"] = video != null ? $"{video.InstanceId}" : null,
                     };
                     i.ObjectFit = true;
-                    i.Caption = videoContent?.Description;
+                    i.Caption = videoBlock.Caption;
                 }),
             Video = Video.Create(videoContent)
             .With(v =>

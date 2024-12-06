@@ -50,15 +50,15 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		// properties
 
 		///<summary>
-		/// Description: Metadata
+		/// Caption
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("description")]
-		public virtual string Description => this.Value<string>(_publishedValueFallback, "description");
+		[ImplementPropertyType("caption")]
+		public virtual string Caption => this.Value<string>(_publishedValueFallback, "caption");
 
 		///<summary>
-		/// FullWidth
+		/// FullWidth: Works when Media is used as a standalone block item.
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[ImplementPropertyType("fullWidth")]
@@ -73,12 +73,12 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual string Preview => this.Value<string>(_publishedValueFallback, "preview");
 
 		///<summary>
-		/// Title: Metadata
+		/// Total Time
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("title")]
-		public virtual string Title => this.Value<string>(_publishedValueFallback, "title");
+		[ImplementPropertyType("totalTime")]
+		public virtual string TotalTime => this.Value<string>(_publishedValueFallback, "totalTime");
 
 		///<summary>
 		/// Video

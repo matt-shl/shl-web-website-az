@@ -45,7 +45,7 @@ public class HomepageHero : IHero
                 }),
             ShortDescription = homepageHero.Text?.ToHtmlString(),
 
-            VideoUrl = Video.Create((NestedBlockVideoNativeUrl?) homepageHero.Video?.FirstOrDefault()?.Content, css: "c-video--background")
+            VideoUrl = Video.Create((VideoMedia?) homepageHero.Video?.FirstOrDefault()?.Content, css: "c-video--background")
             .With(v =>
             {
                 v.InstanceId = "hero-video";
