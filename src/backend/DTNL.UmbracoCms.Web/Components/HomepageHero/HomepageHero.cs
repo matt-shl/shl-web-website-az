@@ -25,6 +25,19 @@ public class HomepageHero : IHero
             return null;
         }
 
+        VideoMedia? videoContent = (VideoMedia?) homepageHero.Video?.FirstOrDefault()?.Content;
+        Video? video = Video.Create(videoContent).With(v =>
+        {
+            v.InstanceId = "hero-video";
+            v.Id = videoContent?.Title?.Trim().ToLowerInvariant().Replace(" ", "-");
+            v.Description = videoContent?.Description;
+            v.Autoplay = true;
+            v.Controls = false;
+            v.CustomControls = true;
+            v.Muted = true;
+            v.Variant = "background";
+        });
+
         return new HomepageHero
         {
             Title = homepageHero.Title!,
@@ -45,17 +58,7 @@ public class HomepageHero : IHero
                 }),
             ShortDescription = homepageHero.Text?.ToHtmlString(),
 
-            VideoUrl = Video.Create((VideoMedia?) homepageHero.Video?.FirstOrDefault()?.Content, css: "c-video--background")
-            .With(v =>
-            {
-                v.InstanceId = "hero-video";
-                v.Title = "Homepage video";
-                v.Description = "Homepage video description"; // TODO: change this one once the videos are agreed and if needed for accessibility
-                v.Autoplay = true;
-                v.Controls = false;
-                v.CustomControls = true;
-                v.Muted = true;
-            }),
+            VideoUrl = video,
         };
     }
 }
