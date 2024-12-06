@@ -35,14 +35,13 @@ public class Media
         }
 
         VideoMedia? videoContent = (VideoMedia?) videoBlock.Video?.FirstOrDefault()?.Content;
-        Video? video = new Video
+        Video? video = Video.Create(videoContent).With(v =>
         {
-            Id = videoContent?.Title?.Trim().ToLowerInvariant().Replace(" ", "-"),
-            InstanceId = videoContent?.Title?.Trim().ToLowerInvariant().Replace(" ", "-") ?? "",
-            Platform = "native",
-            TotalTime = videoContent?.TotalTime ?? "",
-            Variant = "modal",
-        };
+            v.Id = videoContent?.Title?.Trim().ToLowerInvariant().Replace(" ", "-");
+            v.Description = videoContent?.Description;
+            v.TotalTime = videoContent?.TotalTime;
+            v.Variant = "modal";
+        });
 
         return new Media
         {
@@ -68,14 +67,7 @@ public class Media
                     i.ObjectFit = true;
                     i.Caption = videoBlock.Caption;
                 }),
-            Video = Video.Create(videoContent)
-            .With(v =>
-            {
-                v.Id = videoContent?.Title?.Trim().ToLowerInvariant().Replace(" ", "-");
-                v.Description = videoContent?.Description;
-                v.TotalTime = videoContent?.TotalTime;
-                v.Variant = "modal";
-            }),
+            Video = video,
         };
     }
 }

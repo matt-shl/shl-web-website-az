@@ -99,7 +99,7 @@ public class Video
             InstanceId = $"{Random.Shared.Next()}",
             Platform = platform,
             Classes = css,
-            Sources = GetSources(block)
+            Sources = GetSources(block),
         };
     }
 
