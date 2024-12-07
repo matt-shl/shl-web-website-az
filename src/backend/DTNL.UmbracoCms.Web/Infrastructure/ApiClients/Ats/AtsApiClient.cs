@@ -9,6 +9,8 @@ namespace DTNL.UmbracoCms.Web.Infrastructure.ApiClients.Ats;
 public interface IAtsApiClient
 {
     Task<List<AtsVacancy>?> GetAllVacancies(CancellationToken cancellationToken);
+
+    string GetVacancyExternalUrlFormat();
 }
 
 public class AtsApiClient : IAtsApiClient
@@ -46,5 +48,9 @@ public class AtsApiClient : IAtsApiClient
             return null;
         }
     }
-#pragma warning restore CA5369
+
+    public string GetVacancyExternalUrlFormat()
+    {
+        return _apiClientOptions.ExternalUrlFormat;
+    }
 }

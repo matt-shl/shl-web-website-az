@@ -24,23 +24,24 @@ public class VacanciesContentHelper
             .ToList();
     }
 
-    public void SetVacancyContent(IContent pageVacancyContent, AtsVacancy vacancy, IEnumerable<string> cultures)
+    public void SetVacancyContent(IContent pageVacancyContent, AtsVacancy vacancy, string vacancyUrlFormat, IEnumerable<string> cultures)
     {
         foreach (string culture in cultures)
         {
-            SetVacancyContent(pageVacancyContent, vacancy, culture);
+            SetVacancyContent(pageVacancyContent, vacancy, vacancyUrlFormat, culture);
         }
     }
 
     public void SetVacancyContent(
         IContent pageVacancyContent,
         AtsVacancy vacancy,
+        string vacancyUrlFormat,
         string culture)
     {
         pageVacancyContent.SetCultureName(pageVacancyContent.Name, culture);
 
         pageVacancyContent.SetValue<PageVacancy>(p => p.ExternalId, vacancy.Id);
-        pageVacancyContent.SetValue<PageVacancy>(p => p.ExternalUrl, vacancy.Url, culture);
+        pageVacancyContent.SetValue<PageVacancy>(p => p.ExternalUrl, string.Format(CultureInfo.InvariantCulture, vacancyUrlFormat, vacancy.CustomField2 ?? ""), culture);
         pageVacancyContent.SetValue<PageVacancy>(p => p.CreatedAt, GetDateOrNull(vacancy.CreatedAt));
         pageVacancyContent.SetValue<PageVacancy>(p => p.LastUpdatedAt, DateTime.UtcNow);
 

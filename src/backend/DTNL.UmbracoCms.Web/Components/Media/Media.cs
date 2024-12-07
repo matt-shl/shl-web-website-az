@@ -35,6 +35,14 @@ public class Media
         }
 
         VideoMedia? videoContent = (VideoMedia?) videoBlock.Video?.FirstOrDefault()?.Content;
+        //Video? video = Video.Create(videoContent).With(v =>
+        //{
+        //    v.InstanceId = videoContent?.Title?.Trim().ToLowerInvariant().Replace(" ", "-") ?? "";
+        //    v.Id = videoContent?.Title?.Trim().ToLowerInvariant().Replace(" ", "-");
+        //    v.Description = videoContent?.Description;
+        //    v.TotalTime = videoContent?.TotalTime;
+        //    v.Variant = "modal";
+        //});
         Video? video = new Video
         {
             Id = videoContent?.Title?.Trim().ToLowerInvariant().Replace(" ", "-"),
@@ -43,6 +51,7 @@ public class Media
             TotalTime = videoContent?.TotalTime ?? "",
             Variant = "modal",
         };
+
 
         return new Media
         {
@@ -66,7 +75,7 @@ public class Media
                         ["aria-controls"] = video != null ? $"{video.InstanceId}" : null,
                     };
                     i.ObjectFit = true;
-                    i.Caption = videoContent?.Description;
+                    i.Caption = videoBlock.Caption;
                 }),
             Video = Video.Create(videoContent)
             .With(v =>

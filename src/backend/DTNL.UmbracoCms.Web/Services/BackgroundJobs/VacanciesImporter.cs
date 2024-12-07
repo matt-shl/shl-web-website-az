@@ -100,6 +100,8 @@ public class VacanciesImporter : IBackgroundJob
     {
         string[] vacancyCultures = vacancyOverviewPage.Cultures.Keys.ToArray();
 
+        string vacancyUrlFormat = _atsApiClient.GetVacancyExternalUrlFormat();
+
         foreach (AtsVacancy vacancy in vacancies)
         {
             if (cancellationToken.IsCancellationRequested)
@@ -125,7 +127,7 @@ public class VacanciesImporter : IBackgroundJob
                     continue;
                 }
 
-                _vacanciesContentHelper.SetVacancyContent(pageVacancyContent, vacancy, vacancyCultures);
+                _vacanciesContentHelper.SetVacancyContent(pageVacancyContent, vacancy, vacancyUrlFormat, vacancyCultures);
 
                 SaveOrPublish(pageVacancyContent);
             }

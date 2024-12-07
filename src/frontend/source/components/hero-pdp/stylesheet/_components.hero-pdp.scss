@@ -175,7 +175,7 @@ $hero-pdp-content-offset: 14.5%; // 1 col
     z-index: -1;
     // add overlap for huge screen line rendering bug
     height: calc(100% - var(--hero-pdp-shape-height) + 6px);
-    top: calc(var(--hero-pdp-shape-height) - 3px);
+    top: calc(var(--hero-pdp-shape-height) - 1px);
   }
 }
 

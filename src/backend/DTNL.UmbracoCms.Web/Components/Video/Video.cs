@@ -47,10 +47,6 @@ public class Video
 
     public string? SourcesJson => Sources?.Any() == true ? JsonSerializer.Serialize(Sources, JsonOptions) : null;
 
-    public IEnumerable<VideoClosedCaptions>? ClosedCaptions { get; set; }
-
-    public string? CaptionsJson => ClosedCaptions?.Any() == true ? JsonSerializer.Serialize(ClosedCaptions, JsonOptions) : null;
-
     public string? EmbedUrl { get; set; }
 
     public string? UploadDate { get; set; }
@@ -61,76 +57,25 @@ public class Video
         NestedBlockVideo? block,
         string? css = null)
     {
-        if (block?.Video?.FirstOrDefault()?.Content is not { } videoElement)
+        if (block?.Video?.FirstOrDefault()?.Content is not VideoMedia videoElement)
         {
             return null;
         }
 
         string? id = null;
-        string platform;
-        IEnumerable<VideoSizeSource>? sources = null;
-
-        switch (videoElement)
-        {
-            case NestedBlockVideoVimeo vimeoVideo:
-                id = vimeoVideo.VideoId;
-                platform = "vimeo";
-                break;
-            case NestedBlockVideoYoutube youtubeVideo:
-                id = youtubeVideo.VideoId;
-                platform = "youtube";
-                break;
-            case NestedBlockVideoNativeUrl nativeUrlVideo:
-                sources = GetSources(nativeUrlVideo);
-                platform = "native";
-                break;
-            case NestedBlockVideoNativeCms nativeCmsVideo:
-                sources = GetSources(nativeCmsVideo);
-                platform = "native";
-                break;
-
-            case VideoMedia videoMedia:
-                sources = GetSources(videoMedia);
-                platform = "native";
-                break;
-            default:
-                throw new NotImplementedException($"Video type {videoElement.GetType().Name} not implemented");
-        }
+        string platform = "native";
+        IEnumerable<VideoSizeSource>? sources = GetSources(videoElement);
 
         return new Video
         {
             Id = id,
             InstanceId = $"{Random.Shared.Next()}",
             Platform = platform,
-            Title = block.Title,
-            Description = block.Description,
+            Title = videoElement.Title,
+            Description = videoElement.Description,
             Classes = css,
             Sources = sources,
             Thumbnail = Image.Create(block.Preview, width: 720, height: 400, cssClasses: "video__image"),
-        };
-    }
-
-    public static Video? Create(
-        NestedBlockVideoNativeUrl? block,
-        string? css = null)
-    {
-        if (block is null)
-        {
-            return null;
-        }
-
-        string? id = null;
-        string platform;
-
-        platform = "native";
-
-        return new Video
-        {
-            Id = id,
-            InstanceId = $"{Random.Shared.Next()}",
-            Platform = platform,
-            Classes = css,
-            Sources = GetSources(block),
         };
     }
 
@@ -155,13 +100,6 @@ public class Video
             Platform = platform,
             Classes = css,
             Sources = GetSources(block),
-            ClosedCaptions = block.ClosedCaptions?.Select(c => new VideoClosedCaptions
-            {
-                Url = (block.ClosedCaptions?.FirstOrDefault()?.Content as ClosedCaptions)?.Url ?? "",
-                Kind = (block.ClosedCaptions?.FirstOrDefault()?.Content as ClosedCaptions)?.Kind,
-                Label = (block.ClosedCaptions?.FirstOrDefault()?.Content as ClosedCaptions)?.Label,
-                Lang = (block.ClosedCaptions?.FirstOrDefault()?.Content as ClosedCaptions)?.Lang,
-            }),
         };
     }
 
@@ -172,26 +110,6 @@ public class Video
                    .Cast<VideoSourceUrl>()
                    .Select(s => GetSource(s.VideoLink, s.SourceSize))
                    .WhereNotNull()
-               ?? [];
-    }
-
-    private static IEnumerable<VideoSizeSource> GetSources(NestedBlockVideoNativeUrl nativeUrlVideo)
-    {
-        return nativeUrlVideo.Sources?
-                   .Select(s => s.Content)
-                   .Cast<VideoSourceUrl>()
-                   .Select(s => GetSource(s.VideoLink, s.SourceSize))
-                   .WhereNotNull()
-               ?? [];
-    }
-
-    private static IEnumerable<VideoSizeSource> GetSources(NestedBlockVideoNativeCms nativeCmsVideo)
-    {
-        return nativeCmsVideo.Sources?
-            .Select(s => s.Content)
-            .Cast<VideoSourceCms>()
-            .Select(s => GetSource(s.Video?.Url(), s.SourceSize))
-            .WhereNotNull()
                ?? [];
     }
 
