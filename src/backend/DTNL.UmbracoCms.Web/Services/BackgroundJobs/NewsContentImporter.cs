@@ -32,6 +32,8 @@ public class NewsContentImporter : IBackgroundJob
     private readonly IWebHostEnvironment _webHostEnvironment;
     private readonly IContentService _contentService;
     private readonly NewsContentHelper _newsContentHelper;
+    private readonly EventsContentHelper _eventsContentHelper;
+    private readonly PubliationsContentHelper _publicationsContentHelper;
     private readonly ILogger<NewsContentImporter> _logger;
 
     public NewsContentImporter(
@@ -43,6 +45,8 @@ public class NewsContentImporter : IBackgroundJob
         IWebHostEnvironment webHostEnvironment,
         IContentService contentService,
         NewsContentHelper newsContentHelper,
+        EventsContentHelper eventsContentHelper,
+        PubliationsContentHelper publiationsContentHelper,
         ILogger<NewsContentImporter> logger)
     {
         _scopeProvider = scopeProvider;
@@ -53,6 +57,8 @@ public class NewsContentImporter : IBackgroundJob
         _webHostEnvironment = webHostEnvironment;
         _contentService = contentService;
         _newsContentHelper = newsContentHelper;
+        _eventsContentHelper = eventsContentHelper;
+        _publicationsContentHelper = publiationsContentHelper;
         _logger = logger;
     }
 
@@ -72,26 +78,51 @@ public class NewsContentImporter : IBackgroundJob
             using IServiceScope serviceScope = _serviceProvider.CreateScope();
             IPublishedContentQuery publishedContentQuery = serviceScope.ServiceProvider.GetRequiredService<IPublishedContentQuery>();
 
-            PageOverview? overviewPage = publishedContentQuery
+            PageContent? mainContentPage = publishedContentQuery
                 .ContentAtRoot()
                 .OfType<PageHome>()
                 .FirstOrDefault()?
-                .DescendantOrSelf<PageOverview>();
+                .Children()
+                .OfType<PageContent>()
+                .FirstOrDefault(p => p.GetTitle() is "News and insights");
 
-            if (overviewPage is null)
+            if (mainContentPage is null)
             {
-                _logger.LogWarning("Importer finished - Overview page could not be found.");
+                _logger.LogWarning("Importer finished - Main content page (News and insights) could not be found.");
                 return;
             }
 
-            await AddOrUpdateContent(overviewPage, contentFilePath, [contentCulture], cancellationToken.ShutdownToken);
+            PageOverview? eventsOverview = mainContentPage
+                .Children()
+                .OfType<PageOverview>()
+                .FirstOrDefault(p => p.GetTitle() == "Events");
+
+            PageOverview? publicationsOverview = mainContentPage
+                .Children()
+                .OfType<PageOverview>()
+                .FirstOrDefault(p => p.GetTitle() == "Publications and press releases");
+
+            PageOverview? newsOverview = mainContentPage
+                .Children()
+                .OfType<PageOverview>()
+                .FirstOrDefault(p => p.GetTitle() == "News");
+
+            if (newsOverview is null || publicationsOverview is null || eventsOverview is null)
+            {
+                _logger.LogWarning("Importer finished - Overview pages could not be found.");
+                return;
+            }
+
+            await AddOrUpdateContent(eventsOverview, newsOverview, publicationsOverview, contentFilePath, [contentCulture], cancellationToken.ShutdownToken);
         }
 
         _logger.LogInformation("Vacancies importer finished");
     }
 
     private async Task AddOrUpdateContent(
-        PageOverview overviewPage,
+        PageOverview eventsOverview,
+        PageOverview newsOverview,
+        PageOverview publicationsOverview,
         string contentFilePath,
         string[] cultures,
         CancellationToken cancellationToken = default)
@@ -114,32 +145,79 @@ public class NewsContentImporter : IBackgroundJob
                 return;
             }
 
-            string? nodeName = ((string?) post.Element("title"))?.RemoveDiacritics();
+            string? name = ((string?) post.Element("title"))?.RemoveDiacritics();
 
-            if (nodeName.IsNullOrWhiteSpace())
+            if (name.IsNullOrWhiteSpace())
             {
                 continue;
             }
 
+            string nodeName = name.Length > 250 ? name.Substring(0, 250) : name;
+            string nodeCategory = (string?) post.Elements("category")
+            .FirstOrDefault(c => c.Attribute("domain")?.Value == "post_tag") ?? "";
+
             try
             {
-                PageNews? existingPage = overviewPage
-                    .Children<PageNews>()?
-                    .FirstOrDefault(pageVacancy => pageVacancy.Name == nodeName);
-
-                IContent? page = existingPage is null
-                    ? CreateIfNotExists(nodeName, overviewPage.Id, PageNews.ModelTypeAlias)
-                    : _contentService.GetById(existingPage.Key);
-
-                if (page is null)
+                if (string.Equals(nodeCategory, "Events"))
                 {
-                    _logger.LogWarning("Could not import content {ID}", nodeName);
-                    continue;
+                    PageEvent? existingPage = eventsOverview
+                        .Children<PageEvent>()?
+                        .FirstOrDefault(pageVacancy => pageVacancy.Name == nodeName);
+
+                    IContent? page = existingPage is null
+                        ? CreateIfNotExists(nodeName, eventsOverview.Id, PageEvent.ModelTypeAlias)
+                        : _contentService.GetById(existingPage.Key);
+
+                    if (page is null)
+                    {
+                        _logger.LogWarning("Could not import content {ID}", nodeName);
+                        continue;
+                    }
+
+                    _eventsContentHelper.SetContent(page, post, cultures);
+
+                    SaveOrPublish(page);
                 }
+                else if (nodeCategory is "Press Release")
+                {
+                    PagePublication? existingPage = publicationsOverview
+                        .Children<PagePublication>()?
+                        .FirstOrDefault(pageVacancy => pageVacancy.Name == nodeName);
 
-                _newsContentHelper.SetContent(page, post, cultures);
+                    IContent? page = existingPage is null
+                        ? CreateIfNotExists(nodeName, publicationsOverview.Id, PagePublication.ModelTypeAlias)
+                        : _contentService.GetById(existingPage.Key);
 
-                SaveOrPublish(page);
+                    if (page is null)
+                    {
+                        _logger.LogWarning("Could not import content {ID}", nodeName);
+                        continue;
+                    }
+
+                    _publicationsContentHelper.SetContent(page, post, cultures);
+
+                    SaveOrPublish(page);
+                }
+                else
+                {
+                    PageNews? existingPage = newsOverview
+                        .Children<PageNews>()?
+                        .FirstOrDefault(pageVacancy => pageVacancy.Name == nodeName);
+
+                    IContent? page = existingPage is null
+                        ? CreateIfNotExists(nodeName, newsOverview.Id, PageNews.ModelTypeAlias)
+                        : _contentService.GetById(existingPage.Key);
+
+                    if (page is null)
+                    {
+                        _logger.LogWarning("Could not import content {ID}", nodeName);
+                        continue;
+                    }
+
+                    _newsContentHelper.SetContent(page, post, cultures);
+
+                    SaveOrPublish(page);
+                }
             }
             catch (Exception ex)
             {
