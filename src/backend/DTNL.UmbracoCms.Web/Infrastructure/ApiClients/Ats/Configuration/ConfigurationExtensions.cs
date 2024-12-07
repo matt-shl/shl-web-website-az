@@ -1,3 +1,4 @@
+using DTNL.UmbracoCms.Web.Infrastructure.ApiClients.Ats.Models;
 using DTNL.UmbracoCms.Web.Infrastructure.Configuration;
 
 namespace DTNL.UmbracoCms.Web.Infrastructure.ApiClients.Ats.Configuration;
