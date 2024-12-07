@@ -178,7 +178,7 @@ public class NewsContentImporter : IBackgroundJob
 
                     SaveOrPublish(page);
                 }
-                else if (nodeCategory is "Press Release")
+                else if (string.Equals(nodeCategory, "Press Release"))
                 {
                     PagePublication? existingPage = publicationsOverview
                         .Children<PagePublication>()?
