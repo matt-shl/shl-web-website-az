@@ -5,24 +5,24 @@
 
 @if (Model.Filters is not null)
 {
-    <partial name="Filters" model="@Model.Filters" />
+<partial name="Filters" model="@Model.Filters" />
 }
 
-<div js-hook-replace-content="overview-content" js-hook-gtm-overview="@Model.OverviewType")>
+<div js-hook-replace-content="overview-content" js-hook-gtm-overview="@Model.OverviewType" )>
     @if (Model.NoResultsSection is not null)
     {
-        <partial name="EmptySection" model="@Model.NoResultsSection" />
+    <partial name="EmptySection" model="@Model.NoResultsSection" />
     }
     else
     {
-        <partial name="LayoutSection" model="@Model.LayoutSection">
-            @foreach (IOverviewItem overviewItem in Model.Items)
-            {
-                <partial name="@overviewItem.ViewPath"
-                         model="@overviewItem"
-                         wrapper-element="@(Model.LayoutSection.ListLabel is null ? null : "li")" />
-            }
-        </partial>
+    <partial name="LayoutSection" model="@Model.LayoutSection">
+        @foreach (IOverviewItem overviewItem in Model.Items)
+        {
+        <partial name="@overviewItem.ViewPath"
+                 model="@overviewItem"
+                 wrapper-element="@(Model.LayoutSection.ListLabel is null ? null : " li")" />
+        }
+    </partial>
     }
 
     <partial name="Pagination" model="@Model.Pagination" />
@@ -31,23 +31,25 @@
 @if (!string.IsNullOrWhiteSpace(Model.SearchTerm))
 {
     <script type="text/javascript">
-        window.dataLayer = window.dataLayer || [];
-        dataLayer.push({
-            event: 'search_results',
-            search_term: '@(Model.SearchTerm)',
-            action: '@(Model.NoResultsSection is not null ? "No results" : "Successful results")',
-        });
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                event: 'search_results',
+                search_term: '@(Model.SearchTerm)',
+                action: '@(Model.NoResultsSection is not null ? "No results" : "Successful results")',
+            });
     </script>
+
+    @if (Model.IsJobsOverview)
+    {
+    <script type="text/javascript">
+            window.dataLayer = window.dataLayer || [];
+            dataLayer.push({
+                event: 'jobs_list',
+                search_term: '@(Model.SearchTerm)',
+                jobs: JSON.parse('@Html.Raw(JsonConvert.SerializeObject(Model.Items))
+                                            });
+    </script>
+    }
+
 }
 
-@if (Model.IsJobsOverview)
-{
-    <script type="text/javascript">
-        window.dataLayer = window.dataLayer || [];
-        dataLayer.push({
-            event: 'jobs_list',
-            search_term: '@(Model.SearchTerm)',
-            jobs: JSON.parse('@Html.Raw(JsonConvert.SerializeObject(Model.Items))
-                                        });
-    </script>
-}
