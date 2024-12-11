@@ -77,7 +77,7 @@ public abstract class OverviewFor<TOverviewPage, TPage, TFilters, TOverviewItem>
             .Page(PageNumber, PageSize)
             .ToList();
 
-        if (OverviewPage is PageVacancyOverview)
+        if (OverviewPage is PageVacancyOverview || OverviewPage is PageCareerOverview)
         {
             IsJobsOverview = true;
         }
