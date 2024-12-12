@@ -23,6 +23,8 @@ public class CardKnowledge : ICard, IOverviewItem
 
     public string Element => !Url.IsNullOrWhiteSpace() ? "a" : "article";
 
+    public DateTime? Date { get; set; }
+
     public static CardKnowledge? Create(NestedBlockPageCard pageCard, string? cssClasses = null)
     {
         if (pageCard.Page is not ICompositionBasePage page)
@@ -50,6 +52,7 @@ public class CardKnowledge : ICard, IOverviewItem
             Text = page.GetCardDescription(),
             Image = Image.Create(page.GetCardImage(), cssClasses: "card-knowledge__image", style: "card-knowledge"),
             Url = page.Url(),
+            Date = (page as ICompositionContentDetails)?.Date,
         };
     }
 }

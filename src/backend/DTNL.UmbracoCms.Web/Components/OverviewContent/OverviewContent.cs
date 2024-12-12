@@ -1,3 +1,4 @@
+using System.Linq;
 using DTNL.UmbracoCms.Web.Helpers.Extensions;
 using DTNL.UmbracoCms.Web.Models.Filters;
 using DTNL.UmbracoCms.Web.Services;
@@ -42,6 +43,6 @@ public class OverviewContent : OverviewFor<PageOverview, ICompositionBasePage, B
 
     protected override IEnumerable<CardKnowledge> GetOverviewItems(List<ICompositionBasePage> pages)
     {
-        return pages.Using(CardKnowledge.Create);
+        return pages.Using(CardKnowledge.Create).ToList().OrderByDescending(p => p.Date);
     }
 }
