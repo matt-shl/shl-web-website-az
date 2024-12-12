@@ -17,6 +17,7 @@ public class OverviewContent : OverviewFor<PageOverview, ICompositionBasePage, B
         CssClasses = "t-white",
         Variant = "grid",
         Id = "content",
+        ListLabel = "Knowledge",
     };
 
     protected override PageOverview OverviewPage => (NodeProvider.CurrentNode as PageOverview)!;
