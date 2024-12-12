@@ -18,6 +18,7 @@ public class OverviewSearchResults : OverviewFor<PageSearch, ICompositionBasePag
     {
         Variant = "grid",
         Id = "content",
+        ListLabel = "Search",
     };
 
     protected override PageSearch OverviewPage => NodeProvider.SearchPage!;
