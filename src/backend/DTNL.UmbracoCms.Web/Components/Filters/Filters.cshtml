@@ -7,7 +7,7 @@
 @inject ICultureDictionary CultureDictionary
 
 @{
-    string? amountLabel = Model.ResultsCount.HasValue
+    string amountLabel = Model.ResultsCount.HasValue
         ? CultureDictionary.GetTranslation(Model.ResultsCount == 1 ? $"{Model.FilterNamePrefix}.ResultCount" : $"{Model.FilterNamePrefix}.ResultsCount", Model.ResultsCount.Value)
         : string.Empty;
 }
