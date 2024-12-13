@@ -147,10 +147,18 @@ class Filters {
     const queryParams = new URLSearchParams();
 
     this.inputs.forEach(input => {
-      if (input && input.checked) {
-        queryParams.append(input.name, input.value);
+      if (input) {
+        if (input.type === 'checkbox' || input.type === 'radio') {
+          if (input.checked) {
+            queryParams.append(input.name, input.value);
+          }
+        } else if (input.value) {
+          queryParams.append(input.name, input.value);
+        }
       }
     });
+
+
 
     currentUrl.search = queryParams.toString();    
     
