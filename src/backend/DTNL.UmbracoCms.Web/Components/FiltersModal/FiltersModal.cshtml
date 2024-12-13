@@ -54,21 +54,21 @@
                             filter.Name,
                             Options = filter.Options.OfType<Checkbox.CheckboxOption>(),
                             Classes = "filters__accordion-options-item",
-                         }))
+                        }))
                     </fieldset>
+                    
+                    @if (filter.Options.Count > 4)
+                    {
+                        <partial name="Button" model="@(new Button {
+                                                          Label = CultureDictionary.GetTranslation(TranslationAliases.Common.Filters.ShowAll),
+                                                          Size = "small",
+                                                          Variant = "link-underlined",
+                                                          Class = "filters__options-link",
+                                                          Element = "button",
+                                                          Hook = "filters-show-more-options",
+                                                      })"/>
+                    }
                 </partial>
-
-                @if (filter.Options.Count > 4)
-                {
-                    <partial name="Button" model="@(new Button {
-                                                      Label = CultureDictionary.GetTranslation(TranslationAliases.Common.Filters.ShowAll),
-                                                      Size = "small",
-                                                      Variant = "link-underlined",
-                                                      Class = "filters__options-link",
-                                                      Element = "button",
-                                                      Hook = "filters-show-more-options",
-                                                  })"/>
-                }
             }
         </partial>
     </form>
