@@ -20,7 +20,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 {
 	/// <summary>Page Vacancy Overview</summary>
 	[PublishedModel("pageVacancyOverview")]
-	public partial class PageVacancyOverview : PublishedContentModel, ICompositionBasePage, ICompositionCardDetails, ICompositionColorOptions, ICompositionContentBlocks, ICompositionHero, ICompositionNoResults, ICompositionSeo, ICompositionSocialSharing, ICompositionSocialSharingOptions
+	public partial class PageVacancyOverview : PublishedContentModel, ICompositionBasePage, ICompositionCardDetails, ICompositionColorOptions, ICompositionContentBlocks, ICompositionHero, ICompositionNoResults, ICompositionSeo, ICompositionSocialSharing, ICompositionSocialSharingOptions, ICompositionVacanciesSettings
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
@@ -260,5 +260,21 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("disableSocialShare")]
 		public virtual global::System.Collections.Generic.IEnumerable<string> DisableSocialShare => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionSocialSharingOptions.GetDisableSocialShare(this, _publishedValueFallback);
+
+		///<summary>
+		/// Content Blocks
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("vacanciesContentBlocks")]
+		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel VacanciesContentBlocks => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionVacanciesSettings.GetVacanciesContentBlocks(this, _publishedValueFallback);
+
+		///<summary>
+		/// Page Theme
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("vacanciesPageTheme")]
+		public virtual global::Umbraco.Cms.Core.PropertyEditors.ValueConverters.ColorPickerValueConverter.PickedColor VacanciesPageTheme => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionVacanciesSettings.GetVacanciesPageTheme(this, _publishedValueFallback);
 	}
 }
