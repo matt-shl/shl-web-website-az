@@ -11,11 +11,14 @@ public abstract class BaseFilters : Dictionary<string, FilterOption[]>
     {
         CurrentUrl = overviewPage.Url(mode: UrlMode.Absolute).SetQueryParams(queryCollection);
         OverviewUrl = overviewPage.Url(mode: UrlMode.Absolute);
+        SearchQuery = queryCollection.GetSearchQuery();
     }
 
     public string CurrentUrl { get; private init; }
 
     public string OverviewUrl { get; private init; }
+
+    public string? SearchQuery { get; private init; }
 
     public void AddFilterOptions<TPage>(
         (string Name, Func<TPage, IEnumerable<string>?> GetValues)[] filterFields,

@@ -62,10 +62,10 @@ public class OverviewVacancies : OverviewFor<PageVacancyOverview, PageVacancy, V
 
     protected override Filters? GetFilters(VacancyFilters? filters, List<PageVacancy> pages)
     {
-        return filters is null ? null : Filters.Create(filters, pages, CultureDictionary);
+        return filters is null ? null : Filters.Create(filters, TotalCount, pages, CultureDictionary);
     }
 
-    protected override IEnumerable<JobListingItem> GetOverviewItems(List<PageVacancy> pages)
+    protected override IEnumerable<JobListingItem> MapToOverviewItems(List<PageVacancy> pages)
     {
         return pages.Using(JobListingItem.Create);
     }

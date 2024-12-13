@@ -2,6 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Net;
 using System.Text;
+using System.Text.Json;
 using System.Text.RegularExpressions;
 
 namespace DTNL.UmbracoCms.Web.Helpers.Extensions;
@@ -29,6 +30,11 @@ public static partial class StringExtensions
     public static string? FallBack(this string? firstString, string? fallBack)
     {
         return string.IsNullOrEmpty(firstString) ? fallBack : firstString;
+    }
+
+    public static string ToCamelCase(this string value)
+    {
+        return JsonNamingPolicy.CamelCase.ConvertName(value);
     }
 
     /// <summary>

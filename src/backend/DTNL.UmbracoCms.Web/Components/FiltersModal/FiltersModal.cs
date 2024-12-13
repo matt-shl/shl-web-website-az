@@ -20,6 +20,8 @@ public class FiltersModal
 
     public Sort? Sorter { get; set; }
 
+    public string? SearchQuery { get; set; }
+
     public static FiltersModal Create(
         ProductFilters productFilters,
         List<PageProduct> productPages,
@@ -82,6 +84,7 @@ public class FiltersModal
         {
             ResultsCount = pages.Count,
             ResultsOverviewPageUrl = generalFilters.OverviewUrl,
+            SearchQuery = generalFilters.SearchQuery,
             Filters = filters,
         };
     }

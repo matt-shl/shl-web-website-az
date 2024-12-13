@@ -60,10 +60,10 @@ public class OverviewProducts : OverviewFor<PageProductOverview, PageProduct, Pr
 
     protected override Filters? GetFilters(ProductFilters? filters, List<PageProduct> pages)
     {
-        return filters is null ? null : Filters.Create(filters, pages, CultureDictionary);
+        return filters is null ? null : Filters.Create(filters, TotalCount, pages, CultureDictionary);
     }
 
-    protected override IEnumerable<CardProduct> GetOverviewItems(List<PageProduct> pages)
+    protected override IEnumerable<CardProduct> MapToOverviewItems(List<PageProduct> pages)
     {
         return pages.Using(p => CardProduct.Create(p).With(card => card.ShowSpecs = false));
     }

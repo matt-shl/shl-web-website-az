@@ -38,7 +38,7 @@ public class Filter
                     filterOption => new CheckboxOption(
                         filterOption.Value,
                         filterOption.Label,
-                        filterOption.Label,
+                        filterOption.Value,
                         description: null,
                         hook: "js-hook-filters-input",
                         selected: filterOption.IsSelected))
@@ -68,7 +68,7 @@ public class Filter
                 .Select(
                     filterOption => new SelectOption(
                         filterOption.Value,
-                        filterOption.Label,
+                        filterOption.Value,
                         filterOption.Label))
                 .OfType<IFormOption>()
                 .ToList(),

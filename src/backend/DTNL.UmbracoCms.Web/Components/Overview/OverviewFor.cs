@@ -59,7 +59,15 @@ public abstract class OverviewFor<TOverviewPage, TPage, TFilters, TOverviewItem>
 
     protected abstract Filters? GetFilters(TFilters? filters, List<TPage> pages);
 
-    protected abstract IEnumerable<TOverviewItem> GetOverviewItems(List<TPage> pages);
+    protected abstract IEnumerable<TOverviewItem> MapToOverviewItems(List<TPage> pages);
+
+    protected virtual List<IOverviewItem> GetOverviewItems(List<TPage> pages)
+    {
+        return MapToOverviewItems(pages)
+            .OfType<IOverviewItem>()
+            .Page(PageNumber, PageSize)
+            .ToList();
+    }
 
     public IViewComponentResult Invoke()
     {
@@ -67,17 +75,15 @@ public abstract class OverviewFor<TOverviewPage, TPage, TFilters, TOverviewItem>
         HttpContext.VaryBySearchQuery();
 
         PageNumber = Request.Query.GetPageNumber();
+        SearchTerm = Request.Query.GetSearchQuery();
 
         (List<TPage> pages, TFilters? filters) = GetPagesAndApplyFilters();
 
         Filters = GetFilters(filters, pages);
 
-        Items = GetOverviewItems(pages)
-            .OfType<IOverviewItem>()
-            .Page(PageNumber, PageSize)
-            .ToList();
+        Items = GetOverviewItems(pages);
 
-        if (OverviewPage is PageVacancyOverview || OverviewPage is PageCareerOverview)
+        if (OverviewPage is PageVacancyOverview)
         {
             IsJobsOverview = true;
         }
