@@ -7,8 +7,9 @@
 @inject ICultureDictionary CultureDictionary
 
 @{
-    string amountLabel = CultureDictionary
-        .GetTranslation(Model.ResultsCount == 1 ? $"{Model.FilterNamePrefix}.ResultCount" : $"{Model.FilterNamePrefix}.ResultsCount", Model.ResultsCount);
+    string? amountLabel = Model.ResultsCount.HasValue
+        ? CultureDictionary.GetTranslation(Model.ResultsCount == 1 ? $"{Model.FilterNamePrefix}.ResultCount" : $"{Model.FilterNamePrefix}.ResultsCount", Model.ResultsCount.Value)
+        : string.Empty;
 }
 
 <div class="c-filters t-white" js-hook-filters>

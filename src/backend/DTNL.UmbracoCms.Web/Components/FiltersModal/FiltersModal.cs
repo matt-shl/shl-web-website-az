@@ -89,6 +89,31 @@ public class FiltersModal
         };
     }
 
+    public static FiltersModal Create(
+        ContentFilters contentFilters,
+        List<ICompositionBasePage> pages,
+        ICultureDictionary cultureDictionary)
+    {
+        List<Filter> filters = [];
+
+        foreach (string filterName in contentFilters.Keys)
+        {
+            filters.Add(Filter.CreateCheckboxOptions(filterName, TranslationAliases.Content, contentFilters));
+        }
+
+        Sort sort = Sort
+            .Create(cultureDictionary.GetTranslation(TranslationAliases.Common.Filters.Sort), contentFilters, cultureDictionary);
+
+        return new FiltersModal
+        {
+            ResultsCount = pages.Count,
+            ResultsOverviewPageUrl = contentFilters.OverviewUrl,
+            SearchQuery = contentFilters.SearchQuery,
+            Filters = filters,
+            Sorter = sort,
+        };
+    }
+
     public class Sort
     {
         public required string Name { get; set; }

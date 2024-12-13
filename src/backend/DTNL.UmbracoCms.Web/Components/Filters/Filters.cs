@@ -9,7 +9,7 @@ namespace DTNL.UmbracoCms.Web.Components;
 
 public class Filters
 {
-    public long ResultsCount { get; set; }
+    public long? ResultsCount { get; set; }
 
     public required string FilterNamePrefix { get; set; }
 
@@ -40,6 +40,19 @@ public class Filters
             ResultsCount = totalCount,
             FilterNamePrefix = TranslationAliases.Vacancies,
             FiltersModal = FiltersModal.Create(vacancyFilters, vacancyPages, cultureDictionary),
+        };
+    }
+
+    public static Filters Create(
+        ContentFilters contentFilters,
+        long totalCount,
+        List<ICompositionBasePage> pages,
+        ICultureDictionary cultureDictionary)
+    {
+        return new Filters
+        {
+            FilterNamePrefix = TranslationAliases.Content,
+            FiltersModal = FiltersModal.Create(contentFilters, pages, cultureDictionary),
         };
     }
 
