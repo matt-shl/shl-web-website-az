@@ -17,4 +17,6 @@ public abstract class PardotForm
     public virtual string SourcePageTitleFieldName => "source_page_title";
 
     public virtual string SourceUrlFieldName => "source_URL";
+
+    public Dictionary<string, string?> Attributes { get; set; } = [];
 }

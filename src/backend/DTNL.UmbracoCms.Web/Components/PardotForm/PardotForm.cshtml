@@ -20,6 +20,7 @@
       action="@Model.ActionUrl"
       method="POST"
       data-async="true"
+      @Html.Attributes(Model.Attributes)
       novalidate
       data-succes-text="@CultureDictionary.GetTranslation(Model.ActionSuccessLabelKey)"
       data-error-text="@CultureDictionary.GetTranslation(Model.ActionErrorLabelKey)"
