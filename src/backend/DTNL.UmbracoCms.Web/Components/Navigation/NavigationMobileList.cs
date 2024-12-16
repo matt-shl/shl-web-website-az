@@ -16,5 +16,5 @@ public class NavigationMobileList
 
     public Link? Link { get; set; }
 
-    public Link? MenuItemLink { get; set; }
+    public Link? NavigationItemLink { get; set; }
 }

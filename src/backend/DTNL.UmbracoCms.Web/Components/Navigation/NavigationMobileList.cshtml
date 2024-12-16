@@ -14,11 +14,11 @@
     }
 
     <ul class="navigation-mobile-list__list">
-        @if (Model.MenuItemLink is not null)
+        @if (Model.NavigationItemLink is not null)
         {
             <li class="navigation-mobile-list__item">
-                <a href="@Model.MenuItemLink.Url" class="navigation-mobile-list__anchor navigation-mobile-list__anchor--small">
-                    @Model.MenuItemLink.Label
+                <a href="@Model.NavigationItemLink.Url" class="navigation-mobile-list__anchor navigation-mobile-list__anchor--small">
+                    @Model.NavigationItemLink.Label
                 </a>
             </li>
         }
