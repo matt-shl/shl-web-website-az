@@ -8,7 +8,7 @@
     <partial name="Filters" model="@Model.Filters" />
 }
 
-<div js-hook-replace-content="overview-content" js-hook-gtm-overview="@Model.OverviewType" )>
+<div js-hook-replace-content="overview-content" js-hook-gtm-overview="@Model.OverviewType">
     @if (Model.NoResultsSection is not null)
     {
         <partial name="EmptySection" model="@Model.NoResultsSection" />
