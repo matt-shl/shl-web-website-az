@@ -53,6 +53,7 @@
         "submit": {
           "label": "Register"
         },
+        "gtm": "{'event': 'register_event','option_clicked': 'Novartis Campus'}",
         "fields": [
           {
             "name": "cf_email_address",
