@@ -47,6 +47,6 @@
             dataLayer.push({
                 event: 'jobs_list',
                 search_term: '@(Model.SearchTerm)',
-                jobs: JSON.parse('@Html.Raw(JsonConvert.SerializeObject(Model.Items))'});
+                jobs: @Html.Raw(JsonConvert.SerializeObject(Model.Items));
         </script>
 }
