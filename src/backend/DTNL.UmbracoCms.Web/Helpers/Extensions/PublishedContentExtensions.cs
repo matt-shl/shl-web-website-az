@@ -106,7 +106,7 @@ public static class PublishedContentExtensions
 
         if (content is ICompositionContentDetails contentDetails)
         {
-            category.FallBack(string.Join(',', contentDetails.ContentTags.OrEmptyIfNull()));
+            category = category.FallBack(string.Join(',', contentDetails.ContentTags.OrEmptyIfNull()));
         }
 
         return category.FallBack(null);
