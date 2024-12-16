@@ -9,7 +9,7 @@
       class: 'c-pardot-form' + (" " + data.classes if data.classes),
       method: 'POST',
       action: data.action,
-      attr: 'novalidate data-succes-text="You will receive an e-mail with the download of this publication." data-error-text="Something went wrong, please try again in a couple of minutes."'
+      attr: 'data-gtm="' + data.gtm + '"' + 'novalidate data-succes-text="You will receive an e-mail with the download of this publication." data-error-text="Something went wrong, please try again in a couple of minutes."'
     }) %}
 
       {% for field in data.fields %}
