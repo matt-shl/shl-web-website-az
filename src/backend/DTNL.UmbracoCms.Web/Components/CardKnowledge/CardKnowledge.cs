@@ -7,7 +7,7 @@ public class CardKnowledge : ICard, IOverviewItem
 {
     public required string Title { get; set; }
 
-    public string? Tag { get; set; }
+    public string? Category { get; set; }
 
     public string? Text { get; set; }
 
@@ -33,7 +33,7 @@ public class CardKnowledge : ICard, IOverviewItem
         return new CardKnowledge
         {
             Title = page.GetTitle(),
-            Tag = page.GetCategory(),
+            Category = page.GetCategory(),
             Text = page.GetCardDescription(),
             Image = Image.Create(page.GetCardImage(), cssClasses: "card-knowledge__image", style: "card-knowledge"),
             Url = page.Url(),
@@ -46,7 +46,7 @@ public class CardKnowledge : ICard, IOverviewItem
         return new CardKnowledge
         {
             Title = page.GetTitle(),
-            Tag = page.GetCategory(),
+            Category = page.GetCategory(),
             Text = page.GetCardDescription(),
             Image = Image.Create(page.GetCardImage(), cssClasses: "card-knowledge__image", style: "card-knowledge"),
             Url = page.Url(),
