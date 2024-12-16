@@ -34,7 +34,7 @@ public class FiltersModal
             filters.Add(Filter.CreateCheckboxOptions(filterName, TranslationAliases.Products, productFilters));
         }
 
-        Sort sort = Sort.Create(cultureDictionary.GetTranslation(TranslationAliases.Common.Filters.Sort), productFilters, cultureDictionary);
+        Sort sort = Sort.Create(cultureDictionary.GetTranslation(TranslationAliases.Common.Filters.Sort), productFilters);
 
         return new FiltersModal
         {
@@ -58,7 +58,7 @@ public class FiltersModal
         }
 
         Sort sort = Sort
-            .Create(cultureDictionary.GetTranslation(TranslationAliases.Common.Filters.Sort), vacancyFilters, cultureDictionary);
+            .Create(cultureDictionary.GetTranslation(TranslationAliases.Common.Filters.Sort), vacancyFilters);
 
         return new FiltersModal
         {
@@ -102,7 +102,7 @@ public class FiltersModal
         }
 
         Sort sort = Sort
-            .Create(cultureDictionary.GetTranslation(TranslationAliases.Common.Filters.Sort), contentFilters, cultureDictionary);
+            .Create(cultureDictionary.GetTranslation(TranslationAliases.Common.Filters.Sort), contentFilters);
 
         return new FiltersModal
         {
@@ -122,32 +122,22 @@ public class FiltersModal
 
         public required List<RadioOption> Options { get; set; }
 
-        public static Sort Create(
-            string name,
-            BaseFilters filters,
-            ICultureDictionary cultureDictionary)
+        public static Sort Create(string name, BaseFilters filters)
         {
-            bool hasSort = filters.CurrentUrl.Contains(cultureDictionary.GetTranslation(TranslationAliases.Common.Filters.Sort));
-
             return new Sort
             {
                 Name = name,
                 Type = nameof(Radio),
-                Options = [
-                    new RadioOption(
-                        "filter-sorting-newest",
-                        cultureDictionary.GetTranslation(TranslationAliases.Common.Filters.SortNewestFirst),
-                        cultureDictionary.GetTranslation(TranslationAliases.Common.Filters.SortNewestFirst),
+                Options = filters.Sorting
+                    .Using(sortingOption =>
+                        new RadioOption(
+                        sortingOption.Value,
+                        sortingOption.Label,
+                        sortingOption.Value,
                         hook: "js-hook-filters-input",
-                        isChecked: !hasSort
-                    ),
-                    new RadioOption(
-                        "filter-sorting-oldest",
-                        cultureDictionary.GetTranslation(TranslationAliases.Common.Filters.SortOldestFirst),
-                        cultureDictionary.GetTranslation(TranslationAliases.Common.Filters.SortOldestFirst),
-                        hook: "js-hook-filters-input",
-                        isChecked: hasSort),
-                    ],
+                        isChecked: sortingOption.IsSelected
+                    ))
+                    .ToList(),
             };
         }
     }

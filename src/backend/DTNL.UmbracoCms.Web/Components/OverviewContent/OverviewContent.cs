@@ -1,5 +1,3 @@
-using DTNL.UmbracoCms.Web.Helpers;
-using DTNL.UmbracoCms.Web.Helpers.Aliases;
 using DTNL.UmbracoCms.Web.Helpers.Extensions;
 using DTNL.UmbracoCms.Web.Models.Filters;
 using DTNL.UmbracoCms.Web.Services;
@@ -50,10 +48,7 @@ public class OverviewContent : OverviewFor<PageOverview, ICompositionBasePage, C
             pages.RemoveAll(page => !FilterOption.AnySelectedValueIn(filterOptions, getValues(page)));
         }
 
-        string? sort = HttpContext.GetFilterOptions("Sort").FirstOrDefault()?.Label;
-        bool hasSort = sort == CultureDictionary.GetTranslation(TranslationAliases.Common.Filters.SortOldestFirst);
-
-        pages.Sort((x, y) => hasSort ? DateTime.Compare(y.CreateDate, x.CreateDate) : DateTime.Compare(x.CreateDate, y.CreateDate));
+        GetAndApplySorting(contentFilters, pages);
 
         return contentFilters;
     }
@@ -61,7 +56,6 @@ public class OverviewContent : OverviewFor<PageOverview, ICompositionBasePage, C
     protected override Filters? GetFilters(ContentFilters? filters, List<ICompositionBasePage> pages)
     {
         return filters is null ? null : Filters.Create(filters, TotalCount, pages, CultureDictionary);
-
     }
 
     protected override IEnumerable<CardKnowledge> MapToOverviewItems(List<ICompositionBasePage> pages)

@@ -1,5 +1,6 @@
 using DTNL.UmbracoCms.Web.Components.PartialComponent;
 using DTNL.UmbracoCms.Web.Helpers;
+using DTNL.UmbracoCms.Web.Helpers.Aliases;
 using DTNL.UmbracoCms.Web.Helpers.Extensions;
 using DTNL.UmbracoCms.Web.Models.Filters;
 using DTNL.UmbracoCms.Web.Services;
@@ -55,6 +56,19 @@ public abstract class OverviewFor<TOverviewPage, TPage, TFilters, TOverviewItem>
         TotalCount = pages.Count;
 
         return (pages, filters);
+    }
+
+    protected virtual void GetAndApplySorting(TFilters? filters, List<TPage> pages)
+    {
+        filters?.AddSortingOptions(HttpContext, CultureDictionary);
+
+        if (filters?.Sorting?.FirstOrDefault(s => s.IsSelected) is { } selectedSortingOption)
+        {
+            bool sortAscending = selectedSortingOption.Label ==
+                                 CultureDictionary.GetTranslation(TranslationAliases.Common.Filters.SortOldestFirst);
+
+            pages.Sort((x, y) => sortAscending ? DateTime.Compare(y.CreateDate, x.CreateDate) : DateTime.Compare(x.CreateDate, y.CreateDate));
+        }
     }
 
     protected abstract Filters? GetFilters(TFilters? filters, List<TPage> pages);
