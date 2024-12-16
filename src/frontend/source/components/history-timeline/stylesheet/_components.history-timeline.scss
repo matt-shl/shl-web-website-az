@@ -53,7 +53,7 @@
   animation-duration: var(--ht-transition-duration);
   animation-timing-function: var(--ht-transition-easing);
   text-wrap: unset;
-  word-break: break-all;
+  word-break: unset;
   max-width: 60ch;
 }
 
