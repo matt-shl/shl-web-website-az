@@ -18,5 +18,5 @@ public abstract class PardotForm
 
     public virtual string SourceUrlFieldName => "source_URL";
 
-    public Dictionary<string, string?> Attributes { get; set; } = [];
+    public string? GtmAttributes { get; set; }
 }

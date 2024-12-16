@@ -7,8 +7,6 @@
 
 @model DTNL.UmbracoCms.Web.Components.PardotForm
 
-@removeTagHelper Microsoft.AspNetCore.Mvc.TagHelpers.FormTagHelper, Microsoft.AspNetCore.Mvc.TagHelpers
-
 @inject NodeProvider NodeProvider
 
 @inject ICultureDictionary CultureDictionary
@@ -27,7 +25,7 @@
       data-error-text="@CultureDictionary.GetTranslation(Model.ActionErrorLabelKey)"
       data-loader="true"
       js-hook-pardot-form
-      @Html.Attributes(Model.Attributes)>
+      gtm="@Model.GtmAttributes">
 
     <partial name="./@(Model.GetType().Name)Fields.cshtml" model="@Model" />
 
