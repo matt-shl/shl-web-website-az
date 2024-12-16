@@ -46,7 +46,7 @@ $header-desktop-custom-breakpoint: 1180px;
   transition: var(--header-transition-time) var(--header-transition-ease);
   transition-property: transform, color, background-color, box-shadow, top;
   width: 100%;
-  z-index: 10;
+  z-index: 20;
 
   &::before {
     background: rgba($color-black-rgb, 0.6);
@@ -96,6 +96,7 @@ $header-desktop-custom-breakpoint: 1180px;
   @include screen-lg-and-bigger {
     top: $spacing-32;
 
+    .is--filters-sticky.header--is-going-up &,
     .is--anchor-list-sticky.header--is-going-up & {
       box-shadow: none;
     }
