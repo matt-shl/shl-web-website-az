@@ -97,12 +97,19 @@ public static class PublishedContentExtensions
     /// </summary>
     public static string? GetCategory(this ICompositionBasePage content)
     {
+        string? category = "";
+
         if (content is ICompositionCardDetails cardDetails)
         {
-            return string.Join(',', cardDetails.CardCategory.OrEmptyIfNull());
+            category = string.Join(',', cardDetails.CardCategory.OrEmptyIfNull());
         }
 
-        return null;
+        if (content is ICompositionContentDetails contentDetails)
+        {
+            category.FallBack(string.Join(',', contentDetails.ContentTags.OrEmptyIfNull()));
+        }
+
+        return category.FallBack(null);
     }
 
     /// <summary>

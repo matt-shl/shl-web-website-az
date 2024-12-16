@@ -48,7 +48,7 @@ public class CardKnowledge : ICard, IOverviewItem
         return new CardKnowledge
         {
             Title = page.GetTitle(),
-            Tag = (page as ICompositionCardDetails)?.CardCategory?.FirstOrDefault(),
+            Tag = page.GetCategory(),
             Text = page.GetCardDescription(),
             Image = Image.Create(page.GetCardImage(), cssClasses: "card-knowledge__image", style: "card-knowledge"),
             Url = page.Url(),
