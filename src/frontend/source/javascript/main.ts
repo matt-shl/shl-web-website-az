@@ -16,15 +16,12 @@ import '@/utilities/focus-trap'
 import '@/utilities/scroll-to'
 import '@/components/loading-indicator'
 import '@/utilities/gtm'
+import('@/utilities/page-load-animation')
 
 import Events from '@utilities/events'
 
 import {videoLoader} from '@/components/video'
 import moduleInit from '@/utilities/module-init'
-
-if (document.querySelector('[js-hook-page-load-animation-trigger]')) {
-  import('@/utilities/page-load-animation')
-}
 
 moduleInit.async('[js-hook-grid-overlay]', () => import('@/components/grid-overlay'))
 moduleInit.async('[js-hook-modal]', () => import('@/components/modal'))

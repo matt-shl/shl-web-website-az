@@ -17,7 +17,7 @@ class PageLoadAnimation {
   private isDebugging: boolean;
 
   constructor() {
-    if (html.classList.contains(IS_REDUCED_MOTION_CLASS)) {
+    if (html.classList.contains(IS_REDUCED_MOTION_CLASS) || !document.querySelector('[js-hook-page-load-animation-trigger]')) {
       html.classList.add(CLASS_IGNORE_LOAD_ANIMATION)
       return;
     }
