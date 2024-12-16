@@ -1,6 +1,5 @@
 import Events from "@utilities/events";
 
-const JS_HOOK_FOOTER_NAVIGATION_LINK = '[js-hook-footer-navigation-link]'
 const JS_HOOK_FOOTER_SOCIAL_LINK = '[js-hook-footer-social-link]'
 const JS_HOOK_FOOTER_NAVIGATION_CONTAINER = '[js-hook-footer-navigation-container]'
 const JS_HOOK_FOOTER_NAVIGATION_CONTAINER_TITLE = '[js-hook-footer-navigation-container-title]'
