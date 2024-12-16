@@ -68,6 +68,7 @@
 
 .history-timeline__description {
   --translate-distance: 20px;
+  word-break: unset;
 
   .history-timeline__title-description-instance.is--active & {
     animation-name: fade-in-top;
