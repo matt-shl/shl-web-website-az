@@ -20,12 +20,12 @@
       action="@Model.ActionUrl"
       method="POST"
       data-async="true"
-      @Html.Attributes(Model.Attributes)
       novalidate
       data-succes-text="@CultureDictionary.GetTranslation(Model.ActionSuccessLabelKey)"
       data-error-text="@CultureDictionary.GetTranslation(Model.ActionErrorLabelKey)"
       data-loader="true"
-      js-hook-pardot-form>
+      js-hook-pardot-form
+      @Html.Attributes(Model.Attributes)>
 
     <partial name="./@(Model.GetType().Name)Fields.cshtml" model="@Model" />
 
