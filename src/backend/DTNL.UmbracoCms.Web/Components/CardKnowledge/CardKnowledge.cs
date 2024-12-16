@@ -17,8 +17,6 @@ public class CardKnowledge : ICard, IOverviewItem
 
     public string? CssClasses { get; set; }
 
-    public string? Type { get; set; }
-
     public bool HasUrl => !Url.IsNullOrWhiteSpace();
 
     public string Element => !Url.IsNullOrWhiteSpace() ? "a" : "article";
