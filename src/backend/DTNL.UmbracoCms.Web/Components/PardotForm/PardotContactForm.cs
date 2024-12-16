@@ -18,6 +18,7 @@ public class PardotContactForm : PardotForm
         {
             Id = Guid.NewGuid().ToString(),
             ActionUrl = "https://go.shl-medical.com/l/1046193/2024-08-20/h845",
+            GtmAttributes = "{'event': 'contact_form'}",
         };
     }
 }

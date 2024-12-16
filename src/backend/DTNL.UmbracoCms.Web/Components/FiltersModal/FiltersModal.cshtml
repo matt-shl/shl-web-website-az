@@ -1,5 +1,6 @@
 @using DTNL.UmbracoCms.Web.Components
 @using DTNL.UmbracoCms.Web.Components.FormElements
+@using DTNL.UmbracoCms.Web.Helpers
 @using DTNL.UmbracoCms.Web.Helpers.Aliases
 @using DTNL.UmbracoCms.Web.Helpers.Extensions
 @using DTNL.UmbracoCms.Web.Models.Filters
@@ -19,6 +20,11 @@
                             ["js-hook-replace-content"] = "modal-body-modal-filters",
                         }})">
     <form class="c-form filters__form" action="@(Model.ResultsOverviewPageUrl)" method="GET" data-async="true" js-hook-form>
+
+        @if (Model.SearchQuery is not null)
+        {
+            <input type="hidden" name="@QueryStringHelper.SearchQueryString" value="@Model.SearchQuery" js-hook-filters-input/>
+        }
 
         <partial name="Accordion"
                  model="@(new Accordion { Classes = "filters__accordion" })">
@@ -48,21 +54,21 @@
                             filter.Name,
                             Options = filter.Options.OfType<Checkbox.CheckboxOption>(),
                             Classes = "filters__accordion-options-item",
-                         }))
+                        }))
                     </fieldset>
+                    
+                    @if (filter.Options.Count > 4)
+                    {
+                        <partial name="Button" model="@(new Button {
+                                                          Label = CultureDictionary.GetTranslation(TranslationAliases.Common.Filters.ShowAll),
+                                                          Size = "small",
+                                                          Variant = "link-underlined",
+                                                          Class = "filters__options-link",
+                                                          Element = "button",
+                                                          Hook = "filters-show-more-options",
+                                                      })"/>
+                    }
                 </partial>
-
-                @if (filter.Options.Count > 4)
-                {
-                    <partial name="Button" model="@(new Button {
-                                                      Label = CultureDictionary.GetTranslation(TranslationAliases.Common.Filters.ShowAll),
-                                                      Size = "small",
-                                                      Variant = "link-underlined",
-                                                      Class = "filters__options-link",
-                                                      Element = "button",
-                                                      Hook = "filters-show-more-options",
-                                                  })"/>
-                }
             }
         </partial>
     </form>

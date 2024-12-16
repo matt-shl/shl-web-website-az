@@ -1,4 +1,5 @@
 using System.Globalization;
+using DTNL.UmbracoCms.Web.Helpers.Extensions;
 using DTNL.UmbracoCms.Web.Infrastructure.DependencyInjection;
 using DTNL.UmbracoCms.Web.Models.Filters;
 using Examine;
@@ -79,6 +80,10 @@ public class SearchService : ISearchService
                 .And()
                 .GroupedOr([$"{nameof(ICompositionContentDetails.Type)}_{culture}".ToLowerInvariant()], filters.PageTypes.ToArray());
         }
+
+        queryBuilder = queryBuilder
+            .Not().Field(nameof(ICompositionSeo.HideFromSearch).ToCamelCase(), "1")
+            .And().Field(ExamineFieldNames.ItemTypeFieldName, "page".MultipleCharacterWildcard());
 
         // Filter selected fields because results are loaded from the published snapshot based on these
         IOrdering? queryExecutor = queryBuilder.SelectFields(ReturnedQueryFields);

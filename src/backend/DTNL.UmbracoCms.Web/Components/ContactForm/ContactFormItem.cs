@@ -18,6 +18,7 @@ public class ContactFormItem
         return new ContactFormItem
         {
             Title = contactFormBlockItem.Title,
+            SubTitle = contactFormBlockItem.SubTitle,
             Text = contactFormBlockItem.Text?.ToHtmlString(),
             IconPath = BrandfolderAttachment.GetAssetUrl(contactFormBlockItem.Icon),
         };

@@ -74,7 +74,7 @@
           "label": "Finance",
           "value": "finance",
           "id": "filter-finance",
-          "checked": false,
+          "checked": true,
           "hook": "filters-input"
         }
       ]

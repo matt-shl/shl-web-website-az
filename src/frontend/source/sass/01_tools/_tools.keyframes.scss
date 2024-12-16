@@ -31,8 +31,10 @@
 }
 
 @mixin page-load-animation($animation, $delay-addition: 200ms, $duration: 800ms) {
-  .has--page-load-animation & {
-    animation: $duration ease-in-out (2000ms + $delay-addition) 1 $animation;
-    animation-fill-mode: both;
+  animation: $duration ease-in-out (2000ms + $delay-addition) 1 $animation;
+  animation-fill-mode: both;
+
+  .ignore--page-load-animation & {
+    animation: none;
   }
 }

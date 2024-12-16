@@ -13,6 +13,7 @@ const MOUSE_OVER_OPEN_DELAY = 170; // Allows moving mouse to submenu while going
 class Flyout {
   private element: HTMLElement
   private items: HTMLUListElement[]
+  private mainItemAnchors: HTMLAnchorElement[]
   private subItemAnchors: HTMLAnchorElement[]
   private mainCTAs: HTMLAnchorElement[]
   private openTimer: NodeJS.Timeout | null;
@@ -20,6 +21,7 @@ class Flyout {
   constructor(element: HTMLElement) {
     this.element = element;
     this.items = [...this.element.querySelectorAll(JS_HOOK_FLYOUT_MAIN_ITEM)] as HTMLUListElement[]
+    this.mainItemAnchors = [...this.element.querySelectorAll(JS_HOOK_FLYOUT_MAIN_ITEM_ANCHOR)] as HTMLAnchorElement[]
     this.subItemAnchors = [...this.element.querySelectorAll(JS_HOOK_FLYOUT_SUB_ITEM_ANCHOR)] as HTMLAnchorElement[]
     this.mainCTAs = [...this.element.querySelectorAll(JS_HOOK_FLYOUT_MAIN_CTA)] as HTMLAnchorElement[]
 
@@ -35,6 +37,29 @@ class Flyout {
         }, MOUSE_OVER_OPEN_DELAY);
       })
       item.addEventListener('keydown', event => this.handleItemKeydown(event, item))
+    })
+
+    this.mainItemAnchors.forEach(mainItemAnchor => {
+      const controls = mainItemAnchor.getAttribute('aria-controls')
+      const children = document.querySelector(`#${controls}`)?.childElementCount || 0
+
+      if(children === 0) {
+        console.log("mainItemAnchor", mainItemAnchor, children)
+        mainItemAnchor.addEventListener('click', () => {
+          const headerCategory = mainItemAnchor.closest(JS_HOOK_NAVIGATION_DESKTOP_ITEM)?.querySelector(JS_HOOK_NAVIGATION_DESKTOP_ANCHOR)?.textContent?.trim()
+          const headerSubcategory = mainItemAnchor.textContent?.trim();
+
+          Events.$trigger('gtm::push', {
+            data: {
+              'event': 'header_menu',
+              'header_category': headerCategory,          //e.g. What we offer
+              'header_subcategory': headerSubcategory,    //e.g. Injectors
+              'header_subcategory2': ""   //e.g. Platform 2
+            }
+          })
+        })
+      }
+
     })
 
     this.subItemAnchors.forEach(subItemAnchor => {

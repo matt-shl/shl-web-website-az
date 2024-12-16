@@ -26,12 +26,4 @@
                    required="true"
                    required-error="@CultureDictionary.GetTranslation($"{TranslationAliases.Forms.Fields}.Country.Error Message")" />
 
-<vc:text-area id="@Model.Id-cf_Message"
-              name="cf_Message"
-              label="@CultureDictionary.GetTranslation($"{TranslationAliases.Forms.Fields}.Message")"
-              max-length="255"
-              validate="required"
-              required="true"
-              required-error="@CultureDictionary.GetTranslation($"{TranslationAliases.Forms.Fields}.Message.Error Message")" />
-              
 <input type="hidden" name="Document URL" value="@Model.FileUrl" tabindex="0">

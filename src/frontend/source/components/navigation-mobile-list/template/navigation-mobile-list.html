@@ -8,6 +8,13 @@
       </button>
     {% endif %}
     <ul class="navigation-mobile-list__list">
+      {% if data.parent.url %}
+        <li class="navigation-mobile-list__item">
+          <a href="{{ data.parent.url }}" class="navigation-mobile-list__anchor navigation-mobile-list__anchor--small">
+            {{ data.parent.title }}
+          </a>
+        </li>
+      {% endif %}
       {% for item in data.items %}
         <li class="navigation-mobile-list__item">
           {% set anchorClass = 'navigation-mobile-list__anchor ' + ('navigation-mobile-list__anchor--small' if data.parent else 'navigation-mobile-list__anchor--main' ) %}

@@ -15,4 +15,6 @@ public class NavigationMobileList
     public List<Link>? NavigationSubItemLinks { get; set; }
 
     public Link? Link { get; set; }
+
+    public Link? NavigationItemLink { get; set; }
 }

@@ -51,6 +51,28 @@ class GTM {
   }
 
   bindDynamicEvents() {
+    this.applyButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const hero = document.querySelector(HERO_SELECTOR)
+        if(!hero) return
+
+        const jobName = hero.querySelector('h1')?.textContent?.trim()
+        const location = hero.querySelector('.hero-content__subtitle')?.textContent?.trim()
+        const seniorityLevel = hero.querySelector(JS_HOOK_SENIORITY)?.textContent?.trim()
+        const employmentType = hero.querySelector(JS_HOOK_EMPLOYMENT)?.textContent?.trim()
+
+        Events.$trigger('gtm::push', {
+          data: {
+            'event': 'apply_now_button',
+            'job_name': jobName || "",
+            'location': location || "",
+            'seniority_level': seniorityLevel || "",
+            'employment_type': employmentType || ""
+          }
+        })
+      })
+    });
+
     this.buttons.forEach(button => {
       if (button.getAttribute(DATA_REGISTERED) === 'true') return
       button.setAttribute(DATA_REGISTERED, 'true')
@@ -107,28 +129,6 @@ class GTM {
         }
       })
     })
-
-    this.applyButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        const hero = document.querySelector(HERO_SELECTOR)
-        if(!hero) return
-
-        const jobName = hero.querySelector('h1')?.textContent?.trim()
-        const location = hero.querySelector('.hero-content__subtitle')?.textContent?.trim()
-        const seniorityLevel = hero.querySelector(JS_HOOK_SENIORITY)?.textContent?.trim()
-        const employmentType = hero.querySelector(JS_HOOK_EMPLOYMENT)?.textContent?.trim()
-
-        Events.$trigger('gtm::push', {
-          data: {
-            'event': 'select_job',
-            'job_name': jobName || '',
-            'location': location || '',
-            'seniority_level': seniorityLevel || '',
-            'employment_type': employmentType || ''
-          }
-        })
-      })
-    });
   }
 
   push(data: GTMEntry) {

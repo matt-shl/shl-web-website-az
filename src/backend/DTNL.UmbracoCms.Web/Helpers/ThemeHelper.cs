@@ -8,6 +8,11 @@ public static class ThemeHelper
 {
     public static string GetCssClasses(IPublishedContent? page)
     {
+        if (page is PageVacancy vacancyPage)
+        {
+            return GetCssClasses(vacancyPage.PageTheme ?? (vacancyPage.Parent as PageVacancyOverview)?.VacanciesPageTheme, "light-blue");
+        }
+
         return GetCssClasses((page as IPageTheme)?.PageTheme, "light-blue");
     }
 

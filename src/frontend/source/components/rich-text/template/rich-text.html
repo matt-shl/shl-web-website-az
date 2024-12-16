@@ -37,7 +37,8 @@ Options:
                 label: data.cta1.label,
                 url: data.cta1.url,
                 variant: data.cta1.variant,
-                icon: data.cta1.icon or 'arrow-top-right'
+                icon: data.cta1.icon or 'arrow-top-right',
+                hook: data.cta1.hook
               }) }}
             {% endif %}
             {% if data.cta2 %}
@@ -46,7 +47,8 @@ Options:
                 label: data.cta2.label,
                 url: data.cta2.url,
                 variant: data.cta2.variant or 'secondary',
-                icon: data.cta2.icon or 'arrow-top-right'
+                icon: data.cta2.icon or 'arrow-top-right',
+                hook: data.cta1.hook
               }) }}
             {% endif %}
           </div>

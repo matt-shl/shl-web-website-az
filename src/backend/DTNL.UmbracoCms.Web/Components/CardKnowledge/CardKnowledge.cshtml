@@ -4,7 +4,7 @@
 
 <@(Model.Element) class="c-card-knowledge @Model.CssClasses" 
 @(Model.HasUrl ? $"href={Model.Url}" : null)
-data-type=@(!Model.Type.IsNullOrWhiteSpace() ? Model.Type : null)
+data-type="@Model.Type?.ToLowerInvariant()"
 aria-label="@Model.Title" js-hook-card-knowledge>
 
     <div class="card-knowledge__image-container">
@@ -12,7 +12,7 @@ aria-label="@Model.Title" js-hook-card-knowledge>
 
         @if (Model.HasUrl)
         {
-            <partial name="CardOverlay" model="@(new CardOverlay { Position = "start", Visible = true, Tag = Model.Tag })" />
+            <partial name="CardOverlay" model="@(new CardOverlay { Position = "start", Visible = true, Tag = Model.Category })" />
         }
     </div>
 

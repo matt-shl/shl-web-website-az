@@ -33,6 +33,7 @@
           "submit": {
             "label": "Receive download"
           },
+          "gtm": "{'event': 'receive_download','product_datasheet': 'Molly Connect cap'}",
           "fields": [
             {
               "name": "cf_First_Name",
