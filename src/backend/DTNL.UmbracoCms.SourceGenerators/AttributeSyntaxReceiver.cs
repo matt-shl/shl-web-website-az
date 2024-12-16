@@ -14,7 +14,7 @@ internal class AttributeSyntaxReceiver : ISyntaxReceiver
         _attributeNames = attributeNames;
     }
 
-    public List<TypeDeclarationSyntax> Candidates { get; } = new();
+    public List<TypeDeclarationSyntax> Candidates { get; } = [];
 
     public void OnVisitSyntaxNode(SyntaxNode syntaxNode)
     {
