@@ -3,6 +3,7 @@ import Environment from "@utilities/environment";
 import { LocalStorage, SessionStorage } from '@utilities/storage'
 
 const CLASS_HAS_LOAD_ANIMATION = "has--page-load-animation"
+const CLASS_IGNORE_LOAD_ANIMATION= "ignore--page-load-animation"
 const STORAGE_KEY_FIRST_TIME_VISITING = 'firstTimeVisiting'
 const IS_REDUCED_MOTION_CLASS = 'is--reduced-motion'
 
@@ -16,7 +17,10 @@ class PageLoadAnimation {
   private isDebugging: boolean;
 
   constructor() {
-    if (html.classList.contains(IS_REDUCED_MOTION_CLASS)) return;
+    if (html.classList.contains(IS_REDUCED_MOTION_CLASS)) {
+      html.classList.add(CLASS_IGNORE_LOAD_ANIMATION)
+      return;
+    }
 
     this.isFirstTimeVisiting = SessionStorage.get(STORAGE_KEY_FIRST_TIME_VISITING) === null
     this.isIgnoreFirstTimeVisiting = LocalStorage.get(STORAGE_KEY_IGNORE_FIRST_TIME_VISITING) === STORAGE_VALUE_IGNORE_FIRST_TIME_VISITING
@@ -54,6 +58,8 @@ class PageLoadAnimation {
           document.documentElement.scrollTop = 0;
         }, 100)
       }
+    } else {
+      html.classList.add(CLASS_IGNORE_LOAD_ANIMATION)
     }
   }
 }
