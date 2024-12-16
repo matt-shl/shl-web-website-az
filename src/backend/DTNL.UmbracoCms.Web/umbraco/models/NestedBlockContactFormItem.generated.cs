@@ -58,6 +58,14 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual string Icon => this.Value<string>(_publishedValueFallback, "icon");
 
 		///<summary>
+		/// Sub-Title
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("subTitle")]
+		public virtual string SubTitle => this.Value<string>(_publishedValueFallback, "subTitle");
+
+		///<summary>
 		/// Text
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
