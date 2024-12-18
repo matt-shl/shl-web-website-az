@@ -316,6 +316,14 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual global::System.DateTime LastUpdatedAt => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionVacancyDetails.GetLastUpdatedAt(this, _publishedValueFallback);
 
 		///<summary>
+		/// Location
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("location")]
+		public virtual string Location => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionVacancyDetails.GetLocation(this, _publishedValueFallback);
+
+		///<summary>
 		/// Postal Code
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.2+3431f76")]
