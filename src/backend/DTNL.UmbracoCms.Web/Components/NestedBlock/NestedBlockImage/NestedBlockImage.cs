@@ -1,3 +1,4 @@
+using DTNL.UmbracoCms.Web.Helpers.Extensions;
 using Umbraco.Cms.Core.Models.PublishedContent;
 
 namespace DTNL.UmbracoCms.Web.Components.NestedBlock;
@@ -15,6 +16,6 @@ public class NestedBlockImage : NestedBlockWithInner
         LayoutSection.CssThemeClasses = "t-white";
         LayoutSection.Variant = nestedBlockImage.FullWidth ? "no-padding" : "no-padding-inline-mobile";
 
-        return Media.Create(nestedBlockImage.Image);
+        return Media.Create(nestedBlockImage);
     }
 }

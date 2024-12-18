@@ -1,7 +1,7 @@
 {
   "items": [
     {
-      "url": "/",
+      "url": "/what-we-offer.html",
       "title": "What we offer",
       "id": "what-we-offer",
       "content": "SHL Medical helps pharma & biotech companies through the process of getting medical devices to the market.",
@@ -46,52 +46,12 @@
         {
           "url": "/",
           "title": "Device platforms",
-          "id": "device-platforms",
-          "all": {
-            "url": "/",
-            "title": "All device platforms"
-          },
-          "subitems": [
-            {
-              "url": "/",
-              "title": "Molly®"
-            },
-            {
-              "url": "/",
-              "title": "Platform 2"
-            },
-            {
-              "url": "/",
-              "title": "Platform 3"
-            },
-            {
-              "url": "/",
-              "title": "Platform 4"
-            },
-            {
-              "url": "/",
-              "title": "Platform 5"
-            }
-          ]
+          "id": "device-platforms"
         },
         {
           "url": "/",
           "title": "Innovations",
-          "id": "innovations",
-          "subitems": [
-            {
-              "url": "/",
-              "title": "Molly®"
-            },
-            {
-              "url": "/",
-              "title": "Innovations 2"
-            },
-            {
-              "url": "/",
-              "title": "Innovations 3"
-            }
-          ]
+          "id": "innovations"
         },
         {
           "url": "/",

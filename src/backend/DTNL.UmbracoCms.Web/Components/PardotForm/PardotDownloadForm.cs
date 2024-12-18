@@ -28,9 +28,10 @@ public class PardotDownloadForm : PardotForm
         return new()
         {
             Id = Guid.NewGuid().ToString(),
-            ActionUrl = "http://go.shl-medical.com/l/1046193/2024-11-08/nrq8",
+            ActionUrl = "https://go.shl-medical.com/l/1046193/2024-11-08/nrq8",
             FileUrl = asset.Url,
             FileName = asset.FileName ?? "",
+            GtmAttributes = $"{{'event': 'receive_download','product_datasheet': '{asset.FileName}'}}",
         };
     }
 }

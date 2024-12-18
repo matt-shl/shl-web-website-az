@@ -1,4 +1,3 @@
-using DTNL.UmbracoCms.Web.Helpers;
 using DTNL.UmbracoCms.Web.Helpers.Aliases;
 using DTNL.UmbracoCms.Web.Helpers.Extensions;
 using DTNL.UmbracoCms.Web.Models.Filters;
@@ -50,20 +49,17 @@ public class OverviewProducts : OverviewFor<PageProductOverview, PageProduct, Pr
             pages.RemoveAll(page => !FilterOption.AnySelectedValueIn(filterOptions, getValues(page)));
         }
 
-        string? sort = HttpContext.GetFilterOptions("Sort").FirstOrDefault()?.Label;
-        bool hasSort = sort == CultureDictionary.GetTranslation(TranslationAliases.Common.Filters.SortOldestFirst);
-
-        pages.Sort((x, y) => hasSort ? DateTime.Compare(y.CreateDate, x.CreateDate) : DateTime.Compare(x.CreateDate, y.CreateDate));
+        GetAndApplySorting(productFilters, pages);
 
         return productFilters;
     }
 
     protected override Filters? GetFilters(ProductFilters? filters, List<PageProduct> pages)
     {
-        return filters is null ? null : Filters.Create(filters, pages, CultureDictionary);
+        return filters is null ? null : Filters.Create(filters, TotalCount, pages, CultureDictionary);
     }
 
-    protected override IEnumerable<CardProduct> GetOverviewItems(List<PageProduct> pages)
+    protected override IEnumerable<CardProduct> MapToOverviewItems(List<PageProduct> pages)
     {
         return pages.Using(p => CardProduct.Create(p).With(card => card.ShowSpecs = false));
     }

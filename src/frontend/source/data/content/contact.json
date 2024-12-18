@@ -43,6 +43,7 @@
       "submit": {
         "label": "Submit question"
       },
+      "gtm": "{'event': 'contact_form'}",
       "fields": [
         {
           "name": "cf_email_address",

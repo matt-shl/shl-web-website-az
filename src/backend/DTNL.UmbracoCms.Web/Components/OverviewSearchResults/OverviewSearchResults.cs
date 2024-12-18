@@ -1,4 +1,3 @@
-using DTNL.UmbracoCms.Web.Helpers;
 using DTNL.UmbracoCms.Web.Helpers.Extensions;
 using DTNL.UmbracoCms.Web.Models.Filters;
 using DTNL.UmbracoCms.Web.Services;
@@ -18,6 +17,7 @@ public class OverviewSearchResults : OverviewFor<PageSearch, ICompositionBasePag
     {
         Variant = "grid",
         Id = "content",
+        ListLabel = "Search",
     };
 
     protected override PageSearch OverviewPage => NodeProvider.SearchPage!;
@@ -34,16 +34,14 @@ public class OverviewSearchResults : OverviewFor<PageSearch, ICompositionBasePag
 
     protected override (List<ICompositionBasePage> Pages, GeneralFilters? Filters) GetPagesAndApplyFilters()
     {
-        string? searchQuery = Request.Query.GetSearchQuery();
-
-        if (searchQuery.IsNullOrWhiteSpace() || searchQuery.Length < 3)
-        {
-            return ([], null);
-        }
-
         GeneralFilters generalFilters = new(OverviewPage, Request.Query);
 
         generalFilters.AddFilterOptions(nameof(ICompositionContentDetails.Type), NodeProvider.SiteSettings?.Types, HttpContext);
+
+        if (SearchTerm.IsNullOrWhiteSpace() || SearchTerm.Length < 3)
+        {
+            return ([], generalFilters);
+        }
 
         string[]? selectedTypes = generalFilters[nameof(ICompositionContentDetails.Type)]
             .Where(filterOption => filterOption.IsSelected)
@@ -56,7 +54,7 @@ public class OverviewSearchResults : OverviewFor<PageSearch, ICompositionBasePag
         }
 
         List<PublishedSearchResult> matchingResults = SearchService
-            .Search(searchQuery, new SearchFilters { PageTypes = selectedTypes }, PageNumber, PageSize, out long totalCount)
+            .Search(SearchTerm, new SearchFilters { PageTypes = selectedTypes }, PageNumber, PageSize, out long totalCount)
             .ToList();
 
         List<ICompositionBasePage> pages = matchingResults
@@ -71,11 +69,18 @@ public class OverviewSearchResults : OverviewFor<PageSearch, ICompositionBasePag
 
     protected override Filters? GetFilters(GeneralFilters? filters, List<ICompositionBasePage> pages)
     {
-        return filters is null ? null : Filters.Create(filters, pages);
+        return filters is null ? null : Filters.Create(filters, TotalCount, pages);
     }
 
-    protected override IEnumerable<CardKnowledge> GetOverviewItems(List<ICompositionBasePage> pages)
+    protected override IEnumerable<CardKnowledge> MapToOverviewItems(List<ICompositionBasePage> pages)
     {
         return pages.Using(CardKnowledge.Create);
+    }
+
+    protected override List<IOverviewItem> GetOverviewItems(List<ICompositionBasePage> pages)
+    {
+        return MapToOverviewItems(pages)
+            .OfType<IOverviewItem>()
+            .ToList();
     }
 }

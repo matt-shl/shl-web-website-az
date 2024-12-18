@@ -11,6 +11,8 @@
     <div class="c-navigation-mobile">
         <nav title=@CultureDictionary.GetTranslation(TranslationAliases.Navigation.MainNavigation)>
 
+            <partial name="SearchTrigger" model="@(SearchTrigger.Create(CultureDictionary.GetTranslation(TranslationAliases.Search.SearchLabel)))" />
+
             <partial name="./NavigationMobileList.cshtml" model="@(new NavigationMobileList { NavigationItems = Model.Items })" />
 
             <div class="navigation-mobile__line"></div>
@@ -32,6 +34,7 @@
                         Name = item.Title,
                         ParentId = item.Id,
                         NavigationSubItems = item.SubItems,
+                        NavigationItemLink = item.Link,
                     })" />
         </div>
     </partial>
@@ -55,3 +58,9 @@
         </partial>
     }
 }
+
+<partial name="Modal" model="@(new Modal { Id = "navigation-mobile-search", Size = "navigation-mobile", KeepScrollPosition = true, CloseAllOthers = true })">
+    <div class="c-navigation-mobile">
+        <vc:search is-flyout-search="true" />
+    </div>
+</partial>

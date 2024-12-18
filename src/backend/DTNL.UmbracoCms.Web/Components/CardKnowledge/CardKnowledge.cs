@@ -7,7 +7,9 @@ public class CardKnowledge : ICard, IOverviewItem
 {
     public required string Title { get; set; }
 
-    public string? Tag { get; set; }
+    public string? Type { get; set; }
+
+    public string? Category { get; set; }
 
     public string? Text { get; set; }
 
@@ -17,11 +19,11 @@ public class CardKnowledge : ICard, IOverviewItem
 
     public string? CssClasses { get; set; }
 
-    public string? Type { get; set; }
-
     public bool HasUrl => !Url.IsNullOrWhiteSpace();
 
     public string Element => !Url.IsNullOrWhiteSpace() ? "a" : "article";
+
+    public DateTime? Date { get; set; }
 
     public static CardKnowledge? Create(NestedBlockPageCard pageCard, string? cssClasses = null)
     {
@@ -33,7 +35,8 @@ public class CardKnowledge : ICard, IOverviewItem
         return new CardKnowledge
         {
             Title = page.GetTitle(),
-            Tag = page.GetCategory(),
+            Type = (page as ICompositionContentDetails)?.Type?.FirstOrDefault(),
+            Category = page.GetCategory(),
             Text = page.GetCardDescription(),
             Image = Image.Create(page.GetCardImage(), cssClasses: "card-knowledge__image", style: "card-knowledge"),
             Url = page.Url(),
@@ -46,10 +49,12 @@ public class CardKnowledge : ICard, IOverviewItem
         return new CardKnowledge
         {
             Title = page.GetTitle(),
-            Tag = (page as ICompositionCardDetails)?.CardCategory?.FirstOrDefault(),
+            Type = (page as ICompositionContentDetails)?.Type?.FirstOrDefault(),
+            Category = page.GetCategory(),
             Text = page.GetCardDescription(),
             Image = Image.Create(page.GetCardImage(), cssClasses: "card-knowledge__image", style: "card-knowledge"),
             Url = page.Url(),
+            Date = (page as ICompositionContentDetails)?.Date,
         };
     }
 }

@@ -35,6 +35,9 @@ public class MetaTags : ViewComponentExtended
 
     public string? ApplicationName { get; set; }
 
+    public string? SearchConsoleVerification { get; set; }
+
+
     public IViewComponentResult Invoke(IPublishedContent page, SiteSettings? siteSettings)
     {
         bool isErrorPage = HttpContext.Response.StatusCode is < 200 or > 299;
@@ -51,6 +54,7 @@ public class MetaTags : ViewComponentExtended
         Twitter = GetTwitter(page);
 
         ApplicationName = siteSettings?.WebsiteName;
+        SearchConsoleVerification = siteSettings?.SearchConsoleVerification;
 
         return View("~/Components/BasePage/MetaTags.cshtml", this);
     }

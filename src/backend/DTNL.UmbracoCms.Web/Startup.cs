@@ -217,6 +217,9 @@ public static class Startup
                     .From("https://*.cookiebot.com")
                     .From("https://*.googletagmanager.com")
                     .From("https://*.google-analytics.com")
+                    .From("https://snap.licdn.com")
+                    .From("https://connect.facebook.net")
+                    .From("https://googleads.g.doubleclick.net")
                     .UnsafeInline()
                     .UnsafeEval()
                     .Self();

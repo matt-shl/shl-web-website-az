@@ -156,6 +156,10 @@
 .text-media-list__accordions {
   margin-block: $spacing-16;
 
+  .accordion__item-summary {
+    padding-inline-end: $spacing-40;
+  }
+
   @include screen-lg-and-bigger {
     margin-block: $spacing-24 $spacing-40;
   }

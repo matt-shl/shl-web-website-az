@@ -1,6 +1,5 @@
 import Events from "@utilities/events";
 
-const JS_HOOK_FOOTER_NAVIGATION_LINK = '[js-hook-footer-navigation-link]'
 const JS_HOOK_FOOTER_SOCIAL_LINK = '[js-hook-footer-social-link]'
 const JS_HOOK_FOOTER_NAVIGATION_CONTAINER = '[js-hook-footer-navigation-container]'
 const JS_HOOK_FOOTER_NAVIGATION_CONTAINER_TITLE = '[js-hook-footer-navigation-container-title]'
@@ -12,7 +11,7 @@ class Footer {
 
   constructor(element: HTMLElement) {
     this.element = element;
-    this.navigationLinks = [...this.element.querySelectorAll(JS_HOOK_FOOTER_NAVIGATION_LINK)] as HTMLAnchorElement[]
+    this.navigationLinks = [...this.element.querySelectorAll(`a:not(JS_HOOK_FOOTER_SOCIAL_LINK)`)] as HTMLAnchorElement[]
     this.socialLinks = [...this.element.querySelectorAll(JS_HOOK_FOOTER_SOCIAL_LINK)] as HTMLAnchorElement[]
 
     this.bindEvents()
@@ -21,14 +20,14 @@ class Footer {
   bindEvents() {
     this.navigationLinks.forEach(navigationLink => {
       navigationLink.addEventListener('click', () => {
-        const footerCategory = navigationLink.closest(JS_HOOK_FOOTER_NAVIGATION_CONTAINER)?.querySelector(JS_HOOK_FOOTER_NAVIGATION_CONTAINER_TITLE)?.textContent?.trim()
+        const footerCategory = navigationLink.closest(JS_HOOK_FOOTER_NAVIGATION_CONTAINER)?.querySelector(JS_HOOK_FOOTER_NAVIGATION_CONTAINER_TITLE)?.textContent?.trim() || navigationLink.closest('.c-accordion')?.querySelector('.accordion__item-summary')?.textContent?.trim()
         const footerSubcategory = navigationLink.textContent?.trim()
 
         Events.$trigger('gtm::push', {
           data: {
             'event': 'footer',
-            'footer_category': footerCategory,          //e.g. Explore our products
-            'footer_subcategory': footerSubcategory     //e.g. Autoinjectors
+            'footer_category': footerCategory || "",          //e.g. Explore our products
+            'footer_subcategory': footerSubcategory || ""     //e.g. Autoinjectors
           }
         })
       })
