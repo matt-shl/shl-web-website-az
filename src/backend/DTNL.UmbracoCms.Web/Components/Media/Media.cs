@@ -27,6 +27,23 @@ public class Media
         };
     }
 
+    public static Media? Create(NestedBlockImage? mediaBlock)
+    {
+        if (Image.Create(mediaBlock?.Image) is not { } image)
+        {
+            return null;
+        }
+
+        return new Media
+        {
+            Image = Image.Create(mediaBlock?.Image).With(i =>
+            {
+                i.Classes = "media-section__image";
+                i.Caption = mediaBlock?.Caption;
+            }),
+        };
+    }
+
     public static Media? Create(NestedBlockVideo? videoBlock)
     {
         if (videoBlock is null)
@@ -35,14 +52,7 @@ public class Media
         }
 
         VideoMedia? videoContent = (VideoMedia?) videoBlock.Video?.FirstOrDefault()?.Content;
-        //Video? video = Video.Create(videoContent).With(v =>
-        //{
-        //    v.InstanceId = videoContent?.Title?.Trim().ToLowerInvariant().Replace(" ", "-") ?? "";
-        //    v.Id = videoContent?.Title?.Trim().ToLowerInvariant().Replace(" ", "-");
-        //    v.Description = videoContent?.Description;
-        //    v.TotalTime = videoContent?.TotalTime;
-        //    v.Variant = "modal";
-        //});
+
         Video? video = new Video
         {
             Id = videoContent?.Title?.Trim().ToLowerInvariant().Replace(" ", "-"),
