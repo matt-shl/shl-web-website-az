@@ -5,7 +5,7 @@
     <span class="job-listing-item__title" js-hook-job-listing-title>@Model.Title</span>
 
     <div class="job-listing-item__right-container">
-        <span class="job-listing-item__location" asp-if="@Model.Country" js-hook-job-listing-location>@Model.Country</span>
+        <span class="job-listing-item__location" asp-if="@Model.Location" js-hook-job-listing-location>@Model.Location</span>
 
         <div class="job-listing-item__tags-container">
             @for (int i = 0; i< Model.Tags.Count(); i++)

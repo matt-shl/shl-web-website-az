@@ -75,6 +75,11 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		global::System.DateTime LastUpdatedAt { get; }
 
+		/// <summary>Location</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		string Location { get; }
+
 		/// <summary>Postal Code</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
@@ -260,6 +265,19 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		/// <summary>Static getter for Last Updated At</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
 		public static global::System.DateTime GetLastUpdatedAt(ICompositionVacancyDetails that, IPublishedValueFallback publishedValueFallback) => that.Value<global::System.DateTime>(publishedValueFallback, "lastUpdatedAt");
+
+		///<summary>
+		/// Location
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("location")]
+		public virtual string Location => GetLocation(this, _publishedValueFallback);
+
+		/// <summary>Static getter for Location</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.2.0+7dff3a3")]
+		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		public static string GetLocation(ICompositionVacancyDetails that, IPublishedValueFallback publishedValueFallback) => that.Value<string>(publishedValueFallback, "location");
 
 		///<summary>
 		/// Postal Code

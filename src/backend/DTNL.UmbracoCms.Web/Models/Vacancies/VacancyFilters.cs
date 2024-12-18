@@ -7,7 +7,7 @@ public class VacancyFilters : BaseFilters
 {
     public static readonly (string Name, Func<PageVacancy, IEnumerable<string>?> GetValues)[] QuickFilterFields =
     [
-        (nameof(PageVacancy.Country), p => p.Country.IsNullOrWhiteSpace() ? null : [p.Country]),
+        (nameof(PageVacancy.Location), p => p.Location.IsNullOrWhiteSpace() ? null : [p.Location]),
         (nameof(PageVacancy.JobLevel), p => p.JobLevel.IsNullOrWhiteSpace() ? null : [p.JobLevel]),
         (nameof(PageVacancy.ContractType), p => p.ContractType.IsNullOrWhiteSpace() ? null : [p.ContractType]),
     ];

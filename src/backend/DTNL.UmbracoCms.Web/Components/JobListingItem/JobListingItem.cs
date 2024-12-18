@@ -9,7 +9,7 @@ public class JobListingItem : IOverviewItem
 
     public required string Title { get; set; }
 
-    public string? Country { get; set; }
+    public string? Location { get; set; }
 
     public required string[] Tags { get; set; }
 
@@ -19,7 +19,7 @@ public class JobListingItem : IOverviewItem
         {
             Url = vacancyPage.Url(),
             Title = vacancyPage.GetTitle(),
-            Country = vacancyPage.Country,
+            Location = vacancyPage.Location ?? "",
             Tags = new[] { vacancyPage.JobLevel, vacancyPage.ContractType }
                 .EnsureNotNull()
                 .ToArray(),
