@@ -128,3 +128,14 @@ public abstract class Overview : ViewComponentExtended
 
     public bool IsJobsOverview { get; set; }
 }
+
+public interface JobListItem
+{
+    public string Url { get; set; }
+
+    public string Title { get; set; }
+
+    public string Location { get; set; }
+
+    public List<string> Tags { get; set; }
+}
