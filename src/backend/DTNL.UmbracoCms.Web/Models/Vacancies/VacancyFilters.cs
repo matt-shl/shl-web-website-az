@@ -7,13 +7,16 @@ public class VacancyFilters : BaseFilters
 {
     public static readonly (string Name, Func<PageVacancy, IEnumerable<string>?> GetValues)[] QuickFilterFields =
     [
+        (nameof(PageVacancy.Function), p => p.Function.IsNullOrWhiteSpace() ? null : [p.Function]),
         (nameof(PageVacancy.Location), p => p.Location.IsNullOrWhiteSpace() ? null : [p.Location]),
         (nameof(PageVacancy.JobLevel), p => p.JobLevel.IsNullOrWhiteSpace() ? null : [p.JobLevel]),
-        (nameof(PageVacancy.ContractType), p => p.ContractType.IsNullOrWhiteSpace() ? null : [p.ContractType]),
     ];
 
     public static readonly (string Name, Func<PageVacancy, IEnumerable<string>?> GetValues)[] FilterFields =
-        QuickFilterFields; // TODO add additional filters?
+    [
+        ..QuickFilterFields,
+        (nameof(PageVacancy.ContractType), p => p.ContractType.IsNullOrWhiteSpace() ? null : [p.ContractType]),
+    ];
 
     public VacancyFilters(PageVacancyOverview overviewPage, IQueryCollection queryCollection)
         : base(overviewPage, queryCollection)

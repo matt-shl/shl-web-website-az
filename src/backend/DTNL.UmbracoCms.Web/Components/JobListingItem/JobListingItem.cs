@@ -19,7 +19,7 @@ public class JobListingItem : IOverviewItem
         {
             Url = vacancyPage.Url(),
             Title = vacancyPage.GetTitle(),
-            Location = vacancyPage.Location ?? "",
+            Location = vacancyPage.Location ?? vacancyPage.Country,
             Tags = new[] { vacancyPage.JobLevel, vacancyPage.ContractType }
                 .EnsureNotNull()
                 .ToArray(),
