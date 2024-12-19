@@ -24,7 +24,8 @@
       data-succes-text="@CultureDictionary.GetTranslation(Model.ActionSuccessLabelKey)"
       data-error-text="@CultureDictionary.GetTranslation(Model.ActionErrorLabelKey)"
       data-loader="true"
-      js-hook-pardot-form>
+      js-hook-pardot-form
+      data-gtm="@Model.GtmAttributes">
 
     <partial name="./@(Model.GetType().Name)Fields.cshtml" model="@Model" />
 

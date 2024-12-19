@@ -31,6 +31,7 @@ public class PardotDownloadForm : PardotForm
             ActionUrl = "https://go.shl-medical.com/l/1046193/2024-11-08/nrq8",
             FileUrl = asset.Url,
             FileName = asset.FileName ?? "",
+            GtmAttributes = $"{{'event': 'receive_download','product_datasheet': '{asset.FileName}'}}",
         };
     }
 }

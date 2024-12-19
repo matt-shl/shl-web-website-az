@@ -7,6 +7,8 @@
 
 <partial name="_BlockList" model="Model.ContentBlocks" />
 
+<partial name="_BlockList" model="@(Model.Parent as PageVacancyOverview)?.VacanciesContentBlocks" />
+
 <partial name="LayoutSection"
          model="@(new Components.LayoutSection { Variant = "c-section-job-vacancies", })">
     <vc:job-vacancies page="@Model" />
@@ -17,7 +19,7 @@
     dataLayer.push({
         event: 'view_job',
         job_name: '@Model.Name',
-        location: '@Model.Country',
+        location: '@Model.Location',
         seniority_level: '@Model.JobLevel',
         employment_type: '@Model.ContractType'
     });

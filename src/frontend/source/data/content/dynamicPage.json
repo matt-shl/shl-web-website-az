@@ -204,12 +204,12 @@
   "stackingCards": {
     "theme": "t-dark-green",
     "title": "Why should you join SHL?",
-    "description": "At SHL Medical, we are redefining careers. We provide the right tools for our employees to flourish in their careers. Join us and together we’ll shape the platform for your success.",
+    "description": "<p>At SHL Medical, we are redefining careers. We provide the right tools for our employees to flourish in their careers. Join us and together we’ll shape the platform for your success.</p><ul><li>list</li></ul>",
     "items": [
       {
         "image": true,
         "title": "Ownership & Impact",
-        "description": "Experience a culture that encourages ownership and control over your outcomes, making you a key player in SHL’s success. Your work contributes to the development of products that significantly impact people’s lives."
+        "description": "<p>At SHL Medical, we are redefining careers. We provide the right tools for our employees to flourish in their careers. Join us and together we’ll shape the platform for your success.</p><ul><li>list</li></ul>"
       },
       {
         "image": true,

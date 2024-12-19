@@ -16,7 +16,7 @@
 
                         <div class="contact-block__item-text">
                             <p><strong>@item.Title</strong></p>
-                            <p>@item.SubTitle</p>
+                            <p asp-if="@item.SubTitle">@item.SubTitle</p>
                             <div class="contact-block__item-content">
                                 <strong>@Html.Raw(item.Text)</strong>
                             </div>

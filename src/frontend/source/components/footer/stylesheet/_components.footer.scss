@@ -90,6 +90,7 @@
 }
 
 .footer__sub-shape {
+  display: none; // Temporarily removed, see https://dept-nl.atlassian.net/browse/SM-1315
   position: absolute;
   bottom: 100%;
   left: 0;

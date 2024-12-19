@@ -50,6 +50,6 @@ public class SocialLinks
 
         return socialPlatform == default
             ? null
-            : Link.Create(link, icon: socialPlatform.Icon, hideLabel: true);
+            : Link.Create(link, icon: socialPlatform.Icon);
     }
 }

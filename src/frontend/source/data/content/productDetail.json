@@ -75,7 +75,7 @@
   "hero": {
     "image": true,
     "title": "Molly® autoinjectors",
-    "description": "Modular platform with Bluetooth-enabled add-on and large-volume option. Fully customizable.",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus varius quam non eros dignissim, sit amet fermentum erat congue. Vivamus posuere ex ac lectus rhoncus, ac tincidunt magna blandit. Nulla facilisi. Proin eget velit nec dolor tincidunt sodales. // Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus varius quam non eros dignissim, sit amet fermentum erat congue. Vivamus posuere ex ac lectus rhoncus, ac tincidunt magna blandit. Nulla facilisi. Proin eget velit nec dolor tincidunt sodales.",
     "cta1": {
       "label": "Contact us",
       "url": "/"

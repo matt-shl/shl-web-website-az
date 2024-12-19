@@ -16,15 +16,12 @@ import '@/utilities/focus-trap'
 import '@/utilities/scroll-to'
 import '@/components/loading-indicator'
 import '@/utilities/gtm'
+import('@/utilities/page-load-animation')
 
 import Events from '@utilities/events'
 
 import {videoLoader} from '@/components/video'
 import moduleInit from '@/utilities/module-init'
-
-if (document.querySelector('[js-hook-page-load-animation-trigger]')) {
-  import('@/utilities/page-load-animation')
-}
 
 moduleInit.async('[js-hook-grid-overlay]', () => import('@/components/grid-overlay'))
 moduleInit.async('[js-hook-modal]', () => import('@/components/modal'))
@@ -50,7 +47,6 @@ moduleInit.async(
   () => import('@components/mobile-floating-button'),
 )
 
-moduleInit.async('[js-hook-event-detail]', () => import('@components/event-detail'))
 moduleInit.async('[js-hook-odometer]', () => import('@components/odometer'))
 moduleInit.async('[js-hook-history-timeline]', () => import('@components/history-timeline'))
 moduleInit.async('[js-hook-search]', () => import('@components/search'))

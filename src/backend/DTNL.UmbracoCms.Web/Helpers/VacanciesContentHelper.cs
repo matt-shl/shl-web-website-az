@@ -56,6 +56,7 @@ public class VacanciesContentHelper
         pageVacancyContent.SetValue<PageVacancy>(x => x.State, vacancy.State, culture);
         pageVacancyContent.SetValue<PageVacancy>(x => x.PostalCode, vacancy.PostalCode, culture);
         pageVacancyContent.SetValue<PageVacancy>(x => x.Country, GetCountryName(vacancy.Country, culture), culture);
+        pageVacancyContent.SetValue<PageVacancy>(x => x.Location, vacancy.Location, culture);
 
         SetHeroContent(pageVacancyContent, vacancy, culture);
     }

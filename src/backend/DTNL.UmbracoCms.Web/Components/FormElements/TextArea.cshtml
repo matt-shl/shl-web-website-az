@@ -22,8 +22,7 @@
         @(!Model.Validate.IsNullOrEmpty() ? Html.Attribute("data-validate", Model.Validate) : "")
         @(Model.RequiredError is not null ? Html.Attribute("data-required-error", Model.RequiredError) : null)
         @Html.Attribute(Model.Hook?.EnsureStartsWith("js-hook-"))
-        @Html.Attributes(Model.Attributes)>
-        </textarea>
+        @Html.Attributes(Model.Attributes)></textarea>
         <span class="focus-helper"></span>
     </div>
     <div id="@(Model.Name)_error" class="form__item-error @(Model.Error is not null ? "" : "u-hidden")">@Model.Error</div>

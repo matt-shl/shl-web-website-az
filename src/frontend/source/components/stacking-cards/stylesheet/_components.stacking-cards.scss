@@ -42,6 +42,7 @@
 
 .stacking-cards__description {
   @include body-l;
+  @include rich-text;
 
   @include screen-lg-and-bigger {
     margin-inline: $spacing-40;
@@ -53,6 +54,10 @@
     position: sticky;
     // top set in JS
   }
+}
+
+.stacking-cards__card-description {
+  @include rich-text;
 }
 
 .stacking-cards__card-container {

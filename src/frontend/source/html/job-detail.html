@@ -28,9 +28,9 @@
   {{ richText(global.content.eventDetail.richText | clone | merge({
     readMoreDisabled: true,
     cta1: {
-      apply: true,
+      hook: "apply",
       label: "Apply Now",
-      url: "#"
+      "url": "http://www.google.nl"
     }
   })) }}
   {{ sectionImageCarousel(jobDetailData.imageCarousel) }}

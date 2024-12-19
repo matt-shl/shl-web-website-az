@@ -39,7 +39,7 @@
         <div class="stacking-cards__content" js-hook-stacking-cards-content>
           <h2 class="stacking-cards__title" js-hook-stacking-cards-title>{{ data.title }}</h2>
           {% if data.description %}
-            <p class="stacking-cards__description" js-hook-stacking-cards-description>{{ data.description }}</p>
+            <div class="stacking-cards__description" js-hook-stacking-cards-description>{{ data.description | safe }}</div>
           {% endif %}
         </div>
 
@@ -50,7 +50,7 @@
               <div class="stacking-cards__card-container {{ themeClass }}">
                 <div class="stacking-cards__card-content">
                   <h3 class="stacking-cards__card-title">{{ card.title }}</h3>
-                  <p class="stacking-cards__card-description">{{ card.description }}</p>
+                  <div class="stacking-cards__card-description">{{ card.description| safe }}</div>
                 </div>
                 <div class="stacking-cards__card-image">
                   {% if card.image %}

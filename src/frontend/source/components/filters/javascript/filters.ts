@@ -19,6 +19,7 @@ const JS_HOOK_FORM = '[js-hook-form]'
 const KEYBOARD_FOCUSED_CLASS = 'has--keyboard-focus'
 const CLASS_MODAL_SCROLLING = 'is--modal-scrolling'
 const CLASS_IS_FILTERS_LIST_STICKY = 'is--filters-sticky'
+const CLASS_FILTERS_ACCORDION_OPTIONS = 'filters__accordion-options'
 const CLASS_FILTERS_ACCORDION_OPTIONS_HIDDEN = 'filters__accordion-options--hidden'
 
 class Filters {
@@ -143,17 +144,25 @@ class Filters {
     if (!element) {
       return currentUrl.toString()
     }
-    
+
     const queryParams = new URLSearchParams();
 
     this.inputs.forEach(input => {
-      if (input && input.checked) {
-        queryParams.append(input.name, input.value);
+      if (input) {
+        if (input.type === 'checkbox' || input.type === 'radio') {
+          if (input.checked) {
+            queryParams.append(input.name, input.value);
+          }
+        } else if (input.value) {
+          queryParams.append(input.name, input.value);
+        }
       }
     });
 
-    currentUrl.search = queryParams.toString();    
-    
+
+
+    currentUrl.search = queryParams.toString();
+
     return currentUrl.toString()
   }
 
@@ -167,6 +176,13 @@ class Filters {
     const openAccordionIds = [...this.element.querySelectorAll(`${JS_HOOK_ACCORDION_DETAIL}[open]`)].map(
       (el) => el.id,
     ) as string[]
+    const expandedAccordionsIds = [...this.element.querySelectorAll(JS_HOOK_ACCORDION_DETAIL)].map(accordion => {
+      if(!accordion.querySelector('.filters__accordion-options--hidden')) {
+        return accordion.id
+      } else {
+        return false
+      }
+    })
     const selectedElementId = element?.id
     const hasKeyboardFocus = document.body.classList.contains(KEYBOARD_FOCUSED_CLASS)
 
@@ -183,6 +199,12 @@ class Filters {
     if (selectedElementId) this.element.querySelector<HTMLInputElement | HTMLButtonElement>(`#${selectedElementId}`)?.focus()
 
     if (hasKeyboardFocus) document.body.classList.add(KEYBOARD_FOCUSED_CLASS)
+
+    expandedAccordionsIds.forEach((expandedAccordionsId) => {
+      if(expandedAccordionsId) {
+        document.getElementById(expandedAccordionsId)?.querySelector(`.${CLASS_FILTERS_ACCORDION_OPTIONS}`)?.classList.remove(CLASS_FILTERS_ACCORDION_OPTIONS_HIDDEN)
+      }
+    })
 
     if (this.urlReplacement && shouldPushState) this.#updateUrlAndHistoryState()
   }

@@ -17,6 +17,7 @@ public class PardotEventForm : PardotForm
         {
             Id = Guid.NewGuid().ToString(),
             ActionUrl = "https://go.shl-medical.com/l/1046193/2024-10-30/my2k",
+            GtmAttributes = $"{{'event': 'register_event','option_clicked': '{eventDetails.EventTitle}'}}",
         };
     }
 }
