@@ -13,11 +13,15 @@ $hero-pdp-content-offset: 14.5%; // 1 col
     --hero-pdp-shape-start: 32%;
     --hero-pdp-shape-height: 280px;
     --hero-pdp-shape-width: 540px;
-    --hero-pdp-shape-minus-margin-top-height: -140px;
+    --hero-pdp-shape-minus-margin-top-height: -5vw;
   }
 
   @include screen-xl-and-bigger {
     --hero-pdp-shape-start: 32%;
+    --hero-pdp-shape-minus-margin-top-height: -12vw;
+  }
+
+  @include screen-xxl-and-bigger {
     --hero-pdp-shape-minus-margin-top-height: -280px;
   }
 }
@@ -63,9 +67,13 @@ $hero-pdp-content-offset: 14.5%; // 1 col
 
 .hero-pdp__description {
   @include body-l;
-  @include truncate-text(3);
+  @include truncate-text(6);
   margin-top: $spacing-24;
   max-width: 430px;
+
+  @include screen-lg-and-bigger {
+    @include truncate-text(8);
+  }
 }
 
 .hero-pdp__image-container {
@@ -121,14 +129,7 @@ $hero-pdp-content-offset: 14.5%; // 1 col
   position: relative;
   pointer-events: none;
   min-height: var(--hero-pdp-shape-height);
-
-  @include screen-md-and-bigger {
-    margin-top: calc(var(--hero-pdp-shape-minus-margin-top-height));
-  }
-
-  @include screen-lg-and-bigger {
-    margin-top: calc(var(--hero-pdp-shape-minus-margin-top-height));
-  }
+  margin-top: var(--hero-pdp-shape-minus-margin-top-height);
 }
 
 .hero-pdp__anchor-links-container {
