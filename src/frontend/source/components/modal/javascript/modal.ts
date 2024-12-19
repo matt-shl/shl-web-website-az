@@ -13,7 +13,7 @@ const MODAL_HTML_CLASS = 'is--modal-open'
 const MODAL_SCROLLING_CLASS = 'is--modal-scrolling'
 
 const NAVIGATION_MOBILE_ID = 'navigation-mobile'
-const VIDEO_MODAL_ID = 'modal-video-'
+const VIDEO_MODAL_CLASS = 'c-modal--size-video'
 
 export type ModalElement = HTMLElement & { _modalIsInitialised?: boolean }
 
@@ -171,9 +171,9 @@ class Modal {
     if (!modal || modal.isOpen) return
 
     // Play video in modal
-    if (data.id.indexOf(VIDEO_MODAL_ID) !== -1) {
+    if (modal.el.classList.contains(VIDEO_MODAL_CLASS)) {
       const videoPlayer = modal.el.querySelector('video')
-      if(videoPlayer) videoPlayer.play();
+      if (videoPlayer) videoPlayer.play()
     }
 
     const autoFocus = modal.el.dataset.modalAutoFocus === 'true'
@@ -242,9 +242,9 @@ class Modal {
     if (!modal || !modal.isOpen) return
 
     // Pause video in modal
-    if (data.id.indexOf(VIDEO_MODAL_ID) !== -1) {
+    if (modal.el.classList.contains(VIDEO_MODAL_CLASS)) {
       const videoPlayer = modal.el.querySelector('video')
-      if(videoPlayer) videoPlayer.pause();
+      if (videoPlayer) videoPlayer.pause()
     }
 
     // Remove modal open class off html element if noBodyClass is false
