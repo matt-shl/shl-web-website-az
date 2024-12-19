@@ -53,7 +53,7 @@ public class StackingCards
         return new StackingCards
         {
             Title = stackingCardsBlock?.Title!,
-            Description = stackingCardsBlock?.Description!,
+            Description = stackingCardsBlock?.Description?.ToHtmlString() ?? "",
             Cards = cards,
             ThemeOdd = themeOdd,
             ThemeEven = themeEven,

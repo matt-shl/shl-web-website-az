@@ -15,7 +15,7 @@ public class StackingCardItem
         return new StackingCardItem
         {
             Title = stackedCardBlock.Title!,
-            Description = stackedCardBlock.Description!,
+            Description = stackedCardBlock.Description?.ToHtmlString() ?? "",
             Image = Image.Create(stackedCardBlock.Image, style: "stacking-card")!,
         };
     }
