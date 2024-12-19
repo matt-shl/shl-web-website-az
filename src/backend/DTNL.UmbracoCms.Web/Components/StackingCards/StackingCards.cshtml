@@ -6,7 +6,7 @@
     <div class="stacking-cards__container">
         <div class="stacking-cards__content" js-hook-stacking-cards-content>
             <h2 class="stacking-cards__title" js-hook-stacking-cards-title>@Model.Title</h2>
-            <p class="stacking-cards__description" asp-if="@Model.Description" js-hook-stacking-cards-description>@Model.Description</p>
+            <div class="stacking-cards__description" asp-if="@Model.Description" js-hook-stacking-cards-description>@Html.Raw(Model.Description)</div>
         </div>
 
         <div class="stacking-cards__cards">
@@ -19,15 +19,14 @@
                     <div class="stacking-cards__card-container @themeClass">
                         <div class="stacking-cards__card-content">
                             <h3 class="stacking-cards__card-title">@card.Title</h3>
-                            <p class="stacking-cards__card-description">@card.Description</p>
+                            <div class="stacking-cards__card-description">@Html.Raw(card.Description)</div>
                         </div>
                         <div class="stacking-cards__card-image">
                             <partial name="Image" model="@(card.Image)" />
                         </div>
                     </div>
                 </div>
-            }
-            
+            }          
         </div>
     </div>
 
