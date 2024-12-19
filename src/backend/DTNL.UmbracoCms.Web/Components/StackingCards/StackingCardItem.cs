@@ -1,3 +1,4 @@
+using Umbraco.Cms.Core.Strings;
 using Umbraco.Cms.Web.Common.PublishedModels;
 
 namespace DTNL.UmbracoCms.Web.Components;
@@ -15,7 +16,7 @@ public class StackingCardItem
         return new StackingCardItem
         {
             Title = stackedCardBlock.Title!,
-            Description = stackedCardBlock.Description!,
+            Description = stackedCardBlock.Description?.ToHtmlString() ?? "",
             Image = Image.Create(stackedCardBlock.Image, style: "stacking-card")!,
         };
     }
