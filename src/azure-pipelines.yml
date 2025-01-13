@@ -7,6 +7,7 @@ trigger:
     - acceptance
     - develop
     - support
+    - test
     - release/*
 
 pr:
