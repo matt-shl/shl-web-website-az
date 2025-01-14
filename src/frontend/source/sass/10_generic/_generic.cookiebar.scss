@@ -1,0 +1,13 @@
+// stylelint-disable declaration-no-important
+
+#CybotCookiebotDialog {
+  @media screen and (max-width: em(767px)) {
+    transform: translate(-50%, 10%) !important;
+    max-height: 45% !important;
+  }
+
+  @media only screen and (max-width: em(767px)) and (max-height: em(800px)) {
+    transform: translate(-50%, -22%) !important;
+    max-height: 62% !important;
+  }
+}
