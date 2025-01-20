@@ -37,7 +37,7 @@ public class PardotDownloadForm : PardotForm
             { "Revolutionizing autoinjector assembly with SHL’s Semi-Modular Automatic Robot Track", "https://go.shl-medical.com/l/1046193/2024-12-13/qm1r" },
             { "SHL Medical's Elexy™: Redefining Possibilities", "https://go.shl-medical.com/l/1046193/2024-12-13/qlyy" },
             { "Empowering self-treatment to tackle cardiometabolic diseases", "https://go.shl-medical.com/l/1046193/2024-12-13/qll5" },
-            //{ "Automating high-mix, low-to-medium-volume autoinjector assembly", "https://xafsdfafdf" },
+            { "Automating high-mix, low-to-medium-volume autoinjector assembly", "https://go.shl-medical.com/l/1046193/2025-01-20/rrb8" },
 
             // Alliance partnerships - Thought leadership
             { "Developing large volume cartridge for Maggie 5.0","https://go.shl-medical.com/l/1046193/2025-01-17/rntc" },
