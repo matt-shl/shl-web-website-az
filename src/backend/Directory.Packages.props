@@ -33,7 +33,7 @@
     <PackageVersion Include="SmartAnalyzers.CSharpExtensions.Annotations" Version="4.2.9" />
     <PackageVersion Include="StyleCop.Analyzers.Unstable" Version="1.2.0.556" />
     <PackageVersion Include="System.Text.Json" Version="6.0.6" />
-    <PackageVersion Include="Umbraco.Cms" Version="13.5.2" />
+    <PackageVersion Include="Umbraco.Cms" Version="13.5.3" />
     <PackageVersion Include="Umbraco.Community.Contentment" Version="5.0.2" />
     <PackageVersion Include="Umbraco.Community.MediaColourFinder" Version="1.0.1" />
     <PackageVersion Include="Umbraco.StorageProviders.AzureBlob" Version="13.1.0" />
