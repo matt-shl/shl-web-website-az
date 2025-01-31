@@ -80,8 +80,20 @@ public abstract class OverviewFor<TOverviewPage, TPage, TFilters, TOverviewItem>
             bool sortAscending = selectedSortingOption.Label ==
                                  CultureDictionary.GetTranslation(TranslationAliases.Common.Filters.SortOldestFirst);
 
-            pages.Sort((x, y) => sortAscending ? DateTime.Compare(y.CreateDate, x.CreateDate) : DateTime.Compare(x.CreateDate, y.CreateDate));
+            pages.Sort((x, y) => sortAscending
+                                    ? DateTime.Compare(GetPageDate(x), GetPageDate(y))
+                                    : DateTime.Compare(GetPageDate(y), GetPageDate(x)));
         }
+    }
+
+    protected DateTime GetPageDate(TPage page)
+    {
+        if (page is PageNews newsPage)
+        {
+            return newsPage.Date;
+        }
+
+        return page.CreateDate;
     }
 
     protected abstract Filters? GetFilters(TFilters? filters, List<TPage> pages);
