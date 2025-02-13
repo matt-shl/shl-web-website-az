@@ -75,25 +75,32 @@ public abstract class OverviewFor<TOverviewPage, TPage, TFilters, TOverviewItem>
     {
         filters?.AddSortingOptions(HttpContext, CultureDictionary);
 
+        // Default to sort on newest first
+        bool sortAscending = false;
+
         if (filters?.Sorting?.FirstOrDefault(s => s.IsSelected) is { } selectedSortingOption)
         {
-            bool sortAscending = selectedSortingOption.Label ==
-                                 CultureDictionary.GetTranslation(TranslationAliases.Common.Filters.SortOldestFirst);
+            sortAscending = selectedSortingOption.Label ==
+                                CultureDictionary.GetTranslation(TranslationAliases.Common.Filters.SortOldestFirst);
+        }
 
-            pages.Sort((x, y) => sortAscending
+        pages.Sort((x, y) => sortAscending
                                     ? DateTime.Compare(GetPageDate(x), GetPageDate(y))
                                     : DateTime.Compare(GetPageDate(y), GetPageDate(x)));
-        }
     }
 
     protected DateTime GetPageDate(TPage page)
     {
         if (page is PageNews newsPage)
         {
-            return newsPage.Date;
+            // Does the field have a value, if not then set it on min value so it ends up latest because we sort on newest
+            return newsPage.Date == DateTime.MinValue ? DateTime.MinValue : newsPage.Date;
         }
 
+        // ProductPage doesn't have a date field so keep it on using the created date
         return page.CreateDate;
+
+
     }
 
     protected abstract Filters? GetFilters(TFilters? filters, List<TPage> pages);
