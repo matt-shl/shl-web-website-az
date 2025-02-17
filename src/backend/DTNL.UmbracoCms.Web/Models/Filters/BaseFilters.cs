@@ -27,7 +27,7 @@ public abstract class BaseFilters : Dictionary<string, FilterOption[]>
     public void AddSortingOptions(HttpContext httpContext, ICultureDictionary cultureDictionary)
     {
         Sorting = GetAllFilterOptions(
-            "Sort",
+            FilterConstants.Sort,
             [
                 cultureDictionary.GetTranslation(TranslationAliases.Common.Filters.SortNewestFirst),
                 cultureDictionary.GetTranslation(TranslationAliases.Common.Filters.SortOldestFirst),
