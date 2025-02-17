@@ -76,31 +76,45 @@ public abstract class OverviewFor<TOverviewPage, TPage, TFilters, TOverviewItem>
         filters?.AddSortingOptions(HttpContext, CultureDictionary);
 
         // Default to sort on newest first
-        bool sortAscending = false;
+        bool orderIsAsc = false;
 
         if (filters?.Sorting?.FirstOrDefault(s => s.IsSelected) is { } selectedSortingOption)
         {
-            sortAscending = selectedSortingOption.Label ==
+            orderIsAsc = selectedSortingOption.Label ==
                                 CultureDictionary.GetTranslation(TranslationAliases.Common.Filters.SortOldestFirst);
         }
 
-        pages.Sort((x, y) => sortAscending
-                                    ? DateTime.Compare(GetPageDate(x), GetPageDate(y))
-                                    : DateTime.Compare(GetPageDate(y), GetPageDate(x)));
+        pages.Sort((x, y) => orderIsAsc
+                                    ? DateTime.Compare(GetPageDate(x, orderIsAsc), GetPageDate(y, orderIsAsc))      // Oldest first
+                                    : DateTime.Compare(GetPageDate(y, orderIsAsc), GetPageDate(x, orderIsAsc)));    // Newest first
     }
 
-    protected DateTime GetPageDate(TPage page)
+    protected DateTime GetPageDate(TPage page, bool orderIsAsc)
     {
-        if (page is PageNews newsPage)
+        // Get the datetime from the doctype
+        DateTime? date = page switch
         {
-            // Does the field have a value, if not then set it on min value so it ends up latest because we sort on newest
-            return newsPage.Date == DateTime.MinValue ? DateTime.MinValue : newsPage.Date;
+            PageNews newsPage => newsPage.Date,
+            PageEvent eventPage => eventPage.Date,
+            PagePublication publicationPage => publicationPage.Date,
+            _ => null,
+        };
+
+        // We always want the items without a date at the end of the sorting, so we need to change the default based on the order
+        DateTime defaultDateTimeValue = orderIsAsc
+                                    ? DateTime.MaxValue
+                                    : DateTime.MinValue;
+
+        if (date != null && date.HasValue)
+        {
+            // Check if the Date field is set, otherwise use DateTime.MinValue
+            return date.Value == DateTime.MinValue
+                                    ? defaultDateTimeValue
+                                    : date.Value;
         }
 
-        // ProductPage doesn't have a date field so keep it on using the created date
+        // Fallback 
         return page.CreateDate;
-
-
     }
 
     protected abstract Filters? GetFilters(TFilters? filters, List<TPage> pages);
