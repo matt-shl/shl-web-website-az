@@ -76,17 +76,17 @@ public abstract class OverviewFor<TOverviewPage, TPage, TFilters, TOverviewItem>
         filters?.AddSortingOptions(HttpContext, CultureDictionary);
 
         // Default to sort on newest first
-        bool orderIsAsc = false;
+        bool sortAscending = false;
 
         if (filters?.Sorting?.FirstOrDefault(s => s.IsSelected) is { } selectedSortingOption)
         {
-            orderIsAsc = selectedSortingOption.Label ==
+            sortAscending = selectedSortingOption.Label ==
                                 CultureDictionary.GetTranslation(TranslationAliases.Common.Filters.SortOldestFirst);
         }
 
-        pages.Sort((x, y) => orderIsAsc
-                                    ? DateTime.Compare(GetPageDate(x, orderIsAsc), GetPageDate(y, orderIsAsc))      // Oldest first
-                                    : DateTime.Compare(GetPageDate(y, orderIsAsc), GetPageDate(x, orderIsAsc)));    // Newest first
+        pages.Sort((x, y) => sortAscending
+                                    ? DateTime.Compare(GetPageDate(x, sortAscending), GetPageDate(y, sortAscending))      // Oldest first
+                                    : DateTime.Compare(GetPageDate(y, sortAscending), GetPageDate(x, sortAscending)));    // Newest first
     }
 
     protected DateTime GetPageDate(TPage page, bool orderIsAsc)
