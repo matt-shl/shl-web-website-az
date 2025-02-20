@@ -75,13 +75,46 @@ public abstract class OverviewFor<TOverviewPage, TPage, TFilters, TOverviewItem>
     {
         filters?.AddSortingOptions(HttpContext, CultureDictionary);
 
+        // Default to sort on newest first
+        bool sortAscending = false;
+
         if (filters?.Sorting?.FirstOrDefault(s => s.IsSelected) is { } selectedSortingOption)
         {
-            bool sortAscending = selectedSortingOption.Label ==
-                                 CultureDictionary.GetTranslation(TranslationAliases.Common.Filters.SortOldestFirst);
-
-            pages.Sort((x, y) => sortAscending ? DateTime.Compare(y.CreateDate, x.CreateDate) : DateTime.Compare(x.CreateDate, y.CreateDate));
+            sortAscending = selectedSortingOption.Label ==
+                                CultureDictionary.GetTranslation(TranslationAliases.Common.Filters.SortOldestFirst);
         }
+
+        pages.Sort((x, y) => sortAscending
+                                    ? DateTime.Compare(GetPageDate(x, sortAscending), GetPageDate(y, sortAscending))      // Oldest first
+                                    : DateTime.Compare(GetPageDate(y, sortAscending), GetPageDate(x, sortAscending)));    // Newest first
+    }
+
+    protected DateTime GetPageDate(TPage page, bool orderIsAsc)
+    {
+        // Get the datetime from the doctype
+        DateTime? date = page switch
+        {
+            PageNews newsPage => newsPage.Date,
+            PageEvent eventPage => eventPage.Date,
+            PagePublication publicationPage => publicationPage.Date,
+            _ => null,
+        };
+
+        // We always want the items without a date at the end of the sorting, so we need to change the default based on the order
+        DateTime defaultDateTimeValue = orderIsAsc
+                                    ? DateTime.MaxValue
+                                    : DateTime.MinValue;
+
+        if (date != null && date.HasValue)
+        {
+            // Check if the Date field is set, otherwise use DateTime.MinValue
+            return date.Value == DateTime.MinValue
+                                    ? defaultDateTimeValue
+                                    : date.Value;
+        }
+
+        // Fallback 
+        return page.CreateDate;
     }
 
     protected abstract Filters? GetFilters(TFilters? filters, List<TPage> pages);
