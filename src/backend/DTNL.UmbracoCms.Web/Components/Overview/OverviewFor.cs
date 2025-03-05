@@ -109,10 +109,10 @@ public abstract class OverviewFor<TOverviewPage, TPage, TFilters, TOverviewItem>
         // Enable if there is no querystring and the page matches
         if (string.IsNullOrEmpty(sortQueryValue) && isFirstSortOptionSelected)
         {
-            FilterOption? a = filters?.Sorting?.FirstOrDefault();
-            if (a != null)
+            FilterOption? firstFilterOption = filters?.Sorting?.FirstOrDefault();
+            if (firstFilterOption != null)
             {
-                a.IsSelected = true;
+                firstFilterOption.IsSelected = true;
             }
         }
     }
