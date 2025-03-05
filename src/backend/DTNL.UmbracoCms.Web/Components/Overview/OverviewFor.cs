@@ -75,6 +75,8 @@ public abstract class OverviewFor<TOverviewPage, TPage, TFilters, TOverviewItem>
     {
         filters?.AddSortingOptions(HttpContext, CultureDictionary);
 
+        MarkFirstSortOption(filters, pages);
+
         // Default to sort on newest first
         bool sortAscending = false;
 
@@ -87,6 +89,27 @@ public abstract class OverviewFor<TOverviewPage, TPage, TFilters, TOverviewItem>
         pages.Sort((x, y) => sortAscending
                                     ? DateTime.Compare(GetPageDate(x, sortAscending), GetPageDate(y, sortAscending))      // Oldest first
                                     : DateTime.Compare(GetPageDate(y, sortAscending), GetPageDate(x, sortAscending)));    // Newest first
+    }
+
+    protected void MarkFirstSortOption(TFilters? filters, List<TPage> pages)
+    {
+        bool isFirstSortOptionSelected = pages.FirstOrDefault() switch
+        {
+            PageNews newsPage => true,
+            PageEvent eventPage => true,
+            PagePublication publicationPage => true,
+            PageVacancy vacancyPage => true,
+            _ => false,
+        };
+
+        if (isFirstSortOptionSelected)
+        {
+            FilterOption? a = filters?.Sorting?.FirstOrDefault();
+            if (a != null)
+            {
+                a.IsSelected = true;
+            }
+        }
     }
 
     protected DateTime GetPageDate(TPage page, bool orderIsAsc)
