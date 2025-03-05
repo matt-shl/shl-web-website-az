@@ -93,6 +93,7 @@ public abstract class OverviewFor<TOverviewPage, TPage, TFilters, TOverviewItem>
 
     protected void MarkFirstSortOption(TFilters? filters, List<TPage> pages)
     {
+        // Should check only for specific pages
         bool isFirstSortOptionSelected = pages.FirstOrDefault() switch
         {
             PageNews newsPage => true,
@@ -102,7 +103,11 @@ public abstract class OverviewFor<TOverviewPage, TPage, TFilters, TOverviewItem>
             _ => false,
         };
 
-        if (isFirstSortOptionSelected)
+        // Check if there is a querystring
+        string? sortQueryValue = Request.Query[FilterConstants.Sort];
+
+        // Enable if there is no querystring and the page matches
+        if (string.IsNullOrEmpty(sortQueryValue) && isFirstSortOptionSelected)
         {
             FilterOption? a = filters?.Sorting?.FirstOrDefault();
             if (a != null)
@@ -120,6 +125,7 @@ public abstract class OverviewFor<TOverviewPage, TPage, TFilters, TOverviewItem>
             PageNews newsPage => newsPage.Date,
             PageEvent eventPage => eventPage.Date,
             PagePublication publicationPage => publicationPage.Date,
+            PageVacancy vacancyPage => vacancyPage.LastUpdatedAt.Date,
             _ => null,
         };
 
@@ -136,7 +142,7 @@ public abstract class OverviewFor<TOverviewPage, TPage, TFilters, TOverviewItem>
                                     : date.Value;
         }
 
-        // Fallback 
+        // Fallback
         return page.CreateDate;
     }
 
