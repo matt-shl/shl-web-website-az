@@ -35,14 +35,14 @@ public class OverviewVacancies : OverviewFor<PageVacancyOverview, PageVacancy, V
 
     protected override VacancyFilters ApplyFilters(List<PageVacancy> pages)
     {
-        VacancyFilters contentFilters = new(OverviewPage, Request.Query);
+        VacancyFilters vacancyFilters = new(OverviewPage, Request.Query);
 
-        contentFilters.AddFilterOptions(VacancyFilters.FilterFields, pages, HttpContext);
+        vacancyFilters.AddFilterOptions(VacancyFilters.FilterFields, pages, HttpContext);
 
         foreach ((string name, Func<PageVacancy, IEnumerable<string>?> getValues)
                  in VacancyFilters.FilterFields)
         {
-            if (!contentFilters.TryGetValue(name, out FilterOption[]? filterOptions) ||
+            if (!vacancyFilters.TryGetValue(name, out FilterOption[]? filterOptions) ||
                 !FilterOption.AnySelected(filterOptions))
             {
                 continue;
@@ -51,9 +51,9 @@ public class OverviewVacancies : OverviewFor<PageVacancyOverview, PageVacancy, V
             pages.RemoveAll(page => !FilterOption.AnySelectedValueIn(filterOptions, getValues(page)));
         }
 
-        GetAndApplySorting(contentFilters, pages);
+        GetAndApplySorting(vacancyFilters, pages);
 
-        return contentFilters;
+        return vacancyFilters;
     }
 
     protected override Filters? GetFilters(VacancyFilters? filters, List<PageVacancy> pages)
