@@ -75,6 +75,8 @@ public abstract class OverviewFor<TOverviewPage, TPage, TFilters, TOverviewItem>
     {
         filters?.AddSortingOptions(HttpContext, CultureDictionary);
 
+        MarkFirstSortOption(filters, pages);
+
         // Default to sort on newest first
         bool sortAscending = false;
 
@@ -89,6 +91,32 @@ public abstract class OverviewFor<TOverviewPage, TPage, TFilters, TOverviewItem>
                                     : DateTime.Compare(GetPageDate(y, sortAscending), GetPageDate(x, sortAscending)));    // Newest first
     }
 
+    protected void MarkFirstSortOption(TFilters? filters, List<TPage> pages)
+    {
+        // Should check only for specific pages
+        bool isFirstSortOptionSelected = pages.FirstOrDefault() switch
+        {
+            PageNews newsPage => true,
+            PageEvent eventPage => true,
+            PagePublication publicationPage => true,
+            PageVacancy vacancyPage => true,
+            _ => false,
+        };
+
+        // Check if there is a querystring
+        string? sortQueryValue = Request.Query[FilterConstants.Sort];
+
+        // Enable if there is no querystring and the page matches
+        if (string.IsNullOrEmpty(sortQueryValue) && isFirstSortOptionSelected)
+        {
+            FilterOption? firstFilterOption = filters?.Sorting?.FirstOrDefault();
+            if (firstFilterOption != null)
+            {
+                firstFilterOption.IsSelected = true;
+            }
+        }
+    }
+
     protected DateTime GetPageDate(TPage page, bool orderIsAsc)
     {
         // Get the datetime from the doctype
@@ -97,6 +125,7 @@ public abstract class OverviewFor<TOverviewPage, TPage, TFilters, TOverviewItem>
             PageNews newsPage => newsPage.Date,
             PageEvent eventPage => eventPage.Date,
             PagePublication publicationPage => publicationPage.Date,
+            PageVacancy vacancyPage => vacancyPage.LastUpdatedAt.Date,
             _ => null,
         };
 
@@ -113,7 +142,7 @@ public abstract class OverviewFor<TOverviewPage, TPage, TFilters, TOverviewItem>
                                     : date.Value;
         }
 
-        // Fallback 
+        // Fallback
         return page.CreateDate;
     }
 
