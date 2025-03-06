@@ -98,6 +98,11 @@
     opacity: 1;
   }
 
+  .card-icon__icon svg {
+    width: 120px;
+    filter: saturate(0%) brightness(200%) contrast(100%);
+}
+
   @supports not (container-type: inline-size) {
     @include body-m;
   }
