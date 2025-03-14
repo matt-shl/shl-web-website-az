@@ -14,17 +14,6 @@ namespace DTNL.UmbracoCms.Web.Components;
 
 public interface IOverviewItem : IPartialViewPath;
 
-public interface IJobListItem
-{
-    public string Url { get; set; }
-
-    public string Title { get; set; }
-
-    public string Location { get; set; }
-
-    public List<string> Tags { get; set; }
-}
-
 public abstract class OverviewFor<TOverviewPage, TPage, TFilters, TOverviewItem> : Overview
     where TOverviewPage : ICompositionBasePage, ICompositionNoResults
     where TPage : ICompositionBasePage

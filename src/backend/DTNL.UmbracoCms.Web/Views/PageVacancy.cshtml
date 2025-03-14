@@ -1,5 +1,9 @@
 @inherits UmbracoViewPage<PageVacancy>
 
+@{
+    PageVacancyOverview? overviewPage = Model.Parent as PageVacancyOverview;
+}
+
 <partial name="LayoutSection"
          model="@(new Components.LayoutSection { CssThemeClasses = "t-white", })">
     <partial name="RichText" model="@(Components.RichText.Create(Model, CultureDictionary.GetTranslation(TranslationAliases.Vacancies.Apply)))" />
@@ -7,10 +11,10 @@
 
 <partial name="_BlockList" model="Model.ContentBlocks" />
 
-<partial name="_BlockList" model="@(Model.Parent as PageVacancyOverview)?.VacanciesContentBlocks" />
+<partial name="_BlockList" model="@overviewPage?.VacanciesContentBlocks" />
 
 <partial name="LayoutSection"
-         model="@(new Components.LayoutSection { Variant = "c-section-job-vacancies", })">
+         model="@(new Components.LayoutSection { Variant = "c-section-job-vacancies", CssThemeClasses = ThemeHelper.GetCssClasses(Model.RelatedVacanciesTheme ?? overviewPage.RelatedVacanciesTheme) })">
     <vc:job-vacancies page="@Model" />
 </partial>
 
