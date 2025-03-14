@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Core.PropertyEditors.ValueConverters;
 using Umbraco.Cms.Web.Common.PublishedModels;
@@ -16,8 +17,9 @@ public static class ThemeHelper
         return GetCssClasses((page as IPageTheme)?.PageTheme, "light-blue");
     }
 
-    public static string GetCssClasses(ColorPickerValueConverter.PickedColor? theme, string fallBackTheme)
+    [return: NotNullIfNotNull(nameof(fallBackTheme))]
+    public static string? GetCssClasses(ColorPickerValueConverter.PickedColor? theme, string? fallBackTheme = null)
     {
-        return (theme?.Label ?? fallBackTheme).EnsureStartsWith("t-");
+        return (theme?.Label ?? fallBackTheme)?.EnsureStartsWith("t-");
     }
 }

@@ -1,3 +1,4 @@
+using DTNL.UmbracoCms.Web.Helpers;
 using DTNL.UmbracoCms.Web.Helpers.Aliases;
 using DTNL.UmbracoCms.Web.Helpers.Extensions;
 using DTNL.UmbracoCms.Web.Models.Filters;
@@ -16,7 +17,7 @@ public class OverviewVacancies : OverviewFor<PageVacancyOverview, PageVacancy, V
 
     public override LayoutSection LayoutSection => new()
     {
-        CssClasses = "t-white",
+        CssThemeClasses = ThemeHelper.GetCssClasses(OverviewPage.VacanciesOverviewTheme),
         Variant = "grid-single-column",
         ReduceMargin = "top-bottom",
         Id = "content",

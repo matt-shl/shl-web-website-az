@@ -50,6 +50,14 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		// properties
 
 		///<summary>
+		/// Vacancies Overview Theme
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.3+2161edb")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("vacanciesOverviewTheme")]
+		public virtual global::Umbraco.Cms.Core.PropertyEditors.ValueConverters.ColorPickerValueConverter.PickedColor VacanciesOverviewTheme => this.Value<global::Umbraco.Cms.Core.PropertyEditors.ValueConverters.ColorPickerValueConverter.PickedColor>(_publishedValueFallback, "vacanciesOverviewTheme");
+
+		///<summary>
 		/// Slogan
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.3+2161edb")]
@@ -260,6 +268,14 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("disableSocialShare")]
 		public virtual global::System.Collections.Generic.IEnumerable<string> DisableSocialShare => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionSocialSharingOptions.GetDisableSocialShare(this, _publishedValueFallback);
+
+		///<summary>
+		/// Related Vacancies Theme
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.3+2161edb")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("relatedVacanciesTheme")]
+		public virtual global::Umbraco.Cms.Core.PropertyEditors.ValueConverters.ColorPickerValueConverter.PickedColor RelatedVacanciesTheme => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionVacanciesSettings.GetRelatedVacanciesTheme(this, _publishedValueFallback);
 
 		///<summary>
 		/// Content Blocks
