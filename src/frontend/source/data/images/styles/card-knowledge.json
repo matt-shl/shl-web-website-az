@@ -1,12 +1,12 @@
 {
   "breakpoints": {
-    "mobile": [343, 257],
-    "mobilePlus": [343, 257],
-    "tabletPortrait": [433, 244],
-    "tabletLandscape": [433, 244],
-    "laptop": [433, 244],
-    "desktop": [433, 244],
-    "widescreen": [433, 244],
-    "4k": [433, 244]
+    "mobile": [343, "auto"],
+    "mobilePlus": [343, "auto"],
+    "tabletPortrait": [432, "auto"],
+    "tabletLandscape": [432, "auto"],
+    "laptop": [432, "auto"],
+    "desktop": [432, "auto"],
+    "widescreen": [432, "auto"],
+    "4k": [432, "auto"]
   }
 }
