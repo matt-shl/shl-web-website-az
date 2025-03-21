@@ -31,7 +31,7 @@
 
   .c-image[js-hook-objectfit] img {
     aspect-ratio: 16 / 9;
-    object-fit: unset;
+    object-fit: contain;
   }
 }
 
