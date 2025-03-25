@@ -11,6 +11,7 @@
   if($include-font-size) {
     @include fluid-type($font-size-d1, $font-size-d1-mobile);
   }
+
   @include fluid-type($font-letter-spacing-d1, $font-letter-spacing-d1-mobile, letter-spacing);
   @include common-heading-styles($font-line-height-d1, true);
 }
