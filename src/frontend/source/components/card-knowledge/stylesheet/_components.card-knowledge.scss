@@ -19,7 +19,7 @@
   margin-bottom: $spacing-16;
   border-radius: $radii-12;
   overflow: hidden;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 40 / 21;
 
   .c-tag {
     @include body-s;
@@ -30,8 +30,7 @@
   }
 
   .c-image[js-hook-objectfit] img {
-    aspect-ratio: 16 / 9;
-    object-fit: contain;
+    aspect-ratio: 40 / 21;
   }
 }
 
