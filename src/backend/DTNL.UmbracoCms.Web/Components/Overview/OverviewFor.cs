@@ -125,7 +125,7 @@ public abstract class OverviewFor<TOverviewPage, TPage, TFilters, TOverviewItem>
             PageNews newsPage => newsPage.Date,
             PageEvent eventPage => eventPage.Date,
             PagePublication publicationPage => publicationPage.Date,
-            PageVacancy vacancyPage => vacancyPage.LastUpdatedAt.Date,
+            PageVacancy vacancyPage => vacancyPage.Date,
             _ => null,
         };
 
