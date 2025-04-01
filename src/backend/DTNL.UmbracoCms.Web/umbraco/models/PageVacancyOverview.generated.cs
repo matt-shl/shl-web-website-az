@@ -52,7 +52,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		///<summary>
 		/// Vacancies Overview Theme
 		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.3+2161edb")]
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("vacanciesOverviewTheme")]
 		public virtual global::Umbraco.Cms.Core.PropertyEditors.ValueConverters.ColorPickerValueConverter.PickedColor VacanciesOverviewTheme => this.Value<global::Umbraco.Cms.Core.PropertyEditors.ValueConverters.ColorPickerValueConverter.PickedColor>(_publishedValueFallback, "vacanciesOverviewTheme");
@@ -272,7 +272,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		///<summary>
 		/// Related Vacancies Theme
 		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.5.3+2161edb")]
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("relatedVacanciesTheme")]
 		public virtual global::Umbraco.Cms.Core.PropertyEditors.ValueConverters.ColorPickerValueConverter.PickedColor RelatedVacanciesTheme => global::Umbraco.Cms.Web.Common.PublishedModels.CompositionVacanciesSettings.GetRelatedVacanciesTheme(this, _publishedValueFallback);
