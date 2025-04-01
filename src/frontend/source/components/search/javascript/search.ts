@@ -33,9 +33,9 @@ class Search {
 
     this.form?.addEventListener('submit', () => {
       if (this.isJobSearch) {
-        const location = this.form?.querySelector<HTMLSelectElement>('select[name="Country"]')?.value
+        const location = this.form?.querySelector<HTMLSelectElement>('select[name="Location"]')?.value
         const seniority = this.form?.querySelector<HTMLSelectElement>('select[name="JobLevel"]')?.value
-        const employment = this.form?.querySelector<HTMLSelectElement>('select[name="ContractType"]')?.value
+        const employment = this.form?.querySelector<HTMLSelectElement>('select[name="Function"]')?.value
 
         Events.$trigger('gtm::push', {
           data: {
