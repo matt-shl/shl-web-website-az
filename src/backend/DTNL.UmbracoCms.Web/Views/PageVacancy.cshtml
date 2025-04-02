@@ -14,7 +14,7 @@
 <partial name="_BlockList" model="@overviewPage?.VacanciesContentBlocks" />
 
 <partial name="LayoutSection"
-         model="@(new Components.LayoutSection { Variant = "c-section-job-vacancies", CssThemeClasses = ThemeHelper.GetCssClasses(Model.RelatedVacanciesTheme ?? overviewPage.RelatedVacanciesTheme) })">
+         model="@(new Components.LayoutSection { Variant = "c-section-job-vacancies", CssThemeClasses = ThemeHelper.GetCssClasses(Model.RelatedVacanciesTheme ?? overviewPage?.RelatedVacanciesTheme) })">
     <vc:job-vacancies page="@Model" />
 </partial>
 
