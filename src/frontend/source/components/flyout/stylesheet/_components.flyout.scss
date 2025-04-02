@@ -121,10 +121,17 @@
 }
 
 .flyout__subitem-anchor {
+  @include link--base;
   @include body-m;
   color: $color-dark-blue;
   display: inline-block;
   padding: $spacing-8 $spacing-16;
+  font-weight: $font-weight-regular;
+  text-decoration-color: $color-white;
+
+  @include hover-focus {
+    text-decoration-color: currentcolor;
+  }
 }
 
 .flyout__subitem-all {
