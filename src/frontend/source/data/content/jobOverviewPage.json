@@ -6,9 +6,28 @@
       "searchType": "job",
       "searchOptions": [
         {
+          "label": "Function",
+          "id": "Function",
+          "name": "Function",
+          "options": [
+            {
+              "label": "All functions",
+              "value": ""
+            },
+            {
+              "label": "function 1",
+              "value": "function-1"
+            },
+            {
+              "label": "function 2",
+              "value": "function-2"
+            }
+          ]
+        },
+        {
           "label": "Location",
-          "id": "Country",
-          "name": "Country",
+          "id": "Location",
+          "name": "Location",
           "options": [
             {
               "label": "All locations",
@@ -44,25 +63,6 @@
             {
               "label": "Junior",
               "value": "junior"
-            }
-          ]
-        },
-        {
-          "label": "Employment type",
-          "id": "ContractType",
-          "name": "ContractType",
-          "options": [
-            {
-              "label": "All employment types",
-              "value": ""
-            },
-            {
-              "label": "Full-time",
-              "value": "full-time"
-            },
-            {
-              "label": "Part-time",
-              "value": "part-time"
             }
           ]
         }
