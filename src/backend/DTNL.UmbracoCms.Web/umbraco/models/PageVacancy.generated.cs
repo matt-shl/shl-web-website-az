@@ -56,6 +56,13 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[ImplementPropertyType("date")]
 		public virtual global::System.DateTime Date => this.Value<global::System.DateTime>(_publishedValueFallback, "date");
 
+		/// Related Vacancies Theme
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("relatedVacanciesTheme")]
+		public virtual global::Umbraco.Cms.Core.PropertyEditors.ValueConverters.ColorPickerValueConverter.PickedColor RelatedVacanciesTheme => this.Value<global::Umbraco.Cms.Core.PropertyEditors.ValueConverters.ColorPickerValueConverter.PickedColor>(_publishedValueFallback, "relatedVacanciesTheme");
+
 		///<summary>
 		/// Slogan
 		///</summary>

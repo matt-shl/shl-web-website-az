@@ -1,9 +1,28 @@
 .c-slogan {
-  @include d1;
+  @include d1(false);
   overflow: hidden;
   width: 100%;
   display: flex;
   margin-block: $spacing-40 $spacing-32;
+
+  // Settled on these font sizes with Matthew, please keep as is.
+  font-size: 2.8rem;
+
+  @include screen-md-and-bigger {
+    font-size: 3.2rem;
+  }
+
+  @include screen-lg-and-bigger {
+    font-size: 4rem;
+  }
+
+  @include screen-xl-and-bigger {
+    font-size: 6rem;
+  }
+
+  @include screen-xxl-and-bigger {
+    font-size: 8rem;
+  }
 
   &--in-hero {
     @include component-overlap;
