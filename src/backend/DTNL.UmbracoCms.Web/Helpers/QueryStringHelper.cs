@@ -54,13 +54,6 @@ public static class QueryStringHelper
 
         string? filterValue = httpContext.Request.Query[filterKey];
 
-        // Enabled the radiobutton "sort on newest" by default
-        // TODO: Do this only for specific templates. Passing the page or boolean?
-        if (filterKey == FilterConstants.Sort && string.IsNullOrEmpty(filterValue))
-        {
-            return [FilterOption.Create("newest-first", isSelected: true)];
-        }
-
         return (filterValue?.Split(','))
             .OrEmptyIfNull()
             .NotNullOrWhiteSpace()

@@ -52,15 +52,7 @@ public class OverviewVacancies : OverviewFor<PageVacancyOverview, PageVacancy, V
             pages.RemoveAll(page => !FilterOption.AnySelectedValueIn(filterOptions, getValues(page)));
         }
 
-        vacancyFilters.AddSortingOptions(HttpContext, CultureDictionary);
-
-        if (vacancyFilters.Sorting?.FirstOrDefault(s => s.IsSelected) is { } selectedSortingOption)
-        {
-            bool sortAscending = selectedSortingOption.Label ==
-                                 CultureDictionary.GetTranslation(TranslationAliases.Common.Filters.SortOldestFirst);
-
-            pages.Sort((x, y) => sortAscending ? DateTime.Compare(y.CreateDate, x.CreateDate) : DateTime.Compare(x.CreateDate, y.CreateDate));
-        }
+        GetAndApplySorting(vacancyFilters, pages);
 
         return vacancyFilters;
     }
