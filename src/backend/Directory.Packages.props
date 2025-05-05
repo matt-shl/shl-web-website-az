@@ -28,16 +28,16 @@
     <PackageVersion Include="Serilog.Exceptions.SqlServer" Version="8.4.0" />
     <PackageVersion Include="Serilog.Sinks.ApplicationInsights" Version="4.0.0" />
     <PackageVersion Include="SimpleMvcSitemap.Core" Version="4.3.0" />
-    <PackageVersion Include="Skybrud.Umbraco.Redirects" Version="13.0.7" />
-    <PackageVersion Include="Skybrud.Umbraco.Redirects.Import" Version="13.0.0" />
+    <PackageVersion Include="Skybrud.Umbraco.Redirects" Version="13.0.8" />
+    <PackageVersion Include="Skybrud.Umbraco.Redirects.Import" Version="13.0.1" />
     <PackageVersion Include="SmartAnalyzers.CSharpExtensions.Annotations" Version="4.2.9" />
     <PackageVersion Include="StyleCop.Analyzers.Unstable" Version="1.2.0.556" />
     <PackageVersion Include="System.Text.Json" Version="6.0.6" />
-    <PackageVersion Include="Umbraco.Cms" Version="13.7.2" />
+    <PackageVersion Include="Umbraco.Cms" Version="13.8.0" />
     <PackageVersion Include="Umbraco.Community.Contentment" Version="5.0.2" />
-    <PackageVersion Include="Umbraco.Community.MediaColourFinder" Version="1.0.1" />
+    <PackageVersion Include="Umbraco.Community.MediaColourFinder" Version="1.0.2" />
     <PackageVersion Include="Umbraco.StorageProviders.AzureBlob" Version="13.1.0" />
     <PackageVersion Include="Umbraco.StorageProviders.AzureBlob.ImageSharp" Version="13.1.0" />
-    <PackageVersion Include="uSync" Version="13.2.6" />
+    <PackageVersion Include="uSync" Version="13.2.7" />
   </ItemGroup>
 </Project>
