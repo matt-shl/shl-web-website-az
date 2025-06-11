@@ -1,0 +1,263 @@
+trigger:
+  branches:
+    include:
+    - main
+    - develop
+pr:
+  branches:
+    include:
+    - '*' 
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+- group: Terraform
+- name: TFENV_INSTALL_PATH
+  value: /tmp/ 
+
+stages:
+  - stage: plan
+    displayName: 'Terraform plan'
+    jobs:
+    - job: 'Plan'
+      steps:
+      ###
+      # Install correct Terraform version
+      ###
+      - script: echo "##vso[task.setvariable variable=terraform_version]$(cat $(Build.Repository.LocalPath)/.terraform-version)"
+        displayName: Get terraform version from .terraform-version
+
+      - script: |
+          git clone --depth=1 https://github.com/tfutils/tfenv.git ${{ variables.TFENV_INSTALL_PATH }}/.tfenv
+        displayName: Install TFEnv
+
+      # - task: SonarCloudPrepare@1
+      #   displayName: Prepare Sonarcloud
+      #   inputs:
+      #     SonarCloud: 'Sonarcloud'
+      #     organization: '$(SONARCLOUD_ORG)'
+      #     scannerMode: 'CLI'
+      #     configMode: 'manual'
+      #     cliProjectKey: '$(SONARCLOUD_PROJECT)'
+      #     cliProjectName: '$(SONARCLOUD_PROJECT)'
+      #     cliSources: '.'
+
+      - task: Bash@3
+        displayName: Login to Terraform Cloud
+        inputs:
+          targetType: 'inline'
+          script: |
+            cat > ~/.terraformrc << EOL
+            credentials "app.terraform.io" {
+              token = "$(TF_CLOUD_TOKEN)"
+            }
+            EOL
+
+      ###
+      # Plan test
+      ###
+      - script: |
+          ${{ variables.TFENV_INSTALL_PATH }}/.tfenv/bin/terraform init
+        displayName: 'Terraform: init'
+        workingDirectory: 'envs/test'
+
+      - script: |
+          ${{ variables.TFENV_INSTALL_PATH }}/.tfenv/bin/terraform plan
+        displayName: 'Terraform: plan test'
+        workingDirectory: 'envs/test'
+      
+      ###
+      # Plan acc
+      ###
+      - script: |
+          /tmp/.tfenv/bin/terraform init
+        displayName: 'Terraform: init'
+        workingDirectory: 'envs/acc'
+
+      - script: |
+          /tmp/.tfenv/bin/terraform plan
+        displayName: 'Terraform: plan acc'
+        workingDirectory: 'envs/acc'
+
+      ###
+      # Plan prd
+      ###
+      - script: |
+          ${{ variables.TFENV_INSTALL_PATH }}/.tfenv/bin/terraform init
+        displayName: 'Terraform: init'
+        workingDirectory: 'envs/prd'
+
+      - script: |
+          ${{ variables.TFENV_INSTALL_PATH }}/.tfenv/bin/terraform plan
+        displayName: 'Terraform: plan prd'
+        workingDirectory: 'envs/prd'
+
+      # - task: SonarCloudAnalyze@1
+      #   displayName: Run Sonarcloud analyzer
+
+      - task: Bash@3
+        displayName: Logout from Terraform Cloud
+        inputs:
+          targetType: 'inline'
+          script: |
+            rm -rf ~/.terraformrc
+
+      - task: PublishPipelineArtifact@1
+        inputs:
+          targetPath: './'
+          artifact: 'drop'
+          publishLocation: 'pipeline'
+
+  - stage: deployTest
+    displayName: 'Deploy test'
+    condition: and(succeeded(), or(eq(variables['Build.SourceBranch'], 'refs/heads/main'), eq(variables['Build.SourceBranch'], 'refs/heads/develop')))
+    jobs:
+    - deployment: Deploy_Test
+      environment: 'Test'
+      strategy:
+        runOnce:
+          deploy:
+            steps:
+            ###
+            # Install correct Terraform version
+            ###
+            - script: 'cp -r $(Pipeline.Workspace)/drop/* ./ && cp -r $(Pipeline.Workspace)/drop/.terraform* ./'
+              displayName: Download artifact files
+
+            - script: echo "##vso[task.setvariable variable=terraform_version]$(cat $(Build.Repository.LocalPath)/.terraform-version)"
+              displayName: Get terraform version from .terraform-version
+
+            - script: |
+                git clone --depth=1 https://github.com/tfutils/tfenv.git ${{ variables.TFENV_INSTALL_PATH }}/.tfenv
+              displayName: Install TFEnv
+
+            - task: Bash@3
+              displayName: Login to Terraform Cloud
+              inputs:
+                targetType: 'inline'
+                script: |
+                  cat > ~/.terraformrc << EOL
+                  credentials "app.terraform.io" {
+                    token = "$(TF_CLOUD_TOKEN)"
+                  }
+                  EOL
+
+            - script: |
+                ${{ variables.TFENV_INSTALL_PATH }}/.tfenv/bin/terraform init
+              displayName: 'Terraform: init'
+              workingDirectory: 'envs/test'
+
+            - script: |
+                ${{ variables.TFENV_INSTALL_PATH }}/.tfenv/bin/terraform apply -auto-approve
+              displayName: 'Terraform: apply test'
+              workingDirectory: 'envs/test'
+
+            - task: Bash@3
+              displayName: Logout from Terraform Cloud
+              inputs:
+                targetType: 'inline'
+                script: |
+                  rm -rf ~/.terraformrc
+
+  - stage: deployAcc
+    displayName: 'Deploy acc'
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
+    jobs:
+    - deployment: Deploy_Acc
+      environment: 'Acceptance'
+      strategy:
+        runOnce:
+          deploy:
+            steps:
+            ###
+            # Install correct Terraform version
+            ###
+            - script: 'cp -r $(Pipeline.Workspace)/drop/* ./ && cp -r $(Pipeline.Workspace)/drop/.terraform* ./'
+              displayName: Download artifact files
+
+            - script: echo "##vso[task.setvariable variable=terraform_version]$(cat $(Build.Repository.LocalPath)/.terraform-version)"
+              displayName: Get terraform version from .terraform-version
+
+            - script: |
+                git clone --depth=1 https://github.com/tfutils/tfenv.git ${{ variables.TFENV_INSTALL_PATH }}/.tfenv
+              displayName: Install TFEnv
+
+            - task: Bash@3
+              displayName: Login to Terraform Cloud
+              inputs:
+                targetType: 'inline'
+                script: |
+                  cat > ~/.terraformrc << EOL
+                  credentials "app.terraform.io" {
+                    token = "$(TF_CLOUD_TOKEN)"
+                  }
+                  EOL
+
+            - script: |
+                ${{ variables.TFENV_INSTALL_PATH }}/.tfenv/bin/terraform init
+              displayName: 'Terraform: init'
+              workingDirectory: 'envs/acc'
+
+            - script: |
+                ${{ variables.TFENV_INSTALL_PATH }}/.tfenv/bin/terraform apply -auto-approve
+              displayName: 'Terraform: apply acc'
+              workingDirectory: 'envs/acc'
+
+            - task: Bash@3
+              displayName: Logout from Terraform Cloud
+              inputs:
+                targetType: 'inline'
+                script: |
+                  rm -rf ~/.terraformrc
+
+  - stage: deployPrd
+    displayName: 'Deploy prd'
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
+    jobs:
+    - deployment: Deploy_Prd
+      environment: 'Production'
+      strategy:
+        runOnce:
+          deploy:
+            steps:
+            ###
+            # Install correct Terraform version
+            ###
+            - script: 'cp -r $(Pipeline.Workspace)/drop/* ./ && cp -r $(Pipeline.Workspace)/drop/.terraform* ./'
+              displayName: Download artifact files
+
+            - script: echo "##vso[task.setvariable variable=terraform_version]$(cat $(Build.Repository.LocalPath)/.terraform-version)"
+              displayName: Get terraform version from .terraform-version
+
+            - script: |
+                git clone --depth=1 https://github.com/tfutils/tfenv.git ${{ variables.TFENV_INSTALL_PATH }}/.tfenv
+              displayName: Install TFEnv
+
+            - task: Bash@3
+              displayName: Login to Terraform Cloud
+              inputs:
+                targetType: 'inline'
+                script: |
+                  cat > ~/.terraformrc << EOL
+                  credentials "app.terraform.io" {
+                    token = "$(TF_CLOUD_TOKEN)"
+                  }
+                  EOL
+
+            - script: |
+                ${{ variables.TFENV_INSTALL_PATH }}/.tfenv/bin/terraform init
+              displayName: 'Terraform: init'
+              workingDirectory: 'envs/prd'
+
+            - script: |
+                ${{ variables.TFENV_INSTALL_PATH }}/.tfenv/bin/terraform apply -auto-approve
+              displayName: 'Terraform: apply test'
+              workingDirectory: 'envs/prd'
+
+            - task: Bash@3
+              displayName: Logout from Terraform Cloud
+              inputs:
+                targetType: 'inline'
+                script: |
+                  rm -rf ~/.terraformrc
