@@ -9,16 +9,39 @@ pool:
 variables:
   buildConfiguration: 'Release'
 
-stages:
-  - stage: BuildBackend
-    jobs:
-      - template: src/backend/pipeline-template.yml
-        parameters:
-          workingDirectory: 'src/backend'
-          buildConfiguration: 'Release'
-          # Uncomment and configure if you want to enable SonarCloud later
-          # sonarCloud:
-          #   enabled: 'true'
-          #   projectKey: 'your-project-key'
-          #   projectName: 'your-project-name'
-          #   serviceConnection: 'your-sonarcloud-service-connection'
+steps:
+  - task: UseDotNet@2
+    displayName: 'Use .NET 8 SDK'
+    inputs:
+      version: 8.x
+
+  - task: NuGetAuthenticate@1
+    displayName: 'Authenticate to NuGet'
+    inputs:
+      nuGetServiceConnections: 'DTNL-Dotnet-Feed'
+
+  # - task: SonarCloudPrepare@1
+  #   displayName: 'Prepare SonarCloud analysis'
+  #   inputs:
+  #     SonarCloud: 'YOUR_SONARCLOUD_CONNECTION'
+  #     organization: 'YOUR_ORG'
+  #     scannerMode: 'MSBuild'
+  #     projectKey: 'YOUR_KEY'
+  #     projectName: 'YOUR_PROJECT_NAME'
+
+  - task: DotNetCoreCLI@2
+    displayName: 'Publish backend project'
+    inputs:
+      command: 'publish'
+      publishWebProjects: true
+      workingDirectory: 'src/backend'
+      arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+
+  # - task: SonarCloudAnalyze@1
+  #   displayName: 'Run SonarCloud analysis'
+
+  - task: PublishPipelineArtifact@1
+    displayName: 'Publish compiled artifact'
+    inputs:
+      targetPath: '$(Build.ArtifactStagingDirectory)'
+      artifactName: 'backend'
