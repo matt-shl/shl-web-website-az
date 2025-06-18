@@ -3,8 +3,8 @@ parameters:
 - name: buildConfiguration
   default: Release
   values:
-  - Debug
-  - Release
+    - Debug
+    - Release
 - name: sonarCloud
   type: object
   default:
@@ -22,10 +22,14 @@ jobs:
         inputs:
           version: 8.x
 
-      - task: NuGetAuthenticate@1
-        displayName: 'NuGet Authenticate'
+      # Restore NuGet packages from local folder using config file
+      - task: DotNetCoreCLI@2
+        displayName: 'DotNet Restore'
         inputs:
-          nuGetServiceConnections: 'DTNL-Dotnet-Feed'
+          command: 'restore'
+          projects: '**/*.csproj'
+          feedsToUse: 'config'
+          nugetConfigPath: '$(Build.SourcesDirectory)/src/backend/nuget.config'
 
       - ${{ if eq(parameters.sonarCloud.enabled, 'true') }}:
         - task: SonarCloudPrepare@2
