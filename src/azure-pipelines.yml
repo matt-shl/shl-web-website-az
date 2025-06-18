@@ -1,51 +1,61 @@
-trigger:
-  batch: true
-  branches:
-    include:
-    - main
-    - master
-    - acceptance
-    - develop
-    - support
-    - test
-    - release/*
-
-pr:
-  branches:
-    include:
-    - '*'
-
 parameters:
+- name: workingDirectory
 - name: buildConfiguration
-  displayName: Build Configuration
   default: Release
   values:
   - Debug
   - Release
-- name: bypassCache
-  displayName: Bypass package Cache
-  type: boolean
-  default: false
+# - name: sonarCloud
+#   type: object
+#   default:
+#     enabled: 'false'
+#     projectKey: ''
+#     serviceConnection: ''
 
-variables: 
-  backendWorkingDirectory: $[coalesce(variables.backendWorkingDirectoryOverride, 'src/backend')]
-  frontendWorkingDirectory: $[coalesce(variables.frontendWorkingDirectoryOverride, 'src/frontend')]
+jobs:
+  - job: Backend
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+      - task: UseDotNet@2
+        displayName: 'Use .NET 8 SDK'
+        inputs:
+          version: 8.x
 
-name: $(Build.DefinitionName)-$(SourceBranchName)-$(Date:yyyyMMdd)$(Rev:.r)
-stages:
-- stage: Build
-  jobs:
-    - template: 'backend/pipeline-template.yml'
-      parameters:
-        workingDirectory: $(backendWorkingDirectory)
-        sonarCloud:
-            enabled: true
-            serviceConnection: $(sonarCloudServiceConnection)
-            projectKey: $(sonarCloudProjectKey)
-            projectName: $(sonarCloudProjectName)
-        buildConfiguration: ${{ parameters.buildConfiguration }}
-        
-    - template: 'frontend/pipeline-template.yml'
-      parameters:
-        workingDirectory: $(frontendWorkingDirectory)
-        bypassCache: ${{ parameters.bypassCache }}
+      - task: NuGetAuthenticate@1
+        displayName: 'NuGet Authenticate'
+        inputs:
+          nuGetServiceConnections: 'DTNL-Dotnet-Feed'
+
+      # - ${{ if eq(parameters.sonarCloud.enabled, 'true') }}:
+      #   - task: SonarCloudPrepare@2
+      #     displayName: 'SonarCloud Prepare'
+      #     inputs:
+      #       SonarCloud: '${{ parameters.sonarCloud.serviceConnection }}'
+      #       organization: 'dept'
+      #       scannerMode: 'MSBuild'
+      #       projectKey: '${{ parameters.sonarCloud.projectKey }}'
+      #       projectName: '${{ parameters.sonarCloud.projectName }}'
+      #       extraProperties: |
+      #         sonar.dotnet.excludeTestProjects=true
+      #         sonar.cs.vstest.reportsPaths=$(Agent.TempDirectory)/*.trx
+      #         sonar.cs.opencover.reportsPaths=$(Agent.TempDirectory)/*/coverage.opencover.xml
+      #         sonar.exclusions=umbraco/**
+
+      - task: DotNetCoreCLI@2
+        displayName: 'DotNet Publish'
+        inputs:
+          command: 'publish'
+          publishWebProjects: true
+          workingDirectory: '${{ parameters.workingDirectory }}'
+          arguments: '--configuration ${{ parameters.buildConfiguration }} --output $(Build.ArtifactStagingDirectory)'
+
+      # - ${{ if eq(parameters.sonarCloud.enabled, 'true') }}:
+      #   - task: SonarCloudAnalyze@2
+
+      - task: PublishPipelineArtifact@1
+        displayName: 'Publish Artifact: Backend'
+        inputs:
+          targetPath: '$(Build.ArtifactStagingDirectory)'
+          artifactName: 'backend'
+          publishLocation: 'pipeline'
